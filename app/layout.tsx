@@ -10,7 +10,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <nav style={{ maxWidth: 1024, margin: "0 auto", display: "flex", gap: 16, alignItems: "center", padding: "12px 16px" }}>
            <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center" }}>
   <Image
-    src="/scoutline-logo-gold.svg"
+    src="/scoutline-logo-gold.png"
     alt="ScoutLine"
     width={720}   // double from previous 360
     height={160}  // double from previous 80
