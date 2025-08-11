@@ -1,9 +1,29 @@
 "use client";
-import { useState } from "react";
-import { braden, Player } from "../lib/samplePlayer";
+import { useEffect, useState } from "react";
+import { braden as defaultBraden, Player } from "../lib/samplePlayer";
+
+const LS_COMMITTED = "bradenCommitted";
+const LS_COLLEGE = "bradenCommittedCollege";
 
 export default function AdminPage() {
-  const [player, setPlayer] = useState<Player>(braden);
+  const [player, setPlayer] = useState<Player>(defaultBraden);
+
+  // Load from localStorage on mount
+  useEffect(() => {
+    const committed = localStorage.getItem(LS_COMMITTED);
+    const college = localStorage.getItem(LS_COLLEGE) ?? "";
+    setPlayer(p => ({
+      ...p,
+      committed: committed ? committed === "true" : p.committed,
+      committedCollege: college || p.committedCollege,
+    }));
+  }, []);
+
+  // Save when these change
+  useEffect(() => {
+    localStorage.setItem(LS_COMMITTED, String(player.committed));
+    localStorage.setItem(LS_COLLEGE, player.committedCollege ?? "");
+  }, [player.committed, player.committedCollege]);
 
   return (
     <section style={{ padding: 24, maxWidth: 1100, margin: "0 auto" }}>
@@ -27,7 +47,7 @@ export default function AdminPage() {
                   <td style={td}>{player.name}</td>
                   <td style={td}>{player.gradYear}</td>
                   <td style={td}>{player.positions.join(", ")}</td>
-                  <td style={td}>{player.committed ? `Yes: ${player.committedCollege}` : "No"}</td>
+                  <td style={td}>{player.committed ? `Yes: ${player.committedCollege || "—"}` : "No"}</td>
                   <td style={td}>{player.school}</td>
                   <td style={td}>{player.org}</td>
                   <td style={td}>{player.metrics.exitVelo ?? "—"}</td>
@@ -38,19 +58,19 @@ export default function AdminPage() {
           </div>
         </div>
 
-        {/* Faux edit panel (demonstrates fields; not wired to a backend) */}
+        {/* Edit panel */}
         <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 16 }}>
-          <h2 style={{ margin: "0 0 8px" }}>Edit Player (Demo Only)</h2>
+          <h2 style={{ margin: "0 0 8px" }}>Commit Status (Demo)</h2>
 
           <label style={labelStyle}>Committed</label>
-          <select
-            value={player.committed ? "yes" : "no"}
-            onChange={(e) => setPlayer({ ...player, committed: e.target.value === "yes" })}
-            style={inputStyle}
-          >
-            <option value="no">No</option>
-            <option value="yes">Yes</option>
-          </select>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}>
+            <input
+              type="checkbox"
+              checked={player.committed}
+              onChange={(e) => setPlayer({ ...player, committed: e.target.checked })}
+            />
+            <span>{player.committed ? "Yes" : "No"}</span>
+          </label>
 
           {player.committed && (
             <>
@@ -63,6 +83,8 @@ export default function AdminPage() {
               />
             </>
           )}
+
+          <hr style={{ margin: "16px 0" }} />
 
           <label style={labelStyle}>Exit Velo</label>
           <input
@@ -81,7 +103,7 @@ export default function AdminPage() {
           />
 
           <p style={{ marginTop: 12, color: "#6b7280", fontSize: 12 }}>
-            This panel is local-only (no database). In the real app, changes would save to your backend and update all views.
+            Demo only — changes are saved to your browser (localStorage), not a database.
           </p>
         </div>
       </div>
