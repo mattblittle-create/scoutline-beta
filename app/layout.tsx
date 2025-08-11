@@ -8,17 +8,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body style={{ fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial", margin: 0 }}>
         <header style={{ borderBottom: "1px solid #e5e7eb", background: "#fff" }}>
           <nav style={{ maxWidth: 1024, margin: "0 auto", display: "flex", gap: 16, alignItems: "center", padding: "12px 16px" }}>
-            <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center" }}>
+           <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center" }}>
   <Image
     src="/scoutline-logo-gold.svg"
     alt="ScoutLine"
-    width={360}   // doubled from 180
-    height={80}   // doubled from 40
+    width={720}   // double from previous 360
+    height={160}  // double from previous 80
     priority
-    style={{ height: 80, width: "auto", display: "block" }}
-    sizes="(max-width: 640px) 280px, 360px"
+    style={{ height: 160, width: "auto", display: "block" }}
+    sizes="(max-width: 640px) 560px, 720px"
   />
 </Link>
+
 
 
             <span style={{ marginLeft: "auto", display: "flex", gap: 12 }}>
