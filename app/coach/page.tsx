@@ -1,31 +1,33 @@
-import { braden } from "../lib/samplePlayer";
+"use client";
+import { useEffect, useState } from "react";
+import { braden as defaultBraden, Player } from "../lib/samplePlayer";
+
+const LS_COMMITTED = "bradenCommitted";
+const LS_COLLEGE = "bradenCommittedCollege";
 
 export default function CoachPage() {
-  const p = braden;
+  const [p, setP] = useState<Player>(defaultBraden);
+
+  useEffect(() => {
+    const committed = localStorage.getItem(LS_COMMITTED);
+    const college = localStorage.getItem(LS_COLLEGE) ?? "";
+    setP(prev => ({
+      ...prev,
+      committed: committed ? committed === "true" : prev.committed,
+      committedCollege: college || prev.committedCollege,
+    }));
+  }, []);
 
   return (
     <section style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
       <h1 style={{ fontSize: 28, marginBottom: 12 }}>Coach View — Demo</h1>
 
-      {/* Faux filters (non-functional for now) */}
+      {/* Faux filters */}
       <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
         <input placeholder="Search name…" style={inputStyle} />
-        <select style={inputStyle}>
-          <option>All Grad Years</option>
-          <option>2028</option>
-          <option>2027</option>
-        </select>
-        <select style={inputStyle}>
-          <option>All Positions</option>
-          <option>SS</option>
-          <option>RHP</option>
-          <option>C</option>
-        </select>
-        <select style={inputStyle}>
-          <option>Commit Status</option>
-          <option>Uncommitted</option>
-          <option>Committed</option>
-        </select>
+        <select style={inputStyle}><option>All Grad Years</option><option>2028</option></select>
+        <select style={inputStyle}><option>All Positions</option><option>SS</option><option>RHP</option></select>
+        <select style={inputStyle}><option>Commit Status</option><option>Uncommitted</option><option>Committed</option></select>
         <button style={buttonStyle}>Filter</button>
       </div>
 
@@ -39,7 +41,7 @@ export default function CoachPage() {
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
             <Badge>{p.org}</Badge>
             <Badge>{p.school}</Badge>
-            <Badge>{p.committed ? `Committed: ${p.committedCollege}` : "Uncommitted"}</Badge>
+            <Badge>{p.committed ? `Committed: ${p.committedCollege || "—"}` : "Uncommitted"}</Badge>
           </div>
           <p style={{ margin: 0, color: "#374151" }}>{p.bio}</p>
         </div>
