@@ -1,4 +1,4 @@
-i// app/layout.tsx
+// app/layout.tsx
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,16 +31,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link
               href="/"
               aria-label="ScoutLine home"
-              style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexShrink: 0,
+                maxWidth: "100%",
+              }}
             >
-              <Image
-                src="/scoutline-logo-gold.png"
-                alt="ScoutLine"
-                width={400} // Adjusted size for sharpness
-                height={89} // Maintain aspect ratio
-                priority
-                style={{ height: "auto", width: "auto", display: "block" }}
-              />
+              <div style={{ width: "100%", maxWidth: 800 }}>
+                <Image
+                  src="/scoutline-logo-gold.png"
+                  alt="ScoutLine"
+                  width={800} // double desktop size
+                  height={178}
+                  priority
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
+                />
+              </div>
             </Link>
 
             {/* Nav Links */}
@@ -121,6 +132,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           © {new Date().getFullYear()} ScoutLine • Beta
         </footer>
+
+        {/* RESPONSIVE STYLES */}
+        <style jsx global>{`
+          @media (max-width: 768px) {
+            nav img {
+              max-width: 300px;
+            }
+          }
+          @media (max-width: 480px) {
+            nav img {
+              max-width: 200px;
+            }
+          }
+        `}</style>
       </body>
     </html>
   );
