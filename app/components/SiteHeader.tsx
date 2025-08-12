@@ -33,7 +33,7 @@ export default function SiteHeader() {
   return (
     <header style={{ borderBottom: "1px solid #e5e7eb", background: "#fff" }}>
       <nav style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", padding: "12px 16px", flexWrap: "wrap" }}>
-        {/* Massive Logo */}
+        {/* Logo */}
         <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           <Image
             src="/scoutline-logo-gold.svg"
@@ -42,11 +42,11 @@ export default function SiteHeader() {
             height={160}
             priority
             style={{ height: 160, width: "auto", display: "block" }}
-            sizes="(max-width: 640px) 100vw, 720px"
+            sizes="(max-width: 768px) 100vw, 720px"
           />
         </Link>
 
-        {/* Nav Links */}
+        {/* Nav */}
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
