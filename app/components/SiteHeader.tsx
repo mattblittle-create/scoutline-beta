@@ -160,10 +160,10 @@ export default function SiteHeader() {
                   if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
                 }}
               >
-                <Link href="/player" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Player</Link>
-                <Link href="/parent" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Parent</Link>
-                <Link href="/coach" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Coach</Link>
-                <Link href="/admin" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Team Admin</Link>
+                <Link href="/login?role=player" style={{ display: "block", padding: "8px 12px" }}>Player</Link>
+<Link href="/login?role=parent" style={{ display: "block", padding: "8px 12px" }}>Parent</Link>
+<Link href="/login?role=coach" style={{ display: "block", padding: "8px 12px" }}>Coach</Link>
+<Link href="/login?role=admin" style={{ display: "block", padding: "8px 12px" }}>Team Admin</Link>
               </div>
             )}
           </div>
