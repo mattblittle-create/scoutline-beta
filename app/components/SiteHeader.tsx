@@ -78,7 +78,20 @@ export default function SiteHeader() {
         .sl-item { display: block; padding: 8px 12px; text-decoration: none; border-radius: 6px; }
         .sl-logo { width: 100%; max-width: 360px; } /* default logo size */
         .sl-hamburger { display: none; margin-left: auto; border: 1px solid #e5e7eb; background: #fff; border-radius: 8px; padding: 8px 10px; cursor: pointer; }
-        .sl-mobile-panel { display: none; }
+        .sl-mobile-panel {
+  display: none;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.35s ease;
+  max-height: 0;
+  opacity: 0;
+}
+
+.sl-mobile-panel.open {
+  display: block;
+  max-height: 600px; /* large enough for menu content */
+  opacity: 1;
+}
+
 
         /* Mobile layout */
         @media (max-width: 768px) {
@@ -172,37 +185,40 @@ export default function SiteHeader() {
 
       {/* Mobile slide-down panel */}
       {mobileOpen && (
-        <div className="sl-mobile-panel" ref={mobileRef}>
-          <div className="sl-mobile-card">
-            <div className="sl-mobile-row">
-              <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
-              <Link href="/about" className="sl-item" onClick={closeAll}>About</Link>
-              <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting Journey</Link>
-              <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
-              <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
+       <div
+  className={`sl-mobile-panel ${mobileOpen ? "open" : ""}`}
+  ref={mobileRef}
+>
+  <div className="sl-mobile-card">
+    <div className="sl-mobile-row">
+      <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
+      <Link href="/about" className="sl-item" onClick={closeAll}>About</Link>
+      <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting Journey</Link>
+      <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
+      <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
 
-              <div className="sl-mobile-sep" />
+      <div className="sl-mobile-sep" />
 
-              {/* Mobile "Log In" expandable */}
-              <button
-                className="sl-login-btn"
-                aria-expanded={mobileLoginOpen}
-                aria-controls="mobile-login-menu"
-                onClick={() => setMobileLoginOpen(v => !v)}
-              >
-                Log In ▾
-              </button>
-              {mobileLoginOpen && (
-                <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
-                  <Link href="/player" className="sl-item" onClick={closeAll}>Player</Link>
-                  <Link href="/parent" className="sl-item" onClick={closeAll}>Parent</Link>
-                  <Link href="/coach" className="sl-item" onClick={closeAll}>Coach</Link>
-                  <Link href="/admin" className="sl-item" onClick={closeAll}>Team Admin</Link>
-                </div>
-              )}
-            </div>
-          </div>
+      <button
+        className="sl-login-btn"
+        aria-expanded={mobileLoginOpen}
+        aria-controls="mobile-login-menu"
+        onClick={() => setMobileLoginOpen(v => !v)}
+      >
+        Log In ▾
+      </button>
+      {mobileLoginOpen && (
+        <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
+          <Link href="/player" className="sl-item" onClick={closeAll}>Player</Link>
+          <Link href="/parent" className="sl-item" onClick={closeAll}>Parent</Link>
+          <Link href="/coach" className="sl-item" onClick={closeAll}>Coach</Link>
+          <Link href="/admin" className="sl-item" onClick={closeAll}>Team Admin</Link>
         </div>
+      )}
+    </div>
+  </div>
+</div>
+
       )}
     </header>
   );
