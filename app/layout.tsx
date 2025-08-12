@@ -1,14 +1,12 @@
+i// app/layout.tsx
 import "./globals.css";
-import type { Metadata } from "next";
-import React from "react";
-import SiteHeader from "./components/SiteHeader";
-
-export const metadata: Metadata = {
-  title: "ScoutLine",
-  description: "Athlete recruiting platform",
-};
+import Image from "next/image";
+import Link from "next/link";
+import React, { useState } from "react";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const [loginOpen, setLoginOpen] = useState(false);
+
   return (
     <html lang="en">
       <body
@@ -17,8 +15,101 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           margin: 0,
         }}
       >
-        <SiteHeader />
+        {/* HEADER */}
+        <header style={{ borderBottom: "1px solid #e5e7eb", background: "#fff" }}>
+          <nav
+            style={{
+              maxWidth: 1280,
+              margin: "0 auto",
+              display: "flex",
+              alignItems: "center",
+              padding: "12px 16px",
+              flexWrap: "wrap",
+            }}
+          >
+            {/* Logo */}
+            <Link
+              href="/"
+              aria-label="ScoutLine home"
+              style={{ display: "flex", alignItems: "center", flexShrink: 0 }}
+            >
+              <Image
+                src="/scoutline-logo-gold.png"
+                alt="ScoutLine"
+                width={400} // Adjusted size for sharpness
+                height={89} // Maintain aspect ratio
+                priority
+                style={{ height: "auto", width: "auto", display: "block" }}
+              />
+            </Link>
+
+            {/* Nav Links */}
+            <div
+              style={{
+                marginLeft: "auto",
+                display: "flex",
+                alignItems: "center",
+                gap: 20,
+                flexWrap: "wrap",
+              }}
+            >
+              <Link href="/">Home</Link>
+              <Link href="/about">About</Link>
+              <Link href="/recruiting-journey">Recruiting Journey</Link>
+              <Link href="/pricing">Pricing</Link>
+
+              {/* Log In dropdown */}
+              <div style={{ position: "relative" }}>
+                <button
+                  onClick={() => setLoginOpen(!loginOpen)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    font: "inherit",
+                    padding: 0,
+                  }}
+                >
+                  Log In ▾
+                </button>
+                {loginOpen && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "100%",
+                      left: 0,
+                      background: "#fff",
+                      border: "1px solid #ddd",
+                      boxShadow: "0 2px 6px rgba(0,0,0,0.1)",
+                      zIndex: 50,
+                      minWidth: 160,
+                    }}
+                  >
+                    <Link href="/player" style={{ display: "block", padding: "8px 12px" }}>
+                      Player
+                    </Link>
+                    <Link href="/parent" style={{ display: "block", padding: "8px 12px" }}>
+                      Parent
+                    </Link>
+                    <Link href="/coach" style={{ display: "block", padding: "8px 12px" }}>
+                      Coach
+                    </Link>
+                    <Link href="/admin" style={{ display: "block", padding: "8px 12px" }}>
+                      Team Admin
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              <Link href="/faq">FAQ</Link>
+            </div>
+          </nav>
+        </header>
+
+        {/* MAIN */}
         <main style={{ padding: 24, maxWidth: 1024, margin: "0 auto" }}>{children}</main>
+
+        {/* FOOTER */}
         <footer
           style={{
             borderTop: "1px solid #e5e7eb",
