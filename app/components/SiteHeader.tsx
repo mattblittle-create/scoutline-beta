@@ -52,11 +52,11 @@ export default function SiteHeader() {
             <Image
   src="/scoutline-logo-gold.png"
   alt="ScoutLine"
-  width={360}   // back to original width
-  height={80}   // back to original height
+  width={720}   // double width from 360
+  height={160}  // double height from 80
   priority
-  style={{ height: 80, width: "auto", display: "block" }}
-  sizes="(max-width: 640px) 100vw, 360px"
+  style={{ height: 160, width: "auto", display: "block" }}
+  sizes="(max-width: 640px) 100vw, 720px"
 />
 
           </div>
