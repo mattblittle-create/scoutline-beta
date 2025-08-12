@@ -31,56 +31,54 @@ export default function SiteHeader() {
   }, []);
 
   return (
-    <header style={{ borderBottom: "1px solid #e5e7eb", background: "#fff" }}>
-      <nav style={{ maxWidth: 1280, margin: "0 auto", display: "flex", alignItems: "center", padding: "12px 16px", flexWrap: "wrap" }}>
-        {/* Logo */}
-        <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-          <Image
-            src="/scoutline-logo-gold.png"
-            alt="ScoutLine"
-            width={720}
-            height={160}
-            priority
-            style={{ height: 160, width: "auto", display: "block" }}
-            sizes="(max-width: 768px) 100vw, 720px"
-          />
+    <header className="sl-header">
+      <style>{`
+        .sl-header { border-bottom: 1px solid #e5e7eb; background: #fff; }
+        .sl-nav { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; padding: 12px 16px; gap: 16px; }
+        .sl-logo { width: 100%; max-width: 800px; } /* big on desktop */
+        .sl-right { margin-left: auto; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .sl-login-btn { background: none; border: 1px solid #e5e7eb; border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+        .sl-dropdown { position: absolute; top: calc(100% + 6px); left: 0; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.08); z-index: 50; min-width: 200px; padding: 6px; }
+
+        /* responsive logo sizes */
+        @media (max-width: 768px) { .sl-logo { max-width: 300px; } }
+        @media (max-width: 480px) { .sl-logo { max-width: 200px; } }
+      `}</style>
+
+      <nav className="sl-nav">
+        {/* Logo (PNG) */}
+        <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center", flexShrink: 0, maxWidth: "100%" }}>
+          <div className="sl-logo">
+            <Image
+              src="/scoutline-logo-gold.png"
+              alt="ScoutLine"
+              width={800}
+              height={178}
+              priority
+              style={{ width: "100%", height: "auto", display: "block" }}
+            />
+          </div>
         </Link>
 
         {/* Nav */}
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
+        <div className="sl-right">
           <Link href="/">Home</Link>
           <Link href="/about">About</Link>
           <Link href="/recruiting-journey">Recruiting Journey</Link>
           <Link href="/pricing">Pricing</Link>
 
-          {/* Log In dropdown */}
           <div style={{ position: "relative" }}>
             <button
               ref={btnRef}
               onClick={() => setLoginOpen(v => !v)}
               aria-haspopup="menu"
               aria-expanded={loginOpen}
-              style={{ background: "none", border: "1px solid #e5e7eb", borderRadius: 8, padding: "6px 10px", cursor: "pointer" }}
+              className="sl-login-btn"
             >
               Log In ▾
             </button>
             {loginOpen && (
-              <div
-                ref={menuRef}
-                role="menu"
-                style={{
-                  position: "absolute",
-                  top: "calc(100% + 6px)",
-                  left: 0,
-                  background: "#fff",
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 8,
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.08)",
-                  zIndex: 50,
-                  minWidth: 200,
-                  padding: 6,
-                }}
-              >
+              <div ref={menuRef} role="menu" className="sl-dropdown">
                 <Link href="/player" role="menuitem" style={item} onClick={() => setLoginOpen(false)}>Player</Link>
                 <Link href="/parent" role="menuitem" style={item} onClick={() => setLoginOpen(false)}>Parent</Link>
                 <Link href="/coach" role="menuitem" style={item} onClick={() => setLoginOpen(false)}>Coach</Link>
