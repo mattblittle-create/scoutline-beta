@@ -36,7 +36,7 @@ export default function SiteHeader() {
         {/* Logo */}
         <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
           <Image
-            src="/scoutline-logo-gold.svg"
+            src="/scoutline-logo-gold.png"
             alt="ScoutLine"
             width={720}
             height={160}
