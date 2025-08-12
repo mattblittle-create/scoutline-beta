@@ -209,10 +209,11 @@ export default function SiteHeader() {
       </button>
       {mobileLoginOpen && (
         <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
-          <Link href="/player" className="sl-item" onClick={closeAll}>Player</Link>
-          <Link href="/parent" className="sl-item" onClick={closeAll}>Parent</Link>
-          <Link href="/coach" className="sl-item" onClick={closeAll}>Coach</Link>
-          <Link href="/admin" className="sl-item" onClick={closeAll}>Team Admin</Link>
+          <Link href="/login?role=player" className="sl-item" onClick={closeAll}>Player</Link>
+<Link href="/login?role=parent" className="sl-item" onClick={closeAll}>Parent</Link>
+<Link href="/login?role=coach"  className="sl-item" onClick={closeAll}>Coach</Link>
+<Link href="/login?role=admin"  className="sl-item" onClick={closeAll}>Team Admin</Link>
+
         </div>
       )}
     </div>
