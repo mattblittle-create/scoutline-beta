@@ -3,26 +3,27 @@ import Image from "next/image";
 
 export default function HeroBanner() {
   return (
-    <section className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden">
-      {/* Background image */}
+    <section style={{ position: "relative", width: "100%", height: "38vh", overflow: "hidden" }}>
+      {/* Full-bleed background image */}
       <Image
         src="/track_pic_homepage.jpg"
         alt="Running track starting lanes leading forward"
         fill
         priority
-        className="object-cover"
         sizes="100vw"
+        style={{ objectFit: "cover" }}
       />
 
-      {/* Soft fade so content flows into the page */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/10 to-white/90" />
-
-      {/* Optional headline—you can remove this block if you want image only */}
-      {/* <div className="absolute inset-0 flex items-end md:items-center justify-center pb-6 md:pb-0">
-        <h1 className="text-2xl md:text-4xl font-semibold text-slate-900 drop-shadow-sm text-center px-4">
-          Your recruiting journey starts here
-        </h1>
-      </div> */}
+      {/* Soft fade into the page background (NOT fully opaque) */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,.88) 100%)",
+          pointerEvents: "none",
+        }}
+      />
     </section>
   );
 }
