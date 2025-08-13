@@ -47,20 +47,11 @@ function LoginForm() {
           type="email"
           placeholder="Email"
           required
-}
- return (
-    <div style={{ maxWidth: 420, margin: "40px auto" }}>
-      <h1>Log In {role ? `— ${role}` : ""}</h1>
-      <form onSubmit={onSubmit} style={{ display: "grid", gap: 12 }}>
-        <input
-          type="email"
-          placeholder="Email"
-          required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         />
- <input
+        <input
           type="password"
           placeholder="Password"
           required
@@ -68,11 +59,11 @@ function LoginForm() {
           onChange={(e) => setPassword(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         />
- <button
+        <button
           type="submit"
           style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #ddd", cursor: "pointer" }}
         >
- Log In
+          Log In
         </button>
         {err && <div style={{ color: "crimson" }}>{err}</div>}
       </form>
