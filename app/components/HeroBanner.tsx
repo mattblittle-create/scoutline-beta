@@ -75,8 +75,8 @@ export default function HeroBanner() {
               color: "rgba(255,255,255,0.95)",
             }}
           >
-            ScoutLine connects players, parents, and coaches on the fastest path to recruitment—
-            with profiles, milestones, and progress in one place.
+            Connecting players, parents, and coaches on the fastest path to recruitment. 
+            From showcase to scholarship, ScoutLine brings the right people together.
           </p>
 
           <div
