@@ -113,10 +113,10 @@ export default function SiteHeader() {
         <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center", flexShrink: 0, maxWidth: "100%" }} onClick={closeAll}>
           <div className="sl-logo">
             <Image
-              src="/scoutline-logo-gold.png"
-              alt="ScoutLine"
-              width={360}
-              height={80}
+  src="/scoutline-logo-gold.png"
+  alt="ScoutLine"
+  width={240} // was 320
+  height={60} // was 80
               priority
               style={{ width: "100%", height: "auto", display: "block" }}
             />
