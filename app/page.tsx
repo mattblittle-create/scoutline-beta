@@ -1,5 +1,10 @@
+import HeroBanner from "./components/HeroBanner";
+
 export default function HomePage(){
   return (
+    <>
+      <HeroBanner />
+      <div className="max-w-[1100px] mx-auto px-4 py-8">
     <div className="container" style={{paddingTop: 28, paddingBottom: 36}}>
       <span className="badge">Beta</span>
       <h1 style={{marginTop: 10}}>Your recruiting journey, organized and in your control. Get seen. Get signed. Get ahead.</h1>
