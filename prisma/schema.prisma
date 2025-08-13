@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql" // We'll use Vercel Postgres in Production
+  provider = "postgresql"        // We'll use Vercel Postgres in Production
   url      = env("DATABASE_URL") // Set in Vercel → Settings → Environment
 }
 
@@ -15,19 +15,18 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  role          Role      @default(PLAYER)
+  id                    String                 @id @default(cuid())
+  name                  String?
+  email                 String?                @unique
+  emailVerified         DateTime?
+  image                 String?
+  role                  Role                   @default(PLAYER)
 
-  // For Credentials login
-  hashedPassword String?
+  // Needed by your auth code:
+  hashedPassword        String?                // store bcrypt hash here
 
-  accounts           Account[]
-  sessions           Session[]
-  PasswordResetToken PasswordResetToken[]
+  // Back-relation for password reset tokens:
+  passwordResetTokens   PasswordResetToken[]
 }
 
 model Account {
@@ -64,13 +63,14 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
-
 model PasswordResetToken {
   id        String   @id @default(cuid())
   token     String   @unique
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   expiresAt DateTime
   used      Boolean  @default(false)
   createdAt DateTime @default(now())
+
+  @@index([userId])
 }
