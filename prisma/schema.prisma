@@ -23,11 +23,9 @@ model User {
   role           Role      @default(PLAYER)
   hashedPassword String?
 
-  // Back-relations required by NextAuth models:
-  accounts Account[]
-  sessions Session[]
-
-  // If you added reset tokens earlier:
+  // Back-relations:
+  accounts            Account[]
+  sessions            Session[]
   passwordResetTokens PasswordResetToken[]
 }
 
