@@ -5,26 +5,71 @@ export default function HomePage() {
     <>
       <HeroBanner />
 
-      <main className="max-w-[1100px] mx-auto px-4 py-8">
-        <span className="badge">Beta</span>
+      <main style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
+        <span
+          style={{
+            display: "inline-block",
+            padding: "4px 8px",
+            borderRadius: 999,
+            background: "#fff8e6",
+            color: "#8a6b20",
+            border: "1px solid #f3e2b7",
+            fontWeight: 600,
+          }}
+        >
+          Beta
+        </span>
 
-        <h1 className="mt-2 text-3xl md:text-4xl font-semibold">
+        <h1 style={{ marginTop: 10, fontSize: 32, lineHeight: 1.15 }}>
           Your recruiting journey, organized and in your control.
         </h1>
 
-        <p className="mt-3 text-slate-600 max-w-[720px]">
-          ScoutLine brings your entire recruiting journey into one place—contacts,
-          timelines, tasks, and progress—so you spend less time guessing and more time advancing.
+        <p style={{ marginTop: 12, maxWidth: 720, color: "#64748b", lineHeight: 1.65 }}>
+          ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
+          tasks, and progress—so you spend less time guessing and more time advancing.
         </p>
 
-        <div className="mt-4 flex gap-3">
-          <a className="btn btn-primary" href="/pricing">Get Started</a>
-          <a className="btn" href="/recruiting-journey">See how it works</a>
+        <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
+          <a
+            href="/pricing"
+            style={{
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#ca9a3f",
+              color: "#1a1203",
+              textDecoration: "none",
+              border: "1px solid transparent",
+            }}
+          >
+            Get Started
+          </a>
+          <a
+            href="/recruiting-journey"
+            style={{
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#fff",
+              border: "1px solid #e5e7eb",
+              textDecoration: "none",
+              color: "#0f172a",
+            }}
+          >
+            See how it works
+          </a>
         </div>
 
-        <section className="card mt-8">
-          <h2 className="mt-0">Why ScoutLine</h2>
-          <ul className="list-disc pl-5 text-slate-600">
+        <section
+          style={{
+            marginTop: 28,
+            border: "1px solid #e5e7eb",
+            borderRadius: 12,
+            padding: 18,
+            background: "#fff",
+            boxShadow: "0 8px 24px rgba(15,23,42,0.06)",
+          }}
+        >
+          <h2 style={{ margin: 0, fontSize: 24 }}>Why ScoutLine</h2>
+          <ul style={{ margin: "10px 0 0 18px", color: "#64748b", lineHeight: 1.6 }}>
             <li>Unified profile & milestones across sports</li>
             <li>Coach & parent views that stay in sync</li>
             <li>Clean dashboards, not clutter</li>
