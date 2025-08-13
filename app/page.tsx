@@ -5,7 +5,15 @@ export default function HomePage() {
     <>
       <HeroBanner />
 
-      <main style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px" }}>
+      <main
+        style={{
+          maxWidth: 1100,
+          margin: "0 auto",
+          padding: "32px 16px",
+          color: "#0f172a",            // force visible text color
+          background: "transparent",
+        }}
+      >
         <span
           style={{
             display: "inline-block",
