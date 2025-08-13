@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"        // We'll use Vercel Postgres in Production
+  provider = "postgresql" // We'll use Vercel Postgres in Production
   url      = env("DATABASE_URL") // Set in Vercel → Settings → Environment
 }
 
@@ -15,18 +15,19 @@ enum Role {
 }
 
 model User {
-  id             String   @id @default(cuid())
-  name           String?
-  email          String?  @unique
-  emailVerified  DateTime?
-  image          String?
-  role           Role     @default(PLAYER)
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(PLAYER)
 
   // For Credentials login
   hashedPassword String?
 
-  accounts       Account[]
-  sessions       Session[]
+  accounts           Account[]
+  sessions           Session[]
+  PasswordResetToken PasswordResetToken[]
 }
 
 model Account {
@@ -63,6 +64,7 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
 model PasswordResetToken {
   id        String   @id @default(cuid())
   token     String   @unique
