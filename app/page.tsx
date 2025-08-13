@@ -1,33 +1,36 @@
 import HeroBanner from "./components/HeroBanner";
 
-export default function HomePage(){
+export default function HomePage() {
   return (
     <>
       <HeroBanner />
-      <div className="max-w-[1100px] mx-auto px-4 py-8">
-    <div className="container" style={{paddingTop: 28, paddingBottom: 36}}>
-      <span className="badge">Beta</span>
-      <h1 style={{marginTop: 10}}>Your recruiting journey, organized and in your control. Get seen. Get signed. Get ahead.</h1>
-      <p style={{maxWidth: 720}}>
-        ScoutLine brings your entire recruiting journey into one place—athlete info, highlights, metrics, contacts, timelines and to-dos, and progress—so you spend less time guessing and more time advancing.
-      </p>
 
-      <div style={{display:"flex", gap:12, marginTop:16}}>
-        <a className="btn btn-primary" href="/pricing">Get Started</a>
-        <a className="btn" href="/recruiting-journey">See how it works</a>
-      </div>
+      <main className="max-w-[1100px] mx-auto px-4 py-8">
+        <span className="badge">Beta</span>
 
-      <div style={{marginTop: 28}} className="card">
-        <h2 style={{marginTop: 0}}>Why ScoutLine</h2>
-        <ul style={{margin:0, paddingLeft:18, color:"var(--sl-muted)"}}>
-          <li>Unified profile with metrics and milestones for athletes</li>
-          <li>Coach and parent views that stay in sync</li>
-          <li>Clean dashboards, no clutter</li>
-          <li>Links to social media and videos in one place</li>
-          <li>Direct communication between coaches and athletes</li>
-          <li>Team Admin ability to give insights and help athletes keep profiles up to date</li>
-        </ul>
-      </div>
-    </div>
+        <h1 className="mt-2 text-3xl md:text-4xl font-semibold">
+          Your recruiting journey, organized and in your control.
+        </h1>
+
+        <p className="mt-3 text-slate-600 max-w-[720px]">
+          ScoutLine brings your entire recruiting journey into one place—contacts,
+          timelines, tasks, and progress—so you spend less time guessing and more time advancing.
+        </p>
+
+        <div className="mt-4 flex gap-3">
+          <a className="btn btn-primary" href="/pricing">Get Started</a>
+          <a className="btn" href="/recruiting-journey">See how it works</a>
+        </div>
+
+        <section className="card mt-8">
+          <h2 className="mt-0">Why ScoutLine</h2>
+          <ul className="list-disc pl-5 text-slate-600">
+            <li>Unified profile & milestones across sports</li>
+            <li>Coach & parent views that stay in sync</li>
+            <li>Clean dashboards, not clutter</li>
+          </ul>
+        </section>
+      </main>
+    </>
   );
 }
