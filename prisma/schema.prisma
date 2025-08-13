@@ -15,20 +15,20 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String?   @unique
-  emailVerified DateTime?
-  image         String?
-  role          Role      @default(PLAYER)
+  id             String    @id @default(cuid())
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  role           Role      @default(PLAYER)
+  hashedPassword String?
 
-  // Needed by your auth code:
-  hashedPassword String? // store bcrypt hash here
+  // Back-relations required by NextAuth models:
+  accounts Account[]
+  sessions Session[]
 
-  // Back-relation for password reset tokens:
+  // If you added reset tokens earlier:
   passwordResetTokens PasswordResetToken[]
-  Account             Account[]
-  Session             Session[]
 }
 
 model Account {
@@ -48,6 +48,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
+  @@index([userId])
 }
 
 model Session {
@@ -55,7 +56,10 @@ model Session {
   sessionToken String   @unique
   userId       String
   expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
 }
 
 model VerificationToken {
