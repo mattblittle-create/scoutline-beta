@@ -18,7 +18,7 @@ export default function HomePage(){
           <li>Unified profile with metrics and milestones for athletes</li>
           <li>Coach and parent views that stay in sync</li>
           <li>Clean dashboards, no clutter</li>
-          <li>Links to social media and video in one place</li>
+          <li>Links to social media and videos in one place</li>
           <li>Direct communication between coaches and athletes</li>
           <li>Team Admin ability to give insights and help athletes keep profiles up to date</li>
         </ul>
