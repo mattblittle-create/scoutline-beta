@@ -70,3 +70,7 @@ function LoginForm() {
     </div>
   );
 }
+<div style={{ display: "flex", gap: 12, marginTop: 8, fontSize: 14 }}>
+  <a href="/forgot-password">Forgot password?</a>
+  <a href="/trouble-signing-in">Trouble signing in?</a>
+</div>
