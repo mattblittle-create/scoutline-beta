@@ -4,7 +4,7 @@ import React, { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// Prevent static prerender errors with useSearchParams
+// Prevent static prerender issues with useSearchParams
 export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
@@ -48,7 +48,7 @@ function LoginForm() {
           placeholder="Email"
           required
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         />
         <input
@@ -56,10 +56,43 @@ function LoginForm() {
           placeholder="Password"
           required
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         />
         <button
+          type="submit"
+          style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #ddd", cursor: "pointer" }}
+        >
+          Log In
+        </button>
+        {err && <div style={{ color: "crimson" }}>{err}</div>}
+      </form>
+    </div>
+  );
+}
+TSX}
+
+return (
+<div style={{ maxWidth: 420, margin: "40px auto" }}>
+      <h1>Log In {role ? `— ${role}` : ""}</h1>
+      <form onSubmit={onSubmit} style={{ display: "grid", gap: 12 }}>
+        <input
+          type="email"
+          placeholder="Email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
+        />
+<input
+          type="password"
+          placeholder="Password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
+        />
+<button
           type="submit"
           style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #ddd", cursor: "pointer" }}
         >
