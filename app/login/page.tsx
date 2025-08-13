@@ -47,33 +47,9 @@ function LoginForm() {
           type="email"
           placeholder="Email"
           required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
-        />
-        <button
-          type="submit"
-          style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #ddd", cursor: "pointer" }}
-        >
-          Log In
-        </button>
-        {err && <div style={{ color: "crimson" }}>{err}</div>}
-      </form>
-    </div>
-  );
 }
-TSX}
-
-return (
-<div style={{ maxWidth: 420, margin: "40px auto" }}>
+ return (
+    <div style={{ maxWidth: 420, margin: "40px auto" }}>
       <h1>Log In {role ? `— ${role}` : ""}</h1>
       <form onSubmit={onSubmit} style={{ display: "grid", gap: 12 }}>
         <input
@@ -84,7 +60,7 @@ return (
           onChange={(e) => setEmail(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         />
-<input
+ <input
           type="password"
           placeholder="Password"
           required
@@ -92,11 +68,11 @@ return (
           onChange={(e) => setPassword(e.target.value)}
           style={{ padding: 10, border: "1px solid #ddd", borderRadius: 8 }}
         />
-<button
+ <button
           type="submit"
           style={{ padding: "10px 14px", borderRadius: 8, border: "1px solid #ddd", cursor: "pointer" }}
         >
-          Log In
+ Log In
         </button>
         {err && <div style={{ color: "crimson" }}>{err}</div>}
       </form>
