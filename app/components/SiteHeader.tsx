@@ -115,8 +115,8 @@ export default function SiteHeader() {
             <Image
   src="/scoutline-logo-gold.png"
   alt="ScoutLine"
-  width={240}
-  height={60}
+  width={250}
+  height={100}
               priority
               style={{ width: "100%", height: "auto", display: "block" }}
             />
