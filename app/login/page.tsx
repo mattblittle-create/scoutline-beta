@@ -4,7 +4,7 @@ import React, { Suspense, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-// Opt out of static rendering for this page
+// Prevent static prerender errors with useSearchParams
 export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
