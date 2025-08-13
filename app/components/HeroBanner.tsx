@@ -76,7 +76,7 @@ export default function HeroBanner() {
             }}
           >
             Connecting players, parents, and coaches on the fastest path to recruitment. 
-            From showcase to scholarship, ScoutLine brings the right people together.
+            From showcase to scholarship, ScoutLine brings the right people together. One platform. Every connection. Game on.
           </p>
 
           <div
