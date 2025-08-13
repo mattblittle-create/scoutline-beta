@@ -1,10 +1,9 @@
 "use client";
 
 import React, { Suspense, useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { signIn, getSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
-// Prevent static prerender issues with useSearchParams
 export const dynamic = "force-dynamic";
 
 export default function LoginPage() {
@@ -16,9 +15,7 @@ export default function LoginPage() {
 }
 
 function LoginForm() {
-  const params = useSearchParams();
   const router = useRouter();
-  const role = (params.get("role") || "").toUpperCase();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,21 +24,42 @@ function LoginForm() {
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setErr("");
+
+    // authenticate without redirect so we can decide where to go
     const res = await signIn("credentials", { email, password, redirect: false });
-    if (res?.ok) {
-      if (role === "PLAYER") router.push("/player");
-      else if (role === "PARENT") router.push("/parent");
-      else if (role === "COACH") router.push("/coach");
-      else if (role === "TEAM ADMIN" || role === "ADMIN") router.push("/admin");
-      else router.push("/");
-    } else {
+
+    if (!res || !res.ok) {
       setErr("Invalid email or password");
+      return;
+    }
+
+    // fetch the fresh session (includes role via your NextAuth callbacks)
+    const session = await getSession();
+    const role = (session as any)?.role;
+
+    // send user to their area based on role
+    switch (role) {
+      case "PLAYER":
+        router.push("/player");
+        break;
+      case "PARENT":
+        router.push("/parent");
+        break;
+      case "COACH":
+        router.push("/coach");
+        break;
+      case "ADMIN":
+      case "TEAM_ADMIN":
+        router.push("/admin");
+        break;
+      default:
+        router.push("/");
     }
   }
 
   return (
     <div style={{ maxWidth: 420, margin: "40px auto" }}>
-      <h1>Log In {role ? `— ${role}` : ""}</h1>
+      <h1>Log In</h1>
       <form onSubmit={onSubmit} style={{ display: "grid", gap: 12 }}>
         <input
           type="email"
@@ -65,12 +83,14 @@ function LoginForm() {
         >
           Log In
         </button>
+
+        <div style={{ display: "flex", gap: 12, marginTop: 8, fontSize: 14 }}>
+          <a href="/forgot-password">Forgot password?</a>
+          <a href="/trouble-signing-in">Trouble signing in?</a>
+        </div>
+
         {err && <div style={{ color: "crimson" }}>{err}</div>}
       </form>
     </div>
   );
 }
-<div style={{ display: "flex", gap: 12, marginTop: 8, fontSize: 14 }}>
-  <a href="/forgot-password">Forgot password?</a>
-  <a href="/trouble-signing-in">Trouble signing in?</a>
-</div>
