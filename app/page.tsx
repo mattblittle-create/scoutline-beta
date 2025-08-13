@@ -25,7 +25,9 @@ export default function HomePage() {
             fontWeight: 600,
           }}
         >
-       
+          Beta
+        </span>
+
         <h1 style={{ marginTop: 10, fontSize: 32, lineHeight: 1.15 }}>
           Your recruiting journey, organized and in your control.
         </h1>
