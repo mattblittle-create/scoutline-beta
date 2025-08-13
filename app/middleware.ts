@@ -1,4 +1,4 @@
-// middleware.ts at project root (same level as package.json)
+// middleware.ts (root of the repo)
 export { default } from "next-auth/middleware";
 
 export const config = {
