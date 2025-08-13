@@ -160,10 +160,8 @@ export default function SiteHeader() {
                   if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
                 }}
               >
-                <Link href="/login?role=player" style={{ display: "block", padding: "8px 12px" }}>Player</Link>
-<Link href="/login?role=parent" style={{ display: "block", padding: "8px 12px" }}>Parent</Link>
-<Link href="/login?role=coach" style={{ display: "block", padding: "8px 12px" }}>Coach</Link>
-<Link href="/login?role=admin" style={{ display: "block", padding: "8px 12px" }}>Team Admin</Link>
+                <Link href="/login" className="sl-login-btn">Log In</Link>
+
               </div>
             )}
           </div>
@@ -209,10 +207,8 @@ export default function SiteHeader() {
       </button>
       {mobileLoginOpen && (
         <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
-          <Link href="/login?role=player" className="sl-item" onClick={closeAll}>Player</Link>
-<Link href="/login?role=parent" className="sl-item" onClick={closeAll}>Parent</Link>
-<Link href="/login?role=coach"  className="sl-item" onClick={closeAll}>Coach</Link>
-<Link href="/login?role=admin"  className="sl-item" onClick={closeAll}>Team Admin</Link>
+          <Link href="/login" className="sl-item" onClick={closeAll}>Log In</Link>
+
 
         </div>
       )}
