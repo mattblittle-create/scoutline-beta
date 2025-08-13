@@ -15,7 +15,7 @@ export default function HomePage(){
       <div style={{marginTop: 28}} className="card">
         <h2 style={{marginTop: 0}}>Why ScoutLine</h2>
         <ul style={{margin:0, paddingLeft:18, color:"var(--sl-muted)"}}>
-          <li>Unified profile, metrics and milestones for athletes</li>
+          <li>Unified profile with metrics and milestones for athletes</li>
           <li>Coach and parent views that stay in sync</li>
           <li>Clean dashboards, no clutter</li>
           <li>Links to social media and video in one place</li>
