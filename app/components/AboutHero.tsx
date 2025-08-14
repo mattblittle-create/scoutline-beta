@@ -30,7 +30,7 @@ export default function AboutHero() {
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.18) 35%, rgba(255,255,255,0.0) 75%, rgba(255,255,255,0.9) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(255,255,255,0.00) 75%), rgba(255,255,255,0.9) 100%)",
           pointerEvents: "none",
         }}
       />
