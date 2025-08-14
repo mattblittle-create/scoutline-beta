@@ -144,6 +144,21 @@ export default function HeroBanner() {
             >
               Want To Know More
             </Link>
+            <a
+  href="/login"
+  style={{
+    padding: "10px 16px",
+    borderRadius: 10,
+    background: "#ca9a3f", // gold from your logo stars
+    color: "#1a1203",
+    textDecoration: "none",
+    border: "1px solid transparent",
+    fontWeight: 600,
+  }}
+>
+  Log In
+</a>
+
           </div>
         </div>
       </div>
