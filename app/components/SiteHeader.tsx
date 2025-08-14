@@ -139,7 +139,6 @@ export default function SiteHeader() {
           <Link href="/recruiting-journey" onClick={closeAll}>Recruiting Journey</Link>
           <Link href="/pricing" onClick={closeAll}>Pricing</Link>
           <Link href="/faq" onClick={closeAll}>FAQ</Link>
-          <Link href="/login" onClick={closeALL}>Log In</Link>
 
           {/* Log In (hover to open, delayed close) */}
           <div
@@ -206,7 +205,6 @@ export default function SiteHeader() {
       <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting Journey</Link>
       <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
       <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
-      <Link href="/login" className="sl-item" onClick={closeALL}>Log In</Link>
 
       <div className="sl-mobile-sep" />
 
