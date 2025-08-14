@@ -101,7 +101,7 @@ export default function HeroBanner() {
               fontWeight: 600,
             }}
           >
-            Want to Know More
+            Want To Know More
           </a>
 
           {/* NEW gold Log In button */}
