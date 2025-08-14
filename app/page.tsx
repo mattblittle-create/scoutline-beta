@@ -14,19 +14,6 @@ export default function HomePage() {
           background: "transparent",
         }}
       >
-        <span
-          style={{
-            display: "inline-block",
-            padding: "4px 8px",
-            borderRadius: 999,
-            background: "#fff8e6",
-            color: "#8a6b20",
-            border: "1px solid #f3e2b7",
-            fontWeight: 600,
-          }}
-        >
-          Beta
-        </span>
 
         <h1 style={{ marginTop: 10, fontSize: 32, lineHeight: 1.15 }}>
           Your recruiting journey, organized and in your control.
