@@ -1,6 +1,6 @@
-"use client";
+// app/components/HeroBanner.tsx
+
 import Image from "next/image";
-import Link from "next/link";
 
 export default function HeroBanner() {
   return (
@@ -8,158 +8,117 @@ export default function HeroBanner() {
       style={{
         position: "relative",
         width: "100%",
-        height: "46vh",
-        minHeight: 320,
+        height: "420px",
         overflow: "hidden",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        color: "#fff",
       }}
-      aria-label="Hero: your recruiting journey starts here"
     >
-      {/* Full-bleed background image */}
+      {/* Full-width background image */}
       <Image
         src="/track_pic_homepage.jpg"
-        alt="Running track start line with lanes heading forward"
+        alt="Track starting line"
         fill
-        priority
-        sizes="100vw"
         style={{ objectFit: "cover" }}
+        priority
       />
 
-      {/* Top-to-bottom scrim so text stays readable (only inside hero) */}
+      {/* Dark overlay for better text visibility */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, rgba(0,0,0,0.18) 35%, rgba(255,255,255,0.0) 75%, rgba(255,255,255,0.9) 100%)",
-          pointerEvents: "none",
+          background: "rgba(0, 0, 0, 0.4)",
         }}
-      />
+      ></div>
 
-      {/* Centered overlay content */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          display: "grid",
-          placeItems: "center",
-          padding: "0 16px",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            maxWidth: 920,
-            textAlign: "center",
-            color: "white",
-            textShadow: "0 2px 12px rgba(0,0,0,0.35)",
-            transform: "translateY(-6%)",
-          }}
-        >
-          <h1
+      {/* Content */}
+      <div style={{ position: "relative", zIndex: 2, maxWidth: 900, padding: "0 16px" }}>
+        <h1 style={{ fontSize: "2.5rem", fontWeight: 700, marginBottom: 12 }}>
+          Your recruiting journey, organized and in your control.
+        </h1>
+        <p style={{ fontSize: "1.125rem", marginBottom: 24, lineHeight: 1.5 }}>
+          ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
+          tasks, and progress—so you spend less time guessing and more time advancing.
+        </p>
+
+        {/* Buttons */}
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
+          <a
+            href="/about"
             style={{
-              margin: 0,
-              fontWeight: 700,
-              lineHeight: 1.1,
-              fontSize: "clamp(24px, 4.2vw, 44px)",
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#fff",
+              color: "#0f172a",
+              textDecoration: "none",
+              border: "1px solid transparent",
+              fontWeight: 600,
             }}
           >
-            Your recruiting journey starts here
-          </h1>
-
-          <p
+            Who We Are
+          </a>
+          <a
+            href="/how-it-works"
             style={{
-              margin: "12px auto 0",
-              maxWidth: 720,
-              lineHeight: 1.6,
-              fontSize: "clamp(14px, 2.2vw, 18px)",
-              color: "rgba(255,255,255,0.95)",
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#fff",
+              color: "#0f172a",
+              textDecoration: "none",
+              border: "1px solid transparent",
+              fontWeight: 600,
             }}
           >
-            Connecting players, parents, and coaches on the fastest path to recruitment. 
-            From showcase to scholarship, ScoutLine brings the right people together. One platform. Every connection. Game on.
-          </p>
-
-          <div
+            How It Works
+          </a>
+          <a
+            href="/pricing"
             style={{
-              display: "flex",
-              gap: 12,
-              justifyContent: "center",
-              flexWrap: "wrap",
-              marginTop: 16,
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#fff",
+              color: "#0f172a",
+              textDecoration: "none",
+              border: "1px solid transparent",
+              fontWeight: 600,
             }}
           >
-            <Link
-              href="/about"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "#ca9a3f",
-                color: "#1a1203",
-                textDecoration: "none",
-                border: "1px solid transparent",
-                fontWeight: 600,
-              }}
-            >
-              Who We Are
-            </Link>
-            <Link
-              href="/recruiting-journey"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.94)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-              }}
-            >
-              How It Works
-            </Link>
-                        <Link
-              href="/pricing"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "#ca9a3f",
-                color: "#1a1203",
-                textDecoration: "none",
-                border: "1px solid transparent",
-                fontWeight: 600,
-              }}
-            >
-              Get Started
-            </Link>
-                        <Link
-              href="/faq"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.94)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-              }}
-            >
-              Want To Know More
-            </Link>           
-                        <Link
-              href="/login"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "#ca9a3f", // gold from your logo stars
-                color: "#1a1203",
-                textDecoration: "none",
-                border: "1px solid transparent",
-                fontWeight: 600,
-              }}
-            >
-              Log In
-            </Link>
-           
-          </div>
+            Get Started
+          </a>
+          <a
+            href="/contact"
+            style={{
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#fff",
+              color: "#0f172a",
+              textDecoration: "none",
+              border: "1px solid transparent",
+              fontWeight: 600,
+            }}
+          >
+            Want to Know More
+          </a>
+
+          {/* NEW gold Log In button */}
+          <a
+            href="/login"
+            style={{
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#ca9a3f",
+              color: "#1a1203",
+              textDecoration: "none",
+              border: "1px solid transparent",
+              fontWeight: 600,
+            }}
+          >
+            Log In
+          </a>
         </div>
       </div>
     </section>
