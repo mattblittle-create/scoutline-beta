@@ -24,13 +24,13 @@ export default function AboutHero() {
         style={{ objectFit: "cover" }}
       />
 
-      {/* Scrim so text stays readable (contained to hero only) */}
+      {/* Scrim so text stays readable */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(255,255,255,0.00) 75%), rgba(255,255,255,0.9) 100%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(255,255,255,0.00) 75%)",
           pointerEvents: "none",
         }}
       />
@@ -52,7 +52,7 @@ export default function AboutHero() {
             textAlign: "center",
             color: "white",
             textShadow: "0 2px 12px rgba(0,0,0,0.35)",
-            transform: "translateY(-6%)",
+            transform: "translateY(-22%)", // moved higher on image
           }}
         >
           <h1
@@ -79,7 +79,7 @@ export default function AboutHero() {
             athletes—across every step of the journey.
           </p>
 
-          {/* Optional CTAs — remove if not needed */}
+          {/* Primary CTAs */}
           <div
             style={{
               display: "flex",
@@ -94,11 +94,18 @@ export default function AboutHero() {
               style={{
                 padding: "10px 16px",
                 borderRadius: 10,
-                background: "#ca9a3f",
-                color: "#1a1203",
+                background: "rgba(255,255,255,0.96)",
+                color: "#0f172a",
                 textDecoration: "none",
-                border: "1px solid transparent",
+                border: "1px solid #e5e7eb",
                 fontWeight: 600,
+                transition: "all 0.2s ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#f3f4f6";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.96)";
               }}
             >
               How It Works
@@ -108,28 +115,68 @@ export default function AboutHero() {
               style={{
                 padding: "10px 16px",
                 borderRadius: 10,
-                background: "rgba(255,255,255,0.94)",
+                background: "rgba(255,255,255,0.96)",
                 color: "#0f172a",
                 textDecoration: "none",
                 border: "1px solid #e5e7eb",
                 fontWeight: 600,
+                transition: "all 0.2s ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#f3f4f6";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.96)";
               }}
             >
               Get Started
             </Link>
-                        <Link
+            <Link
               href="/faq"
               style={{
                 padding: "10px 16px",
                 borderRadius: 10,
+                background: "rgba(255,255,255,0.96)",
+                color: "#0f172a",
+                textDecoration: "none",
+                border: "1px solid #e5e7eb",
+                fontWeight: 600,
+                transition: "all 0.2s ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#f3f4f6";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "rgba(255,255,255,0.96)";
+              }}
+            >
+              Want To Know More
+            </Link>
+          </div>
+
+          {/* Prominent Log In below the row */}
+          <div style={{ marginTop: 14 }}>
+            <Link
+              href="/login"
+              style={{
+                display: "inline-block",
+                padding: "12px 20px",
+                borderRadius: 12,
                 background: "#ca9a3f",
                 color: "#1a1203",
                 textDecoration: "none",
                 border: "1px solid transparent",
-                fontWeight: 600,
+                fontWeight: 700,
+                transition: "all 0.2s ease-in-out",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = "#b88934";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = "#ca9a3f";
               }}
             >
-              Want To Know More
+              Log In
             </Link>
           </div>
         </div>
