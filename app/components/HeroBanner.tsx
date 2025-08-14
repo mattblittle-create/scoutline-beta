@@ -1,28 +1,6 @@
 // app/components/HeroBanner.tsx
-
 import Image from "next/image";
-
-const baseBtn: React.CSSProperties = {
-  padding: "10px 16px",
-  borderRadius: 10,
-  textDecoration: "none",
-  border: "1px solid transparent",
-  fontWeight: 600,
-  transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
-  display: "inline-block",
-};
-
-const whiteBtn: React.CSSProperties = {
-  ...baseBtn,
-  background: "#fff",
-  color: "#0f172a",
-};
-
-const goldBtn: React.CSSProperties = {
-  ...baseBtn,
-  background: "#ca9a3f",    // brand gold
-  color: "#1a1203",
-};
+import Link from "next/link";
 
 export default function HeroBanner() {
   return (
@@ -39,7 +17,7 @@ export default function HeroBanner() {
         color: "#fff",
       }}
     >
-      {/* Full-width background image */}
+      {/* Background image */}
       <Image
         src="/track_pic_homepage.jpg"
         alt="Track starting line"
@@ -48,7 +26,7 @@ export default function HeroBanner() {
         priority
       />
 
-      {/* Dark overlay for better text visibility */}
+      {/* Dark overlay */}
       <div
         style={{
           position: "absolute",
@@ -57,58 +35,45 @@ export default function HeroBanner() {
         }}
       />
 
+      {/* Local CSS for hover effects (no JS handlers) */}
+      <style>{`
+        .hero-wrap { position: relative; z-index: 2; max-width: 900px; padding: 0 16px; }
+        .btn {
+          display: inline-block;
+          padding: 10px 16px;
+          border-radius: 10px;
+          text-decoration: none;
+          border: 1px solid transparent;
+          font-weight: 600;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); }
+
+        .btn-white { background: #fff; color: #0f172a; }
+        .btn-white:hover { background: #f8fafc; }
+
+        .btn-gold { background: #ca9a3f; color: #1a1203; }
+        .btn-gold:hover { background: #e0b253; }
+
+        .btn-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+        .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; }
+        .hero-sub { font-size: 1.125rem; margin-bottom: 24px; line-height: 1.5; }
+      `}</style>
+
       {/* Content */}
-      <div style={{ position: "relative", zIndex: 2, maxWidth: 900, padding: "0 16px" }}>
-        <h1 style={{ fontSize: "2.5rem", fontWeight: 700, marginBottom: 12 }}>
-          Your recruiting journey, organized and in your control.
-        </h1>
-        <p style={{ fontSize: "1.125rem", marginBottom: 24, lineHeight: 1.5 }}>
+      <div className="hero-wrap">
+        <h1 className="hero-title">Your recruiting journey, organized and in your control.</h1>
+        <p className="hero-sub">
           ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
           tasks, and progress—so you spend less time guessing and more time advancing.
         </p>
 
-        {/* Buttons */}
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-          {[
-            { label: "Who We Are", link: "/about" },
-            { label: "How It Works", link: "/how-it-works" },
-            { label: "Get Started", link: "/pricing" },
-            { label: "Want to Know More", link: "/contact" },
-          ].map((btn) => (
-            <a
-              key={btn.label}
-              href={btn.link}
-              style={whiteBtn}
-              onMouseOver={(e) => {
-                e.currentTarget.style.transform = "translateY(-2px)";
-                e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.18)";
-              }}
-              onMouseOut={(e) => {
-                e.currentTarget.style.transform = "translateY(0)";
-                e.currentTarget.style.boxShadow = "none";
-              }}
-            >
-              {btn.label}
-            </a>
-          ))}
-
-          {/* Gold Log In button */}
-          <a
-            href="/login"
-            style={goldBtn}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.18)";
-              e.currentTarget.style.background = "#e0b253"; // lighter gold on hover
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
-              e.currentTarget.style.boxShadow = "none";
-              e.currentTarget.style.background = "#ca9a3f";
-            }}
-          >
-            Log In
-          </a>
+        <div className="btn-row">
+          <Link href="/about" className="btn btn-white">Who We Are</Link>
+          <Link href="/how-it-works" className="btn btn-white">How It Works</Link>
+          <Link href="/pricing" className="btn btn-white">Get Started</Link>
+          <Link href="/contact" className="btn btn-white">Want to Know More</Link>
+          <Link href="/login" className="btn btn-gold">Log In</Link>
         </div>
       </div>
     </section>
