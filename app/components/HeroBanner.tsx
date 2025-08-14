@@ -145,7 +145,7 @@ export default function HeroBanner() {
               Want To Know More
             </Link>           
                         <Link
-              href="/faq"
+              href="/login"
               style={{
                 padding: "10px 16px",
                 borderRadius: 10,
