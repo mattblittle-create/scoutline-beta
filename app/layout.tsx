@@ -39,18 +39,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         {/* Footer */}
-        <footer
-          style={{
-            borderTop: "1px solid #e5e7eb",
-            padding: "10px 16px",
-            color: "#64748b",
-            fontSize: 12,
-            textAlign: "center",
-            background: "#fff",
-          }}
-        >
-          © {new Date().getFullYear()} ScoutLine
-        </footer>
+       <footer
+  style={{
+    borderTop: "1px solid #e5e7eb",
+    padding: "12px 16px",
+    color: "#6b7280",
+    fontSize: 12,
+  }}
+>
+  <div style={{ maxWidth: 1100, margin: "0 auto", display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center", justifyContent: "space-between" }}>
+    <span>© {new Date().getFullYear()} ScoutLine</span>
+    <nav style={{ display: "flex", gap: 16 }}>
+      <a href="/terms" style={{ color: "#6b7280", textDecoration: "none" }}>Terms &amp; Conditions</a>
+      <a href="/privacy" style={{ color: "#6b7280", textDecoration: "none" }}>Privacy Policy</a>
+    </nav>
+  </div>
+</footer>
+
       </body>
     </html>
   );
