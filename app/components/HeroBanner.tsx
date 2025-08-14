@@ -8,7 +8,7 @@ export default function HeroBanner() {
       style={{
         position: "relative",
         width: "100%",
-        height: "46vh",
+        height: "56vh",
         minHeight: 320,
         overflow: "hidden",
       }}
