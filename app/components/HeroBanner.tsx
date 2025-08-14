@@ -89,7 +89,7 @@ export default function HeroBanner() {
             }}
           >
             <Link
-              href="/pricing"
+              href="/about"
               style={{
                 padding: "10px 16px",
                 borderRadius: 10,
@@ -100,7 +100,7 @@ export default function HeroBanner() {
                 fontWeight: 600,
               }}
             >
-              Get Started
+              Who We Are
             </Link>
             <Link
               href="/recruiting-journey"
@@ -114,7 +114,35 @@ export default function HeroBanner() {
                 fontWeight: 600,
               }}
             >
-              See how it works
+              See How It Works
+            </Link>
+                        <Link
+              href="/pricing"
+              style={{
+                padding: "10px 16px",
+                borderRadius: 10,
+                background: "#ca9a3f",
+                color: "#1a1203",
+                textDecoration: "none",
+                border: "1px solid transparent",
+                fontWeight: 600,
+              }}
+            >
+              Get Started
+            </Link>
+                        <Link
+              href="/faq"
+              style={{
+                padding: "10px 16px",
+                borderRadius: 10,
+                background: "rgba(255,255,255,0.94)",
+                color: "#0f172a",
+                textDecoration: "none",
+                border: "1px solid #e5e7eb",
+                fontWeight: 600,
+              }}
+            >
+              Want To Know More
             </Link>
           </div>
         </div>
