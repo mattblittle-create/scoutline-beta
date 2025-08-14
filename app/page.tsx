@@ -79,7 +79,7 @@ export default function HomePage() {
               color: "#0f172a",
             }}
           >
-            Want To Know More?
+            Want To Know More
           </a>
           
         </div>
