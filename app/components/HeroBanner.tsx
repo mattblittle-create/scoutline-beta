@@ -26,16 +26,15 @@ export default function HeroBanner() {
         priority
       />
 
-      {/* Dark overlay */}
+      {/* Subtle dark overlay so text remains readable */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0, 0, 0, 0.40)",
+          background: "rgba(0, 0, 0, 0.35)",
         }}
       />
 
-      {/* Styles aligned with About hero */}
       <style>{`
         .hero-wrap {
           position: relative;
@@ -43,32 +42,23 @@ export default function HeroBanner() {
           max-width: 960px;
           padding: 0 16px;
         }
-        .hero-card {
-          margin: 0 auto;
-          background: rgba(0, 0, 0, 0.28);
-          border: 1px solid rgba(255, 255, 255, 0.14);
-          border-radius: 16px;
-          padding: 24px;
-          backdrop-filter: blur(2px);
-          -webkit-backdrop-filter: blur(2px);
-          box-shadow: 0 12px 30px rgba(0,0,0,0.25);
-        }
 
+        /* Match AboutHero headline feel (large, bold, tight leading) */
         .hero-tagline {
-          font-size: 1.5rem;
-          font-weight: 600;
+          font-size: 2.75rem;       /* ~44px desktop */
+          font-weight: 800;
+          line-height: 1.1;
           letter-spacing: 0.2px;
-          margin: 0 0 12px 0;
+          margin: 0 0 14px 0;
           color: #ffffff;
-          text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+          text-shadow: 0 2px 6px rgba(0,0,0,0.35);
         }
 
-        /* Matches About hero's body copy look */
         .hero-sub {
           font-size: 1.125rem;
           line-height: 1.65;
           margin: 0 0 20px 0;
-          color: rgba(255,255,255,0.96);
+          color: rgba(255,255,255,0.98);
           text-shadow: 0 1px 2px rgba(0,0,0,0.35);
         }
 
@@ -94,31 +84,28 @@ export default function HeroBanner() {
         .btn-login-lg { padding: 12px 20px; border-radius: 12px; }
 
         @media (max-width: 640px) {
-          .hero-card { padding: 18px; }
-          .hero-tagline { font-size: 1.25rem; }
+          .hero-tagline { font-size: 2rem; } /* ~32px on small screens */
           .hero-sub { font-size: 1rem; }
         }
       `}</style>
 
       <div className="hero-wrap">
-        <div className="hero-card">
-          <div className="hero-tagline">Your recruiting journey starts here</div>
+        <div className="hero-tagline">Your recruiting journey starts here</div>
 
-          <p className="hero-sub">
-            ScoutLine connects players, parents, and coaches on the fastest path to recruitment—
-            with profiles, milestones, and progress in one place. Get seen. Get signed. Game on.
-          </p>
+        <p className="hero-sub">
+          ScoutLine connects players, parents, and coaches on the fastest path to recruitment—
+          with profiles, milestones, and progress in one place. Get seen. Get signed. Game on.
+        </p>
 
-          <div className="btn-row">
-            <Link href="/about" className="btn btn-white">Who We Are</Link>
-            <Link href="/how-it-works" className="btn btn-white">How It Works</Link>
-            <Link href="/pricing" className="btn btn-white">Get Started</Link>
-            <Link href="/contact" className="btn btn-white">Want to Know More</Link>
-          </div>
+        <div className="btn-row">
+          <Link href="/about" className="btn btn-white">Who We Are</Link>
+          <Link href="/how-it-works" className="btn btn-white">How It Works</Link>
+          <Link href="/pricing" className="btn btn-white">Get Started</Link>
+          <Link href="/contact" className="btn btn-white">Want to Know More</Link>
+        </div>
 
-          <div className="login-wrap">
-            <Link href="/login" className="btn btn-gold btn-login-lg">Log In</Link>
-          </div>
+        <div className="login-wrap">
+          <Link href="/login" className="btn btn-gold btn-login-lg">Log In</Link>
         </div>
       </div>
     </section>
