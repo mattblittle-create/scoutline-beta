@@ -31,15 +31,46 @@ export default function HeroBanner() {
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0, 0, 0, 0.4)",
+          background: "rgba(0, 0, 0, 0.40)",
         }}
       />
 
+      {/* Styles aligned with About hero */}
       <style>{`
-        .hero-wrap { position: relative; z-index: 2; max-width: 900px; padding: 0 16px; }
-        .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 8px; }
-        .hero-tagline { font-size: 1.5rem; font-weight: 500; margin-bottom: 16px; color: #ffffff; }
-        .hero-sub { font-size: 1.125rem; margin-bottom: 24px; line-height: 1.5; color: #ffffff; }
+        .hero-wrap {
+          position: relative;
+          z-index: 2;
+          max-width: 960px;
+          padding: 0 16px;
+        }
+        .hero-card {
+          margin: 0 auto;
+          background: rgba(0, 0, 0, 0.28);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          border-radius: 16px;
+          padding: 24px;
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
+          box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+
+        .hero-tagline {
+          font-size: 1.5rem;
+          font-weight: 600;
+          letter-spacing: 0.2px;
+          margin: 0 0 12px 0;
+          color: #ffffff;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+        }
+
+        /* Matches About hero's body copy look */
+        .hero-sub {
+          font-size: 1.125rem;
+          line-height: 1.65;
+          margin: 0 0 20px 0;
+          color: rgba(255,255,255,0.96);
+          text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+        }
 
         .btn {
           display: inline-block;
@@ -61,25 +92,33 @@ export default function HeroBanner() {
         .btn-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
         .login-wrap { margin-top: 14px; }
         .btn-login-lg { padding: 12px 20px; border-radius: 12px; }
+
+        @media (max-width: 640px) {
+          .hero-card { padding: 18px; }
+          .hero-tagline { font-size: 1.25rem; }
+          .hero-sub { font-size: 1rem; }
+        }
       `}</style>
 
       <div className="hero-wrap">
-        {/* New tagline line */}
-        <div className="hero-tagline">Your recruiting journey starts here</div>
+        <div className="hero-card">
+          <div className="hero-tagline">Your recruiting journey starts here</div>
 
-        <p className="hero-sub">
-          ScoutLine connects players, parents, and coaches on the fastest path to recruitment—with profiles, milestones, and progress in one place. Get seen. Get signed. Game on.
-        </p>
+          <p className="hero-sub">
+            ScoutLine connects players, parents, and coaches on the fastest path to recruitment—
+            with profiles, milestones, and progress in one place. Get seen. Get signed. Game on.
+          </p>
 
-        <div className="btn-row">
-          <Link href="/about" className="btn btn-white">Who We Are</Link>
-          <Link href="/how-it-works" className="btn btn-white">How It Works</Link>
-          <Link href="/pricing" className="btn btn-white">Get Started</Link>
-          <Link href="/contact" className="btn btn-white">Want to Know More</Link>
-        </div>
+          <div className="btn-row">
+            <Link href="/about" className="btn btn-white">Who We Are</Link>
+            <Link href="/how-it-works" className="btn btn-white">How It Works</Link>
+            <Link href="/pricing" className="btn btn-white">Get Started</Link>
+            <Link href="/contact" className="btn btn-white">Want to Know More</Link>
+          </div>
 
-        <div className="login-wrap">
-          <Link href="/login" className="btn btn-gold btn-login-lg">Log In</Link>
+          <div className="login-wrap">
+            <Link href="/login" className="btn btn-gold btn-login-lg">Log In</Link>
+          </div>
         </div>
       </div>
     </section>
