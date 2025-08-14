@@ -25,6 +25,35 @@ export default function HomePage() {
         </p>
 
         <div style={{ display: "flex", gap: 12, marginTop: 16 }}>
+                      
+          <a
+            href="/about"
+            style={{
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#ca9a3f",
+              color: "#1a1203",
+              textDecoration: "none",
+              border: "1px solid transparent",
+            }}
+          >
+            Who We Are
+          </a>
+                        
+          <a
+            href="/recruiting-journey"
+            style={{
+              padding: "10px 16px",
+              borderRadius: 10,
+              background: "#fff",
+              border: "1px solid #e5e7eb",
+              textDecoration: "none",
+              color: "#0f172a",
+            }}
+          >
+            See How It Works
+          </a>
+          
           <a
             href="/pricing"
             style={{
@@ -38,8 +67,9 @@ export default function HomePage() {
           >
             Get Started
           </a>
+                        
           <a
-            href="/recruiting-journey"
+            href="/faq"
             style={{
               padding: "10px 16px",
               borderRadius: 10,
@@ -49,8 +79,9 @@ export default function HomePage() {
               color: "#0f172a",
             }}
           >
-            See how it works
+            Want To Know More?
           </a>
+          
         </div>
 
         <section
