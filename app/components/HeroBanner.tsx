@@ -35,9 +35,12 @@ export default function HeroBanner() {
         }}
       />
 
-      {/* Local CSS for hover effects (no JS handlers) */}
+      {/* Local CSS for hover effects (pure CSS; no event handlers) */}
       <style>{`
         .hero-wrap { position: relative; z-index: 2; max-width: 900px; padding: 0 16px; }
+        .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; }
+        .hero-sub { font-size: 1.125rem; margin-bottom: 24px; line-height: 1.5; color: #ffffff; }
+
         .btn {
           display: inline-block;
           padding: 10px 16px;
@@ -56,24 +59,32 @@ export default function HeroBanner() {
         .btn-gold:hover { background: #e0b253; }
 
         .btn-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
-        .hero-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; }
-        .hero-sub { font-size: 1.125rem; margin-bottom: 24px; line-height: 1.5; }
+        .login-wrap { margin-top: 14px; }
+        .btn-login-lg { padding: 12px 20px; border-radius: 12px; }
       `}</style>
 
       {/* Content */}
       <div className="hero-wrap">
-        <h1 className="hero-title">Your recruiting journey, organized and in your control.</h1>
+        {/* Keep hero copy; the “Your recruiting journey…” headline is now moved off Home per your ask.
+            If you want *no* headline at all, just delete the h1 below. */}
+        {/* <h1 className="hero-title">Your recruiting journey, organized and in your control.</h1> */}
+
         <p className="hero-sub">
           ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
           tasks, and progress—so you spend less time guessing and more time advancing.
         </p>
 
+        {/* Primary links */}
         <div className="btn-row">
           <Link href="/about" className="btn btn-white">Who We Are</Link>
           <Link href="/how-it-works" className="btn btn-white">How It Works</Link>
           <Link href="/pricing" className="btn btn-white">Get Started</Link>
           <Link href="/contact" className="btn btn-white">Want to Know More</Link>
-          <Link href="/login" className="btn btn-gold">Log In</Link>
+        </div>
+
+        {/* Larger Log In button placed underneath */}
+        <div className="login-wrap">
+          <Link href="/login" className="btn btn-gold btn-login-lg">Log In</Link>
         </div>
       </div>
     </section>
