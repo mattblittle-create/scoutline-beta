@@ -2,6 +2,28 @@
 
 import Image from "next/image";
 
+const baseBtn: React.CSSProperties = {
+  padding: "10px 16px",
+  borderRadius: 10,
+  textDecoration: "none",
+  border: "1px solid transparent",
+  fontWeight: 600,
+  transition: "transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease",
+  display: "inline-block",
+};
+
+const whiteBtn: React.CSSProperties = {
+  ...baseBtn,
+  background: "#fff",
+  color: "#0f172a",
+};
+
+const goldBtn: React.CSSProperties = {
+  ...baseBtn,
+  background: "#ca9a3f",    // brand gold
+  color: "#1a1203",
+};
+
 export default function HeroBanner() {
   return (
     <section
@@ -33,7 +55,7 @@ export default function HeroBanner() {
           inset: 0,
           background: "rgba(0, 0, 0, 0.4)",
         }}
-      ></div>
+      />
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 2, maxWidth: 900, padding: "0 16px" }}>
@@ -56,42 +78,33 @@ export default function HeroBanner() {
             <a
               key={btn.label}
               href={btn.link}
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "#fff",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid transparent",
-                fontWeight: 600,
+              style={whiteBtn}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.18)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               {btn.label}
             </a>
           ))}
 
-          {/* NEW gold Log In button with hover animation */}
+          {/* Gold Log In button */}
           <a
             href="/login"
-            style={{
-              padding: "10px 16px",
-              borderRadius: 10,
-              background: "#ca9a3f",
-              color: "#1a1203",
-              textDecoration: "none",
-              border: "1px solid transparent",
-              fontWeight: 600,
-              transition: "all 0.25s ease",
-            }}
+            style={goldBtn}
             onMouseOver={(e) => {
-              e.currentTarget.style.background = "#e0b253"; // lighter gold
               e.currentTarget.style.transform = "translateY(-2px)";
-              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+              e.currentTarget.style.boxShadow = "0 6px 16px rgba(0,0,0,0.18)";
+              e.currentTarget.style.background = "#e0b253"; // lighter gold on hover
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.background = "#ca9a3f";
               e.currentTarget.style.transform = "translateY(0)";
               e.currentTarget.style.boxShadow = "none";
+              e.currentTarget.style.background = "#ca9a3f";
             }}
           >
             Log In
