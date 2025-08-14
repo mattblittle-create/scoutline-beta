@@ -114,7 +114,7 @@ export default function HeroBanner() {
                 fontWeight: 600,
               }}
             >
-              See How It Works
+              How It Works
             </Link>
                         <Link
               href="/pricing"
