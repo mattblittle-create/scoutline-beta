@@ -47,64 +47,30 @@ export default function HeroBanner() {
 
         {/* Buttons */}
         <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
-          <a
-            href="/about"
-            style={{
-              padding: "10px 16px",
-              borderRadius: 10,
-              background: "#fff",
-              color: "#0f172a",
-              textDecoration: "none",
-              border: "1px solid transparent",
-              fontWeight: 600,
-            }}
-          >
-            Who We Are
-          </a>
-          <a
-            href="/how-it-works"
-            style={{
-              padding: "10px 16px",
-              borderRadius: 10,
-              background: "#fff",
-              color: "#0f172a",
-              textDecoration: "none",
-              border: "1px solid transparent",
-              fontWeight: 600,
-            }}
-          >
-            How It Works
-          </a>
-          <a
-            href="/pricing"
-            style={{
-              padding: "10px 16px",
-              borderRadius: 10,
-              background: "#fff",
-              color: "#0f172a",
-              textDecoration: "none",
-              border: "1px solid transparent",
-              fontWeight: 600,
-            }}
-          >
-            Get Started
-          </a>
-          <a
-            href="/contact"
-            style={{
-              padding: "10px 16px",
-              borderRadius: 10,
-              background: "#fff",
-              color: "#0f172a",
-              textDecoration: "none",
-              border: "1px solid transparent",
-              fontWeight: 600,
-            }}
-          >
-            Want To Know More
-          </a>
+          {[
+            { label: "Who We Are", link: "/about" },
+            { label: "How It Works", link: "/how-it-works" },
+            { label: "Get Started", link: "/pricing" },
+            { label: "Want to Know More", link: "/contact" },
+          ].map((btn) => (
+            <a
+              key={btn.label}
+              href={btn.link}
+              style={{
+                padding: "10px 16px",
+                borderRadius: 10,
+                background: "#fff",
+                color: "#0f172a",
+                textDecoration: "none",
+                border: "1px solid transparent",
+                fontWeight: 600,
+              }}
+            >
+              {btn.label}
+            </a>
+          ))}
 
-          {/* NEW gold Log In button */}
+          {/* NEW gold Log In button with hover animation */}
           <a
             href="/login"
             style={{
@@ -115,6 +81,17 @@ export default function HeroBanner() {
               textDecoration: "none",
               border: "1px solid transparent",
               fontWeight: 600,
+              transition: "all 0.25s ease",
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.background = "#e0b253"; // lighter gold
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.background = "#ca9a3f";
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "none";
             }}
           >
             Log In
