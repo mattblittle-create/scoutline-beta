@@ -8,7 +8,7 @@ export default function AboutPage() {
         <h2 style={{ marginTop: 0 }}>Our Mission</h2>
         <p style={{ color: "#64748b", lineHeight: 1.65, maxWidth: 800 }}>
           ScoutLine was started to bring clarity to recruiting. Players, parents, and coaches
-          all share the same goal—opportunity. ScoutLine makes the path transparent and actionable. ScoutLine empowers athletes, families, and coaches with clear, organized tools to navigate the recruiting journey—so more talent gets seen, and more dreams become reality.
+          all share the same goal—opportunity. ScoutLine makes the path transparent and actionable. ScoutLine empowers athletes, families, and coaches with clear, organized tools to navigate the recruiting journey so more talent gets seen, and more dreams become reality.
         </p>
       </main>
     </>
