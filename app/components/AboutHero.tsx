@@ -101,7 +101,7 @@ export default function AboutHero() {
                 fontWeight: 600,
               }}
             >
-              How it works
+              How It Works
             </Link>
             <Link
               href="/pricing"
@@ -115,7 +115,21 @@ export default function AboutHero() {
                 fontWeight: 600,
               }}
             >
-              Get started
+              Get Started
+            </Link>
+                        <Link
+              href="/faq"
+              style={{
+                padding: "10px 16px",
+                borderRadius: 10,
+                background: "#ca9a3f",
+                color: "#1a1203",
+                textDecoration: "none",
+                border: "1px solid transparent",
+                fontWeight: 600,
+              }}
+            >
+              Want To Know More
             </Link>
           </div>
         </div>
