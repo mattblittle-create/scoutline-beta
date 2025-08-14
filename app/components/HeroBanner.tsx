@@ -16,7 +16,6 @@ export default function HeroBanner() {
         textAlign: "center",
         color: "#fff",
       }}
-       aria-label="Your recruiting journey starts here"
     >
       {/* Background image */}
       <Image
