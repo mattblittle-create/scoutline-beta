@@ -24,35 +24,88 @@ export default function AboutHero() {
         style={{ objectFit: "cover" }}
       />
 
-      {/* Scrim so text stays readable */}
+      {/* Top scrim so title/subtitle stay readable */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(255,255,255,0.00) 75%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.00) 70%)",
           pointerEvents: "none",
         }}
       />
-
-      {/* Centered overlay content */}
+      {/* Bottom scrim so buttons pop while sitting on the image */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          display: "grid",
-          placeItems: "center",
-          padding: "0 16px",
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.10) 30%, rgba(0,0,0,0.00) 55%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Local button styles + hover (lift + underline) */}
+      <style>{`
+        .sl-btn {
+          display: inline-block;
+          padding: 10px 16px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.96);
+          color: #0f172a;
+          text-decoration: none;
+          border: 1px solid #e5e7eb;
+          font-weight: 600;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease, border-color .2s ease;
+        }
+        .sl-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: #f3f4f6;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .sl-btn-gold {
+          display: inline-block;
+          padding: 12px 20px;
+          border-radius: 12px;
+          background: #ca9a3f;
+          color: #1a1203;
+          text-decoration: none;
+          border: 1px solid transparent;
+          font-weight: 700;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+        }
+        .sl-btn-gold:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+          background: #b88934;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+      `}</style>
+
+      {/* Overlay content split: title/subtitle up top, buttons at bottom */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "18px 16px",
         }}
       >
+        {/* Top: Title + Subtitle (unchanged position) */}
         <div
           style={{
             width: "100%",
             maxWidth: 920,
+            margin: "0 auto",
             textAlign: "center",
             color: "white",
             textShadow: "0 2px 12px rgba(0,0,0,0.35)",
-            transform: "translateY(-22%)", // moved higher on image
+            transform: "translateY(2%)",
           }}
         >
           <h1
@@ -78,104 +131,40 @@ export default function AboutHero() {
             Built by coaches and parents to make recruiting simpler, clearer, and fairer for
             athletes—across every step of the journey.
           </p>
+        </div>
 
-          {/* Primary CTAs */}
+        {/* Bottom: Buttons (centered) */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 920,
+            margin: "0 auto 16px",
+            textAlign: "center",
+          }}
+        >
           <div
             style={{
               display: "flex",
               gap: 12,
               justifyContent: "center",
               flexWrap: "wrap",
-              marginTop: 16,
             }}
           >
-            <Link
-              href="/recruiting-journey"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-                transition: "all 0.2s ease-in-out",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#f3f4f6";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.96)";
-              }}
-            >
+            {/* Make How It Works + Want to Know More white to match Home */}
+            <Link href="/recruiting-journey" className="sl-btn">
               How It Works
             </Link>
-            <Link
-              href="/pricing"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-                transition: "all 0.2s ease-in-out",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#f3f4f6";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.96)";
-              }}
-            >
+            <Link href="/pricing" className="sl-btn">
               Get Started
             </Link>
-            <Link
-              href="/faq"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-                transition: "all 0.2s ease-in-out",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#f3f4f6";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "rgba(255,255,255,0.96)";
-              }}
-            >
+            <Link href="/faq" className="sl-btn">
               Want To Know More
             </Link>
           </div>
 
-          {/* Prominent Log In below the row */}
+          {/* Prominent Log In under the row (gold) */}
           <div style={{ marginTop: 14 }}>
-            <Link
-              href="/login"
-              style={{
-                display: "inline-block",
-                padding: "12px 20px",
-                borderRadius: 12,
-                background: "#ca9a3f",
-                color: "#1a1203",
-                textDecoration: "none",
-                border: "1px solid transparent",
-                fontWeight: 700,
-                transition: "all 0.2s ease-in-out",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = "#b88934";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = "#ca9a3f";
-              }}
-            >
+            <Link href="/login" className="sl-btn-gold">
               Log In
             </Link>
           </div>
