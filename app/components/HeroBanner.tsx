@@ -35,6 +35,40 @@ export default function HeroBanner() {
         }}
       />
 
+      <style>{`
+        .hero-btn {
+          padding: 10px 16px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.96);
+          color: #0f172a;
+          text-decoration: none;
+          border: 1px solid #e5e7eb;
+          font-weight: 600;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        .hero-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: #f8fafc;
+        }
+        .login-btn {
+          display: inline-block;
+          padding: 12px 20px;
+          border-radius: 12px;
+          background: #ca9a3f;
+          color: #1a1203;
+          text-decoration: none;
+          border: 1px solid transparent;
+          font-weight: 700;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+        .login-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: #e0b253;
+        }
+      `}</style>
+
       {/* Centered overlay content */}
       <div
         style={{
@@ -90,79 +124,23 @@ export default function HeroBanner() {
               marginTop: 16,
             }}
           >
-            <Link
-              href="/about"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-              }}
-            >
+            <Link href="/about" className="hero-btn">
               Who We Are
             </Link>
-            <Link
-              href="/how-it-works"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-              }}
-            >
+            <Link href="/how-it-works" className="hero-btn">
               How It Works
             </Link>
-            <Link
-              href="/pricing"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-              }}
-            >
+            <Link href="/pricing" className="hero-btn">
               Get Started
             </Link>
-            <Link
-              href="/contact"
-              style={{
-                padding: "10px 16px",
-                borderRadius: 10,
-                background: "rgba(255,255,255,0.96)",
-                color: "#0f172a",
-                textDecoration: "none",
-                border: "1px solid #e5e7eb",
-                fontWeight: 600,
-              }}
-            >
+            <Link href="/contact" className="hero-btn">
               Want to Know More
             </Link>
           </div>
 
           {/* Prominent Log In below the row */}
           <div style={{ marginTop: 14 }}>
-            <Link
-              href="/login"
-              style={{
-                display: "inline-block",
-                padding: "12px 20px",
-                borderRadius: 12,
-                background: "#ca9a3f",
-                color: "#1a1203",
-                textDecoration: "none",
-                border: "1px solid transparent",
-                fontWeight: 700,
-              }}
-            >
+            <Link href="/login" className="login-btn">
               Log In
             </Link>
           </div>
