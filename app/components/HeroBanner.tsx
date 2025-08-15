@@ -50,6 +50,8 @@ export default function HeroBanner() {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
           background: #f8fafc;
+          text-decoration: underline;
+          text-underline-offset: 3px;
         }
         .login-btn {
           display: inline-block;
@@ -66,30 +68,34 @@ export default function HeroBanner() {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
           background: #e0b253;
+          text-decoration: underline;
+          text-underline-offset: 3px;
         }
       `}</style>
 
-      {/* Centered overlay content */}
+      {/* Overlay content split: top text + bottom buttons */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          display: "grid",
-          placeItems: "center",
-          padding: "0 16px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "18px 16px",
         }}
       >
+        {/* Top: Headline + subhead */}
         <div
           style={{
             width: "100%",
             maxWidth: 960,
+            margin: "0 auto",
             textAlign: "center",
             color: "white",
             textShadow: "0 2px 12px rgba(0,0,0,0.35)",
-            transform: "translateY(-6%)",
+            transform: "translateY(2%)",
           }}
         >
-          {/* Tagline — matches AboutHero sizing/weight/leading */}
           <h1
             style={{
               margin: 0,
@@ -113,15 +119,23 @@ export default function HeroBanner() {
             ScoutLine connects players, parents, and coaches on the fastest path to recruitment—
             with profiles, milestones, and progress in one place. Get seen. Get signed. Game on.
           </p>
+        </div>
 
-          {/* Primary CTAs */}
+        {/* Bottom: Buttons + login */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 960,
+            margin: "0 auto 16px",
+            textAlign: "center",
+          }}
+        >
           <div
             style={{
               display: "flex",
               gap: 12,
               justifyContent: "center",
               flexWrap: "wrap",
-              marginTop: 16,
             }}
           >
             <Link href="/about" className="hero-btn">
@@ -138,7 +152,6 @@ export default function HeroBanner() {
             </Link>
           </div>
 
-          {/* Prominent Log In below the row */}
           <div style={{ marginTop: 14 }}>
             <Link href="/login" className="login-btn">
               Log In
