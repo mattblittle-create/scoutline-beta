@@ -115,8 +115,8 @@ export default function AboutHero() {
               lineHeight: 1.1,
               fontSize: "clamp(24px, 4.2vw, 44px)",
             }}
-          >
-            About ScoutLine
+          >Leveling the playing field in recruiting
+            
           </h1>
 
           <p
