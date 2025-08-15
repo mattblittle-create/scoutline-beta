@@ -17,7 +17,7 @@ export default function RecruitingJourneyHero() {
       {/* Full-bleed background image */}
       <Image
         src="/slidingintohome.jpg"
-        alt="Baseball player sliding into home plate while catcher attempts the tag"
+        alt="Baseball player sliding into home plate"
         fill
         priority
         sizes="100vw"
@@ -62,6 +62,24 @@ export default function RecruitingJourneyHero() {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
           background: #f3f4f6;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .sl-btn-gold {
+          display: inline-block;
+          padding: 12px 20px;
+          border-radius: 12px;
+          background: #ca9a3f;
+          color: #1a1203;
+          text-decoration: none;
+          border: 1px solid transparent;
+          font-weight: 700;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+        }
+        .sl-btn-gold:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.20);
+          background: #b88934;
           text-decoration: underline;
           text-underline-offset: 3px;
         }
@@ -139,7 +157,14 @@ export default function RecruitingJourneyHero() {
               Get Started
             </Link>
             <Link href="/faq" className="sl-btn">
-              Want to Know More
+              Want To Know More
+            </Link>
+          </div>
+
+          {/* Gold Log In button under the row */}
+          <div style={{ marginTop: 14 }}>
+            <Link href="/login" className="sl-btn-gold">
+              Log In
             </Link>
           </div>
         </div>
