@@ -16,8 +16,8 @@ export default function HeroBanner() {
     >
       {/* Full-bleed background image */}
       <Image
-        src="/track_pic_homepage.jpg"
-        alt="Track starting line—symbolizing a fresh start"
+        src="/battersbox.jpg"
+        alt="Home plate and batters box symbolizing where the game begins"
         fill
         priority
         sizes="100vw"
