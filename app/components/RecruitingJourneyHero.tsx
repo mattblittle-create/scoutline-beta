@@ -1,0 +1,149 @@
+"use client";
+import Image from "next/image";
+import Link from "next/link";
+
+export default function RecruitingJourneyHero() {
+  return (
+    <section
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "56vh",
+        minHeight: 320,
+        overflow: "hidden",
+      }}
+      aria-label="Recruiting Journey"
+    >
+      {/* Full-bleed background image */}
+      <Image
+        src="/slidingintohome.jpg"
+        alt="Baseball player sliding into home plate while catcher attempts the tag"
+        fill
+        priority
+        sizes="100vw"
+        style={{ objectFit: "cover" }}
+      />
+
+      {/* Top scrim so title/subtitle stay readable */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.00) 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Bottom scrim so buttons pop while sitting on the image */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.10) 30%, rgba(0,0,0,0.00) 55%)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Local button styles + hover */}
+      <style>{`
+        .sl-btn {
+          display: inline-block;
+          padding: 10px 16px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.96);
+          color: #0f172a;
+          text-decoration: none;
+          border: 1px solid #e5e7eb;
+          font-weight: 600;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease, border-color .2s ease;
+        }
+        .sl-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: #f3f4f6;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+      `}</style>
+
+      {/* Overlay content split: title/subtitle up top, buttons at bottom */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "18px 16px",
+        }}
+      >
+        {/* Top: Title + Subtitle */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 920,
+            margin: "0 auto",
+            textAlign: "center",
+            color: "white",
+            textShadow: "0 2px 12px rgba(0,0,0,0.35)",
+            transform: "translateY(2%)",
+          }}
+        >
+          <h1
+            style={{
+              margin: 0,
+              fontWeight: 700,
+              lineHeight: 1.1,
+              fontSize: "clamp(24px, 4.2vw, 44px)",
+            }}
+          >
+            Your recruiting journey, organized and in your control
+          </h1>
+
+          <p
+            style={{
+              margin: "12px auto 0",
+              maxWidth: 740,
+              lineHeight: 1.6,
+              fontSize: "clamp(14px, 2.2vw, 18px)",
+              color: "rgba(255,255,255,0.95)",
+            }}
+          >
+            ScoutLine brings your entire recruiting journey into one place — contacts, timelines,
+            tasks, and progress — so you spend less time guessing and more time advancing.
+          </p>
+        </div>
+
+        {/* Bottom: Buttons */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 920,
+            margin: "0 auto 16px",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: 12,
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link href="/about" className="sl-btn">
+              Who We Are
+            </Link>
+            <Link href="/pricing" className="sl-btn">
+              Get Started
+            </Link>
+            <Link href="/faq" className="sl-btn">
+              Want to Know More
+            </Link>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
