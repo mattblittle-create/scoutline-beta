@@ -1,4 +1,3 @@
-// app/recruiting-journey/page.tsx
 import RecruitingJourneyHero from "../components/RecruitingJourneyHero";
 
 export default function RecruitingJourneyPage() {
@@ -15,16 +14,17 @@ export default function RecruitingJourneyPage() {
         }}
       >
         <h1 style={{ margin: 0, fontSize: 32, lineHeight: 1.15 }}>
-          Your recruiting journey, organized and in your control.
+          Why ScoutLine?
         </h1>
 
         {/* Light divider line */}
         <div style={{ height: 1, background: "#e5e7eb", margin: "12px 0 16px" }} />
 
-        <p style={{ marginTop: 0, maxWidth: 720, color: "#475569", lineHeight: 1.65 }}>
-          ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
-          tasks, and progress—so you spend less time guessing and more time advancing.
-        </p>
+        <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
+          <li>Unified profile & milestones across sports</li>
+          <li>Coach & parent views that stay in sync</li>
+          <li>Clean dashboards, not clutter</li>
+        </ul>
 
         <section
           style={{
