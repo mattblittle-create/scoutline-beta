@@ -21,9 +21,14 @@ export default function RecruitingJourneyPage() {
         <div style={{ height: 1, background: "#e5e7eb", margin: "12px 0 16px" }} />
 
         <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
-          <li>Unified profile & milestones across sports</li>
-          <li>Coach & parent views that stay in sync</li>
-          <li>Clean dashboards, not clutter</li>
+          <li>Clean dashboards, no clutter</li>
+          <li>Live profile, metrics and milestones</li>
+          <li>Quickly and easily update metrics, stats, and player info</li>
+          <li>Coach, parent and team admin views that stay in sync with player updates</li>
+          <li>Private communication between player and coaches</li>
+          <li>Track progress over time across key performance indicators</li>
+          <li>Get feedback on the effectiveness of your recruiting profile</li>
+          <li>Ability to connect YouTube and social media links for higlight videos</li>
         </ul>
       </main>
     </>
