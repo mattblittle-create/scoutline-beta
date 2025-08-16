@@ -24,7 +24,7 @@ export default function RecruitingJourneyPage() {
           <li>Clean dashboards, no clutter</li>
           <li>Live profile, metrics and milestones</li>
           <li>Quickly and easily update metrics, stats, and player info</li>
-          <li>Coach, parent and team admin views that stay in sync with player updates</li>
+          <li>Coach, parent and team admin views stay in sync with player updates</li>
           <li>Private communication between player and coaches</li>
           <li>Get feedback on the effectiveness of your recruiting profile</li>
           <li>Track progress over time across key performance indicators</li>
