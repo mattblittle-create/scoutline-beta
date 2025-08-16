@@ -24,13 +24,13 @@ export default function RecruitingJourneyPage() {
           <li>Clean dashboards, no clutter</li>
           <li>Live profile, metrics and milestones</li>
           <li>Update stats and player info in seconds</li>
-          <li>Coach, parent and team admin views stay in sync with player updates</li>
-          <li>Ability to connect YouTube and social media links</li>
+          <li>Coach, parent and team admin views stay in sync with player data updates</li>
+          <li>Highlight reels and game film embedded directly in your profile</li>
           <li>Direct communication between player and coaches</li>        
           <li>Insights into how your profile performs with recruiters</li>
           <li>Track progress over time across key performance indicators</li>
           <li>Mobile-friendly design so you can update and share on the go</li>
-          <li>Affordable plans with no hidden fees - built for families, not just big programs<li>
+          <li>Affordable plans with no hidden fees - built for families, not just big programs</li>
         </ul>
       </main>
     </>
