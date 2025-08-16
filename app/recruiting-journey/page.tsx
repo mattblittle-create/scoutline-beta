@@ -41,6 +41,7 @@ export default function RecruitingJourneyPage() {
   <li>Insights into how your profile performs with recruiters</li>
   <li>Track progress over time across key performance indicators</li>
   <li>Mobile-friendly design so you can update and share on the go</li>
+  <li style={{ whiteSpace: "nowrap" }}>
   <li>Affordable plans with no hidden fees – built for families, not just big programs</li>
 </ul>
 
