@@ -78,6 +78,24 @@ export default function CollegeSearch() {
     setHighlightIndex(-1);
   }
 
+  // Single-chip removers
+  function removeQuery() {
+    setQuery("");
+    setHighlightIndex(-1);
+  }
+  function removeRegion(value: string) {
+    setRegions(regions.filter(v => v !== value));
+  }
+  function removeState(value: string) {
+    setStates(states.filter(v => v !== value));
+  }
+  function removeDivision(value: string) {
+    setDivisions(divisions.filter(v => v !== value));
+  }
+  function removeConference(value: string) {
+    setConferences(conferences.filter(v => v !== value));
+  }
+
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   // Handle keyboard navigation in suggestions
@@ -118,7 +136,7 @@ export default function CollegeSearch() {
         {/* Text search with suggestions */}
         <div style={{ position: "relative" }}>
           <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
-            Search by College Name
+            Search by college name
           </label>
           <input
             ref={inputRef}
@@ -136,9 +154,12 @@ export default function CollegeSearch() {
               borderRadius: 10,
               outline: "none",
             }}
+            aria-autocomplete="list"
+            aria-expanded={showSuggestions}
           />
           {showSuggestions && suggestions.length > 0 && (
             <div
+              role="listbox"
               style={{
                 position: "absolute",
                 zIndex: 10,
@@ -156,6 +177,8 @@ export default function CollegeSearch() {
             >
               {suggestions.map((name, idx) => (
                 <button
+                  role="option"
+                  aria-selected={idx === highlightIndex}
                   key={name}
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() => { setQuery(name); setShowSuggestions(false); setHighlightIndex(-1); }}
@@ -176,7 +199,7 @@ export default function CollegeSearch() {
           )}
         </div>
 
-        {/* Multi-select dropdowns */}
+        {/* Multi-select dropdowns with keyboard support */}
         <MultiSelectDropdown
           label="Region"
           options={regionOptions}
@@ -203,83 +226,130 @@ export default function CollegeSearch() {
         />
       </div>
 
-      {/* Clear filters */}
-      <div style={{ marginTop: 12 }}>
-        <button
-          onClick={clearAll}
+      {/* Active filter chips */}
+      {(query || regions.length || states.length || divisions.length || conferences.length) ? (
+        <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
+          {query && <Chip label={`Name: ${query}`} onRemove={removeQuery} />}
+          {regions.map((r) => <Chip key={`r-${r}`} label={`Region: ${r}`} onRemove={() => removeRegion(r)} />)}
+          {states.map((s) => <Chip key={`s-${s}`} label={`State: ${s}`} onRemove={() => removeState(s)} />)}
+          {divisions.map((d) => <Chip key={`d-${d}`} label={`Division: ${d}`} onRemove={() => removeDivision(d)} />)}
+          {conferences.map((c) => <Chip key={`c-${c}`} label={`Conf: ${c}`} onRemove={() => removeConference(c)} />)}
+          <button
+            onClick={clearAll}
+            style={{
+              padding: "6px 10px",
+              borderRadius: 999,
+              border: "1px solid #e5e7eb",
+              background: "#fff",
+              color: "#0f172a",
+              cursor: "pointer",
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+            aria-label="Clear all filters"
+            title="Clear all"
+          >
+            Clear all
+          </button>
+        </div>
+      ) : null}
+
+      {/* Divider before results (only if there will be results) */}
+      {filtered.length > 0 && <div style={{ height: 1, background: "#e5e7eb", margin: "18px 0" }} />}
+
+      {/* Results */}
+      {filtered.length > 0 && (
+        <div
           style={{
-            padding: "8px 12px",
-            borderRadius: 8,
-            border: "1px solid #e5e7eb",
-            background: "#fff",
-            cursor: "pointer",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
+            gap: 12,
           }}
         >
-          Clear filters
-        </button>
-      </div>
-
-      {/* Results (hidden until something is typed/selected) */}
-      {filtered.length > 0 && (
-        <>
-          <div style={{ height: 1, background: "#e5e7eb", margin: "18px 0" }} />
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-              gap: 12,
-            }}
-          >
-            {filtered.map((c) => (
-              <article
-                key={c.name}
-                style={{
-                  border: "1px solid #e5e7eb",
-                  borderRadius: 12,
-                  background: "#fff",
-                  padding: 14,
-                  boxShadow: "0 6px 16px rgba(15,23,42,0.06)",
-                }}
-              >
-                <h3 style={{ margin: "0 0 6px", fontSize: 18 }}>{c.name}</h3>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", color: "#64748b", fontSize: 12 }}>
-                  <span>{c.region}</span>
-                  <span>•</span>
-                  <span>{c.state}</span>
-                  <span>•</span>
-                  <span>{c.division}</span>
-                  <span>•</span>
-                  <span>{c.conference}</span>
-                </div>
-                <div style={{ marginTop: 10 }}>
-                  <a
-                    href={c.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "inline-block",
-                      padding: "8px 12px",
-                      borderRadius: 10,
-                      background: "rgba(255,255,255,0.96)",
-                      color: "#0f172a",
-                      textDecoration: "none",
-                      border: "1px solid #e5e7eb",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Visit Website
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </>
+          {filtered.map((c) => (
+            <article
+              key={c.name}
+              style={{
+                border: "1px solid #e5e7eb",
+                borderRadius: 12,
+                background: "#fff",
+                padding: 14,
+                boxShadow: "0 6px 16px rgba(15,23,42,0.06)",
+              }}
+            >
+              <h3 style={{ margin: "0 0 6px", fontSize: 18 }}>{c.name}</h3>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap", color: "#64748b", fontSize: 12 }}>
+                <span>{c.region}</span>
+                <span>•</span>
+                <span>{c.state}</span>
+                <span>•</span>
+                <span>{c.division}</span>
+                <span>•</span>
+                <span>{c.conference}</span>
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <a
+                  href={c.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "inline-block",
+                    padding: "8px 12px",
+                    borderRadius: 10,
+                    background: "rgba(255,255,255,0.96)",
+                    color: "#0f172a",
+                    textDecoration: "none",
+                    border: "1px solid #e5e7eb",
+                    fontWeight: 600,
+                  }}
+                >
+                  Visit Website
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
       )}
     </section>
   );
 }
 
-/** Multi-select dropdown with checkboxes (no external deps) */
+/** Compact chip for active filters */
+function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "6px 10px",
+        borderRadius: 999,
+        background: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        fontSize: 13,
+      }}
+    >
+      {label}
+      <button
+        onClick={onRemove}
+        style={{
+          border: "none",
+          background: "transparent",
+          cursor: "pointer",
+          fontSize: 16,
+          lineHeight: 1,
+          color: "#64748b",
+        }}
+        aria-label={`Remove ${label}`}
+        title="Remove"
+      >
+        ×
+      </button>
+    </span>
+  );
+}
+
+/** Multi-select dropdown with checkboxes + keyboard support (no external deps) */
 function MultiSelectDropdown({
   label,
   options,
@@ -292,16 +362,30 @@ function MultiSelectDropdown({
   setSelected: (v: string[]) => void;
 }) {
   const [open, setOpen] = useState(false);
+  const [focusIndex, setFocusIndex] = useState<number>(-1);
   const wrapRef = useRef<HTMLDivElement | null>(null);
+  const listRef = useRef<HTMLDivElement | null>(null);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
       if (!wrapRef.current) return;
-      if (!wrapRef.current.contains(e.target as Node)) setOpen(false);
+      if (!wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+        setFocusIndex(-1);
+      }
     }
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
   }, []);
+
+  useEffect(() => {
+    if (open && listRef.current) {
+      // ensure focused item is visible
+      const el = listRef.current.querySelector<HTMLElement>(`[data-index="${focusIndex}"]`);
+      if (el) el.scrollIntoView({ block: "nearest" });
+    }
+  }, [open, focusIndex]);
 
   function toggleValue(value: string) {
     setSelected(
@@ -318,14 +402,70 @@ function MultiSelectDropdown({
       ? selected.join(", ")
       : `${selected.length} selected`;
 
+  function openMenu() {
+    setOpen(true);
+    setFocusIndex(0);
+  }
+
+  function closeMenu() {
+    setOpen(false);
+    setFocusIndex(-1);
+    buttonRef.current?.focus();
+  }
+
+  function onButtonKeyDown(e: React.KeyboardEvent<HTMLButtonElement>) {
+    if (e.key === "Enter" || e.key === " " || e.key === "ArrowDown") {
+      e.preventDefault();
+      openMenu();
+    }
+  }
+
+  function onListKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeMenu();
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setFocusIndex((i) => Math.min(options.length - 1, (i < 0 ? 0 : i + 1)));
+      return;
+    }
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setFocusIndex((i) => Math.max(0, (i < 0 ? 0 : i - 1)));
+      return;
+    }
+    if (e.key === "Home") {
+      e.preventDefault();
+      setFocusIndex(0);
+      return;
+    }
+    if (e.key === "End") {
+      e.preventDefault();
+      setFocusIndex(options.length - 1);
+      return;
+    }
+    if (e.key === " " || e.key === "Enter") {
+      e.preventDefault();
+      if (focusIndex >= 0 && focusIndex < options.length) {
+        toggleValue(options[focusIndex]);
+      }
+    }
+  }
+
   return (
     <div ref={wrapRef} style={{ position: "relative" }}>
       <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
         {label}
       </label>
       <button
+        ref={buttonRef}
         type="button"
-        onClick={() => setOpen(o => !o)}
+        onClick={() => (open ? closeMenu() : openMenu())}
+        onKeyDown={onButtonKeyDown}
+        aria-haspopup="listbox"
+        aria-expanded={open}
         style={{
           width: "100%",
           textAlign: "left",
@@ -342,6 +482,10 @@ function MultiSelectDropdown({
 
       {open && (
         <div
+          ref={listRef}
+          role="listbox"
+          tabIndex={-1}
+          onKeyDown={onListKeyDown}
           style={{
             position: "absolute",
             zIndex: 20,
@@ -356,20 +500,24 @@ function MultiSelectDropdown({
             maxHeight: 260,
             overflowY: "auto",
             padding: 8,
+            outline: "none",
           }}
         >
-          {options.map((opt) => {
+          {options.map((opt, idx) => {
             const active = selected.includes(opt);
+            const focused = idx === focusIndex;
             return (
               <label
                 key={opt}
+                data-index={idx}
+                onMouseEnter={() => setFocusIndex(idx)}
                 style={{
                   display: "flex",
                   alignItems: "center",
                   gap: 10,
                   padding: "8px 8px",
                   borderRadius: 8,
-                  background: active ? "#fff7e6" : "transparent",
+                  background: active ? "#fff7e6" : focused ? "#f6f7fb" : "transparent",
                   color: active ? "#8a6b20" : "#0f172a",
                   border: active ? "1px solid #f3e2b7" : "1px solid transparent",
                   cursor: "pointer",
