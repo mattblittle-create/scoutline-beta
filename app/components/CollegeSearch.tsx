@@ -118,7 +118,7 @@ export default function CollegeSearch() {
         {/* Text search with suggestions */}
         <div style={{ position: "relative" }}>
           <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
-            Search by college name
+            Search by College Name
           </label>
           <input
             ref={inputRef}
