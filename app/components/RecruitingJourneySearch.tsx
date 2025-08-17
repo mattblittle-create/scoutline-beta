@@ -98,7 +98,7 @@ export default function RecruitingJourneySearch() {
         color: "#0f172a",
       }}
     >
-      <h2 style={{ margin: 0, fontSize: 24 }}>Explore college programs</h2>
+      <h2 style={{ margin: 0, fontSize: 24 }}>Explore College Programs</h2>
       <div style={{ height: 1, background: "#e5e7eb", margin: "12px 0 18px" }} />
 
       {/* Search + typeahead */}
