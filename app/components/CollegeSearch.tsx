@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 
 // --- Demo data (swap this for your real dataset later) ---
@@ -34,6 +34,7 @@ export default function CollegeSearch() {
   const [divisions, setDivisions] = useState<string[]>([]);
   const [conferences, setConferences] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [highlightIndex, setHighlightIndex] = useState(-1);
 
   // Build option lists from data
   const regionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.region)), []);
@@ -68,16 +69,36 @@ export default function CollegeSearch() {
     });
   }, [query, regions, states, divisions, conferences]);
 
-  function toggleValue(list: string[], value: string, setList: (v: string[]) => void) {
-    setList(list.includes(value) ? list.filter(v => v !== value) : [...list, value]);
-  }
-
   function clearAll() {
     setQuery("");
     setRegions([]);
     setStates([]);
     setDivisions([]);
     setConferences([]);
+    setHighlightIndex(-1);
+  }
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // Handle keyboard navigation in suggestions
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (!showSuggestions || suggestions.length === 0) return;
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightIndex((i) => (i + 1) % suggestions.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightIndex((i) => (i - 1 + suggestions.length) % suggestions.length);
+    } else if (e.key === "Enter") {
+      if (highlightIndex >= 0 && highlightIndex < suggestions.length) {
+        setQuery(suggestions[highlightIndex]);
+        setShowSuggestions(false);
+        setHighlightIndex(-1);
+      }
+    } else if (e.key === "Escape") {
+      setShowSuggestions(false);
+      setHighlightIndex(-1);
+    }
   }
 
   return (
@@ -100,12 +121,14 @@ export default function CollegeSearch() {
             Search by college name
           </label>
           <input
+            ref={inputRef}
             type="text"
             placeholder="Start typing a college…"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => { setQuery(e.target.value); setHighlightIndex(-1); }}
             onFocus={() => setShowSuggestions(true)}
             onBlur={() => setTimeout(() => setShowSuggestions(false), 150)}
+            onKeyDown={onKeyDown}
             style={{
               width: "100%",
               padding: "10px 12px",
@@ -131,16 +154,17 @@ export default function CollegeSearch() {
                 overflowY: "auto",
               }}
             >
-              {suggestions.map((name) => (
+              {suggestions.map((name, idx) => (
                 <button
                   key={name}
                   onMouseDown={(e) => e.preventDefault()}
-                  onClick={() => { setQuery(name); setShowSuggestions(false); }}
+                  onClick={() => { setQuery(name); setShowSuggestions(false); setHighlightIndex(-1); }}
+                  onMouseEnter={() => setHighlightIndex(idx)}
                   style={{
                     width: "100%",
                     textAlign: "left",
                     padding: "10px 12px",
-                    background: "transparent",
+                    background: idx === highlightIndex ? "#f6f7fb" : "transparent",
                     border: "none",
                     cursor: "pointer",
                   }}
@@ -152,30 +176,30 @@ export default function CollegeSearch() {
           )}
         </div>
 
-        {/* Multi-selects (simple pill checklists) */}
-        <FilterColumn
+        {/* Multi-select dropdowns */}
+        <MultiSelectDropdown
           label="Region"
           options={regionOptions}
           selected={regions}
-          onToggle={(v) => toggleValue(regions, v, setRegions)}
+          setSelected={setRegions}
         />
-        <FilterColumn
+        <MultiSelectDropdown
           label="State"
           options={stateOptions}
           selected={states}
-          onToggle={(v) => toggleValue(states, v, setStates)}
+          setSelected={setStates}
         />
-        <FilterColumn
+        <MultiSelectDropdown
           label="Division"
           options={divisionOptions}
           selected={divisions}
-          onToggle={(v) => toggleValue(divisions, v, setDivisions)}
+          setSelected={setDivisions}
         />
-        <FilterColumn
+        <MultiSelectDropdown
           label="Conference"
           options={conferenceOptions}
           selected={conferences}
-          onToggle={(v) => toggleValue(conferences, v, setConferences)}
+          setSelected={setConferences}
         />
       </div>
 
@@ -255,45 +279,118 @@ export default function CollegeSearch() {
   );
 }
 
-function FilterColumn({
+/** Multi-select dropdown with checkboxes (no external deps) */
+function MultiSelectDropdown({
   label,
   options,
   selected,
-  onToggle,
+  setSelected,
 }: {
   label: string;
   options: string[];
   selected: string[];
-  onToggle: (v: string) => void;
+  setSelected: (v: string[]) => void;
 }) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onDocClick(e: MouseEvent) {
+      if (!wrapRef.current) return;
+      if (!wrapRef.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    return () => document.removeEventListener("mousedown", onDocClick);
+  }, []);
+
+  function toggleValue(value: string) {
+    setSelected(
+      selected.includes(value)
+        ? selected.filter(v => v !== value)
+        : [...selected, value]
+    );
+  }
+
+  const summary =
+    selected.length === 0
+      ? "Any"
+      : selected.length <= 2
+      ? selected.join(", ")
+      : `${selected.length} selected`;
+
   return (
-    <div>
+    <div ref={wrapRef} style={{ position: "relative" }}>
       <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
         {label}
       </label>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-        {options.map((opt) => {
-          const active = selected.includes(opt);
-          return (
-            <button
-              type="button"
-              key={opt}
-              onClick={() => onToggle(opt)}
-              style={{
-                padding: "6px 10px",
-                borderRadius: 999,
-                border: active ? "1px solid #ca9a3f" : "1px solid #e5e7eb",
-                background: active ? "#fff7e6" : "#fff",
-                color: active ? "#8a6b20" : "#0f172a",
-                cursor: "pointer",
-                fontSize: 13,
-              }}
-            >
-              {opt}
-            </button>
-          );
-        })}
-      </div>
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        style={{
+          width: "100%",
+          textAlign: "left",
+          padding: "10px 12px",
+          border: "1px solid #e5e7eb",
+          borderRadius: 10,
+          background: "#fff",
+          cursor: "pointer",
+        }}
+      >
+        {summary}
+        <span style={{ float: "right", opacity: 0.6 }}>▾</span>
+      </button>
+
+      {open && (
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 20,
+            top: "100%",
+            left: 0,
+            right: 0,
+            marginTop: 6,
+            background: "#fff",
+            border: "1px solid #e5e7eb",
+            borderRadius: 10,
+            boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
+            maxHeight: 260,
+            overflowY: "auto",
+            padding: 8,
+          }}
+        >
+          {options.map((opt) => {
+            const active = selected.includes(opt);
+            return (
+              <label
+                key={opt}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  padding: "8px 8px",
+                  borderRadius: 8,
+                  background: active ? "#fff7e6" : "transparent",
+                  color: active ? "#8a6b20" : "#0f172a",
+                  border: active ? "1px solid #f3e2b7" : "1px solid transparent",
+                  cursor: "pointer",
+                }}
+              >
+                <input
+                  type="checkbox"
+                  checked={active}
+                  onChange={() => toggleValue(opt)}
+                />
+                <span>{opt}</span>
+              </label>
+            );
+          })}
+          {options.length === 0 && (
+            <div style={{ padding: 8, color: "#64748b", fontSize: 14 }}>
+              No options
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
