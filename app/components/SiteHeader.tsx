@@ -137,6 +137,7 @@ export default function SiteHeader() {
           <Link href="/" onClick={closeAll}>Home</Link>
           <Link href="/about" onClick={closeAll}>About</Link>
           <Link href="/recruiting-journey" onClick={closeAll}>Recruiting Journey</Link>
+          <Link href="/college-search" onClick={closeAll}>College Search</Link>
           <Link href="/pricing" onClick={closeAll}>Pricing</Link>
           <Link href="/faq" onClick={closeAll}>FAQ</Link>
 
@@ -203,6 +204,7 @@ export default function SiteHeader() {
       <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
       <Link href="/about" className="sl-item" onClick={closeAll}>About</Link>
       <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting Journey</Link>
+      <Link href="/college-search" className="sl-item" onClick={closeAll}>College Search</Link>
       <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
       <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
 
