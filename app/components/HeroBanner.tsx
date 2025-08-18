@@ -24,13 +24,23 @@ export default function HeroBanner() {
         style={{ objectFit: "cover" }}
       />
 
-      {/* Scrim so text stays readable */}
+      {/* Top scrim to keep title/subtitle readable */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           background:
-            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(255,255,255,0.00) 75%)",
+            "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.00) 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      {/* Bottom scrim so buttons pop while sitting on the image */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background:
+            "linear-gradient(to top, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.10) 30%, rgba(0,0,0,0.00) 55%)",
           pointerEvents: "none",
         }}
       />
@@ -69,27 +79,29 @@ export default function HeroBanner() {
         }
       `}</style>
 
-      {/* Centered overlay content */}
+      {/* Overlay content split: title/subtitle up top, buttons at bottom (matches AboutHero layout) */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          display: "grid",
-          placeItems: "center",
-          padding: "0 16px",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "18px 16px",
         }}
       >
+        {/* Top: Title + Subtitle */}
         <div
           style={{
             width: "100%",
             maxWidth: 960,
+            margin: "0 auto",
             textAlign: "center",
             color: "white",
             textShadow: "0 2px 12px rgba(0,0,0,0.35)",
-            transform: "translateY(-6%)",
+            transform: "translateY(2%)",
           }}
         >
-          {/* Tagline — matches AboutHero sizing/weight/leading */}
           <h1
             style={{
               margin: 0,
@@ -113,15 +125,23 @@ export default function HeroBanner() {
             ScoutLine connects players, parents, and coaches on the fastest path to recruitment—
             with profiles, milestones, and progress in one place. Get seen. Get signed. Game on.
           </p>
+        </div>
 
-          {/* Primary CTAs */}
+        {/* Bottom: Buttons (centered), first row = white CTAs, second row = gold Search + Log In */}
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 960,
+            margin: "0 auto 16px",
+            textAlign: "center",
+          }}
+        >
           <div
             style={{
               display: "flex",
               gap: 12,
               justifyContent: "center",
               flexWrap: "wrap",
-              marginTop: 16,
             }}
           >
             <Link href="/about" className="hero-btn">
@@ -138,7 +158,7 @@ export default function HeroBanner() {
             </Link>
           </div>
 
-          {/* Prominent Search + Log In below the row (gold) */}
+          {/* Gold buttons underneath, centered */}
           <div
             style={{
               marginTop: 14,
