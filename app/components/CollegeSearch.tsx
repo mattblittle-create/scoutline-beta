@@ -397,6 +397,14 @@ export default function CollegeSearch() {
     setConferences([]);
   }
 
+  // ---- Build “Selected filters” chip list (removable) ----
+  const selectedChips = [
+    ...regions.map((v) => ({ group: "Region", value: v, remove: () => setRegions(regions.filter(x => x !== v)) })),
+    ...states.map((v) => ({ group: "State", value: v, remove: () => setStates(states.filter(x => x !== v)) })),
+    ...divisions.map((v) => ({ group: "Division", value: v, remove: () => setDivisions(divisions.filter(x => x !== v)) })),
+    ...conferences.map((v) => ({ group: "Conference", value: v, remove: () => setConferences(conferences.filter(x => x !== v)) })),
+  ];
+
   return (
     <section
       style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px", color: "#0f172a" }}
@@ -509,6 +517,56 @@ export default function CollegeSearch() {
         />
       </div>
 
+      {/* Selected filters (removable chips) */}
+      {selectedChips.length > 0 && (
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 6,
+            marginTop: 10,
+            alignItems: "center",
+          }}
+        >
+          {selectedChips.map((chip) => (
+            <span
+              key={`${chip.group}:${chip.value}`}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "4px 8px",
+                borderRadius: 999,
+                border: "1px solid #e5e7eb",
+                background: "#f8fafc",
+                fontSize: 12,
+              }}
+            >
+              <strong style={{ color: "#64748b", fontWeight: 600 }}>
+                {chip.group}:
+              </strong>{" "}
+              {chip.value}
+              <button
+                type="button"
+                aria-label={`Remove ${chip.value} from ${chip.group}`}
+                onClick={chip.remove}
+                style={{
+                  marginLeft: 2,
+                  border: "none",
+                  background: "transparent",
+                  cursor: "pointer",
+                  fontSize: 14,
+                  lineHeight: 1,
+                  color: "#64748b",
+                }}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+      )}
+
       {/* Clear filters */}
       <div style={{ marginTop: 12 }}>
         <button
@@ -601,9 +659,7 @@ export default function CollegeSearch() {
                   {/* Tuition */}
                   <dt style={{ fontWeight: 600 }}>Tuition (approx):</dt>
                   <dd style={{ margin: 0 }}>
-                    {/* First line sits inline with the label */}
                     In-State: {formatUSD(c.tuitionInState)}
-                    {/* Next lines sit directly under the In-State line, within the value column */}
                     <div>Out-of-State: {formatUSD(c.tuitionOutState)}</div>
                     <div>International: {formatUSD(c.tuitionInternational)}</div>
                   </dd>
