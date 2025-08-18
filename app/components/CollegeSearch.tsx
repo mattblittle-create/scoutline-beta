@@ -11,6 +11,7 @@ type College = {
   url: string;
   region: string;
   state: string;
+  city: string;
   division: string;
   conference: string;
 
@@ -37,6 +38,7 @@ const SAMPLE_COLLEGES: College[] = [
     url: "https://www.clemson.edu/",
     region: "Southeast",
     state: "SC",
+    city: "Clemson",
     division: "NCAA D1",
     conference: "ACC",
     type: "Public",
@@ -58,6 +60,7 @@ const SAMPLE_COLLEGES: College[] = [
     url: "https://www.ufl.edu/",
     region: "Southeast",
     state: "FL",
+    city: "Gainesville",
     division: "NCAA D1",
     conference: "SEC",
     type: "Public",
@@ -77,6 +80,7 @@ const SAMPLE_COLLEGES: College[] = [
     url: "https://www.duke.edu/",
     region: "Southeast",
     state: "NC",
+    city: "Durham",
     division: "NCAA D1",
     conference: "ACC",
     type: "Private",
@@ -97,6 +101,7 @@ const SAMPLE_COLLEGES: College[] = [
     url: "https://www.bc.edu/",
     region: "Northeast",
     state: "MA",
+    city: "Chestnut Hill",
     division: "NCAA D1",
     conference: "ACC",
     type: "Private",
@@ -116,6 +121,7 @@ const SAMPLE_COLLEGES: College[] = [
     url: "https://www.auburn.edu/",
     region: "Southeast",
     state: "AL",
+    city: "Auburn",
     division: "NCAA D1",
     conference: "SEC",
     type: "Public",
@@ -609,6 +615,8 @@ export default function CollegeSearch() {
                   <span>{c.region}</span>
                   <span>•</span>
                   <span>{c.state}</span>
+                  <span>•</span>
+                  <span>{c.city}</span>
                   <span>•</span>
                   <span>{c.division}</span>
                   <span>•</span>
