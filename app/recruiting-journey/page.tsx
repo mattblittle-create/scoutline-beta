@@ -101,17 +101,7 @@ export default function RecruitingJourneyPage() {
         {/* Section 6 */}
         <section style={{ marginBottom: 24 }}>
           <h2 style={{ margin: "0 0 8px", fontSize: 22 }}>6) Eligibility & compliance</h2>
-          <div
-            style={{
-              border: "1px solid #e5e7eb",
-              borderRadius: 12,
-              padding: 16,
-              background: "#ffffff",
-              boxShadow: "0 8px 24px rgba(15,23,42,0.04)",
-              color: "#475569",
-              lineHeight: 1.65,
-            }}
-          >
+          <p style={{ color: "#475569", lineHeight: 1.65 }}>
             Register with the NCAA Eligibility Center early and keep transcripts/testing current.{" "}
             <a
               href="https://www.ncaa.org/student-athletes/future/eligibility-center"
@@ -122,11 +112,11 @@ export default function RecruitingJourneyPage() {
               NCAA Eligibility Center
             </a>
             .
-            <ul style={{ margin: "10px 0 0 18px" }}>
-              <li>Know contact rules, quiet periods, and allowable communication windows.</li>
-              <li>Confirm amateur status and core-course requirements with your counselor.</li>
-            </ul>
-          </div>
+          </p>
+          <ul style={{ margin: "10px 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
+            <li>Know contact rules, quiet periods, and allowable communication windows.</li>
+            <li>Confirm amateur status and core-course requirements with your counselor.</li>
+          </ul>
         </section>
 
         {/* Section 7 */}
