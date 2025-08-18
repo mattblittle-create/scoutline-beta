@@ -293,7 +293,7 @@ export default function RecruitingJourneyPage() {
             Build Your Profile
           </Link>
           <a
-            href="https://www.ncaa.org/student-athletes/future/eligibility-center"
+            href="https://web3.ncaa.org/ecwr3/"
             target="_blank"
             rel="noopener noreferrer"
             className="sl-btn-white"
