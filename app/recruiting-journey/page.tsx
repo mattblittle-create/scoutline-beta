@@ -227,7 +227,7 @@ export default function RecruitingJourneyPage() {
             <p style={{ color: "#475569", lineHeight: 1.65, marginTop: 0 }}>
               Register with the NCAA Eligibility Center early and keep transcripts/testing current.{" "}
               <a
-                href="https://www.ncaa.org/student-athletes/future/eligibility-center"
+                href="https://web3.ncaa.org/ecwr3/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#0f172a", textDecoration: "underline" }}
