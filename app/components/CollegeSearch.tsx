@@ -1,291 +1,314 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useMemo, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
-/** ------------------------------
- * Types & Demo Data (replace SAMPLE_COLLEGES with your real JSON later)
- * ------------------------------ */
+// -------------------------------------------------------------
+// Types & Sample Data (replace with your JSON later)
+// -------------------------------------------------------------
 type College = {
   name: string;
-  website?: string;
-
+  url: string;
   region: string;
   state: string;
   division: string;
   conference: string;
 
+  // Extra detail fields
   type?: "Public" | "Private";
-  enrollmentApprox?: number;
+  enrollmentApprox?: number; // as integer
   campusType?: "Urban" | "Suburban" | "Rural" | "Research" | "Liberal Arts";
+  tuitionInState?: number;       // per year USD
+  tuitionOutState?: number;      // per year USD
+  tuitionInternational?: number; // per year USD
+  scholarshipAcademic?: boolean;
+  scholarshipAthletic?: boolean;
 
-  tuitionApprox?: {
-    inState?: number;
-    outOfState?: number;
-    international?: number;
-  };
-
-  scholarships?: {
-    academic?: boolean;
-    athletic?: boolean;
-  };
-
-  programsUrl?: string;
-  athleticsUrl?: string;
-  campsUrl?: string;
-  questionnaireUrl?: string;
+  // Optional deep links
+  programsUrl?: string;       // academic programs
+  baseballUrl?: string;       // baseball team page
+  campsUrl?: string;          // camps page
+  questionnaireUrl?: string;  // recruiting questionnaire
 };
 
 const SAMPLE_COLLEGES: College[] = [
   {
     name: "Clemson University",
-    website: "https://www.clemson.edu/",
+    url: "https://www.clemson.edu/",
     region: "Southeast",
     state: "SC",
     division: "NCAA D1",
     conference: "ACC",
     type: "Public",
-    enrollmentApprox: 28000,
+    enrollmentApprox: 27000,
     campusType: "Suburban",
-    tuitionApprox: { inState: 15458, outOfState: 39850, international: 39850 },
-    scholarships: { academic: true, athletic: true },
-    programsUrl: "https://www.clemson.edu/academics/programs/",
-    athleticsUrl: "https://clemsontigers.com/sports/baseball/",
+    tuitionInState: 15958,
+    tuitionOutState: 40054,
+    tuitionInternational: 40054,
+    scholarshipAcademic: true,
+    scholarshipAthletic: true,
+    programsUrl: "https://www.clemson.edu/academics/programs.html",
+    baseballUrl: "https://clemsontigers.com/sports/baseball/",
     campsUrl: "https://clemsontigers.com/camps/",
-    questionnaireUrl: "https://clemsontigers.com/recruiting/",
+    questionnaireUrl: "https://clemsontigers.com/sports/2020/8/6/baseball-recruiting-questionnaire.aspx",
   },
   {
     name: "University of Florida",
-    website: "https://www.ufl.edu/",
+    url: "https://www.ufl.edu/",
     region: "Southeast",
     state: "FL",
     division: "NCAA D1",
     conference: "SEC",
     type: "Public",
-    enrollmentApprox: 52000,
+    enrollmentApprox: 57000,
     campusType: "Urban",
-    tuitionApprox: { inState: 6381, outOfState: 28658, international: 28658 },
-    scholarships: { academic: true, athletic: true },
-    programsUrl: "https://catalog.ufl.edu/UGRD/programs/",
-    athleticsUrl: "https://floridagators.com/sports/baseball",
-    campsUrl: "https://floridagators.com/camps",
-    questionnaireUrl: "https://floridagators.com/sb_output.aspx?form=2",
+    tuitionInState: 6380,
+    tuitionOutState: 28658,
+    tuitionInternational: 28658,
+    scholarshipAcademic: true,
+    scholarshipAthletic: true,
+    programsUrl: "https://catalog.ufl.edu/undergraduate/majors/",
+    baseballUrl: "https://floridagators.com/sports/baseball",
+    campsUrl: "https://floridagators.com/sports/2022/5/3/camps.aspx",
+  },
+  {
+    name: "Duke University",
+    url: "https://www.duke.edu/",
+    region: "Southeast",
+    state: "NC",
+    division: "NCAA D1",
+    conference: "ACC",
+    type: "Private",
+    enrollmentApprox: 17000,
+    campusType: "Urban",
+    tuitionInState: 66600,
+    tuitionOutState: 66600,
+    tuitionInternational: 66600,
+    scholarshipAcademic: true,
+    scholarshipAthletic: true,
+    programsUrl: "https://trinity.duke.edu/undergraduate/majors",
+    baseballUrl: "https://goduke.com/sports/baseball",
+    campsUrl: "https://goduke.com/sports/2018/6/8/211700262.aspx",
+    questionnaireUrl: "https://recruiting.dukeathletics.com/",
   },
   {
     name: "Boston College",
-    website: "https://www.bc.edu/",
+    url: "https://www.bc.edu/",
     region: "Northeast",
     state: "MA",
     division: "NCAA D1",
     conference: "ACC",
     type: "Private",
-    enrollmentApprox: 15000,
+    enrollmentApprox: 14800,
     campusType: "Urban",
-    tuitionApprox: { inState: 68800, outOfState: 68800, international: 68800 },
-    scholarships: { academic: true, athletic: true },
-    programsUrl: "https://www.bc.edu/bc-web/academics/majors-minors.html",
-    athleticsUrl: "https://bceagles.com/sports/baseball",
-    campsUrl: "",
-    questionnaireUrl: "",
+    tuitionInState: 68900,
+    tuitionOutState: 68900,
+    tuitionInternational: 68900,
+    scholarshipAcademic: true,
+    scholarshipAthletic: true,
+    programsUrl: "https://www.bc.edu/bc-web/schools/mcas/undergraduate/majors-minors.html",
+    baseballUrl: "https://bceagles.com/sports/baseball",
   },
   {
-    name: "University of Georgia",
-    website: "https://www.uga.edu/",
+    name: "Auburn University",
+    url: "https://www.auburn.edu/",
     region: "Southeast",
-    state: "GA",
+    state: "AL",
     division: "NCAA D1",
     conference: "SEC",
     type: "Public",
-    enrollmentApprox: 40000,
+    enrollmentApprox: 32000,
     campusType: "Suburban",
-    tuitionApprox: { inState: 12280, outOfState: 31520, international: 31520 },
-    scholarships: { academic: true, athletic: true },
-    programsUrl: "https://www.uga.edu/academics/degree-programs/",
-    athleticsUrl: "https://georgiadogs.com/sports/baseball",
-    campsUrl: "https://georgiadogs.com/camps",
-    questionnaireUrl: "",
+    tuitionInState: 12000,
+    tuitionOutState: 32400,
+    tuitionInternational: 32400,
+    scholarshipAcademic: true,
+    scholarshipAthletic: true,
+    programsUrl: "https://www.auburn.edu/majors/",
+    baseballUrl: "https://auburntigers.com/sports/baseball",
+    campsUrl: "https://auburntigers.com/sports/2018/6/6/camps.aspx",
   },
 ];
 
+// -------------------------------------------------------------
+// Utilities
+// -------------------------------------------------------------
 function uniqSorted(values: string[]) {
   return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
 }
-function currency(n?: number) {
+
+function formatUSD(n?: number) {
   if (n == null) return "—";
-  return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+  try {
+    return `$${n.toLocaleString()}`;
+  } catch {
+    return `$${n}`;
+  }
 }
 
-/** ------------------------------
- * MultiSelect (custom dropdown with checkboxes + chips)
- * ------------------------------ */
-function MultiSelect({
-  label,
-  options,
-  selected,
-  setSelected,
-  placeholder = "Select…",
-}: {
+const check = "✓";
+const cross = "✕";
+
+// -------------------------------------------------------------
+// MultiSelectDropdown (keyboard-friendly)
+// -------------------------------------------------------------
+type MultiSelectProps = {
   label: string;
   options: string[];
   selected: string[];
-  setSelected: (next: string[]) => void;
+  onChange: (next: string[]) => void;
   placeholder?: string;
-}) {
+};
+
+function MultiSelectDropdown({
+  label,
+  options,
+  selected,
+  onChange,
+  placeholder = "Select…",
+}: MultiSelectProps) {
   const [open, setOpen] = useState(false);
   const btnRef = useRef<HTMLButtonElement | null>(null);
-  const listRef = useRef<HTMLDivElement | null>(null);
-  const [focusIndex, setFocusIndex] = useState<number>(-1);
+  const menuRef = useRef<HTMLDivElement | null>(null);
 
   // Close on outside click
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
       if (!open) return;
       const t = e.target as Node;
-      if (btnRef.current?.contains(t)) return;
-      if (listRef.current?.contains(t)) return;
+      if (menuRef.current?.contains(t) || btnRef.current?.contains(t)) return;
       setOpen(false);
     }
     document.addEventListener("mousedown", onDocClick);
     return () => document.removeEventListener("mousedown", onDocClick);
   }, [open]);
 
-  const toggleValue = (v: string) => {
-    setSelected(selected.includes(v) ? selected.filter(x => x !== v) : [...selected, v]);
-  };
-
-  const displayText =
-    selected.length === 0 ? placeholder : selected.slice(0, 3).join(", ") + (selected.length > 3 ? ` +${selected.length - 3}` : "");
-
-  const onKeyDown = (e: React.KeyboardEvent) => {
-    if (!open && (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ")) {
+  // Keyboard support on trigger
+  function onTriggerKey(e: React.KeyboardEvent) {
+    if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
-      setOpen(true);
-      setFocusIndex(0);
-      return;
-    }
-    if (!open) return;
-    if (e.key === "Escape") {
-      setOpen(false);
+      setOpen((v) => !v);
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      setFocusIndex(i => Math.min(options.length - 1, i + 1));
-    } else if (e.key === "ArrowUp") {
-      e.preventDefault();
-      setFocusIndex(i => Math.max(0, i - 1));
-    } else if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      const v = options[focusIndex];
-      if (v) toggleValue(v);
+      setOpen(true);
+      // focus first option after open
+      setTimeout(() => {
+        const first = menuRef.current?.querySelector<HTMLButtonElement>(
+          '[data-option="true"]'
+        );
+        first?.focus();
+      }, 0);
     }
-  };
+  }
+
+  function toggle(val: string) {
+    const next = selected.includes(val)
+      ? selected.filter((v) => v !== val)
+      : [...selected, val];
+    onChange(next);
+  }
 
   return (
-    <div style={{ position: "relative" }}>
-      <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>{label}</label>
-
-      <button
-        ref={btnRef}
-        type="button"
-        onClick={() => setOpen(o => !o)}
-        onKeyDown={onKeyDown}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        style={{
-          width: "100%",
-          textAlign: "left",
-          padding: "10px 12px",
-          border: "1px solid #e5e7eb",
-          borderRadius: 10,
-          background: "#fff",
-          cursor: "pointer",
-        }}
-      >
-        {displayText}
-      </button>
-
-      {open && (
-        <div
-          ref={listRef}
-          role="listbox"
-          tabIndex={-1}
+    <div>
+      <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
+        {label}
+      </label>
+      <div style={{ position: "relative" }}>
+        <button
+          ref={btnRef}
+          type="button"
+          aria-haspopup="listbox"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+          onKeyDown={onTriggerKey}
           style={{
-            position: "absolute",
-            zIndex: 30,
-            left: 0,
-            right: 0,
-            top: "100%",
-            marginTop: 6,
-            background: "#fff",
+            width: "100%",
+            padding: "10px 12px",
             border: "1px solid #e5e7eb",
             borderRadius: 10,
-            boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
-            maxHeight: 280,
-            overflowY: "auto",
-            padding: 6,
+            background: "#fff",
+            textAlign: "left",
+            cursor: "pointer",
           }}
-          onKeyDown={onKeyDown}
         >
-          {options.map((opt, idx) => {
-            const active = selected.includes(opt);
-            const highlighted = idx === focusIndex;
-            return (
-              <div
-                key={opt}
-                role="option"
-                aria-selected={active}
-                onMouseEnter={() => setFocusIndex(idx)}
-                onMouseDown={(e) => e.preventDefault()}
-                onClick={() => toggleValue(opt)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  padding: "8px 10px",
-                  borderRadius: 8,
-                  cursor: "pointer",
-                  background: highlighted ? "rgba(0,0,0,0.06)" : "transparent",
-                }}
-              >
-                <input type="checkbox" checked={active} readOnly />
-                <span>{opt}</span>
-              </div>
-            );
-          })}
-        </div>
-      )}
+          {selected.length > 0 ? selected.join(", ") : placeholder}
+        </button>
 
-      {/* Selected chips under trigger */}
+        {open && (
+          <div
+            ref={menuRef}
+            role="listbox"
+            tabIndex={-1}
+            style={{
+              position: "absolute",
+              zIndex: 20,
+              left: 0,
+              right: 0,
+              marginTop: 6,
+              background: "#fff",
+              border: "1px solid #e5e7eb",
+              borderRadius: 10,
+              boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
+              maxHeight: 280,
+              overflowY: "auto",
+              padding: 6,
+            }}
+          >
+            {options.map((opt, idx) => {
+              const active = selected.includes(opt);
+              return (
+                <button
+                  key={opt}
+                  data-option="true"
+                  onClick={() => toggle(opt)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Escape") setOpen(false);
+                    if (e.key === "ArrowDown") {
+                      e.preventDefault();
+                      const next = (e.currentTarget.nextSibling as HTMLButtonElement) || null;
+                      next?.focus();
+                    }
+                    if (e.key === "ArrowUp") {
+                      e.preventDefault();
+                      const prev = (e.currentTarget.previousSibling as HTMLButtonElement) || null;
+                      prev?.focus();
+                    }
+                  }}
+                  style={{
+                    width: "100%",
+                    textAlign: "left",
+                    padding: "8px 10px",
+                    border: "none",
+                    borderRadius: 8,
+                    background: active ? "#fff7e6" : "transparent",
+                    borderLeft: active ? "3px solid #ca9a3f" : "3px solid transparent",
+                    cursor: "pointer",
+                    outline: "none",
+                  }}
+                >
+                  {active ? "☑ " : "☐ "} {opt}
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Selected chips */}
       {selected.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
           {selected.map((v) => (
             <span
               key={v}
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "4px 10px",
+                padding: "4px 8px",
                 borderRadius: 999,
                 border: "1px solid #e5e7eb",
-                background: "#fff",
+                background: "#f8fafc",
                 fontSize: 12,
               }}
             >
               {v}
-              <button
-                type="button"
-                onClick={() => setSelected(selected.filter(x => x !== v))}
-                aria-label={`Remove ${v}`}
-                style={{
-                  border: "none",
-                  background: "transparent",
-                  cursor: "pointer",
-                  fontSize: 14,
-                  lineHeight: 1,
-                }}
-              >
-                ×
-              </button>
             </span>
           ))}
         </div>
@@ -294,49 +317,48 @@ function MultiSelect({
   );
 }
 
-/** ------------------------------
- * Main Component
- * ------------------------------ */
+// -------------------------------------------------------------
+// Main Component
+// -------------------------------------------------------------
 export default function CollegeSearch() {
-  // Text query & suggestions
   const [query, setQuery] = useState("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
-
-  // Filters
   const [regions, setRegions] = useState<string[]>([]);
   const [states, setStates] = useState<string[]>([]);
   const [divisions, setDivisions] = useState<string[]>([]);
   const [conferences, setConferences] = useState<string[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
-  // Build option lists from data
-  const regionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.region)), []);
-  const stateOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.state)), []);
-  const divisionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.division)), []);
-  const conferenceOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.conference)), []);
+  // Options derived from data
+  const regionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map((c) => c.region)), []);
+  const stateOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map((c) => c.state)), []);
+  const divisionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map((c) => c.division)), []);
+  const conferenceOptions = useMemo(
+    () => uniqSorted(SAMPLE_COLLEGES.map((c) => c.conference)),
+    []
+  );
 
-  // Suggestions for the text input
+  // Name suggestions (darker hover)
   const suggestions = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
     return uniqSorted(
-      SAMPLE_COLLEGES.filter(c => c.name.toLowerCase().includes(q)).map(c => c.name)
-    ).slice(0, 12);
+      SAMPLE_COLLEGES.filter((c) => c.name.toLowerCase().includes(q)).map((c) => c.name)
+    ).slice(0, 10);
   }, [query]);
 
-  // Filtered result set (nothing shown until something is typed/selected)
+  // Filtered results
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    const isEmpty =
-      !q && regions.length === 0 && states.length === 0 && divisions.length === 0 && conferences.length === 0;
-    if (isEmpty) return [];
-
-    return SAMPLE_COLLEGES.filter(c => {
+    if (!q && regions.length === 0 && states.length === 0 && divisions.length === 0 && conferences.length === 0) {
+      return [];
+    }
+    return SAMPLE_COLLEGES.filter((c) => {
       const matchesQuery = q ? c.name.toLowerCase().includes(q) : true;
       const matchesRegion = regions.length ? regions.includes(c.region) : true;
       const matchesState = states.length ? states.includes(c.state) : true;
       const matchesDivision = divisions.length ? divisions.includes(c.division) : true;
-      const matchesConference = conferences.length ? conferences.includes(c.conference) : true;
-      return matchesQuery && matchesRegion && matchesState && matchesDivision && matchesConference;
+      const matchesConf = conferences.length ? conferences.includes(c.conference) : true;
+      return matchesQuery && matchesRegion && matchesState && matchesDivision && matchesConf;
     });
   }, [query, regions, states, divisions, conferences]);
 
@@ -348,33 +370,16 @@ export default function CollegeSearch() {
     setConferences([]);
   }
 
-  // Shared hover handlers for link buttons
-  function btnHoverOn(e: React.MouseEvent<HTMLAnchorElement>) {
-    const el = e.currentTarget;
-    el.style.backgroundColor = "#f8fafc";
-    el.style.transform = "translateY(-2px)";
-    el.style.boxShadow = "0 6px 16px rgba(0,0,0,0.18)";
-    el.style.textDecoration = "underline";
-    (el.style as any).textUnderlineOffset = "3px";
-  }
-  function btnHoverOff(e: React.MouseEvent<HTMLAnchorElement>) {
-    const el = e.currentTarget;
-    el.style.backgroundColor = "rgba(255,255,255,0.96)";
-    el.style.transform = "none";
-    el.style.boxShadow = "none";
-    el.style.textDecoration = "none";
-  }
-
   return (
     <section style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px", color: "#0f172a" }}>
       <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.15 }}>College Search</h1>
       <div style={{ height: 1, background: "#e5e7eb", margin: "12px 0 20px" }} />
 
-      {/* Search row */}
+      {/* Search + Filters */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1.4fr 1fr 1fr 1fr 1fr",
+          gridTemplateColumns: "1.2fr 1fr 1fr 1fr 1fr",
           gap: 12,
           alignItems: "start",
         }}
@@ -399,12 +404,11 @@ export default function CollegeSearch() {
               outline: "none",
             }}
           />
-
           {showSuggestions && suggestions.length > 0 && (
             <div
               style={{
                 position: "absolute",
-                zIndex: 20,
+                zIndex: 25,
                 left: 0,
                 right: 0,
                 top: "100%",
@@ -412,8 +416,8 @@ export default function CollegeSearch() {
                 background: "#fff",
                 border: "1px solid #e5e7eb",
                 borderRadius: 10,
-                boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
-                maxHeight: 280,
+                boxShadow: "0 10px 24px rgba(0,0,0,0.12)",
+                maxHeight: 260,
                 overflowY: "auto",
               }}
             >
@@ -433,12 +437,8 @@ export default function CollegeSearch() {
                     border: "none",
                     cursor: "pointer",
                   }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.backgroundColor = "rgba(0,0,0,0.10)";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
-                  })}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = "#0f172a0F")}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
                 >
                   {name}
                 </button>
@@ -448,10 +448,30 @@ export default function CollegeSearch() {
         </div>
 
         {/* Multi-select dropdowns */}
-        <MultiSelect label="Region" options={regionOptions} selected={regions} setSelected={setRegions} />
-        <MultiSelect label="State" options={stateOptions} selected={states} setSelected={setStates} />
-        <MultiSelect label="Division" options={divisionOptions} selected={divisions} setSelected={setDivisions} />
-        <MultiSelect label="Conference" options={conferenceOptions} selected={conferences} setSelected={setConferences} />
+        <MultiSelectDropdown
+          label="Region"
+          options={regionOptions}
+          selected={regions}
+          onChange={setRegions}
+        />
+        <MultiSelectDropdown
+          label="State"
+          options={stateOptions}
+          selected={states}
+          onChange={setStates}
+        />
+        <MultiSelectDropdown
+          label="Division"
+          options={divisionOptions}
+          selected={divisions}
+          onChange={setDivisions}
+        />
+        <MultiSelectDropdown
+          label="Conference"
+          options={conferenceOptions}
+          selected={conferences}
+          onChange={setConferences}
+        />
       </div>
 
       {/* Clear filters */}
@@ -492,18 +512,23 @@ export default function CollegeSearch() {
                   boxShadow: "0 6px 16px rgba(15,23,42,0.06)",
                 }}
               >
-                {/* Title + type */}
                 <h3 style={{ margin: "0 0 4px", fontSize: 18 }}>
-                  {c.name}
+                  {c.name}{" "}
                   {c.type ? (
-                    <span style={{ fontSize: 12, fontWeight: 500, color: "#64748b", marginLeft: 8 }}>
-                      ({c.type})
-                    </span>
+                    <span style={{ fontSize: 12, color: "#64748b", fontWeight: 500 }}>({c.type})</span>
                   ) : null}
                 </h3>
 
-                {/* Meta line */}
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap", color: "#64748b", fontSize: 12 }}>
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 8,
+                    flexWrap: "wrap",
+                    color: "#64748b",
+                    fontSize: 12,
+                    marginBottom: 8,
+                  }}
+                >
                   <span>{c.region}</span>
                   <span>•</span>
                   <span>{c.state}</span>
@@ -513,47 +538,48 @@ export default function CollegeSearch() {
                   <span>{c.conference}</span>
                 </div>
 
-                {/* Enrollment / campus / tuition / scholarships */}
-                <dl style={{ margin: "10px 0 0", fontSize: 13, color: "#334155" }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <dt style={{ color: "#64748b" }}>Enrollment (approx):</dt>
-                    <dd>{c.enrollmentApprox ? c.enrollmentApprox.toLocaleString() : "—"}</dd>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <dt style={{ color: "#64748b" }}>Campus:</dt>
-                    <dd>{c.campusType ?? "—"}</dd>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "start" }}>
-                    <dt style={{ color: "#64748b" }}>Tuition (approx):</dt>
-                    <dd style={{ width: "65%" }}>
-                      <div style={{ display: "grid", gap: 4, justifyItems: "start" }}>
-                        <div>In-State {currency(c.tuitionApprox?.inState)}</div>
-                        <div>Out-of-State {currency(c.tuitionApprox?.outOfState)}</div>
-                        <div>International {currency(c.tuitionApprox?.international)}</div>
-                      </div>
+                {/* Info block */}
+                <dl style={{ margin: 0, fontSize: 13, color: "#0f172a" }}>
+                  <div style={{ marginBottom: 6 }}>
+                    <dt style={{ fontWeight: 600, display: "inline" }}>Enrollment (approx):</dt>{" "}
+                    <dd style={{ display: "inline", margin: 0 }}>
+                      {c.enrollmentApprox ? c.enrollmentApprox.toLocaleString() : "—"}
                     </dd>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "start" }}>
-                    <dt style={{ color: "#64748b" }}>Scholarships:</dt>
-                    <dd style={{ width: "65%", textAlign: "center" }}>
-                      <div>Academic {c.scholarships?.academic ? "✅" : "✖"}</div>
-                      <div>Athletic {c.scholarships?.athletic ? "✅" : "✖"}</div>
+
+                  <div style={{ marginBottom: 6 }}>
+                    <dt style={{ fontWeight: 600, display: "inline" }}>Campus:</dt>{" "}
+                    <dd style={{ display: "inline", margin: 0 }}>{c.campusType ?? "—"}</dd>
+                  </div>
+
+                  <div style={{ marginBottom: 6 }}>
+                    <dt style={{ fontWeight: 600, display: "inline" }}>Tuition (approx):</dt>
+                    <dd style={{ margin: "6px 0 0 0" }}>
+                      <div>In-State: {formatUSD(c.tuitionInState)}</div>
+                      <div>Out-of-State: {formatUSD(c.tuitionOutState)}</div>
+                      <div>International: {formatUSD(c.tuitionInternational)}</div>
+                    </dd>
+                  </div>
+
+                  <div style={{ marginBottom: 10 }}>
+                    <dt style={{ fontWeight: 600, display: "inline" }}>Scholarships:</dt>
+                    <dd style={{ margin: "6px 0 0 0" }}>
+                      <div style={{ textAlign: "center" }}>
+                        Academic: {c.scholarshipAcademic ? check : cross} &nbsp;|&nbsp; Athletic:{" "}
+                        {c.scholarshipAthletic ? check : cross}
+                      </div>
                     </dd>
                   </div>
                 </dl>
 
-                {/* Links — only render if the field exists (with hover underline + lift) */}
-                <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  {c.website && (
+                {/* Link buttons (only render if URL exists) */}
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
+                  {c.url && (
                     <a
-                      href={c.website}
+                      href={c.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={linkBtnStyle}
-                      onMouseEnter={btnHoverOn}
-                      onMouseLeave={btnHoverOff}
-                      onFocus={btnHoverOn}
-                      onBlur={btnHoverOff}
+                      className="sl-link-btn"
                     >
                       Website
                     </a>
@@ -563,27 +589,19 @@ export default function CollegeSearch() {
                       href={c.programsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={linkBtnStyle}
-                      onMouseEnter={btnHoverOn}
-                      onMouseLeave={btnHoverOff}
-                      onFocus={btnHoverOn}
-                      onBlur={btnHoverOff}
+                      className="sl-link-btn"
                     >
                       Academic Programs
                     </a>
                   )}
-                  {c.athleticsUrl && (
+                  {c.baseballUrl && (
                     <a
-                      href={c.athleticsUrl}
+                      href={c.baseballUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={linkBtnStyle}
-                      onMouseEnter={btnHoverOn}
-                      onMouseLeave={btnHoverOff}
-                      onFocus={btnHoverOn}
-                      onBlur={btnHoverOff}
+                      className="sl-link-btn"
                     >
-                      Athletics
+                      Baseball
                     </a>
                   )}
                   {c.campsUrl && (
@@ -591,11 +609,7 @@ export default function CollegeSearch() {
                       href={c.campsUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={linkBtnStyle}
-                      onMouseEnter={btnHoverOn}
-                      onMouseLeave={btnHoverOff}
-                      onFocus={btnHoverOn}
-                      onBlur={btnHoverOff}
+                      className="sl-link-btn"
                     >
                       Camps
                     </a>
@@ -605,11 +619,7 @@ export default function CollegeSearch() {
                       href={c.questionnaireUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={linkBtnStyle}
-                      onMouseEnter={btnHoverOn}
-                      onMouseLeave={btnHoverOff}
-                      onFocus={btnHoverOn}
-                      onBlur={btnHoverOff}
+                      className="sl-link-btn"
                     >
                       Recruiting Questionnaire
                     </a>
@@ -620,18 +630,28 @@ export default function CollegeSearch() {
           </div>
         </>
       )}
+
+      {/* Local styles for link buttons & hover */}
+      <style>{`
+        .sl-link-btn {
+          display: inline-block;
+          padding: 8px 12px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.96);
+          color: #0f172a;
+          text-decoration: none;
+          border: 1px solid #e5e7eb;
+          font-weight: 600;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease, border-color .2s ease;
+        }
+        .sl-link-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: #f3f4f6;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+      `}</style>
     </section>
   );
 }
-
-const linkBtnStyle: React.CSSProperties = {
-  display: "inline-block",
-  padding: "8px 12px",
-  borderRadius: 10,
-  background: "rgba(255,255,255,0.96)",
-  color: "#0f172a",
-  textDecoration: "none",
-  border: "1px solid #e5e7eb",
-  fontWeight: 600,
-  transition: "transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease",
-};
