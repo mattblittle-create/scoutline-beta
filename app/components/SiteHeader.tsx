@@ -136,7 +136,7 @@ export default function SiteHeader() {
         <div className="sl-right">
           <Link href="/" onClick={closeAll}>Home</Link>
           <Link href="/about" onClick={closeAll}>About</Link>
-          <Link href="/recruiting-journey" onClick={closeAll}>Recruiting Journey</Link>
+          <Link href="/recruiting-journey" onClick={closeAll}>Recruiting</Link>
           <Link href="/search" onClick={closeAll}>Search</Link>
           <Link href="/pricing" onClick={closeAll}>Pricing</Link>
           <Link href="/faq" onClick={closeAll}>FAQ</Link>
@@ -203,7 +203,7 @@ export default function SiteHeader() {
     <div className="sl-mobile-row">
       <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
       <Link href="/about" className="sl-item" onClick={closeAll}>About</Link>
-      <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting Journey</Link>
+      <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting</Link>
       <Link href="/search" className="sl-item" onClick={closeAll}>Search</Link>
       <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
       <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
