@@ -1,3 +1,4 @@
+// app/components/RecruitingJourneyHero.tsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,14 +18,14 @@ export default function RecruitingJourneyHero() {
       {/* Full-bleed background image */}
       <Image
         src="/slidingintohome.jpg"
-        alt="Baseball player sliding into home plate"
+        alt="Player sliding into home plate—control your path"
         fill
         priority
         sizes="100vw"
         style={{ objectFit: "cover" }}
       />
 
-      {/* Top scrim so title/subtitle stay readable */}
+      {/* Top scrim for text */}
       <div
         style={{
           position: "absolute",
@@ -34,7 +35,7 @@ export default function RecruitingJourneyHero() {
           pointerEvents: "none",
         }}
       />
-      {/* Bottom scrim so buttons pop while sitting on the image */}
+      {/* Bottom scrim for buttons */}
       <div
         style={{
           position: "absolute",
@@ -45,7 +46,6 @@ export default function RecruitingJourneyHero() {
         }}
       />
 
-      {/* Local button styles + hover */}
       <style>{`
         .sl-btn {
           display: inline-block;
@@ -85,7 +85,7 @@ export default function RecruitingJourneyHero() {
         }
       `}</style>
 
-      {/* Overlay content split: title/subtitle up top, buttons at bottom */}
+      {/* Content layout */}
       <div
         style={{
           position: "absolute",
@@ -96,7 +96,7 @@ export default function RecruitingJourneyHero() {
           padding: "18px 16px",
         }}
       >
-        {/* Top: Title + Subtitle */}
+        {/* Top text */}
         <div
           style={{
             width: "100%",
@@ -116,7 +116,7 @@ export default function RecruitingJourneyHero() {
               fontSize: "clamp(24px, 4.2vw, 44px)",
             }}
           >
-            Your recruiting journey, organized and in control
+            Your recruiting journey, organized and in your control
           </h1>
 
           <p
@@ -128,12 +128,12 @@ export default function RecruitingJourneyHero() {
               color: "rgba(255,255,255,0.95)",
             }}
           >
-            ScoutLine brings your entire recruiting journey into one place — contacts, timelines,
-            tasks, and progress — so you spend less time guessing and more time advancing.
+            ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
+            tasks, and progress—so you spend less time guessing and more time advancing.
           </p>
         </div>
 
-        {/* Bottom: Buttons */}
+        {/* Bottom buttons */}
         <div
           style={{
             width: "100%",
@@ -157,12 +157,23 @@ export default function RecruitingJourneyHero() {
               Get Started
             </Link>
             <Link href="/faq" className="sl-btn">
-              Want To Know More
+              Want to Know More
             </Link>
           </div>
 
-          {/* Gold Log In button under the row */}
-          <div style={{ marginTop: 14 }}>
+          {/* Gold buttons: Search (left) + Log In (right) */}
+          <div
+            style={{
+              marginTop: 14,
+              display: "flex",
+              justifyContent: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            <Link href="/search" className="sl-btn-gold">
+              Search
+            </Link>
             <Link href="/login" className="sl-btn-gold">
               Log In
             </Link>
