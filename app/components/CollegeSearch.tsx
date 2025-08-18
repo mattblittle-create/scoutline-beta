@@ -10,7 +10,7 @@ type College = {
   division: string;
   conference: string;
   type: "Public" | "Private";
-  enrollment: number;
+  enrollment (approx): number;
   campusType: string;
   tuition: {
     inState?: number;
