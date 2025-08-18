@@ -116,7 +116,7 @@ export default function RecruitingJourneyHero() {
               fontSize: "clamp(24px, 4.2vw, 44px)",
             }}
           >
-            Your recruiting journey, organized and in control
+            Everything you need to navigate your recruiting journey
           </h1>
 
           <p
