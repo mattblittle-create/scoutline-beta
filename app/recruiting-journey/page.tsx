@@ -133,15 +133,15 @@ export default function RecruitingJourneyPage() {
           }
         `}</style>
 
-        {/* 1) Start here (collapsed by default) */}
+        {/* 1) Start Here (collapsed by default) */}
         <details>
-          <summary>1) Start here</summary>
+          <summary>1) Start Here</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
                 Create your account and choose a plan.{" "}
                 <Link href="/pricing" style={{ color: "#0f172a", textDecoration: "underline" }}>
-                  Get started
+                  Get Started
                 </Link>
                 .
               </li>
@@ -157,9 +157,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 2) Build your profile */}
+        {/* 2) Build Your Profile */}
         <details>
-          <summary>2) Build your profile</summary>
+          <summary>2) Build Your Profile</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>Add bio (grad year, position(s), height/weight, handedness).</li>
@@ -172,9 +172,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 3) Optimize for coaches */}
+        {/* 3) Optimize for Coaches */}
         <details>
-          <summary>3) Optimize for coaches</summary>
+          <summary>3) Optimize for Coaches</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>Lead with your best clip; keep videos short and labeled (date, opponent, context).</li>
@@ -185,9 +185,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 4) Use ScoutLine weekly */}
+        {/* 4) Use ScoutLine Weekly */}
         <details>
-          <summary>4) Use ScoutLine weekly</summary>
+          <summary>4) Use ScoutLine Weekly</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>Update metrics, clips, and recent games.</li>
@@ -198,9 +198,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 5) Communicate with coaches */}
+        {/* 5) Communicate with Coaches */}
         <details>
-          <summary>5) Communicate with coaches</summary>
+          <summary>5) Communicate with Coaches</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
@@ -220,9 +220,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 6) Eligibility & compliance — now same border style */}
+        {/* 6) Eligibility and Compliance — now same border style */}
         <details>
-          <summary>6) Eligibility & compliance</summary>
+          <summary>6) Eligibility and Compliance</summary>
           <div className="panel-body">
             <p style={{ color: "#475569", lineHeight: 1.65, marginTop: 0 }}>
               Register with the NCAA Eligibility Center early and keep transcripts/testing current.{" "}
@@ -243,9 +243,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 7) Camps & visits */}
+        {/* 7) Camps and Visits */}
         <details>
-          <summary>7) Camps & visits</summary>
+          <summary>7) Camps and Visits</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
@@ -261,9 +261,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 8) Financial planning */}
+        {/* 8) Financial Planning */}
         <details>
-          <summary>8) Financial planning</summary>
+          <summary>8) Financial Planning</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
@@ -278,10 +278,6 @@ export default function RecruitingJourneyPage() {
             </ul>
           </div>
         </details>
-
-        {/* Bottom divider before the floating bar (visual separation) */}
-        <div style={{ height: 1, background: "#e5e7eb", margin: "24px 0 16px" }} />
-      </main>
 
       {/* Floating Action Bar */}
       <div className="sl-fab" role="region" aria-label="Quick actions">
