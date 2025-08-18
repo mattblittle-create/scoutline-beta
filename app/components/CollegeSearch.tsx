@@ -50,7 +50,8 @@ const SAMPLE_COLLEGES: College[] = [
     programsUrl: "https://www.clemson.edu/academics/programs.html",
     baseballUrl: "https://clemsontigers.com/sports/baseball/",
     campsUrl: "https://clemsontigers.com/camps/",
-    questionnaireUrl: "https://clemsontigers.com/sports/2020/8/6/baseball-recruiting-questionnaire.aspx",
+    questionnaireUrl:
+      "https://clemsontigers.com/sports/2020/8/6/baseball-recruiting-questionnaire.aspx",
   },
   {
     name: "University of Florida",
@@ -106,7 +107,8 @@ const SAMPLE_COLLEGES: College[] = [
     tuitionInternational: 68900,
     scholarshipAcademic: true,
     scholarshipAthletic: true,
-    programsUrl: "https://www.bc.edu/bc-web/schools/mcas/undergraduate/majors-minors.html",
+    programsUrl:
+      "https://www.bc.edu/bc-web/schools/mcas/undergraduate/majors-minors.html",
     baseballUrl: "https://bceagles.com/sports/baseball",
   },
   {
@@ -191,7 +193,6 @@ function MultiSelectDropdown({
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
       setOpen(true);
-      // focus first option after open
       setTimeout(() => {
         const first = menuRef.current?.querySelector<HTMLButtonElement>(
           '[data-option="true"]'
@@ -210,7 +211,9 @@ function MultiSelectDropdown({
 
   return (
     <div>
-      <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
+      <label
+        style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}
+      >
         {label}
       </label>
       <div style={{ position: "relative" }}>
@@ -254,7 +257,7 @@ function MultiSelectDropdown({
               padding: 6,
             }}
           >
-            {options.map((opt, idx) => {
+            {options.map((opt) => {
               const active = selected.includes(opt);
               return (
                 <button
@@ -265,12 +268,15 @@ function MultiSelectDropdown({
                     if (e.key === "Escape") setOpen(false);
                     if (e.key === "ArrowDown") {
                       e.preventDefault();
-                      const next = (e.currentTarget.nextSibling as HTMLButtonElement) || null;
+                      const next =
+                        (e.currentTarget.nextSibling as HTMLButtonElement) || null;
                       next?.focus();
                     }
                     if (e.key === "ArrowUp") {
                       e.preventDefault();
-                      const prev = (e.currentTarget.previousSibling as HTMLButtonElement) || null;
+                      const prev =
+                        (e.currentTarget.previousSibling as HTMLButtonElement) ||
+                        null;
                       prev?.focus();
                     }
                   }}
@@ -329,9 +335,18 @@ export default function CollegeSearch() {
   const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Options derived from data
-  const regionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map((c) => c.region)), []);
-  const stateOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map((c) => c.state)), []);
-  const divisionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map((c) => c.division)), []);
+  const regionOptions = useMemo(
+    () => uniqSorted(SAMPLE_COLLEGES.map((c) => c.region)),
+    []
+  );
+  const stateOptions = useMemo(
+    () => uniqSorted(SAMPLE_COLLEGES.map((c) => c.state)),
+    []
+  );
+  const divisionOptions = useMemo(
+    () => uniqSorted(SAMPLE_COLLEGES.map((c) => c.division)),
+    []
+  );
   const conferenceOptions = useMemo(
     () => uniqSorted(SAMPLE_COLLEGES.map((c) => c.conference)),
     []
@@ -342,14 +357,22 @@ export default function CollegeSearch() {
     const q = query.trim().toLowerCase();
     if (!q) return [];
     return uniqSorted(
-      SAMPLE_COLLEGES.filter((c) => c.name.toLowerCase().includes(q)).map((c) => c.name)
+      SAMPLE_COLLEGES.filter((c) => c.name.toLowerCase().includes(q)).map(
+        (c) => c.name
+      )
     ).slice(0, 10);
   }, [query]);
 
   // Filtered results
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q && regions.length === 0 && states.length === 0 && divisions.length === 0 && conferences.length === 0) {
+    if (
+      !q &&
+      regions.length === 0 &&
+      states.length === 0 &&
+      divisions.length === 0 &&
+      conferences.length === 0
+    ) {
       return [];
     }
     return SAMPLE_COLLEGES.filter((c) => {
@@ -357,8 +380,12 @@ export default function CollegeSearch() {
       const matchesRegion = regions.length ? regions.includes(c.region) : true;
       const matchesState = states.length ? states.includes(c.state) : true;
       const matchesDivision = divisions.length ? divisions.includes(c.division) : true;
-      const matchesConf = conferences.length ? conferences.includes(c.conference) : true;
-      return matchesQuery && matchesRegion && matchesState && matchesDivision && matchesConf;
+      const matchesConf = conferences.length
+        ? conferences.includes(c.conference)
+        : true;
+      return (
+        matchesQuery && matchesRegion && matchesState && matchesDivision && matchesConf
+      );
     });
   }, [query, regions, states, divisions, conferences]);
 
@@ -371,7 +398,9 @@ export default function CollegeSearch() {
   }
 
   return (
-    <section style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px", color: "#0f172a" }}>
+    <section
+      style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 16px", color: "#0f172a" }}
+    >
       <h1 style={{ margin: 0, fontSize: 28, lineHeight: 1.15 }}>College Search</h1>
       <div style={{ height: 1, background: "#e5e7eb", margin: "12px 0 20px" }} />
 
@@ -386,7 +415,9 @@ export default function CollegeSearch() {
       >
         {/* Text search with suggestions */}
         <div style={{ position: "relative" }}>
-          <label style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}>
+          <label
+            style={{ display: "block", fontSize: 12, color: "#64748b", marginBottom: 6 }}
+          >
             Search by college name
           </label>
           <input
@@ -437,8 +468,12 @@ export default function CollegeSearch() {
                     border: "none",
                     cursor: "pointer",
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.background = "#0f172a0F")}
-                  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.background = "#0f172a0F")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.background = "transparent")
+                  }
                 >
                   {name}
                 </button>
@@ -515,7 +550,9 @@ export default function CollegeSearch() {
                 <h3 style={{ margin: "0 0 4px", fontSize: 18 }}>
                   {c.name}{" "}
                   {c.type ? (
-                    <span style={{ fontSize: 12, color: "#64748b", fontWeight: 500 }}>({c.type})</span>
+                    <span style={{ fontSize: 12, color: "#64748b", fontWeight: 500 }}>
+                      ({c.type})
+                    </span>
                   ) : null}
                 </h3>
 
@@ -538,38 +575,45 @@ export default function CollegeSearch() {
                   <span>{c.conference}</span>
                 </div>
 
-                {/* Info block */}
-                <dl style={{ margin: 0, fontSize: 13, color: "#0f172a" }}>
-                  <div style={{ marginBottom: 6 }}>
-                    <dt style={{ fontWeight: 600, display: "inline" }}>Enrollment (approx):</dt>{" "}
-                    <dd style={{ display: "inline", margin: 0 }}>
-                      {c.enrollmentApprox ? c.enrollmentApprox.toLocaleString() : "—"}
-                    </dd>
-                  </div>
+                {/* Info block – grid label/value pairs */}
+                <dl
+                  style={{
+                    margin: 0,
+                    fontSize: 13,
+                    color: "#0f172a",
+                    display: "grid",
+                    gridTemplateColumns: "auto 1fr",
+                    columnGap: 12,
+                    rowGap: 6,
+                    alignItems: "start",
+                  }}
+                >
+                  {/* Enrollment */}
+                  <dt style={{ fontWeight: 600 }}>Enrollment (approx):</dt>
+                  <dd style={{ margin: 0 }}>
+                    {c.enrollmentApprox ? c.enrollmentApprox.toLocaleString() : "—"}
+                  </dd>
 
-                  <div style={{ marginBottom: 6 }}>
-                    <dt style={{ fontWeight: 600, display: "inline" }}>Campus:</dt>{" "}
-                    <dd style={{ display: "inline", margin: 0 }}>{c.campusType ?? "—"}</dd>
-                  </div>
+                  {/* Campus */}
+                  <dt style={{ fontWeight: 600 }}>Campus:</dt>
+                  <dd style={{ margin: 0 }}>{c.campusType ?? "—"}</dd>
 
-                  <div style={{ marginBottom: 6 }}>
-                    <dt style={{ fontWeight: 600, display: "inline" }}>Tuition (approx):</dt>
-                    <dd style={{ margin: "6px 0 0 0" }}>
-                      <div>In-State: {formatUSD(c.tuitionInState)}</div>
-                      <div>Out-of-State: {formatUSD(c.tuitionOutState)}</div>
-                      <div>International: {formatUSD(c.tuitionInternational)}</div>
-                    </dd>
-                  </div>
+                  {/* Tuition */}
+                  <dt style={{ fontWeight: 600 }}>Tuition (approx):</dt>
+                  <dd style={{ margin: 0 }}>
+                    {/* First line sits inline with the label */}
+                    In-State: {formatUSD(c.tuitionInState)}
+                    {/* Next lines sit directly under the In-State line, within the value column */}
+                    <div>Out-of-State: {formatUSD(c.tuitionOutState)}</div>
+                    <div>International: {formatUSD(c.tuitionInternational)}</div>
+                  </dd>
 
-                  <div style={{ marginBottom: 10 }}>
-                    <dt style={{ fontWeight: 600, display: "inline" }}>Scholarships:</dt>
-                    <dd style={{ margin: "6px 0 0 0" }}>
-                      <div style={{ textAlign: "center" }}>
-                        Academic: {c.scholarshipAcademic ? check : cross} &nbsp;|&nbsp; Athletic:{" "}
-                        {c.scholarshipAthletic ? check : cross}
-                      </div>
-                    </dd>
-                  </div>
+                  {/* Scholarships */}
+                  <dt style={{ fontWeight: 600 }}>Scholarships:</dt>
+                  <dd style={{ margin: 0 }}>
+                    Academic: {c.scholarshipAcademic ? check : cross} &nbsp;|&nbsp; Athletic:{" "}
+                    {c.scholarshipAthletic ? check : cross}
+                  </dd>
                 </dl>
 
                 {/* Link buttons (only render if URL exists) */}
