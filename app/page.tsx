@@ -5,12 +5,8 @@ export default function HomePage() {
   return (
     <>
       <HeroBanner />
-      {/* Intentionally minimal: the headline/line and "Why ScoutLine" moved to /recruiting-journey */}
       <main style={{ maxWidth: 1100, margin: "0 auto", padding: "24px 16px" }}>
-        {/* You can add any lightweight home-only content here later */}
-
-        <div style={{ height: 3, background: "#e5e7eb", margin: "28px 0 22px" }} />
-
+        {/* Why ScoutLine? */}
         <h2 style={{ marginTop: 0 }}>Why ScoutLine?</h2>
 
         {/* Light divider line under the header, consistent with your style */}
