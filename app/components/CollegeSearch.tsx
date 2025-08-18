@@ -614,9 +614,7 @@ export default function CollegeSearch() {
                 >
                   <span>{c.region}</span>
                   <span>•</span>
-                  <span>{c.state}</span>
-                  <span>•</span>
-                  <span>{c.city}</span>
+                  <span>{c.city}, {c.state}</span>
                   <span>•</span>
                   <span>{c.division}</span>
                   <span>•</span>
