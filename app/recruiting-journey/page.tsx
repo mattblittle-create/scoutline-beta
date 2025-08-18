@@ -29,6 +29,13 @@ export default function RecruitingJourneyPage() {
             background: #fff;
             border: 1px solid #e5e7eb;
             margin: 0 0 14px;
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+            will-change: transform;
+          }
+          details:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(15,23,42,0.10);
+            border-color: #e2e8f0;
           }
           summary {
             list-style: none;
@@ -56,21 +63,13 @@ export default function RecruitingJourneyPage() {
           /* remove default marker for Safari */
           summary::-webkit-details-marker { display: none; }
 
-          .panel-body {
-            padding: 0 16px 14px 16px;
+          summary:hover {
+            text-decoration: underline;
+            text-underline-offset: 3px;
           }
 
-          /* Plain section (no box) for #6 */
-          .plain { 
-            background: transparent; 
-            border: none; 
-            margin: 0 0 14px;
-          }
-          .plain summary {
-            padding-left: 0;
-          }
-          .plain .panel-body { 
-            padding-left: 0; 
+          .panel-body {
+            padding: 0 16px 14px 16px;
           }
 
           /* Floating action bar (bottom fixed) */
@@ -220,14 +219,14 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 6) Eligibility and Compliance — now same border style */}
+        {/* 6) Eligibility and Compliance — bordered like others */}
         <details>
           <summary>6) Eligibility and Compliance</summary>
           <div className="panel-body">
             <p style={{ color: "#475569", lineHeight: 1.65, marginTop: 0 }}>
               Register with the NCAA Eligibility Center early and keep transcripts/testing current.{" "}
               <a
-                href="https://www.ncaa.org/student-athletes/future/eligibility-center"
+                href="https://web3.ncaa.org/ecwr3/"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#0f172a", textDecoration: "underline" }}
@@ -278,8 +277,6 @@ export default function RecruitingJourneyPage() {
             </ul>
           </div>
         </details>
-
-         <div style={{ height: 1, background: "#e5e7eb", margin: "24px 0 16px" }} />
       </main>
 
       {/* Floating Action Bar */}
