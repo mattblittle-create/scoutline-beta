@@ -279,6 +279,9 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
+         <div style={{ height: 1, background: "#e5e7eb", margin: "24px 0 16px" }} />
+      </main>
+
       {/* Floating Action Bar */}
       <div className="sl-fab" role="region" aria-label="Quick actions">
         <div className="sl-fab-row">
