@@ -220,14 +220,14 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 6) Eligibility & compliance — plain (no box) */}
-        <details className="plain">
+        {/* 6) Eligibility & compliance — now same border style */}
+        <details>
           <summary>6) Eligibility & compliance</summary>
           <div className="panel-body">
             <p style={{ color: "#475569", lineHeight: 1.65, marginTop: 0 }}>
               Register with the NCAA Eligibility Center early and keep transcripts/testing current.{" "}
               <a
-                href="https://web3.ncaa.org/ecwr3/"
+                href="https://www.ncaa.org/student-athletes/future/eligibility-center"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ color: "#0f172a", textDecoration: "underline" }}
