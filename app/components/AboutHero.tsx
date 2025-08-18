@@ -1,3 +1,4 @@
+// app/components/AboutHero.tsx
 "use client";
 import Image from "next/image";
 import Link from "next/link";
@@ -45,7 +46,7 @@ export default function AboutHero() {
         }}
       />
 
-      {/* Local button styles + hover (lift + underline) */}
+      {/* Local button styles + hover */}
       <style>{`
         .sl-btn {
           display: inline-block;
@@ -96,7 +97,7 @@ export default function AboutHero() {
           padding: "18px 16px",
         }}
       >
-        {/* Top: Title + Subtitle (unchanged position) */}
+        {/* Top: Title + Subtitle */}
         <div
           style={{
             width: "100%",
@@ -115,8 +116,8 @@ export default function AboutHero() {
               lineHeight: 1.1,
               fontSize: "clamp(24px, 4.2vw, 44px)",
             }}
-          >Leveling the playing field in recruiting
-            
+          >
+            Leveling the playing field in recruiting
           </h1>
 
           <p
@@ -150,7 +151,6 @@ export default function AboutHero() {
               flexWrap: "wrap",
             }}
           >
-            {/* Make How It Works + Want to Know More white to match Home */}
             <Link href="/recruiting-journey" className="sl-btn">
               How It Works
             </Link>
@@ -162,8 +162,19 @@ export default function AboutHero() {
             </Link>
           </div>
 
-          {/* Prominent Log In under the row (gold) */}
-          <div style={{ marginTop: 14 }}>
+          {/* Gold buttons: Search (left) + Log In (right) */}
+          <div
+            style={{
+              marginTop: 14,
+              display: "flex",
+              justifyContent: "center",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            <Link href="/search" className="sl-btn-gold">
+              Search
+            </Link>
             <Link href="/login" className="sl-btn-gold">
               Log In
             </Link>
