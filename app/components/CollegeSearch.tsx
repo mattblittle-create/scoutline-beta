@@ -300,25 +300,7 @@ function MultiSelectDropdown({
         )}
       </div>
 
-      {/* Selected chips */}
-      {selected.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
-          {selected.map((v) => (
-            <span
-              key={v}
-              style={{
-                padding: "4px 8px",
-                borderRadius: 999,
-                border: "1px solid #e5e7eb",
-                background: "#f8fafc",
-                fontSize: 12,
-              }}
-            >
-              {v}
-            </span>
-          ))}
-        </div>
-      )}
+      {/* NOTE: Removed the per-dropdown selected chips block at your request */}
     </div>
   );
 }
