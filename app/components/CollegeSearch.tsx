@@ -25,6 +25,7 @@ type College = {
     baseballPage?: string;
     camps?: string;
     programs?: string; // academic programs
+    recruitingQuestionnaire?: string; // NEW
   };
 };
 
@@ -45,6 +46,7 @@ const SAMPLE_COLLEGES: College[] = [
       baseballPage: "https://clemsontigers.com/sports/baseball/",
       camps: "https://clemsontigers.com/camps/",
       programs: "https://www.clemson.edu/degrees/",
+      recruitingQuestionnaire: "https://clemsontigers.com/sb_output.aspx?form=3", // example
     },
   },
   {
@@ -63,6 +65,7 @@ const SAMPLE_COLLEGES: College[] = [
       baseballPage: "https://floridagators.com/sports/baseball",
       camps: "https://floridagators.com/camps",
       programs: "https://catalog.ufl.edu/",
+      recruitingQuestionnaire: "https://floridagators.com/sb_output.aspx?form=3", // example
     },
   },
   {
@@ -81,6 +84,7 @@ const SAMPLE_COLLEGES: College[] = [
       baseballPage: "https://bceagles.com/sports/baseball",
       camps: "https://bceagles.com/sports/2016/6/9/camps.aspx",
       programs: "https://www.bc.edu/academics.html",
+      recruitingQuestionnaire: "https://bceagles.com/sb_output.aspx?form=3", // example
     },
   },
   {
@@ -99,12 +103,49 @@ const SAMPLE_COLLEGES: College[] = [
       baseballPage: "https://emoryathletics.com/sports/baseball",
       camps: "https://emoryathletics.com/camps",
       programs: "https://catalog.college.emory.edu/programs/",
+      recruitingQuestionnaire: "https://emoryathletics.com/sb_output.aspx?form=3", // example
     },
   },
 ];
 
 function uniqSorted(values: string[]) {
   return Array.from(new Set(values)).sort((a, b) => a.localeCompare(b));
+}
+
+/** ---------------- Hoverable Link Button ---------------- */
+function LinkButton({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  const [hover, setHover] = useState(false);
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      style={{
+        display: "inline-block",
+        padding: "8px 12px",
+        borderRadius: 10,
+        background: hover ? "#f3f4f6" : "rgba(255,255,255,0.96)",
+        color: "#0f172a",
+        textDecoration: hover ? "underline" : "none",
+        border: hover ? "1px solid #d1d5db" : "1px solid #e5e7eb",
+        fontWeight: 600,
+        transform: hover ? "translateY(-2px)" : "translateY(0)",
+        boxShadow: hover ? "0 6px 16px rgba(0,0,0,0.12)" : "none",
+        transition:
+          "transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease, text-decoration-color .15s ease",
+      }}
+    >
+      {children}
+    </a>
+  );
 }
 
 /** ----------- Multi-select Dropdown (checkbox list) ----------- */
@@ -114,12 +155,14 @@ function MultiSelect({
   selected,
   onChange,
   placeholder = "Select…",
+  summaryMode = "auto", // "auto" | "list" — list = always show comma-separated values
 }: {
   label: string;
   options: string[];
   selected: string[];
   onChange: (next: string[]) => void;
   placeholder?: string;
+  summaryMode?: "auto" | "list";
 }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement | null>(null);
@@ -138,12 +181,14 @@ function MultiSelect({
     onChange(exists ? selected.filter((v) => v !== value) : [...selected, value]);
   };
 
-  const summary =
-    selected.length === 0
-      ? placeholder
-      : selected.length <= 2
-      ? selected.join(", ")
-      : `${selected.length} selected`;
+  let summary: string;
+  if (selected.length === 0) {
+    summary = placeholder;
+  } else if (summaryMode === "list") {
+    summary = selected.join(", ");
+  } else {
+    summary = selected.length <= 2 ? selected.join(", ") : `${selected.length} selected`;
+  }
 
   return (
     <div style={{ position: "relative" }} ref={wrapRef}>
@@ -370,15 +415,22 @@ export default function CollegeSearch() {
           )}
         </div>
 
-        {/* Multi-select dropdowns */}
+        {/* Multi-select dropdowns (State & Conference always show full list of selections) */}
         <MultiSelect label="Region" options={regionOptions} selected={regions} onChange={setRegions} />
-        <MultiSelect label="State" options={stateOptions} selected={states} onChange={setStates} />
+        <MultiSelect
+          label="State"
+          options={stateOptions}
+          selected={states}
+          onChange={setStates}
+          summaryMode="list"
+        />
         <MultiSelect label="Division" options={divisionOptions} selected={divisions} onChange={setDivisions} />
         <MultiSelect
           label="Conference"
           options={conferenceOptions}
           selected={conferences}
           onChange={setConferences}
+          summaryMode="list"
         />
       </div>
 
@@ -387,12 +439,7 @@ export default function CollegeSearch() {
         <div style={{ marginTop: 10 }}>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
             {/* Query chip */}
-            {query && (
-              <Chip
-                label={`Name: ${query}`}
-                onRemove={() => setQuery("")}
-              />
-            )}
+            {query && <Chip label={`Name: ${query}`} onRemove={() => setQuery("")} />}
 
             {/* Regions */}
             {regions.map((r) => (
@@ -406,20 +453,12 @@ export default function CollegeSearch() {
 
             {/* Divisions */}
             {divisions.map((d) => (
-              <Chip
-                key={`div-${d}`}
-                label={`Division: ${d}`}
-                onRemove={() => setDivisions(divisions.filter((x) => x !== d))}
-              />
+              <Chip key={`div-${d}`} label={`Division: ${d}`} onRemove={() => setDivisions(divisions.filter((x) => x !== d))} />
             ))}
 
             {/* Conferences */}
             {conferences.map((c) => (
-              <Chip
-                key={`conf-${c}`}
-                label={`Conference: ${c}`}
-                onRemove={() => setConferences(conferences.filter((x) => x !== c))}
-              />
+              <Chip key={`conf-${c}`} label={`Conference: ${c}`} onRemove={() => setConferences(conferences.filter((x) => x !== c))} />
             ))}
 
             <button
@@ -443,7 +482,13 @@ export default function CollegeSearch() {
       {/* Results (hidden until something is typed/selected) */}
       {filtered.length > 0 && (
         <>
-          <div style={{ height: 1, background: "#e5e7eb", margin: "18px 0" }} />
+          {/* Results count */}
+          <div style={{ marginTop: 14, color: "#475569", fontSize: 14 }}>
+            <strong>{filtered.length}</strong> {filtered.length === 1 ? "college found" : "colleges found"}
+          </div>
+
+          <div style={{ height: 1, background: "#e5e7eb", margin: "12px 0 18px" }} />
+
           <div
             style={{
               display: "grid",
@@ -501,24 +546,16 @@ export default function CollegeSearch() {
                   </div>
                 </div>
 
+                {/* Action links with hover */}
                 <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  <a href={c.url} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>
-                    Visit Website
-                  </a>
-                  {c.links?.baseballPage && (
-                    <a href={c.links.baseballPage} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>
-                      Baseball Page
-                    </a>
-                  )}
-                  {c.links?.camps && (
-                    <a href={c.links.camps} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>
-                      Camps
-                    </a>
-                  )}
-                  {c.links?.programs && (
-                    <a href={c.links.programs} target="_blank" rel="noopener noreferrer" style={linkBtnStyle}>
-                      Academic Programs
-                    </a>
+                  <LinkButton href={c.url}>Visit Website</LinkButton>
+                  {c.links?.baseballPage && <LinkButton href={c.links.baseballPage}>Baseball Page</LinkButton>}
+                  {c.links?.camps && <LinkButton href={c.links.camps}>Camps</LinkButton>}
+                  {c.links?.programs && <LinkButton href={c.links.programs}>Academic Programs</LinkButton>}
+                  {c.links?.recruitingQuestionnaire && (
+                    <LinkButton href={c.links.recruitingQuestionnaire}>
+                      Recruiting Questionnaire
+                    </LinkButton>
                   )}
                 </div>
               </article>
@@ -565,14 +602,3 @@ function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
     </span>
   );
 }
-
-const linkBtnStyle: React.CSSProperties = {
-  display: "inline-block",
-  padding: "8px 12px",
-  borderRadius: 10,
-  background: "rgba(255,255,255,0.96)",
-  color: "#0f172a",
-  textDecoration: "none",
-  border: "1px solid #e5e7eb",
-  fontWeight: 600,
-};
