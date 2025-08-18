@@ -10,13 +10,13 @@ type College = {
   name: string;
   website?: string;
 
-  region: string;     // e.g., "Southeast"
-  state: string;      // e.g., "FL"
-  division: string;   // e.g., "NCAA D1"
-  conference: string; // e.g., "SEC"
+  region: string;
+  state: string;
+  division: string;
+  conference: string;
 
   type?: "Public" | "Private";
-  enrollmentApprox?: number; // total headcount, approx
+  enrollmentApprox?: number;
   campusType?: "Urban" | "Suburban" | "Rural" | "Research" | "Liberal Arts";
 
   tuitionApprox?: {
@@ -30,10 +30,10 @@ type College = {
     athletic?: boolean;
   };
 
-  programsUrl?: string;       // academic programs
-  athleticsUrl?: string;      // athletics site (baseball)
-  campsUrl?: string;          // camps link
-  questionnaireUrl?: string;  // recruiting questionnaire
+  programsUrl?: string;
+  athleticsUrl?: string;
+  campsUrl?: string;
+  questionnaireUrl?: string;
 };
 
 const SAMPLE_COLLEGES: College[] = [
@@ -314,7 +314,7 @@ export default function CollegeSearch() {
   const divisionOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.division)), []);
   const conferenceOptions = useMemo(() => uniqSorted(SAMPLE_COLLEGES.map(c => c.conference)), []);
 
-  // Suggestions for the text input (darker hover)
+  // Suggestions for the text input
   const suggestions = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
@@ -346,6 +346,23 @@ export default function CollegeSearch() {
     setStates([]);
     setDivisions([]);
     setConferences([]);
+  }
+
+  // Shared hover handlers for link buttons
+  function btnHoverOn(e: React.MouseEvent<HTMLAnchorElement>) {
+    const el = e.currentTarget;
+    el.style.backgroundColor = "#f8fafc";
+    el.style.transform = "translateY(-2px)";
+    el.style.boxShadow = "0 6px 16px rgba(0,0,0,0.18)";
+    el.style.textDecoration = "underline";
+    (el.style as any).textUnderlineOffset = "3px";
+  }
+  function btnHoverOff(e: React.MouseEvent<HTMLAnchorElement>) {
+    const el = e.currentTarget;
+    el.style.backgroundColor = "rgba(255,255,255,0.96)";
+    el.style.transform = "none";
+    el.style.boxShadow = "none";
+    el.style.textDecoration = "none";
   }
 
   return (
@@ -421,7 +438,7 @@ export default function CollegeSearch() {
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLButtonElement).style.backgroundColor = "transparent";
-                  }}
+                  })}
                 >
                   {name}
                 </button>
@@ -485,7 +502,7 @@ export default function CollegeSearch() {
                   ) : null}
                 </h3>
 
-                {/* Meta line: region • state • division • conference */}
+                {/* Meta line */}
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", color: "#64748b", fontSize: 12 }}>
                   <span>{c.region}</span>
                   <span>•</span>
@@ -499,29 +516,33 @@ export default function CollegeSearch() {
                 {/* Enrollment / campus / tuition / scholarships */}
                 <dl style={{ margin: "10px 0 0", fontSize: 13, color: "#334155" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <dt style={{ color: "#64748b" }}>Enrollment (approx)</dt>
+                    <dt style={{ color: "#64748b" }}>Enrollment (approx):</dt>
                     <dd>{c.enrollmentApprox ? c.enrollmentApprox.toLocaleString() : "—"}</dd>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <dt style={{ color: "#64748b" }}>Campus</dt>
+                    <dt style={{ color: "#64748b" }}>Campus:</dt>
                     <dd>{c.campusType ?? "—"}</dd>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <dt style={{ color: "#64748b" }}>Tuition (approx)</dt>
-                    <dd>
-                      In-State {currency(c.tuitionApprox?.inState)} · Out-of-State {currency(c.tuitionApprox?.outOfState)} ·
-                      International {currency(c.tuitionApprox?.international)}
+                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "start" }}>
+                    <dt style={{ color: "#64748b" }}>Tuition (approx):</dt>
+                    <dd style={{ width: "65%" }}>
+                      <div style={{ display: "grid", gap: 4, justifyItems: "start" }}>
+                        <div>In-State {currency(c.tuitionApprox?.inState)}</div>
+                        <div>Out-of-State {currency(c.tuitionApprox?.outOfState)}</div>
+                        <div>International {currency(c.tuitionApprox?.international)}</div>
+                      </div>
                     </dd>
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8 }}>
-                    <dt style={{ color: "#64748b" }}>Scholarships</dt>
-                    <dd>
-                      Academic {c.scholarships?.academic ? "✅" : "✖"} · Athletic {c.scholarships?.athletic ? "✅" : "✖"}
+                  <div style={{ display: "flex", justifyContent: "space-between", gap: 8, alignItems: "start" }}>
+                    <dt style={{ color: "#64748b" }}>Scholarships:</dt>
+                    <dd style={{ width: "65%", textAlign: "center" }}>
+                      <div>Academic {c.scholarships?.academic ? "✅" : "✖"}</div>
+                      <div>Athletic {c.scholarships?.athletic ? "✅" : "✖"}</div>
                     </dd>
                   </div>
                 </dl>
 
-                {/* Links — only render if the field exists */}
+                {/* Links — only render if the field exists (with hover underline + lift) */}
                 <div style={{ marginTop: 12, display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {c.website && (
                     <a
@@ -529,8 +550,10 @@ export default function CollegeSearch() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={linkBtnStyle}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#f8fafc")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.96)")}
+                      onMouseEnter={btnHoverOn}
+                      onMouseLeave={btnHoverOff}
+                      onFocus={btnHoverOn}
+                      onBlur={btnHoverOff}
                     >
                       Website
                     </a>
@@ -541,8 +564,10 @@ export default function CollegeSearch() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={linkBtnStyle}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#f8fafc")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.96)")}
+                      onMouseEnter={btnHoverOn}
+                      onMouseLeave={btnHoverOff}
+                      onFocus={btnHoverOn}
+                      onBlur={btnHoverOff}
                     >
                       Academic Programs
                     </a>
@@ -553,8 +578,10 @@ export default function CollegeSearch() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={linkBtnStyle}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#f8fafc")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.96)")}
+                      onMouseEnter={btnHoverOn}
+                      onMouseLeave={btnHoverOff}
+                      onFocus={btnHoverOn}
+                      onBlur={btnHoverOff}
                     >
                       Athletics
                     </a>
@@ -565,8 +592,10 @@ export default function CollegeSearch() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={linkBtnStyle}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#f8fafc")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.96)")}
+                      onMouseEnter={btnHoverOn}
+                      onMouseLeave={btnHoverOff}
+                      onFocus={btnHoverOn}
+                      onBlur={btnHoverOff}
                     >
                       Camps
                     </a>
@@ -577,8 +606,10 @@ export default function CollegeSearch() {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={linkBtnStyle}
-                      onMouseEnter={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "#f8fafc")}
-                      onMouseLeave={(e) => ((e.currentTarget as HTMLAnchorElement).style.backgroundColor = "rgba(255,255,255,0.96)")}
+                      onMouseEnter={btnHoverOn}
+                      onMouseLeave={btnHoverOff}
+                      onFocus={btnHoverOn}
+                      onBlur={btnHoverOff}
                     >
                       Recruiting Questionnaire
                     </a>
@@ -602,5 +633,5 @@ const linkBtnStyle: React.CSSProperties = {
   textDecoration: "none",
   border: "1px solid #e5e7eb",
   fontWeight: 600,
-  transition: "transform .2s ease, box-shadow .2s ease, background-color .2s ease",
+  transition: "transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease",
 };
