@@ -73,7 +73,7 @@ export default function SiteHeader() {
         .sl-header { position: sticky; top: 0; z-index: 50; background:#fff; border-bottom:1px solid var(--sl-border); backdrop-filter: saturate(150%) blur(4px) }
         .sl-nav { max-width:1100px; margin:0 auto; display:flex; align-items:center; padding: 12px 16px; gap: 16px; }
         .sl-right { margin-left:auto; display:flex; align-items:center; gap: 22px; flex-wrap: wrap; }
-        .sl-login-btn { background:#FFD700; border:1px solid var(--sl-border); border-radius:10px; padding:8px 12px; cursor:pointer; transition: box-shadow .2s ease, transform .04s ease; }
+        .sl-login-btn { background:#ca9a3f; border:1px solid var(--sl-border); border-radius:10px; padding:8px 12px; cursor:pointer; transition: box-shadow .2s ease, transform .04s ease; }
         .sl-login-btn:hover { box-shadow: var(--sl-shadow); transform: translateY(-1px) }
         .sl-dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#fff; border:1px solid var(--sl-border); border-radius:12px; box-shadow: var(--sl-shadow); z-index:60; min-width: 220px; padding: 6px; }
         .sl-item { display:block; padding:10px 12px; border-radius:10px; }
