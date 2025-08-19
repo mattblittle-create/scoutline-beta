@@ -469,6 +469,7 @@ export default function FAQPage() {
               fontWeight: 700,
               lineHeight: 1.1,
               fontSize: "clamp(24px, 4.2vw, 44px)",
+              color: "#e5e7eb",
             }}
           >
             Frequently Asked Questions
