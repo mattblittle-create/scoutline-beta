@@ -476,10 +476,11 @@ export default function FAQPage() {
           </h1>
           <p
             style={{
-              marginTop: 8,
-              fontSize: 16,
-              color: "#e5e7eb",
-              textShadow: "0 1px 3px rgba(0,0,0,0.35)",
+              margin: "12px auto 0",
+              maxWidth: 740,
+              lineHeight: 1.6,
+              fontSize: "clamp(14px, 2.2vw, 18px)",
+              color: "rgba(255,255,255,0.95)",
             }}
           >
             You have questions. We have answers.
