@@ -134,7 +134,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Start Here (collapsed by default) */}
         <details>
-          <summary>1) Start Here</summary>
+          <summary>Start Here</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
@@ -158,7 +158,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Build Your Profile */}
         <details>
-          <summary>2) Build Your Profile</summary>
+          <summary>Build Your Profile</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>Add bio (grad year, position(s), height/weight, handedness).</li>
@@ -173,7 +173,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Optimize for Coaches */}
         <details>
-          <summary>3) Optimize for Coaches</summary>
+          <summary>Optimize for Coaches</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>Lead with your best clip; keep videos short and labeled (date, opponent, context).</li>
@@ -186,7 +186,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Use ScoutLine Weekly */}
         <details>
-          <summary>4) Use ScoutLine Weekly</summary>
+          <summary>Use ScoutLine Weekly</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>Update metrics, clips, and recent games.</li>
@@ -199,7 +199,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Communicate with Coaches */}
         <details>
-          <summary>5) Communicate with Coaches</summary>
+          <summary>Communicate with Coaches</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
@@ -221,7 +221,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Eligibility and Compliance — bordered like others */}
         <details>
-          <summary>6) Eligibility and Compliance</summary>
+          <summary>Eligibility and Compliance</summary>
           <div className="panel-body">
             <p style={{ color: "#475569", lineHeight: 1.65, marginTop: 0 }}>
               Register with the NCAA Eligibility Center early and keep transcripts/testing current.{" "}
@@ -244,7 +244,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Camps and Visits */}
         <details>
-          <summary>7) Camps and Visits</summary>
+          <summary>Camps and Visits</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
@@ -262,7 +262,7 @@ export default function RecruitingJourneyPage() {
 
         {/* Financial Planning */}
         <details>
-          <summary>8) Financial Planning</summary>
+          <summary>Financial Planning</summary>
           <div className="panel-body">
             <ul style={{ margin: "0 0 0 18px", color: "#475569", lineHeight: 1.65 }}>
               <li>
