@@ -1,4 +1,4 @@
-"use client";
+"use client"; 
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -355,7 +355,7 @@ const sections: Section[] = [
         a: (
           <>
             Yes. There is a Team Plan that lets organizations set up their team(s), give each registered player a profile,
-            and optionally white‑label the dashboard as “Powered by ScoutLine.” 
+            and optionally white-label the dashboard as “Powered by ScoutLine.” 
           </>
         ),
       },
@@ -388,7 +388,7 @@ const sections: Section[] = [
         q: "How secure is my data?",
         a: (
           <>
-            ScoutLine uses industry‑standard data encryption. Your personal info is never sold to third parties.
+            ScoutLine uses industry-standard data encryption. Your personal info is never sold to third parties.
             
           </>
         ),
@@ -487,7 +487,7 @@ export default function FAQPage() {
           </p>
         </div>
 
-        {/* Bottom buttons (match your standard buttons) */}
+        {/* Bottom buttons (gold variant applied to two buttons) */}
         <div
           style={{
             position: "absolute",
@@ -503,13 +503,13 @@ export default function FAQPage() {
             maxWidth: 1100,
           }}
         >
-          <Link href="/search" className="sl-link-btn">
+          <Link href="/search" className="sl-link-btn sl-link-btn--gold">
             College Search
           </Link>
           <Link href="/pricing" className="sl-link-btn">
             Get Started
           </Link>
-          <Link href="/login" className="sl-link-btn">
+          <Link href="/login" className="sl-link-btn sl-link-btn--gold">
             Log In
           </Link>
         </div>
@@ -524,7 +524,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      {/* Local styles for link buttons if not globally defined */}
+      {/* Local styles for link buttons & hover-lift on FAQ boxes */}
       <style>{`
         .sl-link-btn {
           display: inline-block;
@@ -544,6 +544,49 @@ export default function FAQPage() {
           text-decoration: underline;
           text-underline-offset: 3px;
         }
+
+        /* GOLD variant for hero buttons to match other heros */
+        .sl-link-btn--gold {
+          background: #ca9a3f;           /* gold */
+          border-color: #b88934;
+          color: #0f172a;
+        }
+        .sl-link-btn--gold:hover {
+          background: #b88934;           /* slightly darker gold on hover */
+          border-color: #a6782b;
+          color: #0b1327;
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.22);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+
+        /* FAQ cards: lift & underline on hover (like Recruiting page) */
+        .faq-card {
+          transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .faq-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 20px rgba(15,23,42,0.10);
+        }
+        .faq-card__header:hover span:first-child {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+
+        /* Individual Q/A item tiles lift & underline question on hover */
+        .faq-item {
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease;
+        }
+        .faq-item:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 18px rgba(15,23,42,0.08);
+          background: #fff; /* subtle pop from #f8fafc */
+        }
+        .faq-item:hover h3 {
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
       `}</style>
     </main>
   );
@@ -554,6 +597,7 @@ function FAQSection({ title, items }: Section) {
 
   return (
     <article
+      className="faq-card"
       style={{
         border: "1px solid #e5e7eb",
         borderRadius: 12,
@@ -566,6 +610,7 @@ function FAQSection({ title, items }: Section) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
+        className="faq-card__header"
         style={{
           width: "100%",
           textAlign: "left",
@@ -604,6 +649,7 @@ function FAQSection({ title, items }: Section) {
           {items.map(({ q, a }, idx) => (
             <div
               key={idx}
+              className="faq-item"
               style={{
                 padding: "12px 8px",
                 borderRadius: 10,
