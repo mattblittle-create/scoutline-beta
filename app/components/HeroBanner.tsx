@@ -169,7 +169,7 @@ export default function HeroBanner() {
             }}
           >
             <Link href="/search" className="login-btn">
-              Search
+              College Search
             </Link>
             <Link href="/login" className="login-btn">
               Log In
