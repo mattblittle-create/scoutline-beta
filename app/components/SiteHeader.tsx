@@ -73,12 +73,12 @@ export default function SiteHeader() {
         .sl-header { position: sticky; top: 0; z-index: 50; background:#fff; border-bottom:1px solid var(--sl-border); backdrop-filter: saturate(150%) blur(4px) }
         .sl-nav { max-width:1100px; margin:0 auto; display:flex; align-items:center; padding: 12px 16px; gap: 16px; }
         .sl-right { margin-left:auto; display:flex; align-items:center; gap: 22px; flex-wrap: wrap; }
-        .sl-login-btn { background:#fff; border:1px solid var(--sl-border); border-radius:10px; padding:8px 12px; cursor:pointer; transition: box-shadow .2s ease, transform .04s ease; }
+        .sl-login-btn { background:#FFD700; border:1px solid var(--sl-border); border-radius:10px; padding:8px 12px; cursor:pointer; transition: box-shadow .2s ease, transform .04s ease; }
         .sl-login-btn:hover { box-shadow: var(--sl-shadow); transform: translateY(-1px) }
         .sl-dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#fff; border:1px solid var(--sl-border); border-radius:12px; box-shadow: var(--sl-shadow); z-index:60; min-width: 220px; padding: 6px; }
         .sl-item { display:block; padding:10px 12px; border-radius:10px; }
-        .sl-item:hover { background:#f8fafc; text-decoration: underline; } /* <-- updated underline */
-        .sl-logo { width:100%; max-width: 270px; } /* adjust logo size here */
+        .sl-item:hover { background:#f8fafc; text-decoration: underline; }
+        .sl-logo { width:100%; max-width: 270px; }
         .sl-link:hover{ text-decoration:none; }
         .sl-link.is-active{ color: var(--sl-accent); font-weight:600; }
         
@@ -97,14 +97,14 @@ export default function SiteHeader() {
 
 .sl-mobile-panel.open {
   display: block;
-  max-height: 600px; /* large enough for menu content */
+  max-height: 600px;
   opacity: 1;
 }
 
 
         /* Mobile layout */
         @media (max-width: 900px) {
-          .sl-right { display: none; }          /* hide desktop links */
+          .sl-right { display: none; }
           .sl-hamburger { display: inline-flex; }
           .sl-mobile-panel { display: block; width: 100%; }
           .sl-mobile-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 8px; background: #fff; }
@@ -152,8 +152,8 @@ export default function SiteHeader() {
               className="sl-login-btn"
               aria-haspopup="menu"
               aria-expanded={loginOpen}
-              onClick={() => (loginOpen ? instantCloseLogin() : openLogin())} // touch/click
-              onFocus={openLogin} // keyboard
+              onClick={() => (loginOpen ? instantCloseLogin() : openLogin())}
+              onFocus={openLogin}
             >
               Log In ▾
             </button>
