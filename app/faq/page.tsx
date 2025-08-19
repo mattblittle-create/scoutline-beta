@@ -423,6 +423,9 @@ const sections: Section[] = [
 ];
 
 export default function FAQPage() {
+  // NEW: keep track of which section is open (-1 = none)
+  const [openIndex, setOpenIndex] = useState<number>(-1);
+
   return (
     <main style={{ color: "#0f172a" }}>
       {/* HERO */}
@@ -518,8 +521,14 @@ export default function FAQPage() {
       {/* CONTENT */}
       <section style={{ maxWidth: 1100, margin: "0 auto", padding: "28px 16px" }}>
         <div style={{ display: "grid", gap: 12 }}>
-          {sections.map((sec) => (
-            <FAQSection key={sec.title} title={sec.title} items={sec.items} />
+          {sections.map((sec, idx) => (
+            <FAQSection
+              key={sec.title}
+              title={sec.title}
+              items={sec.items}
+              isOpen={openIndex === idx}
+              onToggle={() => setOpenIndex(openIndex === idx ? -1 : idx)}
+            />
           ))}
         </div>
       </section>
@@ -592,9 +601,13 @@ export default function FAQPage() {
   );
 }
 
-function FAQSection({ title, items }: Section) {
-  const [open, setOpen] = useState(false);
-
+// UPDATED: accepts controlled open/close props so only one section is open at a time
+function FAQSection({
+  title,
+  items,
+  isOpen,
+  onToggle,
+}: Section & { isOpen: boolean; onToggle: () => void }) {
   return (
     <article
       className="faq-card"
@@ -608,8 +621,8 @@ function FAQSection({ title, items }: Section) {
       {/* Section header (click to expand) */}
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
+        onClick={onToggle}
+        aria-expanded={isOpen}
         className="faq-card__header"
         style={{
           width: "100%",
@@ -632,7 +645,7 @@ function FAQSection({ title, items }: Section) {
           style={{
             fontSize: 18,
             color: "#64748b",
-            transform: open ? "rotate(180deg)" : "rotate(0deg)",
+            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
             transition: "transform .2s ease",
           }}
         >
@@ -644,7 +657,7 @@ function FAQSection({ title, items }: Section) {
       <div style={{ height: 1, background: "#e5e7eb" }} />
 
       {/* Items */}
-      {open && (
+      {isOpen && (
         <div style={{ padding: 12 }}>
           {items.map(({ q, a }, idx) => (
             <div
