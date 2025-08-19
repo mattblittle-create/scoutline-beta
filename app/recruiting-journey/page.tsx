@@ -132,7 +132,7 @@ export default function RecruitingJourneyPage() {
           }
         `}</style>
 
-        {/* 1) Start Here (collapsed by default) */}
+        {/* Start Here (collapsed by default) */}
         <details>
           <summary>1) Start Here</summary>
           <div className="panel-body">
@@ -156,7 +156,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 2) Build Your Profile */}
+        {/* Build Your Profile */}
         <details>
           <summary>2) Build Your Profile</summary>
           <div className="panel-body">
@@ -171,7 +171,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 3) Optimize for Coaches */}
+        {/* Optimize for Coaches */}
         <details>
           <summary>3) Optimize for Coaches</summary>
           <div className="panel-body">
@@ -184,7 +184,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 4) Use ScoutLine Weekly */}
+        {/* Use ScoutLine Weekly */}
         <details>
           <summary>4) Use ScoutLine Weekly</summary>
           <div className="panel-body">
@@ -197,7 +197,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 5) Communicate with Coaches */}
+        {/* Communicate with Coaches */}
         <details>
           <summary>5) Communicate with Coaches</summary>
           <div className="panel-body">
@@ -219,7 +219,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 6) Eligibility and Compliance — bordered like others */}
+        {/* Eligibility and Compliance — bordered like others */}
         <details>
           <summary>6) Eligibility and Compliance</summary>
           <div className="panel-body">
@@ -242,7 +242,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 7) Camps and Visits */}
+        {/* Camps and Visits */}
         <details>
           <summary>7) Camps and Visits</summary>
           <div className="panel-body">
@@ -260,7 +260,7 @@ export default function RecruitingJourneyPage() {
           </div>
         </details>
 
-        {/* 8) Financial Planning */}
+        {/* Financial Planning */}
         <details>
           <summary>8) Financial Planning</summary>
           <div className="panel-body">
