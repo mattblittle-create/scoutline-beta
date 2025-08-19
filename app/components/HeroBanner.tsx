@@ -153,7 +153,7 @@ export default function HeroBanner() {
             <Link href="/pricing" className="hero-btn">
               Get Started
             </Link>
-            <Link href="/contact" className="hero-btn">
+            <Link href="/faq" className="hero-btn">
               Want to Know More
             </Link>
           </div>
