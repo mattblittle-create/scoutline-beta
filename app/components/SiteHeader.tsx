@@ -141,40 +141,44 @@ export default function SiteHeader() {
           <Link href="/faq" onClick={closeAll}>FAQ</Link>
           <Link href="/search" onClick={closeAll}>Search</Link>
 
-          {/* Log In (hover to open, delayed close) */}
-          <div
-            style={{ position: "relative" }}
-            onMouseEnter={openLogin}
-            onMouseLeave={scheduleCloseLogin}
-          >
-            <button
-              ref={btnRef}
-              className="sl-login-btn"
-              aria-haspopup="menu"
-              aria-expanded={loginOpen}
-              onClick={() => (loginOpen ? instantCloseLogin() : openLogin())}
-              onFocus={openLogin}
-            >
-              Log In ▾
-            </button>
+{/* Log In (hover to open, delayed close) */}
+<div
+  style={{ position: "relative" }}
+  onMouseEnter={openLogin}
+  onMouseLeave={scheduleCloseLogin}
+>
+  <button
+    ref={btnRef}
+    className="sl-login-btn"
+    aria-haspopup="menu"
+    aria-expanded={loginOpen}
+    onClick={() => {
+      window.location.href = "https://beta.myscoutline.com/login";
+    }}
+    onFocus={openLogin}
+  >
+    Log In ▾
+  </button>
 
-            {loginOpen && (
-              <div
-                ref={menuRef}
-                role="menu"
-                className="sl-dropdown"
-                onMouseEnter={openLogin}
-                onMouseLeave={scheduleCloseLogin}
-                onFocus={openLogin}
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
-                }}
-              >
-                <Link href="/player" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Player</Link>
-                <Link href="/parent" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Parent</Link>
-                <Link href="/coach" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Coach</Link>
-                <Link href="/admin" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Team Admin</Link>
-              </div>
+  {loginOpen && (
+    <div
+      ref={menuRef}
+      role="menu"
+      className="sl-dropdown"
+      onMouseEnter={openLogin}
+      onMouseLeave={scheduleCloseLogin}
+      onFocus={openLogin}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
+      }}
+    >
+      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Player</Link>
+      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Parent</Link>
+      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Coach</Link>
+      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Team Admin</Link>
+    </div>
+  )}
+</div>
             )}
           </div>
         </div>
