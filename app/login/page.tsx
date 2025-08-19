@@ -23,17 +23,11 @@ export default function LoginPage() {
 
       <form>
         <div className="sl-field">
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" className="sl-input" placeholder="Email Address" />
-        </div>
-
-        <div className="sl-field">
           <label htmlFor="password">Password</label>
           <input type="password" id="password" className="sl-input" />
         </div>
 
         <div className="sl-links">
-          <Link href="/forgot-username">Forgot Username?</Link>
           <Link href="/forgot-password">Forgot Password?</Link>
         </div>
 
