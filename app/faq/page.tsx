@@ -466,10 +466,9 @@ export default function FAQPage() {
           <h1
             style={{
               margin: 0,
-              fontSize: 36,
-              lineHeight: 1.15,
-              color: "#fff",
-              textShadow: "0 2px 6px rgba(0,0,0,0.35)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              fontSize: "clamp(24px, 4.2vw, 44px)",
             }}
           >
             Frequently Asked Questions
