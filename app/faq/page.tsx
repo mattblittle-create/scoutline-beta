@@ -423,7 +423,7 @@ const sections: Section[] = [
 ];
 
 export default function FAQPage() {
-  // NEW: keep track of which section is open (-1 = none)
+  // Only one section open at a time
   const [openIndex, setOpenIndex] = useState<number>(-1);
 
   return (
@@ -578,7 +578,9 @@ export default function FAQPage() {
           transform: translateY(-2px);
           box-shadow: 0 10px 20px rgba(15,23,42,0.10);
         }
-        .faq-card__header:hover span:first-child {
+        /* Underline BOTH arrow and title on hover */
+        .faq-card__header:hover .faq-title,
+        .faq-card__header:hover .faq-arrow {
           text-decoration: underline;
           text-underline-offset: 3px;
         }
@@ -601,7 +603,6 @@ export default function FAQPage() {
   );
 }
 
-// UPDATED: accepts controlled open/close props so only one section is open at a time
 function FAQSection({
   title,
   items,
@@ -633,24 +634,28 @@ function FAQSection({
           cursor: "pointer",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
+          justifyContent: "flex-start",
+          gap: 8,
           fontWeight: 700,
           color: "#0f172a",
           fontSize: 18,
         }}
       >
-        <span>{title}</span>
+        {/* Arrow LEFT of title; points at title when closed, down when open */}
         <span
+          className="faq-arrow"
           aria-hidden
           style={{
-            fontSize: 18,
-            color: "#64748b",
-            transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+            fontSize: 14,
+            lineHeight: 1,
+            display: "inline-block",
+            transform: isOpen ? "rotate(90deg)" : "rotate(0deg)", // ▶ rotated 90deg => ▼
             transition: "transform .2s ease",
           }}
         >
-          ▼
+          ▶
         </span>
+        <span className="faq-title">{title}</span>
       </button>
 
       {/* Divider */}
