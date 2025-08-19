@@ -172,7 +172,7 @@ export default function RecruitingJourneyHero() {
             }}
           >
             <Link href="/search" className="sl-btn-gold">
-              Search
+              College Search
             </Link>
             <Link href="/login" className="sl-btn-gold">
               Log In
