@@ -73,12 +73,12 @@ export default function SiteHeader() {
         .sl-header { position: sticky; top: 0; z-index: 50; background:#fff; border-bottom:1px solid var(--sl-border); backdrop-filter: saturate(150%) blur(4px) }
         .sl-nav { max-width:1100px; margin:0 auto; display:flex; align-items:center; padding: 12px 16px; gap: 16px; }
         .sl-right { margin-left:auto; display:flex; align-items:center; gap: 22px; flex-wrap: wrap; }
-        .sl-login-btn { background:#ca9a3f; border:1px solid var(--sl-border); border-radius:10px; padding:8px 12px; cursor:pointer; transition: box-shadow .2s ease, transform .04s ease; }
+        .sl-login-btn { background:#FFD700; border:1px solid var(--sl-border); border-radius:10px; padding:8px 12px; cursor:pointer; transition: box-shadow .2s ease, transform .04s ease; }
         .sl-login-btn:hover { box-shadow: var(--sl-shadow); transform: translateY(-1px) }
         .sl-dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#fff; border:1px solid var(--sl-border); border-radius:12px; box-shadow: var(--sl-shadow); z-index:60; min-width: 220px; padding: 6px; }
         .sl-item { display:block; padding:10px 12px; border-radius:10px; }
-        .sl-item:hover { background:#f8fafc; text-decoration: underline; }
-        .sl-logo { width:100%; max-width: 270px; }
+        .sl-item:hover { background:#f8fafc; text-decoration: underline; } /* underline on hover */
+        .sl-logo { width:100%; max-width: 270px; } /* adjust logo size here */
         .sl-link:hover{ text-decoration:none; }
         .sl-link.is-active{ color: var(--sl-accent); font-weight:600; }
         
@@ -88,23 +88,10 @@ export default function SiteHeader() {
         .sl-mobile-card { border:1px solid var(--sl-border); border-radius:12px; padding:8px; background:#fff; box-shadow: var(--sl-shadow) }
         .sl-mobile-row { display:flex; flex-direction:column; gap:6px; }
         .sl-mobile-sep { height:1px; background:#f1f5f9; margin:8px 0; }
-  display: none;
-  overflow: hidden;
-  transition: max-height 0.35s ease, opacity 0.35s ease;
-  max-height: 0;
-  opacity: 0;
-}
-
-.sl-mobile-panel.open {
-  display: block;
-  max-height: 600px;
-  opacity: 1;
-}
-
 
         /* Mobile layout */
         @media (max-width: 900px) {
-          .sl-right { display: none; }
+          .sl-right { display: none; }          /* hide desktop links */
           .sl-hamburger { display: inline-flex; }
           .sl-mobile-panel { display: block; width: 100%; }
           .sl-mobile-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 8px; background: #fff; }
@@ -141,44 +128,47 @@ export default function SiteHeader() {
           <Link href="/faq" onClick={closeAll}>FAQ</Link>
           <Link href="/search" onClick={closeAll}>Search</Link>
 
-{/* Log In (hover to open, delayed close) */}
-<div
-  style={{ position: "relative" }}
-  onMouseEnter={openLogin}
-  onMouseLeave={scheduleCloseLogin}
->
-  <button
-    ref={btnRef}
-    className="sl-login-btn"
-    aria-haspopup="menu"
-    aria-expanded={loginOpen}
-    onClick={() => {
-      window.location.href = "https://beta.myscoutline.com/login";
-    }}
-    onFocus={openLogin}
-  >
-    Log In ▾
-  </button>
+          {/* Log In (hover to open, delayed close) */}
+          <div
+            style={{ position: "relative" }}
+            onMouseEnter={openLogin}
+            onMouseLeave={scheduleCloseLogin}
+          >
+            {/* Button click routes to central login */}
+            <button
+              ref={btnRef}
+              className="sl-login-btn"
+              aria-haspopup="menu"
+              aria-expanded={loginOpen}
+              onClick={() => {
+                window.location.href = "https://beta.myscoutline.com/login";
+              }}
+              onFocus={openLogin} // keyboard
+            >
+              Log In ▾
+            </button>
 
-  {loginOpen && (
-    <div
-      ref={menuRef}
-      role="menu"
-      className="sl-dropdown"
-      onMouseEnter={openLogin}
-      onMouseLeave={scheduleCloseLogin}
-      onFocus={openLogin}
-      onBlur={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
-      }}
-    >
-      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Player</Link>
-      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Parent</Link>
-      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Coach</Link>
-      <Link href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Team Admin</Link>
-    </div>
-  )}
-</div>
+            {loginOpen && (
+              <div
+                ref={menuRef}
+                role="menu"
+                className="sl-dropdown"
+                onMouseEnter={openLogin}
+                onMouseLeave={scheduleCloseLogin}
+                onFocus={openLogin}
+                onBlur={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
+                }}
+              >
+                {/* All dropdown items also route to central login */}
+                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Player</a>
+                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Parent</a>
+                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Coach</a>
+                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Team Admin</a>
+              </div>
+            )}
+          </div>
+        </div>
 
         {/* Hamburger (mobile) */}
         <button
@@ -196,41 +186,40 @@ export default function SiteHeader() {
 
       {/* Mobile slide-down panel */}
       {mobileOpen && (
-       <div
-  className={`sl-mobile-panel ${mobileOpen ? "open" : ""}`}
-  ref={mobileRef}
->
-  <div className="sl-mobile-card">
-    <div className="sl-mobile-row">
-      <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
-      <Link href="/about" className="sl-item" onClick={closeAll}>About</Link>
-      <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting</Link>
-      <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
-      <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
-      <Link href="/search" className="sl-item" onClick={closeAll}>Search</Link>
+        <div
+          className={`sl-mobile-panel ${mobileOpen ? "open" : ""}`}
+          ref={mobileRef}
+        >
+          <div className="sl-mobile-card">
+            <div className="sl-mobile-row">
+              <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
+              <Link href="/about" className="sl-item" onClick={closeAll}>About</Link>
+              <Link href="/recruiting-journey" className="sl-item" onClick={closeAll}>Recruiting</Link>
+              <Link href="/pricing" className="sl-item" onClick={closeAll}>Pricing</Link>
+              <Link href="/faq" className="sl-item" onClick={closeAll}>FAQ</Link>
+              <Link href="/search" className="sl-item" onClick={closeAll}>Search</Link>
 
-      <div className="sl-mobile-sep" />
+              <div className="sl-mobile-sep" />
 
-      <button
-        className="sl-login-btn"
-        aria-expanded={mobileLoginOpen}
-        aria-controls="mobile-login-menu"
-        onClick={() => setMobileLoginOpen(v => !v)}
-      >
-        Log In ▾
-      </button>
-      {mobileLoginOpen && (
-        <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
-          <Link href="/player" className="sl-item" onClick={closeAll}>Player</Link>
-          <Link href="/parent" className="sl-item" onClick={closeAll}>Parent</Link>
-          <Link href="/coach" className="sl-item" onClick={closeAll}>Coach</Link>
-          <Link href="/admin" className="sl-item" onClick={closeAll}>Team Admin</Link>
+              <button
+                className="sl-login-btn"
+                aria-expanded={mobileLoginOpen}
+                aria-controls="mobile-login-menu"
+                onClick={() => setMobileLoginOpen(v => !v)}
+              >
+                Log In ▾
+              </button>
+              {mobileLoginOpen && (
+                <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
+                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Player</a>
+                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Parent</a>
+                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Coach</a>
+                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Team Admin</a>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      )}
-    </div>
-  </div>
-</div>
-
       )}
     </header>
   );
