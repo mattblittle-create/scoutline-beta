@@ -506,8 +506,8 @@ export default function FAQPage() {
           <Link href="/search" className="sl-link-btn">
             College Search
           </Link>
-          <Link href="/getstarted" className="sl-link-btn">
-            Pricing
+          <Link href="/pricing" className="sl-link-btn">
+            Get Started
           </Link>
           <Link href="/login" className="sl-link-btn">
             Log In
