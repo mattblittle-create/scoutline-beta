@@ -503,14 +503,14 @@ export default function FAQPage() {
             maxWidth: 1100,
           }}
         >
-          <Link href="/recruiting-journey" className="sl-link-btn">
-            Recruiting Journey
+          <Link href="/search" className="sl-link-btn">
+            College Search
           </Link>
-          <Link href="/pricing" className="sl-link-btn">
+          <Link href="/getstarted" className="sl-link-btn">
             Pricing
           </Link>
-          <Link href="/players" className="sl-link-btn">
-            Browse Players
+          <Link href="/login" className="sl-link-btn">
+            Log In
           </Link>
         </div>
       </section>
