@@ -250,7 +250,7 @@ export default function PricingPage() {
           </Link>
         </div>
 
-        {/* Sticky plan cards aligned in 4 columns */}
+        {/* Sticky plan cards aligned with feature columns */}
         <div
           ref={headerRef}
           style={{
@@ -264,13 +264,15 @@ export default function PricingPage() {
           }}
         >
           <div
-            className="plan-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: `repeat(${planOrder.length}, 1fr)`,
-              gap: 12,
+              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+              gap: 10,
+              alignItems: "stretch",
             }}
           >
+            {/* Left spacer column to align with feature labels */}
+            <div />
             {planOrder.map((key) => {
               const plan = planMap[key];
               return (
@@ -383,7 +385,7 @@ export default function PricingPage() {
                     marginTop: 10,
                   }}
                 >
-                  {/* Grid layout so columns align with plan cards (4 plan cols + 1 feature col) */}
+                  {/* Grid layout so columns align with plan cards (left label + 4 plans) */}
                   {section.rows.map((row, idx) => (
                     <div
                       key={row.key}
