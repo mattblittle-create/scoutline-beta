@@ -185,8 +185,8 @@ export default function PricingPage() {
   return (
     <main style={{ color: "#0f172a" }}>
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
-        {/* Title above toggle */}
-        <h2 style={{ textAlign: "center", marginBottom: 12, fontSize: "1.5rem", fontWeight: 800 }}>
+        {/* Title above toggle (font-size doubled) */}
+        <h2 style={{ textAlign: "center", marginBottom: 12, fontSize: "3rem", fontWeight: 800 }}>
           Compare Plan Features and Pricing
         </h2>
 
@@ -275,6 +275,9 @@ export default function PricingPage() {
             <div />
             {planOrder.map((key) => {
               const plan = planMap[key];
+              const priceText =
+                billing === "monthly" || !plan.priceAnnual ? plan.priceMonthly : plan.priceAnnual;
+
               return (
                 <div
                   key={plan.key}
@@ -283,10 +286,14 @@ export default function PricingPage() {
                     border: plan.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
                     borderRadius: 12,
                     padding: 16,
-                    textAlign: "center",
                     background: plan.highlight ? "linear-gradient(0deg, #fff7e6, #fff)" : "#fff",
                     position: "relative",
                     boxShadow: "0 4px 12px rgba(15,23,42,0.06)",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    minHeight: 200,
+                    textAlign: "center",
                   }}
                 >
                   {plan.highlight && (
@@ -308,19 +315,33 @@ export default function PricingPage() {
                       Most Popular
                     </div>
                   )}
-                  <h3 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 800 }}>{plan.name}</h3>
-                  <p style={{ margin: "6px 0 0", color: "#64748b", fontStyle: "italic" }}>{plan.tagline}</p>
-                  <div className="price" style={{ fontSize: "1.1rem", fontWeight: 800, margin: "10px 0 12px" }}>
-                    {billing === "monthly" || !plan.priceAnnual ? plan.priceMonthly : plan.priceAnnual}
-                    {billing === "annual" && plan.priceAnnualNote && (
-                      <span className="annual-note" style={{ display: "block", fontSize: "0.8rem", color: "#6b7280", marginTop: 2 }}>
-                        {plan.priceAnnualNote}
-                      </span>
-                    )}
+
+                  {/* Top: name + tagline */}
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 800 }}>{plan.name}</h3>
+                    <p style={{ margin: "6px 0 0", color: "#64748b", fontStyle: "italic" }}>{plan.tagline}</p>
                   </div>
-                  <Link href={plan.ctaHref} className="sl-link-btn gold" style={{ marginTop: 6, display: "inline-block" }}>
-                    Get Started
-                  </Link>
+
+                  {/* Middle: flexible spacer */}
+                  <div style={{ flex: 1 }} />
+
+                  {/* Bottom: price + CTA */}
+                  <div>
+                    <div className="price" style={{ fontSize: "1.1rem", fontWeight: 800, margin: "10px 0 12px" }}>
+                      {priceText}
+                      {billing === "annual" && plan.priceAnnualNote && (
+                        <span
+                          className="annual-note"
+                          style={{ display: "block", fontSize: "0.8rem", color: "#6b7280", marginTop: 2 }}
+                        >
+                          {plan.priceAnnualNote}
+                        </span>
+                      )}
+                    </div>
+                    <Link href={plan.ctaHref} className="sl-link-btn gold" style={{ display: "inline-block" }}>
+                      Get Started
+                    </Link>
+                  </div>
                 </div>
               );
             })}
