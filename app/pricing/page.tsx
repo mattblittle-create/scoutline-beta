@@ -246,7 +246,7 @@ export default function PricingPage() {
 
           {/* Coaches link stays up top */}
           <Link href="/get-started?plan=coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
-            College Coaches & Recruiters →
+            College Coaches and Recruiters →
           </Link>
         </div>
 
