@@ -128,7 +128,7 @@ const SECTIONS: FeatureSection[] = [
     ],
   },
   {
-    title: "Videos Social Media Communication",
+    title: "Videos + Social Media + Communication",
     rows: [
       { label: "Video Uploads", key: "videos", availability: { redshirt: "None", walkon: "Up to 3", allamerican: "Unlimited", team: "Unlimited" } },
       { label: "Social Media Connect", key: "social", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
