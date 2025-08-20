@@ -240,7 +240,7 @@ export default function PricingPage() {
                 fontWeight: 700,
               }}
             >
-              Annual
+              Annually
             </button>
           </div>
 
