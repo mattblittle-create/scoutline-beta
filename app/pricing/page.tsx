@@ -181,7 +181,7 @@ export default function PricingPage() {
     const onScroll = () => {
       if (!headerRef.current) return;
       const top = headerRef.current.getBoundingClientRect().top;
-      setStuck(top <= 0);
+      setStuck(top <= 64); // matches sticky offset
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -245,20 +245,32 @@ export default function PricingPage() {
           </Link>
         </div>
 
-        {/* Sticky plan cards container */}
+        {/* Sticky plan cards container aligned over table columns */}
         <div
           ref={headerRef}
           style={{
             position: "sticky",
-            top: 0,
-            zIndex: 30,
+            top: 64,                // keep visible below your site header
+            zIndex: 40,
             background: "#fff",
             borderBottom: "1px solid #e5e7eb",
             boxShadow: stuck ? "0 4px 16px rgba(15,23,42,0.08)" : "none",
             padding: "10px 6px",
           }}
         >
-          <div className="plan-grid">
+          <div
+            className="plan-grid"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))", // EXACTLY matches table
+              gap: 10,
+              alignItems: "stretch",
+            }}
+          >
+            {/* left spacer to align with feature name column */}
+            <div />
+
+            {/* one plan card per plan column, in the same order used by the table */}
             {planOrder.map((key) => {
               const plan = planMap[key];
               return (
@@ -376,11 +388,6 @@ export default function PricingPage() {
           border-color: #d7b25e;
         }
 
-        .plan-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-          gap: 12px;
-        }
         .plan-card {
           border: 1px solid #e5e7eb;
           border-radius: 12px;
