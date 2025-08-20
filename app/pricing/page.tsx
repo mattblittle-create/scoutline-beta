@@ -87,15 +87,6 @@ const PLANS: Plan[] = [
     ctaHref: "/get-started?plan=team", // TODO
     priceMonthly: "$39.95 / player / month",
   },
-  {
-    key: "coach",
-    name: "College Coaches & Recruiters",
-    tagline: "Build champions together",
-    ctaHref: "/get-started?plan=coach", // TODO
-    priceMonthly: "FREE",
-    noteBelowPrice:
-      "Access to player profiles, stats & metrics, contact info, videos and social media, and communication tools based on Player Plan. Coaches can filter and save players to watch lists, share and export lists across approved Coach Connections, and see full analytics dashboards on each player.",
-  },
 ];
 
 // -------------------------------------------------------------
