@@ -115,7 +115,7 @@ const SECTIONS: FeatureSection[] = [
       { label: "Growth Tracking", key: "growth", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
       { label: "Ranking Amongst Peers", key: "ranking", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
       { label: "Coach References", key: "coachrefs", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
-      { label: "Athletic Bio", key: "athleticbio", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "Athlete Bio", key: "athletebio", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
       { label: "Profile Feedback and Optimization", key: "feedback", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
       { label: "Team-Wide Analytics Dashboard", key: "teamdash", availability: { redshirt: false, walkon: false, allamerican: false, team: true } },
       { label: "Roster Management", key: "roster", availability: { redshirt: false, walkon: false, allamerican: false, team: true } },
@@ -184,9 +184,9 @@ export default function PricingPage() {
 
   return (
     <main style={{ color: "#0f172a" }}>
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 16px" }}>
         {/* Title above toggle (font-size doubled) */}
-        <h2 style={{ textAlign: "center", marginBottom: 12, fontSize: "3rem", fontWeight: 800 }}>
+        <h2 style={{ textAlign: "center", marginBottom: 6, fontSize: "2.6rem", fontWeight: 800 }}>
           Compare Plan Features and Pricing
         </h2>
 
