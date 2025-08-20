@@ -31,7 +31,7 @@ const PLANS: Plan[] = [
   {
     key: "redshirt",
     name: "Redshirt",
-    tagline: "Just starting the process",
+    tagline: "Just practicing",
     ctaHref: "/get-started?plan=redshirt",
     priceMonthly: "FREE with ads",
   },
@@ -57,7 +57,7 @@ const PLANS: Plan[] = [
   {
     key: "team",
     name: "Teams",
-    tagline: "Every player, every step",
+    tagline: "Compete together",
     ctaHref: "/get-started?plan=team",
     priceMonthly: "$39.95 / player / month",
   },
