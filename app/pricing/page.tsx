@@ -15,7 +15,6 @@ type Plan = {
   priceAnnual?: string;
   priceAnnualNote?: string;
   highlight?: boolean;
-  noteBelowPrice?: string;
   mostPopular?: boolean;
 };
 
@@ -28,6 +27,9 @@ type FeatureRow = {
 };
 type FeatureSection = { title: string; rows: FeatureRow[] };
 
+// -------------------------------------------------------------
+// Plans
+// -------------------------------------------------------------
 const PLANS: Plan[] = [
   {
     key: "redshirt",
@@ -54,7 +56,7 @@ const PLANS: Plan[] = [
     priceAnnual: "$510 / year",
     priceAnnualNote: "15% off",
     highlight: true,
-    mostPopular: true, // NEW flag
+    mostPopular: true,
   },
   {
     key: "team",
@@ -65,7 +67,11 @@ const PLANS: Plan[] = [
   },
 ];
 
+// -------------------------------------------------------------
+// Feature Matrix (4 plans only)
+// -------------------------------------------------------------
 const SECTIONS: FeatureSection[] = [
+  // (Removed the "Build Your Player Profile" section per your request)
   {
     title: "General Info",
     rows: [
@@ -80,9 +86,73 @@ const SECTIONS: FeatureSection[] = [
       { label: "Commitment Status", key: "commitstatus", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
     ],
   },
-  // ...rest unchanged
+  {
+    title: "Academics",
+    rows: [
+      { label: "School", key: "school", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "Graduation Year", key: "gradyear", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "GPA", key: "gpa", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "SAT/ACT Scores", key: "tests", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      {
+        label: "Upload Documents (report cards, transcripts, etc.)",
+        key: "docs",
+        availability: { redshirt: false, walkon: true, allamerican: true, team: true },
+      },
+    ],
+  },
+  {
+    title: "Athletics",
+    rows: [
+      { label: "Bats/Throws", key: "batsthrows", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "Position(s)", key: "positions", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "Team(s)", key: "teams", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "Team Schedule(s)", key: "teamschedules", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
+      { label: "Manual Stat Data Input", key: "manualstats", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      {
+        label: "Auto Data Sync with GameChanger, DiamondKast, and more",
+        key: "autostats",
+        availability: { redshirt: false, walkon: false, allamerican: true, team: true },
+      },
+      { label: "Manual Metric Data Input", key: "manualmetrics", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      {
+        label: "Auto Metric Data Sync with Rapsodo, TrackMan, and more",
+        key: "autometrics",
+        availability: { redshirt: false, walkon: false, allamerican: true, team: true },
+      },
+      { label: "Growth Tracking", key: "growth", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
+      { label: "Ranking Amongst Peers", key: "ranking", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
+      { label: "Coach References", key: "coachrefs", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
+      { label: "Athletic Bio", key: "athleticbio", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
+      { label: "Profile Feedback and Optimization", key: "feedback", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
+      { label: "Team-Wide Analytics Dashboard", key: "teamdash", availability: { redshirt: false, walkon: false, allamerican: false, team: true } },
+      { label: "Roster Management", key: "roster", availability: { redshirt: false, walkon: false, allamerican: false, team: true } },
+      { label: "Bulk Upload Tools", key: "bulk", availability: { redshirt: false, walkon: false, allamerican: false, team: true } },
+      {
+        label: 'White Label Dashboards with Team Logo "Powered by ScoutLine"',
+        key: "whitelabel",
+        availability: { redshirt: false, walkon: false, allamerican: false, team: true },
+      },
+    ],
+  },
+  {
+    title: "Videos • Social Media • Communication",
+    rows: [
+      { label: "Video Uploads", key: "videos", availability: { redshirt: "None", walkon: "Up to 3", allamerican: "Unlimited", team: "Unlimited" } },
+      { label: "Social Media Connect", key: "social", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
+      { label: "Email with College Coaches and Recruiters", key: "emailcc", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
+      { label: "Direct Message with College Coaches and Recruiters", key: "dmcc", availability: { redshirt: false, walkon: false, allamerican: true, team: true } },
+      {
+        label: "Response Assistant — one-click personalized messages and replies with profile link and videos",
+        key: "respassist",
+        availability: { redshirt: false, walkon: false, allamerican: true, team: true },
+      },
+    ],
+  },
 ];
 
+// -------------------------------------------------------------
+// Small helpers
+// -------------------------------------------------------------
 const CheckIcon = () => (
   <svg aria-hidden focusable="false" width="18" height="18" viewBox="0 0 24 24">
     <path
@@ -98,9 +168,13 @@ function cellContent(val: FeatureCell | undefined) {
   return <span style={{ fontWeight: 700 }}>{val}</span>;
 }
 
+// -------------------------------------------------------------
+// Component
+// -------------------------------------------------------------
 export default function PricingPage() {
   const [billing, setBilling] = useState<Billing>("monthly");
 
+  // sticky shadow when scrolled
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
   useEffect(() => {
@@ -118,9 +192,9 @@ export default function PricingPage() {
 
   return (
     <main style={{ color: "#0f172a" }}>
-      {/* BILLING TOGGLE + TABLE */}
+      {/* TOGGLE + STICKY PLAN CARDS */}
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
-        {/* Toggle */}
+        {/* Toggle row */}
         <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
           <div
             role="group"
@@ -165,55 +239,165 @@ export default function PricingPage() {
             </button>
           </div>
 
-          <Link href="#coaches" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
+          {/* Quick link for coaches/recruiters (kept up top as requested) */}
+          <Link href="/get-started?plan=coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
             College Coaches & Recruiters →
           </Link>
         </div>
 
-        {/* Plan Grid */}
-        <div className="plan-grid">
-          {planOrder.map((key) => {
-            const plan = planMap[key];
-            return (
-              <div key={plan.key} className={`plan-card ${plan.highlight ? "highlight" : ""}`}>
-                {plan.mostPopular && <div className="most-popular">Most Popular</div>}
-                <h3>{plan.name}</h3>
-                <p>{plan.tagline}</p>
-                <div className="price">
-                  {billing === "monthly" ? plan.priceMonthly : plan.priceAnnual || plan.priceMonthly}
-                  {billing === "annual" && plan.priceAnnualNote && (
-                    <span className="annual-note">{plan.priceAnnualNote}</span>
-                  )}
+        {/* Sticky plan cards container */}
+        <div
+          ref={headerRef}
+          style={{
+            position: "sticky",
+            top: 0,
+            zIndex: 30,
+            background: "#fff",
+            borderBottom: "1px solid #e5e7eb",
+            boxShadow: stuck ? "0 4px 16px rgba(15,23,42,0.08)" : "none",
+            padding: "10px 6px",
+          }}
+        >
+          <div className="plan-grid">
+            {planOrder.map((key) => {
+              const plan = planMap[key];
+              return (
+                <div key={plan.key} className={`plan-card ${plan.highlight ? "highlight" : ""}`}>
+                  {plan.mostPopular && <div className="most-popular">Most Popular</div>}
+                  <h3 style={{ margin: 0 }}>{plan.name}</h3>
+                  <p style={{ margin: "6px 0 0", color: "#64748b" }}>{plan.tagline}</p>
+                  <div className="price">
+                    {billing === "monthly" ? plan.priceMonthly : plan.priceAnnual || plan.priceMonthly}
+                    {billing === "annual" && plan.priceAnnualNote && (
+                      <span className="annual-note">{plan.priceAnnualNote}</span>
+                    )}
+                  </div>
+                  <Link href={plan.ctaHref} className="sl-link-btn gold">Get Started</Link>
                 </div>
-                {plan.noteBelowPrice && <p className="note">{plan.noteBelowPrice}</p>}
-                <Link href={plan.ctaHref} className="sl-link-btn gold">Get Started</Link>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </section>
 
+      {/* FEATURE TABLE */}
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px 28px" }}>
+        <div
+          style={{
+            overflowX: "auto",
+            border: "1px solid #e5e7eb",
+            borderRadius: 14,
+          }}
+        >
+          {SECTIONS.map((sec, si) => (
+            <section key={sec.title}>
+              {/* Section header */}
+              <div
+                style={{
+                  background: "#f8fafc",
+                  padding: "10px 12px",
+                  borderTop: si === 0 ? "none" : "1px solid #e5e7eb",
+                  borderBottom: "1px solid #e5e7eb",
+                  fontWeight: 800,
+                }}
+              >
+                {sec.title}
+              </div>
+
+              {/* Rows */}
+              {sec.rows.map((row, ri) => (
+                <div
+                  key={row.key}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+                    alignItems: "center",
+                    gap: 10,
+                    padding: "12px 8px",
+                    borderBottom: "1px solid #f1f5f9",
+                    background: ri % 2 === 1 ? "#fff" : "#ffffff",
+                  }}
+                >
+                  {/* Feature name (sticky on horizontal scroll) */}
+                  <div
+                    style={{
+                      position: "sticky",
+                      left: 0,
+                      zIndex: 2,
+                      background: "#fff",
+                      paddingRight: 8,
+                      fontWeight: 700,
+                    }}
+                    title={row.info || row.label}
+                  >
+                    {row.label}
+                  </div>
+
+                  {/* Plan cells */}
+                  {planOrder.map((key) => (
+                    <div key={key} style={{ display: "flex", justifyContent: "center" }}>
+                      {cellContent(row.availability[key])}
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </section>
+          ))}
+        </div>
+      </section>
+
+      {/* Local styles */}
       <style>{`
+        .sl-link-btn {
+          display: inline-block;
+          padding: 10px 14px;
+          border-radius: 10px;
+          background: rgba(255,255,255,0.96);
+          color: #0f172a;
+          text-decoration: none;
+          border: 1px solid #e5e7eb;
+          font-weight: 800;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease, border-color .2s ease;
+        }
+        .sl-link-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 16px rgba(0,0,0,0.18);
+          background: #f3f4f6;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .sl-link-btn.gold {
+          background: #caa042;
+          color: #0f172a;
+          border-color: #caa042;
+        }
+        .sl-link-btn.gold:hover {
+          background: #d7b25e;
+          border-color: #d7b25e;
+        }
+
         .plan-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 20px;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 12px;
         }
         .plan-card {
           border: 1px solid #e5e7eb;
           border-radius: 12px;
-          padding: 24px;
+          padding: 16px;
           text-align: center;
           background: #fff;
           transition: transform .2s ease, box-shadow .2s ease;
+          box-shadow: 0 4px 12px rgba(15,23,42,0.06);
         }
         .plan-card:hover {
           transform: translateY(-6px);
-          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+          box-shadow: 0 10px 24px rgba(15,23,42,0.12);
         }
         .plan-card.highlight {
           border-color: #caa042;
           box-shadow: 0 0 0 2px #caa042;
+          background: linear-gradient(0deg, #fff7e6, #fff);
         }
         .most-popular {
           background: #caa042;
@@ -226,14 +410,15 @@ export default function PricingPage() {
           font-size: 0.9rem;
         }
         .price {
-          font-size: 1.25rem;
+          font-size: 1.1rem;
           font-weight: 800;
-          margin: 12px 0;
+          margin: 10px 0 12px;
         }
         .annual-note {
           display: block;
           font-size: 0.8rem;
           color: #6b7280;
+          margin-top: 2px;
         }
       `}</style>
     </main>
