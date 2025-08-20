@@ -68,15 +68,16 @@ export default function OnboardingPlanPage() {
 
   const planDef = useMemo(() => PLANS[plan] ?? null, [plan]);
 
-  // Simple stepper state
-  // 0 = Plan summary, 1 = Payment (if needed), 2 = Profile setup
+  // Steps: 0 = Plan summary, 1 = Payment (if needed), 2 = Profile setup
   const [step, setStep] = useState<number>(0);
+  const next = () => setStep((s) => s + 1);
+  const back = () => setStep((s) => Math.max(0, s - 1));
 
   if (!planDef) {
     return (
       <main style={{ maxWidth: 900, margin: "40px auto", padding: "0 16px" }}>
         <h1 style={{ fontWeight: 900, marginBottom: 6 }}>Plan not found</h1>
-        <p>We couldn’t recognize that plan. Choose a plan on the pricing page.</p>
+        <p>Please choose a plan on the pricing page.</p>
         <p>
           <Link href="/pricing" className="sl-link-btn gold">
             Back to Pricing
@@ -87,15 +88,12 @@ export default function OnboardingPlanPage() {
     );
   }
 
-  const next = () => setStep((s) => s + 1);
-  const back = () => setStep((s) => Math.max(0, s - 1));
-
-  // If plan doesn’t require payment, skip payment step automatically
+  // Hide payment step if the plan is free
   const visibleStep = !planDef.requiresPayment && step === 1 ? 2 : step;
 
   return (
     <main style={{ maxWidth: 1000, margin: "28px auto", padding: "0 16px", color: "#0f172a" }}>
-      {/* Header / Breadcrumb-ish */}
+      {/* Back + Title */}
       <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
         <Link href="/pricing" className="sl-link-btn" style={{ padding: "6px 10px" }}>
           ← Back
@@ -108,9 +106,9 @@ export default function OnboardingPlanPage() {
       {/* Stepper */}
       <div style={{ display: "flex", gap: 10, marginTop: 16, marginBottom: 18, flexWrap: "wrap" }}>
         {["Plan", "Payment", "Profile"].map((label, i) => {
-          const isActive = visibleStep === i;
-          const isHidden = i === 1 && !planDef.requiresPayment; // hide payment bullet if N/A
+          const isHidden = i === 1 && !planDef.requiresPayment;
           if (isHidden) return null;
+          const isActive = visibleStep === i;
           return (
             <div
               key={label}
@@ -137,7 +135,7 @@ export default function OnboardingPlanPage() {
         })}
       </div>
 
-      {/* Step Panels */}
+      {/* Step 0: Plan Summary */}
       {visibleStep === 0 && (
         <section style={card}>
           <h2 style={{ marginTop: 0, marginBottom: 8 }}>Confirm Your Plan</h2>
@@ -145,9 +143,7 @@ export default function OnboardingPlanPage() {
             <div style={{ fontWeight: 800, fontSize: 18 }}>{planDef.name}</div>
             <div style={{ color: "#64748b" }}>{planDef.tagline}</div>
             <div style={{ fontWeight: 800 }}>{planDef.priceMonthly}</div>
-            {planDef.priceAnnual && (
-              <div style={{ color: "#64748b" }}>{planDef.priceAnnual}</div>
-            )}
+            {planDef.priceAnnual && <div style={{ color: "#64748b" }}>{planDef.priceAnnual}</div>}
             {planDef.ctaNote && <p style={{ marginTop: 6 }}>{planDef.ctaNote}</p>}
           </div>
 
@@ -162,15 +158,16 @@ export default function OnboardingPlanPage() {
         </section>
       )}
 
+      {/* Step 1: Payment (only for paid plans) */}
       {visibleStep === 1 && planDef.requiresPayment && (
         <section style={card}>
           <h2 style={{ marginTop: 0, marginBottom: 8 }}>Payment</h2>
           <p style={{ marginTop: 0, color: "#334155" }}>
-            You’re selecting <strong>{planDef.name}</strong>. Choose monthly or annual on the previous screen
-            (pricing page); we’ll carry your choice into checkout once integrated.
+            You’re selecting <strong>{planDef.name}</strong>. We’ll connect this to your chosen billing term
+            when checkout is integrated.
           </p>
 
-          {/* Placeholder payment UI */}
+          {/* Placeholder payment inputs (replace with Stripe elements later) */}
           <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
             <label style={labelStyle}>
               <span>Cardholder Name</span>
@@ -196,7 +193,6 @@ export default function OnboardingPlanPage() {
             <button className="sl-link-btn" onClick={back}>
               Back
             </button>
-            {/* Replace with Stripe Checkout later */}
             <button className="sl-link-btn gold" onClick={next}>
               Proceed to Profile Setup
             </button>
@@ -204,12 +200,12 @@ export default function OnboardingPlanPage() {
         </section>
       )}
 
+      {/* Step 2: Profile Setup */}
       {visibleStep === 2 && (
         <section style={card}>
           <h2 style={{ marginTop: 0, marginBottom: 8 }}>Profile Setup</h2>
 
-          {/* Render different forms based on plan */}
-          {isPlayerPlan(planDef.key) && <PlayerForm plan={planDef.key} />}
+          {isPlayerPlan(planDef.key) && <PlayerForm />}
           {planDef.key === "team" && <TeamAdminForm />}
           {planDef.key === "coach" && <CoachForm />}
 
@@ -226,13 +222,7 @@ export default function OnboardingPlanPage() {
             <button
               className="sl-link-btn gold"
               onClick={() => {
-                // After submission, route wherever your app lands a newly onboarded user:
-                // e.g., dashboard or profile page.
-                if (planDef.key === "coach") {
-                  // coach dashboard
-                  alert("Coach profile created! Redirecting to coach dashboard…");
-                  return;
-                }
+                // Hook up to real saves/redirects later
                 alert("Profile created! Redirecting to your dashboard…");
               }}
             >
@@ -249,12 +239,10 @@ export default function OnboardingPlanPage() {
 
 /* ——— Sub-Forms ——— */
 
-function PlayerForm({ plan }: { plan: "redshirt" | "walkon" | "allamerican" }) {
+function PlayerForm() {
   return (
     <div style={{ display: "grid", gap: 10 }}>
-      <p style={{ marginTop: 0, color: "#334155" }}>
-        Create your player profile. You can add more details later.
-      </p>
+      <p style={{ marginTop: 0, color: "#334155" }}>Create your player profile. You can add more later.</p>
 
       <div style={grid2}>
         <label style={labelStyle}>
@@ -293,13 +281,6 @@ function PlayerForm({ plan }: { plan: "redshirt" | "walkon" | "allamerican" }) {
         <span>Player Bio</span>
         <textarea style={textAreaStyle} placeholder="Short intro, strengths, goals…" />
       </label>
-
-      {plan !== "redshirt" && (
-        <label style={labelStyle}>
-          <span>Parent/Guardian Email</span>
-          <input style={inputStyle} type="email" placeholder="parent@example.com" />
-        </label>
-      )}
     </div>
   );
 }
@@ -307,9 +288,7 @@ function PlayerForm({ plan }: { plan: "redshirt" | "walkon" | "allamerican" }) {
 function TeamAdminForm() {
   return (
     <div style={{ display: "grid", gap: 10 }}>
-      <p style={{ marginTop: 0, color: "#334155" }}>
-        Set up your team admin account and team details.
-      </p>
+      <p style={{ marginTop: 0, color: "#334155" }}>Set up your team admin account and team details.</p>
 
       <div style={grid2}>
         <label style={labelStyle}>
@@ -438,12 +417,9 @@ function LocalStyles() {
         background: #d7b25e;
         border-color: #d7b25e;
       }
-      button.sl-link-btn {
-        font: inherit;
-      }
-      input, textarea {
-        font: inherit;
-      }
+      button.sl-link-btn { font: inherit; }
+      input, textarea { font: inherit; }
+
       @media (max-width: 640px) {
         /* stack two-column fields on mobile */
         div[style*="grid-template-columns: 1fr 1fr"] {
