@@ -3,22 +3,7 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
-/**
- * Pricing Page
- * - Hero image: /youngbaseballplayer.jpg  (already in /public)
- * - Plans: Redshirt, Walk-On, All-American, Teams, College Coaches & Recruiters
- * - Toggle Monthly/Annual (walk-on/all-american show savings)
- * - Sticky plan headers while scrolling feature matrix
- * - Styled checks (gold) + light dividers (no spreadsheet grid look)
- * - Buttons use your hover/lift/underline feel
- *
- * Notes:
- * - Replace the GET STARTED hrefs with your real onboarding routes.
- * - Coach column renders an access blurb instead of a feature matrix.
- */
-
 type Billing = "monthly" | "annual";
-
 type PlanKey = "redshirt" | "walkon" | "allamerican" | "team" | "coach";
 
 type Plan = {
@@ -26,46 +11,35 @@ type Plan = {
   name: string;
   tagline: string;
   ctaHref: string;
-  // pricing by billing period; string so we can show savings notes inline
   priceMonthly: string;
-  priceAnnual?: string; // if N/A, omit
+  priceAnnual?: string;
   priceAnnualNote?: string;
-  highlight?: boolean; // visually emphasize "Most Popular"
-  noteBelowPrice?: string; // for coach access text
+  highlight?: boolean;
+  noteBelowPrice?: string;
 };
 
-type FeatureCell =
-  | boolean
-  | string; // strings for rows like "Video Uploads" (NONE/UP TO 3/UNLIMITED)
-
+type FeatureCell = boolean | string;
 type FeatureRow = {
   label: string;
-  key: string; // unique key
-  info?: string; // optional short tooltip/assistive copy
+  key: string;
+  info?: string;
   availability: Partial<Record<PlanKey, FeatureCell>>;
 };
+type FeatureSection = { title: string; rows: FeatureRow[] };
 
-type FeatureSection = {
-  title: string;
-  rows: FeatureRow[];
-};
-
-// -------------------------------------------------------------
-// Plans & Pricing Content
-// -------------------------------------------------------------
 const PLANS: Plan[] = [
   {
     key: "redshirt",
     name: "Redshirt",
     tagline: "Just starting the process",
-    ctaHref: "/get-started?plan=redshirt", // TODO: replace with your real route
+    ctaHref: "/get-started?plan=redshirt",
     priceMonthly: "FREE with ads",
   },
   {
     key: "walkon",
     name: "Walk-On",
     tagline: "Ready to compete",
-    ctaHref: "/get-started?plan=walk-on", // TODO
+    ctaHref: "/get-started?plan=walk-on",
     priceMonthly: "$24.95 / month",
     priceAnnual: "$265 / year",
     priceAnnualNote: "12% off",
@@ -74,7 +48,7 @@ const PLANS: Plan[] = [
     key: "allamerican",
     name: "All-American",
     tagline: "Time to get seen",
-    ctaHref: "/get-started?plan=all-american", // TODO
+    ctaHref: "/get-started?plan=all-american",
     priceMonthly: "$49.95 / month",
     priceAnnual: "$510 / year",
     priceAnnualNote: "15% off",
@@ -84,29 +58,22 @@ const PLANS: Plan[] = [
     key: "team",
     name: "Teams",
     tagline: "Every player, every step",
-    ctaHref: "/get-started?plan=team", // TODO
+    ctaHref: "/get-started?plan=team",
     priceMonthly: "$39.95 / player / month",
   },
+  // Coach plan intentionally NOT rendered in the grid below
   {
     key: "coach",
     name: "College Coaches & Recruiters",
     tagline: "Build champions together",
-    ctaHref: "/get-started?plan=coach", // TODO
+    ctaHref: "/get-started?plan=coach",
     priceMonthly: "FREE",
-    noteBelowPrice:
-      "Access to player profiles, stats & metrics, contact info, videos and social media, and communication tools based on Player Plan. Coaches can filter and save players to watch lists, share and export lists across approved Coach Connections, and see full analytics dashboards on each player.",
   },
 ];
 
-// -------------------------------------------------------------
-// Feature Matrix
-// (Based on your latest spreadsheet content)
-// -------------------------------------------------------------
 const SECTIONS: FeatureSection[] = [
-  {
-    title: "Build Your Player Profile",
-    rows: [],
-  },
+  { title: "Build Your Player Profile", rows: [] },
+
   {
     title: "General Info",
     rows: [
@@ -121,6 +88,7 @@ const SECTIONS: FeatureSection[] = [
       { label: "Commitment Status", key: "commitstatus", availability: { redshirt: true, walkon: true, allamerican: true, team: true } },
     ],
   },
+
   {
     title: "Academics",
     rows: [
@@ -131,6 +99,7 @@ const SECTIONS: FeatureSection[] = [
       { label: "Upload Documents (report cards, transcripts, etc.)", key: "docs", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
     ],
   },
+
   {
     title: "Athletics",
     rows: [
@@ -153,6 +122,7 @@ const SECTIONS: FeatureSection[] = [
       { label: 'White Label Dashboards with Team Logo "Powered by ScoutLine"', key: "whitelabel", availability: { redshirt: false, walkon: false, allamerican: false, team: true } },
     ],
   },
+
   {
     title: "Videos • Social Media • Communication",
     rows: [
@@ -165,9 +135,6 @@ const SECTIONS: FeatureSection[] = [
   },
 ];
 
-// -------------------------------------------------------------
-// Small helpers
-// -------------------------------------------------------------
 const CheckIcon = () => (
   <svg aria-hidden focusable="false" width="18" height="18" viewBox="0 0 24 24">
     <path
@@ -183,13 +150,9 @@ function cellContent(val: FeatureCell | undefined) {
   return <span style={{ fontWeight: 700 }}>{val}</span>;
 }
 
-// -------------------------------------------------------------
-// Component
-// -------------------------------------------------------------
 export default function PricingPage() {
   const [billing, setBilling] = useState<Billing>("monthly");
 
-  // sticky shadow when scrolled
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
   useEffect(() => {
@@ -202,96 +165,14 @@ export default function PricingPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const planOrder: PlanKey[] = ["redshirt", "walkon", "allamerican", "team", "coach"];
+  // Only render these 4 plans in the grid
+  const planOrder: PlanKey[] = ["redshirt", "walkon", "allamerican", "team"];
   const planMap = useMemo(() => Object.fromEntries(PLANS.map((p) => [p.key, p])), []);
 
   return (
     <main style={{ color: "#0f172a" }}>
-      {/* HERO */}
-      <section
-        aria-label="Pricing hero"
-        style={{
-          position: "relative",
-          minHeight: 420,
-          width: "100%",
-          display: "grid",
-          placeItems: "center",
-          overflow: "hidden",
-          borderBottom: "1px solid #e5e7eb",
-          backgroundImage: `url('/youngbaseballplayer.jpg')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            background:
-              "linear-gradient(180deg, rgba(15,23,42,0.52) 0%, rgba(15,23,42,0.28) 40%, rgba(15,23,42,0.52) 100%)",
-          }}
-        />
-        {/* Top copy */}
-        <div
-          style={{
-            position: "absolute",
-            top: 24,
-            left: "50%",
-            transform: "translateX(-50%)",
-            textAlign: "center",
-            padding: "0 16px",
-            maxWidth: 1100,
-            width: "100%",
-          }}
-        >
-          <h1
-            style={{
-              margin: 0,
-              fontWeight: 700,
-              lineHeight: 1.1,
-              fontSize: "clamp(26px, 4.4vw, 46px)",
-              color: "#e5e7eb",
-            }}
-          >
-            Choose Your Plan
-          </h1>
-          <p
-            style={{
-              margin: "10px auto 0",
-              maxWidth: 760,
-              lineHeight: 1.6,
-              fontSize: "clamp(14px, 2.2vw, 18px)",
-              color: "rgba(255,255,255,0.95)",
-            }}
-          >
-            Pick the path that fits your journey — from just getting started to building champions together.
-          </p>
-        </div>
-
-        {/* Bottom buttons (optional cross-links) */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 24,
-            left: "50%",
-            transform: "translateX(-50%)",
-            display: "flex",
-            gap: 12,
-            flexWrap: "wrap",
-            justifyContent: "center",
-            padding: "0 16px",
-            width: "100%",
-            maxWidth: 1100,
-          }}
-        >
-          <Link href="/search" className="sl-link-btn">College Search</Link>
-          <Link href="/faq" className="sl-link-btn">View FAQs</Link>
-        </div>
-      </section>
-
-      {/* BILLING TOGGLE + TABLE */}
+      {/* BILLING TOGGLE + quick link for coaches */}
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
-        {/* Toggle */}
         <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
           <div
             role="group"
@@ -336,13 +217,13 @@ export default function PricingPage() {
             </button>
           </div>
 
-          {/* NEW: quick anchor to Coaches & Recruiters */}
-          <Link href="#coaches" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
+          {/* Link for College Coaches & Recruiters setup */}
+          <Link href="/get-started?plan=coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
             College Coaches & Recruiters →
           </Link>
         </div>
 
-        {/* Sticky plan headers */}
+        {/* Sticky plan headers (FOUR plans) */}
         <div
           ref={headerRef}
           style={{
@@ -357,7 +238,7 @@ export default function PricingPage() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px, 1fr) repeat(5, minmax(180px, 1fr))",
+              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
               gap: 10,
               alignItems: "stretch",
               padding: "12px 8px",
@@ -368,11 +249,9 @@ export default function PricingPage() {
             {planOrder.map((key) => {
               const p = planMap[key];
               const isAnnual = billing === "annual";
-              const anchorProps = p.key === "coach" ? { id: "coaches" } : {};
               return (
                 <div
                   key={p.key}
-                  {...anchorProps}
                   className="plan-card"
                   style={{
                     border: p.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
@@ -443,7 +322,7 @@ export default function PricingPage() {
                   key={row.key}
                   style={{
                     display: "grid",
-                    gridTemplateColumns: "minmax(220px, 1fr) repeat(5, minmax(180px, 1fr))",
+                    gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
                     alignItems: "center",
                     gap: 10,
                     padding: "12px 8px",
