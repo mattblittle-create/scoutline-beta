@@ -68,7 +68,7 @@ export default function GetStartedClient() {
           Teams
         </Link>
         <Link className="sl-link-btn" href="/onboarding/coach?plan=coach">
-          College Coaches & Recruiters
+          College Coaches and Recruiters
         </Link>
 
         <div style={{ marginTop: 10 }}>
