@@ -292,7 +292,7 @@ export default function PricingPage() {
       {/* BILLING TOGGLE + TABLE */}
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
         {/* Toggle */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: 16 }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
           <div
             role="group"
             aria-label="Billing period"
@@ -335,6 +335,11 @@ export default function PricingPage() {
               Annual
             </button>
           </div>
+
+          {/* NEW: quick anchor to Coaches & Recruiters */}
+          <Link href="#coaches" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
+            College Coaches & Recruiters →
+          </Link>
         </div>
 
         {/* Sticky plan headers */}
@@ -363,9 +368,11 @@ export default function PricingPage() {
             {planOrder.map((key) => {
               const p = planMap[key];
               const isAnnual = billing === "annual";
+              const anchorProps = p.key === "coach" ? { id: "coaches" } : {};
               return (
                 <div
                   key={p.key}
+                  {...anchorProps}
                   className="plan-card"
                   style={{
                     border: p.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
