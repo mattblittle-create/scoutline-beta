@@ -71,7 +71,6 @@ const PLANS: Plan[] = [
 // Feature Matrix (4 plans only)
 // -------------------------------------------------------------
 const SECTIONS: FeatureSection[] = [
-  // (Removed the "Build Your Player Profile" section per your request)
   {
     title: "General Info",
     rows: [
@@ -181,11 +180,14 @@ export default function PricingPage() {
     const onScroll = () => {
       if (!headerRef.current) return;
       const top = headerRef.current.getBoundingClientRect().top;
-      setStuck(top <= 64); // matches sticky offset
+      setStuck(top <= 0);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // accordion state (one open at a time)
+  const [openIndex, setOpenIndex] = useState<number>(0);
 
   const planOrder: PlanKey[] = ["redshirt", "walkon", "allamerican", "team"];
   const planMap = useMemo(() => Object.fromEntries(PLANS.map((p) => [p.key, p])), []);
@@ -245,13 +247,13 @@ export default function PricingPage() {
           </Link>
         </div>
 
-        {/* Sticky plan cards container aligned over table columns */}
+        {/* Sticky plan cards container aligned to table columns */}
         <div
           ref={headerRef}
           style={{
             position: "sticky",
-            top: 64,                // keep visible below your site header
-            zIndex: 40,
+            top: 0,
+            zIndex: 30,
             background: "#fff",
             borderBottom: "1px solid #e5e7eb",
             boxShadow: stuck ? "0 4px 16px rgba(15,23,42,0.08)" : "none",
@@ -259,18 +261,15 @@ export default function PricingPage() {
           }}
         >
           <div
-            className="plan-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))", // EXACTLY matches table
+              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
               gap: 10,
               alignItems: "stretch",
             }}
           >
-            {/* left spacer to align with feature name column */}
+            {/* Left spacer aligns with feature-name column */}
             <div />
-
-            {/* one plan card per plan column, in the same order used by the table */}
             {planOrder.map((key) => {
               const plan = planMap[key];
               return (
@@ -292,7 +291,7 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FEATURE TABLE */}
+      {/* FEATURE TABLE (Accordion Sections) */}
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px 28px" }}>
         <div
           style={{
@@ -301,60 +300,88 @@ export default function PricingPage() {
             borderRadius: 14,
           }}
         >
-          {SECTIONS.map((sec, si) => (
-            <section key={sec.title}>
-              {/* Section header */}
-              <div
-                style={{
-                  background: "#f8fafc",
-                  padding: "10px 12px",
-                  borderTop: si === 0 ? "none" : "1px solid #e5e7eb",
-                  borderBottom: "1px solid #e5e7eb",
-                  fontWeight: 800,
-                }}
-              >
-                {sec.title}
-              </div>
-
-              {/* Rows */}
-              {sec.rows.map((row, ri) => (
-                <div
-                  key={row.key}
+          {SECTIONS.map((sec, si) => {
+            const isOpen = openIndex === si;
+            const regionId = sec.title.toLowerCase().replace(/\s+•\s+|\s+/g, "-");
+            return (
+              <article key={sec.title} id={regionId} style={{ borderTop: si === 0 ? "none" : "1px solid #e5e7eb" }}>
+                {/* Section header as accordion trigger */}
+                <button
+                  type="button"
+                  aria-expanded={isOpen}
+                  aria-controls={`${regionId}-panel`}
+                  onClick={() => setOpenIndex(isOpen ? -1 : si)}
                   style={{
-                    display: "grid",
-                    gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+                    width: "100%",
+                    textAlign: "left",
+                    background: "#f8fafc",
+                    padding: "12px",
+                    border: "none",
+                    display: "flex",
                     alignItems: "center",
-                    gap: 10,
-                    padding: "12px 8px",
-                    borderBottom: "1px solid #f1f5f9",
-                    background: ri % 2 === 1 ? "#fff" : "#ffffff",
+                    justifyContent: "space-between",
+                    cursor: "pointer",
+                    fontWeight: 800,
                   }}
                 >
-                  {/* Feature name (sticky on horizontal scroll) */}
-                  <div
+                  <span>{sec.title}</span>
+                  <span
+                    aria-hidden
                     style={{
-                      position: "sticky",
-                      left: 0,
-                      zIndex: 2,
-                      background: "#fff",
-                      paddingRight: 8,
-                      fontWeight: 700,
+                      fontSize: 14,
+                      color: "#64748b",
+                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      transition: "transform .2s ease",
                     }}
-                    title={row.info || row.label}
                   >
-                    {row.label}
-                  </div>
+                    ▼
+                  </span>
+                </button>
 
-                  {/* Plan cells */}
-                  {planOrder.map((key) => (
-                    <div key={key} style={{ display: "flex", justifyContent: "center" }}>
-                      {cellContent(row.availability[key])}
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </section>
-          ))}
+                {/* Rows (collapsible) */}
+                {isOpen && (
+                  <div id={`${regionId}-panel`} role="region" aria-labelledby={regionId}>
+                    {sec.rows.map((row, ri) => (
+                      <div
+                        key={row.key}
+                        style={{
+                          display: "grid",
+                          gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+                          alignItems: "center",
+                          gap: 10,
+                          padding: "12px 8px",
+                          borderTop: ri === 0 ? "1px solid #e5e7eb" : "1px solid #f1f5f9",
+                          background: "#ffffff",
+                        }}
+                      >
+                        {/* Feature name (sticky on horizontal scroll) */}
+                        <div
+                          style={{
+                            position: "sticky",
+                            left: 0,
+                            zIndex: 2,
+                            background: "#fff",
+                            paddingRight: 8,
+                            fontWeight: 700,
+                          }}
+                          title={row.info || row.label}
+                        >
+                          {row.label}
+                        </div>
+
+                        {/* Plan cells */}
+                        {planOrder.map((key) => (
+                          <div key={key} style={{ display: "flex", justifyContent: "center" }}>
+                            {cellContent(row.availability[key])}
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </article>
+            );
+          })}
         </div>
       </section>
 
