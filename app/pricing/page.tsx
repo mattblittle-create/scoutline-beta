@@ -68,7 +68,7 @@ const PLANS: Plan[] = [
 ];
 
 // -------------------------------------------------------------
-// Feature Matrix (4 plans only)
+// Feature Matrix (4 plans only) — full rows
 // -------------------------------------------------------------
 const SECTIONS: FeatureSection[] = [
   {
@@ -134,7 +134,7 @@ const SECTIONS: FeatureSection[] = [
     ],
   },
   {
-    title: "Videos • Social Media • Communication",
+    title: "Videos Social Media Communication",
     rows: [
       { label: "Video Uploads", key: "videos", availability: { redshirt: "None", walkon: "Up to 3", allamerican: "Unlimited", team: "Unlimited" } },
       { label: "Social Media Connect", key: "social", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
@@ -150,7 +150,7 @@ const SECTIONS: FeatureSection[] = [
 ];
 
 // -------------------------------------------------------------
-// Small helpers
+// Helpers
 // -------------------------------------------------------------
 const CheckIcon = () => (
   <svg aria-hidden focusable="false" width="18" height="18" viewBox="0 0 24 24">
@@ -172,6 +172,14 @@ function cellContent(val: FeatureCell | undefined) {
 // -------------------------------------------------------------
 export default function PricingPage() {
   const [billing, setBilling] = useState<Billing>("monthly");
+  const [open, setOpen] = useState<Record<string, boolean>>({
+    "General Info": true,
+    "Academics": true,
+    "Athletics": true,
+    "Videos Social Media Communication": true,
+  });
+
+  const toggle = (title: string) => setOpen((o) => ({ ...o, [title]: !o[title] }));
 
   // sticky shadow when scrolled
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -186,18 +194,15 @@ export default function PricingPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // accordion state (one open at a time)
-  const [openIndex, setOpenIndex] = useState<number>(0);
-
+  // plans mapped
   const planOrder: PlanKey[] = ["redshirt", "walkon", "allamerican", "team"];
   const planMap = useMemo(() => Object.fromEntries(PLANS.map((p) => [p.key, p])), []);
 
   return (
     <main style={{ color: "#0f172a" }}>
-      {/* TOGGLE + STICKY PLAN CARDS */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
-        {/* Toggle row */}
-        <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", marginBottom: 16, flexWrap: "wrap" }}>
+      {/* Toggle + Coaches link */}
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px 12px" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
           <div
             role="group"
             aria-label="Billing period"
@@ -241,13 +246,14 @@ export default function PricingPage() {
             </button>
           </div>
 
-          {/* Quick link for coaches/recruiters (kept up top as requested) */}
           <Link href="/get-started?plan=coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
             College Coaches & Recruiters →
           </Link>
         </div>
+      </section>
 
-        {/* Sticky plan cards container aligned to table columns */}
+      {/* Sticky plan cards aligned with table columns */}
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px 18px" }}>
         <div
           ref={headerRef}
           style={{
@@ -257,33 +263,69 @@ export default function PricingPage() {
             background: "#fff",
             borderBottom: "1px solid #e5e7eb",
             boxShadow: stuck ? "0 4px 16px rgba(15,23,42,0.08)" : "none",
-            padding: "10px 6px",
           }}
         >
           <div
+            className="plan-header-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+              gridTemplateColumns: "minmax(240px, 1fr) repeat(4, minmax(180px, 1fr))",
               gap: 10,
               alignItems: "stretch",
+              padding: "12px 8px",
             }}
           >
-            {/* Left spacer aligns with feature-name column */}
+            {/* spacer to align over feature labels */}
             <div />
             {planOrder.map((key) => {
-              const plan = planMap[key];
+              const p = planMap[key];
+              const isAnnual = billing === "annual";
               return (
-                <div key={plan.key} className={`plan-card ${plan.highlight ? "highlight" : ""}`}>
-                  {plan.mostPopular && <div className="most-popular">Most Popular</div>}
-                  <h3 style={{ margin: 0 }}>{plan.name}</h3>
-                  <p style={{ margin: "6px 0 0", color: "#64748b" }}>{plan.tagline}</p>
-                  <div className="price">
-                    {billing === "monthly" ? plan.priceMonthly : plan.priceAnnual || plan.priceMonthly}
-                    {billing === "annual" && plan.priceAnnualNote && (
-                      <span className="annual-note">{plan.priceAnnualNote}</span>
+                <div
+                  key={p.key}
+                  className={`plan-card ${p.highlight ? "highlight" : ""}`}
+                  style={{
+                    border: p.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
+                    borderRadius: 14,
+                    padding: 12,
+                    background: p.highlight ? "linear-gradient(0deg, #fff7e6, #fff)" : "#fff",
+                    boxShadow: p.highlight ? "0 10px 24px rgba(202,160,66,0.18)" : "0 6px 16px rgba(15,23,42,0.06)",
+                    display: "grid",
+                    alignContent: "space-between",
+                    textAlign: "center",
+                  }}
+                >
+                  {p.mostPopular && (
+                    <div
+                      style={{
+                        background: "#caa042",
+                        color: "#0f172a",
+                        fontWeight: 800,
+                        padding: "4px 10px",
+                        borderRadius: 6,
+                        marginBottom: 8,
+                        display: "inline-block",
+                        fontSize: 12,
+                      }}
+                    >
+                      Most Popular
+                    </div>
+                  )}
+                  <div>
+                    <div style={{ fontWeight: 800, fontSize: 16 }}>{p.name}</div>
+                    <div style={{ color: "#64748b", fontStyle: "italic", fontSize: 12, marginTop: 2 }}>{p.tagline}</div>
+                    <div style={{ marginTop: 10, fontWeight: 800, fontSize: 18 }}>
+                      {isAnnual && p.priceAnnual ? p.priceAnnual : p.priceMonthly}
+                    </div>
+                    {isAnnual && p.priceAnnualNote && (
+                      <div style={{ color: "#16a34a", fontSize: 12, fontWeight: 700, marginTop: 2 }}>{p.priceAnnualNote}</div>
                     )}
                   </div>
-                  <Link href={plan.ctaHref} className="sl-link-btn gold">Get Started</Link>
+                  <div style={{ marginTop: 10, display: "flex", justifyContent: "center" }}>
+                    <Link href={p.ctaHref} className="sl-link-btn gold">
+                      Get Started
+                    </Link>
+                  </div>
                 </div>
               );
             })}
@@ -291,97 +333,95 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* FEATURE TABLE (Accordion Sections) */}
+      {/* Feature sections as dropdown accordions (aligned to same grid) */}
       <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px 28px" }}>
         <div
           style={{
-            overflowX: "auto",
             border: "1px solid #e5e7eb",
             borderRadius: 14,
+            overflow: "hidden",
           }}
         >
-          {SECTIONS.map((sec, si) => {
-            const isOpen = openIndex === si;
-            const regionId = sec.title.toLowerCase().replace(/\s+•\s+|\s+/g, "-");
-            return (
-              <article key={sec.title} id={regionId} style={{ borderTop: si === 0 ? "none" : "1px solid #e5e7eb" }}>
-                {/* Section header as accordion trigger */}
-                <button
-                  type="button"
-                  aria-expanded={isOpen}
-                  aria-controls={`${regionId}-panel`}
-                  onClick={() => setOpenIndex(isOpen ? -1 : si)}
+          {SECTIONS.map((sec, si) => (
+            <section key={sec.title}>
+              {/* Section header (arrow to the LEFT + hover lift/underline) */}
+              <button
+                type="button"
+                onClick={() => toggle(sec.title)}
+                aria-expanded={open[sec.title]}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  background: "#f8fafc",
+                  padding: "12px",
+                  border: "none",
+                  borderTop: si === 0 ? "none" : "1px solid #e5e7eb",
+                  borderBottom: "1px solid #e5e7eb",
+                  cursor: "pointer",
+                  fontWeight: 900,
+                  fontSize: 16,
+                  textAlign: "left",
+                }}
+                className="sec-toggle"
+              >
+                <span
+                  aria-hidden
                   style={{
-                    width: "100%",
-                    textAlign: "left",
-                    background: "#f8fafc",
-                    padding: "12px",
-                    border: "none",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    cursor: "pointer",
-                    fontWeight: 800,
+                    fontSize: 16,
+                    transform: open[sec.title] ? "rotate(90deg)" : "rotate(0deg)",
+                    transition: "transform .2s ease",
                   }}
                 >
-                  <span>{sec.title}</span>
-                  <span
-                    aria-hidden
-                    style={{
-                      fontSize: 14,
-                      color: "#64748b",
-                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-                      transition: "transform .2s ease",
-                    }}
-                  >
-                    ▼
-                  </span>
-                </button>
+                  ▶
+                </span>
+                <span>{sec.title}</span>
+              </button>
 
-                {/* Rows (collapsible) */}
-                {isOpen && (
-                  <div id={`${regionId}-panel`} role="region" aria-labelledby={regionId}>
-                    {sec.rows.map((row, ri) => (
+              {/* Rows */}
+              {open[sec.title] && (
+                <div>
+                  {sec.rows.map((row, ri) => (
+                    <div
+                      key={row.key}
+                      style={{
+                        display: "grid",
+                        gridTemplateColumns: "minmax(240px, 1fr) repeat(4, minmax(180px, 1fr))",
+                        alignItems: "center",
+                        gap: 10,
+                        padding: "12px 8px",
+                        borderBottom: "1px solid #f1f5f9",
+                        background: ri % 2 === 1 ? "#fff" : "#ffffff",
+                      }}
+                    >
+                      {/* left sticky label (sticks on horizontal scroll) */}
                       <div
-                        key={row.key}
                         style={{
-                          display: "grid",
-                          gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
-                          alignItems: "center",
-                          gap: 10,
-                          padding: "12px 8px",
-                          borderTop: ri === 0 ? "1px solid #e5e7eb" : "1px solid #f1f5f9",
-                          background: "#ffffff",
+                          position: "sticky",
+                          left: 0,
+                          zIndex: 1,
+                          background: "#fff",
+                          paddingRight: 8,
+                          fontWeight: 700,
                         }}
+                        title={row.info || row.label}
                       >
-                        {/* Feature name (sticky on horizontal scroll) */}
-                        <div
-                          style={{
-                            position: "sticky",
-                            left: 0,
-                            zIndex: 2,
-                            background: "#fff",
-                            paddingRight: 8,
-                            fontWeight: 700,
-                          }}
-                          title={row.info || row.label}
-                        >
-                          {row.label}
-                        </div>
-
-                        {/* Plan cells */}
-                        {planOrder.map((key) => (
-                          <div key={key} style={{ display: "flex", justifyContent: "center" }}>
-                            {cellContent(row.availability[key])}
-                          </div>
-                        ))}
+                        {row.label}
                       </div>
-                    ))}
-                  </div>
-                )}
-              </article>
-            );
-          })}
+
+                      {/* plan cells */}
+                      {planOrder.map((key) => (
+                        <div key={key} style={{ display: "flex", justifyContent: "center" }}>
+                          {cellContent(row.availability[key])}
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </section>
+          ))}
         </div>
       </section>
 
@@ -415,44 +455,23 @@ export default function PricingPage() {
           border-color: #d7b25e;
         }
 
+        /* hover lift + underline for section headers */
+        .sec-toggle:hover {
+          transform: translateY(-1px);
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .sec-toggle {
+          transition: transform .2s ease, text-decoration-color .2s ease;
+        }
+
+        /* plan cards hover */
         .plan-card {
-          border: 1px solid #e5e7eb;
-          border-radius: 12px;
-          padding: 16px;
-          text-align: center;
-          background: #fff;
           transition: transform .2s ease, box-shadow .2s ease;
-          box-shadow: 0 4px 12px rgba(15,23,42,0.06);
         }
         .plan-card:hover {
-          transform: translateY(-6px);
+          transform: translateY(-4px);
           box-shadow: 0 10px 24px rgba(15,23,42,0.12);
-        }
-        .plan-card.highlight {
-          border-color: #caa042;
-          box-shadow: 0 0 0 2px #caa042;
-          background: linear-gradient(0deg, #fff7e6, #fff);
-        }
-        .most-popular {
-          background: #caa042;
-          color: #0f172a;
-          font-weight: 700;
-          padding: 4px 10px;
-          border-radius: 6px;
-          margin-bottom: 8px;
-          display: inline-block;
-          font-size: 0.9rem;
-        }
-        .price {
-          font-size: 1.1rem;
-          font-weight: 800;
-          margin: 10px 0 12px;
-        }
-        .annual-note {
-          display: block;
-          font-size: 0.8rem;
-          color: #6b7280;
-          margin-top: 2px;
         }
       `}</style>
     </main>
