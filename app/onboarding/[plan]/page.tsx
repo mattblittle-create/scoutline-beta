@@ -49,12 +49,12 @@ const PLANS: Record<PlanKey, PlanDef> = {
   },
   coach: {
     key: "coach",
-    name: "College Coaches & Recruiters",
+    name: "College Coaches and Recruiters",
     tagline: "Build champions together",
     priceMonthly: "FREE",
     requiresPayment: false,
     ctaNote:
-      "Access player profiles, stats & metrics, contact info, videos/social links, filters & watch lists, and analytics dashboards.",
+      "With ScoutLine, you can discover player profiles, connect directly, watch highlights, follow social links, filter by stats, track performance with analytics dashboards and metric growth charts, build custom watchlists, and share prospects with your coaching staff.",
   },
 };
 
