@@ -1,37 +1,26 @@
-"use client";
+import { Suspense } from "react";
+import GetStartedClient from "./GetStartedClient";
 
-import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+export const metadata = {
+  title: "Get Started • ScoutLine",
+  description: "Choose your plan and begin your profile.",
+};
 
-function normalizePlan(raw?: string | null) {
-  if (!raw) return null;
-  const v = raw.toLowerCase().trim();
-  if (v === "walk-on" || v === "walkon") return "walkon";
-  if (v === "all-american" || v === "allamerican") return "allamerican";
-  if (v === "redshirt") return "redshirt";
-  if (v === "team" || v === "teams") return "team";
-  if (v === "coach" || v === "coaches" || v.includes("recruit")) return "coach";
-  return null;
-}
+// Ensure this page doesn't try to fully prerender while it waits for client params
+export const dynamic = "force-dynamic";
 
-export default function GetStartedRouter() {
-  const router = useRouter();
-  const params = useSearchParams();
-
-  useEffect(() => {
-    const planParam = params.get("plan");
-    const plan = normalizePlan(planParam);
-    if (plan) {
-      router.replace(`/onboarding/${plan}`);
-    } else {
-      router.replace("/pricing");
-    }
-  }, [params, router]);
-
+export default function GetStartedPage() {
   return (
-    <main style={{ maxWidth: 800, margin: "60px auto", padding: "0 16px", color: "#0f172a" }}>
-      <h1 style={{ fontWeight: 800, margin: 0 }}>Redirecting…</h1>
-      <p style={{ marginTop: 8 }}>Starting your onboarding flow.</p>
+    <main style={{ maxWidth: 880, margin: "40px auto", padding: "0 16px" }}>
+      <Suspense
+        fallback={
+          <div style={{ textAlign: "center", padding: 40 }}>
+            Loading your selection…
+          </div>
+        }
+      >
+        <GetStartedClient />
+      </Suspense>
     </main>
   );
 }
