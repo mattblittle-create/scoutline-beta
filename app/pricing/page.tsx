@@ -184,7 +184,7 @@ export default function PricingPage() {
 
   return (
     <main style={{ color: "#0f172a" }}>
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "10px 6px" }}>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "20px 16px" }}>
         {/* Title above toggle (font-size doubled) */}
         <h2 style={{ textAlign: "center", marginBottom: 6, fontSize: "3rem", fontWeight: 800 }}>
           Compare Plan Features and Pricing
