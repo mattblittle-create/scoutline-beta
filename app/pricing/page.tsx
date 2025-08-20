@@ -197,7 +197,7 @@ export default function PricingPage() {
             justifyContent: "center",
             gap: 12,
             alignItems: "center",
-            marginBottom: 16,
+            marginBottom: 14,
             flexWrap: "wrap",
           }}
         >
