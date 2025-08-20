@@ -15,7 +15,7 @@ type Plan = {
   priceAnnual?: string;
   priceAnnualNote?: string;
   highlight?: boolean;
-  mostPopular?: boolean;
+  noteBelowPrice?: string;
 };
 
 type FeatureCell = boolean | string;
@@ -27,9 +27,6 @@ type FeatureRow = {
 };
 type FeatureSection = { title: string; rows: FeatureRow[] };
 
-// -------------------------------------------------------------
-// Plans
-// -------------------------------------------------------------
 const PLANS: Plan[] = [
   {
     key: "redshirt",
@@ -55,8 +52,7 @@ const PLANS: Plan[] = [
     priceMonthly: "$49.95 / month",
     priceAnnual: "$510 / year",
     priceAnnualNote: "15% off",
-    highlight: true,
-    mostPopular: true,
+    highlight: true, // shows "Most Popular" badge
   },
   {
     key: "team",
@@ -67,9 +63,7 @@ const PLANS: Plan[] = [
   },
 ];
 
-// -------------------------------------------------------------
-// Feature Matrix (4 plans only) — full rows
-// -------------------------------------------------------------
+// Feature sections with dropdowns
 const SECTIONS: FeatureSection[] = [
   {
     title: "General Info",
@@ -134,7 +128,7 @@ const SECTIONS: FeatureSection[] = [
     ],
   },
   {
-    title: "Videos + Social Media + Communication",
+    title: "Videos Social Media Communication",
     rows: [
       { label: "Video Uploads", key: "videos", availability: { redshirt: "None", walkon: "Up to 3", allamerican: "Unlimited", team: "Unlimited" } },
       { label: "Social Media Connect", key: "social", availability: { redshirt: false, walkon: true, allamerican: true, team: true } },
@@ -149,9 +143,6 @@ const SECTIONS: FeatureSection[] = [
   },
 ];
 
-// -------------------------------------------------------------
-// Helpers
-// -------------------------------------------------------------
 const CheckIcon = () => (
   <svg aria-hidden focusable="false" width="18" height="18" viewBox="0 0 24 24">
     <path
@@ -167,19 +158,9 @@ function cellContent(val: FeatureCell | undefined) {
   return <span style={{ fontWeight: 700 }}>{val}</span>;
 }
 
-// -------------------------------------------------------------
-// Component
-// -------------------------------------------------------------
 export default function PricingPage() {
   const [billing, setBilling] = useState<Billing>("monthly");
-  const [open, setOpen] = useState<Record<string, boolean>>({
-    "General Info": true,
-    "Academics": true,
-    "Athletics": true,
-    "Videos Social Media Communication": true,
-  });
-
-  const toggle = (title: string) => setOpen((o) => ({ ...o, [title]: !o[title] }));
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 
   // sticky shadow when scrolled
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -194,15 +175,32 @@ export default function PricingPage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // plans mapped
   const planOrder: PlanKey[] = ["redshirt", "walkon", "allamerican", "team"];
   const planMap = useMemo(() => Object.fromEntries(PLANS.map((p) => [p.key, p])), []);
 
+  const toggleSection = (title: string) => {
+    setOpenSections((prev) => ({ ...prev, [title]: !prev[title] }));
+  };
+
   return (
     <main style={{ color: "#0f172a" }}>
-      {/* Toggle + Coaches link */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px 12px" }}>
-        <div style={{ display: "flex", justifyContent: "center", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "28px 16px" }}>
+        {/* Title above toggle */}
+        <h2 style={{ textAlign: "center", marginBottom: 12, fontSize: "1.5rem", fontWeight: 800 }}>
+          Compare Plan Features and Pricing
+        </h2>
+
+        {/* Toggle */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 12,
+            alignItems: "center",
+            marginBottom: 16,
+            flexWrap: "wrap",
+          }}
+        >
           <div
             role="group"
             aria-label="Billing period"
@@ -246,14 +244,13 @@ export default function PricingPage() {
             </button>
           </div>
 
+          {/* Coaches link stays up top */}
           <Link href="/get-started?plan=coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
             College Coaches & Recruiters →
           </Link>
         </div>
-      </section>
 
-      {/* Sticky plan cards aligned with table columns */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px 18px" }}>
+        {/* Sticky plan cards aligned in 4 columns */}
         <div
           ref={headerRef}
           style={{
@@ -263,144 +260,148 @@ export default function PricingPage() {
             background: "#fff",
             borderBottom: "1px solid #e5e7eb",
             boxShadow: stuck ? "0 4px 16px rgba(15,23,42,0.08)" : "none",
+            padding: "10px 6px",
           }}
         >
           <div
-            className="plan-header-grid"
+            className="plan-grid"
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(240px, 1fr) repeat(4, minmax(180px, 1fr))",
-              gap: 10,
-              alignItems: "stretch",
-              padding: "12px 8px",
+              gridTemplateColumns: `repeat(${planOrder.length}, 1fr)`,
+              gap: 12,
             }}
           >
-            {/* spacer to align over feature labels */}
-            <div />
             {planOrder.map((key) => {
-              const p = planMap[key];
-              const isAnnual = billing === "annual";
+              const plan = planMap[key];
               return (
                 <div
-                  key={p.key}
-                  className={`plan-card ${p.highlight ? "highlight" : ""}`}
+                  key={plan.key}
+                  className={`plan-card ${plan.highlight ? "highlight" : ""}`}
                   style={{
-                    border: p.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
-                    borderRadius: 14,
-                    padding: 12,
-                    background: p.highlight ? "linear-gradient(0deg, #fff7e6, #fff)" : "#fff",
-                    boxShadow: p.highlight ? "0 10px 24px rgba(202,160,66,0.18)" : "0 6px 16px rgba(15,23,42,0.06)",
-                    display: "grid",
-                    alignContent: "space-between",
+                    border: plan.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
+                    borderRadius: 12,
+                    padding: 16,
                     textAlign: "center",
+                    background: plan.highlight ? "linear-gradient(0deg, #fff7e6, #fff)" : "#fff",
+                    position: "relative",
+                    boxShadow: "0 4px 12px rgba(15,23,42,0.06)",
                   }}
                 >
-                  {p.mostPopular && (
+                  {plan.highlight && (
                     <div
+                      className="most-popular"
                       style={{
+                        position: "absolute",
+                        top: -12,
+                        left: "50%",
+                        transform: "translateX(-50%)",
                         background: "#caa042",
                         color: "#0f172a",
+                        padding: "2px 10px",
+                        borderRadius: 999,
+                        fontSize: "0.75rem",
                         fontWeight: 800,
-                        padding: "4px 10px",
-                        borderRadius: 6,
-                        marginBottom: 8,
-                        display: "inline-block",
-                        fontSize: 12,
                       }}
                     >
                       Most Popular
                     </div>
                   )}
-                  <div>
-                    <div style={{ fontWeight: 800, fontSize: 16 }}>{p.name}</div>
-                    <div style={{ color: "#64748b", fontStyle: "italic", fontSize: 12, marginTop: 2 }}>{p.tagline}</div>
-                    <div style={{ marginTop: 10, fontWeight: 800, fontSize: 18 }}>
-                      {isAnnual && p.priceAnnual ? p.priceAnnual : p.priceMonthly}
-                    </div>
-                    {isAnnual && p.priceAnnualNote && (
-                      <div style={{ color: "#16a34a", fontSize: 12, fontWeight: 700, marginTop: 2 }}>{p.priceAnnualNote}</div>
+                  <h3 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 800 }}>{plan.name}</h3>
+                  <p style={{ margin: "6px 0 0", color: "#64748b", fontStyle: "italic" }}>{plan.tagline}</p>
+                  <div className="price" style={{ fontSize: "1.1rem", fontWeight: 800, margin: "10px 0 12px" }}>
+                    {billing === "monthly" || !plan.priceAnnual ? plan.priceMonthly : plan.priceAnnual}
+                    {billing === "annual" && plan.priceAnnualNote && (
+                      <span className="annual-note" style={{ display: "block", fontSize: "0.8rem", color: "#6b7280", marginTop: 2 }}>
+                        {plan.priceAnnualNote}
+                      </span>
                     )}
                   </div>
-                  <div style={{ marginTop: 10, display: "flex", justifyContent: "center" }}>
-                    <Link href={p.ctaHref} className="sl-link-btn gold">
-                      Get Started
-                    </Link>
-                  </div>
+                  <Link href={plan.ctaHref} className="sl-link-btn gold" style={{ marginTop: 6, display: "inline-block" }}>
+                    Get Started
+                  </Link>
                 </div>
               );
             })}
           </div>
         </div>
-      </section>
 
-      {/* Feature sections as dropdown accordions (aligned to same grid) */}
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "0 16px 28px" }}>
-        <div
-          style={{
-            border: "1px solid #e5e7eb",
-            borderRadius: 14,
-            overflow: "hidden",
-          }}
-        >
-          {SECTIONS.map((sec, si) => (
-            <section key={sec.title}>
-              {/* Section header (arrow to the LEFT + hover lift/underline) */}
+        {/* Feature sections as dropdowns with left arrows + lift/underline on headers */}
+        <div style={{ marginTop: 18 }}>
+          {SECTIONS.map((section) => (
+            <div key={section.title} style={{ marginBottom: 24 }}>
               <button
                 type="button"
-                onClick={() => toggle(sec.title)}
-                aria-expanded={open[sec.title]}
+                onClick={() => toggleSection(section.title)}
+                aria-expanded={!!openSections[section.title]}
                 style={{
                   width: "100%",
+                  textAlign: "left",
                   display: "flex",
                   alignItems: "center",
-                  gap: 10,
-                  background: "#f8fafc",
-                  padding: "12px",
+                  gap: 8,
+                  fontSize: "1.1rem",
+                  fontWeight: 800,
+                  padding: "10px 4px",
                   border: "none",
-                  borderTop: si === 0 ? "none" : "1px solid #e5e7eb",
-                  borderBottom: "1px solid #e5e7eb",
+                  background: "transparent",
                   cursor: "pointer",
-                  fontWeight: 900,
-                  fontSize: 16,
-                  textAlign: "left",
+                  borderBottom: "2px solid transparent",
+                  transition: "transform .2s ease, box-shadow .2s ease, border-color .2s ease",
                 }}
-                className="sec-toggle"
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 6px 16px rgba(15,23,42,0.12)";
+                  e.currentTarget.style.borderBottom = "2px solid #caa042";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.boxShadow = "none";
+                  e.currentTarget.style.borderBottom = "2px solid transparent";
+                }}
               >
                 <span
                   aria-hidden
                   style={{
-                    fontSize: 16,
-                    transform: open[sec.title] ? "rotate(90deg)" : "rotate(0deg)",
+                    display: "inline-block",
+                    transform: openSections[section.title] ? "rotate(90deg)" : "rotate(0deg)",
                     transition: "transform .2s ease",
+                    fontSize: 16,
+                    color: "#0f172a",
                   }}
                 >
                   ▶
                 </span>
-                <span>{sec.title}</span>
+                <span>{section.title}</span>
               </button>
 
-              {/* Rows */}
-              {open[sec.title] && (
-                <div>
-                  {sec.rows.map((row, ri) => (
+              {openSections[section.title] && (
+                <div
+                  style={{
+                    overflowX: "auto",
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 12,
+                    marginTop: 10,
+                  }}
+                >
+                  {/* Grid layout so columns align with plan cards (4 plan cols + 1 feature col) */}
+                  {section.rows.map((row, idx) => (
                     <div
                       key={row.key}
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "minmax(240px, 1fr) repeat(4, minmax(180px, 1fr))",
-                        alignItems: "center",
+                        gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
                         gap: 10,
+                        alignItems: "center",
                         padding: "12px 8px",
-                        borderBottom: "1px solid #f1f5f9",
-                        background: ri % 2 === 1 ? "#fff" : "#ffffff",
+                        borderTop: idx === 0 ? "none" : "1px solid #f1f5f9",
+                        background: "#fff",
                       }}
                     >
-                      {/* left sticky label (sticks on horizontal scroll) */}
                       <div
                         style={{
                           position: "sticky",
                           left: 0,
-                          zIndex: 1,
+                          zIndex: 2,
                           background: "#fff",
                           paddingRight: 8,
                           fontWeight: 700,
@@ -409,8 +410,6 @@ export default function PricingPage() {
                       >
                         {row.label}
                       </div>
-
-                      {/* plan cells */}
                       {planOrder.map((key) => (
                         <div key={key} style={{ display: "flex", justifyContent: "center" }}>
                           {cellContent(row.availability[key])}
@@ -420,12 +419,11 @@ export default function PricingPage() {
                   ))}
                 </div>
               )}
-            </section>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Local styles */}
       <style>{`
         .sl-link-btn {
           display: inline-block;
@@ -453,25 +451,6 @@ export default function PricingPage() {
         .sl-link-btn.gold:hover {
           background: #d7b25e;
           border-color: #d7b25e;
-        }
-
-        /* hover lift + underline for section headers */
-        .sec-toggle:hover {
-          transform: translateY(-1px);
-          text-decoration: underline;
-          text-underline-offset: 3px;
-        }
-        .sec-toggle {
-          transition: transform .2s ease, text-decoration-color .2s ease;
-        }
-
-        /* plan cards hover */
-        .plan-card {
-          transition: transform .2s ease, box-shadow .2s ease;
-        }
-        .plan-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 10px 24px rgba(15,23,42,0.12);
         }
       `}</style>
     </main>
