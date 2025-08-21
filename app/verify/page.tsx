@@ -1,27 +1,42 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import React, { Suspense, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
-export default function VerifyPage() {
-  const params = useSearchParams();
+function VerifyInner() {
   const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
+  const params = useSearchParams();
+  const token = params.get("token") || "";
 
   useEffect(() => {
-    const token = params.get("token");
-    if (!token) {
-      setError("Missing verification token.");
-      return;
-    }
-    // Optionally ping a token-check endpoint first; we’ll keep it simple:
+    // If there’s no token, just stay here and let the user know.
+    if (!token) return;
+
+    // In this flow, we simply forward to set-password with the token.
     router.replace(`/set-password?token=${encodeURIComponent(token)}`);
-  }, [params, router]);
+  }, [router, token]);
 
   return (
-    <main style={{ maxWidth: 560, margin: "60px auto", padding: "0 16px" }}>
-      <h1 style={{ fontWeight: 800, marginBottom: 8 }}>Verifying…</h1>
-      {error ? <p style={{ color: "#b91c1c" }}>{error}</p> : <p>Please wait.</p>}
+    <main style={{ maxWidth: 680, margin: "0 auto", padding: "24px 16px" }}>
+      <h1 style={{ margin: 0, fontSize: "1.5rem", fontWeight: 800 }}>Verifying…</h1>
+      {!token && (
+        <p style={{ marginTop: 8, color: "#7f1d1d" }}>
+          Missing verification token. Please use the link from your email.
+        </p>
+      )}
+      {!!token && (
+        <p style={{ marginTop: 8, color: "#475569" }}>
+          One moment—taking you to set your password.
+        </p>
+      )}
     </main>
+  );
+}
+
+export default function VerifyPage() {
+  return (
+    <Suspense fallback={<main style={{ padding: 24 }}>Loading…</main>}>
+      <VerifyInner />
+    </Suspense>
   );
 }
