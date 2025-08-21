@@ -1,26 +1,26 @@
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth-tokens";
-// import { hash } from "bcryptjs"; // optional now; recommended in production
+// import { hash } from "bcryptjs"; // recommended for production
 
 export async function POST(req: Request) {
   try {
     const { token, password } = await req.json();
+
     if (!token || !password) {
       return NextResponse.json({ error: "Missing token or password" }, { status: 400 });
     }
 
-    const payload = verifyToken<{ email: string; purpose: string }>(token);
-    if (payload.purpose !== "email-verify") {
-      return NextResponse.json({ error: "Invalid token purpose" }, { status: 400 });
-    }
-
+    // Enforce the token's purpose (must be an email verification token)
+    const payload = verifyToken(token, "verify"); // throws if invalid/expired/purpose mismatch
     const email = payload.email.toLowerCase();
 
-    // TODO: hash password before saving
-    // const hashed = await hash(password, 12);
-
-    // TODO: upsert user in your DB with this email and password
-    // await db.user.update({ where: { email }, data: { passwordHash: hashed, emailVerifiedAt: new Date() } });
+    // TODO: hash the password and persist user in your DB
+    // const passwordHash = await hash(password, 12);
+    // await db.user.upsert({
+    //   where: { email },
+    //   update: { passwordHash, emailVerifiedAt: new Date() },
+    //   create: { email, passwordHash, emailVerifiedAt: new Date() },
+    // });
 
     return NextResponse.json({ ok: true });
   } catch (e: any) {
