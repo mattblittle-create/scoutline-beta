@@ -4,6 +4,10 @@ import React, { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 
+// Disable static generation to avoid SSR complaints with useSearchParams
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 function SetPasswordInner() {
   const params = useSearchParams();
   const token = params.get("token") || "";
@@ -40,9 +44,8 @@ function SetPasswordInner() {
         body: JSON.stringify({ token, password }),
       });
       const data = await res.json();
-      if (!res.ok) {
-        throw new Error(data?.error || "Failed to set password.");
-      }
+      if (!res.ok) throw new Error(data?.error || "Failed to set password.");
+
       setOkMsg("Password set! You can now sign in.");
       setPassword("");
       setConfirm("");
