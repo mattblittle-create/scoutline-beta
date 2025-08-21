@@ -139,7 +139,7 @@ function CoachOnboarding() {
       // await fetch("/api/onboarding/coach/invite", { ... });
 
       // 4) Route to a "Check your email" page
-      router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
+      router.push(`/check-email?email=${encodeURIComponent(form.Email)}&plan=coach`);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
