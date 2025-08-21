@@ -181,8 +181,11 @@ function CoachOnboarding() {
               <option value="">Select role…</option>
               <option value="Head Coach">Head Coach</option>
               <option value="Assistant Coach">Assistant Coach</option>
+              <option value="Pitching Coach">Pitching Coach</option>
+              <option value="Hitting Coach">Hitting Coach</option>
               <option value="Recruiting Coordinator">Recruiting Coordinator</option>
               <option value="Analyst/Operations">Analyst / Operations</option>
+              <option value="Athletic Director">Athletic Director / Operations</option>
               <option value="Other">Other</option>
             </select>
           </div>
