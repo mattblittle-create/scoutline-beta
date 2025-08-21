@@ -1,77 +1,77 @@
-import jwt from "jsonwebtoken";
+// lib/auth-tokens.ts
+// Lightweight HMAC-signed tokens for email verification & set-password flows.
+// No extra deps. Uses APP_SECRET. Works on serverless without DB storage.
 
-const SECRET = process.env.JWT_SECRET!;
-if (!SECRET) throw new Error("JWT_SECRET env var is required");
+import crypto from "node:crypto";
 
-type Payload = { email: string; purpose: "email-verify" | "set-password" };
+export type TokenType = "verify" | "set-password";
 
-export function signVerifyToken(email: string, expiresIn = "30m") {
-  const payload: Payload = { email, purpose: "email-verify" };
-  return jwt.sign(payload, SECRET, { expiresIn });
+export type EmailTokenPayload = {
+  email: string;
+  type: TokenType;
+  exp: number; // epoch ms
+};
+
+// ---- internals ----
+function getSecret() {
+  const secret = process.env.APP_SECRET;
+  if (!secret) {
+    throw new Error("APP_SECRET missing. Add APP_SECRET to your environment.");
+  }
+  return secret;
 }
 
-export function verifyToken<T = Payload>(token: string): T {
-  return jwt.verify(token, SECRET) as T;
+function hmac(input: string, secret: string) {
+  return crypto.createHmac("sha256", secret).update(input).digest("base64url");
 }
-import crypto from "crypto";
 
-const DEFAULT_TTL_SECONDS = 60 * 60 * 24; // 24h
-const ALG = "sha256";
+function encode(payload: EmailTokenPayload) {
+  const json = JSON.stringify(payload);
+  return Buffer.from(json).toString("base64url");
+}
 
-/**
- * Creates a compact HMAC token with embedded payload.
- * format: base64url(JSON).base64url(HMAC)
- */
-export function createEmailVerificationToken(
+function decode<T>(b64: string): T {
+  const json = Buffer.from(b64, "base64url").toString("utf8");
+  return JSON.parse(json) as T;
+}
+
+// ---- public API ----
+export function createEmailToken(
   email: string,
-  ttlSeconds: number = DEFAULT_TTL_SECONDS
+  type: TokenType,
+  ttlMinutes = 60
 ): string {
-  const now = Math.floor(Date.now() / 1000);
-  const payload = {
-    email,
-    type: "verify" as const,
-    iat: now,
-    exp: now + ttlSeconds,
-  };
-  const body = base64url(Buffer.from(JSON.stringify(payload)));
-  const sig = sign(body);
+  const exp = Date.now() + ttlMinutes * 60_000;
+  const payload: EmailTokenPayload = { email, type, exp };
+  const body = encode(payload);
+  const sig = hmac(body, getSecret());
   return `${body}.${sig}`;
 }
 
-export function verifyEmailVerificationToken(token: string): { email: string } {
+export function verifyEmailToken(token: string): EmailTokenPayload {
   const [body, sig] = token.split(".");
-  if (!body || !sig) throw new Error("Malformed token");
-
-  const expected = sign(body);
-  if (!timingSafeEq(sig, expected)) throw new Error("Invalid signature");
-
-  const payload = JSON.parse(Buffer.from(body, "base64url").toString("utf8")) as {
-    email: string;
-    type: "verify";
-    iat: number;
-    exp: number;
-  };
-
-  if (payload.type !== "verify") throw new Error("Wrong token type");
-  const now = Math.floor(Date.now() / 1000);
-  if (now > payload.exp) throw new Error("Token expired");
-
-  return { email: payload.email };
+  if (!body || !sig) {
+    throw new Error("Malformed token");
+  }
+  const expected = hmac(body, getSecret());
+  if (!crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
+    throw new Error("Invalid token signature");
+  }
+  const payload = decode<EmailTokenPayload>(body);
+  if (Date.now() > payload.exp) {
+    throw new Error("Token expired");
+  }
+  return payload;
 }
 
-function sign(bodyBase64Url: string): string {
-  const secret = process.env.EMAIL_VERIFICATION_SECRET;
-  if (!secret) throw new Error("EMAIL_VERIFICATION_SECRET not set");
-  return crypto.createHmac(ALG, secret).update(bodyBase64Url).digest("base64url");
+export function buildVerificationLink(token: string) {
+  const base = process.env.APP_BASE_URL || "http://localhost:3000";
+  // page should read token from ?token=
+  return `${base}/verify-email?token=${encodeURIComponent(token)}`;
 }
 
-function base64url(buf: Buffer): string {
-  return buf.toString("base64url");
-}
-
-function timingSafeEq(a: string, b: string): boolean {
-  const ab = Buffer.from(a);
-  const bb = Buffer.from(b);
-  if (ab.length !== bb.length) return false;
-  return crypto.timingSafeEqual(ab, bb);
+export function buildSetPasswordLink(token: string) {
+  const base = process.env.APP_BASE_URL || "http://localhost:3000";
+  // page should read token from ?token=
+  return `${base}/set-password?token=${encodeURIComponent(token)}`;
 }
