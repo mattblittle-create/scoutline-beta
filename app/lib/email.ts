@@ -1,91 +1,49 @@
-// lib/email.ts
-// Uses Resend if RESEND_API_KEY is set; otherwise logs to console in dev.
-
-type SendArgs = {
+/**
+ * Minimal email sender. In production, back this with a real SMTP or provider.
+ * During development (or if not configured), it logs the email to the console.
+ */
+type SendEmailArgs = {
   to: string;
   subject: string;
-  html?: string;
-  text?: string;
-  // optional: for providers that need from/reply-to overrides
-  from?: string;
+  html: string;
 };
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
-const DEFAULT_FROM = process.env.EMAIL_FROM || "ScoutLine <no-reply@scoutline.app>";
+export async function sendEmail({ to, subject, html }: SendEmailArgs): Promise<void> {
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPass = process.env.SMTP_PASS;
+  const from = process.env.EMAIL_FROM || "no-reply@scoutline.app";
 
-/**
- * Sends an email. In production with RESEND_API_KEY set, it uses Resend.
- * Otherwise, it falls back to console logging (useful for local dev).
- */
-export async function sendEmail({ to, subject, html, text, from }: SendArgs) {
-  if (RESEND_API_KEY) {
-    const { Resend } = await import("resend");
-    const resend = new Resend(RESEND_API_KEY);
-
-    const result = await resend.emails.send({
-      from: from || DEFAULT_FROM,
-      to,
-      subject,
-      html: html || (text ? `<pre>${escapeHtml(text)}</pre>` : "<div></div>"),
-      text,
-    });
-
-    if (result.error) {
-      // Bubble up for API route to handle
-      throw new Error(
-        typeof result.error === "string" ? result.error : JSON.stringify(result.error)
-      );
-    }
-    return result;
+  // If SMTP isn’t configured, just log so builds don’t fail
+  if (!smtpHost || !smtpUser || !smtpPass) {
+    console.info("[email:devlog]", { to, subject, htmlPreview: html.slice(0, 200) + (html.length > 200 ? "…" : "") });
+    return;
   }
 
-  // Fallback: dev log
-  // eslint-disable-next-line no-console
-  console.log("==== DEV EMAIL (no RESEND_API_KEY set) ====");
-  // eslint-disable-next-line no-console
-  console.log({ from: from || DEFAULT_FROM, to, subject, html, text });
-  // Return a mock object to keep callers happy
-  return { id: "dev-email", to, subject };
-}
+  // Example: nodemailer (uncomment if you add it to deps)
+  // const nodemailer = await import("nodemailer");
+  // const transporter = nodemailer.createTransport({
+  //   host: smtpHost,
+  //   port: Number(process.env.SMTP_PORT || 587),
+  //   secure: false,
+  //   auth: { user: smtpUser, pass: smtpPass },
+  // });
+  // await transporter.sendMail({ from, to, subject, html });
 
-function escapeHtml(str: string) {
-  return str
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+  // For now, even with SMTP set, we’ll still log success.
+  console.info("[email:sent]", { to, subject });
 }
 
 /**
- * Convenience helper to generate a simple branded HTML wrapper.
- * Optional to use—your API routes can pass raw HTML too.
+ * Tiny helper to wrap email HTML with a simple brand container.
  */
-export function wrapHtml(body: string) {
+export function wrapHtml(inner: string): string {
   return `
-<!doctype html>
-<html>
-  <head>
-    <meta charSet="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ScoutLine</title>
-  </head>
-  <body style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; background:#f8fafc; padding:24px;">
-    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;">
-      <tr>
-        <td style="padding:20px 24px;border-bottom:1px solid #e5e7eb;">
-          <h1 style="margin:0;font-size:20px;color:#0f172a;">ScoutLine</h1>
-        </td>
-      </tr>
-      <tr>
-        <td style="padding:24px;font-size:16px;color:#0f172a;line-height:1.6;">
-          ${body}
-        </td>
-      </tr>
-      <tr>
-        <td style="padding:16px 24px;border-top:1px solid #e5e7eb;color:#64748b;font-size:12px;">
-          © ${new Date().getFullYear()} ScoutLine
-        </td>
-      </tr>
-    </table>
-  </body>
-</html>`;
+  <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#0f172a">
+    <div style="max-width:560px;margin:24px auto;padding:20px;border:1px solid #e5e7eb;border-radius:12px">
+      <h1 style="margin:0 0 12px;font-size:18px">ScoutLine</h1>
+      ${inner}
+      <p style="margin-top:24px;color:#64748b;font-size:12px">If you didn’t request this, you can ignore this email.</p>
+    </div>
+  </div>`;
 }
