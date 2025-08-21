@@ -13,7 +13,7 @@ function getSecret(): Uint8Array {
  * Signs a short-lived token used for email verification.
  * Default expiry: 30 minutes.
  */
-export function await signVerifyToken(email: string, expiresIn: string = "30m"): string {
+export function signVerifyToken(email: string, expiresIn: string = "30m"): string {
   const iat = Math.floor(Date.now() / 1000);
   const payload: JWTPayload & { email: string; purpose: "email-verify" } = {
     email: email.toLowerCase(),
