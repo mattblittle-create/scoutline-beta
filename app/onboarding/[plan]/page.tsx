@@ -285,7 +285,7 @@ function CoachOnboarding() {
                 Add
               </button>
             </div>
-            <p className="hint">Once they create an account, each invited coach is linked to your program for sharing features.</p>
+            <p className="hint">Once an account is created, each invited coach is linked to your program for sharing features.</p>
           </div>
         </div>
 
