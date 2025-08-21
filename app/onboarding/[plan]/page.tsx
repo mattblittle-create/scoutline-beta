@@ -158,7 +158,7 @@ function CoachOnboarding() {
         <div className="grid">
           {/* Name (required) */}
           <div className="field">
-            <label className="label">Full Name<span className="req">*</span></label>
+            <label className="label">Name<span className="req">*</span></label>
             <input
               type="text"
               value={form.name}
@@ -183,20 +183,21 @@ function CoachOnboarding() {
               <option value="Assistant Coach">Assistant Coach</option>
               <option value="Recruiting Coordinator">Recruiting Coordinator</option>
               <option value="Analyst/Operations">Analyst / Operations</option>
+              <option value="Athletic Director">Athletic Director</option>
               <option value="Other">Other</option>
             </select>
           </div>
 
-          {/* College / Program (required, autocomplete) */}
+          {/* College / University (required, autocomplete) */}
           <div className="field" style={{ position: "relative" }}>
-            <label className="label">College / Program<span className="req">*</span></label>
+            <label className="label">College / University<span className="req">*</span></label>
             <input
               type="text"
               value={collegeQuery}
               onChange={(e) => {
                 const v = e.target.value;
                 setCollegeQuery(v);
-                setForm((f) => ({ ...f, collegeProgram: v }));
+                setForm((f) => ({ ...f, collegeUniversity: v }));
                 setShowSuggs(true);
               }}
               onFocus={() => setShowSuggs(true)}
@@ -220,26 +221,26 @@ function CoachOnboarding() {
             )}
           </div>
 
-          {/* Work Email (required) */}
+          {/* Email (required) */}
           <div className="field">
-            <label className="label">Work Email<span className="req">*</span></label>
+            <label className="label">Email<span className="req">*</span></label>
             <input
               type="email"
-              value={form.workEmail}
-              onChange={(e) => setForm((f) => ({ ...f, workEmail: e.target.value }))}
+              value={form.Email}
+              onChange={(e) => setForm((f) => ({ ...f, Email: e.target.value }))}
               required
               className="input"
               placeholder="coach@university.edu"
             />
           </div>
 
-          {/* Work Phone + Privacy toggle */}
+          {/* Phone + Privacy toggle */}
           <div className="field">
-            <label className="label">Work Phone (optional)</label>
+            <label className="label">Phone (optional)</label>
             <input
               type="tel"
-              value={form.workPhone}
-              onChange={(e) => setForm((f) => ({ ...f, workPhone: e.target.value }))}
+              value={form.Phone}
+              onChange={(e) => setForm((f) => ({ ...f, Phone: e.target.value }))}
               className="input"
               placeholder="(555) 555-5555"
             />
@@ -253,9 +254,9 @@ function CoachOnboarding() {
             </label>
           </div>
 
-          {/* Invite other coaches (chips, one at a time) */}
+          {/* Invite other coaches from your program (chips, one at a time) */}
           <div className="field" style={{ gridColumn: "1 / -1" }}>
-            <label className="label">Invite Other Coaches (optional)</label>
+            <label className="label">Invite Other Coaches from your program (optional)</label>
             <div className="chip-row">
               {form.inviteEmails.map((email) => (
                 <span key={email} className="chip">
