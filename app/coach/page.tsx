@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { braden as defaultBraden, Player } from "@/lib/samplePlayer";
+import { braden as defaultBraden, Player } from "../lib/samplePlayer";
 
 const LS_COMMITTED = "bradenCommitted";
 const LS_COLLEGE = "bradenCommittedCollege";
