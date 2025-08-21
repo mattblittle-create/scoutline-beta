@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ResendClient from "./Client";
 
 export default function CheckEmailPage({
   searchParams,
@@ -9,9 +10,7 @@ export default function CheckEmailPage({
   const plan = (searchParams?.plan ?? "").toLowerCase();
 
   const title =
-    plan === "coach"
-      ? "Check your work email"
-      : "Check your email";
+    plan === "coach" ? "Check your work email" : "Check your email";
 
   const subtitle =
     plan === "coach"
@@ -30,7 +29,7 @@ export default function CheckEmailPage({
       ) : null}
 
       <div style={{ marginTop: 16 }}>
-        <Resend email={email} />
+        <ResendClient email={email} />
       </div>
 
       <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
@@ -59,57 +58,7 @@ export default function CheckEmailPage({
           text-decoration: underline;
           text-underline-offset: 3px;
         }
-        .primary-btn {
-          padding:10px 16px;
-          border-radius:10px;
-          border:1px solid #caa042;
-          background:#caa042;
-          color:#0f172a;
-          font-weight:800;
-          cursor:pointer;
-          transition:transform .15s ease, box-shadow .15s ease, background-color .15s ease;
-        }
-        .primary-btn:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,0.18); }
-        .msg { margin-top:10px; font-weight:700; }
-        .msg.ok { color:#065f46; }
-        .msg.err { color:#7f1d1d; }
       `}</style>
     </main>
-  );
-}
-
-/**
- * Client-only resend button
- */
-"use client";
-import { useState } from "react";
-
-function Resend({ email }: { email: string }) {
-  const [status, setStatus] = useState<"idle"|"ok"|"err"|"loading">("idle");
-
-  const onResend = async () => {
-    if (!email) return;
-    setStatus("loading");
-    try {
-      const res = await fetch("/api/auth/send-verification", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      setStatus(res.ok ? "ok" : "err");
-    } catch {
-      setStatus("err");
-    }
-  };
-
-  return (
-    <div>
-      <button className="primary-btn" onClick={onResend} disabled={!email || status==="loading"}>
-        {status === "loading" ? "Resending…" : "Resend verification email"}
-      </button>
-      {status === "ok" && <div className="msg ok">Verification email sent.</div>}
-      {status === "err" && <div className="msg err">Couldn’t send email. Try again.</div>}
-      {!email && <div className="msg err">No email provided.</div>}
-    </div>
   );
 }
