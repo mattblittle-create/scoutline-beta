@@ -139,7 +139,7 @@ function CoachOnboarding() {
       // await fetch("/api/onboarding/coach/invite", { ... });
 
       // 4) Route to a "Check your email" page
-      router.push(`/check-email?email=${encodeURIComponent(form.Email)}&plan=coach`);
+      router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
@@ -226,7 +226,7 @@ function CoachOnboarding() {
             <label className="label">Email<span className="req">*</span></label>
             <input
               type="email"
-              value={form.Email}
+              value={form.workEmail}
               onChange={(e) => setForm((f) => ({ ...f, Email: e.target.value }))}
               required
               className="input"
@@ -239,7 +239,7 @@ function CoachOnboarding() {
             <label className="label">Phone (optional)</label>
             <input
               type="tel"
-              value={form.Phone}
+              value={form.workPhone}
               onChange={(e) => setForm((f) => ({ ...f, Phone: e.target.value }))}
               className="input"
               placeholder="(555) 555-5555"
