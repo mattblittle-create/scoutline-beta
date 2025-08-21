@@ -3,16 +3,17 @@
 import React, { Suspense, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+// Disable static generation to avoid SSR complaints with useSearchParams
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 function VerifyInner() {
   const router = useRouter();
   const params = useSearchParams();
   const token = params.get("token") || "";
 
   useEffect(() => {
-    // If there’s no token, just stay here and let the user know.
     if (!token) return;
-
-    // In this flow, we simply forward to set-password with the token.
     router.replace(`/set-password?token=${encodeURIComponent(token)}`);
   }, [router, token]);
 
