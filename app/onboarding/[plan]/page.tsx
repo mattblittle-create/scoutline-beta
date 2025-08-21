@@ -1,431 +1,443 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
 
-type PlanKey = "redshirt" | "walkon" | "allamerican" | "team" | "coach";
-
-type PlanDef = {
-  key: PlanKey;
+type CoachForm = {
   name: string;
-  tagline: string;
-  priceMonthly: string;
-  priceAnnual?: string;
-  requiresPayment: boolean;
-  ctaNote?: string;
+  role: string;
+  collegeProgram: string; // display string user picked
+  collegeProgramId?: string; // optional id from your DB
+  workEmail: string;
+  workPhone?: string;
+  hidePhoneFromPlayers: boolean;
+  additionalCoachEmails: string[]; // invitations
 };
 
-const PLANS: Record<PlanKey, PlanDef> = {
-  redshirt: {
-    key: "redshirt",
-    name: "Redshirt",
-    tagline: "Just practicing",
-    priceMonthly: "FREE with ads",
-    requiresPayment: false,
-  },
-  walkon: {
-    key: "walkon",
-    name: "Walk-On",
-    tagline: "Ready to compete",
-    priceMonthly: "$24.95 / month",
-    priceAnnual: "$265 / year (12% off)",
-    requiresPayment: true,
-  },
-  allamerican: {
-    key: "allamerican",
-    name: "All-American",
-    tagline: "Time to get seen",
-    priceMonthly: "$49.95 / month",
-    priceAnnual: "$510 / year (15% off)",
-    requiresPayment: true,
-  },
-  team: {
-    key: "team",
-    name: "Teams",
-    tagline: "Compete together",
-    priceMonthly: "$39.95 / player / month",
-    requiresPayment: true,
-  },
-  coach: {
-    key: "coach",
-    name: "College Coaches and Recruiters",
-    tagline: "Build champions together",
-    priceMonthly: "FREE",
-    requiresPayment: false,
-    ctaNote:
-      "With ScoutLine, you can discover player profiles, connect directly, watch highlights, follow social links, filter by stats, track performance with analytics dashboards and metric growth charts, build custom watchlists, and share prospects with your coaching staff.",
-  },
+type CollegeOption = {
+  id: string;
+  name: string; // e.g., "University of Florida (Baseball)"
+  // add any other fields you return from your API
 };
-
-function isPlayerPlan(plan: PlanKey) {
-  return plan === "redshirt" || plan === "walkon" || plan === "allamerican";
-}
 
 export default function OnboardingPlanPage() {
-  const { plan } = useParams<{ plan: PlanKey }>();
   const router = useRouter();
+  const params = useParams<{ plan: string }>();
+  const plan = (params?.plan || "").toLowerCase();
 
-  const planDef = useMemo(() => PLANS[plan] ?? null, [plan]);
+  // --- Coach form state ---
+  const [form, setForm] = useState<CoachForm>({
+    name: "",
+    role: "",
+    collegeProgram: "",
+    collegeProgramId: undefined,
+    workEmail: "",
+    workPhone: "",
+    hidePhoneFromPlayers: true,
+    additionalCoachEmails: [],
+  });
 
-  // Steps: 0 = Plan summary, 1 = Payment (if needed), 2 = Profile setup
-  const [step, setStep] = useState<number>(0);
-  const next = () => setStep((s) => s + 1);
-  const back = () => setStep((s) => Math.max(0, s - 1));
+  // --- Typeahead state for colleges/programs ---
+  const [collegeQuery, setCollegeQuery] = useState("");
+  const [collegeOptions, setCollegeOptions] = useState<CollegeOption[]>([]);
+  const [collegeOpen, setCollegeOpen] = useState(false);
+  const [loadingColleges, setLoadingColleges] = useState(false);
+  const debounceRef = useRef<number | null>(null);
 
-  if (!planDef) {
+  // Debounced fetch for college options
+  useEffect(() => {
+    if (plan !== "coach") return; // only used on coach page
+    const q = collegeQuery.trim();
+    if (debounceRef.current) window.clearTimeout(debounceRef.current);
+    if (!q) {
+      setCollegeOptions([]);
+      return;
+    }
+    debounceRef.current = window.setTimeout(async () => {
+      try {
+        setLoadingColleges(true);
+        const res = await fetch(`/api/colleges?q=${encodeURIComponent(q)}`);
+        if (res.ok) {
+          const data = (await res.json()) as CollegeOption[];
+          setCollegeOptions(data || []);
+        } else {
+          setCollegeOptions([]);
+        }
+      } catch {
+        setCollegeOptions([]);
+      } finally {
+        setLoadingColleges(false);
+      }
+    }, 250);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [collegeQuery, plan]);
+
+  // Simple validators
+  const emailRegex = useMemo(
+    () => /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+    []
+  );
+
+  const isEmail = (v: string) => emailRegex.test(v);
+
+  const requiredErrors = useMemo(() => {
+    const errs: Record<string, string> = {};
+    if (!form.name.trim()) errs.name = "Required";
+    if (!form.role.trim()) errs.role = "Required";
+    if (!form.collegeProgram.trim()) errs.collegeProgram = "Required";
+    if (!form.workEmail.trim()) errs.workEmail = "Required";
+    else if (!isEmail(form.workEmail.trim())) errs.workEmail = "Invalid email";
+    // optional phone; if present you could add a simple check
+    return errs;
+  }, [form, isEmail]);
+
+  const canSubmit = Object.keys(requiredErrors).length === 0;
+
+  // Add/remove additional coach emails
+  const [inviteEntry, setInviteEntry] = useState("");
+  const addInvite = () => {
+    const v = inviteEntry.trim();
+    if (!v) return;
+    if (!isEmail(v)) return;
+    if (form.additionalCoachEmails.includes(v)) return;
+    setForm((f) => ({ ...f, additionalCoachEmails: [...f.additionalCoachEmails, v] }));
+    setInviteEntry("");
+  };
+  const removeInvite = (email: string) => {
+    setForm((f) => ({ ...f, additionalCoachEmails: f.additionalCoachEmails.filter((e) => e !== email) }));
+  };
+
+  // Submit
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canSubmit) return;
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      // Send to your onboarding endpoint. You can trigger invite emails on the server from here.
+      const res = await fetch("/api/onboarding/coach", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const msg = await res.text();
+        throw new Error(msg || "Failed to save");
+      }
+      // Route to next step (e.g., dashboard or profile editor)
+      router.push("/coach/welcome");
+    } catch (err: any) {
+      setSubmitError(err?.message || "Something went wrong.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  // --------------------------
+  // Non-coach plans unchanged
+  // --------------------------
+  if (plan !== "coach") {
     return (
-      <main style={{ maxWidth: 900, margin: "40px auto", padding: "0 16px" }}>
-        <h1 style={{ fontWeight: 900, marginBottom: 6 }}>Plan not found</h1>
-        <p>Please choose a plan on the pricing page.</p>
-        <p>
-          <Link href="/pricing" className="sl-link-btn gold">
-            Back to Pricing
-          </Link>
-        </p>
-        <LocalStyles />
+      <main style={{ color: "#0f172a" }}>
+        <section style={{ maxWidth: 900, margin: "0 auto", padding: "28px 16px" }}>
+          <h1 style={{ margin: 0, fontSize: "clamp(24px, 3.4vw, 36px)" }}>
+            Get Started: {plan.charAt(0).toUpperCase() + plan.slice(1)}
+          </h1>
+          <p style={{ marginTop: 8, color: "#475569" }}>
+            This plan’s onboarding will go here. For now, head back to{" "}
+            <Link className="sl-link" href="/pricing">Pricing</Link>.
+          </p>
+        </section>
+        <style>{`
+          .sl-link { color:#0f172a; text-decoration: underline; text-underline-offset: 3px; }
+        `}</style>
       </main>
     );
   }
 
-  // Hide payment step if the plan is free
-  const visibleStep = !planDef.requiresPayment && step === 1 ? 2 : step;
-
+  // --------------------------
+  // Coach / Recruiter form
+  // --------------------------
   return (
-    <main style={{ maxWidth: 1000, margin: "28px auto", padding: "0 16px", color: "#0f172a" }}>
-      {/* Back + Title */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
-        <Link href="/pricing" className="sl-link-btn" style={{ padding: "6px 10px" }}>
-          ← Back
-        </Link>
-        <h1 style={{ margin: 0, fontWeight: 900 }}>
-          Get Started — <span style={{ color: "#caa042" }}>{planDef.name}</span>
+    <main style={{ color: "#0f172a" }}>
+      <section style={{ maxWidth: 900, margin: "0 auto", padding: "28px 16px" }}>
+        <h1 style={{ margin: 0, fontSize: "clamp(24px, 3.4vw, 36px)" }}>
+          College Coaches & Recruiters — Profile Setup
         </h1>
-      </div>
+        <p style={{ marginTop: 8, color: "#475569" }}>
+          Tell us about your program. Required fields are marked.
+        </p>
 
-      {/* Stepper */}
-      <div style={{ display: "flex", gap: 10, marginTop: 16, marginBottom: 18, flexWrap: "wrap" }}>
-        {["Plan", "Payment", "Profile"].map((label, i) => {
-          const isHidden = i === 1 && !planDef.requiresPayment;
-          if (isHidden) return null;
-          const isActive = visibleStep === i;
-          return (
-            <div
-              key={label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                opacity: isActive ? 1 : 0.6,
-                fontWeight: isActive ? 800 : 600,
+        <form onSubmit={onSubmit} style={{ marginTop: 18 }}>
+          {/* Name (required) */}
+          <div className="field">
+            <label className="label">
+              Name <span className="req">*</span>
+            </label>
+            <input
+              className={`input ${requiredErrors.name ? "error" : ""}`}
+              type="text"
+              value={form.name}
+              onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+              placeholder="Full name"
+              required
+            />
+            {requiredErrors.name && <div className="error-text">{requiredErrors.name}</div>}
+          </div>
+
+          {/* Role (required) */}
+          <div className="field">
+            <label className="label">
+              Role/Title <span className="req">*</span>
+            </label>
+            <input
+              className={`input ${requiredErrors.role ? "error" : ""}`}
+              type="text"
+              value={form.role}
+              onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))}
+              placeholder="Head Coach, Assistant Coach, Recruiting Coordinator, etc."
+              required
+            />
+            {requiredErrors.role && <div className="error-text">{requiredErrors.role}</div>}
+          </div>
+
+          {/* College/Program (required with typeahead) */}
+          <div className="field" style={{ position: "relative" }}>
+            <label className="label">
+              College / Program <span className="req">*</span>
+            </label>
+            <input
+              className={`input ${requiredErrors.collegeProgram ? "error" : ""}`}
+              type="text"
+              value={form.collegeProgram}
+              onChange={(e) => {
+                const v = e.target.value;
+                setForm((f) => ({ ...f, collegeProgram: v, collegeProgramId: undefined }));
+                setCollegeQuery(v);
+                setCollegeOpen(true);
               }}
-            >
-              <div
-                style={{
-                  width: 26,
-                  height: 26,
-                  borderRadius: "50%",
-                  border: "2px solid #caa042",
-                  background: isActive ? "#caa042" : "#fff",
+              placeholder="Start typing your school/program…"
+              onFocus={() => setCollegeOpen(!!form.collegeProgram || !!collegeQuery)}
+              autoComplete="off"
+              required
+            />
+            {requiredErrors.collegeProgram && <div className="error-text">{requiredErrors.collegeProgram}</div>}
+
+            {collegeOpen && (collegeOptions.length > 0 || loadingColleges) && (
+              <div className="typeahead">
+                {loadingColleges && <div className="type-row muted">Searching…</div>}
+                {!loadingColleges &&
+                  collegeOptions.map((opt) => (
+                    <button
+                      type="button"
+                      key={opt.id}
+                      className="type-row"
+                      onClick={() => {
+                        setForm((f) => ({
+                          ...f,
+                          collegeProgram: opt.name,
+                          collegeProgramId: opt.id,
+                        }));
+                        setCollegeOpen(false);
+                      }}
+                    >
+                      {opt.name}
+                    </button>
+                  ))}
+                {!loadingColleges && collegeOptions.length === 0 && (
+                  <div className="type-row muted">No results</div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Work Email (required) */}
+          <div className="field">
+            <label className="label">
+              Work Email <span className="req">*</span>
+            </label>
+            <input
+              className={`input ${requiredErrors.workEmail ? "error" : ""}`}
+              type="email"
+              value={form.workEmail}
+              onChange={(e) => setForm((f) => ({ ...f, workEmail: e.target.value }))}
+              placeholder="name@school.edu"
+              required
+            />
+            {requiredErrors.workEmail && <div className="error-text">{requiredErrors.workEmail}</div>}
+          </div>
+
+          {/* Work Phone (optional) + privacy toggle */}
+          <div className="field">
+            <label className="label">Work Phone (optional)</label>
+            <input
+              className="input"
+              type="tel"
+              value={form.workPhone}
+              onChange={(e) => setForm((f) => ({ ...f, workPhone: e.target.value }))}
+              placeholder="(555) 555-5555"
+            />
+            <label className="toggle">
+              <input
+                type="checkbox"
+                checked={form.hidePhoneFromPlayers}
+                onChange={(e) => setForm((f) => ({ ...f, hidePhoneFromPlayers: e.target.checked }))}
+              />
+              <span>Hide this phone number from players</span>
+            </label>
+          </div>
+
+          {/* Additional Coach Emails (invites) */}
+          <div className="field">
+            <label className="label">Invite Other Coaches (emails)</label>
+            <div style={{ display: "flex", gap: 8 }}>
+              <input
+                className="input"
+                type="email"
+                value={inviteEntry}
+                onChange={(e) => setInviteEntry(e.target.value)}
+                placeholder="assistant@school.edu"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    e.preventDefault();
+                    addInvite();
+                  }
                 }}
               />
-              <span>{label}</span>
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Step 0: Plan Summary */}
-      {visibleStep === 0 && (
-        <section style={card}>
-          <h2 style={{ marginTop: 0, marginBottom: 8 }}>Confirm Your Plan</h2>
-          <div style={{ display: "grid", gap: 10 }}>
-            <div style={{ fontWeight: 800, fontSize: 18 }}>{planDef.name}</div>
-            <div style={{ color: "#64748b" }}>{planDef.tagline}</div>
-            <div style={{ fontWeight: 800 }}>{planDef.priceMonthly}</div>
-            {planDef.priceAnnual && <div style={{ color: "#64748b" }}>{planDef.priceAnnual}</div>}
-            {planDef.ctaNote && <p style={{ marginTop: 6 }}>{planDef.ctaNote}</p>}
-          </div>
-
-          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <button className="sl-link-btn" onClick={() => router.push("/pricing")}>
-              Change Plan
-            </button>
-            <button className="sl-link-btn gold" onClick={next}>
-              Continue
-            </button>
-          </div>
-        </section>
-      )}
-
-      {/* Step 1: Payment (only for paid plans) */}
-      {visibleStep === 1 && planDef.requiresPayment && (
-        <section style={card}>
-          <h2 style={{ marginTop: 0, marginBottom: 8 }}>Payment</h2>
-          <p style={{ marginTop: 0, color: "#334155" }}>
-            You’re selecting <strong>{planDef.name}</strong>. We’ll connect this to your chosen billing term
-            when checkout is integrated.
-          </p>
-
-          {/* Placeholder payment inputs (replace with Stripe elements later) */}
-          <div style={{ display: "grid", gap: 10, marginTop: 10 }}>
-            <label style={labelStyle}>
-              <span>Cardholder Name</span>
-              <input type="text" placeholder="Full name" style={inputStyle} />
-            </label>
-            <label style={labelStyle}>
-              <span>Card Number</span>
-              <input type="text" placeholder="•••• •••• •••• ••••" style={inputStyle} />
-            </label>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
-              <label style={labelStyle}>
-                <span>Expiry</span>
-                <input type="text" placeholder="MM/YY" style={inputStyle} />
-              </label>
-              <label style={labelStyle}>
-                <span>CVC</span>
-                <input type="text" placeholder="CVC" style={inputStyle} />
-              </label>
-            </div>
-          </div>
-
-          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            <button className="sl-link-btn" onClick={back}>
-              Back
-            </button>
-            <button className="sl-link-btn gold" onClick={next}>
-              Proceed to Profile Setup
-            </button>
-          </div>
-        </section>
-      )}
-
-      {/* Step 2: Profile Setup */}
-      {visibleStep === 2 && (
-        <section style={card}>
-          <h2 style={{ marginTop: 0, marginBottom: 8 }}>Profile Setup</h2>
-
-          {isPlayerPlan(planDef.key) && <PlayerForm />}
-          {planDef.key === "team" && <TeamAdminForm />}
-          {planDef.key === "coach" && <CoachForm />}
-
-          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
-            {planDef.requiresPayment ? (
-              <button className="sl-link-btn" onClick={back}>
-                Back
+              <button type="button" className="btn" onClick={addInvite} disabled={!inviteEntry.trim() || !isEmail(inviteEntry.trim())}>
+                Add
               </button>
-            ) : (
-              <button className="sl-link-btn" onClick={() => router.push("/pricing")}>
-                Back to Pricing
-              </button>
+            </div>
+            {!!form.additionalCoachEmails.length && (
+              <div className="chips">
+                {form.additionalCoachEmails.map((em) => (
+                  <span key={em} className="chip">
+                    {em}
+                    <button type="button" className="chip-x" onClick={() => removeInvite(em)} aria-label={`Remove ${em}`}>
+                      ×
+                    </button>
+                  </span>
+                ))}
+              </div>
             )}
-            <button
-              className="sl-link-btn gold"
-              onClick={() => {
-                // Hook up to real saves/redirects later
-                alert("Profile created! Redirecting to your dashboard…");
-              }}
-            >
-              Save & Continue
-            </button>
+            <p className="help">
+              We’ll email them an invite and link their accounts to your program for shared watchlists and staff access.
+            </p>
           </div>
-        </section>
-      )}
 
-      <LocalStyles />
-    </main>
-  );
-}
+          {/* Submit */}
+          {submitError && <div className="error-banner">{submitError}</div>}
+          <div style={{ display: "flex", gap: 10, alignItems: "center", marginTop: 14 }}>
+            <button type="submit" className="btn gold" disabled={!canSubmit || submitting}>
+              {submitting ? "Saving…" : "Save & Continue"}
+            </button>
+            <Link href="/pricing" className="btn ghost">Cancel</Link>
+          </div>
+        </form>
+      </section>
 
-/* ——— Sub-Forms ——— */
-
-function PlayerForm() {
-  return (
-    <div style={{ display: "grid", gap: 10 }}>
-      <p style={{ marginTop: 0, color: "#334155" }}>Create your player profile. You can add more later.</p>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>First Name</span>
-          <input style={inputStyle} type="text" placeholder="First name" />
-        </label>
-        <label style={labelStyle}>
-          <span>Last Name</span>
-          <input style={inputStyle} type="text" placeholder="Last name" />
-        </label>
-      </div>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>Email</span>
-          <input style={inputStyle} type="email" placeholder="Email address" />
-        </label>
-        <label style={labelStyle}>
-          <span>Phone</span>
-          <input style={inputStyle} type="tel" placeholder="(555) 555-5555" />
-        </label>
-      </div>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>Graduation Year</span>
-          <input style={inputStyle} type="number" placeholder="2027" />
-        </label>
-        <label style={labelStyle}>
-          <span>Primary Position</span>
-          <input style={inputStyle} type="text" placeholder="SS / RHP" />
-        </label>
-      </div>
-
-      <label style={labelStyle}>
-        <span>Player Bio</span>
-        <textarea style={textAreaStyle} placeholder="Short intro, strengths, goals…" />
-      </label>
-    </div>
-  );
-}
-
-function TeamAdminForm() {
-  return (
-    <div style={{ display: "grid", gap: 10 }}>
-      <p style={{ marginTop: 0, color: "#334155" }}>Set up your team admin account and team details.</p>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>Team Name</span>
-          <input style={inputStyle} type="text" placeholder="City Gold 17U" />
-        </label>
-        <label style={labelStyle}>
-          <span>Organization</span>
-          <input style={inputStyle} type="text" placeholder="City Gold Baseball" />
-        </label>
-      </div>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>Admin Name</span>
-          <input style={inputStyle} type="text" placeholder="Full name" />
-        </label>
-        <label style={labelStyle}>
-          <span>Admin Email</span>
-          <input style={inputStyle} type="email" placeholder="you@example.com" />
-        </label>
-      </div>
-
-      <label style={labelStyle}>
-        <span>Roster Import (optional)</span>
-        <input style={inputStyle} type="file" />
-      </label>
-    </div>
-  );
-}
-
-function CoachForm() {
-  return (
-    <div style={{ display: "grid", gap: 10 }}>
-      <p style={{ marginTop: 0, color: "#334155" }}>
-        Create your coach/recruiter profile to start searching and saving players.
-      </p>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>Name</span>
-          <input style={inputStyle} type="text" placeholder="Full name" />
-        </label>
-        <label style={labelStyle}>
-          <span>Role</span>
-          <input style={inputStyle} type="text" placeholder="Head Coach / Recruiting Coordinator" />
-        </label>
-      </div>
-
-      <div style={grid2}>
-        <label style={labelStyle}>
-          <span>College / Program</span>
-          <input style={inputStyle} type="text" placeholder="University / Program" />
-        </label>
-        <label style={labelStyle}>
-          <span>Work Email</span>
-          <input style={inputStyle} type="email" placeholder="name@university.edu" />
-        </label>
-      </div>
-
-      <label style={labelStyle}>
-        <span>Conference (optional)</span>
-        <input style={inputStyle} type="text" placeholder="Conference name" />
-      </label>
-    </div>
-  );
-}
-
-/* ——— Shared styles ——— */
-const card: React.CSSProperties = {
-  border: "1px solid #e5e7eb",
-  borderRadius: 12,
-  padding: 16,
-  background: "#fff",
-  boxShadow: "0 6px 16px rgba(15,23,42,0.06)",
-  marginTop: 8,
-};
-
-const grid2: React.CSSProperties = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 };
-
-const labelStyle: React.CSSProperties = {
-  display: "grid",
-  gap: 6,
-  fontWeight: 600,
-};
-
-const inputStyle: React.CSSProperties = {
-  border: "1px solid #e5e7eb",
-  borderRadius: 10,
-  padding: "10px 12px",
-  outline: "none",
-};
-
-const textAreaStyle: React.CSSProperties = {
-  ...inputStyle,
-  minHeight: 90,
-  resize: "vertical",
-};
-
-function LocalStyles() {
-  return (
-    <style>{`
-      .sl-link-btn {
-        display: inline-block;
-        padding: 10px 14px;
-        border-radius: 10px;
-        background: rgba(255,255,255,0.96);
-        color: #0f172a;
-        text-decoration: none;
-        border: 1px solid #e5e7eb;
-        font-weight: 800;
-        transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
-        cursor: pointer;
-      }
-      .sl-link-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-        background: #f3f4f6;
-      }
-      .sl-link-btn.gold {
-        background: #caa042;
-        color: #0f172a;
-        border-color: #caa042;
-      }
-      .sl-link-btn.gold:hover {
-        background: #d7b25e;
-        border-color: #d7b25e;
-      }
-      button.sl-link-btn { font: inherit; }
-      input, textarea { font: inherit; }
-
-      @media (max-width: 640px) {
-        /* stack two-column fields on mobile */
-        div[style*="grid-template-columns: 1fr 1fr"] {
-          grid-template-columns: 1fr !important;
+      {/* Local styles */}
+      <style>{`
+        .label { display:block; font-weight:800; margin-bottom:6px; }
+        .req { color:#b91c1c; margin-left:4px; }
+        .field { margin-bottom:16px; }
+        .input {
+          width:100%;
+          padding:10px 12px;
+          border:1px solid #e5e7eb;
+          border-radius:10px;
+          font-size:15px;
+          outline:none;
+          transition:border-color .15s ease, box-shadow .15s ease;
+          background:#fff;
         }
-      }
-    `}</style>
+        .input:focus { border-color:#caa042; box-shadow:0 0 0 3px rgba(202,160,66,0.18); }
+        .input.error { border-color:#ef4444; }
+        .error-text { margin-top:6px; color:#b91c1c; font-size:13px; }
+        .help { margin:6px 0 0; color:#64748b; font-size:13px; }
+
+        .btn {
+          padding:10px 14px;
+          border-radius:10px;
+          border:1px solid #e5e7eb;
+          background:#fff;
+          color:#0f172a;
+          font-weight:800;
+          cursor:pointer;
+          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, border-color .2s ease;
+          text-decoration:none;
+          display:inline-flex;
+          align-items:center;
+          justify-content:center;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.18); background:#f3f4f6; }
+        .btn.gold { background:#caa042; border-color:#caa042; color:#0f172a; }
+        .btn.gold:hover { background:#d7b25e; border-color:#d7b25e; }
+        .btn.ghost { background:transparent; }
+
+        .toggle { display:flex; align-items:center; gap:8px; margin-top:8px; color:#334155; font-size:14px; }
+
+        .chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+        .chip {
+          background:#f1f5f9;
+          color:#0f172a;
+          border:1px solid #e5e7eb;
+          border-radius:999px;
+          padding:6px 10px;
+          display:inline-flex;
+          align-items:center;
+          gap:8px;
+          font-size:13px;
+        }
+        .chip-x {
+          border:none;
+          background:transparent;
+          cursor:pointer;
+          font-size:16px;
+          line-height:1;
+          color:#334155;
+        }
+
+        .typeahead {
+          position:absolute;
+          top:100%;
+          left:0;
+          right:0;
+          margin-top:6px;
+          background:#fff;
+          border:1px solid #e5e7eb;
+          border-radius:10px;
+          box-shadow:0 12px 28px rgba(15,23,42,0.12);
+          z-index:20;
+          max-height:260px;
+          overflow:auto;
+        }
+        .type-row {
+          width:100%;
+          text-align:left;
+          padding:10px 12px;
+          background:#fff;
+          border:none;
+          border-bottom:1px solid #f1f5f9;
+          cursor:pointer;
+        }
+        .type-row:hover { background:#f8fafc; }
+        .type-row.muted { color:#94a3b8; cursor:default; }
+
+        .error-banner {
+          background:#fef2f2;
+          color:#991b1b;
+          border:1px solid #fecaca;
+          border-radius:10px;
+          padding:10px 12px;
+          margin-bottom:10px;
+          font-weight:700;
+        }
+      `}</style>
+    </main>
   );
 }
