@@ -1,44 +1,32 @@
-import jwt from "jsonwebtoken";
+// /lib/auth-tokens.ts
+import { SignJWT, jwtVerify } from "jose";
 
-/**
- * Token payload we issue for email verification and similar flows.
- */
-export type VerifyTokenPayload = {
-  email: string;
-  purpose: "verify"; // add more purposes later if needed
-};
+const APP_SECRET = process.env.APP_SECRET || "dev-only-secret-change-me";
+const ISSUER = process.env.JWT_ISSUER || "scoutline";
 
-/**
- * Create a short-lived email verification token.
- * @param email email address to verify
- * @param ttlSeconds default 30 minutes
- */
-export function createEmailVerificationToken(email: string, ttlSeconds = 60 * 30): string {
-  const secret = process.env.APP_SECRET;
-  if (!secret) throw new Error("APP_SECRET env var is required");
-
-  const payload: VerifyTokenPayload = { email: email.toLowerCase(), purpose: "verify" };
-  return jwt.sign(payload, secret, { expiresIn: ttlSeconds });
+function getKey() {
+  // jose accepts Uint8Array for HS256
+  return new TextEncoder().encode(APP_SECRET);
 }
 
-/**
- * Verify a token and (optionally) enforce a specific purpose.
- * Throws if invalid/expired.
- */
-export function verifyToken(token: string, expectedPurpose?: VerifyTokenPayload["purpose"]): VerifyTokenPayload {
-  const secret = process.env.APP_SECRET;
-  if (!secret) throw new Error("APP_SECRET env var is required");
+type BasePayload = {
+  purpose: "email-verify" | string;
+  email: string;
+};
 
-  const decoded = jwt.verify(token, secret);
-  if (typeof decoded !== "object" || decoded === null) {
-    throw new Error("Invalid token payload");
-  }
+export function signVerifyToken(
+  email: string,
+  expiresIn: string = "30m" // jose supports time spans like "30m", "1h"
+): string {
+  return new SignJWT({ purpose: "email-verify", email } satisfies BasePayload)
+    .setProtectedHeader({ alg: "HS256" })
+    .setIssuer(ISSUER)
+    .setIssuedAt()
+    .setExpirationTime(expiresIn)
+    .sign(getKey());
+}
 
-  const payload = decoded as VerifyTokenPayload;
-
-  if (expectedPurpose && payload.purpose !== expectedPurpose) {
-    throw new Error("Invalid token purpose");
-  }
-
-  return payload;
+export async function verifyToken<T = Record<string, unknown>>(token: string): Promise<T> {
+  const { payload } = await jwtVerify(token, getKey(), { issuer: ISSUER });
+  return payload as T;
 }
