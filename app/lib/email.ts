@@ -1,46 +1,91 @@
 // lib/email.ts
-// Minimal mail helpers. In dev (or when SMTP not configured) we just log.
-// In prod, wire up Nodemailer (optional) if you add it as a dependency.
+// Uses Resend if RESEND_API_KEY is set; otherwise logs to console in dev.
 
-type MailInput = {
+type SendArgs = {
   to: string;
   subject: string;
-  html: string;
+  html?: string;
   text?: string;
+  // optional: for providers that need from/reply-to overrides
+  from?: string;
 };
 
-async function sendWithConsole({ to, subject, html }: MailInput) {
-  console.log("—— EMAIL (console fallback) ——");
-  console.log("To:", to);
-  console.log("Subject:", subject);
-  console.log("HTML:\n", html);
-  console.log("——————————————");
+const RESEND_API_KEY = process.env.RESEND_API_KEY || "";
+const DEFAULT_FROM = process.env.EMAIL_FROM || "ScoutLine <no-reply@scoutline.app>";
+
+/**
+ * Sends an email. In production with RESEND_API_KEY set, it uses Resend.
+ * Otherwise, it falls back to console logging (useful for local dev).
+ */
+export async function sendEmail({ to, subject, html, text, from }: SendArgs) {
+  if (RESEND_API_KEY) {
+    const { Resend } = await import("resend");
+    const resend = new Resend(RESEND_API_KEY);
+
+    const result = await resend.emails.send({
+      from: from || DEFAULT_FROM,
+      to,
+      subject,
+      html: html || (text ? `<pre>${escapeHtml(text)}</pre>` : "<div></div>"),
+      text,
+    });
+
+    if (result.error) {
+      // Bubble up for API route to handle
+      throw new Error(
+        typeof result.error === "string" ? result.error : JSON.stringify(result.error)
+      );
+    }
+    return result;
+  }
+
+  // Fallback: dev log
+  // eslint-disable-next-line no-console
+  console.log("==== DEV EMAIL (no RESEND_API_KEY set) ====");
+  // eslint-disable-next-line no-console
+  console.log({ from: from || DEFAULT_FROM, to, subject, html, text });
+  // Return a mock object to keep callers happy
+  return { id: "dev-email", to, subject };
 }
 
-export async function sendVerificationEmail(to: string, link: string) {
-  const subject = "Verify your email";
-  const html = `
-    <div style="font-family:system-ui,Segoe UI,Arial,sans-serif">
-      <h2>Confirm your email</h2>
-      <p>Click the button below to verify your email address.</p>
-      <p><a href="${link}" style="display:inline-block;padding:10px 14px;border-radius:8px;background:#caa042;color:#0f172a;text-decoration:none;font-weight:700">Verify Email</a></p>
-      <p>If the button doesn't work, copy and paste this URL into your browser:</p>
-      <p><code>${link}</code></p>
-    </div>
-  `;
-  await sendWithConsole({ to, subject, html });
+function escapeHtml(str: string) {
+  return str
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
 }
 
-export async function sendSetPasswordEmail(to: string, link: string) {
-  const subject = "Set your password";
-  const html = `
-    <div style="font-family:system-ui,Segoe UI,Arial,sans-serif">
-      <h2>Set your password</h2>
-      <p>Click the button below to create your password and finish setup.</p>
-      <p><a href="${link}" style="display:inline-block;padding:10px 14px;border-radius:8px;background:#caa042;color:#0f172a;text-decoration:none;font-weight:700">Set Password</a></p>
-      <p>If the button doesn't work, copy and paste this URL into your browser:</p>
-      <p><code>${link}</code></p>
-    </div>
-  `;
-  await sendWithConsole({ to, subject, html });
+/**
+ * Convenience helper to generate a simple branded HTML wrapper.
+ * Optional to use—your API routes can pass raw HTML too.
+ */
+export function wrapHtml(body: string) {
+  return `
+<!doctype html>
+<html>
+  <head>
+    <meta charSet="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ScoutLine</title>
+  </head>
+  <body style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji'; background:#f8fafc; padding:24px;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;margin:0 auto;background:#ffffff;border:1px solid #e5e7eb;border-radius:12px;">
+      <tr>
+        <td style="padding:20px 24px;border-bottom:1px solid #e5e7eb;">
+          <h1 style="margin:0;font-size:20px;color:#0f172a;">ScoutLine</h1>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:24px;font-size:16px;color:#0f172a;line-height:1.6;">
+          ${body}
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:16px 24px;border-top:1px solid #e5e7eb;color:#64748b;font-size:12px;">
+          © ${new Date().getFullYear()} ScoutLine
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
 }
