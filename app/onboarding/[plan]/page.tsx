@@ -11,9 +11,9 @@ type PageProps = {
 type CoachForm = {
   name: string;
   role: string;
-  collegeUniversity: string;
-  email: string;
-  phone: string;
+  collegeProgram: string;
+  workEmail: string;
+  workPhone: string;
   phonePrivate: boolean;
   inviteEmails: string[];
 };
@@ -46,9 +46,9 @@ function CoachOnboarding() {
   const [form, setForm] = React.useState<CoachForm>({
     name: "",
     role: "",
-    collegeUniversity: "",
-    email: "",
-    phone: "",
+    collegeProgram: "",
+    workEmail: "",
+    workPhone: "",
     phonePrivate: true,
     inviteEmails: [],
   });
@@ -61,7 +61,7 @@ function CoachOnboarding() {
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  // --- Autocomplete (College / University) ---
+  // --- Autocomplete (College / Program) ---
   React.useEffect(() => {
     if (collegeQuery.trim().length < 2) {
       setSuggestions([]);
@@ -82,7 +82,7 @@ function CoachOnboarding() {
 
   const selectSuggestion = (s: Suggestion) => {
     const display = s.state ? `${s.name} (${s.state})` : s.name;
-    setForm((f) => ({ ...f, collegeUniversity: display }));
+    setForm((f) => ({ ...f, collegeProgram: display }));
     setCollegeQuery(display);
     setShowSuggs(false);
   };
@@ -116,8 +116,8 @@ function CoachOnboarding() {
     // Required checks
     if (!form.name.trim()) return setError("Name is required.");
     if (!form.role.trim()) return setError("Role is required.");
-    if (!form.collegeUniversity.trim()) return setError("College / University is required.");
-    if (!form.email.trim()) return setError("Email is required.");
+    if (!form.collegeProgram.trim()) return setError("College / Program is required.");
+    if (!form.workEmail.trim()) return setError("Work email is required.");
 
     setSubmitting(true);
     try {
@@ -128,18 +128,18 @@ function CoachOnboarding() {
         body: JSON.stringify(form),
       });
 
-      // 2) Send verification email (YOUR request from earlier)
+      // 2) Send verification email
       await fetch("/api/auth/send-verification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.email }),
+        body: JSON.stringify({ email: form.workEmail }),
       });
 
       // 3) (Optional) Send invites server-side based on form.inviteEmails
       // await fetch("/api/onboarding/coach/invite", { ... });
 
       // 4) Route to a "Check your email" page
-      router.push(`/check-email?email=${encodeURIComponent(form.Email)}&plan=coach`);
+      router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
     } catch (err) {
       console.error(err);
       setError("Something went wrong. Please try again.");
@@ -149,23 +149,23 @@ function CoachOnboarding() {
 
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>
-      <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>College Coaches and Recruiters</h1>
+      <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>College Coaches & Recruiters</h1>
       <p style={{ marginTop: 6, color: "#475569" }}>
-        Create your account. You’ll verify your email next, then set your password.
+        Create your program account. You’ll verify your email next, then set your password.
       </p>
 
       <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
         <div className="grid">
           {/* Name (required) */}
           <div className="field">
-            <label className="label">Name<span className="req">*</span></label>
+            <label className="label">Full Name<span className="req">*</span></label>
             <input
               type="text"
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               required
               className="input"
-              placeholder="John Doe"
+              placeholder="Jane Doe"
             />
           </div>
 
@@ -183,21 +183,20 @@ function CoachOnboarding() {
               <option value="Assistant Coach">Assistant Coach</option>
               <option value="Recruiting Coordinator">Recruiting Coordinator</option>
               <option value="Analyst/Operations">Analyst / Operations</option>
-              <option value="Athletic Director">Athletic Director</option>
               <option value="Other">Other</option>
             </select>
           </div>
 
-          {/* College / University (required, autocomplete) */}
+          {/* College / Program (required, autocomplete) */}
           <div className="field" style={{ position: "relative" }}>
-            <label className="label">College / University<span className="req">*</span></label>
+            <label className="label">College / Program<span className="req">*</span></label>
             <input
               type="text"
               value={collegeQuery}
               onChange={(e) => {
                 const v = e.target.value;
                 setCollegeQuery(v);
-                setForm((f) => ({ ...f, collegeUniversity: v }));
+                setForm((f) => ({ ...f, collegeProgram: v }));
                 setShowSuggs(true);
               }}
               onFocus={() => setShowSuggs(true)}
@@ -221,26 +220,26 @@ function CoachOnboarding() {
             )}
           </div>
 
-          {/* Email (required) */}
+          {/* Work Email (required) */}
           <div className="field">
-            <label className="label">Email<span className="req">*</span></label>
+            <label className="label">Work Email<span className="req">*</span></label>
             <input
               type="email"
-              value={form.Email}
-              onChange={(e) => setForm((f) => ({ ...f, Email: e.target.value }))}
+              value={form.workEmail}
+              onChange={(e) => setForm((f) => ({ ...f, workEmail: e.target.value }))}
               required
               className="input"
               placeholder="coach@university.edu"
             />
           </div>
 
-          {/* Phone + Privacy toggle */}
+          {/* Work Phone + Privacy toggle */}
           <div className="field">
-            <label className="label">Phone (optional)</label>
+            <label className="label">Work Phone (optional)</label>
             <input
               type="tel"
-              value={form.Phone}
-              onChange={(e) => setForm((f) => ({ ...f, Phone: e.target.value }))}
+              value={form.workPhone}
+              onChange={(e) => setForm((f) => ({ ...f, workPhone: e.target.value }))}
               className="input"
               placeholder="(555) 555-5555"
             />
@@ -254,9 +253,9 @@ function CoachOnboarding() {
             </label>
           </div>
 
-          {/* Invite other coaches from your program (chips, one at a time) */}
+          {/* Invite other coaches (chips, one at a time) */}
           <div className="field" style={{ gridColumn: "1 / -1" }}>
-            <label className="label">Invite Other Coaches from your program (optional)</label>
+            <label className="label">Invite Other Coaches (optional)</label>
             <div className="chip-row">
               {form.inviteEmails.map((email) => (
                 <span key={email} className="chip">
@@ -283,7 +282,7 @@ function CoachOnboarding() {
                 Add
               </button>
             </div>
-            <p className="hint">Once they create an account, each invite will be linked to your program for sharing features.</p>
+            <p className="hint">Each invite is linked to your program for sharing features.</p>
           </div>
         </div>
 
