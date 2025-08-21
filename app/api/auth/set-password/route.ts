@@ -1,7 +1,5 @@
-// /app/api/auth/set-password/route.ts
 import { NextResponse } from "next/server";
 import { verifyToken } from "@/lib/auth-tokens";
-// import { hash } from "bcryptjs"; // recommended in production
 
 export async function POST(req: Request) {
   try {
@@ -15,11 +13,10 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid token purpose" }, { status: 400 });
     }
 
-    const email = payload.email.toLowerCase();
+    const email = (payload.email || "").toLowerCase();
 
-    // TODO: hash and store password, mark emailVerifiedAt
-    // const hashed = await hash(password, 12);
-    // await db.user.upsert({ ... });
+    // TODO: hash + save password & mark email verified in your DB
+    // e.g. const hashed = await hash(password, 12);
 
     return NextResponse.json({ ok: true });
   } catch {
