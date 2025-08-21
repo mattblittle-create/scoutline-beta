@@ -11,9 +11,9 @@ type PageProps = {
 type CoachForm = {
   name: string;
   role: string;
-  collegeProgram: string;
-  workEmail: string;
-  workPhone: string;
+  collegeUniversity: string;
+  email: string;
+  phone: string;
   phonePrivate: boolean;
   inviteEmails: string[];
 };
@@ -46,9 +46,9 @@ function CoachOnboarding() {
   const [form, setForm] = React.useState<CoachForm>({
     name: "",
     role: "",
-    collegeProgram: "",
-    workEmail: "",
-    workPhone: "",
+    collegeUniversity: "",
+    email: "",
+    phone: "",
     phonePrivate: true,
     inviteEmails: [],
   });
@@ -61,7 +61,7 @@ function CoachOnboarding() {
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  // --- Autocomplete (College / Program) ---
+  // --- Autocomplete (College / University) ---
   React.useEffect(() => {
     if (collegeQuery.trim().length < 2) {
       setSuggestions([]);
@@ -82,7 +82,7 @@ function CoachOnboarding() {
 
   const selectSuggestion = (s: Suggestion) => {
     const display = s.state ? `${s.name} (${s.state})` : s.name;
-    setForm((f) => ({ ...f, collegeProgram: display }));
+    setForm((f) => ({ ...f, collegeUniversity: display }));
     setCollegeQuery(display);
     setShowSuggs(false);
   };
@@ -116,8 +116,8 @@ function CoachOnboarding() {
     // Required checks
     if (!form.name.trim()) return setError("Name is required.");
     if (!form.role.trim()) return setError("Role is required.");
-    if (!form.collegeProgram.trim()) return setError("College / Program is required.");
-    if (!form.workEmail.trim()) return setError("Work email is required.");
+    if (!form.collegeUniversity.trim()) return setError("College / University is required.");
+    if (!form.email.trim()) return setError("Email is required.");
 
     setSubmitting(true);
     try {
@@ -132,7 +132,7 @@ function CoachOnboarding() {
       await fetch("/api/auth/send-verification", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.workEmail }),
+        body: JSON.stringify({ email: form.email }),
       });
 
       // 3) (Optional) Send invites server-side based on form.inviteEmails
@@ -149,9 +149,9 @@ function CoachOnboarding() {
 
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>
-      <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>College Coaches & Recruiters</h1>
+      <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>College Coaches and Recruiters</h1>
       <p style={{ marginTop: 6, color: "#475569" }}>
-        Create your program account. You’ll verify your email next, then set your password.
+        Create your account. You’ll verify your email next, then set your password.
       </p>
 
       <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
@@ -165,7 +165,7 @@ function CoachOnboarding() {
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               required
               className="input"
-              placeholder="Jane Doe"
+              placeholder="John Doe"
             />
           </div>
 
@@ -283,7 +283,7 @@ function CoachOnboarding() {
                 Add
               </button>
             </div>
-            <p className="hint">Each invite is linked to your program for sharing features.</p>
+            <p className="hint">Once they create an account, each invite will be linked to your program for sharing features.</p>
           </div>
         </div>
 
