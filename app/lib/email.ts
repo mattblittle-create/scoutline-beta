@@ -1,28 +1,46 @@
-export async function sendEmail(to: string, subject: string, html: string) {
-  // TODO: integrate your ESP (Resend, SES, SendGrid, etc.)
-  console.log("DEV EMAIL ->", { to, subject, html });
-}
-/**
- * Minimal email sender abstraction.
- * Replace with your provider (Resend, SES, Sendgrid, etc).
- */
-export async function sendEmail(opts: {
+// lib/email.ts
+// Minimal mail helpers. In dev (or when SMTP not configured) we just log.
+// In prod, wire up Nodemailer (optional) if you add it as a dependency.
+
+type MailInput = {
   to: string;
   subject: string;
   html: string;
   text?: string;
-  from?: string;
-}) {
-  const from = opts.from ?? (process.env.MAIL_FROM || "no-reply@scoutline.app");
-  // Stub: log in dev, hand off to your real provider in prod
-  if (process.env.NODE_ENV !== "production") {
-    console.log("[DEV EMAIL]", { from, ...opts });
-    return { id: "dev-mail" };
-  }
+};
 
-  // Example placeholder — replace with your provider call
-  // await realProvider.send({ from, to: opts.to, subject: opts.subject, html: opts.html, text: opts.text });
+async function sendWithConsole({ to, subject, html }: MailInput) {
+  console.log("—— EMAIL (console fallback) ——");
+  console.log("To:", to);
+  console.log("Subject:", subject);
+  console.log("HTML:\n", html);
+  console.log("——————————————");
+}
 
-  // For now, still succeed
-  return { id: "noop-mail" };
+export async function sendVerificationEmail(to: string, link: string) {
+  const subject = "Verify your email";
+  const html = `
+    <div style="font-family:system-ui,Segoe UI,Arial,sans-serif">
+      <h2>Confirm your email</h2>
+      <p>Click the button below to verify your email address.</p>
+      <p><a href="${link}" style="display:inline-block;padding:10px 14px;border-radius:8px;background:#caa042;color:#0f172a;text-decoration:none;font-weight:700">Verify Email</a></p>
+      <p>If the button doesn't work, copy and paste this URL into your browser:</p>
+      <p><code>${link}</code></p>
+    </div>
+  `;
+  await sendWithConsole({ to, subject, html });
+}
+
+export async function sendSetPasswordEmail(to: string, link: string) {
+  const subject = "Set your password";
+  const html = `
+    <div style="font-family:system-ui,Segoe UI,Arial,sans-serif">
+      <h2>Set your password</h2>
+      <p>Click the button below to create your password and finish setup.</p>
+      <p><a href="${link}" style="display:inline-block;padding:10px 14px;border-radius:8px;background:#caa042;color:#0f172a;text-decoration:none;font-weight:700">Set Password</a></p>
+      <p>If the button doesn't work, copy and paste this URL into your browser:</p>
+      <p><code>${link}</code></p>
+    </div>
+  `;
+  await sendWithConsole({ to, subject, html });
 }
