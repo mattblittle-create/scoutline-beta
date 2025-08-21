@@ -1,77 +1,87 @@
 // lib/auth-tokens.ts
-// Lightweight HMAC-signed tokens for email verification & set-password flows.
-// No extra deps. Uses APP_SECRET. Works on serverless without DB storage.
+// Lightweight HMAC-signed, time-limited tokens (no DB lookup needed)
 
-import crypto from "node:crypto";
+type Purpose = "verify" | "reset";
 
-export type TokenType = "verify" | "set-password";
-
-export type EmailTokenPayload = {
+export type SignedPayload = {
   email: string;
-  type: TokenType;
-  exp: number; // epoch ms
+  purpose: Purpose;
+  exp: number; // unix seconds
 };
 
-// ---- internals ----
-function getSecret() {
-  const secret = process.env.APP_SECRET;
-  if (!secret) {
-    throw new Error("APP_SECRET missing. Add APP_SECRET to your environment.");
-  }
-  return secret;
+const APP_SECRET = process.env.APP_SECRET || "";
+if (!APP_SECRET) {
+  // Fail fast in build/runtime if not configured
+  // (Vercel: set in Project Settings → Environment Variables)
+  throw new Error("Missing APP_SECRET env var");
 }
 
-function hmac(input: string, secret: string) {
-  return crypto.createHmac("sha256", secret).update(input).digest("base64url");
+/** base64url helpers */
+function b64urlEncode(buffer: Buffer | string) {
+  return Buffer.from(buffer)
+    .toString("base64")
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/g, "");
+}
+function b64urlDecode(str: string) {
+  const pad = 4 - (str.length % 4 || 4);
+  const base64 = str.replace(/-/g, "+").replace(/_/g, "_") + "=".repeat(pad);
+  return Buffer.from(base64, "base64");
 }
 
-function encode(payload: EmailTokenPayload) {
-  const json = JSON.stringify(payload);
-  return Buffer.from(json).toString("base64url");
+function sign(data: string) {
+  const crypto = require("crypto") as typeof import("crypto");
+  return b64urlEncode(
+    crypto.createHmac("sha256", APP_SECRET).update(data).digest()
+  );
 }
 
-function decode<T>(b64: string): T {
-  const json = Buffer.from(b64, "base64url").toString("utf8");
-  return JSON.parse(json) as T;
-}
-
-// ---- public API ----
-export function createEmailToken(
-  email: string,
-  type: TokenType,
-  ttlMinutes = 60
+/** Create a compact token: payload.signature (both base64url) */
+export function createToken(
+  payload: Omit<SignedPayload, "exp"> & { ttlSeconds: number }
 ): string {
-  const exp = Date.now() + ttlMinutes * 60_000;
-  const payload: EmailTokenPayload = { email, type, exp };
-  const body = encode(payload);
-  const sig = hmac(body, getSecret());
+  const { email, purpose, ttlSeconds } = payload;
+  const exp = Math.floor(Date.now() / 1000) + ttlSeconds;
+
+  const toSign: SignedPayload = { email, purpose, exp };
+  const body = b64urlEncode(JSON.stringify(toSign));
+  const sig = sign(body);
   return `${body}.${sig}`;
 }
 
-export function verifyEmailToken(token: string): EmailTokenPayload {
+/** Verify token signature & expiry; optionally enforce purpose */
+export function verifyToken(
+  token: string,
+  expectedPurpose?: Purpose
+): SignedPayload {
   const [body, sig] = token.split(".");
   if (!body || !sig) {
-    throw new Error("Malformed token");
+    throw new Error("Invalid token format");
   }
-  const expected = hmac(body, getSecret());
-  if (!crypto.timingSafeEqual(Buffer.from(sig), Buffer.from(expected))) {
+  const goodSig = sign(body);
+  if (sig !== goodSig) {
     throw new Error("Invalid token signature");
   }
-  const payload = decode<EmailTokenPayload>(body);
-  if (Date.now() > payload.exp) {
+
+  const payload = JSON.parse(b64urlDecode(body).toString("utf8")) as SignedPayload;
+
+  if (expectedPurpose && payload.purpose !== expectedPurpose) {
+    throw new Error("Invalid token purpose");
+  }
+  const now = Math.floor(Date.now() / 1000);
+  if (payload.exp < now) {
     throw new Error("Token expired");
   }
   return payload;
 }
 
-export function buildVerificationLink(token: string) {
-  const base = process.env.APP_BASE_URL || "http://localhost:3000";
-  // page should read token from ?token=
-  return `${base}/verify-email?token=${encodeURIComponent(token)}`;
+/** Convenience creators */
+export function createEmailVerificationToken(email: string, ttlSeconds = 60 * 60 * 24) {
+  // default: 24h
+  return createToken({ email, purpose: "verify", ttlSeconds });
 }
-
-export function buildSetPasswordLink(token: string) {
-  const base = process.env.APP_BASE_URL || "http://localhost:3000";
-  // page should read token from ?token=
-  return `${base}/set-password?token=${encodeURIComponent(token)}`;
+export function createPasswordResetToken(email: string, ttlSeconds = 60 * 30) {
+  // default: 30m
+  return createToken({ email, purpose: "reset", ttlSeconds });
 }
