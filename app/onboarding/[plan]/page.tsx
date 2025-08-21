@@ -158,14 +158,14 @@ function CoachOnboarding() {
         <div className="grid">
           {/* Name (required) */}
           <div className="field">
-            <label className="label">Full Name<span className="req">*</span></label>
+            <label className="label">Name<span className="req">*</span></label>
             <input
               type="text"
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               required
               className="input"
-              placeholder="Jane Doe"
+              placeholder="John Doe"
             />
           </div>
 
@@ -192,7 +192,7 @@ function CoachOnboarding() {
 
           {/* College / Program (required, autocomplete) */}
           <div className="field" style={{ position: "relative" }}>
-            <label className="label">College / Program<span className="req">*</span></label>
+            <label className="label">College / University<span className="req">*</span></label>
             <input
               type="text"
               value={collegeQuery}
@@ -225,7 +225,7 @@ function CoachOnboarding() {
 
           {/* Work Email (required) */}
           <div className="field">
-            <label className="label">Work Email<span className="req">*</span></label>
+            <label className="label">Email<span className="req">*</span></label>
             <input
               type="email"
               value={form.workEmail}
@@ -238,7 +238,7 @@ function CoachOnboarding() {
 
           {/* Work Phone + Privacy toggle */}
           <div className="field">
-            <label className="label">Work Phone (optional)</label>
+            <label className="label">Phone (optional)</label>
             <input
               type="tel"
               value={form.workPhone}
@@ -285,7 +285,7 @@ function CoachOnboarding() {
                 Add
               </button>
             </div>
-            <p className="hint">Each invite is linked to your program for sharing features.</p>
+            <p className="hint">Once they create an account, each invited coach is linked to your program for sharing features.</p>
           </div>
         </div>
 
