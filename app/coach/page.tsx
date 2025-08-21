@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { braden as defaultBraden, Player } from "../lib/samplePlayer";
+import { braden as defaultBraden, Player } from "@/lib/samplePlayer";
 
 const LS_COMMITTED = "bradenCommitted";
 const LS_COLLEGE = "bradenCommittedCollege";
@@ -34,7 +34,9 @@ export default function CoachPage() {
       {/* Result card */}
       <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 16, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
         <div>
-          <h2 style={{ margin: 0 }}>{p.name} ({p.gradYear})</h2>
+          <h2 style={{ margin: 0 }}>
+            {p.name} ({p.gradYear})
+          </h2>
           <p style={{ margin: "6px 0 8px", color: "#6b7280" }}>
             {p.positions.join(" / ")} • {p.handedness} • {p.height}, {p.weight} • {p.city}
           </p>
@@ -73,7 +75,15 @@ export default function CoachPage() {
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span style={{ display: "inline-block", padding: "4px 10px", borderRadius: 9999, background: "#f1f5f9", fontSize: 12 }}>
+    <span
+      style={{
+        display: "inline-block",
+        padding: "4px 10px",
+        borderRadius: 9999,
+        background: "#f1f5f9",
+        fontSize: 12
+      }}
+    >
       {children}
     </span>
   );
