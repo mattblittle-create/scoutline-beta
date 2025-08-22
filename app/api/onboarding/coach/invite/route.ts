@@ -1,35 +1,46 @@
-// app/api/onboarding/coach/invite/route.ts
 import { NextResponse } from "next/server";
-import { sendEmail, wrapHtml } from "@/lib/email";
+import { Resend } from "resend";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
-    const { inviterName, program, emails } = await req.json() as {
-      inviterName: string;
-      program: string;
-      emails: string[];
-    };
+    const { program, inviterName, emails } = await req.json();
+
+    const key = process.env.RESEND_API_KEY;
+    if (!key) {
+      console.error("RESEND_API_KEY missing");
+      return NextResponse.json(
+        { ok: false, error: "Email service not configured" },
+        { status: 500 }
+      );
+    }
+
+    const from = process.env.EMAIL_FROM || "support@myscoutline.com";
+    const resend = new Resend(key); // <-- instantiate inside the handler
 
     if (!Array.isArray(emails) || emails.length === 0) {
-      return NextResponse.json({ error: "No invite emails" }, { status: 400 });
+      return NextResponse.json({ ok: true, queued: false });
     }
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const joinUrl = `${baseUrl}/onboarding/coach`; // or a special invite link if you add tokens
+    const subject = `You're invited to ScoutLine (${program})`;
+    const html = `
+      <p>${inviterName || "A coach"} invited you to ScoutLine for ${program}.</p>
+      <p><a href="${process.env.NEXT_PUBLIC_BASE_URL || ""}/onboarding/coach">Finish your onboarding</a></p>
+    `;
 
-    const subject = `You're invited to ${program} on ScoutLine`;
-    const html = wrapHtml(`
-      <p>${inviterName} invited you to join <strong>${program}</strong> on ScoutLine.</p>
-      <p><a href="${joinUrl}">Create your account</a></p>
-    `);
+    // Send in parallel (simple fan-out)
+    await Promise.all(
+      emails.map((to: string) =>
+        resend.emails.send({ from, to, subject, html }).catch((e) => {
+          console.error("Invite send failed:", to, e);
+        })
+      )
+    );
 
-    // send one by one (simple + clear logs)
-    for (const to of emails) {
-      await sendEmail(to, subject, html);
-    }
-
-    return NextResponse.json({ ok: true });
-  } catch (e: any) {
-    return NextResponse.json({ error: e?.message || "Invite failed" }, { status: 400 });
+    return NextResponse.json({ ok: true, queued: true });
+  } catch (err) {
+    console.error(err);
+    return NextResponse.json({ ok: false, error: "Invite error" }, { status: 500 });
   }
 }

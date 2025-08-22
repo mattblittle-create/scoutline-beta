@@ -1,6 +1,7 @@
-// app/api/auth/send-verification/route.ts
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+
+export const dynamic = "force-dynamic";
 
 export async function POST(req: Request) {
   try {
@@ -8,22 +9,22 @@ export async function POST(req: Request) {
 
     const key = process.env.RESEND_API_KEY;
     if (!key) {
-      // Helpful error for logs without crashing the build
-      console.error("RESEND_API_KEY is missing");
-      return NextResponse.json({ ok: false, error: "Email service not configured" }, { status: 500 });
+      console.error("RESEND_API_KEY missing");
+      return NextResponse.json(
+        { ok: false, error: "Email service not configured" },
+        { status: 500 }
+      );
     }
 
     const from = process.env.EMAIL_FROM || "support@myscoutline.com";
-    const resend = new Resend(key); // ✅ instantiate here
+    const resend = new Resend(key);
 
-    // send the email
-    await resend.emails.send({
-      from,
-      to: email,
-      subject: "Verify your email",
-      html: `<p>Click the link we sent to verify your email.</p>`,
-    });
+    // TODO: put your real verification link here
+    const html = `<p>Click to verify: <a href="${process.env.NEXT_PUBLIC_BASE_URL || ""}/verify?email=${encodeURIComponent(
+      email
+    )}">Verify</a></p>`;
 
+    await resend.emails.send({ from, to: email, subject: "Verify your email", html });
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error(err);
