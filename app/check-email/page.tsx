@@ -1,43 +1,33 @@
 import Link from "next/link";
-import ResendClient from "./Client";
+import Resend from "./Client";
 
-export default function CheckEmailPage({
-  searchParams,
-}: {
-  searchParams: { email?: string; plan?: string };
-}) {
-  const email = searchParams?.email ?? "";
-  const plan = (searchParams?.plan ?? "").toLowerCase();
+type Props = {
+  searchParams?: { email?: string; plan?: string };
+};
 
-  const title =
-    plan === "coach" ? "Check your work email" : "Check your email";
-
-  const subtitle =
-    plan === "coach"
-      ? "We’ve sent a verification link to finish setting up your Coach account."
-      : "We’ve sent a verification link to your email.";
+export default function CheckEmailPage({ searchParams }: Props) {
+  const email = (searchParams?.email || "").trim();
+  const plan = (searchParams?.plan || "").trim();
 
   return (
     <main style={{ maxWidth: 720, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>
-      <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>{title}</h1>
-      <p style={{ marginTop: 6, color: "#475569" }}>{subtitle}</p>
+      <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>Check your email</h1>
+      <p style={{ marginTop: 8, color: "#475569" }}>
+        We sent a verification link to {email ? <strong>{email}</strong> : "your email"}.
+        Click the link to verify, then you’ll be taken to set your password.
+      </p>
 
-      {email ? (
-        <p style={{ marginTop: 10 }}>
-          Sent to: <strong>{email}</strong>
-        </p>
-      ) : null}
-
-      <div style={{ marginTop: 16 }}>
-        <ResendClient email={email} />
-      </div>
-
-      <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
+      <div style={{ marginTop: 18, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <Resend email={email} />
         <Link href="/pricing" className="sl-link-btn">Back to Pricing</Link>
-        {plan === "coach" && (
-          <Link href="/onboarding/coach" className="sl-link-btn">Edit Info</Link>
-        )}
+        {plan === "coach" ? (
+          <Link href="/onboarding/coach" className="sl-link-btn">Edit Coach Info</Link>
+        ) : null}
       </div>
+
+      <p style={{ marginTop: 18, color: "#64748b", fontSize: ".95rem" }}>
+        Didn’t get the email? Check your spam folder or resend it.
+      </p>
 
       <style>{`
         .sl-link-btn {
