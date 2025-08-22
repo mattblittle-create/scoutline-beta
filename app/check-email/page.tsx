@@ -14,7 +14,7 @@ export default function CheckEmailPage({ searchParams }: Props) {
       <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>Check your email</h1>
       <p style={{ marginTop: 8, color: "#475569" }}>
         We sent a verification link to {email ? <strong>{email}</strong> : "your email"}.
-        Click the link to verify, then you’ll be taken to set your password.
+        Click the link to verify your account, then you’ll be able to set your password and log in.
       </p>
 
       <div style={{ marginTop: 18, display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
@@ -26,7 +26,7 @@ export default function CheckEmailPage({ searchParams }: Props) {
       </div>
 
       <p style={{ marginTop: 18, color: "#64748b", fontSize: ".95rem" }}>
-        Didn’t get the email? Check your spam folder or resend it.
+        Didn’t get the email? Check your spam folder or click Resend Email above. If you input the wrong email, click Edit Coach Info.
       </p>
 
       <style>{`
