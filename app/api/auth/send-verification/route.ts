@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     const token = await new SignJWT({ email })
       .setProtectedHeader({ alg: "HS256" })
       .setIssuedAt()
-      .setExpirationTime("15m")
+      .setExpirationTime("30m")
       .sign(secret);
 
     const verifyUrl = `${baseUrl}/verify?token=${encodeURIComponent(token)}`;
@@ -52,7 +52,7 @@ export async function POST(req: Request) {
                Verify Email
             </a>
           </p>
-          <p style="font-size:14px;color:#64748b">This link expires in 15 minutes.</p>
+          <p style="font-size:14px;color:#64748b">This link expires in 30 minutes.</p>
           <p style="font-size:12px;color:#64748b;word-break:break-all">${verifyUrl}</p>
         </div>
       `,
