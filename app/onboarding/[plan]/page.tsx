@@ -1,8 +1,9 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
+
 
 type PageProps = {
   params: { plan: string };
@@ -43,6 +44,8 @@ export default function OnboardingPlanPage({ params }: PageProps) {
 
 function CoachOnboarding() {
   const router = useRouter();
+
+  // state first
   const [form, setForm] = React.useState<CoachForm>({
     name: "",
     role: "",
@@ -52,14 +55,29 @@ function CoachOnboarding() {
     phonePrivate: true,
     inviteEmails: [],
   });
-
   const [inviteInput, setInviteInput] = React.useState("");
   const [suggestions, setSuggestions] = React.useState<Suggestion[]>([]);
   const [collegeQuery, setCollegeQuery] = React.useState("");
   const [showSuggs, setShowSuggs] = React.useState(false);
-
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+
+  // then read query params
+  const search = useSearchParams();
+  const prefillEmail = (search.get("prefillEmail") || "").trim();
+  const prefillCollege = (search.get("prefillCollege") || "").trim();
+
+  // prefill once (or whenever query params change)
+  React.useEffect(() => {
+    if (prefillEmail || prefillCollege) {
+      setForm((f) => ({
+        ...f,
+        workEmail: prefillEmail || f.workEmail,
+        collegeProgram: prefillCollege || f.collegeProgram,
+      }));
+      if (prefillCollege) setCollegeQuery(prefillCollege);
+    }
+  }, [prefillEmail, prefillCollege]);
 
   // --- Autocomplete (College / Program) ---
   React.useEffect(() => {
@@ -91,8 +109,7 @@ function CoachOnboarding() {
   const addInvite = () => {
     const value = inviteInput.trim();
     if (!value) return;
-    // naive email validation
-    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); // very basic email check
     if (!ok) {
       setError("Please enter a valid email address for invites.");
       return;
@@ -111,6 +128,7 @@ function CoachOnboarding() {
   // --- Submit ---
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return; // guard double clicks
     setError(null);
 
     // Required checks
@@ -135,8 +153,20 @@ function CoachOnboarding() {
         body: JSON.stringify({ email: form.workEmail }),
       });
 
-      // 3) (Optional) Send invites server-side based on form.inviteEmails
-      // await fetch("/api/onboarding/coach/invite", { ... });
+      // 3) Optional: send invites server-side (create this API when ready)
+      if (form.inviteEmails.length > 0) {
+        await fetch("/api/onboarding/coach/invite", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            program: form.collegeProgram,
+            inviterName: form.name,
+            emails: form.inviteEmails,
+          }),
+        }).catch(() => {
+          // don't block the flow if invites fail—user can retry later
+        });
+      }
 
       // 4) Route to a "Check your email" page
       router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
@@ -185,7 +215,7 @@ function CoachOnboarding() {
               <option value="Hitting Coach">Hitting Coach</option>
               <option value="Recruiting Coordinator">Recruiting Coordinator</option>
               <option value="Analyst/Operations">Analyst / Operations</option>
-              <option value="Athletic Director">Athletic Director / Operations</option>
+              <option value="Athletic Director">Athletic Director</option>
               <option value="Other">Other</option>
             </select>
           </div>
@@ -263,7 +293,12 @@ function CoachOnboarding() {
               {form.inviteEmails.map((email) => (
                 <span key={email} className="chip">
                   {email}
-                  <button type="button" className="chip-x" onClick={() => removeInvite(email)} aria-label={`Remove ${email}`}>
+                  <button
+                    type="button"
+                    className="chip-x"
+                    onClick={() => removeInvite(email)}
+                    aria-label={`Remove ${email}`}
+                  >
                     ×
                   </button>
                 </span>

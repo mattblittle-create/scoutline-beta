@@ -1,43 +1,45 @@
 // lib/email.ts
+import { Resend } from "resend";
 
-type SendArgs = { to: string; subject: string; html: string };
+const RESEND_API_KEY = process.env.RESEND_API_KEY!;
+const EMAIL_FROM = process.env.EMAIL_FROM || "support@myscoutline.com";
+
+// Keep one Resend client for the whole runtime
+const resend = new Resend(RESEND_API_KEY);
 
 /**
- * Minimal email helper.
- * If SMTP env vars are not set, it logs to console so builds won’t fail.
+ * Minimal HTML wrapper for consistent brand styling.
  */
-export async function sendEmail(to: string, subject: string, html: string): Promise<void> {
-  const host = process.env.SMTP_HOST;
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const from = process.env.EMAIL_FROM || "no-reply@scoutline.app";
-
-  if (!host || !user || !pass) {
-    console.info("[email:devlog]", { to, subject, preview: html.slice(0, 200) + (html.length > 200 ? "…" : "") });
-    return;
-  }
-
-  // If you later add nodemailer:
-  // const nodemailer = await import("nodemailer");
-  // const transporter = nodemailer.createTransport({
-  //   host,
-  //   port: Number(process.env.SMTP_PORT || 587),
-  //   secure: false,
-  //   auth: { user, pass },
-  // });
-  // await transporter.sendMail({ from, to, subject, html });
-
-  console.info("[email:sent]", { to, subject });
+export function wrapHtml(inner: string) {
+  return `
+  <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.55;color:#0f172a">
+    <div style="max-width:560px;margin:24px auto;padding:20px;border:1px solid #e5e7eb;border-radius:12px">
+      <h1 style="margin:0 0 12px;font-size:18px">ScoutLine</h1>
+      ${inner}
+      <p style="margin-top:24px;color:#64748b;font-size:12px">If you didn’t request this, you can ignore this email.</p>
+    </div>
+  </div>`;
 }
 
-/** Simple branded wrapper (optional helper) */
-export function wrapHtml(inner: string): string {
-  return `
-    <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.5;color:#0f172a">
-      <div style="max-width:560px;margin:24px auto;padding:20px;border:1px solid #e5e7eb;border-radius:12px">
-        <h1 style="margin:0 0 12px;font-size:18px">ScoutLine</h1>
-        ${inner}
-        <p style="margin-top:24px;color:#64748b;font-size:12px">If you didn’t request this, you can ignore this email.</p>
-      </div>
-    </div>`;
+/**
+ * Send an email via Resend.
+ * Returns { id } on success. Throws on error.
+ */
+export async function sendEmail(to: string, subject: string, html: string) {
+  if (!RESEND_API_KEY) {
+    // Fail fast so we notice missing config
+    throw new Error("Missing RESEND_API_KEY");
+  }
+  const { data, error } = await resend.emails.send({
+    from: EMAIL_FROM,
+    to,
+    subject,
+    html,
+  });
+
+  if (error) {
+    // Surface the provider error (handy in Vercel logs)
+    throw new Error(`Resend error: ${error.message}`);
+  }
+  return data; // { id: string }
 }
