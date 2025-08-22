@@ -1,4 +1,3 @@
-// app/api/onboarding/coach/invite/route.ts
 import { NextResponse } from "next/server";
 
 // ✅ Ensure this route is not pre-rendered AND uses Node.js runtime
