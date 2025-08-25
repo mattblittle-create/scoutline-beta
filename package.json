@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-  "test-email": "node scripts/test-email.mjs"
+    "test-email": "node scripts/test-email.mjs"
   },
   "dependencies": {
+    "@prisma/client": "^6.14.0",
+    "bcryptjs": "^3.0.2",
     "dotenv": "^17.2.1",
     "jose": "^6.0.13",
     "next": "^14.2.32",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.0",
+    "prisma": "^6.14.0",
     "typescript": "^5.4.0"
   }
 }

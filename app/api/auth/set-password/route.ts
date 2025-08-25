@@ -1,10 +1,23 @@
 // app/api/auth/set-password/route.ts
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
+import { jwtVerify } from "jose";
+import { sha256 } from "@/lib/hash";
 
-export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-type Body = { token: string; password: string };
+type Body = {
+  token?: string;
+  password?: string;
+};
+
+function getSecret(): Uint8Array {
+  const secret = process.env.APP_SECRET;
+  if (!secret) throw new Error("Missing APP_SECRET");
+  return new TextEncoder().encode(secret);
+}
 
 export async function POST(req: Request) {
   try {
@@ -13,34 +26,76 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Missing token" }, { status: 400 });
     }
     if (!password || password.length < 8) {
-      return NextResponse.json({ ok: false, error: "Password too short" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Password must be at least 8 characters" },
+        { status: 400 }
+      );
     }
 
-    const secretB64 = process.env.APP_SECRET;
-    if (!secretB64) {
-      return NextResponse.json({ ok: false, error: "Missing APP_SECRET" }, { status: 500 });
+    // 1) Verify JWT (integrity/expiry/purpose/email)
+    let email: string | undefined;
+    let purpose: string | undefined;
+    try {
+      const { payload } = await jwtVerify(token, getSecret());
+      email = String(payload.email || "");
+      purpose = String(payload.purpose || "");
+    } catch {
+      return NextResponse.json({ ok: false, error: "Invalid or expired token" }, { status: 400 });
     }
-    const secret = Buffer.from(secretB64, "base64url");
-
-    const { jwtVerify } = await import("jose");
-    const { payload } = await jwtVerify(token, secret, { algorithms: ["HS256"] });
-    const email = String(payload.email || "").toLowerCase();
-    const purpose = payload.purpose;
-
+    if (!email) return NextResponse.json({ ok: false, error: "Missing email in token" }, { status: 400 });
     if (purpose !== "set-password") {
       return NextResponse.json({ ok: false, error: "Invalid token purpose" }, { status: 400 });
     }
 
-    // TODO: hash & store password for user `email`
-    // Example placeholder:
-    // const hash = await bcrypt.hash(password, 12);
-    // await db.user.update({ where: { email }, data: { passwordHash: hash } });
+    // 2) Enforce single-use via DB row
+    const tokenHash = sha256(token);
+    const vt = await prisma.verificationToken.findFirst({
+      where: {
+        tokenHash,
+        purpose: "SET_PASSWORD",
+        consumedAt: null,
+        expiresAt: { gt: new Date() },
+      },
+    });
+    if (!vt) {
+      return NextResponse.json(
+        { ok: false, error: "Token already used or expired" },
+        { status: 400 }
+      );
+    }
+
+    // 3) Hash password & upsert user
+    const passwordHash = await bcrypt.hash(password, 12);
+    await prisma.user.upsert({
+      where: { email },
+      create: { email, passwordHash },
+      update: { passwordHash },
+    });
+
+    // 4) Mark this token consumed (and optionally invalidate any siblings for same email/purpose)
+    await prisma.$transaction([
+      prisma.verificationToken.update({
+        where: { id: vt.id },
+        data: { consumedAt: new Date() },
+      }),
+      // Optional: nuke other outstanding tokens for same email/purpose to be safer
+      prisma.verificationToken.updateMany({
+        where: {
+          email,
+          purpose: "SET_PASSWORD",
+          consumedAt: null,
+          id: { not: vt.id },
+        },
+        data: { consumedAt: new Date() },
+      }),
+    ]);
 
     return NextResponse.json({ ok: true });
   } catch (err: any) {
     console.error("set-password error:", err);
-    // jose throws specific errors for bad/expired tokens:
-    // return 400 so the client can prompt for a new email link
-    return NextResponse.json({ ok: false, error: err?.message || "Bad token" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: err?.message || "Server error" },
+      { status: 500 }
+    );
   }
 }
