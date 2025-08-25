@@ -39,7 +39,6 @@ export async function POST(req: Request) {
           reason: "mismatch",
           providedLen: provided.length,
           expectedLen: configured.length,
-          // previews help detect stray spaces/newlines without leaking the secret
           providedPreview: `${provided.slice(0, 3)}...${provided.slice(-3)}`,
           expectedPreview: `${configured.slice(0, 3)}...${configured.slice(-3)}`,
         },
@@ -78,6 +77,4 @@ export async function POST(req: Request) {
       { status: 500 }
     );
   }
-}
-
 }
