@@ -1,46 +1,56 @@
+// app/api/auth/dev-issue-token/route.ts
 import { NextResponse } from "next/server";
-import { SignJWT } from "jose";
+import jwt from "jsonwebtoken";
 
-export const dynamic = "force-dynamic";
+// Force node runtime
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+type Body = {
+  email: string;
+  purpose: "set-password" | "verify-email" | "reset-password";
+};
 
 export async function POST(req: Request) {
   try {
-    // 🔒 Dev guard: only allow in development OR with a shared secret header
-    const devAllowed =
-      process.env.NODE_ENV === "development" ||
-      (process.env.DEV_ISSUE_TOKEN_SECRET &&
-        req.headers.get("x-dev-issue-secret") === process.env.DEV_ISSUE_TOKEN_SECRET);
-
-    if (!devAllowed) {
-      return NextResponse.json({ ok: false, error: "Disabled in this environment" }, { status: 403 });
+    // 🔐 Check secret header
+    const provided = req.headers.get("x-dev-secret");
+    if (!provided || provided !== process.env.DEV_ISSUE_TOKEN_SECRET) {
+      return NextResponse.json(
+        { ok: false, error: "Unauthorized" },
+        { status: 401 }
+      );
     }
 
-    const { email, purpose } = await req.json().catch(() => ({} as any));
-    if (!email) {
-      return NextResponse.json({ ok: false, error: "Missing email" }, { status: 400 });
+    const { email, purpose } = (await req.json()) as Body;
+    if (!email || !purpose) {
+      return NextResponse.json(
+        { ok: false, error: "Missing email or purpose" },
+        { status: 400 }
+      );
     }
-
-    // Default to set-password unless caller specifies otherwise
-    const tokenPurpose = (purpose as string) || "set-password";
 
     const secret = process.env.APP_SECRET;
     if (!secret) {
-      return NextResponse.json({ ok: false, error: "Missing APP_SECRET" }, { status: 500 });
+      return NextResponse.json(
+        { ok: false, error: "Missing APP_SECRET" },
+        { status: 500 }
+      );
     }
 
-    const jwt = await new SignJWT({ email, purpose: tokenPurpose })
-      .setProtectedHeader({ alg: "HS256" })
-      .setIssuedAt()
-      .setExpirationTime("1h")
-      .sign(new TextEncoder().encode(secret));
+    const token = jwt.sign(
+      { email, purpose },
+      secret,
+      { expiresIn: "1h" } // good enough for testing
+    );
 
-    return NextResponse.json({ ok: true, token: jwt });
+    return NextResponse.json({ ok: true, token });
   } catch (err: any) {
     console.error("dev-issue-token error:", err);
     return NextResponse.json(
-      { ok: false, error: err?.message ?? "Server error" },
+      { ok: false, error: err?.message || "Server error" },
       { status: 500 }
     );
   }
 }
+
