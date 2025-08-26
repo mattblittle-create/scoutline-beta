@@ -1,6 +1,9 @@
 // app/api/auth/dev-issue-token/route.ts
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
+import crypto from "node:crypto";
+import { prisma } from "@/lib/prisma";
+import { TokenPurpose } from "@prisma/client";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,47 +14,24 @@ type Body = {
   expiresIn?: string; // e.g. "1h"
 };
 
+function sha256(hexInput: string) {
+  return crypto.createHash("sha256").update(hexInput).digest("hex");
+}
+
 export async function POST(req: Request) {
   try {
-    // ---- Dev secret checks with helpful diagnostics ----
+    // simple shared-secret gate (dev only)
     const provided = req.headers.get("x-dev-secret") || "";
-    const configured = process.env.DEV_ISSUE_TOKEN_SECRET || "";
-
-    if (!configured) {
+    const expected = process.env.DEV_ISSUE_TOKEN_SECRET || "";
+    if (!expected || provided !== expected) {
       return NextResponse.json(
-        { ok: false, error: "Missing DEV_ISSUE_TOKEN_SECRET on server" },
-        { status: 500 }
-      );
-    }
-
-    if (!provided) {
-      return NextResponse.json(
-        { ok: false, error: "Unauthorized", reason: "missing-header" },
+        { ok: false, error: "Unauthorized", reason: "mismatch" },
         { status: 401 }
       );
     }
 
-    if (provided !== configured) {
-      return NextResponse.json(
-        {
-          ok: false,
-          error: "Unauthorized",
-          reason: "mismatch",
-          providedLen: provided.length,
-          expectedLen: configured.length,
-          providedPreview: `${provided.slice(0, 3)}...${provided.slice(-3)}`,
-          expectedPreview: `${configured.slice(0, 3)}...${configured.slice(-3)}`,
-        },
-        { status: 401 }
-      );
-    }
-    // ----------------------------------------------------
-
-    const body = (await req.json()) as Body;
-    const email = (body.email || "").trim().toLowerCase();
-    const purpose = body.purpose;
-    const expiresIn = body.expiresIn || "1h";
-
+    const { email: rawEmail, purpose, expiresIn = "1h" } = (await req.json()) as Body;
+    const email = (rawEmail || "").trim().toLowerCase();
     if (!email || !purpose) {
       return NextResponse.json(
         { ok: false, error: "Missing email or purpose" },
@@ -67,9 +47,35 @@ export async function POST(req: Request) {
       );
     }
 
+    // Sign a JWT (no need for jti since we store hash)
     const token = jwt.sign({ email, purpose }, secret, { expiresIn });
 
-    return NextResponse.json({ ok: true, token });
+    // Decode to get exp -> expiresAt
+    const decoded = jwt.decode(token) as { exp?: number } | null;
+    const expiresAt =
+      decoded?.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 60 * 60 * 1000);
+
+    // Persist a VerificationToken row so /set-password will accept it
+    const tokenHash = sha256(token);
+    const id = crypto.randomUUID(); // primary key
+    const prismaPurpose =
+      purpose === "set-password"
+        ? TokenPurpose.SET_PASSWORD
+        : purpose === "reset-password"
+        ? TokenPurpose.RESET_PASSWORD
+        : TokenPurpose.VERIFY_EMAIL;
+
+    await prisma.verificationToken.create({
+      data: {
+        id,
+        email,
+        tokenHash,
+        purpose: prismaPurpose,
+        expiresAt,
+      },
+    });
+
+    return NextResponse.json({ ok: true, token, expiresAt });
   } catch (err: any) {
     console.error("dev-issue-token error:", err);
     return NextResponse.json(
@@ -78,3 +84,4 @@ export async function POST(req: Request) {
     );
   }
 }
+

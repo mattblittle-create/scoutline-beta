@@ -1,142 +1,76 @@
-"use client";
-import { useEffect, useState } from "react";
-import { braden as defaultBraden, Player } from "../lib/samplePlayer";
+// app/coach/[email]/page.tsx
+import { prisma } from "@/lib/prisma";
 
-const LS_COMMITTED = "bradenCommitted";
-const LS_COLLEGE = "bradenCommittedCollege";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-export default function CoachPage() {
-  const [p, setP] = useState<Player>(defaultBraden);
+type PageProps = { params: { email: string } };
 
-  useEffect(() => {
-    const committed = localStorage.getItem(LS_COMMITTED);
-    const college = localStorage.getItem(LS_COLLEGE) ?? "";
-    setP(prev => ({
-      ...prev,
-      committed: committed ? committed === "true" : prev.committed,
-      committedCollege: college || prev.committedCollege,
-    }));
-  }, []);
+export default async function CoachPublicProfile({ params }: PageProps) {
+  const emailParam = decodeURIComponent(params.email || "").toLowerCase();
+
+  const user = await prisma.user.findFirst({
+    where: { email: emailParam },
+    select: {
+      email: true,
+      name: true,
+      role: true,
+      program: true,
+      photoUrl: true,
+    },
+  });
+
+  if (!user) {
+    return (
+      <main style={{ maxWidth: 860, margin: "40px auto", padding: "0 16px" }}>
+        <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>Coach not found</h1>
+        <p style={{ color: "#475569", marginTop: 8 }}>
+          We couldn’t find a coach with that email.
+        </p>
+      </main>
+    );
+  }
 
   return (
-    <section style={{ padding: 24, maxWidth: 1000, margin: "0 auto" }}>
-      <h1 style={{ fontSize: 28, marginBottom: 12 }}>Coach View — Demo</h1>
-
-      {/* Faux filters */}
-      <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-        <input placeholder="Search name…" style={inputStyle} />
-        <select style={inputStyle}>
-          <option>All Grad Years</option>
-          <option>2028</option>
-        </select>
-        <select style={inputStyle}>
-          <option>All Positions</option>
-          <option>SS</option>
-          <option>RHP</option>
-        </select>
-        <select style={inputStyle}>
-          <option>Commit Status</option>
-          <option>Uncommitted</option>
-          <option>Committed</option>
-        </select>
-        <button style={buttonStyle}>Filter</button>
-      </div>
-
-      {/* Result card */}
-      <div
-        style={{
-          border: "1px solid #e5e7eb",
-          borderRadius: 12,
-          padding: 16,
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 12,
-        }}
-      >
-        <div>
-          <h2 style={{ margin: 0 }}>
-            {p.name} ({p.gradYear})
-          </h2>
-          <p style={{ margin: "6px 0 8px", color: "#6b7280" }}>
-            {p.positions.join(" / ")} • {p.handedness} • {p.height}, {p.weight} • {p.city}
-          </p>
-          <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
-            <Badge>{p.org}</Badge>
-            <Badge>{p.school}</Badge>
-            <Badge>{p.committed ? `Committed: ${p.committedCollege || "—"}` : "Uncommitted"}</Badge>
+    <main style={{ maxWidth: 860, margin: "40px auto", padding: "0 16px", color: "#0f172a" }}>
+      <header style={{ display: "flex", gap: 20, alignItems: "flex-start" }}>
+        {/* Only render the image block if a photo exists */}
+        {user.photoUrl ? (
+          <div
+            style={{
+              width: 240,
+              height: 240,
+              border: "1px solid #e5e7eb",
+              borderRadius: 12, // <- boxed look (rounded rectangle)
+              overflow: "hidden",
+              background: "#fff",
+              boxShadow: "0 8px 24px rgba(15,23,42,0.06)",
+              flexShrink: 0,
+            }}
+          >
+            {/* Using plain img to keep it simple */}
+            <img
+              src={user.photoUrl}
+              alt={user.name ? `${user.name} profile photo` : "Coach photo"}
+              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+            />
           </div>
-          <p style={{ margin: 0, color: "#374151" }}>{p.bio}</p>
-        </div>
+        ) : null}
 
         <div>
-          <h3 style={{ margin: "0 0 8px" }}>Key Metrics</h3>
-          <ul style={{ margin: 0, paddingLeft: 16, lineHeight: 1.8 }}>
-            {p.metrics.exitVelo && (
-              <li>
-                Exit Velo: <strong>{p.metrics.exitVelo}</strong>
-              </li>
-            )}
-            {p.metrics.infieldVelo && (
-              <li>
-                INF Velo: <strong>{p.metrics.infieldVelo}</strong>
-              </li>
-            )}
-            {p.metrics.sixtyYard && (
-              <li>
-                60 yd: <strong>{p.metrics.sixtyYard}</strong>
-              </li>
-            )}
-            {p.metrics.fastballMax && (
-              <li>
-                FB Max: <strong>{p.metrics.fastballMax}</strong>
-              </li>
-            )}
-          </ul>
-          <div style={{ marginTop: 12 }}>
-            {p.videoLinks.map(v => (
-              <div key={v.url} style={{ marginBottom: 8 }}>
-                <a href={v.url} target="_blank" rel="noreferrer">
-                  Watch: {v.label}
-                </a>
-              </div>
-            ))}
-          </div>
+          <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>
+            {user.name || user.email}
+          </h1>
+          {user.role ? (
+            <p style={{ margin: "6px 0 0", color: "#475569", fontWeight: 700 }}>{user.role}</p>
+          ) : null}
+          {user.program ? (
+            <p style={{ margin: "4px 0 0", color: "#64748b" }}>{user.program}</p>
+          ) : null}
         </div>
-      </div>
+      </header>
 
-      <p style={{ marginTop: 32 }}>
-        <a href="/" style={{ color: "#2563eb", textDecoration: "none" }}>
-          ⬅ Back to Home
-        </a>
-      </p>
-    </section>
+      {/* Add more public profile sections here as you build them */}
+    </main>
   );
 }
-
-function Badge({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        display: "inline-block",
-        padding: "4px 10px",
-        borderRadius: 9999,
-        background: "#f1f5f9",
-        fontSize: 12,
-      }}
-    >
-      {children}
-    </span>
-  );
-}
-
-const inputStyle: React.CSSProperties = {
-  padding: "8px 10px",
-  border: "1px solid #e5e7eb",
-  borderRadius: 8,
-};
-const buttonStyle: React.CSSProperties = {
-  padding: "8px 12px",
-  border: "1px solid #e5e7eb",
-  borderRadius: 8,
-  background: "#f8fafc",
-};

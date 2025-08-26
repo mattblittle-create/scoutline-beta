@@ -1,5 +1,7 @@
 "use client";
 
+import { saveCoachOnboarding, sendVerification, sendInvites } from "@/lib/client-api";
+
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -126,56 +128,39 @@ function CoachOnboarding() {
   };
 
   // --- Submit ---
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (submitting) return; // guard double clicks
-    setError(null);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  if (submitting) return;
+  setError(null);
 
-    // Required checks
-    if (!form.name.trim()) return setError("Name is required.");
-    if (!form.role.trim()) return setError("Role is required.");
-    if (!form.collegeProgram.trim()) return setError("College / Program is required.");
-    if (!form.workEmail.trim()) return setError("Work email is required.");
+  // Required checks
+  if (!form.name.trim()) return setError("Name is required.");
+  if (!form.role.trim()) return setError("Role is required.");
+  if (!form.collegeProgram.trim()) return setError("College / Program is required.");
+  if (!form.workEmail.trim()) return setError("Work email is required.");
 
-    setSubmitting(true);
-    try {
-      // 1) Save onboarding payload (adjust API route as needed)
-      await fetch("/api/onboarding/coach", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
+  setSubmitting(true);
+  try {
+    // 1) Save onboarding payload
+    await saveCoachOnboarding(form);
 
-      // 2) Send verification email
-      await fetch("/api/auth/send-verification", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.workEmail }),
-      });
+    // 2) Send verification email
+    await sendVerification(form.workEmail);
 
-      // 3) Optional: send invites server-side (create this API when ready)
-      if (form.inviteEmails.length > 0) {
-        await fetch("/api/onboarding/coach/invite", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            program: form.collegeProgram,
-            inviterName: form.name,
-            emails: form.inviteEmails,
-          }),
-        }).catch(() => {
-          // don't block the flow if invites fail—user can retry later
-        });
-      }
-
-      // 4) Route to a "Check your email" page
-      router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
-    } catch (err) {
-      console.error(err);
-      setError("Something went wrong. Please try again.");
-      setSubmitting(false);
+    // 3) Send optional invites (don’t block flow if it fails)
+    if (form.inviteEmails.length > 0) {
+      sendInvites(form.collegeProgram, form.name, form.inviteEmails).catch(() => {});
     }
-  };
+
+    // 4) Route to "Check your email"
+    router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
+  } catch (err: any) {
+    console.error(err);
+    setError(err?.message || "Something went wrong. Please try again.");
+    setSubmitting(false);
+  }
+};
+
 
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>

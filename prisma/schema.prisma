@@ -8,34 +8,59 @@ datasource db {
 }
 
 model User {
-  id           String  @id @default(cuid())
-  email        String  @unique
-  passwordHash String?
-  name         String?
-  role         String?
-  workPhone    String?
-  phonePrivate Boolean @default(true)
-  program      String?
+  id             String   @id @default(cuid())
+  email          String   @unique
+  passwordHash   String?
+  name           String?
+  role           String?
+  workPhone      String?
+  phonePrivate   Boolean  @default(true)
+  program        String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  // Vanity handle for public profile
+  slug           String?  @unique
+
+  // Profile photo (optional)
+  photoUrl       String?
+
+  // --- Public profile fields ---
+  sport              String?
+  division           String?
+  conference         String?
+  bio                String?
+  preferredContact   String?          // e.g. "Email", "Phone", "DMs open"
+
+  // URLs
+  programWebsiteUrl  String?
+  campsUrl           String?
+  recruitingUrl      String?
+  questionnaireUrl   String?
+
+  // JSON blobs
+  coachSocial     Json?   // [{label?, url}]
+  programSocial   Json?   // [{label?, url}]
+  positionNeeds   Json?   // [{year?, needs:[]}]
+  schoolMeta      Json?   // { schoolType?, enrollment?, campusType?, tuitionInState?, tuitionOutState?, tuitionIntl?, scholarships? }
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
 
 model VerificationToken {
-  id         String       @id
+  id         String   @id
   email      String
   tokenHash  String
   purpose    TokenPurpose
   expiresAt  DateTime
   consumedAt DateTime?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  @@unique([tokenHash, purpose])
   @@index([email])
   @@index([purpose])
   @@index([expiresAt])
+  @@unique([tokenHash, purpose])
 }
 
 enum TokenPurpose {
