@@ -5,7 +5,6 @@ import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
-
 type PageProps = {
   params: { plan: string };
 };
@@ -127,51 +126,49 @@ function CoachOnboarding() {
   };
 
   // --- Submit ---
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  if (submitting) return;
-  setError(null);
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (submitting) return;
+    setError(null);
 
-  // Required checks
-  if (!form.name.trim()) return setError("Name is required.");
-  if (!form.role.trim()) return setError("Role is required.");
-  if (!form.collegeProgram.trim()) return setError("College / Program is required.");
-  if (!form.workEmail.trim()) return setError("Work email is required.");
+    // Required checks
+    if (!form.name.trim()) return setError("Name is required.");
+    if (!form.role.trim()) return setError("Role is required.");
+    if (!form.collegeProgram.trim()) return setError("College / Program is required.");
+    if (!form.workEmail.trim()) return setError("Work email is required.");
 
-async function onSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  setError(null);
-  setSaving(true);
+    setSubmitting(true);
+    try {
+      // 1) Save onboarding payload
+      await saveCoachOnboarding({
+        email: form.workEmail,
+        name: form.name,
+        role: form.role,
+        collegeProgram: form.collegeProgram,
+        workPhone: form.workPhone || undefined,
+        phonePrivate: form.phonePrivate,
+      });
 
-  try {
-    // 1) Save onboarding payload
-    await saveCoachOnboarding({
-      email: form.workEmail,
-      name: form.name,
-      role: form.role,
-      collegeProgram: form.collegeProgram,
-    });
+      // 2) Send verification email
+      await sendVerification(form.workEmail);
 
-    // 2) Send verification email
-    await sendVerification(form.workEmail);
+      // 3) Send optional invites (don’t block flow if it fails)
+      if (form.inviteEmails.length > 0) {
+        sendCoachInvites(
+          form.collegeProgram,
+          form.name || "Coach",
+          form.inviteEmails
+        ).catch(() => {});
+      }
 
-    // 3) Send optional invites (don’t block flow if it fails)
-    if (form.inviteEmails.length > 0) {
-      sendCoachInvites(
-        form.collegeProgram,
-        form.name || "Coach",
-        form.inviteEmails
-      ).catch(() => {});
+      // 4) Route to "Check your email"
+      router.push("/onboarding/check-email");
+    } catch (err: any) {
+      setError(err?.message || "Something went wrong.");
+    } finally {
+      setSubmitting(false);
     }
-
-    // 4) Route to "Check your email"
-    router.push("/onboarding/check-email");
-  } catch (err: any) {
-    setError(err?.message || "Something went wrong.");
-  } finally {
-    setSaving(false);
   }
-}
 
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>
@@ -180,7 +177,7 @@ async function onSubmit(e: React.FormEvent) {
         Create your program account. You’ll verify your email next, then set your password.
       </p>
 
-      <form onSubmit={handleSubmit} style={{ marginTop: 16 }}>
+      <form onSubmit={onSubmit} style={{ marginTop: 16 }}>
         <div className="grid">
           {/* Name (required) */}
           <div className="field">
@@ -480,9 +477,6 @@ async function onSubmit(e: React.FormEvent) {
           background: #f8fafc;
         }
       `}</style>
-      {/* …your JSX… */}
-      </main>
-    </>
+    </main>
   );
 }
-
