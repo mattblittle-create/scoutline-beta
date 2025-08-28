@@ -1,7 +1,7 @@
 "use client";
 
+import { saveCoachOnboarding, sendVerification, sendCoachInvites } from "@/lib/client-api";
 import { saveCoachOnboarding, sendCoachInvites } from "@/lib/client-api";
-
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -155,11 +155,8 @@ const handleSubmit = async (e: React.FormEvent) => {
 
     // 3) Send optional invites (don’t block flow if it fails)
 if (form.inviteEmails.length > 0) {
-  sendCoachInvites({
-    program: form.collegeProgram,
-    inviterName: form.name || "Coach",
-    emails: form.inviteEmails,
-  }).catch(() => {});
+  sendCoachInvites({if (form.inviteEmails.length > 0) {
+  sendCoachInvites(form.collegeProgram, form.name, form.inviteEmails).catch(() => {});
 }
 
     // 4) Route to "Check your email"
