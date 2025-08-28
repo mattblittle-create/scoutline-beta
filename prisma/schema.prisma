@@ -8,42 +8,23 @@ datasource db {
 }
 
 model User {
-  id             String   @id @default(cuid())
-  email          String   @unique
-  passwordHash   String?
-  name           String?
-  role           String?
-  workPhone      String?
-  phonePrivate   Boolean  @default(true)
-  program        String?
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  name         String?
+  role         String?
+  workPhone    String?
+  phonePrivate Boolean  @default(true)
+  program      String?
 
-  // Vanity handle for public profile
-  slug           String?  @unique
+  // optional profile photo URL
+  photoUrl     String?
 
-  // Profile photo (optional)
-  photoUrl       String?
+  // 👇 NEW: optional public vanity slug (unique when set)
+  slug         String?  @unique
 
-  // --- Public profile fields ---
-  sport              String?
-  division           String?
-  conference         String?
-  bio                String?
-  preferredContact   String?          // e.g. "Email", "Phone", "DMs open"
-
-  // URLs
-  programWebsiteUrl  String?
-  campsUrl           String?
-  recruitingUrl      String?
-  questionnaireUrl   String?
-
-  // JSON blobs
-  coachSocial     Json?   // [{label?, url}]
-  programSocial   Json?   // [{label?, url}]
-  positionNeeds   Json?   // [{year?, needs:[]}]
-  schoolMeta      Json?   // { schoolType?, enrollment?, campusType?, tuitionInState?, tuitionOutState?, tuitionIntl?, scholarships? }
-
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model VerificationToken {

@@ -1,69 +1,91 @@
 // app/api/onboarding/coach/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { slugifyName, generateUniqueSlug } from "@/lib/slug";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-type CoachFormPayload = {
+type Body = {
   name: string;
   role: string;
   collegeProgram: string;
   workEmail: string;
   workPhone?: string;
-  phonePrivate: boolean;
-  inviteEmails?: string[]; // collected client-side; not persisted here (yet)
+  phonePrivate?: boolean;
+  inviteEmails?: string[];
 };
 
 export async function POST(req: Request) {
   try {
-    const body = (await req.json()) as Partial<CoachFormPayload>;
+    const {
+      name,
+      role,
+      collegeProgram,
+      workEmail,
+      workPhone = "",
+      phonePrivate = true,
+    } = (await req.json()) as Body;
 
-    // Basic validation
-    const name = (body.name || "").trim();
-    const role = (body.role || "").trim();
-    const collegeProgram = (body.collegeProgram || "").trim();
-    const workEmail = (body.workEmail || "").trim().toLowerCase();
-    const workPhone = (body.workPhone || "").trim();
-    const phonePrivate = Boolean(body.phonePrivate);
-
-    if (!name) return bad("Name is required.");
-    if (!role) return bad("Role is required.");
-    if (!collegeProgram) return bad("College / Program is required.");
-    if (!workEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(workEmail)) {
-      return bad("A valid work email is required.");
+    const email = (workEmail || "").trim().toLowerCase();
+    if (!email) {
+      return NextResponse.json(
+        { ok: false, error: "Work email is required." },
+        { status: 400 }
+      );
+    }
+    if (!name?.trim() || !role?.trim() || !collegeProgram?.trim()) {
+      return NextResponse.json(
+        { ok: false, error: "Name, role, and college program are required." },
+        { status: 400 }
+      );
     }
 
-    // Upsert by email (idempotent)
-    await prisma.user.upsert({
-      where: { email: workEmail },
-      create: {
-        email: workEmail,
-        name,
-        role,
-        program: collegeProgram,
-        workPhone: workPhone || null,
-        phonePrivate,
-      },
+    const existing = await prisma.user.findUnique({
+      where: { email },
+      select: { id: true, slug: true },
+    });
+
+    let slugToSet: string | undefined;
+    if (!existing?.slug && name?.trim()) {
+      const base = slugifyName(name);
+      slugToSet = await generateUniqueSlug(prisma, base);
+    }
+
+    const user = await prisma.user.upsert({
+      where: { email },
       update: {
-        name,
-        role,
-        program: collegeProgram,
-        workPhone: workPhone || null,
+        name: name.trim(),
+        role: role.trim(),
+        program: collegeProgram.trim(),
+        workPhone: workPhone.trim() || null,
         phonePrivate,
+        ...(slugToSet ? { slug: slugToSet } : {}),
+      },
+      create: {
+        email,
+        name: name.trim(),
+        role: role.trim(),
+        program: collegeProgram.trim(),
+        workPhone: workPhone.trim() || null,
+        phonePrivate,
+        slug: slugToSet, // may be undefined—Prisma will accept
+      },
+      select: {
+        email: true,
+        name: true,
+        role: true,
+        program: true,
+        slug: true,
       },
     });
 
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, user });
   } catch (err: any) {
-    console.error("onboarding/coach error:", err);
+    console.error("coach onboarding error:", err);
     return NextResponse.json(
       { ok: false, error: err?.message || "Server error" },
       { status: 500 }
     );
   }
-}
-
-function bad(msg: string) {
-  return NextResponse.json({ ok: false, error: msg }, { status: 400 });
 }
