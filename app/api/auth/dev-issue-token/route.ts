@@ -8,12 +8,13 @@ export const dynamic = "force-dynamic";
 type Body = {
   email: string;
   purpose: "set-password" | "reset-password" | "verify-email";
-  expiresIn?: string; // e.g. "1h" or "900" (seconds)
+  // Accept strings like "1h" or numeric seconds "3600"
+  expiresIn?: string;
 };
 
 export async function POST(req: Request) {
   try {
-    // Gate behind a shared secret header so this isn't publicly usable
+    // Protect with shared secret header so this isn't publicly usable
     const headerSecret = req.headers.get("x-dev-secret") || "";
     const expected = process.env.DEV_ISSUE_TOKEN_SECRET || "";
     if (!expected || headerSecret !== expected) {
@@ -26,7 +27,7 @@ export async function POST(req: Request) {
     const body = (await req.json()) as Body;
     const email = (body.email || "").trim().toLowerCase();
     const purpose = body.purpose;
-    const expiresIn = body.expiresIn || "1h";
+    const rawExpiresIn = body.expiresIn || "1h";
 
     if (!email || !purpose) {
       return NextResponse.json(
@@ -43,11 +44,15 @@ export async function POST(req: Request) {
       );
     }
 
-    // ✅ Make TS happy: cast to the proper jsonwebtoken types
-    const secret: Secret = secretEnv;
-    const signOpts: SignOptions = { expiresIn }; // string | number is allowed
+    // jsonwebtoken’s typings sometimes require a stricter union.
+    // Normalize: if it’s all digits, use a number; otherwise keep string.
+    const normalizedExpiresIn: number | string = /^\d+$/.test(rawExpiresIn)
+      ? Number(rawExpiresIn)
+      : (rawExpiresIn as string);
 
-    // Sign a short-lived JWT
+    const secret: Secret = secretEnv;
+    const signOpts: SignOptions = { expiresIn: normalizedExpiresIn as any };
+
     const token = jwt.sign({ email, purpose }, secret, signOpts);
 
     return NextResponse.json({ ok: true, token });
