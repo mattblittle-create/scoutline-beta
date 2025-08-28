@@ -138,7 +138,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   if (!form.collegeProgram.trim()) return setError("College / Program is required.");
   if (!form.workEmail.trim()) return setError("Work email is required.");
 
-  async function onSubmit(e: React.FormEvent) {
+async function onSubmit(e: React.FormEvent) {
   e.preventDefault();
   setError(null);
   setSaving(true);
@@ -480,6 +480,9 @@ const handleSubmit = async (e: React.FormEvent) => {
           background: #f8fafc;
         }
       `}</style>
-    </main>
+      {/* …your JSX… */}
+      </main>
+    </>
   );
 }
+
