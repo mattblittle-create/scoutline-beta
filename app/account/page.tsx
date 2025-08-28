@@ -4,6 +4,10 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+type PhotoGetResponse =
+  | { ok: true; email: string; photoUrl: string | null }
+  | { ok: false; error: string };
+
 export default function AccountPage() {
   const searchParams = useSearchParams();
 
@@ -13,13 +17,52 @@ export default function AccountPage() {
 
   const [email, setEmail] = useState(emailFromUrl);
   const [slug, setSlug] = useState(slugFromUrl);
+
   const [saving, setSaving] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
+
+  // --- Photo state ---
+  const [photoUrl, setPhotoUrl] = useState<string | null>(null);   // uploaded URL to be saved
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null); // local object URL for preview
+  const [uploading, setUploading] = useState(false);
+  const [savingPhoto, setSavingPhoto] = useState(false);
+  const [photoMsg, setPhotoMsg] = useState<string | null>(null);
 
   useEffect(() => {
     if (slugFromUrl) setSlug(slugFromUrl);
     if (emailFromUrl) setEmail(emailFromUrl);
   }, [slugFromUrl, emailFromUrl]);
+
+  // When email changes, fetch existing photo so the card reflects current DB state
+  useEffect(() => {
+    let abort = false;
+    async function loadPhoto() {
+      setPhotoMsg(null);
+      setPreviewUrl(null);
+
+      const e = (email || "").trim().toLowerCase();
+      if (!e) {
+        setPhotoUrl(null);
+        return;
+      }
+      try {
+        const res = await fetch(`/api/account/photo?email=${encodeURIComponent(e)}`, { cache: "no-store" });
+        const data = (await res.json().catch(() => ({}))) as PhotoGetResponse;
+        if (abort) return;
+        if (res.ok && data.ok) {
+          setPhotoUrl(data.photoUrl ?? null);
+        } else {
+          setPhotoUrl(null);
+        }
+      } catch {
+        if (!abort) setPhotoUrl(null);
+      }
+    }
+    loadPhoto();
+    return () => {
+      abort = true;
+    };
+  }, [email]);
 
   // Derived public URL preview
   const publicUrl = useMemo(() => {
@@ -28,6 +71,7 @@ export default function AccountPage() {
     return `${base || ""}/coach/${slug}`;
   }, [slug]);
 
+  // ---------- Profile (email + slug) ----------
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setMsg(null);
@@ -88,6 +132,89 @@ export default function AccountPage() {
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
   }
 
+  // ---------- Photo helpers ----------
+  async function uploadToServer(file: File): Promise<string> {
+    const form = new FormData();
+    form.append("file", file);
+
+    const res = await fetch("/api/account/photo/upload", {
+      method: "POST",
+      body: form,
+    });
+
+    const data = await res.json().catch(() => ({} as any));
+    if (!res.ok || !data?.ok || !data?.url) {
+      throw new Error(data?.error || "Upload failed");
+    }
+    return data.url as string;
+  }
+
+  async function onPickFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    // Optional client-side type/size check
+    if (!/^image\/(jpe?g|png|webp)$/i.test(file.type)) {
+      setPhotoMsg("❌ Please choose a JPG, PNG, or WEBP image.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      setPhotoMsg("❌ File too large (max 5MB).");
+      return;
+    }
+
+    // Local preview
+    const localUrl = URL.createObjectURL(file);
+    setPreviewUrl(localUrl);
+    setPhotoMsg(null);
+    setUploading(true);
+
+    try {
+      const url = await uploadToServer(file);
+      setPhotoUrl(url); // hold uploaded URL locally until "Save" is clicked
+      setPhotoMsg("✅ Photo uploaded. Click Save to update your profile.");
+    } catch (err: any) {
+      setPhotoMsg(`❌ ${err.message || "Upload failed"}`);
+      // You can clear preview on failure if you prefer:
+      // setPreviewUrl(null);
+    } finally {
+      setUploading(false);
+    }
+  }
+
+  async function onSavePhoto() {
+    setPhotoMsg(null);
+    if (!email) {
+      setPhotoMsg("❌ Missing account email.");
+      return;
+    }
+    setSavingPhoto(true);
+    try {
+      const res = await fetch("/api/account/photo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          photoUrl: photoUrl || null,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data?.ok) throw new Error(data?.error || "Save failed");
+      setPhotoMsg("✅ Profile photo saved!");
+      // Keep preview; it's already the same as photoUrl
+    } catch (err: any) {
+      setPhotoMsg(`❌ ${err.message || "Save failed"}`);
+    } finally {
+      setSavingPhoto(false);
+    }
+  }
+
+  function onRemoveLocal() {
+    setPreviewUrl(null);
+    setPhotoUrl(null);
+    setPhotoMsg("Photo removed locally. Click Save to update your profile.");
+  }
+
   return (
     <main
       style={{
@@ -101,9 +228,11 @@ export default function AccountPage() {
         Coach Account
       </h1>
       <p style={{ color: "#475569", marginTop: 0 }}>
-        Set your public profile slug and share your page. The slug will be what appears in your profile URL (https://myscoutline.com/coach/[slug]). Suggested slug is firstname-lastname.
+        Set your public profile slug and share your page. The slug will be what appears in your
+        profile URL (https://myscoutline.com/coach/[slug]). Suggested slug is firstname-lastname.
       </p>
 
+      {/* Profile (email + slug) */}
       <form
         onSubmit={handleSubmit}
         style={{
@@ -114,6 +243,7 @@ export default function AccountPage() {
           padding: 20,
           borderRadius: 12,
           border: "1px solid #e5e7eb",
+          marginBottom: 16,
         }}
       >
         {/* Email (until auth is wired up) */}
@@ -240,6 +370,95 @@ export default function AccountPage() {
           </div>
         )}
       </form>
+
+      {/* Profile Photo card */}
+      <section
+        style={{
+          background: "#fff",
+          padding: 20,
+          borderRadius: 12,
+          border: "1px solid #e5e7eb",
+        }}
+      >
+        <h2 style={{ marginTop: 0, fontSize: "1.25rem", fontWeight: 800 }}>Profile Photo</h2>
+
+        <div style={{ display: "flex", gap: 16, alignItems: "flex-start" }}>
+          {/* Square preview box */}
+          <div
+            style={{
+              width: 160,
+              height: 160,
+              borderRadius: 12,
+              border: "1px solid #e5e7eb",
+              overflow: "hidden",
+              background: "#f8fafc",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 700,
+              color: "#94a3b8",
+            }}
+          >
+            {previewUrl || photoUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={previewUrl || photoUrl!}
+                alt="Preview"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            ) : (
+              "No Photo"
+            )}
+          </div>
+
+          <div style={{ display: "grid", gap: 8 }}>
+            <input
+              type="file"
+              accept="image/png,image/jpeg,image/webp"
+              onChange={onPickFile}
+              disabled={uploading}
+            />
+            <div style={{ display: "flex", gap: 8 }}>
+              <button
+                type="button"
+                onClick={onSavePhoto}
+                disabled={uploading || savingPhoto || !email}
+                style={{
+                  background: "#caa042",
+                  color: "#0f172a",
+                  fontWeight: 800,
+                  border: "1px solid #caa042",
+                  borderRadius: 8,
+                  padding: "8px 12px",
+                  cursor: "pointer",
+                  opacity: uploading || savingPhoto ? 0.7 : 1,
+                }}
+              >
+                {savingPhoto ? "Saving…" : "Save"}
+              </button>
+              <button
+                type="button"
+                onClick={onRemoveLocal}
+                disabled={uploading}
+                style={{
+                  border: "1px solid #e5e7eb",
+                  borderRadius: 8,
+                  padding: "8px 12px",
+                  background: "#fff",
+                  cursor: "pointer",
+                }}
+              >
+                Remove
+              </button>
+            </div>
+            {uploading && <p>Uploading…</p>}
+            {photoMsg && <p>{photoMsg}</p>}
+          </div>
+        </div>
+        <p style={{ color: "#64748b", marginTop: 10 }}>
+          Tip: After saving, refresh your public page to see the new photo.
+        </p>
+      </section>
     </main>
   );
 }
