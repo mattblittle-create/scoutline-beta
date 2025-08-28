@@ -2,74 +2,60 @@
 import { NextResponse } from "next/server";
 import { put } from "@vercel/blob";
 
-export const runtime = "nodejs";         // keep Node for better error messages
+export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-// Adjust as you wish
+const ALLOWED_TYPES = new Set(["image/jpeg", "image/jpg", "image/png", "image/webp"]);
 const MAX_BYTES = 5 * 1024 * 1024; // 5MB
-const ALLOWED = new Set(["image/jpeg", "image/png", "image/webp"]);
 
 export async function POST(req: Request) {
   try {
-    // Must be multipart/form-data
-    const form = await req.formData();
-
-    const file = form.get("file");
-    const email = String(form.get("email") || "").trim().toLowerCase();
-
-    if (!file || typeof file === "string") {
-      return NextResponse.json({ ok: false, error: "Missing file" }, { status: 400 });
-    }
-    if (!email) {
-      return NextResponse.json({ ok: false, error: "Missing email" }, { status: 400 });
-    }
-
-    // Validate type & size
-    const type = (file as File).type || "";
-    if (!ALLOWED.has(type)) {
-      return NextResponse.json(
-        { ok: false, error: "Unsupported image type. Use JPG/PNG/WebP." },
-        { status: 400 }
-      );
-    }
-
-    const bytes = await (file as File).arrayBuffer();
-    if (bytes.byteLength > MAX_BYTES) {
-      return NextResponse.json(
-        { ok: false, error: "Image too large (max 5MB)." },
-        { status: 400 }
-      );
-    }
-
-    // Require Vercel Blob token
     const token = process.env.BLOB_READ_WRITE_TOKEN;
     if (!token) {
       return NextResponse.json(
-        { ok: false, error: "Storage not configured (missing BLOB_READ_WRITE_TOKEN)." },
+        { ok: false, error: "Missing BLOB_READ_WRITE_TOKEN" },
         { status: 500 }
       );
     }
 
-    // Construct a deterministic-ish path (you can change this)
-    // Example: users/matt.b.little_gmail_com/1692999999999.jpg
-    const safeEmail = email.replace(/[^a-z0-9]+/g, "_");
+    // Expect multipart/form-data with "file"
+    const form = await req.formData();
+    const file = form.get("file");
+    if (!(file instanceof File)) {
+      return NextResponse.json({ ok: false, error: "file missing" }, { status: 400 });
+    }
+
+    const type = (file.type || "").toLowerCase();
+    if (!ALLOWED_TYPES.has(type)) {
+      return NextResponse.json({ ok: false, error: "Unsupported file type" }, { status: 400 });
+    }
+
+    if (file.size > MAX_BYTES) {
+      return NextResponse.json({ ok: false, error: "File too large (max 5MB)" }, { status: 400 });
+    }
+
+    // Read file bytes and convert to a Node Buffer (✅ satisfies @vercel/blob typings)
+    const arrayBuffer = await file.arrayBuffer();
+    const buf = Buffer.from(arrayBuffer);
+
+    // Build a stable object key
     const ext = type === "image/png" ? "png" : type === "image/webp" ? "webp" : "jpg";
-    const objectKey = `users/${safeEmail}/${Date.now()}.${ext}`;
+    const now = Date.now();
+    const random = Math.random().toString(36).slice(2);
+    const objectKey = `coach-photos/${now}-${random}.${ext}`;
 
     // Upload to Vercel Blob
-    const { url } = await put(objectKey, new Uint8Array(bytes), {
+    const { url } = await put(objectKey, buf, {
       access: "public",
-      token,                 // required for server-side writes
+      token,
       contentType: type,
-      addRandomSuffix: false // we already used timestamp
     });
 
-    // Return public URL to the client
-    return NextResponse.json({ ok: true, photoUrl: url });
+    return NextResponse.json({ ok: true, url });
   } catch (err: any) {
     console.error("upload photo error:", err);
     return NextResponse.json(
-      { ok: false, error: err?.message || "Server error" },
+      { ok: false, error: err?.message || "Upload failed" },
       { status: 500 }
     );
   }
