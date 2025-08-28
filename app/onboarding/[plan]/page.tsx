@@ -141,13 +141,12 @@ function CoachOnboarding() {
     try {
       // 1) Save onboarding payload
       await saveCoachOnboarding({
-        email: form.workEmail,
-        name: form.name,
-        role: form.role,
-        collegeProgram: form.collegeProgram,
-        workPhone: form.workPhone || undefined,
-        phonePrivate: form.phonePrivate,
-      });
+  email: form.workEmail,
+  name: form.name,
+  role: form.role,
+  collegeProgram: form.collegeProgram,
+  // Remove workPhone/phonePrivate for now to satisfy the current type
+});
 
       // 2) Send verification email
       await sendVerification(form.workEmail);

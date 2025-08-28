@@ -2,9 +2,11 @@
 
 export type SaveCoachOnboardingInput = {
   email: string;
-  name?: string;
-  role?: string;
-  collegeProgram?: string;
+  name: string;
+  role: string;
+  collegeProgram: string;
+  workPhone?: string;      // add
+  phonePrivate?: boolean;  // add
 };
 
 export async function sendVerification(email: string) {
