@@ -1,9 +1,6 @@
 // app/api/auth/dev-issue-token/route.ts
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
-import crypto from "node:crypto";
-import { prisma } from "@/lib/prisma";
-import { TokenPurpose } from "@prisma/client";
+import jwt, { Secret, SignOptions } from "jsonwebtoken";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -11,27 +8,26 @@ export const dynamic = "force-dynamic";
 type Body = {
   email: string;
   purpose: "set-password" | "reset-password" | "verify-email";
-  expiresIn?: string; // e.g. "1h"
+  expiresIn?: string; // e.g. "1h" or "900" (seconds)
 };
-
-function sha256(hexInput: string) {
-  return crypto.createHash("sha256").update(hexInput).digest("hex");
-}
 
 export async function POST(req: Request) {
   try {
-    // simple shared-secret gate (dev only)
-    const provided = req.headers.get("x-dev-secret") || "";
+    // Gate behind a shared secret header so this isn't publicly usable
+    const headerSecret = req.headers.get("x-dev-secret") || "";
     const expected = process.env.DEV_ISSUE_TOKEN_SECRET || "";
-    if (!expected || provided !== expected) {
+    if (!expected || headerSecret !== expected) {
       return NextResponse.json(
-        { ok: false, error: "Unauthorized", reason: "mismatch" },
+        { ok: false, error: "Unauthorized (bad dev secret)" },
         { status: 401 }
       );
     }
 
-    const { email: rawEmail, purpose, expiresIn = "1h" } = (await req.json()) as Body;
-    const email = (rawEmail || "").trim().toLowerCase();
+    const body = (await req.json()) as Body;
+    const email = (body.email || "").trim().toLowerCase();
+    const purpose = body.purpose;
+    const expiresIn = body.expiresIn || "1h";
+
     if (!email || !purpose) {
       return NextResponse.json(
         { ok: false, error: "Missing email or purpose" },
@@ -39,43 +35,22 @@ export async function POST(req: Request) {
       );
     }
 
-    const secret = process.env.APP_SECRET;
-    if (!secret) {
+    const secretEnv = process.env.APP_SECRET;
+    if (!secretEnv) {
       return NextResponse.json(
         { ok: false, error: "Missing APP_SECRET" },
         { status: 500 }
       );
     }
 
-    // Sign a JWT (no need for jti since we store hash)
-    const token = jwt.sign({ email, purpose }, secret, { expiresIn });
+    // ✅ Make TS happy: cast to the proper jsonwebtoken types
+    const secret: Secret = secretEnv;
+    const signOpts: SignOptions = { expiresIn }; // string | number is allowed
 
-    // Decode to get exp -> expiresAt
-    const decoded = jwt.decode(token) as { exp?: number } | null;
-    const expiresAt =
-      decoded?.exp ? new Date(decoded.exp * 1000) : new Date(Date.now() + 60 * 60 * 1000);
+    // Sign a short-lived JWT
+    const token = jwt.sign({ email, purpose }, secret, signOpts);
 
-    // Persist a VerificationToken row so /set-password will accept it
-    const tokenHash = sha256(token);
-    const id = crypto.randomUUID(); // primary key
-    const prismaPurpose =
-      purpose === "set-password"
-        ? TokenPurpose.SET_PASSWORD
-        : purpose === "reset-password"
-        ? TokenPurpose.RESET_PASSWORD
-        : TokenPurpose.VERIFY_EMAIL;
-
-    await prisma.verificationToken.create({
-      data: {
-        id,
-        email,
-        tokenHash,
-        purpose: prismaPurpose,
-        expiresAt,
-      },
-    });
-
-    return NextResponse.json({ ok: true, token, expiresAt });
+    return NextResponse.json({ ok: true, token });
   } catch (err: any) {
     console.error("dev-issue-token error:", err);
     return NextResponse.json(
