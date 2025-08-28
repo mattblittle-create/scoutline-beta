@@ -1,6 +1,6 @@
 "use client";
 
-import { saveCoachOnboarding, sendVerification, sendInvites } from "@/lib/client-api";
+import { saveCoachOnboarding, sendCoachInvites } from "@/lib/client-api";
 
 import * as React from "react";
 import Link from "next/link";
@@ -148,9 +148,13 @@ const handleSubmit = async (e: React.FormEvent) => {
     await sendVerification(form.workEmail);
 
     // 3) Send optional invites (don’t block flow if it fails)
-    if (form.inviteEmails.length > 0) {
-      sendInvites(form.collegeProgram, form.name, form.inviteEmails).catch(() => {});
-    }
+if (form.inviteEmails.length > 0) {
+  sendCoachInvites({
+    program: form.collegeProgram,
+    inviterName: form.name || "Coach",
+    emails: form.inviteEmails,
+  }).catch(() => {});
+}
 
     // 4) Route to "Check your email"
     router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
