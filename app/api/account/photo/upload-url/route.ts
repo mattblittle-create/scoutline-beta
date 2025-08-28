@@ -1,6 +1,6 @@
 // app/api/account/photo/upload-url/route.ts
 import { NextResponse } from "next/server";
-import { generateUploadURL } from "@vercel/blob/server";
+import { generateUploadURL } from "@vercel/blob";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export async function POST() {
   try {
     const url = await generateUploadURL({
-      // optionally constrain file types & size:
+      // keep these guards; tweak as you like
       allowedContentTypes: ["image/jpeg", "image/png", "image/webp"],
       maximumSizeInBytes: 5 * 1024 * 1024, // 5MB
     });
