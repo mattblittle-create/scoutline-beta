@@ -142,7 +142,13 @@ const handleSubmit = async (e: React.FormEvent) => {
   setSubmitting(true);
   try {
     // 1) Save onboarding payload
-    await saveCoachOnboarding(form);
+    await saveCoachOnboarding({
+  email: form.workEmail,          // 👈 map your form’s email field
+  name: form.name || "",
+  role: form.role || "",
+  collegeProgram: form.collegeProgram || "",
+});
+
 
     // 2) Send verification email
     await sendVerification(form.workEmail);
