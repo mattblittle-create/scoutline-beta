@@ -1,24 +1,24 @@
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start",
-    "vercel-build": "prisma generate && next build",
-    "prisma:generate": "prisma generate"
-  },
-  "dependencies": {
-    "@prisma/client": "6.14.0",
-    "next": "14.2.32",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@upstash/ratelimit": "^1.0.0",
-    "@upstash/redis": "^1.31.6",
-    "@vercel/blob": "^1.1.1",
-    "jsonwebtoken": "^9.0.2"
-  },
-  "devDependencies": {
-    "prisma": "6.14.0",
-    "typescript": "^5.5.4",
-    "@types/jsonwebtoken": "^9.0.6"
-  }
+﻿{
+    "scripts":  {
+                    "dev":  "next dev",
+                    "build":  "prisma generate \u0026\u0026 next build",
+                    "start":  "next start",
+                    "vercel-build":  "prisma generate \u0026\u0026 next build",
+                    "prisma:generate":  "prisma generate"
+                },
+    "dependencies":  {
+                         "@prisma/client":  "6.14.0",
+                         "next":  "14.2.32",
+                         "react":  "^18.3.1",
+                         "react-dom":  "^18.3.1",
+                         "@upstash/ratelimit":  "^1.0.0",
+                         "@upstash/redis":  "^1.31.6",
+                         "@vercel/blob":  "^1.1.1",
+                         "jsonwebtoken":  "^9.0.2"
+                     },
+    "devDependencies":  {
+                            "prisma":  "6.14.0",
+                            "typescript":  "^5.5.4",
+                            "@types/jsonwebtoken":  "^9.0.6"
+                        }
 }
