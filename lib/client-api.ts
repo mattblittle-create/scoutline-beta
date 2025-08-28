@@ -1,61 +1,60 @@
 // lib/client-api.ts
-export async function sendVerification(email: string) {
-  const res = await fetch("/api/auth/send-verification", {
+export type ApiOk = { ok: true; [k: string]: any };
+export type ApiErr = { ok: false; error: string; [k: string]: any };
+
+async function postJSON<T = any>(url: string, body: any): Promise<T> {
+  const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify(body),
   });
+
+  // friendlier 429 UX where applicable
   if (res.status === 429) {
-    const data = await res.json().catch(() => ({}));
-    throw new Error(data?.error || "Please wait a bit and try again.");
+    let msg = "Please wait a minute and try again.";
+    try {
+      const data = await res.json();
+      if (data?.error) msg = data.error;
+    } catch {}
+    throw new Error(msg);
   }
-  if (!res.ok) throw new Error("Failed to send verification.");
-  return res.json();
+
+  if (!res.ok) {
+    let msg = `Request failed (${res.status})`;
+    try {
+      const data = await res.json();
+      if (data?.error) msg = data.error;
+    } catch {}
+    throw new Error(msg);
+  }
+
+  return (await res.json()) as T;
 }
 
-export async function inviteCoach(payload: {
+/** Send verification email */
+export async function sendVerification(email: string): Promise<ApiOk> {
+  const data = await postJSON<ApiOk | ApiErr>("/api/auth/send-verification", { email });
+  if (!("ok" in data) || !data.ok) throw new Error((data as ApiErr).error || "Failed to send verification");
+  return data;
+}
+
+/** Invite coaches to a program */
+export async function sendCoachInvites(opts: {
   program: string;
   inviterName: string;
   emails: string[];
-}) {
-  const res = await fetch("/api/onboarding/coach/invite", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  if (res.status === 429) {
-    const data = await res.json().catch(() => ({}));
-    throw new Error(data?.error || "Too many invites. Please try again later.");
-  }
-  if (!res.ok) throw new Error("Failed to send invites.");
-  return res.json();
+}): Promise<ApiOk> {
+  const data = await postJSON<ApiOk | ApiErr>("/api/onboarding/coach/invite", opts);
+  if (!("ok" in data) || !data.ok) throw new Error((data as ApiErr).error || "Failed to send invites");
+  return data;
 }
 
-// NEW: load profile by email
-export async function getProfile(email: string) {
-  const url = `/api/account/profile?email=${encodeURIComponent(email)}`;
-  const res = await fetch(url, { cache: "no-store" });
-  if (!res.ok) throw new Error("Failed to load profile.");
-  return res.json() as Promise<{ ok: boolean; user?: any; error?: string }>;
-}
+/** Back-compat alias some pages may import */
+export const sendInvites = sendCoachInvites;
 
-// NEW: save profile
-export async function saveProfile(input: {
-  email: string;
-  name?: string;
-  role?: string;
-  program?: string;
-  workPhone?: string | null;
-  phonePrivate?: boolean;
-}) {
-  const res = await fetch("/api/account/profile", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(input),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok || data?.ok === false) {
-    throw new Error(data?.error || "Failed to save profile.");
-  }
-  return data as { ok: true; user: any };
+/** Save coach onboarding payload (calls your /api/onboarding/coach route when added) */
+export async function saveCoachOnboarding(payload: any): Promise<ApiOk> {
+  const data = await postJSON<ApiOk | ApiErr>("/api/onboarding/coach", payload);
+  if (!("ok" in data) || !data.ok) throw new Error((data as ApiErr).error || "Failed to save onboarding");
+  return data;
 }
