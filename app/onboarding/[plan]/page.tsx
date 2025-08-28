@@ -1,7 +1,6 @@
 "use client";
 
 import { saveCoachOnboarding, sendVerification, sendCoachInvites } from "@/lib/client-api";
-import { saveCoachOnboarding, sendCoachInvites } from "@/lib/client-api";
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -139,35 +138,40 @@ const handleSubmit = async (e: React.FormEvent) => {
   if (!form.collegeProgram.trim()) return setError("College / Program is required.");
   if (!form.workEmail.trim()) return setError("Work email is required.");
 
-  setSubmitting(true);
+  async function onSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  setError(null);
+  setSaving(true);
+
   try {
     // 1) Save onboarding payload
     await saveCoachOnboarding({
-  email: form.workEmail,          // 👈 map your form’s email field
-  name: form.name || "",
-  role: form.role || "",
-  collegeProgram: form.collegeProgram || "",
-});
-
+      email: form.workEmail,
+      name: form.name,
+      role: form.role,
+      collegeProgram: form.collegeProgram,
+    });
 
     // 2) Send verification email
     await sendVerification(form.workEmail);
 
     // 3) Send optional invites (don’t block flow if it fails)
-if (form.inviteEmails.length > 0) {
-  sendCoachInvites({if (form.inviteEmails.length > 0) {
-  sendCoachInvites(form.collegeProgram, form.name, form.inviteEmails).catch(() => {});
-}
+    if (form.inviteEmails.length > 0) {
+      sendCoachInvites(
+        form.collegeProgram,
+        form.name || "Coach",
+        form.inviteEmails
+      ).catch(() => {});
+    }
 
     // 4) Route to "Check your email"
-    router.push(`/check-email?email=${encodeURIComponent(form.workEmail)}&plan=coach`);
+    router.push("/onboarding/check-email");
   } catch (err: any) {
-    console.error(err);
-    setError(err?.message || "Something went wrong. Please try again.");
-    setSubmitting(false);
+    setError(err?.message || "Something went wrong.");
+  } finally {
+    setSaving(false);
   }
-};
-
+}
 
   return (
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>
