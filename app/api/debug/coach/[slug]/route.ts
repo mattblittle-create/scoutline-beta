@@ -22,7 +22,7 @@ export async function GET(
         email: true,
         name: true,
         role: true,
-        program: true,
+        // program: true, // ← remove to avoid selecting a non-existent column
         photoUrl: true,
         workPhone: true,
         phonePrivate: true,

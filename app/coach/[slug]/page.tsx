@@ -29,7 +29,6 @@ export default async function CoachPage({ params }: PageParams) {
   if (!user) notFound();
 
   const title = user.role || "Coach";
-  const program = user.program || null;
 
   return (
     <main
