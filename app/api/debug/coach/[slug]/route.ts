@@ -1,17 +1,17 @@
 // app/api/debug/coach/[slug]/route.ts
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
-export const runtime = 'nodejs';
-export const dynamic = 'force-dynamic';
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(
   _req: Request,
   { params }: { params: { slug: string } }
 ) {
-  const slug = (params?.slug || '').trim().toLowerCase();
+  const slug = (params?.slug || "").trim().toLowerCase();
   if (!slug) {
-    return NextResponse.json({ ok: false, error: 'Missing slug' }, { status: 400 });
+    return NextResponse.json({ ok: false, error: "Missing slug" }, { status: 400 });
   }
 
   try {
@@ -31,14 +31,9 @@ export async function GET(
         updatedAt: true,
       },
     });
-
     return NextResponse.json({ ok: true, user });
   } catch (err: any) {
-    // Shows up in Vercel logs, and the JSON helps us see Prisma errors quickly
-    console.error('DEBUG /api/debug/coach/[slug] error:', err);
-    return NextResponse.json(
-      { ok: false, error: err?.message || 'Unknown error' },
-      { status: 500 }
-    );
+    console.error("DEBUG /api/debug/coach/[slug] error:", err);
+    return NextResponse.json({ ok: false, error: err?.message || "Unknown error" }, { status: 500 });
   }
 }
