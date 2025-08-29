@@ -11,13 +11,14 @@ export default async function CoachPage({ params }: PageParams) {
   const slug = (params?.slug || "").trim().toLowerCase();
   if (!slug) notFound();
 
+  // Main fetch: avoid selecting fields that might not exist in DB yet
   const user = await prisma.user.findUnique({
     where: { slug },
     select: {
       id: true,
       name: true,
       role: true,
-      program: true,        // <-- this is the field in your schema
+      // program: true, // ← intentionally NOT selecting to avoid runtime crash if column is missing
       photoUrl: true,
       workPhone: true,
       phonePrivate: true,
@@ -27,6 +28,18 @@ export default async function CoachPage({ params }: PageParams) {
   });
 
   if (!user) notFound();
+
+  // Optional: try to read `program` separately; if the column doesn't exist, ignore gracefully.
+  let program: string | null = null;
+  try {
+    const r = await prisma.user.findUnique({
+      where: { slug },
+      select: { program: true },
+    });
+    program = r?.program ?? null;
+  } catch {
+    // Column probably doesn't exist yet; do nothing.
+  }
 
   const title = user.role || "Coach";
 
