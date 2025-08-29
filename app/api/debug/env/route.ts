@@ -15,9 +15,13 @@ export async function GET() {
 
   try {
     if (dbUrl) {
-      const u = new URL(dbUrl);
-      // e.g. postgres://..., mysql://..., file:./prisma/dev.db, sqlite:...
-      dbKind = u.protocol.replace(":", "") || (dbUrl.startsWith("file:") ? "sqlite" : null);
+      // Handles postgres://..., mysql://..., file:./prisma/dev.db, etc.
+      if (dbUrl.startsWith("file:")) {
+        dbKind = "sqlite";
+      } else {
+        const u = new URL(dbUrl);
+        dbKind = u.protocol.replace(":", "") || null;
+      }
     }
   } catch {
     dbKind = null;
