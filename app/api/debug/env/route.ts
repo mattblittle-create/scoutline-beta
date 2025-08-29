@@ -11,20 +11,19 @@ export async function GET() {
 
   const dbUrl = process.env.DATABASE_URL || "";
   const hasDb = !!dbUrl;
-  let dbKind: string | null = null;
 
-  try {
-    if (dbUrl) {
-      // Handles postgres://..., mysql://..., file:./prisma/dev.db, etc.
-      if (dbUrl.startsWith("file:")) {
-        dbKind = "sqlite";
-      } else {
-        const u = new URL(dbUrl);
-        dbKind = u.protocol.replace(":", "") || null;
-      }
+  let dbKind: string | null = null;
+  if (hasDb) {
+    try {
+      const u = new URL(dbUrl);
+      // Normalize protocol (“postgres:” -> “postgres”, “file:” -> “file”)
+      const proto = (u.protocol || "").replace(":", "");
+      // Map “file” to sqlite, otherwise use protocol (postgres, postgresql, mysql, etc.)
+      dbKind = proto === "file" ? "sqlite" : proto || null;
+    } catch {
+      // Fallback if DATABASE_URL can’t be parsed as a URL
+      dbKind = dbUrl.startsWith("file:") ? "sqlite" : null;
     }
-  } catch {
-    dbKind = null;
   }
 
   return NextResponse.json({
@@ -32,7 +31,7 @@ export async function GET() {
     EMAIL_FROM: emailFrom,
     NEXT_PUBLIC_BASE_URL: base,
     has_DATABASE_URL: hasDb,
-    DATABASE_KIND: postgresql,
+    DATABASE_KIND: dbKind, // <- string like "postgres", "sqlite", etc.
     runtime: "nodejs",
     vercel_env: process.env.VERCEL_ENV || null,
   });
