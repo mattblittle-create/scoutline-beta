@@ -1,4 +1,6 @@
 // app/account/page.tsx
+export const dynamic = "force-dynamic";
+
 import { Suspense } from "react";
 import ClientAccountPage from "./ClientAccountPage";
 

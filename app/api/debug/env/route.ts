@@ -32,7 +32,7 @@ export async function GET() {
     EMAIL_FROM: emailFrom,
     NEXT_PUBLIC_BASE_URL: base,
     has_DATABASE_URL: hasDb,
-    DATABASE_KIND: dbKind,
+    DATABASE_KIND: postgresql,
     runtime: "nodejs",
     vercel_env: process.env.VERCEL_ENV || null,
   });
