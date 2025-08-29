@@ -3,22 +3,35 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
-  // Upsert ensures you don't create duplicates if you re-run the seed
-  const coach = await prisma.coach.upsert({
-    where: { slug: "matt-little" },
-    update: {}, // leave empty to keep existing values if already seeded
-    create: {
-      slug: "matt-little",
+  // Adjust these to whatever you want live
+  const email = "matt.b.little@gmail.com";
+  const slug = "matt-little";
+
+  const coach = await prisma.user.upsert({
+    where: { email },
+    update: {
+      slug,
       name: "Matt Little",
-      email: "matt.b.little@gmail.com",
       role: "Head Coach",
-      collegeProgram: "The Battery Training Academy",
-      workPhone: "555-555-5555",
+      program: "Your College Baseball",
+      // Optional fields if they exist in your schema:
+      // photoUrl: "https://…",
+      // workPhone: "(555) 555-5555",
+      phonePrivate: true,
+    },
+    create: {
+      email,
+      slug,
+      name: "Matt Little",
+      role: "Head Coach",
+      program: "Your College Baseball",
+      // photoUrl: "https://…",
+      // workPhone: "(555) 555-5555",
       phonePrivate: true,
     },
   });
 
-  console.log("✅ Seeded coach:", coach);
+  console.log("Seeded user:", coach.email, "→ /coach/" + coach.slug);
 }
 
 main()
