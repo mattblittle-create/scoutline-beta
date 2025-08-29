@@ -31,7 +31,7 @@ async function main() {
     },
   });
 
-  console.log("Seeded user:", coach.email, "→ /coach/" + coach.slug);
+  console.log("Seeded user:", user.email, "→ /coach/" + user.slug);
 }
 
 main()
