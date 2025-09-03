@@ -39,9 +39,15 @@ export async function PUT(req: Request) {
 
     // ensure unique slug if another user already has it
     const existing = await prisma.user.findFirst({
-      where: { slug: safeSlug, NOT: { email: normalizedEmail } },
-      select: { id: true },
-    });
+  where: {
+    AND: [
+      { slug: safeSlug },
+      { NOT: { email: normalizedEmail } },
+    ],
+  },
+  select: { id: true },
+});
+
     if (existing) {
       return NextResponse.json(
         { ok: false, error: "Slug already taken" },
