@@ -1,3 +1,4 @@
+// prisma/schema.prisma
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,64 +9,38 @@ datasource db {
 }
 
 model User {
-  id                 String               @id @default(cuid())
-  name               String?
-  email              String?              @unique
-  emailVerified      DateTime?
-  image              String?
-  role               Role                 @default(PLAYER)
-  hashedPassword     String?
-  photoUrl           String?
-  Account            Account[]
-  PasswordResetToken PasswordResetToken[]
-  Session            Session[]
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?
+  name         String?
+  role         String?
+  workPhone    String?
+  phonePrivate Boolean  @default(true)
+  program      String?
+  photoUrl     String?
+  slug         String?  @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-model Account {
-  id                String  @id
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-  User              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+model VerificationToken {
+  id         String   @id
+  email      String
+  tokenHash  String
+  purpose    TokenPurpose
+  expiresAt  DateTime
+  consumedAt DateTime?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  @@unique([provider, providerAccountId])
-  @@index([userId])
+  @@index([email])
+  @@index([purpose])
+  @@index([expiresAt])
+  @@unique([tokenHash, purpose])
 }
 
-model PasswordResetToken {
-  id        String   @id
-  token     String   @unique
-  userId    String
-  expiresAt DateTime
-  used      Boolean  @default(false)
-  createdAt DateTime @default(now())
-  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-model Session {
-  id           String   @id
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  User         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-}
-
-enum Role {
-  PLAYER
-  PARENT
-  COACH
-  ADMIN
-  TEAM_ADMIN
+enum TokenPurpose {
+  VERIFY_EMAIL
+  RESET_PASSWORD
+  SET_PASSWORD
 }
