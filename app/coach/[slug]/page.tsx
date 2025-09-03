@@ -11,14 +11,14 @@ export default async function CoachPage({ params }: PageParams) {
   const slug = (params?.slug || "").trim().toLowerCase();
   if (!slug) notFound();
 
-  // Main fetch: avoid selecting fields that might not exist in DB yet
   const user = await prisma.user.findUnique({
     where: { slug },
+    // IMPORTANT: do NOT select `role` until schema matches DB enum
     select: {
       id: true,
       name: true,
-      role: true,
-      // program: true, // ← intentionally NOT selecting to avoid runtime crash if column is missing
+      // role: true,     // ❌ remove to avoid enum↔string mismatch
+      program: true,
       photoUrl: true,
       workPhone: true,
       phonePrivate: true,
@@ -29,19 +29,7 @@ export default async function CoachPage({ params }: PageParams) {
 
   if (!user) notFound();
 
-  // Optional: try to read `program` separately; if the column doesn't exist, ignore gracefully.
-  let program: string | null = null;
-  try {
-    const r = await prisma.user.findUnique({
-      where: { slug },
-      select: { program: true },
-    });
-    program = r?.program ?? null;
-  } catch {
-    // Column probably doesn't exist yet; do nothing.
-  }
-
-  const title = user.role || "Coach";
+  const title = "Coach"; // fallback while role is not selected
 
   return (
     <main
@@ -88,8 +76,8 @@ export default async function CoachPage({ params }: PageParams) {
           <p style={{ margin: "4px 0 0", color: "#475569", fontWeight: 700 }}>
             {title}
           </p>
-          {program ? (
-            <p style={{ margin: "4px 0 0", color: "#334155" }}>{program}</p>
+          {user.program ? (
+            <p style={{ margin: "4px 0 0", color: "#334155" }}>{user.program}</p>
           ) : null}
         </div>
       </header>
@@ -119,3 +107,4 @@ export default async function CoachPage({ params }: PageParams) {
     </main>
   );
 }
+

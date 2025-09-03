@@ -9,20 +9,18 @@ export async function GET(
   _req: Request,
   { params }: { params: { slug: string } }
 ) {
-  const slug = (params?.slug || "").trim().toLowerCase();
-  if (!slug) {
-    return NextResponse.json({ ok: false, error: "Missing slug" }, { status: 400 });
-  }
-
   try {
+    const slug = (params?.slug || "").toLowerCase().trim();
+    if (!slug) return NextResponse.json({ ok: false, error: "missing slug" });
+
     const user = await prisma.user.findUnique({
       where: { slug },
+      // omit `role` to avoid enum/string mismatch
       select: {
         id: true,
         email: true,
         name: true,
-        role: true,
-        // program: true, // ← remove to avoid selecting a non-existent column
+        program: true,
         photoUrl: true,
         workPhone: true,
         phonePrivate: true,
@@ -31,9 +29,12 @@ export async function GET(
         updatedAt: true,
       },
     });
+
     return NextResponse.json({ ok: true, user });
   } catch (err: any) {
-    console.error("DEBUG /api/debug/coach/[slug] error:", err);
-    return NextResponse.json({ ok: false, error: err?.message || "Unknown error" }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: String(err?.message || err) },
+      { status: 500 }
+    );
   }
 }
