@@ -1,4 +1,5 @@
 // prisma/schema.prisma
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -7,6 +8,12 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+/**
+ * =========================
+ * Core existing models
+ * =========================
+ */
 
 model User {
   id           String   @id @default(cuid())
@@ -21,22 +28,25 @@ model User {
   slug         String?  @unique
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  // 1:1 (optional) to Player
+  Player Player?
 }
 
 model VerificationToken {
-  id         String   @id
+  id         String       @id
   email      String
   tokenHash  String
   purpose    TokenPurpose
   expiresAt  DateTime
   consumedAt DateTime?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
 
+  @@unique([tokenHash, purpose])
   @@index([email])
   @@index([purpose])
   @@index([expiresAt])
-  @@unique([tokenHash, purpose])
 }
 
 enum TokenPurpose {
@@ -45,3 +55,71 @@ enum TokenPurpose {
   SET_PASSWORD
 }
 
+/**
+ * =========================
+ * New enums
+ * =========================
+ */
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+  TEAM_ONLY
+  VERIFIED_ONLY
+}
+
+enum Plan {
+  REDSHIRT
+  WALK_ON
+  ALL_AMERICAN
+  TEAM
+}
+
+/**
+ * =========================
+ * Player model (minimal, compilable)
+ * =========================
+ */
+
+model Player {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  // Core
+  gradYear     Int?
+  primaryPos   String?
+  secondaryPos String?
+  throws       String?
+  bats         String?
+
+  // Height split into feet + inches (0–11)
+  heightFt Int?
+  heightIn Int?
+
+  weightLb   Int?
+  hsName     String?
+  travelTeam String?
+  hometown   String?
+  state      String?
+
+  // Academics
+  gpa    Decimal? @db.Decimal(4, 2)
+  act    Int?
+  sat    Int?
+  ncaaId String?
+
+  plan Plan @default(REDSHIRT)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations we will add later — commented so schema compiles now
+  // metrics      PlayerMetric[]
+  // videos       PlayerVideo[]
+  // documents    PlayerDocument[]
+  // socials      PlayerSocial[]
+  // visibilities FieldVisibility[]
+  // parents      ParentLink[]
+  // teams        TeamMembership[]
+}
