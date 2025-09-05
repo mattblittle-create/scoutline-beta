@@ -1,1 +1,1 @@
-﻿-- placeholder to match PROD history
+-- placeholder to match PROD history

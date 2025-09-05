@@ -1,1 +1,1 @@
-﻿-- placeholder, already applied on PROD
+-- placeholder, already applied on PROD

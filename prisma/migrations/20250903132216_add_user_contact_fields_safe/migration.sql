@@ -1,1 +1,1 @@
-﻿-- placeholder, hotfix applied directly on PROD
+-- placeholder, hotfix applied directly on PROD
