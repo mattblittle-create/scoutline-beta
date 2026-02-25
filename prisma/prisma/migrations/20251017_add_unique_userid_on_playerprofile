@@ -1,0 +1,5 @@
+-- Add a unique constraint on PlayerProfile.userId
+-- Postgres allows multiple NULLs in a UNIQUE column, so this is safe for nullable userId.
+
+ALTER TABLE "PlayerProfile"
+ADD CONSTRAINT "PlayerProfile_userId_key" UNIQUE ("userId");

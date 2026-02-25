@@ -1,10 +1,42 @@
+// app/components/SiteHeader.tsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useRef, useState } from "react";
+import NotificationBell from "./NotificationBell";
+import { usePathname } from "next/navigation";
+
+type MeResp =
+  | { ok: true; user: null }
+  | { ok: true; user: { id: string; email: string; role?: string | null } };
 
 export default function SiteHeader() {
+  const pathname = usePathname();
+
+  // ---- Auth state (for Log In vs Log Out) ----
+  const [authLoading, setAuthLoading] = useState(true);
+  const [isAuthed, setIsAuthed] = useState(false);
+
+  async function loadMe() {
+    try {
+      setAuthLoading(true);
+      const res = await fetch("/api/auth/me", { cache: "no-store", credentials: "include" });
+      const json = (await res.json().catch(() => ({ ok: true, user: null }))) as MeResp;
+      setIsAuthed(!!(json as any)?.user?.id);
+    } catch {
+      setIsAuthed(false);
+    } finally {
+      setAuthLoading(false);
+    }
+  }
+
+  // ✅ refresh auth state on mount AND on route changes
+  useEffect(() => {
+    loadMe();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+
   // Desktop login dropdown
   const [loginOpen, setLoginOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -23,11 +55,17 @@ export default function SiteHeader() {
   };
   const scheduleCloseLogin = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setLoginOpen(false), 200); // your delay
+    closeTimer.current = setTimeout(() => setLoginOpen(false), 200);
   };
   const instantCloseLogin = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setLoginOpen(false);
+  };
+
+  const closeAll = () => {
+    instantCloseLogin();
+    setMobileOpen(false);
+    setMobileLoginOpen(false);
   };
 
   // Close on outside click & Esc
@@ -61,11 +99,27 @@ export default function SiteHeader() {
     };
   }, []);
 
-  const closeAll = () => {
-    instantCloseLogin();
-    setMobileOpen(false);
-    setMobileLoginOpen(false);
-  };
+  // Central login URLs (local app)
+  const loginBase = "/login";
+  const loginHref = (role: "player" | "parent" | "coach" | "team") => `${loginBase}?role=${role}`;
+
+async function doLogout() {
+  try {
+    closeAll();
+    setIsAuthed(false); // ✅ immediate UI flip
+
+    await fetch("/api/auth/logout", {
+      method: "POST",
+      cache: "no-store",
+      credentials: "include",
+    }).catch(() => null);
+
+    // Hard refresh so server components/layouts see cleared cookies
+    window.location.assign("/");
+  } catch {
+    window.location.assign("/");
+  }
+}
 
   return (
     <header className="sl-header">
@@ -77,8 +131,8 @@ export default function SiteHeader() {
         .sl-login-btn:hover { box-shadow: var(--sl-shadow); transform: translateY(-1px) }
         .sl-dropdown { position:absolute; top:calc(100% + 6px); left:0; background:#fff; border:1px solid var(--sl-border); border-radius:12px; box-shadow: var(--sl-shadow); z-index:60; min-width: 220px; padding: 6px; }
         .sl-item { display:block; padding:10px 12px; border-radius:10px; }
-        .sl-item:hover { background:#f8fafc; text-decoration: underline; } /* underline on hover */
-        .sl-logo { width:100%; max-width: 270px; } /* adjust logo size here */
+        .sl-item:hover { background:#f8fafc; text-decoration: underline; }
+        .sl-logo { width:100%; max-width: 270px; }
         .sl-link:hover{ text-decoration:none; }
         .sl-link.is-active{ color: var(--sl-accent); font-weight:600; }
         
@@ -89,9 +143,8 @@ export default function SiteHeader() {
         .sl-mobile-row { display:flex; flex-direction:column; gap:6px; }
         .sl-mobile-sep { height:1px; background:#f1f5f9; margin:8px 0; }
 
-        /* Mobile layout */
         @media (max-width: 900px) {
-          .sl-right { display: none; }          /* hide desktop links */
+          .sl-right { display: none; }
           .sl-hamburger { display: inline-flex; }
           .sl-mobile-panel { display: block; width: 100%; }
           .sl-mobile-card { border: 1px solid #e5e7eb; border-radius: 12px; padding: 8px; background: #fff; }
@@ -105,8 +158,13 @@ export default function SiteHeader() {
       `}</style>
 
       <nav className="sl-nav">
-        {/* Logo (PNG) */}
-        <Link href="/" aria-label="ScoutLine home" style={{ display: "flex", alignItems: "center", flexShrink: 0, maxWidth: "100%" }} onClick={closeAll}>
+        {/* Logo */}
+        <Link
+          href="/"
+          aria-label="ScoutLine home"
+          style={{ display: "flex", alignItems: "center", flexShrink: 0, maxWidth: "100%" }}
+          onClick={closeAll}
+        >
           <div className="sl-logo">
             <Image
               src="/scoutline-logo-gold.png"
@@ -128,46 +186,59 @@ export default function SiteHeader() {
           <Link href="/faq" onClick={closeAll}>FAQ</Link>
           <Link href="/search" onClick={closeAll}>Search</Link>
 
-          {/* Log In (hover to open, delayed close) */}
-          <div
-            style={{ position: "relative" }}
-            onMouseEnter={openLogin}
-            onMouseLeave={scheduleCloseLogin}
-          >
-            {/* Button click routes to central login */}
-            <button
-              ref={btnRef}
-              className="sl-login-btn"
-              aria-haspopup="menu"
-              aria-expanded={loginOpen}
-              onClick={() => {
-                window.location.href = "https://beta.myscoutline.com/login";
-              }}
-              onFocus={openLogin} // keyboard
-            >
-              Log In ▾
-            </button>
+          <NotificationBell />
 
-            {loginOpen && (
-              <div
-                ref={menuRef}
-                role="menu"
-                className="sl-dropdown"
-                onMouseEnter={openLogin}
-                onMouseLeave={scheduleCloseLogin}
-                onFocus={openLogin}
-                onBlur={(e) => {
-                  if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
+          {authLoading ? (
+            <button className="sl-login-btn" disabled style={{ opacity: 0.7, cursor: "default" }}>
+              …
+            </button>
+          ) : isAuthed ? (
+            <button className="sl-login-btn" type="button" onClick={doLogout} title="End your session">
+              Log Out
+            </button>
+          ) : (
+            <div style={{ position: "relative" }} onMouseEnter={openLogin} onMouseLeave={scheduleCloseLogin}>
+              <button
+                ref={btnRef}
+                className="sl-login-btn"
+                aria-haspopup="menu"
+                aria-expanded={loginOpen}
+                onClick={() => {
+                  window.location.href = loginHref("coach");
                 }}
+                onFocus={openLogin}
               >
-                {/* All dropdown items also route to central login */}
-                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Player</a>
-                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Parent</a>
-                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Coach</a>
-                <a href="https://beta.myscoutline.com/login" role="menuitem" className="sl-item" onClick={instantCloseLogin}>Team Admin</a>
-              </div>
-            )}
-          </div>
+                Log In ▾
+              </button>
+
+              {loginOpen && (
+                <div
+                  ref={menuRef}
+                  role="menu"
+                  className="sl-dropdown"
+                  onMouseEnter={openLogin}
+                  onMouseLeave={scheduleCloseLogin}
+                  onFocus={openLogin}
+                  onBlur={(e) => {
+                    if (!e.currentTarget.contains(e.relatedTarget as Node)) instantCloseLogin();
+                  }}
+                >
+                  <a href={loginHref("player")} role="menuitem" className="sl-item" onClick={instantCloseLogin}>
+                    Player
+                  </a>
+                  <a href={loginHref("parent")} role="menuitem" className="sl-item" onClick={instantCloseLogin}>
+                    Parent
+                  </a>
+                  <a href={loginHref("coach")} role="menuitem" className="sl-item" onClick={instantCloseLogin}>
+                    Coach
+                  </a>
+                  <a href={loginHref("team")} role="menuitem" className="sl-item" onClick={instantCloseLogin}>
+                    Team Admin
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Hamburger (mobile) */}
@@ -175,7 +246,7 @@ export default function SiteHeader() {
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           className="sl-hamburger"
           onClick={() => {
-            setMobileOpen(v => !v);
+            setMobileOpen((v) => !v);
             setMobileLoginOpen(false);
             instantCloseLogin();
           }}
@@ -186,10 +257,7 @@ export default function SiteHeader() {
 
       {/* Mobile slide-down panel */}
       {mobileOpen && (
-        <div
-          className={`sl-mobile-panel ${mobileOpen ? "open" : ""}`}
-          ref={mobileRef}
-        >
+        <div className={`sl-mobile-panel ${mobileOpen ? "open" : ""}`} ref={mobileRef}>
           <div className="sl-mobile-card">
             <div className="sl-mobile-row">
               <Link href="/" className="sl-item" onClick={closeAll}>Home</Link>
@@ -201,21 +269,34 @@ export default function SiteHeader() {
 
               <div className="sl-mobile-sep" />
 
-              <button
-                className="sl-login-btn"
-                aria-expanded={mobileLoginOpen}
-                aria-controls="mobile-login-menu"
-                onClick={() => setMobileLoginOpen(v => !v)}
-              >
-                Log In ▾
-              </button>
-              {mobileLoginOpen && (
-                <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
-                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Player</a>
-                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Parent</a>
-                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Coach</a>
-                  <a href="https://beta.myscoutline.com/login" className="sl-item" onClick={closeAll}>Team Admin</a>
-                </div>
+              {authLoading ? (
+                <button className="sl-login-btn" disabled style={{ opacity: 0.7, cursor: "default" }}>
+                  …
+                </button>
+              ) : isAuthed ? (
+                <button className="sl-login-btn" type="button" onClick={doLogout}>
+                  Log Out
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="sl-login-btn"
+                    aria-expanded={mobileLoginOpen}
+                    aria-controls="mobile-login-menu"
+                    onClick={() => setMobileLoginOpen((v) => !v)}
+                  >
+                    Log In ▾
+                  </button>
+
+                  {mobileLoginOpen && (
+                    <div id="mobile-login-menu" style={{ paddingTop: 6 }}>
+                      <a href={loginHref("player")} className="sl-item" onClick={closeAll}>Player</a>
+                      <a href={loginHref("parent")} className="sl-item" onClick={closeAll}>Parent</a>
+                      <a href={loginHref("coach")} className="sl-item" onClick={closeAll}>Coach</a>
+                      <a href={loginHref("team")} className="sl-item" onClick={closeAll}>Team Admin</a>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

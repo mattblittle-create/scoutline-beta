@@ -1,0 +1,2 @@
+import { useParams } from "next/navigation";
+const { slug } = useParams<{ slug: string }>();

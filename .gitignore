@@ -4,7 +4,9 @@ node_modules
 .vercel
 
 .env.local
-
 # Prisma dev DB
 /prisma/dev.db
 /prisma/*.db-journal
+.env.local.bak
+public/uploads/
+app/uploads/

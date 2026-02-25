@@ -1,5 +1,3 @@
-// lib/client-api.ts
-
 //
 // Shared types
 //
@@ -10,6 +8,20 @@ export type SaveCoachOnboardingInput = {
   collegeProgram: string;
   workPhone?: string;
   phonePrivate?: boolean;
+};
+
+export type SaveTeamOnboardingInput = {
+  adminEmail: string;
+  adminFirstName: string;
+  adminLastName: string;
+  adminPhone: string; // digits only (10) preferred
+  adminPhoneExt?: string; // digits only (<=6)
+  phonePrivate?: boolean;
+
+  teamName: string;
+  city: string;
+  state: string;
+  website?: string | null;
 };
 
 type JsonOK = { ok: true };
@@ -58,10 +70,14 @@ async function postJSON<T = any>(
  * Throws on failure (including 429).
  */
 export async function sendVerification(email: string): Promise<JsonOK> {
-  return await postJSON<JsonOK>("/api/auth/send-verification", { email }, {
-    handle429Msg: "Too many requests. Please try again in a minute.",
-    defaultErr: "Failed to send verification email.",
-  });
+  return await postJSON<JsonOK>(
+    "/api/auth/send-verification",
+    { email },
+    {
+      handle429Msg: "Too many requests. Please try again in a minute.",
+      defaultErr: "Failed to send verification email.",
+    }
+  );
 }
 
 /**
@@ -74,14 +90,14 @@ export async function sendCoachInvites(
   inviterName: string,
   emails: string[]
 ): Promise<JsonOK> {
-  return await postJSON<JsonOK>("/api/onboarding/coach/invite", {
-    program,
-    inviterName,
-    emails,
-  }, {
-    handle429Msg: "Too many invites. Please wait a bit and retry.",
-    defaultErr: "Failed to send invites.",
-  });
+  return await postJSON<JsonOK>(
+    "/api/onboarding/coach/invite",
+    { program, inviterName, emails },
+    {
+      handle429Msg: "Too many invites. Please wait a bit and retry.",
+      defaultErr: "Failed to send invites.",
+    }
+  );
 }
 
 /**
@@ -91,7 +107,24 @@ export async function sendCoachInvites(
 export async function saveCoachOnboarding(
   input: SaveCoachOnboardingInput
 ): Promise<JsonOK> {
+  // NOTE: This endpoint is correct and should remain:
+  // - /api/onboarding/coach returns set-password token/link as needed
   return await postJSON<JsonOK>("/api/onboarding/coach", input, {
     defaultErr: "Failed to save onboarding.",
+  });
+}
+
+/**
+ * Save the team onboarding payload.
+ * Throws on failure.
+ *
+ * This aligns with the new Teams onboarding flow:
+ * - POST /api/onboarding/team creates the TEAM_ADMIN user + team and returns set-password token/link
+ */
+export async function saveTeamOnboarding(
+  input: SaveTeamOnboardingInput
+): Promise<{ ok: true; data: any } & Record<string, any>> {
+  return await postJSON<{ ok: true; data: any }>("/api/onboarding/team", input, {
+    defaultErr: "Failed to save team onboarding.",
   });
 }

@@ -64,7 +64,16 @@ export default function TermsPage() {
       <h2>7. Fees &amp; Payments</h2>
       <p>
         Some features may require payment. All fees are disclosed before purchase and are
-        non-refundable unless required by law.
+        non-refundable unless required by law. Payments are processed through a third-party
+        payment processor. By providing payment information, you authorize ScoutLine to
+        charge applicable fees in accordance with your selected plan. ScoutLine does not
+        store full payment credentials and retains only limited, non-sensitive payment
+        information for administrative purposes.
+        <br /><br />
+        Certain payment methods, including debit and credit cards, may be subject to
+        additional processing fees as permitted by applicable law and card network rules.
+        ScoutLine reserves the right to modify fees upon notice. Failure to maintain a
+        valid payment method may result in suspension or termination of services.
       </p>
 
       <h2>8. Advertising &amp; Marketing Use of Data</h2>

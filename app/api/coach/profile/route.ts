@@ -1,0 +1,317 @@
+// app/api/coach/profile/route.ts
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+type Err = { ok: false; error: string };
+
+function normalizeRecruitingTargets(input: any) {
+  if (!Array.isArray(input)) return [];
+
+  const cleaned = input
+    .map((x) => {
+      const gradYear = Number(x?.gradYear);
+      const positions = Array.isArray(x?.positions)
+        ? x.positions.map((p: any) => String(p || "").trim()).filter(Boolean)
+        : [];
+      if (!Number.isFinite(gradYear) || gradYear < 1900 || gradYear > 3000) return null;
+
+      const uniq = Array.from(new Set(positions));
+      return { gradYear, positions: uniq };
+    })
+    .filter(Boolean) as Array<{ gradYear: number; positions: string[] }>;
+
+  const byYear = new Map<number, Set<string>>();
+  for (const row of cleaned) {
+    if (!byYear.has(row.gradYear)) byYear.set(row.gradYear, new Set<string>());
+    const set = byYear.get(row.gradYear)!;
+    row.positions.forEach((p) => set.add(p));
+  }
+
+  return Array.from(byYear.entries())
+    .map(([gradYear, set]) => ({ gradYear, positions: Array.from(set) }))
+    .sort((a, b) => a.gradYear - b.gradYear);
+}
+
+function normalizeSlugBase(input: string) {
+  return (
+    String(input || "")
+      .trim()
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "") || "coach"
+  );
+}
+
+async function ensureUserSlug(user: { id: string; slug: string | null; name: string | null; email: string }) {
+  if (user.slug) return user.slug;
+
+  const base = normalizeSlugBase(user.name || user.email.split("@")[0] || "coach");
+
+  let candidate = base;
+  let n = 2;
+
+  while (true) {
+    const taken = await prisma.user.findFirst({
+      where: { slug: candidate },
+      select: { id: true },
+    });
+    if (!taken) break;
+    candidate = `${base}-${n++}`;
+  }
+
+  await prisma.user.update({
+    where: { id: user.id },
+    data: { slug: candidate },
+  });
+
+  return candidate;
+}
+
+function digitsOnly(v: any) {
+  return String(v ?? "").replace(/\D+/g, "");
+}
+
+export async function GET() {
+  try {
+    const sessionUser = await getCurrentUser();
+    if (!sessionUser?.id) {
+      return NextResponse.json<Err>({ ok: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const user = await prisma.user.findUnique({
+      where: { id: sessionUser.id },
+      select: {
+        id: true,
+        slug: true,
+        name: true,
+        role: true, // NOTE: system role, not the title preset
+        email: true,
+        workPhone: true,
+        workPhoneExt: true,
+        phonePrivate: true,
+        photoUrl: true,
+        collegeId: true,
+        college: {
+          select: {
+            id: true,
+            name: true,
+            logoUrl: true,
+            websiteUrl: true,
+            programWebsiteUrl: true,
+            division: true,
+            conference: true,
+            programBio: true,
+
+            // ✅ NEW
+            recruitingQuestionnaireUrl: true,
+            programXUrl: true,
+            programInstagramUrl: true,
+
+            // audit
+            programProfileUpdatedAt: true,
+            programProfileUpdatedByUser: { select: { id: true, name: true, email: true } },
+          },
+        },
+        coachProfile: {
+          select: {
+            recruitingTargets: true,
+            coachBio: true,
+
+            // ✅ NEW (coach-facing)
+            staffTitle: true,
+            contactEmail: true,
+            coachXUrl: true,
+            coachInstagramUrl: true,
+
+            isProgramAdmin: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      return NextResponse.json<Err>({ ok: false, error: "User not found" }, { status: 404 });
+    }
+
+    const ensuredSlug = await ensureUserSlug({
+      id: user.id,
+      slug: user.slug ?? null,
+      name: user.name ?? null,
+      email: user.email,
+    });
+
+    const targets = normalizeRecruitingTargets(user.coachProfile?.recruitingTargets);
+
+    return NextResponse.json({
+      ok: true,
+      data: {
+        coach: {
+          id: user.id,
+          slug: ensuredSlug,
+          name: user.name ?? null,
+
+          // ✅ use CoachProfile.staffTitle for the preset title dropdown
+          role: (user.coachProfile?.staffTitle ?? null) as any,
+
+          email: user.email,
+          workPhone: user.workPhone ?? null,
+          workPhoneExt: user.workPhoneExt ?? null,
+          phonePrivate: !!user.phonePrivate,
+          photoUrl: user.photoUrl ?? null,
+          coachBio: user.coachProfile?.coachBio ?? null,
+          recruitingTargets: targets,
+
+          // ✅ NEW
+          contactEmail: user.coachProfile?.contactEmail ?? null,
+          coachXUrl: user.coachProfile?.coachXUrl ?? null,
+          coachInstagramUrl: user.coachProfile?.coachInstagramUrl ?? null,
+          isProgramAdmin: !!user.coachProfile?.isProgramAdmin,
+        },
+        program: {
+          collegeId: user.collegeId ?? null,
+          collegeName: user.college?.name ?? null,
+          logoUrl: user.college?.logoUrl ?? null,
+          websiteUrl: user.college?.websiteUrl ?? null,
+          programWebsiteUrl: user.college?.programWebsiteUrl ?? null,
+          division: user.college?.division ?? null,
+          conference: user.college?.conference ?? null,
+          programBio: user.college?.programBio ?? null,
+
+          // ✅ NEW
+          recruitingQuestionnaireUrl: user.college?.recruitingQuestionnaireUrl ?? null,
+          programXUrl: user.college?.programXUrl ?? null,
+          programInstagramUrl: user.college?.programInstagramUrl ?? null,
+
+          lastEditedAt: user.college?.programProfileUpdatedAt ? user.college.programProfileUpdatedAt.toISOString() : null,
+          lastEditedBy: user.college?.programProfileUpdatedByUser
+            ? {
+                id: user.college.programProfileUpdatedByUser.id,
+                name: user.college.programProfileUpdatedByUser.name ?? null,
+                email: user.college.programProfileUpdatedByUser.email,
+              }
+            : null,
+        },
+      },
+    });
+  } catch (e: any) {
+    console.error("GET /api/coach/profile error:", e);
+    return NextResponse.json<Err>({ ok: false, error: e?.message || "Server error" }, { status: 500 });
+  }
+}
+
+export async function PUT(req: Request) {
+  try {
+    const sessionUser = await getCurrentUser();
+    if (!sessionUser?.id) {
+      return NextResponse.json<Err>({ ok: false, error: "Unauthorized" }, { status: 401 });
+    }
+
+    const body = await req.json().catch(() => ({} as any));
+    const coach = body?.coach || {};
+    const program = body?.program || {};
+
+    const name = String(coach?.name || "").trim();
+    const staffTitle = String(coach?.role || "").trim(); // this is the preset title string
+
+    const workPhoneRaw = String(coach?.workPhone ?? "").trim();
+    const workPhone = digitsOnly(workPhoneRaw).slice(0, 10);
+
+    const workPhoneExtRaw = String(coach?.workPhoneExt ?? "").trim();
+    const workPhoneExt = digitsOnly(workPhoneExtRaw).slice(0, 6);
+
+    const phonePrivate = !!coach?.phonePrivate;
+    const photoUrl = String(coach?.photoUrl || "").trim();
+
+    const coachBio = String(coach?.coachBio || "").trim();
+    const recruitingTargets = normalizeRecruitingTargets(coach?.recruitingTargets);
+
+    // ✅ NEW
+    const contactEmail = String(coach?.contactEmail || "").trim().toLowerCase();
+    const coachXUrl = String(coach?.coachXUrl || "").trim();
+    const coachInstagramUrl = String(coach?.coachInstagramUrl || "").trim();
+
+    const programBio = String(program?.programBio || "").trim();
+
+    // ✅ NEW
+    const recruitingQuestionnaireUrl = String(program?.recruitingQuestionnaireUrl || "").trim();
+    const programXUrl = String(program?.programXUrl || "").trim();
+    const programInstagramUrl = String(program?.programInstagramUrl || "").trim();
+
+    if (!name) return NextResponse.json<Err>({ ok: false, error: "Coach name is required." }, { status: 400 });
+    if (!staffTitle) return NextResponse.json<Err>({ ok: false, error: "Coach role is required." }, { status: 400 });
+    if (!workPhone) return NextResponse.json<Err>({ ok: false, error: "Coach phone is required." }, { status: 400 });
+
+    await prisma.user.update({
+      where: { id: sessionUser.id },
+      data: {
+        name,
+        workPhone,
+        workPhoneExt: workPhoneExt || null,
+        phonePrivate,
+        photoUrl: photoUrl || null,
+      },
+    });
+
+    await prisma.coachProfile.upsert({
+      where: { userId: sessionUser.id },
+      create: {
+        userId: sessionUser.id,
+        staffTitle,
+        recruitingTargets,
+        coachBio: coachBio || null,
+
+        contactEmail: contactEmail || null,
+        coachXUrl: coachXUrl || null,
+        coachInstagramUrl: coachInstagramUrl || null,
+      },
+      update: {
+        staffTitle,
+        recruitingTargets,
+        coachBio: coachBio || null,
+
+        contactEmail: contactEmail || null,
+        coachXUrl: coachXUrl || null,
+        coachInstagramUrl: coachInstagramUrl || null,
+      },
+    });
+
+    const fresh = await prisma.user.findUnique({
+      where: { id: sessionUser.id },
+      select: { collegeId: true },
+    });
+
+    if (!fresh?.collegeId) {
+      return NextResponse.json<Err>({ ok: false, error: "Your coach account is not linked to a college yet." }, { status: 400 });
+    }
+
+    await prisma.college.update({
+      where: { id: fresh.collegeId },
+      data: {
+        logoUrl: String(program?.logoUrl || "").trim() || null,
+        websiteUrl: String(program?.websiteUrl || "").trim() || null,
+        programWebsiteUrl: String(program?.programWebsiteUrl || "").trim() || null,
+        division: String(program?.division || "").trim() || null,
+        conference: String(program?.conference || "").trim() || null,
+        programBio: programBio || null,
+
+        // ✅ NEW
+        recruitingQuestionnaireUrl: recruitingQuestionnaireUrl || null,
+        programXUrl: programXUrl || null,
+        programInstagramUrl: programInstagramUrl || null,
+
+        // audit
+        programProfileUpdatedAt: new Date(),
+        programProfileUpdatedByUserId: sessionUser.id,
+      },
+    });
+
+    return GET();
+  } catch (e: any) {
+    console.error("PUT /api/coach/profile error:", e);
+    return NextResponse.json<Err>({ ok: false, error: e?.message || "Server error" }, { status: 500 });
+  }
+}

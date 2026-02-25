@@ -1,0 +1,934 @@
+// app/components/public/PublicMedia.tsx
+"use client";
+
+import * as React from "react";
+
+/** ---------------- shared types ---------------- */
+export type MediaLink = {
+  url: string;
+  title?: string | null;
+};
+
+export type MediaData = {
+  // connect (no longer rendered here, but kept in type for compatibility)
+  email?: string | null;
+  phone?: string | null;
+
+  // social (public URLs, not handles — no longer rendered here)
+  xUrl?: string | null;
+  instagramUrl?: string | null;
+  youtubeUrl?: string | null;
+  chatUrl?: string | null;
+
+  // videos
+  uploadedVideos?: { url: string; title?: string | null }[];
+  externalVideos?: { url: string; title?: string | null }[];
+};
+
+/** When the caller passes the dashboard-saved payload directly */
+export type VideoSocialPayload = {
+  externalVideos: {
+    id: string;
+    title?: string;
+    url: string;
+    source: "youtube" | "vimeo" | "mp4" | "gamechanger" | "unknown";
+    addedAt: number;
+  }[];
+  localVideos: {
+    id: string;
+    title?: string;
+    publicUrl: string;
+    fileType: string;
+    fileSize: number;
+    addedAt: number;
+  }[];
+  social: { xHandle?: string; instagramHandle?: string; youtubeChannelUrl?: string };
+  primary: { kind: "local" | "external"; id: string } | null;
+};
+
+type BaseProps = {
+  title?: string;
+
+  // match section styling tokens from the rest of the page
+  cardStyle?: React.CSSProperties;
+  h2Style?: React.CSSProperties;
+  pillStyle?: React.CSSProperties;
+
+  /** Primary item’s URL to feature as a hero + badge */
+  primaryUrl?: string | null;
+
+  /** If true, hide the primary item from the grids to avoid duplication (default: true) */
+  hidePrimaryInGrid?: boolean;
+};
+
+type Props =
+  | (BaseProps & {
+      /** Preferred: pass a ready-to-render public media object */
+      media: MediaData;
+    })
+  | (BaseProps & {
+      /** Convenience: pass the payload we save on the dashboard + optional direct connects */
+      payload: VideoSocialPayload;
+      email?: string | null;
+      phone?: string | null;
+      chatUrl?: string | null;
+    });
+
+/** ---------------- helpers ---------------- */
+function normArray<T = any>(x: any): T[] {
+  if (!x) return [];
+  if (Array.isArray(x)) return x.filter(Boolean);
+  return [x].filter(Boolean);
+}
+
+function fileNameFromUrl(url: string) {
+  try {
+    const u = new URL(url);
+    const last = u.pathname.split("/").filter(Boolean).pop() || url;
+    const qsName = u.searchParams.get("filename");
+    return qsName || last;
+  } catch {
+    const parts = url.split("/").filter(Boolean);
+    return parts[parts.length - 1] || url;
+  }
+}
+
+// Add near the top with other helpers
+function isMovLike(u: string) {
+  try {
+    const ext = u.split("?")[0].split(".").pop()?.toLowerCase() || "";
+    return ext === "mov" || ext === "m4v";
+  } catch {
+    return false;
+  }
+}
+
+const isYouTube = (url: string) => {
+  try {
+    const { hostname } = new URL(url);
+    return /(^|\.)youtube\.com$/i.test(hostname) || /(^|\.)youtu\.be$/i.test(hostname);
+  } catch {
+    return false;
+  }
+};
+
+const youTubeId = (url: string): string | null => {
+  try {
+    const u = new URL(url);
+    if (/youtu\.be$/i.test(u.hostname)) {
+      return u.pathname.split("/").filter(Boolean)[0] || null;
+    }
+    if (/youtube\.com$/i.test(u.hostname)) {
+      if (u.pathname === "/watch") return u.searchParams.get("v");
+      const parts = u.pathname.split("/").filter(Boolean);
+      if (parts[0] === "embed" || parts[0] === "shorts" || parts[0] === "live") return parts[1] || null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+};
+
+const isVimeo = (url: string) => {
+  try {
+    const { hostname } = new URL(url);
+    return /(^|\.)vimeo\.com$/i.test(hostname);
+  } catch {
+    return false;
+  }
+};
+
+const vimeoId = (url: string): string | null => {
+  try {
+    const u = new URL(url);
+    const parts = u.pathname.split("/").filter(Boolean);
+    const idx = parts.findIndex((p) => p === "video");
+    if (idx >= 0 && parts[idx + 1]) return parts[idx + 1];
+    const last = parts[parts.length - 1];
+    return /^\d+$/.test(last) ? last : null;
+  } catch {
+    return null;
+  }
+};
+
+const isDirectVideoFile = (url: string) => {
+  const clean = url.split("?")[0].toLowerCase();
+  return /\.(mp4|webm|mov|m4v|ogg|ogv)$/i.test(clean);
+};
+
+const guessVideoType = (url: string): string | undefined => {
+  const ext = url.split("?")[0].split(".").pop()?.toLowerCase() || "";
+  if (ext === "mp4") return "video/mp4";
+  if (ext === "webm") return "video/webm";
+  if (ext === "mov" || ext === "m4v") return "video/quicktime";
+  if (ext === "ogg" || ext === "ogv") return "video/ogg";
+  return undefined;
+};
+
+// Normalize & compare URLs (handles absolute vs relative, encodings, origins)
+function sameUrl(a?: string | null, b?: string | null) {
+  if (!a || !b) return false;
+  try {
+    const strip = (u: string) => u.replace(/^https?:\/\/[^/]+/i, "");
+    return decodeURIComponent(strip(a.trim())) === decodeURIComponent(strip(b.trim()));
+  } catch {
+    return a.trim() === b.trim();
+  }
+}
+
+// Dedupe by normalized URL
+function dedupeByUrl<T extends { url: string }>(arr: T[]): T[] {
+  const seen = new Set<string>();
+  const out: T[] = [];
+  for (const it of arr) {
+    const key = (() => {
+      try {
+        const u = new URL(it.url, "http://x");
+        return decodeURIComponent(u.pathname + u.search);
+      } catch {
+        return it.url.trim();
+      }
+    })();
+    if (!seen.has(key)) {
+      seen.add(key);
+      out.push(it);
+    }
+  }
+  return out;
+}
+
+/** Map dashboard payload → public MediaData */
+function payloadToMediaData(
+  payload: VideoSocialPayload,
+  opts?: { email?: string | null; phone?: string | null; chatUrl?: string | null }
+): MediaData {
+  const uploadedVideos =
+    payload.localVideos?.filter((v) => !!v.publicUrl).map((v) => ({ url: v.publicUrl, title: v.title })) ?? [];
+  const externalVideos = payload.externalVideos?.map((v) => ({ url: v.url, title: v.title })) ?? [];
+
+  const xHandle = payload.social?.xHandle?.trim();
+  const igHandle = payload.social?.instagramHandle?.trim();
+  const ytChannel = payload.social?.youtubeChannelUrl?.trim();
+
+  const xUrl = xHandle ? `https://twitter.com/${xHandle.replace(/^@+/, "")}` : null;
+  const instagramUrl = igHandle ? `https://instagram.com/${igHandle.replace(/^@+/, "")}` : null;
+  const youtubeUrl = ytChannel || null;
+
+  return {
+    email: opts?.email ?? null,
+    phone: opts?.phone ?? null,
+    chatUrl: opts?.chatUrl ?? null,
+    xUrl,
+    instagramUrl,
+    youtubeUrl,
+    uploadedVideos,
+    externalVideos,
+  };
+}
+
+/** ---------- Reusable note shown under <video> elements ---------- */
+const VideoCompatibilityNote: React.FC = () => (
+  <div
+    style={{
+      marginTop: 6,
+      fontSize: 12,
+      color: "#6b7280",        // slate-500
+      fontStyle: "italic",
+      lineHeight: 1.4,
+    }}
+  >
+    Some browsers can’t play certain .MOV QuickTime codecs inline. If playback fails, use <strong>Open Video File</strong>.
+  </div>
+);
+
+/** ---------------- component ---------------- */
+export default function PublicMedia(props: Props) {
+  // Accept either media or payload and normalize to MediaData
+  const media: MediaData = ((): MediaData => {
+    if ("media" in props) return props.media || {};
+    if ("payload" in props) {
+      return payloadToMediaData(props.payload, {
+        email: props.email,
+        phone: props.phone,
+        chatUrl: props.chatUrl,
+      });
+    }
+    return {};
+  })();
+
+  const {
+    uploadedVideos = [],
+    externalVideos = [],
+  } = media || {};
+
+  const title = ("title" in props && props.title) || "Videos";
+  const cardStyle =
+    ("cardStyle" in props && props.cardStyle) || ("cardStyle" in (props as any) && (props as any).cardStyle);
+  const h2Style =
+    ("h2Style" in props && props.h2Style) || ("h2Style" in (props as any) && (props as any).h2Style);
+  const pillStyle =
+    ("pillStyle" in props && props.pillStyle) || ("pillStyle" in (props as any) && (props as any).pillStyle);
+  const primaryUrl = ("primaryUrl" in props && props.primaryUrl) || null;
+  const hidePrimaryInGrid =
+    ("hidePrimaryInGrid" in props ? (props as any).hidePrimaryInGrid : undefined) ?? true;
+
+  const safeCard: React.CSSProperties = {
+    marginTop: 16,
+    background: "#fff",
+    border: "1px solid #e5e7eb",
+    borderRadius: 12,
+    padding: 16,
+    ...(cardStyle || {}),
+  };
+
+  const safeH2: React.CSSProperties = {
+    margin: 0,
+    fontSize: 18,
+    fontWeight: 900,
+    ...(h2Style || {}),
+  };
+
+  const pill: React.CSSProperties = {
+    fontSize: 13,
+    fontWeight: 700,
+    color: "#475569",
+    background: "#f1f5f9",
+    border: "1px solid #e2e8f0",
+    borderRadius: 999,
+    padding: "5px 10px",
+    whiteSpace: "nowrap",
+    ...(pillStyle || {}),
+  };
+
+  const primaryPillStyle: React.CSSProperties = {
+    fontSize: 11,
+    fontWeight: 900,
+    padding: "2px 8px",
+    borderRadius: 999,
+    background: "#e0f2fe",
+    color: "#0f172a",
+    border: "1px solid #e5e7eb",
+  };
+
+  const LinkPill = ({
+    href,
+    children,
+    title,
+  }: {
+    href: string;
+    children: React.ReactNode;
+    title?: string;
+  }) => (
+    <a
+      href={href}
+      target={href.startsWith("http") ? "_blank" : undefined}
+      rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+      style={{ ...pill, textDecoration: "none", display: "inline-block" }}
+      title={title}
+    >
+      {children}
+    </a>
+  );
+
+  // ------ PRIMARY HERO -------
+  const hasPrimary = !!primaryUrl;
+  const primaryLabel = React.useMemo(() => {
+    if (!primaryUrl) return null;
+    // Try to look up a title from either list (normalized compare)
+    const fromUploads = (uploadedVideos || []).find((v) => v.url && sameUrl(v.url, primaryUrl));
+    const fromLinks = (externalVideos || []).find((v) => v.url && sameUrl(v.url, primaryUrl));
+    const candidate = fromUploads || fromLinks;
+    if (candidate?.title?.trim()) return candidate.title.trim();
+    try {
+      return fileNameFromUrl(primaryUrl);
+    } catch {
+      return primaryUrl;
+    }
+  }, [primaryUrl, uploadedVideos, externalVideos]);
+
+  const renderPrimaryHero = () => {
+    if (!primaryUrl) return null;
+
+    // YouTube
+    if (isYouTube(primaryUrl)) {
+      const id = youTubeId(primaryUrl);
+      const origin = typeof window !== "undefined" ? encodeURIComponent(window.location.origin) : "";
+      const src = id
+        ? `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1${
+            origin ? `&origin=${origin}` : ""
+          }`
+        : null;
+      return src ? (
+        <div
+          style={{
+            marginTop: 12,
+            border: "1px solid #e5e7eb",
+            borderRadius: 12,
+            padding: 12,
+            background: "#ffffff",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 8,
+            }}
+          >
+            <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+              {primaryLabel || "Primary Highlight"}
+            </div>
+            <span style={primaryPillStyle}>PRIMARY</span>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              paddingTop: "56.25%",
+              borderRadius: 12,
+              overflow: "hidden",
+              background: "#111",
+            }}
+          >
+            <iframe
+              src={src}
+              title={primaryLabel || "Primary Highlight"}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: 0,
+              }}
+            />
+          </div>
+          {/* Fallback link (e.g., if YouTube shows error 153) */}
+          <div style={{ marginTop: 8 }}>
+            <a
+              href={primaryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-block",
+                textDecoration: "none",
+                background: "#f1f5f9",
+                border: "1px solid #e2e8f0",
+                borderRadius: 999,
+                color: "#475569",
+                fontSize: 13,
+                fontWeight: 700,
+                padding: "5px 10px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Open on YouTube
+            </a>
+          </div>
+        </div>
+      ) : null;
+    }
+
+    // Vimeo
+    if (isVimeo(primaryUrl)) {
+      const id = vimeoId(primaryUrl);
+      const src = id ? `https://player.vimeo.com/video/${id}` : null;
+      return src ? (
+        <div
+          style={{
+            marginTop: 12,
+            border: "1px solid #e5e7eb",
+            borderRadius: 12,
+            padding: 12,
+            background: "#ffffff",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 8,
+            }}
+          >
+            <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+              {primaryLabel || "Primary Highlight"}
+            </div>
+            <span style={primaryPillStyle}>PRIMARY</span>
+          </div>
+          <div
+            style={{
+              position: "relative",
+              paddingTop: "56.25%",
+              borderRadius: 12,
+              overflow: "hidden",
+              background: "#111",
+            }}
+          >
+            <iframe
+              src={src}
+              title={primaryLabel || "Primary Highlight"}
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+              allowFullScreen
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                border: 0,
+              }}
+            />
+          </div>
+        </div>
+      ) : null;
+    }
+
+    // Direct files (mp4/mov/webm...) — responsive wrapper to avoid collapsed height
+    if (isDirectVideoFile(primaryUrl)) {
+      const t = guessVideoType(primaryUrl);
+      return (
+        <div
+          style={{
+            marginTop: 12,
+            border: "1px solid #e5e7eb",
+            borderRadius: 12,
+            padding: 12,
+            background: "#ffffff",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
+            <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+              {primaryLabel || "Primary Highlight"}
+            </div>
+            <span style={primaryPillStyle}>PRIMARY</span>
+          </div>
+
+          {/* 16:9 responsive box (prevents .MOV from collapsing before metadata) */}
+          <div style={{ position: "relative", paddingTop: "56.25%", borderRadius: 12, overflow: "hidden", background: "#111" }}>
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" }}
+            >
+              {/* For .mov/.m4v, omit type so Chrome can sniff the codec */}
+              {isMovLike(primaryUrl)
+                ? <source src={primaryUrl} />
+                : (t ? <source src={primaryUrl} type={t} /> : <source src={primaryUrl} />)}
+              Your browser can’t play this video.
+            </video>
+          </div>
+
+          {/* Global note for all <video> elements */}
+          <VideoCompatibilityNote />
+
+          <div style={{ marginTop: 8 }}>
+            <a
+              href={primaryUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+                textDecoration: "none",
+                fontWeight: 800,
+                fontSize: 13,
+                color: "#0f172a",
+                background: "#e0f2fe",
+                border: "1px solid #0ea5e9",
+                borderRadius: 12,
+                padding: "6px 10px",
+              }}
+            >
+              Open Video File
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    // Fallback: link
+    return (
+      <div
+        style={{
+          marginTop: 12,
+          border: "1px solid #e5e7eb",
+          borderRadius: 12,
+          padding: 12,
+          background: "#ffffff",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 8,
+          }}
+        >
+          <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+            {primaryLabel || "Primary Highlight"}
+          </div>
+          <span style={primaryPillStyle}>PRIMARY</span>
+        </div>
+        <a
+          href={primaryUrl!}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ ...pill, textDecoration: "none" }}
+        >
+          Open Highlight
+        </a>
+      </div>
+    );
+  };
+
+  // ---- Build grid datasets (optionally hiding the primary item to avoid duplication) ----
+  const isPrimary = (url: string | undefined | null) => sameUrl(url, primaryUrl);
+
+  // Dedupe + normalize arrays just in case
+  const uploadsAll = dedupeByUrl(normArray<MediaLink>(uploadedVideos));
+  const linksAll = dedupeByUrl(normArray<MediaLink>(externalVideos));
+
+  const uploads =
+    hidePrimaryInGrid && primaryUrl ? uploadsAll.filter((v) => !isPrimary(v.url)) : uploadsAll;
+  const links =
+    hidePrimaryInGrid && primaryUrl ? linksAll.filter((v) => !isPrimary(v.url)) : linksAll;
+
+  return (
+    <section style={safeCard}>
+      <h2 style={safeH2}>{title}</h2>
+
+      {/* Primary hero player */}
+      {hasPrimary && renderPrimaryHero()}
+
+      {/* Uploaded video files */}
+      <div style={{ marginTop: 12 }}>
+        <div style={{ color: "#334155", fontSize: 13, fontWeight: 800, marginBottom: 6 }}>
+          Uploaded Videos
+        </div>
+
+        {uploads.length === 0 ? (
+          <div style={{ color: "#94a3b8", fontStyle: "italic" }}>
+            {uploadsAll.length > 0 && hidePrimaryInGrid && hasPrimary
+              ? "Primary highlight is from uploads (hidden here)."
+              : "No Videos available."}
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0,1fr))", gap: 12 }}>
+            {uploads.map((v, idx) => {
+              const url = v.url;
+              const label = (v.title?.trim() || fileNameFromUrl(url)) ?? "Video";
+              const type = guessVideoType(url);
+
+              return (
+                <div
+                  key={`upload-${idx}-${url}`}
+                  style={{
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 10,
+                    padding: 10,
+                    background: "#ffffff",
+                    display: "grid",
+                    gap: 8,
+                  }}
+                  aria-roledescription="Video card"
+                >
+                  <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+
+                  {/* Responsive 16:9 box to avoid collapsed height on MOVs */}
+                  <div
+                    style={{
+                      position: "relative",
+                      paddingTop: "56.25%",
+                      borderRadius: 8,
+                      overflow: "hidden",
+                      background: "#111",
+                    }}
+                  >
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        width: "100%",
+                        height: "100%",
+                        display: "block",
+                      }}
+                    >
+                      {/* 1) give browser a typed source if we know it */}
+                      {type ? <source src={url} type={type} /> : null}
+                      {/* 2) also give it an untyped source so it can sniff */}
+                      <source src={url} />
+                      {/* Fallback text (only if <video> totally unsupported) */}
+                      Your browser can’t play this video.
+                    </video>
+                  </div>
+
+                  {/* Global note for all <video> elements */}
+                  <VideoCompatibilityNote />
+
+                  {/* Always-visible fallback action */}
+                  <div style={{ marginTop: 8 }}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        display: "inline-block",
+                        textDecoration: "none",
+                        background: "#f1f5f9",
+                        border: "1px solid #e2e8f0",
+                        borderRadius: 999,
+                        color: "#475569",
+                        fontSize: 13,
+                        fontWeight: 700,
+                        padding: "5px 10px",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      Open Video File
+                    </a>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* External video links */}
+      <div style={{ marginTop: 12 }}>
+        <div style={{ color: "#334155", fontSize: 13, fontWeight: 800, marginBottom: 6 }}>External Videos</div>
+
+        {links.length === 0 ? (
+          <div style={{ color: "#94a3b8", fontStyle: "italic" }}>
+            {linksAll.length > 0 && hidePrimaryInGrid && hasPrimary
+              ? "Primary highlight is from external links (hidden here)."
+              : "No Videos available."}
+          </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(600px, 1fr))", gap: 12 }}>
+            {links.map((v, idx) => {
+              const url = v.url;
+              const label = v.title?.trim() || url;
+
+              // YouTube
+              if (isYouTube(url)) {
+                const id = youTubeId(url);
+                const origin =
+                  typeof window !== "undefined"
+                    ? encodeURIComponent(window.location.origin)
+                    : "";
+                const src = id
+                  ? `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1&playsinline=1${
+                      origin ? `&origin=${origin}` : ""
+                    }`
+                  : null;
+
+                return (
+                  <div
+                    key={`ext-${idx}-${url}`}
+                    style={{
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 10,
+                      padding: 10,
+                      background: "#ffffff",
+                      display: "grid",
+                      gap: 8,
+                    }}
+                    aria-roledescription="Video card"
+                  >
+                    <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>
+                      {label}
+                    </div>
+
+                    {src ? (
+                      <div style={{ position: "relative", paddingTop: "56.25%" }}>
+                        <iframe
+                          src={src}
+                          title={label}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            border: 0,
+                            borderRadius: 8,
+                            background: "#111",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <LinkPill href={url}>Open Video</LinkPill>
+                    )}
+
+                    {/* Always-visible Open on YouTube button */}
+                    <div style={{ marginTop: 8 }}>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-block",
+                          textDecoration: "none",
+                          background: "#f1f5f9",
+                          border: "1px solid #e2e8f0",
+                          borderRadius: 999,
+                          color: "#475569",
+                          fontSize: 13,
+                          fontWeight: 700,
+                          padding: "5px 10px",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        Open on YouTube
+                      </a>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Vimeo
+              if (isVimeo(url)) {
+                const id = vimeoId(url);
+                const src = id ? `https://player.vimeo.com/video/${id}` : null;
+                return (
+                  <div
+                    key={`ext-${idx}-${url}`}
+                    style={{
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 10,
+                      padding: 10,
+                      background: "#ffffff",
+                      display: "grid",
+                      gap: 8,
+                    }}
+                    aria-roledescription="Video card"
+                  >
+                    <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                    {src ? (
+                      <div style={{ position: "relative", paddingTop: "56.25%" }}>
+                        <iframe
+                          src={src}
+                          title={label}
+                          allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                          allowFullScreen
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%",
+                            border: 0,
+                            borderRadius: 8,
+                            background: "#111",
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <LinkPill href={url}>Open Video</LinkPill>
+                    )}
+                  </div>
+                );
+              }
+
+              // Direct files
+              if (isDirectVideoFile(url)) {
+                const type = guessVideoType(url);
+                return (
+                  <div
+                    key={`ext-${idx}-${url}`}
+                    style={{
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 10,
+                      padding: 10,
+                      background: "#ffffff",
+                      display: "grid",
+                      gap: 8,
+                    }}
+                    aria-roledescription="Video card"
+                  >
+                    <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                    <video
+                      controls
+                      playsInline
+                      preload="metadata"
+                      style={{
+                        width: "100%",
+                        aspectRatio: "16/9",
+                        height: "auto",
+                        borderRadius: 8,
+                        display: "block",
+                        background: "#111",
+                      }}
+                    >
+                      {type ? <source src={url} type={type} /> : <source src={url} />}
+                      Your browser can’t play this video.
+                    </video>
+
+                    {/* Global note for all <video> elements */}
+                    <VideoCompatibilityNote />
+
+                    <div style={{ marginTop: 8 }}>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "inline-block",
+                          textDecoration: "none",
+                          background: "#f1f5f9",
+                          border: "1px solid #e2e8f0",
+                          borderRadius: 999,
+                          color: "#475569",
+                          fontSize: 13,
+                          fontWeight: 700,
+                          padding: "5px 10px",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        Open Video File
+                      </a>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Fallback link
+              return (
+                <div
+                  key={`ext-${idx}-${url}`}
+                  style={{
+                    border: "1px solid #e5e7eb",
+                    borderRadius: 10,
+                    padding: 10,
+                    background: "#ffffff",
+                    display: "grid",
+                    gap: 8,
+                  }}
+                  aria-roledescription="Video card"
+                >
+                  <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                  <LinkPill href={url}>Open Video</LinkPill>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

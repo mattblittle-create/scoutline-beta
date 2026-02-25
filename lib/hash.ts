@@ -1,6 +1,10 @@
 // lib/hash.ts
-import { createHash } from "crypto";
+import crypto from "crypto";
 
+/**
+ * Returns hex-encoded SHA-256 of the input string.
+ * Used for verification tokens (set-password, reset-password, etc.)
+ */
 export function sha256(input: string): string {
-  return createHash("sha256").update(input).digest("hex");
+  return crypto.createHash("sha256").update(input).digest("hex");
 }

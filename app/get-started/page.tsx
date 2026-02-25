@@ -1,26 +1,61 @@
-import { Suspense } from "react";
-import GetStartedClient from "./GetStartedClient";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: "Get Started • ScoutLine",
-  description: "Choose your plan and begin your profile.",
+  description: "Redirecting to onboarding.",
 };
 
-// Ensure this page doesn't try to fully prerender while it waits for client params
 export const dynamic = "force-dynamic";
 
-export default function GetStartedPage() {
-  return (
-    <main style={{ maxWidth: 880, margin: "40px auto", padding: "0 16px" }}>
-      <Suspense
-        fallback={
-          <div style={{ textAlign: "center", padding: 40 }}>
-            Loading your selection…
-          </div>
-        }
-      >
-        <GetStartedClient />
-      </Suspense>
-    </main>
-  );
+function normalizeSlug(raw: string | null) {
+  return String(raw || "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-");
+}
+
+function planSupportsAnnual(plan: string): boolean {
+  return plan === "walk-on" || plan === "all-american";
+}
+
+export default function GetStartedPage({
+  searchParams,
+}: {
+  searchParams: { plan?: string; billing?: string };
+}) {
+  const planRaw = normalizeSlug(searchParams?.plan ?? null);
+  const billingRaw = normalizeSlug(searchParams?.billing ?? null);
+
+  // canonicalize plan
+  const plan =
+    planRaw === "coach"
+      ? "coach"
+      : planRaw === "team" || planRaw === "teams"
+      ? "team"
+      : planRaw === "redshirt"
+      ? "redshirt"
+      : planRaw === "walkon" || planRaw === "walk-on"
+      ? "walk-on"
+      : planRaw === "allamerican" || planRaw === "all-american"
+      ? "all-american"
+      : null;
+
+  // normalize billing
+  let billing: "monthly" | "annual" | null =
+    billingRaw === "annual" ? "annual" : billingRaw === "monthly" ? "monthly" : null;
+
+  // If invalid plan, just send them to pricing
+  if (!plan) redirect("/pricing");
+
+  // billing only applies to the plans that support it
+  if (billing === "annual" && !planSupportsAnnual(plan)) billing = "monthly";
+
+  const qs = billing ? `?billing=${encodeURIComponent(billing)}` : "";
+
+  // ✅ new routing rules
+  if (plan === "coach") redirect(`/onboarding/coach${qs}`);
+  if (plan === "team") redirect(`/onboarding/teams${qs}`);
+
+  // player plans still live under /onboarding/[plan]
+  redirect(`/onboarding/${encodeURIComponent(plan)}${qs}`);
 }

@@ -1,3 +1,5 @@
+// app/pricing/page.tsx
+
 "use client";
 
 import React, { useMemo, useRef, useState, useEffect } from "react";
@@ -32,14 +34,14 @@ const PLANS: Plan[] = [
     key: "redshirt",
     name: "Redshirt",
     tagline: "Just practicing",
-    ctaHref: "/get-started?plan=redshirt",
+    ctaHref: "/onboarding/redshirt",
     priceMonthly: "FREE with ads",
   },
   {
     key: "walkon",
     name: "Walk-On",
     tagline: "Ready to compete",
-    ctaHref: "/get-started?plan=walk-on",
+    ctaHref: "/onboarding/walk-on",
     priceMonthly: "$24.95 / month",
     priceAnnual: "$265 / year",
     priceAnnualNote: "12% off",
@@ -48,17 +50,17 @@ const PLANS: Plan[] = [
     key: "allamerican",
     name: "All-American",
     tagline: "Time to get seen",
-    ctaHref: "/get-started?plan=all-american",
+    ctaHref: "/onboarding/all-american",
     priceMonthly: "$49.95 / month",
     priceAnnual: "$510 / year",
     priceAnnualNote: "15% off",
-    highlight: true, // shows "Most Popular" badge
+    highlight: true,
   },
   {
     key: "team",
     name: "Teams",
     tagline: "Compete together",
-    ctaHref: "/get-started?plan=team",
+    ctaHref: "/onboarding/teams",
     priceMonthly: "$39.95 / player / month",
   },
 ];
@@ -158,6 +160,27 @@ function cellContent(val: FeatureCell | undefined) {
   return <span style={{ fontWeight: 700 }}>{val}</span>;
 }
 
+// ✅ helper: build onboarding link that carries billing toggle forward
+function planToOnboardingHref(planKey: PlanKey, billing: Billing): string {
+  const canonicalPlan =
+    planKey === "walkon" ? "walk-on" :
+    planKey === "allamerican" ? "all-american" :
+    planKey === "team" ? "team" :
+    "redshirt";
+
+// Teams now uses a dedicated onboarding route (no more /get-started)
+if (canonicalPlan === "team") {
+  return `/onboarding/teams`;
+}
+
+  // Player plans: annual only applies to walk-on + all-american
+  const supportsAnnual = canonicalPlan === "walk-on" || canonicalPlan === "all-american";
+  const billingToPass: Billing = billing === "annual" && supportsAnnual ? "annual" : "monthly";
+
+  // Go straight to the player onboarding step (no more /get-started intermediary)
+  return `/onboarding/${encodeURIComponent(canonicalPlan)}?billing=${encodeURIComponent(billingToPass)}`;
+}
+
 export default function PricingPage() {
   const [billing, setBilling] = useState<Billing>("monthly");
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
@@ -245,9 +268,10 @@ export default function PricingPage() {
           </div>
 
           {/* Coaches link stays up top */}
-          <Link href="/get-started?plan=coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
+          <Link href="/onboarding/coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
             College Coaches and Recruiters →
           </Link>
+
         </div>
 
         {/* Sticky plan cards aligned with feature columns */}
@@ -338,9 +362,13 @@ export default function PricingPage() {
                         </span>
                       )}
                     </div>
-                    <Link href={plan.ctaHref} className="sl-link-btn gold" style={{ display: "inline-block" }}>
-                      Get Started
-                    </Link>
+<Link
+  href={planToOnboardingHref(plan.key, billing)}
+  className="sl-link-btn gold"
+  style={{ display: "inline-block" }}
+>
+  Get Started
+</Link>
                   </div>
                 </div>
               );

@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function SetPasswordClient() {
   const params = useSearchParams();
   const token = params.get("token") || "";
+  const next = params.get("next") || "";
 
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -42,7 +43,14 @@ export default function SetPasswordClient() {
       const data = await res.json();
       if (!res.ok) throw new Error(data?.error || "Failed to set password.");
 
-      setOkMsg("Password set! You can now sign in.");
+      setOkMsg("Password set! Redirecting…");
+
+      // If a next URL was provided (e.g. login -> onboarding), go there automatically
+      if (next) {
+        window.setTimeout(() => {
+          window.location.href = next;
+        }, 600);
+      }
       setPassword("");
       setConfirm("");
     } catch (err: any) {
@@ -150,9 +158,9 @@ export default function SetPasswordClient() {
             }}
           >
             {okMsg}{" "}
-            <Link href="/login" style={{ textDecoration: "underline" }}>
-              Go to Login
-            </Link>
+<Link href={next || "/login"} style={{ textDecoration: "underline" }}>
+  Continue
+</Link>
           </div>
         )}
 
