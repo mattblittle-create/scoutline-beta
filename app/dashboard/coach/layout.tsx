@@ -3,7 +3,7 @@ import type { ReactNode, CSSProperties } from "react";
 import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 import CoachHeaderActions from "./CoachHeaderActions";
-import CoachProgramBrand from "./CoachProgramBrand";
+import CoachProgramBrand from "./coachProgramBrand";
 
 export const metadata = {
   title: "Coach Dashboard • ScoutLine",
