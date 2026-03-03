@@ -1,5 +1,4 @@
 // app/api/coach/notes/route.ts
-
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { listCoachNotesForProfile } from "@/lib/coachNotes";
@@ -54,14 +53,30 @@ function toCoachNoteDTO(n: any): CoachNoteDTO {
   };
 }
 
+async function requireActingUser() {
+  const sessionUser = await getCurrentUser();
+  if (!sessionUser?.id) return null;
+
+  // ✅ Hydrate full Prisma User + coachProfile so we can derive team context safely
+  const actingUser = await prisma.user.findUnique({
+    where: { id: sessionUser.id },
+    include: {
+      coachProfile: true,
+      college: true,
+    },
+  });
+
+  return actingUser;
+}
+
 export async function GET(req: Request) {
-  const coachUser = await getCurrentUser();
-  if (!coachUser) {
+  const actingUser = await requireActingUser();
+  if (!actingUser) {
     return NextResponse.json<Err>({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
   const { searchParams } = new URL(req.url);
-  const playerProfileId = searchParams.get("playerProfileId");
+  const playerProfileId = String(searchParams.get("playerProfileId") || "").trim();
 
   if (!playerProfileId) {
     return NextResponse.json<Err>({ ok: false, error: "playerProfileId is required" }, { status: 400 });
@@ -70,7 +85,7 @@ export async function GET(req: Request) {
   try {
     const notes = await listCoachNotesForProfile({
       prisma,
-      actingUser: coachUser,
+      actingUser,
       playerProfileId,
     });
 
@@ -85,15 +100,15 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const coachUser = await getCurrentUser();
-  if (!coachUser) {
+  const actingUser = await requireActingUser();
+  if (!actingUser) {
     return NextResponse.json<Err>({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
   const body = await req.json().catch(() => ({} as any));
   const playerProfileId = String(body?.playerProfileId || "").trim();
   const noteText = String(body?.noteText || "").trim();
-  const sharedWithOrg = Boolean(body?.sharedWithOrg);
+  const sharedWithOrg = body?.sharedWithOrg === undefined ? true : Boolean(body.sharedWithOrg);
 
   if (!playerProfileId) {
     return NextResponse.json<Err>({ ok: false, error: "playerProfileId is required" }, { status: 400 });
@@ -102,17 +117,21 @@ export async function POST(req: Request) {
     return NextResponse.json<Err>({ ok: false, error: "noteText is required" }, { status: 400 });
   }
 
+  // ✅ Derive team context from CoachProfile (User does NOT have teamId)
+  const teamId =
+    (actingUser as any)?.coachProfile?.teamId ? String((actingUser as any).coachProfile.teamId) : null;
+
+  const collegeId = actingUser.collegeId ?? null;
+
   try {
-    // NOTE: This assumes your Prisma model is named `coachNote` (common convention).
-    // If your model name differs, tell me the Prisma model name and I’ll adjust.
     const created = await prisma.coachNote.create({
       data: {
         playerProfileId,
         noteText,
         sharedWithOrg,
-        coachUserId: coachUser.id,
-        teamId: coachUser.teamId ?? null,
-        collegeId: coachUser.collegeId ?? null,
+        coachUserId: actingUser.id,
+        teamId,
+        collegeId,
       },
       include: {
         coachUser: true,
