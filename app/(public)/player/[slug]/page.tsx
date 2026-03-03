@@ -1,5 +1,4 @@
 // app/(public)/player/[slug]/page.tsx
-
 "use client";
 
 import * as React from "react";
@@ -15,7 +14,12 @@ import PublicCoaches, { CoachesData } from "@/app/components/public/PublicCoache
 import CoachViewerTools from "./CoachViewerTools";
 
 import { toPublicMedia } from "@/app/lib/publicMedia";
-import { normalizePlanTier, normalizeActivityStatus, canViewSection, canViewCoreField } from "@/app/lib/visibility";
+import {
+  normalizePlanTier,
+  normalizeActivityStatus,
+  canViewSection,
+  canViewCoreField,
+} from "@/app/lib/visibility";
 
 /** ---------- Shapes from API (loosely typed & defensive) ---------- */
 type PublicProfile = {
@@ -50,7 +54,6 @@ type PublicProfile = {
   academics?: any;
   athletics?: any;
 
-  // Governing IDs (for header pills)
   ncaaId?: string | null;
   naiaEcid?: string | null;
 
@@ -64,6 +67,7 @@ type PublicProfile = {
   seasons?: any[] | null;
 
   planTier?: "Redshirt" | "Walk-On" | "All-American" | "Teams";
+
   activityStatus?: string | null;
   status?: string | null;
 
@@ -76,32 +80,19 @@ type PublicProfile = {
   phonePrivate?: boolean | null;
   dobPrivate?: boolean | null;
 
-  // common ids
+  // coach tools need this
   playerProfileId?: string | null;
-  id?: string | null;
-  playerId?: string | null;
 };
-
-type DebugIdsTraceEntry = { path: string; raw: unknown; coerced: string | null };
 
 type PublicPayload = {
   profile?: PublicProfile | null;
   metrics?: any | null;
-  stats?: any | null; // { seasons: [...] }
+  stats?: any | null;
   demoMode?: "global" | "allowlist" | "query" | null;
   planTier?: "Redshirt" | "Walk-On" | "All-American" | "Teams";
-  debug?: {
-    idsTrace: { ncaa: DebugIdsTraceEntry[]; naia: DebugIdsTraceEntry[] };
-    rawNamespaces: {
-      has_atomic_keys: string[];
-      has_academics_keys: string[];
-      has_athletics_keys: string[];
-      has_eligibility_keys: string[];
-    };
-  };
+  debug?: any;
 };
 
-// loose strings so we can append coach-only anchor id safely
 const PUBLIC_SECTIONS: { id: string; label: string }[] = [
   { id: "core", label: "Core" },
   { id: "academics", label: "Academics" },
@@ -161,9 +152,7 @@ function JumpToSectionNav({ sections }: { sections: { id: string; label: string 
   );
 }
 
-// Wrap each major section so scroll-to anchors land with space under the sticky bar
 const SECTION_SCROLL_MARGIN = 235;
-
 function SectionWrapper({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <section id={id} style={{ scrollMarginTop: SECTION_SCROLL_MARGIN }}>
@@ -176,17 +165,21 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const { slug } = params;
   const searchParams = useSearchParams();
 
-  const demoParam = searchParams.get("demo") === "1";
+  const fromTeaserCard = searchParams.get("from") === "teaser";
+  void fromTeaserCard;
 
-  // Debug toggle
-  const showDebug = searchParams.get("debug") === "1" || process.env.NEXT_PUBLIC_SC_PUBLIC_DEBUG === "1";
+  const showDebug =
+    searchParams.get("debug") === "1" || process.env.NEXT_PUBLIC_SC_PUBLIC_DEBUG === "1";
 
   const [data, setData] = React.useState<PublicPayload | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [notFound, setNotFound] = React.useState(false);
   const [err, setErr] = React.useState<string | null>(null);
 
+  // Coach prompt modal (kept for later use)
   const [showCoachPrompt, setShowCoachPrompt] = React.useState(false);
+  void showCoachPrompt;
+  void setShowCoachPrompt;
 
   // ---------------- Coach viewer detection ----------------
   const [isCoachViewer, setIsCoachViewer] = React.useState(false);
@@ -208,74 +201,72 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     };
   }, []);
 
-  // ---------------- Load public player payload ----------------
+  // ---------------- Load public payload ----------------
   React.useEffect(() => {
     let cancelled = false;
 
     (async () => {
-      try {
-        setLoading(true);
-        setErr(null);
-        setNotFound(false);
+      setLoading(true);
+      setErr(null);
+      setNotFound(false);
 
-        const url = `/api/player/public?slug=${encodeURIComponent(slug)}${demoParam ? "&demo=1" : ""}${
-          showDebug ? "&debug=1" : ""
+      try {
+        const url = `/api/public/player/${encodeURIComponent(String(slug || "").trim())}${
+          showDebug ? "?debug=1" : ""
         }`;
 
-        const res = await fetch(url, { method: "GET", cache: "no-store" });
-        const json = await res.json().catch(() => ({}));
+        const res = await fetch(url, { cache: "no-store" });
 
-        if (cancelled) return;
-
-        if (res.status === 404 || json?.notFound) {
-          setData(null);
-          setNotFound(true);
+        if (res.status === 404) {
+          if (!cancelled) {
+            setNotFound(true);
+            setLoading(false);
+          }
           return;
         }
+
+        const json = await res.json().catch(() => ({}));
 
         if (!res.ok || json?.ok === false) {
           throw new Error(json?.error || `Failed to load player (${res.status})`);
         }
 
-        // allow either { profile, metrics, stats } or wrapped { data: { ... } }
-        const payload: PublicPayload =
-          (json?.data && typeof json.data === "object" ? json.data : json) ?? null;
-
-        if (!payload?.profile) {
-          setData(payload ?? null);
-          setNotFound(true);
-          return;
+        if (!cancelled) {
+          setData(json?.data ?? null);
+          setLoading(false);
         }
-
-        setData(payload);
       } catch (e: any) {
-        if (!cancelled) setErr(e?.message || "Failed to load player profile.");
-      } finally {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setErr(e?.message || "Failed to load player.");
+          setLoading(false);
+        }
       }
     })();
 
     return () => {
       cancelled = true;
     };
-  }, [slug, demoParam, showDebug]);
+  }, [slug, showDebug]);
 
-  // ---------- SAFETY FALLBACKS (declare before hooks that reference coreEmail/vsRaw) ----------
+  // ---------- Safe profile fallbacks ----------
   const safeProfile: PublicProfile = (data?.profile ?? {}) as PublicProfile;
 
   const vsRaw: any = (safeProfile as any).videoSocial ?? (safeProfile as any).videos ?? {};
   const coreEmail = safeProfile.email ?? safeProfile.contact?.email ?? null;
   const corePhone = safeProfile.phone ?? safeProfile.contact?.phone ?? null;
 
-  // Prefer playerProfileId; fall back to other common shapes
   const playerProfileId =
-    String((safeProfile as any)?.playerProfileId || (safeProfile as any)?.id || (safeProfile as any)?.playerId || "").trim() ||
-    null;
+    String((safeProfile as any)?.playerProfileId || (safeProfile as any)?.id || "").trim() || null;
 
-  // Used in sticky "View Player Card" link
   const cardViewUrl = `/player/${encodeURIComponent(slug)}/card`;
 
-  // Optional localStorage bridge for governing IDs so the public header can show before DB save
+  // ✅ FIX: hooks must be called before any early return
+  const jumpSections = React.useMemo(() => {
+    const base = [...PUBLIC_SECTIONS];
+    if (isCoachViewer && !!playerProfileId) base.push({ id: "coach-notes", label: "Coach Notes" });
+    return base;
+  }, [isCoachViewer, playerProfileId]);
+
   const idsFromLS = React.useMemo(() => {
     try {
       if (typeof window === "undefined") return null;
@@ -291,7 +282,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     }
   }, [coreEmail]);
 
-  // Memoize API -> PublicMedia mapping so it’s stable across renders
   const mediaDataFromApi: MediaData = React.useMemo(() => {
     let md: MediaData = toPublicMedia(vsRaw, {
       email: coreEmail,
@@ -314,7 +304,10 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       ...toArrayOrScalar((vsRaw as any).uploadedVideos),
       ...toArrayOrScalar((vsRaw as any).videoFiles),
     ];
-    const legacyLinks = [...toArrayOrScalar((vsRaw as any).links), ...toArrayOrScalar((vsRaw as any).videoLinks)];
+    const legacyLinks = [
+      ...toArrayOrScalar((vsRaw as any).links),
+      ...toArrayOrScalar((vsRaw as any).videoLinks),
+    ];
 
     if (legacyUploads.length) {
       const merged = (md.uploadedVideos ?? []).concat(legacyUploads);
@@ -328,7 +321,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       md.externalVideos = merged.filter((v) => (seen.has(v.url) ? false : (seen.add(v.url), true)));
     }
 
-    // Allow direct URLs to override handle-derived links
     md = {
       ...md,
       xUrl: (vsRaw as any).xUrl ?? md.xUrl ?? null,
@@ -339,7 +331,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     return md;
   }, [vsRaw, coreEmail, corePhone]);
 
-  // Primary hero from API (by id)
   const primaryUrlFromApi: string | null = React.useMemo(() => {
     const raw: any = vsRaw;
     if (raw?.primary && raw?.primary?.id) {
@@ -354,7 +345,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     return null;
   }, [vsRaw]);
 
-  // Merge localStorage (dev bridge) with API media
   const [mediaDataView, setMediaDataView] = React.useState<MediaData>(mediaDataFromApi);
   const [primaryUrlView, setPrimaryUrlView] = React.useState<string | null>(primaryUrlFromApi);
 
@@ -362,7 +352,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     try {
       const emailKey = (coreEmail ?? "anon").toLowerCase().trim();
       const tryKeys = [`scoutlineVideoSocial:${emailKey}`, `scoutlineVideoSocial:anon`];
-
       let raw: string | null = null;
       for (const k of tryKeys) {
         raw = typeof window !== "undefined" ? localStorage.getItem(k) : null;
@@ -387,12 +376,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
             .map((v: any) => ({ url: String(v.url), title: v?.title ?? null }))
         : [];
 
-      const xUrlLS = s.social?.xHandle ? `https://twitter.com/${String(s.social.xHandle).replace(/^@+/, "")}` : null;
-      const igUrlLS = s.social?.instagramHandle
-        ? `https://instagram.com/${String(s.social.instagramHandle).replace(/^@+/, "")}`
-        : null;
-      const ytUrlLS = s.social?.youtubeChannelUrl ? String(s.social.youtubeChannelUrl) : null;
-
       const dedupe = (arr: { url: string; title?: string | null }[]) => {
         const seen = new Set<string>();
         return arr.filter((it) => (seen.has(it.url) ? false : (seen.add(it.url), true)));
@@ -405,9 +388,9 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         ...mediaDataFromApi,
         uploadedVideos: mergedUploads,
         externalVideos: mergedLinks,
-        xUrl: mediaDataFromApi.xUrl || xUrlLS || null,
-        instagramUrl: mediaDataFromApi.instagramUrl || igUrlLS || null,
-        youtubeUrl: mediaDataFromApi.youtubeUrl || ytUrlLS || null,
+        xUrl: mediaDataFromApi.xUrl || null,
+        instagramUrl: mediaDataFromApi.instagramUrl || null,
+        youtubeUrl: mediaDataFromApi.youtubeUrl || null,
       };
 
       let primaryFromLS: string | null = primaryUrlFromApi;
@@ -446,8 +429,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         <section style={card}>
           <h2 style={h2}>Player Not Found</h2>
           <p>
-            We couldn’t find a public profile for <strong>{slug}</strong>. If you just created or updated your profile,
-            make sure you’ve saved it and that your public page is enabled.
+            We couldn’t find a public profile for <strong>{slug}</strong>.
           </p>
         </section>
       </main>
@@ -461,6 +443,11 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         <section style={card}>
           <h2 style={{ ...h2, color: "#b91c1c" }}>Error</h2>
           <p>{err}</p>
+          {showDebug ? (
+            <p style={{ marginTop: 8, fontSize: 12, color: "#64748b", fontWeight: 700 }}>
+              Try: <code>/api/public/player/{slug}?debug=1</code>
+            </p>
+          ) : null}
         </section>
       </main>
     );
@@ -491,14 +478,11 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
 
   const ctx = { viewer: "PUBLIC" as const, plan, status, corePrivacy };
 
-  // Always show sections (your stated intent)
+  // Always show these sections on public profile
   const showVideoSocial = true;
   const showCoachesRefs = true;
 
-  // Chat remains gated
   const showChat = canViewSection(ctx, "CHAT");
-
-  // Core contact privacy (PUBLIC surface)
   const showContactEmail = canViewCoreField(ctx, "email");
   const showContactPhone = canViewCoreField(ctx, "phone");
 
@@ -523,19 +507,19 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     state: ac.state ?? ac.hsState ?? null,
     areasOfStudy: Array.isArray(ac.areasOfStudy)
       ? ac.areasOfStudy
-      : String(
-          ac.areasOfStudyInput ?? ac.intendedMajors ?? ac.academicMajors ?? (profile as any).areasOfStudyInput ?? (profile as any).areasOfStudy ?? ""
-        )
+      : String(ac.areasOfStudyInput ?? ac.intendedMajors ?? ac.academicMajors ?? "")
           .split(",")
           .map((s: string) => s.trim())
           .filter(Boolean),
-    transcriptUrls: toArray(ac.transcripts ?? ac.transcriptUrls ?? ac.transcriptUrl).map(String).filter(Boolean),
-    reportCardUrls: toArray(ac.reportCards ?? ac.reportCardUrls ?? ac.reportCardUrl).map(String).filter(Boolean),
+    transcriptUrls: toArray(ac.transcripts ?? ac.transcriptUrls ?? ac.transcriptUrl)
+      .map(String)
+      .filter(Boolean),
+    reportCardUrls: toArray(ac.reportCards ?? ac.reportCardUrls ?? ac.reportCardUrl)
+      .map(String)
+      .filter(Boolean),
     otherDocs: toArray(ac.otherAcademicDocs)
       .map((d: any) =>
-        typeof d === "string"
-          ? { label: null, url: d }
-          : { label: d?.label ?? d?.name ?? null, url: d?.url ?? "" }
+        typeof d === "string" ? { label: null, url: d } : { label: d?.label ?? d?.name ?? null, url: d?.url ?? "" }
       )
       .filter((d: any) => !!d.url),
   };
@@ -579,7 +563,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
 
   const athleticsData: AthleticsData = {
     bio: athleticBio,
-    eligibilityRegistered: eligibilityRegistered,
+    eligibilityRegistered,
     primaryPos: derivedPositions.primary ?? null,
     secondaryPos: Array.isArray(derivedPositions.secondary) ? derivedPositions.secondary : [],
     pitcher: showPitcherHandPill ? hand : null,
@@ -589,51 +573,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   };
 
   /** ---------- Stats mapping ---------- */
-  const STATS_UPLOAD_BASE = "/uploads/stats";
-  const SEASON_ORDER: Record<string, number> = { winter: 1, spring: 2, summer: 3, fall: 4 };
-
-  const isUrlish = (u: any) => (typeof u === "string" && /^https?:\/\//i.test(u)) || (typeof u === "string" && u.startsWith("/"));
-  const takeUrl = (o: any): string | null =>
-    typeof o === "string" ? o : o && typeof o === "object" ? o.publicUrl || o.url || o.href || null : null;
-
-  const collectUrls = (val: any): string[] => {
-    const out: string[] = [];
-    const collect = (v: any) => {
-      if (!v) return;
-      if (Array.isArray(v)) return v.forEach(collect);
-      const u = takeUrl(v);
-      if (u && isUrlish(u)) out.push(String(u));
-    };
-
-    if (!val) return out;
-    if (typeof val === "string") {
-      if (isUrlish(val)) out.push(val);
-      return out;
-    }
-    if (Array.isArray(val)) {
-      val.forEach(collect);
-      return out;
-    }
-
-    collect(val);
-    const candidates = [
-      (val as any).statsFileUrls,
-      (val as any).statsUrl,
-      (val as any).fileUrls,
-      (val as any).files,
-      (val as any).uploads,
-      (val as any).links,
-      (val as any).documents,
-      (val as any).file,
-      (val as any).doc,
-      (val as any).stats && (val as any).stats.fileUrls,
-      (val as any).stats && (val as any).stats.files,
-      (val as any).stats && (val as any).stats.links,
-    ];
-    candidates.forEach(collect);
-    return out;
-  };
-
   const rawSeasons: any[] = Array.isArray(data.stats?.seasons)
     ? data.stats!.seasons
     : Array.isArray(profile.seasons)
@@ -641,33 +580,15 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     : [];
 
   const normalizeObj = (obj: any) => (obj && typeof obj === "object" ? obj : undefined);
-
   const pruneEmptyStatsMap = (obj: any): any | null => {
     if (!obj || typeof obj !== "object") return null;
     const values = Object.values(obj);
     if (values.length === 0) return null;
-    const hasRealValue = values.some((v) => !(v === null || v === undefined || v === "" || (typeof v === "number" && Number.isNaN(v))));
+    const hasRealValue = values.some((v) => !(v === null || v === undefined || v === ""));
     return hasRealValue ? obj : null;
   };
 
   const statsTeams = rawSeasons.map((s: any) => {
-    const urls = [
-      ...(Array.isArray(s?.statsFileUrls) ? s.statsFileUrls.filter(isUrlish) : []),
-      ...collectUrls(s),
-      ...collectUrls(s?.stats),
-    ];
-
-    const names: string[] = Array.isArray(s?.statsFileNames) ? s.statsFileNames : [];
-    if ((!urls || urls.length === 0) && names.length) {
-      for (const name of names) {
-        const safe = String(name || "").replace(/^\/+/, "");
-        urls.push(`${STATS_UPLOAD_BASE}/${encodeURIComponent(slug)}/${encodeURIComponent(safe)}`);
-      }
-    }
-
-    const seen = new Set<string>();
-    const uniqueUrls = urls.filter((u) => (seen.has(u) ? false : (seen.add(u), true)));
-
     const rawHitting = normalizeObj(s?.hitting) ?? normalizeObj(s?.stats?.hitting);
     const rawFielding = normalizeObj(s?.fielding) ?? normalizeObj(s?.stats?.fielding);
     const rawCatching = normalizeObj(s?.catching) ?? normalizeObj(s?.stats?.catching);
@@ -684,8 +605,8 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         catching: pruneEmptyStatsMap(rawCatching),
         pitching: pruneEmptyStatsMap(rawPitching),
       },
-      statsFileUrls: uniqueUrls,
-      statsUrl: uniqueUrls.length ? uniqueUrls[0] : null,
+      statsFileUrls: [],
+      statsUrl: null,
     };
   });
 
@@ -711,23 +632,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       }))
       .filter((s: any) => s.key);
 
-  let series = seriesFromA && seriesFromA.length ? seriesFromA : [];
-  if (!series.length) {
-    const editorLike = Object.entries(m || {}).filter(([, v]) => Array.isArray(v));
-    series = editorLike.map(([key, arr]) => ({
-      key,
-      label: key as string,
-      unit: unitForMetricKey(key),
-      points: (arr as any[])
-        .filter((e) => e && (e.monthYear || e.date) && (typeof e.value === "number" || e.value != null))
-        .map((e) => ({
-          date: String(e.monthYear ?? e.date),
-          value: Number(e.value),
-          source: e.source ?? null,
-        })),
-      ageAverages: null,
-    }));
-  }
+  const series = seriesFromA && seriesFromA.length ? seriesFromA : [];
 
   const metricsData: MetricsData = {
     dob: profile.dob ?? m.dob ?? null,
@@ -746,50 +651,8 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     return toArr2(c).concat(toArr2(r)).concat(toArr2(cr)).filter(Boolean);
   })();
 
-  const rawCoachesFromLS: any[] = (() => {
-    try {
-      const emailKey = (coreEmail ?? "anon").toLowerCase().trim();
-      const tryKeys = [`scoutlineCoaches:${emailKey}`, `scoutlineCoaches:anon`];
-      for (const k of tryKeys) {
-        const raw = typeof window !== "undefined" ? localStorage.getItem(k) : null;
-        if (!raw) continue;
-        const parsed = JSON.parse(raw);
-        const arr = Array.isArray(parsed?.coaches) ? parsed.coaches : [];
-        return arr.map((c: any) => ({
-          firstName: c?.firstName ?? null,
-          lastName: c?.lastName ?? null,
-          teamOrOrg: c?.team ?? null,
-          focus: c?.focus ?? null,
-          email: c?.email ?? null,
-          phone: c?.phone ?? null,
-        }));
-      }
-    } catch {}
-    return [];
-  })();
-
-  const mergedRawCoaches: any[] = (() => {
-    const seen = new Set<string>();
-    const out: any[] = [];
-    const push = (it: any) => {
-      if (!it) return;
-      const fn = String(it?.firstName ?? it?.first ?? "").trim();
-      const ln = String(it?.lastName ?? it?.last ?? "").trim();
-      const em = String(it?.email ?? it?.coachEmail ?? "").trim().toLowerCase();
-      const ph = String(it?.phone ?? it?.coachPhone ?? "").trim();
-      const key = [fn, ln, em, ph].join("|");
-      if (!seen.has(key)) {
-        seen.add(key);
-        out.push(it);
-      }
-    };
-    rawCoachesFromApi.forEach(push);
-    rawCoachesFromLS.forEach(push);
-    return out;
-  })();
-
   const coachesData: CoachesData = {
-    coaches: mergedRawCoaches.map((c) => ({
+    coaches: rawCoachesFromApi.map((c) => ({
       firstName: c?.firstName ?? c?.first ?? null,
       lastName: c?.lastName ?? c?.last ?? null,
       teamOrOrg: c?.teamOrOrg ?? c?.team ?? c?.organization ?? c?.org ?? null,
@@ -799,7 +662,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     })),
   };
 
-  /** ---------- Connect row (top floating block) ---------- */
+  /** ---------- Connect row ---------- */
   const connectEmail = coreEmail;
   const connectPhone = corePhone;
 
@@ -807,45 +670,34 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const instagramUrl = mediaDataView?.instagramUrl ?? null;
   const youtubeUrl = mediaDataView?.youtubeUrl ?? null;
 
-  const xHandleRaw = (vsRaw as any)?.social?.xHandle ?? null;
-  const instagramHandleRaw = (vsRaw as any)?.social?.instagramHandle ?? null;
-  const youtubeChannelRaw = (vsRaw as any)?.social?.youtubeChannelUrl ?? (vsRaw as any)?.youtubeChannel ?? null;
-
   const connectChatUrl = (mediaDataView as any)?.chatUrl ?? (vsRaw as any)?.chatUrl ?? null;
 
   const hasPhone = showContactPhone && !!connectPhone;
   const hasEmail = showContactEmail && !!connectEmail;
-
   const hasX = showVideoSocial && !!xUrl;
   const hasInstagram = showVideoSocial && !!instagramUrl;
   const hasYouTube = showVideoSocial && !!youtubeUrl;
-
   const hasChat = showChat && !!connectChatUrl;
 
   const phoneTitle = hasPhone ? String(connectPhone) : showContactPhone ? "Phone not provided" : "Phone is private";
   const emailTitle = hasEmail ? String(connectEmail) : showContactEmail ? "Email not provided" : "Email is private";
 
-  const xTitle = hasX ? String(xHandleRaw || xUrl) : showVideoSocial ? "X handle / URL not provided" : "Not available";
-  const instagramTitle = hasInstagram
-    ? String(instagramHandleRaw || instagramUrl)
-    : showVideoSocial
-    ? "Instagram handle / URL not provided"
-    : "Not available";
-  const youtubeTitle = hasYouTube ? String(youtubeUrl || youtubeChannelRaw || "") : showVideoSocial ? "YouTube URL not provided" : "Not available";
+  const xTitle = hasX ? String(xUrl) : "X not provided";
+  const instagramTitle = hasInstagram ? String(instagramUrl) : "Instagram not provided";
+  const youtubeTitle = hasYouTube ? String(youtubeUrl) : "YouTube not provided";
   const chatTitle = hasChat ? String(connectChatUrl) : showChat ? "Chat feature coming soon" : "Not available";
 
-  const jumpSections = (() => {
-    const base = [...PUBLIC_SECTIONS];
-    if (isCoachViewer && !!playerProfileId) base.push({ id: "coach-notes", label: "Coach Notes" });
-    return base;
-  })();
-
+  /** ---------- Render ---------- */
   return (
     <main style={wrap}>
-      {/* Coach-only jacket tools (ONLY when logged-in coach + profile id present) */}
-      <CoachViewerTools isCoachViewer={isCoachViewer} playerProfileId={playerProfileId} sectionScrollMargin={SECTION_SCROLL_MARGIN} />
+      {/* Coach-only jacket tools */}
+      <CoachViewerTools
+        isCoachViewer={isCoachViewer}
+        playerProfileId={playerProfileId}
+        sectionScrollMargin={SECTION_SCROLL_MARGIN}
+      />
 
-      {/* ===================== Sticky floating block ===================== */}
+      {/* Sticky block */}
       <section
         style={{
           position: "sticky",
@@ -863,7 +715,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
             boxShadow: "0 8px 20px rgba(15,23,42,0.08)",
           }}
         >
-          {/* Row A: Jump To (left) + View Player Card (right) */}
+          {/* Row A */}
           <div
             style={{
               display: "flex",
@@ -871,7 +723,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
               justifyContent: "space-between",
               gap: 10,
               flexWrap: "wrap",
-              marginBottom: 8,
+              marginBottom: 10,
             }}
           >
             <JumpToSectionNav sections={jumpSections} />
@@ -881,7 +733,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
             </a>
           </div>
 
-          {/* Row B: Connect (left) + Back to Recruiting Board (right) */}
+          {/* Row B */}
           <div
             style={{
               display: "flex",
@@ -894,110 +746,100 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
             <div style={connectRow}>
               <span style={connectLabel}>Connect:</span>
 
-              {/* Call */}
               <a
                 href={hasPhone ? `tel:${connectPhone}` : undefined}
                 title={phoneTitle}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
                 style={{
                   ...connectIconLink,
                   opacity: hasPhone ? 1 : 0.35,
                   pointerEvents: hasPhone ? "auto" : "none",
                   cursor: hasPhone ? "pointer" : "default",
                 }}
+                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
+                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
               >
                 <img src="/icons/call.webp" alt="Call" width={18} height={18} style={{ display: "block" }} />
                 <span style={srOnly}>Call</span>
               </a>
 
-              {/* Email */}
               <a
                 href={hasEmail ? `mailto:${connectEmail}` : undefined}
                 title={emailTitle}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
                 style={{
                   ...connectIconLink,
                   opacity: hasEmail ? 1 : 0.35,
                   pointerEvents: hasEmail ? "auto" : "none",
                   cursor: hasEmail ? "pointer" : "default",
                 }}
+                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
+                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
               >
                 <img src="/icons/email.webp" alt="Email" width={18} height={18} style={{ display: "block" }} />
                 <span style={srOnly}>Email</span>
               </a>
 
-              {/* X */}
               <a
                 href={hasX ? xUrl : undefined}
                 title={xTitle}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
                 style={{
                   ...connectIconLink,
                   opacity: hasX ? 1 : 0.35,
                   pointerEvents: hasX ? "auto" : "none",
                   cursor: hasX ? "pointer" : "default",
                 }}
+                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
+                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
               >
                 <img src="/icons/x.webp" alt="X" width={18} height={18} style={{ display: "block" }} />
                 <span style={srOnly}>X</span>
               </a>
 
-              {/* Instagram */}
               <a
                 href={hasInstagram ? instagramUrl : undefined}
                 title={instagramTitle}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
                 style={{
                   ...connectIconLink,
                   opacity: hasInstagram ? 1 : 0.35,
                   pointerEvents: hasInstagram ? "auto" : "none",
                   cursor: hasInstagram ? "pointer" : "default",
                 }}
+                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
+                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
               >
                 <img src="/icons/instagram.webp" alt="Instagram" width={18} height={18} style={{ display: "block" }} />
                 <span style={srOnly}>Instagram</span>
               </a>
 
-              {/* YouTube */}
               <a
                 href={hasYouTube ? youtubeUrl : undefined}
                 title={youtubeTitle}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
                 style={{
                   ...connectIconLink,
                   opacity: hasYouTube ? 1 : 0.35,
                   pointerEvents: hasYouTube ? "auto" : "none",
                   cursor: hasYouTube ? "pointer" : "default",
                 }}
+                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
+                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
               >
                 <img src="/icons/youtube.webp" alt="YouTube" width={48} height={48} style={{ display: "block" }} />
                 <span style={srOnly}>YouTube</span>
               </a>
 
-              {/* ScoutLine Chat (coming soon) */}
               <span
                 title={chatTitle}
-                onMouseEnter={(e) => {
-                  Object.assign((e.currentTarget as any).style, connectIconHover);
-                  (e.currentTarget as any).style.opacity = "1";
-                }}
-                onMouseLeave={(e) => {
-                  Object.assign((e.currentTarget as any).style, { transform: "none", boxShadow: "none" });
-                  (e.currentTarget as any).style.opacity = "0.6";
-                }}
                 style={{
                   ...connectIconLink,
-                  opacity: 0.6,
-                  cursor: "not-allowed",
+                  opacity: hasChat ? 1 : 0.6,
+                  cursor: hasChat ? "pointer" : "not-allowed",
                 }}
+                onMouseEnter={(e) => Object.assign((e.currentTarget as any).style, connectIconHover)}
+                onMouseLeave={(e) =>
+                  Object.assign((e.currentTarget as any).style, { transform: "none", boxShadow: "none" })
+                }
               >
                 <img src="/icons/chat.png" alt="" aria-hidden="true" width={48} height={48} style={{ display: "block" }} />
-                <span style={srOnly}>ScoutLine Chat (coming soon)</span>
+                <span style={srOnly}>ScoutLine Chat</span>
               </span>
             </div>
 
@@ -1025,32 +867,17 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
           </div>
         </div>
       </section>
-      {/* ===================== /Sticky floating block ===================== */}
 
-      {/* Optional debug block */}
       {showDebug ? (
         <section style={card}>
           <h2 style={h2}>Visibility (debug)</h2>
           <pre style={pre}>
-            {JSON.stringify(
-              {
-                plan,
-                status,
-                corePrivacy,
-                showVideoSocial,
-                showCoachesRefs,
-                showChat,
-                isCoachViewer,
-                playerProfileId,
-              },
-              null,
-              2
-            )}
+            {JSON.stringify({ plan, status, corePrivacy, showVideoSocial, showCoachesRefs, showChat }, null, 2)}
           </pre>
         </section>
       ) : null}
 
-      {/* Core / Header */}
+      {/* Core */}
       <SectionWrapper id="core">
         <PublicProfileHeader
           profile={{
@@ -1067,27 +894,28 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         />
       </SectionWrapper>
 
-      {/* Academics */}
       <SectionWrapper id="academics">
         <PublicAcademics academics={academicsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
       </SectionWrapper>
 
-      {/* Athletics */}
       <SectionWrapper id="athletics">
         <PublicAthletics athletics={athleticsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
       </SectionWrapper>
 
-      {/* Metrics */}
       <SectionWrapper id="metrics">
         <PublicMetrics metrics={metricsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
       </SectionWrapper>
 
-      {/* Stats */}
       <SectionWrapper id="stats">
-        <PublicStats stats={{ teams: statsTeams, seasons: rawSeasons }} title="Stats" cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
+        <PublicStats
+          stats={{ teams: statsTeams, seasons: rawSeasons }}
+          title="Stats"
+          cardStyle={card}
+          h2Style={h2}
+          pillStyle={pillStyle}
+        />
       </SectionWrapper>
 
-      {/* Videos */}
       {showVideoSocial ? (
         <SectionWrapper id="video">
           <PublicMedia
@@ -1101,173 +929,21 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         </SectionWrapper>
       ) : null}
 
-      {/* Coaches / References */}
       {showCoachesRefs ? (
         <SectionWrapper id="coaches">
           <PublicCoaches data={coachesData} cardStyle={card} h2Style={h2} />
         </SectionWrapper>
       ) : null}
 
-      {/* ---- EXISTING DEBUG SECTIONS (kept) ---- */}
-      {showDebug && (
-        <section style={card}>
-          <h2 style={h2}>Governing IDs — deep trace</h2>
-          <div style={{ display: "grid", gap: 8 }}>
-            <div>
-              <strong>NCAA ID (profile):</strong> {String(profile.ncaaId ?? "—")}
-            </div>
-            <div>
-              <strong>NAIA ECID (profile):</strong> {String(profile.naiaEcid ?? "—")}
-            </div>
-            <div>
-              <strong>NCAA ID (profile.athletics):</strong> {String((profile as any)?.athletics?.ncaaId ?? "—")}
-            </div>
-            <div>
-              <strong>NAIA ECID (profile.athletics):</strong> {String((profile as any)?.athletics?.naiaEcid ?? "—")}
-            </div>
-          </div>
-
-          {data.debug?.idsTrace ? (
-            <div style={{ marginTop: 12 }}>
-              <h3 style={{ margin: "8px 0", fontSize: 16, fontWeight: 800 }}>Resolver Trace</h3>
-              <div style={{ display: "grid", gap: 12 }}>
-                <div>
-                  <div style={{ fontWeight: 700, marginBottom: 4 }}>NCAA paths checked:</div>
-                  <pre style={pre}>{JSON.stringify(data.debug.idsTrace.ncaa, null, 2)}</pre>
-                </div>
-                <div>
-                  <div style={{ fontWeight: 700, marginTop: 8, marginBottom: 4 }}>NAIA paths checked:</div>
-                  <pre style={pre}>{JSON.stringify(data.debug.idsTrace.naia, null, 2)}</pre>
-                </div>
-              </div>
-            </div>
-          ) : null}
-
-          {data.debug?.rawNamespaces ? (
-            <div style={{ marginTop: 12 }}>
-              <h3 style={{ margin: "8px 0", fontSize: 16, fontWeight: 800 }}>Atomic Namespaces (keys present)</h3>
-              <pre style={pre}>{JSON.stringify(data.debug.rawNamespaces, null, 2)}</pre>
-            </div>
-          ) : null}
-        </section>
-      )}
-
-      {showDebug && data.metrics ? (
-        <section style={card}>
-          <h2 style={h2}>Metrics (raw)</h2>
-          <pre style={pre}>{JSON.stringify(data.metrics, null, 2)}</pre>
-        </section>
-      ) : null}
-
-      {showDebug && data.stats ? (
-        <section style={card}>
-          <h2 style={h2}>Stats (raw)</h2>
-          <pre style={pre}>{JSON.stringify(data.stats, null, 2)}</pre>
-        </section>
-      ) : null}
-
+      {/* Optional deep debug payload */}
       {showDebug ? (
         <section style={card}>
-          <h2 style={h2}>Media (debug)</h2>
-          <div style={{ display: "grid", gap: 8 }}>
-            <div>
-              <strong>Primary URL:</strong> {String(primaryUrlView || "—")}
-            </div>
-            <div>
-              <strong>Uploaded count:</strong> {mediaDataView?.uploadedVideos?.length ?? 0}
-            </div>
-            <div>
-              <strong>External count:</strong> {mediaDataView?.externalVideos?.length ?? 0}
-            </div>
-            <div>
-              <strong>X:</strong> {mediaDataView?.xUrl || "—"}
-            </div>
-            <div>
-              <strong>Instagram:</strong> {mediaDataView?.instagramUrl || "—"}
-            </div>
-            <div>
-              <strong>YouTube:</strong> {mediaDataView?.youtubeUrl || "—"}
-            </div>
-          </div>
-          <pre style={pre}>{JSON.stringify({ vsRaw, mediaDataFromApi, mediaDataView, primaryUrlFromApi, primaryUrlView }, null, 2)}</pre>
+          <h2 style={h2}>Raw payload (debug)</h2>
+          <pre style={pre}>{JSON.stringify(data, null, 2)}</pre>
         </section>
-      ) : null}
-
-      {showCoachPrompt ? (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(15,23,42,0.55)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 50,
-          }}
-        >
-          <div
-            style={{
-              background: "#ffffff",
-              borderRadius: 12,
-              padding: 20,
-              maxWidth: 420,
-              width: "90%",
-              boxShadow: "0 20px 40px rgba(15,23,42,0.25)",
-            }}
-          >
-            <h2 style={{ ...h2, marginBottom: 6 }}>Coaches: unlock full access</h2>
-            <p style={{ fontSize: 14, color: "#4b5563", marginBottom: 12 }}>
-              To continue viewing this player profile, coaches need to have an account. This provides additional access to
-              in-depth stats, specific metrics and player development, videos and social media, and player email and phone contact.
-              The player profile can also be saved and shared with other coaches in your organization.
-            </p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "flex-end" }}>
-              <a
-                href="/login"
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: 999,
-                  border: "1px solid #0ea5e9",
-                  background: "#e0f2fe",
-                  color: "#0f172a",
-                  fontSize: 12,
-                  fontWeight: 800,
-                  textDecoration: "none",
-                }}
-              >
-                Log In
-              </a>
-              <a
-                href="/signup/coach"
-                style={{
-                  padding: "6px 12px",
-                  borderRadius: 999,
-                  border: "1px solid #eab308",
-                  background: "#fef3c7",
-                  color: "#78350f",
-                  fontSize: 12,
-                  fontWeight: 800,
-                  textDecoration: "none",
-                }}
-              >
-                Create Free Coach Account
-              </a>
-            </div>
-          </div>
-        </div>
       ) : null}
     </main>
   );
-}
-
-/** ---------- Helpers ---------- */
-function unitForMetricKey(key: string | undefined | null) {
-  const k = String(key || "").toLowerCase();
-  if (k.includes("velo")) return "mph";
-  if (k.includes("throw")) return "mph";
-  if (k.includes("bench") || k.includes("squat")) return "lbs";
-  if (k.includes("pop") || k.includes("sixty") || k.includes("home")) return "seconds";
-  return null;
 }
 
 /** ---------- Styles ---------- */

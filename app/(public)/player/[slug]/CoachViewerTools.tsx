@@ -1,5 +1,4 @@
 // app/(public)/player/[slug]/CoachViewerTools.tsx
-
 "use client";
 
 import * as React from "react";
@@ -11,7 +10,7 @@ export default function CoachViewerTools(props: {
 }) {
   const SECTION_SCROLL_MARGIN = props.sectionScrollMargin ?? 235;
 
-  // ✅ HARD GATE: render nothing unless BOTH are true.
+  // ✅ Hard guard BEFORE hooks fire network requests
   if (!props.isCoachViewer || !props.playerProfileId) return null;
 
   const playerProfileId = props.playerProfileId;
@@ -47,10 +46,10 @@ export default function CoachViewerTools(props: {
         setCoachRatingLoading(true);
         setCoachRatingError(null);
 
-        const rr = await fetch(`/api/coach/player-rating?playerProfileId=${encodeURIComponent(playerProfileId)}`, {
-          method: "GET",
-          cache: "no-store",
-        });
+        const rr = await fetch(
+          `/api/coach/player-rating?playerProfileId=${encodeURIComponent(playerProfileId)}`,
+          { method: "GET", cache: "no-store" }
+        );
 
         const rj = await rr.json().catch(() => ({}));
         if (cancelled) return;
@@ -79,10 +78,10 @@ export default function CoachViewerTools(props: {
         setCoachNotesLoading(true);
         setCoachNotesError(null);
 
-        const res = await fetch(`/api/coach/notes?playerProfileId=${encodeURIComponent(playerProfileId)}`, {
-          method: "GET",
-          cache: "no-store",
-        });
+        const res = await fetch(
+          `/api/coach/notes?playerProfileId=${encodeURIComponent(playerProfileId)}`,
+          { method: "GET", cache: "no-store" }
+        );
 
         const json = await res.json().catch(() => ({}));
         if (cancelled) return;
@@ -94,7 +93,9 @@ export default function CoachViewerTools(props: {
         }
 
         const arr = Array.isArray(json?.data?.notes) ? json.data.notes : [];
-        const sorted = [...arr].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+        const sorted = [...arr].sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
         setCoachNotes(sorted);
       } catch (e: any) {
         if (!cancelled) {
@@ -120,7 +121,11 @@ export default function CoachViewerTools(props: {
         setCoachListsLoading(true);
         setCoachListsError(null);
 
-        const res = await fetch("/api/coach/recruiting-lists", { method: "GET", cache: "no-store" });
+        const res = await fetch("/api/coach/recruiting-lists", {
+          method: "GET",
+          cache: "no-store",
+        });
+
         const json = await res.json().catch(() => ({}));
         if (cancelled) return;
 
@@ -178,7 +183,9 @@ export default function CoachViewerTools(props: {
       });
 
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || json?.ok === false) throw new Error(json?.error || `Failed to save rating (${res.status})`);
+      if (!res.ok || json?.ok === false) {
+        throw new Error(json?.error || `Failed to save rating (${res.status})`);
+      }
 
       const n = Number(json?.data?.rating ?? next);
       const safe = Number.isFinite(n) ? Math.max(0, Math.min(5, Math.round(n))) : next;
@@ -308,12 +315,15 @@ export default function CoachViewerTools(props: {
       setCoachListSaving(true);
       setCoachListActionError(null);
 
-      const res = await fetch(`/api/coach/recruiting-lists/${encodeURIComponent(coachSelectedListId)}/members`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        cache: "no-store",
-        body: JSON.stringify({ playerProfileId }),
-      });
+      const res = await fetch(
+        `/api/coach/recruiting-lists/${encodeURIComponent(coachSelectedListId)}/members`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          cache: "no-store",
+          body: JSON.stringify({ playerProfileId }),
+        }
+      );
 
       const json = await res.json().catch(() => ({}));
       if (!res.ok || json?.ok === false) throw new Error(json?.error || `Failed to add (${res.status})`);
@@ -340,7 +350,9 @@ export default function CoachViewerTools(props: {
       setCoachListActionError(null);
 
       const res = await fetch(
-        `/api/coach/recruiting-lists/${encodeURIComponent(coachSelectedListId)}/members/${encodeURIComponent(playerProfileId)}`,
+        `/api/coach/recruiting-lists/${encodeURIComponent(coachSelectedListId)}/members/${encodeURIComponent(
+          playerProfileId
+        )}`,
         { method: "DELETE", cache: "no-store" }
       );
 
