@@ -19,8 +19,12 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: "Missing teamId." }, { status: 400 });
     }
 
-    const planTier = normalizePlanTier(planTierRaw) ?? "Teams";
-    const cadence = normalizeCadence(cadenceRaw) ?? "Monthly";
+    // ✅ TS-safe: normalize helpers may return "" for unknown; never allow "" through.
+    const planTierNorm = normalizePlanTier(planTierRaw);
+    const cadenceNorm = normalizeCadence(cadenceRaw);
+
+    const planTier = planTierNorm ? planTierNorm : "Teams";
+    const cadence = cadenceNorm ? cadenceNorm : "Monthly";
 
     const basePriceCents = PLAN_PRICES_CENTS[planTier][cadence];
 
