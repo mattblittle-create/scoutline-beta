@@ -1,7 +1,43 @@
 // app/api/public/player/[slug]/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import type { AtomicProfile, PublicPayload, PlanTier, VideoSocialPayload } from "@/lib/types/player";
+
+/**
+ * NOTE:
+ * Vercel build failed because "@/lib/types/player" was missing.
+ * Keep this route self-contained so deploys never break on type-path issues.
+ */
+type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
+type AtomicProfile = any;
+
+type VideoSocialPayload = {
+  externalVideos?: Array<{
+    id: string;
+    title?: string;
+    url: string;
+    source?: string;
+    addedAt?: number;
+  }>;
+  localVideos?: Array<{
+    id: string;
+    title?: string;
+    publicUrl: string;
+    fileType?: string;
+    fileSize?: number;
+    addedAt?: number;
+  }>;
+  social?: any;
+  primary?: any;
+};
+
+type PublicPayload = {
+  profile?: any;
+  metrics?: any;
+  stats?: any;
+  demoMode?: "global" | "allowlist" | "query" | null;
+  planTier?: PlanTier;
+  debug?: any;
+};
 
 function planToTier(plan: any): PlanTier {
   const p = String(plan || "").toUpperCase();
