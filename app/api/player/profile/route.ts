@@ -705,6 +705,14 @@ export async function POST(req: Request) {
     const travelTeamSchedulePrivate = !!body.travelTeamSchedulePrivate;
     const travelTeamWebsiteUrl = safeTrim(body.travelTeamWebsiteUrl || "");      // ✅ NEW
 
+    type OtherTeam = {
+      name: string;
+      city: string;
+      state: string;
+      scheduleUrl: string;
+      websiteUrl: string;
+    };
+
     const otherTeams = Array.isArray(body.otherTeams)
       ? body.otherTeams.map((t: any) => ({
           name: t?.name ? String(t.name).trim() : "",
@@ -879,7 +887,7 @@ export async function POST(req: Request) {
     if (travelTeamWebsiteUrl && !isLikelyUrl(travelTeamWebsiteUrl))                      // ✅ NEW
       errors.travelTeamWebsiteUrl = "Enter a valid URL (http/https)";
 
-    otherTeams.forEach((t, i) => {
+    otherTeams.forEach((t: OtherTeam, i: number) => {
       if (t.scheduleUrl && !isLikelyUrl(t.scheduleUrl)) {
         errors[`otherTeams.${i}.scheduleUrl`] = "Enter a valid URL (http/https)";
       }
