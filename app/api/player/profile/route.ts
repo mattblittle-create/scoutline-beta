@@ -326,6 +326,7 @@ async function ensureUserRowAndSlug(email: string, firstName?: string | null, la
   if (!user) {
     const uniqueSlug = await generateUniqueSlug(prisma as any, desiredBase);
     const fullName = [firstName || "", lastName || ""].filter(Boolean).join(" ").trim() || null;
+
     user = await prisma.user.create({
       data: {
         email,
@@ -334,8 +335,10 @@ async function ensureUserRowAndSlug(email: string, firstName?: string | null, la
         phonePrivate: true,
         emailPrivate: true,
       },
-      select: { id: true, email: true, slug: true, name: true },
+      // ✅ FIX: include phonePrivate/emailPrivate to match the user type from findFirst select
+      select: { id: true, email: true, slug: true, name: true, phonePrivate: true, emailPrivate: true },
     });
+
     return user;
   }
 
@@ -492,6 +495,10 @@ const trimOrNull = (v: any): string | null => {
   return s ? s : null;
 };
 
+function uid() {
+  return Math.random().toString(36).slice(2) + "-" + Date.now().toString(36);
+}
+
 /** ================================
  *  GET /api/player/profile?email=...
  * ================================= */
@@ -504,17 +511,17 @@ export async function GET(req: Request) {
     }
 
     // ✅ Cancellation access cutoff (effective end-of-period)
-const gate = await enforcePlayerCancellationGate(email);
-if (!gate.allowed) {
-  return NextResponse.json(
-    {
-      ok: false,
-      error:
-        "This ScoutLine account has been canceled. Access to the player profile is no longer available.",
-    },
-    { status: 403 }
-  );
-}
+    const gate = await enforcePlayerCancellationGate(email);
+    if (!gate.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "This ScoutLine account has been canceled. Access to the player profile is no longer available.",
+        },
+        { status: 403 }
+      );
+    }
 
     const row = await prisma.playerProfile.findUnique({
       where: { email },
@@ -621,17 +628,17 @@ export async function POST(req: Request) {
     }
 
     // ✅ Cancellation access cutoff (effective end-of-period)
-const gate = await enforcePlayerCancellationGate(email);
-if (!gate.allowed) {
-  return NextResponse.json(
-    {
-      ok: false,
-      error:
-        "This ScoutLine account has been canceled. You can no longer access or edit this player profile.",
-    },
-    { status: 403 }
-  );
-}
+    const gate = await enforcePlayerCancellationGate(email);
+    if (!gate.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "This ScoutLine account has been canceled. You can no longer access or edit this player profile.",
+        },
+        { status: 403 }
+      );
+    }
 
     // Load existing profile so we can preserve docs when not re-sent
     const existing = await prisma.playerProfile.findUnique({
@@ -1011,9 +1018,6 @@ if (!gate.allowed) {
       playerBioPrivate,
 
       // --- Video / Social (Tab 6) (delete-safe) ---
-      // Accept either:
-      //  A) atomic payload at body.videoSocial
-      //  B) legacy top-level keys body.externalVideos/body.localVideos/body.social/body.primary
       externalVideos: (() => {
         const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
         if (!hasOwn(src, "externalVideos")) return existingData.externalVideos ?? undefined;
@@ -1025,7 +1029,6 @@ if (!gate.allowed) {
             if (!url) return null;
             const title = typeof v?.title === "string" ? v.title.trim() : undefined;
 
-            // keep source/addedAt if provided
             const source = typeof v?.source === "string" ? v.source.trim() : undefined;
             const addedAt = Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now();
 
@@ -1041,7 +1044,6 @@ if (!gate.allowed) {
         const list = Array.isArray(src.localVideos) ? src.localVideos : [];
         return list
           .map((v: any) => {
-            // NEW tab uses publicUrl; legacy may use url
             const publicUrl =
               typeof v?.publicUrl === "string"
                 ? v.publicUrl.trim()
@@ -1056,7 +1058,6 @@ if (!gate.allowed) {
             const fileSize = Number.isFinite(Number(v?.fileSize)) ? Number(v.fileSize) : undefined;
             const addedAt = Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now();
 
-            // Store in the shape your Tab expects later
             return { ...v, title, publicUrl, fileType, fileSize, addedAt };
           })
           .filter(Boolean);
@@ -1068,7 +1069,6 @@ if (!gate.allowed) {
         if (!hasOwn(src, "social")) return existingData.social ?? undefined;
 
         if (!isObj(src.social)) return {};
-        // merge for forwards compatibility, but allow clears by sending empty strings/undefined
         return { ...(existingData.social ?? {}), ...(src.social as any) };
       })(),
 
@@ -1085,7 +1085,6 @@ if (!gate.allowed) {
         ? (Array.isArray(body.coaches)
             ? body.coaches
                 .map((c: any) => {
-                  // NEW tab shape: { firstName, lastName, team, email, phone, focus, addedAt, id }
                   const firstName = typeof c?.firstName === "string" ? c.firstName.trim() : "";
                   const lastName  = typeof c?.lastName === "string" ? c.lastName.trim() : "";
                   const team      = typeof c?.team === "string" ? c.team.trim() : "";
@@ -1104,12 +1103,10 @@ if (!gate.allowed) {
                   const addedAt =
                     Number.isFinite(Number(c?.addedAt)) ? Number(c.addedAt) : Date.now();
 
-                  // LEGACY fallback: if they sent { name, role, notes } etc.
                   const legacyName = typeof c?.name === "string" ? c.name.trim() : "";
                   const legacyRole = typeof c?.role === "string" ? c.role.trim() : "";
                   const legacyNotes = typeof c?.notes === "string" ? c.notes.trim() : "";
 
-                  // If no first/last provided but legacy name exists, keep it in firstName for display
                   const finalFirst = firstName || (legacyName ? legacyName : "");
                   const finalFocus = focus || legacyRole || legacyNotes || "";
 
@@ -1143,8 +1140,8 @@ if (!gate.allowed) {
     };
 
     // ✅ Only set these if the request included a governing-ID key; otherwise preserve existing
-    if (hasNcaaKey) normalized.ncaaId = ncaaIdNormalized;      // may be null to clear
-    if (hasNaiaKey) normalized.naiaEcid = naiaEcidNormalized;   // may be null to clear
+    if (hasNcaaKey) (normalized as any).ncaaId = ncaaIdNormalized;      // may be null to clear
+    if (hasNaiaKey) (normalized as any).naiaEcid = naiaEcidNormalized;   // may be null to clear
 
     /** ---------- Persist ---------- */
     const stored = await saveUser(normalized);
