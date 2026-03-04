@@ -50,30 +50,41 @@ export async function GET(req: Request) {
     return NextResponse.json({ ok: false, error: "Missing slug" }, { status: 400 });
   }
 
-  // Pull the player by publicSlug. Include whatever relations you need.
-  const player = await prisma.player.findFirst({
-    where: { publicSlug: slug },
-    select: {
-      publicEnabled: true,
-      planTier: true,
-      profilePublic: true,
-      metricsPublic: true,
-      statsPublic: true,
-      videosPublic: true,
-      academicsPublic: true,
-      coachesPublic: true,
-      committed: true,
-      committedCollege: true,
-      classYear: true,
-      photoUrl: true,
-      metrics: true,
-      stats: true,
-      videos: true,
-      academics: true,
-      coaches: true,
-      user: { select: { email: true, firstName: true, lastName: true } },
+// ✅ Slug is stored on User.slug (not Player.publicSlug).
+// Pull user by slug, then load the related player.
+const user = await prisma.user.findFirst({
+  where: { slug },
+  select: {
+    email: true,
+    firstName: true,
+    lastName: true,
+    player: {
+      select: {
+        publicEnabled: true,
+        planTier: true,
+        profilePublic: true,
+        metricsPublic: true,
+        statsPublic: true,
+        videosPublic: true,
+        academicsPublic: true,
+        coachesPublic: true,
+        committed: true,
+        committedCollege: true,
+        classYear: true,
+        photoUrl: true,
+        metrics: true,
+        stats: true,
+        videos: true,
+        academics: true,
+        coaches: true,
+      },
     },
-  });
+  },
+});
+
+const player = user?.player
+  ? { ...user.player, user: { email: user.email, firstName: user.firstName, lastName: user.lastName } }
+  : null;
 
   if (!player) {
     return NextResponse.json({ ok: false, error: "Player not found" }, { status: 404 });
