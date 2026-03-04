@@ -797,7 +797,7 @@ export async function POST(req: Request) {
     /** ---------- Merge strategy (delete-safe) ---------- */
     // If the client INCLUDED the field (even as empty), we respect it (this is how deletes persist).
     // Only fall back to existing when the field was OMITTED entirely.
-    const transcriptUrls =
+    const transcriptUrls: string[] =
       transcriptKeyPresent
         ? (strictTranscriptArr.length > 0
             ? strictTranscriptArr
@@ -812,7 +812,7 @@ export async function POST(req: Request) {
         ? existingData.transcripts
         : [];
 
-    const reportCardUrls =
+    const reportCardUrls: string[] =
       reportKeyPresent
         ? (strictReportArr.length > 0
             ? strictReportArr
@@ -827,7 +827,7 @@ export async function POST(req: Request) {
         ? existingData.reportCards
         : [];
 
-    const otherAcademicDocs =
+    const otherAcademicDocs: { url: string; label?: string | null }[] =
       otherDocsKeyPresent
         ? [...strictOtherDocs, ...looseOtherDocs, ...topLevelAdditionalDocs]
         : Array.isArray(existingData.otherAcademicDocs)
@@ -897,14 +897,15 @@ export async function POST(req: Request) {
       // }
     });
 
-    transcriptUrls.forEach((u, i) => {
+    transcriptUrls.forEach((u: string, i: number) => {
       if (!isAcceptableDocUrl(u)) errors[`transcriptUrls.${i}`] = "Enter a valid URL (http/https or /uploads/...)";
     });
-    reportCardUrls.forEach((u, i) => {
+    reportCardUrls.forEach((u: string, i: number) => {
       if (!isAcceptableDocUrl(u)) errors[`reportCardUrls.${i}`] = "Enter a valid URL (http/https or /uploads/...)";
     });
-    otherAcademicDocs.forEach((d, i) => {
-      if (!isAcceptableDocUrl(d.url)) errors[`otherAcademicDocs.${i}.url`] = "Enter a valid URL (http/https or /uploads/...)";
+    otherAcademicDocs.forEach((d: { url: string; label?: string | null }, i: number) => {
+      if (!isAcceptableDocUrl(d.url))
+        errors[`otherAcademicDocs.${i}.url`] = "Enter a valid URL (http/https or /uploads/...)";
     });
     // Validate season-level stats file URLs
     (cleanedIncomingSeasons || []).forEach((season, i) => {
