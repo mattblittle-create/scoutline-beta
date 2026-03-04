@@ -24,7 +24,6 @@ type Body = {
 
   website?: string | null;
 
-  // ✅ NEW
   logoUrl?: string | null;
 };
 
@@ -55,7 +54,6 @@ function getSecret(): Uint8Array {
 }
 
 async function makeSetPasswordJwt(email: string) {
-  // must match /api/auth/set-password expectation: "set-password"
   return new SignJWT({ email, purpose: "set-password" })
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
@@ -86,16 +84,9 @@ function normalizeLogoUrl(v: any) {
   const s = String(v ?? "").trim();
   if (!s) return null;
 
-  // allow data URLs (from file upload)
   if (/^data:image\/[a-zA-Z0-9.+-]+;base64,/i.test(s)) return s;
-
-  // allow absolute URLs
   if (/^https?:\/\//i.test(s)) return s;
-
-  // allow protocol-relative
   if (s.startsWith("//")) return `https:${s}`;
-
-  // allow "www.example.com/.." bare domains
   if (/^[a-z0-9.-]+\.[a-z]{2,}([/].*)?$/i.test(s)) return `https://${s}`;
 
   return null;
@@ -118,7 +109,6 @@ export async function POST(req: Request) {
     const state = normalizeText(reqBody?.state).toUpperCase();
     const website = normalizeText(reqBody?.website) || null;
 
-    // ✅ NEW
     const logoUrl = normalizeLogoUrl(reqBody?.logoUrl);
 
     if (!adminEmail) return jsonError("Admin email is required.");
@@ -131,7 +121,6 @@ export async function POST(req: Request) {
     if (!city) return jsonError("City is required.");
     if (!state) return jsonError("State is required.");
 
-    // Look up existing user to enforce "one email per role"
     const existing = await prisma.user.findUnique({
       where: { email: adminEmail },
       select: {
@@ -144,13 +133,13 @@ export async function POST(req: Request) {
       },
     });
 
-    // ✅ Enforce strict separation: TEAM_ADMIN email cannot be an existing player or coach account
     if (existing?.coachProfile?.id) {
       return jsonError(
         "This email is already registered as a Coach account. Please use a different email for Team Admin.",
         409
       );
     }
+
     if (existing?.Player?.id) {
       return jsonError(
         "This email is already registered as a Player account. Please use a different email for Team Admin.",
@@ -161,7 +150,6 @@ export async function POST(req: Request) {
     const shouldMintSetPassword = !existing?.passwordHash;
 
     const result = await prisma.$transaction(async (tx) => {
-      // Upsert admin user (do not clobber role; just set basics)
       const user = await tx.user.upsert({
         where: { email: adminEmail },
         update: {
@@ -181,7 +169,6 @@ export async function POST(req: Request) {
         select: { id: true, email: true, name: true, passwordHash: true },
       });
 
-      // Reuse existing TEAM_ADMIN membership team if it exists
       const existingAdminMembership = await tx.teamMembership.findFirst({
         where: { userId: user.id, role: "TEAM_ADMIN" as any },
         include: { team: true },
@@ -201,13 +188,13 @@ export async function POST(req: Request) {
             city,
             state,
             websiteUrl: website,
-            // ✅ NEW: only set if provided (avoid wiping existing)
             ...(logoUrl ? { logoUrl } : {}),
           },
         });
       } else {
         const baseSlug = slugifyTeamName(teamName);
         let slug = baseSlug;
+
         for (let i = 0; i < 25; i++) {
           const exists = await tx.team.findUnique({ where: { slug }, select: { id: true } });
           if (!exists) break;
@@ -218,10 +205,10 @@ export async function POST(req: Request) {
           data: {
             name: teamName,
             slug,
+            teamType: "TRAVEL" as any, // ✅ REQUIRED FIELD
             city,
             state,
             websiteUrl: website,
-            // ✅ NEW
             logoUrl: logoUrl,
           },
           select: { id: true, slug: true },
@@ -234,6 +221,7 @@ export async function POST(req: Request) {
           where: { teamId: teamId, role: "TEAM_ADMIN" as any },
           select: { id: true },
         });
+
         if (existingAdminForTeam) {
           throw new Error("This team already has an admin assigned.");
         }
@@ -249,7 +237,6 @@ export async function POST(req: Request) {
         });
       }
 
-      // Mint set-password token if needed + store verificationToken
       let setPasswordToken: string | null = null;
 
       if (!user.passwordHash) {
@@ -275,7 +262,6 @@ export async function POST(req: Request) {
         setPasswordToken = jwt;
       }
 
-      // Return current team snapshot (including logo)
       const team = await tx.team.findUnique({
         where: { id: teamId },
         select: { id: true, slug: true, name: true, city: true, state: true, websiteUrl: true, logoUrl: true },
@@ -285,6 +271,7 @@ export async function POST(req: Request) {
     });
 
     const origin = getOriginFromHeaders(req);
+
     const setPasswordLink =
       result.setPasswordToken && origin
         ? `${origin}/auth/set-password?token=${encodeURIComponent(result.setPasswordToken)}`
@@ -311,7 +298,6 @@ export async function POST(req: Request) {
           city: result.team?.city,
           state: result.team?.state,
           websiteUrl: result.team?.websiteUrl,
-          // ✅ NEW
           logoUrl: result.team?.logoUrl ?? null,
         },
       },
