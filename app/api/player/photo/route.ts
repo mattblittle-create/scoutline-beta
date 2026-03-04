@@ -181,8 +181,8 @@ export async function POST(req: Request) {
     // Create deterministic-ish path (no PII)
     const key = `user-photos/${user.id}-${Date.now()}.${processed.ext}`;
 
-    // Upload to Vercel Blob (public by default)
-    const { url } = await put(key, new Blob([processed.data], { type: processed.contentType }), {
+    // ✅ Upload to Vercel Blob using Buffer directly (Node runtime)
+    const { url } = await put(key, processed.data, {
       access: "public",
       contentType: processed.contentType,
     });
