@@ -51,7 +51,7 @@ export async function GET(req: Request) {
   }
 
   // Pull the player by publicSlug. Include whatever relations you need.
-  const player = await prisma.player.findUnique({
+  const player = await prisma.player.findFirst({
     where: { publicSlug: slug },
     select: {
       publicEnabled: true,
