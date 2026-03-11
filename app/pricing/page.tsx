@@ -269,7 +269,7 @@ export default function PricingPage() {
 
           {/* Coaches link stays up top */}
           <Link href="/onboarding/coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
-            College Coaches and Recruiters →
+            College Coaches and Recruiters, set up your free account here!
           </Link>
 
         </div>
@@ -490,7 +490,7 @@ export default function PricingPage() {
         .sl-link-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-          background: #f3f4f6;
+          background: #0ea5e9;
           text-decoration: underline;
           text-underline-offset: 3px;
         }
