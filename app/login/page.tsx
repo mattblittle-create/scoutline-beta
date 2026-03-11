@@ -8,18 +8,18 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 type Role = "player" | "parent" | "coach" | "team";
 
-function roleLabel(r: Role) {
+function roleLabel(r: Role | null) {
   switch (r) {
     case "player":
-      return "Player";
+      return "Player Portal";
     case "parent":
-      return "Parent";
+      return "Parent Portal";
     case "coach":
-      return "Coach";
+      return "Coach Portal";
     case "team":
-      return "Team Admin";
+      return "Team Admin Portal";
     default:
-      return "Coach";
+      return null;
   }
 }
 
@@ -42,11 +42,13 @@ function LoginPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
-  const role = useMemo<Role>(() => {
+  const roleFromQuery = useMemo<Role | null>(() => {
     const raw = String(search.get("role") || "").trim().toLowerCase();
     if (raw === "player" || raw === "parent" || raw === "coach" || raw === "team") return raw;
-    return "coach";
+    return null;
   }, [search]);
+
+  const role: Role = roleFromQuery ?? "coach";
 
   const prefillEmail = useMemo(() => {
     return String(search.get("email") || "").trim().toLowerCase();
@@ -121,11 +123,11 @@ function LoginPageInner() {
       `}</style>
 
       <h1>Log In</h1>
-      <div className="sl-subtitle">{roleLabel(role)} Portal</div>
+      {roleFromQuery ? <div className="sl-subtitle">{roleLabel(roleFromQuery)}</div> : null}
 
       <form onSubmit={onSubmit}>
         <div className="sl-field">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Username</label>
           <input
             id="email"
             className="sl-input"
@@ -147,7 +149,7 @@ function LoginPageInner() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
           />
-          <div className="sl-help">Minimum 8 characters.</div>
+          <div className="sl-help">Use the password you set for your ScoutLine account.</div>
         </div>
 
         <div className="sl-links">
