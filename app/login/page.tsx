@@ -4,6 +4,7 @@
 
 import React, { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 
 type Role = "player" | "parent" | "coach" | "team";
@@ -121,6 +122,16 @@ function LoginPageInner() {
         .sl-error { margin-top:12px; padding:10px 12px; border:1px solid #fecaca; background:#fff1f2; color:#7f1d1d; border-radius:10px; font-weight:800; }
         .sl-next { margin-top:10px; font-size:0.85rem; color:#64748b; }
       `}</style>
+
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 12 }}>
+        <Image
+          src="/scoutline-logo-gold.png"
+          alt="ScoutLine"
+          width={180}
+          height={60}
+          priority
+        />
+      </div>
 
       <h1>Log In</h1>
       {roleFromQuery ? <div className="sl-subtitle">{roleLabel(roleFromQuery)}</div> : null}
