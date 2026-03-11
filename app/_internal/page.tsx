@@ -1,4 +1,4 @@
-// app/player/[slug]/page.tsx
+// app/(internal)/page.tsx
 import { prisma } from "@/lib/prisma";
 import { notFound } from "next/navigation";
 
