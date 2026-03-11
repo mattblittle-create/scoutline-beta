@@ -1,7 +1,8 @@
 // app/login/page.tsx
+
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 
@@ -31,14 +32,13 @@ function fallbackForRole(r: Role) {
     case "player":
       return "/dashboard/player";
     case "parent":
-      // if you later add a parent dashboard, swap this
       return "/dashboard/player";
     default:
       return "/dashboard/coach";
   }
 }
 
-export default function LoginPage() {
+function LoginPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
@@ -53,7 +53,6 @@ export default function LoginPage() {
   }, [search]);
 
   const nextPath = useMemo(() => {
-    // Example: /login?role=coach&next=/onboarding/coach
     return String(search.get("next") || "").trim();
   }, [search]);
 
@@ -72,22 +71,22 @@ export default function LoginPage() {
     if (!password) return setError("Password is required.");
 
     setSubmitting(true);
+
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         cache: "no-store",
-        credentials: "include", // ✅ IMPORTANT
+        credentials: "include",
         body: JSON.stringify({ email: eNorm, password }),
       });
 
       const json = await res.json().catch(() => ({}));
+
       if (!res.ok || !json?.ok) {
         throw new Error(json?.error || "Invalid credentials.");
       }
 
-      // ✅ Cookie is now set by the API route (httpOnly)
-      // Redirect where we want to go next
       if (nextPath) {
         router.replace(nextPath);
         return;
@@ -164,5 +163,13 @@ export default function LoginPage() {
         {error ? <div className="sl-error">{error}</div> : null}
       </form>
     </main>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={null}>
+      <LoginPageInner />
+    </Suspense>
   );
 }

@@ -1,8 +1,9 @@
 // app/demo/metrics-from-profile/page.tsx
+
 "use client";
 
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
 import PublicPlayerMetrics from "@/app/components/metrics/PublicPlayerMetrics";
 
 type ApiUser = {
@@ -15,7 +16,7 @@ type ApiUser = {
 
 const DEMO_EMAIL = "matt.b.little@gmail.com";
 
-export default function MetricsFromProfileDemo() {
+function MetricsFromProfileDemoInner() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<ApiUser | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -24,12 +25,15 @@ export default function MetricsFromProfileDemo() {
 
   useEffect(() => {
     let dead = false;
+
     async function load() {
       try {
         const q = encodeURIComponent(DEMO_EMAIL);
         const res = await fetch(`/api/player/profile?email=${q}`, { cache: "no-store" });
         const json = await res.json();
+
         if (dead) return;
+
         if (!res.ok || !json?.ok) {
           setErr(json?.error || "Failed to load profile");
         } else {
@@ -41,8 +45,11 @@ export default function MetricsFromProfileDemo() {
         if (!dead) setLoading(false);
       }
     }
+
     load();
-    return () => { dead = true; };
+    return () => {
+      dead = true;
+    };
   }, []);
 
   return (
@@ -57,10 +64,16 @@ export default function MetricsFromProfileDemo() {
       <div style={{ marginTop: 16 }}>
         {loading && <p style={{ color: "#64748b" }}>Loading…</p>}
         {err && <p style={{ color: "#b91c1c" }}>{err}</p>}
-        {!loading && !err && (
-          user ? <PublicPlayerMetrics user={user as any} /> : <p>No user found.</p>
-        )}
+        {!loading && !err && (user ? <PublicPlayerMetrics user={user as any} /> : <p>No user found.</p>)}
       </div>
     </main>
+  );
+}
+
+export default function MetricsFromProfileDemo() {
+  return (
+    <Suspense fallback={null}>
+      <MetricsFromProfileDemoInner />
+    </Suspense>
   );
 }

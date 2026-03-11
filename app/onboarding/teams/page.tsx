@@ -3,6 +3,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function norm(v: any) {
@@ -55,7 +56,7 @@ function fileToDataUrl(file: File): Promise<string> {
   });
 }
 
-export default function TeamsOnboardingPage() {
+function TeamsOnboardingPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
@@ -531,6 +532,14 @@ export default function TeamsOnboardingPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+export default function TeamsOnboardingPage() {
+  return (
+    <Suspense fallback={null}>
+      <TeamsOnboardingPageInner />
+    </Suspense>
   );
 }
 

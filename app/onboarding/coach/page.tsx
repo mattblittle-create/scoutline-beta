@@ -1,6 +1,9 @@
+// app/onboarding/coach/page.tsx
+
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 const ROLE_PRESETS = [
@@ -38,7 +41,7 @@ function formatPhoneUS(input: any) {
   return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
 }
 
-export default function CoachOnboardingPage() {
+function CoachOnboardingPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
@@ -347,6 +350,14 @@ export default function CoachOnboardingPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+export default function CoachOnboardingPage() {
+  return (
+    <Suspense fallback={null}>
+      <CoachOnboardingPageInner />
+    </Suspense>
   );
 }
 

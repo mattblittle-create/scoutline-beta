@@ -1,7 +1,7 @@
 // app/dashboard/player/profile/page.tsx
 "use client";
 
-import React, { useMemo, useState, useEffect, useRef } from "react";
+import React, { Suspense, useMemo, useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { TAB_KEYS } from "./tabKeys";
@@ -12,11 +12,11 @@ import TabMetrics from "./TabMetrics";
 import TabStats from "./TabStats";
 import TabVideoSocial, { VideoSocialHandle } from "./TabVideoSocial";
 import TabCoachesReferences, { CoachesHandle } from "./TabCoachesReferences";
-import { PlayerProfilePayload } from "@/lib/types/player";
+import { PlayerProfilePayload } from "@/app/lib/types/player";
 
 // Keep any other server-safe/client-safe imports you already use:
 import * as XLSX from "xlsx";
-import { mapFirstPlayer } from "@/lib/stats/gamechangerMapping";
+import { mapFirstPlayer } from "@/app/lib/stats/gamechangerMapping";
 
 // Charts
 import {
@@ -202,7 +202,7 @@ function parseAreas(raw: string): string[] {
     .slice(0, 12);
 }
 
-export default function PlayerProfilePage() {
+function PlayerProfilePageInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -473,6 +473,14 @@ const uploadSlug = React.useMemo(() => {
     return Number.isFinite(n) ? n : null;
   };
 
+  // ✅ Handedness coercion for Prisma union type: "" | "R" | "L" | "S" | null
+  const asHand = (v: any): "" | "R" | "L" | "S" | null => {
+    const s = String(v ?? "").trim().toUpperCase();
+    if (s === "R" || s === "L" || s === "S") return s;
+    if (s === "") return "";
+    return null;
+  };
+
   function onPhoneChange(v: string) {
     setPhone(formatPhone(v));
   }
@@ -498,11 +506,18 @@ const uploadSlug = React.useMemo(() => {
     // No year yet? Treat as most recent so it appears right under the Add button.
     return s.seasonYear == null ? Number.POSITIVE_INFINITY : s.seasonYear;
   }
-  function rankTerm(s: StatsSeason) {
-    // No term yet? Treat as most recent among same-year items.
-    return s.seasonTerm ? SEASON_TERM_ORDER[s.seasonTerm] ?? -1 : Number.POSITIVE_INFINITY;
-    // tie-breaker handled in sortSeasonsDesc
+function rankTerm(s: StatsSeason) {
+  // No term yet? Treat as most recent among same-year items.
+  const term = s.seasonTerm?.trim();
+  if (!term) return Number.POSITIVE_INFINITY;
+
+  if (term === "Winter" || term === "Spring" || term === "Summer" || term === "Fall") {
+    return SEASON_TERM_ORDER[term];
   }
+
+  return -1;
+  // tie-breaker handled in sortSeasonsDesc
+}
 
   function sortSeasonsDesc(arr: StatsSeason[]) {
     return [...arr].sort((a, b) => {
@@ -523,6 +538,7 @@ const uploadSlug = React.useMemo(() => {
     ab: number | null;    // int
     obp: number | null;   // 3 dp
     slg: number | null;   // 3 dp
+    ops: number | null;   // 3 dp
     h: number | null;     // int
     oneB: number | null;  // int (1B)
     twoB: number | null;  // int (2B)
@@ -538,12 +554,26 @@ const uploadSlug = React.useMemo(() => {
   };
 
   const EMPTY_HITTING: HittingStats = {
-    avg: null, gp: null, pa: null, ab: null,
-    obp: null, slg: null,
-    h: null, oneB: null, twoB: null, threeB: null, hr: null,
-    rbi: null, r: null, bb: null, so: null, hbp: null,
-    sb: null, sbPct: null,
-  };
+  avg: null,
+  gp: null,
+  pa: null,
+  ab: null,
+  obp: null,
+  slg: null,
+  ops: null,
+  h: null,
+  oneB: null,
+  twoB: null,
+  threeB: null,
+  hr: null,
+  rbi: null,
+  r: null,
+  bb: null,
+  so: null,
+  hbp: null,
+  sb: null,
+  sbPct: null,
+};
 
   // Fielding stats type & helpers
   type FieldingStats = {
@@ -624,11 +654,11 @@ const uploadSlug = React.useMemo(() => {
 // ---- Stats tab state & helpers ----
 type StatsSeason = {
   id: string;
-  seasonTerm: (typeof SEASON_TERMS)[number] | "" | null;
+  seasonTerm: string | null;
   seasonYear: number | null;
   team: string;
-  statsFiles?: File[];       // optional, just for this session
-  statsFileUrls?: string[];  // REAL URLs returned by /api/upload/stats
+  statsFiles?: File[];
+  statsFileUrls?: string[];
   createdAt?: number;
   hitting?: HittingStats;
   fielding?: FieldingStats;
@@ -876,7 +906,7 @@ useEffect(() => {
             id: String(it.id ?? it.slug ?? it.unitid ?? it.name ?? ""),
             name: String(it.name ?? it.title ?? ""),
           }))
-          .filter(o => o.name);
+          .filter((o: { name: string; id: string }) => o.name.trim().length > 0);
 
         setCollegeOptions(opts.slice(0, 10));
       } catch {
@@ -1633,8 +1663,8 @@ const otherAcademicDocsPayload =
         secondaryPos: safe(secondaryPos || ""),
         isPitcher: isPitcher || "", // <-- persist Yes/No/""
         pitcherHand: showPitcherHand ? (pitcherHand || "") : null,
-        throws: safe(throwsHand || ""),
-        bats: safe(batsSide || ""),
+        throws: asHand(throwsHand),
+        bats: asHand(batsSide),
         heightFt: numOrNull(heightFt),
         heightIn: numOrNull(heightIn),
         weightLb: numOrNull(weightLb),
@@ -1693,7 +1723,21 @@ const otherAcademicDocsPayload =
         primary: vs?.primary ?? null,
 
         // --- NEW: Coaches / References (Tab 7) ---
-        coaches: cr?.coaches ?? [],
+        coaches: (cr?.coaches ?? []).map((c: any) => ({
+          // ✅ id is required by the canonical CoachRef type
+          id: String(c?.id ?? uid()),
+
+          // ✅ required by canonical type
+          name: String(c?.name ?? c?.coachName ?? c?.fullName ?? "").trim(),
+
+          // optional-ish fields (keep nulls clean)
+          email: c?.email ? String(c.email).trim() : null,
+          phone: c?.phone ? String(c.phone).trim() : null,
+          role: c?.role ? String(c.role).trim() : null,
+          organization: c?.organization ? String(c.organization).trim() : null,
+          relationship: c?.relationship ? String(c.relationship).trim() : null,
+          notes: c?.notes ? String(c.notes).trim() : null,
+        })),
 
         // --- NEW: Stats Seasons (metadata only; files uploaded separately) ---
         statsSeasons: statsSeasons.map((s) => ({
@@ -2189,10 +2233,7 @@ const otherAcademicDocsPayload =
         )}
 
         {/* ---- Tab: Athletics ---- */}
-        {(activeTab === "Athletics" ||
-          activeTab === (TAB_KEYS as any)?.ATHLETICS ||
-          (activeTab as any) === 3 ||
-          activeTab === "3") && (
+        {activeTab === "Athletics" && (
           <TabAthletics
             // values
             eligibilityRegistered={eligibilityRegistered}
@@ -2244,12 +2285,12 @@ const otherAcademicDocsPayload =
             setCommittedProgramId={setCommittedProgramId}
             setCollegeOptions={setCollegeOptions}
 
-            setPrimaryPos={setPrimaryPos}
-            setSecondaryPos={setSecondaryPos}
-            setIsPitcher={setIsPitcher}
-            setPitcherHand={setPitcherHand}
-            setThrowsHand={setThrowsHand}
-            setBatsSide={setBatsSide}
+            setPrimaryPos={(v: string) => setPrimaryPos(v as (typeof POS_OPTIONS)[number] | "")}
+            setSecondaryPos={(v: string) => setSecondaryPos(v as (typeof SECONDARY_OPTIONS)[number] | "")}
+            setIsPitcher={(v: string) => setIsPitcher(v as (typeof YES_NO)[number] | "")}
+            setPitcherHand={(v: string) => setPitcherHand(v as (typeof PITCHER_HAND)[number] | "")}
+            setThrowsHand={(v: string) => setThrowsHand(v as (typeof THROWS_OPTIONS)[number] | "")}
+            setBatsSide={(v: string) => setBatsSide(v as (typeof BATS_OPTIONS)[number] | "")}
 
             setHsName={setHsName}
             setHsCity={setHsCity}
@@ -2367,10 +2408,7 @@ const otherAcademicDocsPayload =
         )}
 
         {/* ========= TAB 6: VIDEO / SOCIAL ========= */}
-        {(activeTab === TAB_KEYS.VIDEO_SOCIAL ||
-          activeTab === "Video / Social Media" ||
-          activeTab === "6" ||
-          (activeTab as any) === 6) && (
+        {activeTab === "Video / Social Media" && (
           <TabVideoSocial
             ref={videoSocialRef}
             // Use the same canonical email key we use for loading/saving profile
@@ -2380,15 +2418,11 @@ const otherAcademicDocsPayload =
         )}
 
         {/* ========= TAB 7: COACHES / REFERENCES ========= */}
-        {(activeTab === TAB_KEYS.COACHES_REFERENCES ||
-          activeTab === "References" ||
-          activeTab === "7" ||
-          (activeTab as any) === 7) && (
+        {activeTab === "References" && (
           <TabCoachesReferences
             ref={coachesRef}
-            // Same canonical email key here as well
             email={profileEmail}
-            planTier="Walk-On"                   // TODO: replace with real plan
+            planTier="Walk-On"
             knownTeams={teamOptions}
           />
         )}
@@ -2520,8 +2554,16 @@ const otherAcademicDocsPayload =
         </div>
       </form>
     </main>
+    );
+}
+
+export default function PlayerProfilePage() {
+  return (
+    <Suspense fallback={null}>
+      <PlayerProfilePageInner />
+    </Suspense>
   );
-} // <-- closes PlayerProfilePage component
+}
 
 // ---------- Reusable MetricSection (outside the component) ----------
 function MetricSection(props: {

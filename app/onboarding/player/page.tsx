@@ -1,6 +1,9 @@
+// app/onboarding/player/page.tsx
+
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function normalizePlanSlug(raw: string): string {
@@ -10,18 +13,19 @@ function normalizePlanSlug(raw: string): string {
     .replace(/\s+/g, "-");
 }
 
-export default function OnboardingPlayerBridgePage() {
+function OnboardingPlayerBridgePageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
   React.useEffect(() => {
     const q = normalizePlanSlug(search.get("plan") || "");
 
-    // map common aliases
     const mapped =
-      q === "allamerican" ? "all-american" :
-      q === "walkon" ? "walk-on" :
-      q;
+      q === "allamerican"
+        ? "all-american"
+        : q === "walkon"
+        ? "walk-on"
+        : q;
 
     if (mapped === "redshirt" || mapped === "walk-on" || mapped === "all-american") {
       router.replace(`/onboarding/${encodeURIComponent(mapped)}`);
@@ -31,4 +35,12 @@ export default function OnboardingPlayerBridgePage() {
   }, [router, search]);
 
   return null;
+}
+
+export default function OnboardingPlayerBridgePage() {
+  return (
+    <Suspense fallback={null}>
+      <OnboardingPlayerBridgePageInner />
+    </Suspense>
+  );
 }

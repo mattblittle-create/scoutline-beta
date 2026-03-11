@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import type { CoachRef as PlayerCoachRef } from "@/app/lib/types/player";
 
 /**
  * Tab 7: Coaches / References
@@ -16,6 +17,10 @@ import React, { useEffect, useMemo, useState } from "react";
 // ---------- Types ----------
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
 
+/**
+ * UI/local-storage shape (what this component edits)
+ * This is intentionally NOT the same as the canonical payload shape.
+ */
 export type CoachRef = {
   id: string;
   firstName: string;
@@ -31,8 +36,12 @@ type CoachesState = {
   coaches: CoachRef[];
 };
 
+/**
+ * Payload handle exposed to parent.
+ * IMPORTANT: This returns the canonical CoachRef type used by PlayerProfilePayload.
+ */
 export type CoachesHandle = {
-  getPayload: () => { coaches: CoachRef[] };
+  getPayload: () => { coaches: PlayerCoachRef[] };
 };
 
 type Props = {
@@ -67,6 +76,7 @@ const FOCUS_SUGGESTIONS = [
 function uid() {
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
+
 function loadState(email?: string | null): CoachesState {
   if (typeof window === "undefined") return { coaches: [] };
   const raw = localStorage.getItem(storageKey(email));
@@ -78,18 +88,41 @@ function loadState(email?: string | null): CoachesState {
     return { coaches: [] };
   }
 }
+
 function saveState(email?: string | null, state?: CoachesState) {
   if (typeof window === "undefined" || !state) return;
   localStorage.setItem(storageKey(email), JSON.stringify(state));
 }
+
 function normalizePhone(v: string) {
   const digits = v.replace(/\D+/g, "").slice(0, 15);
   if (digits.length <= 3) return digits;
   if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
+
 function looksLikeEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+}
+
+/**
+ * Map the UI shape -> canonical payload CoachRef.
+ * Canonical type requires at least `name`, and may allow additional optional fields.
+ */
+function toPayloadCoach(c: CoachRef): PlayerCoachRef {
+  const name = `${c.firstName || ""} ${c.lastName || ""}`.trim();
+
+  // We keep it conservative + compatible:
+  // - name is required
+  // - pass through what we can reasonably map
+  // - use `as any` so we don't have to perfectly match optional fields in the canonical type
+  return {
+    name,
+    email: c.email?.trim() ? c.email.trim() : null,
+    phone: c.phone?.trim() ? c.phone.trim() : null,
+    role: c.focus?.trim() ? c.focus.trim() : null,
+    organization: c.team?.trim() ? c.team.trim() : null,
+  } as any;
 }
 
 // ---------- Plan rules ----------
@@ -115,7 +148,8 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
   // decide which email key to use (prop → LS → anon)
   useEffect(() => {
     const fromProp = (emailProp ?? "").trim() || null;
-    const fromLS = typeof window !== "undefined" ? (localStorage.getItem("scoutlineEmail") || "").trim() || null : null;
+    const fromLS =
+      typeof window !== "undefined" ? (localStorage.getItem("scoutlineEmail") || "").trim() || null : null;
     const key = fromProp ?? fromLS ?? "anon";
     setResolvedEmail(key);
   }, [emailProp]);
@@ -157,7 +191,12 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
   const [err, setErr] = useState<string | null>(null);
 
   React.useImperativeHandle(ref, () => ({
-    getPayload: () => ({ coaches: state.coaches }),
+    getPayload: () => ({
+      // Only include entries that have a name (prevents empty rows from polluting payload)
+      coaches: (state.coaches || [])
+        .map(toPayloadCoach)
+        .filter((c: any) => typeof c?.name === "string" && c.name.trim().length > 0),
+    }),
   }));
 
   function flashMsg(text: string) {
@@ -236,8 +275,8 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
             <span style={pillStyle}>Redshirt</span>
           </div>
           <p style={{ margin: 0, color: "#4b5563" }}>
-            The Redshirt plan doesn’t include References. Upgrade to Walk-On, All-American, or Teams to enable
-            these features.
+            The Redshirt plan doesn’t include References. Upgrade to Walk-On, All-American, or Teams to enable these
+            features.
           </p>
         </div>
       ) : (

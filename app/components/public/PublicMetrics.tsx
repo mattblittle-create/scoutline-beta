@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { BASELINES } from "@/app/lib/metrics-baselines";
+import { BASELINES, type MetricKey } from "@/app/lib/metrics-baselines";
 
 /** ---------- Types ---------- */
 export type MetricPoint = {
@@ -14,7 +14,8 @@ export type MetricPoint = {
 };
 
 export type MetricSeries = {
-  key: string; // e.g., "homeToFirst", "sixtyYdDash", "exitVelo"
+  // Accept correct internal keys *and* legacy aliases arriving from older payloads
+  key: MetricKey | string; // e.g., "homeToFirst", "sixtyYdDash", "exitVelo", "fbVelo" (alias)
   label: string;
   unit?: string | null; // "sec" | "mph" | "lbs" (may also arrive as "seconds")
   points: MetricPoint[];
@@ -58,8 +59,8 @@ function parseFlexibleDate(d?: string | null): Date | null {
   // MM/YYYY
   let m = s.match(/^(\d{1,2})\/(\d{4})$/);
   if (m) {
-    const mm = Number(m[1]),
-      yyyy = Number(m[2]);
+    const mm = Number(m[1]);
+    const yyyy = Number(m[2]);
     if (mm >= 1 && mm <= 12) return new Date(yyyy, mm - 1, 1);
     return null;
   }
@@ -67,8 +68,8 @@ function parseFlexibleDate(d?: string | null): Date | null {
   // YYYY-MM
   m = s.match(/^(\d{4})-(\d{1,2})$/);
   if (m) {
-    const yyyy = Number(m[1]),
-      mm = Number(m[2]);
+    const yyyy = Number(m[1]);
+    const mm = Number(m[2]);
     if (mm >= 1 && mm <= 12) return new Date(yyyy, mm - 1, 1);
     return null;
   }
@@ -76,16 +77,11 @@ function parseFlexibleDate(d?: string | null): Date | null {
   // MM/DD/YYYY
   m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if (m) {
-    const mm = Number(m[1]),
-      dd = Number(m[2]),
-      yyyy = Number(m[3]);
+    const mm = Number(m[1]);
+    const dd = Number(m[2]);
+    const yyyy = Number(m[3]);
     const dt = new Date(yyyy, mm - 1, dd);
-    if (
-      dt.getFullYear() === yyyy &&
-      dt.getMonth() === mm - 1 &&
-      dt.getDate() === dd
-    )
-      return dt;
+    if (dt.getFullYear() === yyyy && dt.getMonth() === mm - 1 && dt.getDate() === dd) return dt;
     return null;
   }
 
@@ -135,21 +131,48 @@ function fmt(value: number | null | undefined, unit?: string | null): string {
   return u ? `${v} ${u}` : v;
 }
 
+/** ---------- Baseline mapping ---------- */
+const BASELINE_ALIASES: Record<string, MetricKey> = {
+  // direct
+  homeToFirst: "homeToFirst",
+  sixtyYdDash: "sixtyYdDash",
+  exitVelo: "exitVelo",
+  rawThrowVelo: "rawThrowVelo",
+  infieldThrowVelo: "infieldThrowVelo",
+  outfieldThrowVelo: "outfieldThrowVelo",
+  catcherThrowVelo: "catcherThrowVelo",
+  avgFbVelo: "avgFbVelo",
+  avgChVelo: "avgChVelo",
+  avgBbVelo: "avgBbVelo",
+  popTime: "popTime",
+  benchPress: "benchPress",
+  squat: "squat",
+
+  // common legacy/alt keys
+  sixtyYd: "sixtyYdDash",
+  rawVelo: "rawThrowVelo",
+
+  fbVelo: "avgFbVelo",
+  avgFBVelo: "avgFbVelo",
+  chVelo: "avgChVelo",
+  bbVelo: "avgBbVelo",
+};
+
+function toMetricKey(k: string): MetricKey | null {
+  const key = String(k || "").trim();
+  if (!key) return null;
+
+  // If it exists as-is in BASELINES, it is a valid MetricKey
+  if ((BASELINES as any)[key]) return key as MetricKey;
+
+  const mapped = BASELINE_ALIASES[key];
+  return mapped ?? null;
+}
+
 function baselineTableFor(seriesKey: string): Record<number, number> | null {
-  const k = seriesKey.trim();
-  if ((BASELINES as any)[k]) return (BASELINES as any)[k] as Record<number, number>;
-
-  const alias: Record<string, keyof typeof BASELINES> = {
-    sixtyYd: "sixtyYdDash",
-    sixtyYdDash: "sixtyYdDash",
-    rawVelo: "rawThrowVelo",
-    fbVelo: "avgFbVelo",
-    chVelo: "avgChVelo",
-    bbVelo: "avgBbVelo",
-  };
-
-  const mapped = alias[k];
-  return mapped ? (BASELINES as any)[mapped] : null;
+  const mk = toMetricKey(seriesKey);
+  if (!mk) return null;
+  return BASELINES[mk] ?? null;
 }
 
 /** Normalize incoming points so we accept either `date` or `monthYear`, and carry `source`. */
@@ -169,10 +192,7 @@ function normalizePoints(
     .filter(Boolean) as Array<{ date: string; value: number | null; source?: string | null }>;
 }
 
-function avgSeriesFor(
-  series: MetricSeries,
-  dob: string | null | undefined
-): { date: string; value: number | null }[] {
+function avgSeriesFor(series: MetricSeries, dob: string | null | undefined): { date: string; value: number | null }[] {
   const normalized = normalizePoints(series.points);
 
   if (series.ageAverages && Object.keys(series.ageAverages).length > 0) {
@@ -183,17 +203,16 @@ function avgSeriesFor(
     });
   }
 
-  const table = baselineTableFor(series.key);
+  const table = baselineTableFor(String(series.key));
   if (!table) return [];
 
   return normalized.map((p) => {
     const age = ageOnDate(dob, p.date);
     if (age == null) return { date: p.date, value: null };
 
-    const ages = Object.keys(table)
-      .map(Number)
-      .sort((a, b) => a - b);
+    const ages = Object.keys(table).map(Number).sort((a, b) => a - b);
     if (!ages.length) return { date: p.date, value: null };
+
     let nearest = ages[0];
     let minDelta = Math.abs(age - nearest);
     for (let i = 1; i < ages.length; i++) {
@@ -268,15 +287,7 @@ function isCatcherMetric(key: string) {
 }
 function isPitchingMetric(key: string) {
   const k = key.trim();
-  return new Set([
-    "avgFbVelo",
-    "avgFBVelo",
-    "fbVelo",
-    "avgChVelo",
-    "chVelo",
-    "avgBbVelo",
-    "bbVelo",
-  ]).has(k);
+  return new Set(["avgFbVelo", "avgFBVelo", "fbVelo", "avgChVelo", "chVelo", "avgBbVelo", "bbVelo"]).has(k);
 }
 function isInfieldMetric(key: string) {
   return key.trim() === "infieldThrowVelo";
@@ -323,12 +334,14 @@ function MetricCard({
   pill,
   cardInner,
 }: MetricCardProps) {
+  const seriesKey = String(series.key);
+
   // If hints exist, enforce eligibility right away
-  if (isCatcherMetric(series.key) && hasAnyHints && !allowCatcher) return null;
-  if (isPitchingMetric(series.key) && hasAnyHints && !allowPitching) return null;
-  if (isInfieldMetric(series.key) && hasAnyHints && !allowInfield) return null;
-  if (isOutfieldMetric(series.key) && hasAnyHints && !allowOutfield) return null;
-  if (isRawThrowMetric(series.key) && hasAnyHints && !allowRawThrow) return null;
+  if (isCatcherMetric(seriesKey) && hasAnyHints && !allowCatcher) return null;
+  if (isPitchingMetric(seriesKey) && hasAnyHints && !allowPitching) return null;
+  if (isInfieldMetric(seriesKey) && hasAnyHints && !allowInfield) return null;
+  if (isOutfieldMetric(seriesKey) && hasAnyHints && !allowOutfield) return null;
+  if (isRawThrowMetric(seriesKey) && hasAnyHints && !allowRawThrow) return null;
 
   const ptsRaw = normalizePoints(series.points);
   const pts = ptsRaw.filter((p) => p && p.date);
@@ -339,9 +352,7 @@ function MetricCard({
 
   // If we require data to show (pos-specific metrics), hide if empty
   const hasAnyPoint = pts.some((p) => p.value != null && Number.isFinite(p.value as any));
-  if (!hasAnyPoint && requiresDataToShow(series.key)) {
-    return null;
-  }
+  if (!hasAnyPoint && requiresDataToShow(seriesKey)) return null;
 
   // ---- If plan does NOT allow growth tracking, show ONLY header/pills (no chart) ----
   if (!showCharts) {
@@ -355,11 +366,7 @@ function MetricCard({
           </div>
         </div>
 
-        {!hasAnyPoint && (
-          <div style={{ color: "#94a3b8", fontStyle: "italic" }}>
-            No Metrics available.
-          </div>
-        )}
+        {!hasAnyPoint && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No Metrics available.</div>}
       </div>
     );
   }
@@ -514,15 +521,15 @@ function MetricCard({
       if (series.ageAverages && typeof series.ageAverages[age] !== "undefined") {
         avgAtAge = series.ageAverages[age] as number | null;
       } else {
-        const tbl = baselineTableFor(series.key);
+        const tbl = baselineTableFor(seriesKey);
         if (tbl) {
           const ages = Object.keys(tbl).map(Number).sort((a, b) => a - b);
           if (ages.length) {
             let nearest = ages[0];
             let min = Math.abs(age - nearest);
             for (let i = 1; i < ages.length; i++) {
-              const a2 = ages[i],
-                diff = Math.abs(age - a2);
+              const a2 = ages[i];
+              const diff = Math.abs(age - a2);
               if (diff < min || (diff === min && a2 < nearest)) {
                 nearest = a2;
                 min = diff;
@@ -564,7 +571,7 @@ function MetricCard({
           style={{ width: "100%", height: "auto", display: "block" }}
         >
           <defs>
-            <clipPath id={`clip-${series.key}`}>
+            <clipPath id={`clip-${seriesKey}`}>
               <rect x={padLeft} y={padTop} width={innerW} height={innerH} />
             </clipPath>
           </defs>
@@ -600,13 +607,11 @@ function MetricCard({
           <line x1={padLeft} y1={padTop} x2={padLeft} y2={padTop + innerH} stroke="#cbd5e1" />
 
           {/* Lines + dots */}
-          <g clipPath={`url(#clip-${series.key})`}>
+          <g clipPath={`url(#clip-${seriesKey})`}>
             {avgXY.length > 0 && avgPath && (
               <path d={avgPath} fill="none" stroke={AVG_COLOR} strokeWidth="2" strokeDasharray="4 4" />
             )}
-            {playerXY.length > 0 && playerPath && (
-              <path d={playerPath} fill="none" stroke={PLAYER_COLOR} strokeWidth="2.5" />
-            )}
+            {playerXY.length > 0 && playerPath && <path d={playerPath} fill="none" stroke={PLAYER_COLOR} strokeWidth="2.5" />}
             {playerXY.map((p, i) => (
               <circle key={i} cx={p.x} cy={p.y} r={4.5} fill={PLAYER_COLOR} />
             ))}
@@ -670,9 +675,7 @@ function MetricCard({
         </svg>
       </div>
 
-      {pts.length === 0 && (
-        <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No data yet for this metric.</div>
-      )}
+      {pts.length === 0 && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No data yet for this metric.</div>}
     </div>
   );
 }
@@ -691,9 +694,7 @@ export default function PublicMetrics({
 
   // Plan gating: only All-American + Teams show growth tracking charts
   const showCharts =
-    typeof canShowCharts === "boolean"
-      ? canShowCharts
-      : planTier === "All-American" || planTier === "Teams";
+    typeof canShowCharts === "boolean" ? canShowCharts : planTier === "All-American" || planTier === "Teams";
 
   /** ---- enforce requested order & display names ---- */
   const slotOrder: Array<{ keys: string[]; display: string }> = [
@@ -718,7 +719,7 @@ export default function PublicMetrics({
     { keys: ["avgBbVelo", "bbVelo"], display: "Avg Breaking Ball Velocity" },
   ];
 
-  const byKey = new Map(series.map((s) => [s.key, s]));
+  const byKey = new Map(series.map((s) => [String(s.key), s]));
   const orderedSeries: Array<MetricSeries & { _display: string }> = [];
 
   for (const slot of slotOrder) {
@@ -735,7 +736,7 @@ export default function PublicMetrics({
 
   // append any remaining series not explicitly slotted
   for (const s of series) {
-    if (!orderedSeries.find((os) => os.key === s.key)) {
+    if (!orderedSeries.find((os) => String(os.key) === String(s.key))) {
       orderedSeries.push({ ...s, _display: s.label });
     }
   }
@@ -750,11 +751,7 @@ export default function PublicMetrics({
   const primaryPos: string | null = rawPositions?.primary ?? null;
 
   const secondaryRaw = rawPositions?.secondary ?? null;
-  const secondaryPos: string[] = Array.isArray(secondaryRaw)
-    ? secondaryRaw
-    : secondaryRaw
-    ? [secondaryRaw]
-    : [];
+  const secondaryPos: string[] = Array.isArray(secondaryRaw) ? secondaryRaw : secondaryRaw ? [secondaryRaw] : [];
 
   const hasPosHints = !!primaryPos || secondaryPos.length > 0;
 
@@ -793,7 +790,10 @@ export default function PublicMetrics({
   const allowPitchingCharts = hasAnyHints ? hasPitcherPos || isPitcherYes : true;
   const allowInfieldVelo = hasAnyHints ? hasInfieldPos : true;
   const allowOutfieldVelo = hasAnyHints ? hasOutfieldPos : true;
-  const allowRawThrowVelo = hasAnyHints ? hasUtilityPos : true;
+
+  // 🔧 Raw throwing velo is useful for basically any position with hints (IF/OF/C/Utility),
+  // not just Utility.
+  const allowRawThrowVelo = hasAnyHints ? (hasUtilityPos || hasInfieldPos || hasOutfieldPos || hasCatcher) : true;
 
   const safeCard: React.CSSProperties = {
     marginTop: 16,
@@ -874,7 +874,7 @@ export default function PublicMetrics({
         <div style={grid}>
           {orderedSeries.map((s) => (
             <MetricCard
-              key={s.key}
+              key={String(s.key)}
               series={s}
               dob={dob ?? null}
               showCharts={showCharts}

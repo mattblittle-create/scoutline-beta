@@ -52,13 +52,12 @@ type Props = {
   areasOfStudyInput?: string;
 
   /** ---------- NEW: persisted doc URLs (wired to public profile) ---------- */
-  // Single slot: "Upload Report Card / Transcripts"
-  reportCardUrl: string; // we use this single slot to store either a transcript or a report card
-  setReportCardUrl: (v: string) => void;
-
-  // Optional second single slot (kept for back-compat; not used by the single-uploader UI in this drop)
-  transcriptUrl?: string;
-  setTranscriptUrl?: (v: string) => void;
+  reportCardUrl: string;
+  setReportCardUrl: React.Dispatch<React.SetStateAction<string>>;
+  transcriptUrl: string;
+  setTranscriptUrl: React.Dispatch<React.SetStateAction<string>>;
+  additionalDocs: Array<{ url: string; label?: string | null }>;
+  setAdditionalDocs: React.Dispatch<React.SetStateAction<Array<{ url: string; label?: string | null }>>>;
 
   // errors
   fieldErr: Record<string, string>;
@@ -81,7 +80,7 @@ type Props = {
   setAreasOfStudyInput?: (v: string) => void; // optional (component falls back to local state)
 
   // refs
-  gradYearRef: React.RefObject<HTMLInputElement>;
+  gradYearRef: React.RefObject<HTMLInputElement | null>;
 
   // constants/styles from parent (single source of truth)
   US_STATE_ABBRS: readonly string[];
@@ -138,6 +137,8 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     setReportCardUrl,
     transcriptUrl,
     setTranscriptUrl,
+    additionalDocs,
+    setAdditionalDocs,
 
     // errors
     fieldErr,

@@ -52,6 +52,39 @@ type TabMetricsProps = {
   showOutfieldVelo: boolean;    // LF / CF / RF
   showRawThrowVelo: boolean;    // Utility only
 
+  metricPrivate: {
+    homeToFirst: boolean;
+    sixtyYdDash: boolean;
+    exitVelo: boolean;
+    rawThrowVelo: boolean;
+    infieldThrowVelo: boolean;
+    outfieldThrowVelo: boolean;
+    catcherThrowVelo: boolean;
+    avgFbVelo: boolean;
+    avgChVelo: boolean;
+    avgBbVelo: boolean;
+    popTime: boolean;
+    benchPress: boolean;
+    squat: boolean;
+  };
+  setMetricPrivate: React.Dispatch<
+    React.SetStateAction<{
+      homeToFirst: boolean;
+      sixtyYdDash: boolean;
+      exitVelo: boolean;
+      rawThrowVelo: boolean;
+      infieldThrowVelo: boolean;
+      outfieldThrowVelo: boolean;
+      catcherThrowVelo: boolean;
+      avgFbVelo: boolean;
+      avgChVelo: boolean;
+      avgBbVelo: boolean;
+      popTime: boolean;
+      benchPress: boolean;
+      squat: boolean;
+    }>
+  >;
+
   homeToFirstEntries: MetricEntry[];
   setHomeToFirstEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
   sixtyYdDashEntries: MetricEntry[];
@@ -64,23 +97,28 @@ type TabMetricsProps = {
 
   infieldThrowVeloEntries: MetricEntry[];
   setInfieldThrowVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   outfieldThrowVeloEntries: MetricEntry[];
   setOutfieldThrowVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
   benchPressEntries: MetricEntry[];
   setBenchPressEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   squatEntries: MetricEntry[];
   setSquatEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
   popTimeEntries: MetricEntry[];
   setPopTimeEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   catcherThrowVeloEntries: MetricEntry[];
   setCatcherThrowVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
   avgFbVeloEntries: MetricEntry[];
   setAvgFbVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   avgChVeloEntries: MetricEntry[];
   setAvgChVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   avgBbVeloEntries: MetricEntry[];
   setAvgBbVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
@@ -338,21 +376,37 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
     showOutfieldVelo,
     showRawThrowVelo,
 
-    homeToFirstEntries, setHomeToFirstEntries,
-    sixtyYdDashEntries, setSixtyYdDashEntries,
-    exitVeloEntries, setExitVeloEntries,
+    metricPrivate,
+    setMetricPrivate,
 
-    rawThrowVeloEntries, setRawThrowVeloEntries,
-    infieldThrowVeloEntries, setInfieldThrowVeloEntries,
-    outfieldThrowVeloEntries, setOutfieldThrowVeloEntries,
+    homeToFirstEntries,
+    setHomeToFirstEntries,
+    sixtyYdDashEntries,
+    setSixtyYdDashEntries,
+    exitVeloEntries,
+    setExitVeloEntries,
 
-    benchPressEntries, setBenchPressEntries,
-    squatEntries, setSquatEntries,
-    popTimeEntries, setPopTimeEntries,
-    catcherThrowVeloEntries, setCatcherThrowVeloEntries,
-    avgFbVeloEntries, setAvgFbVeloEntries,
-    avgChVeloEntries, setAvgChVeloEntries,
-    avgBbVeloEntries, setAvgBbVeloEntries,
+    rawThrowVeloEntries,
+    setRawThrowVeloEntries,
+    infieldThrowVeloEntries,
+    setInfieldThrowVeloEntries,
+    outfieldThrowVeloEntries,
+    setOutfieldThrowVeloEntries,
+
+    benchPressEntries,
+    setBenchPressEntries,
+    squatEntries,
+    setSquatEntries,
+    popTimeEntries,
+    setPopTimeEntries,
+    catcherThrowVeloEntries,
+    setCatcherThrowVeloEntries,
+    avgFbVeloEntries,
+    setAvgFbVeloEntries,
+    avgChVeloEntries,
+    setAvgChVeloEntries,
+    avgBbVeloEntries,
+    setAvgBbVeloEntries,
 
     styles: { labelStyle, labelText, inputStyle, hrStyle, errText, qMark },
   } = props;

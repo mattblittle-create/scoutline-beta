@@ -135,13 +135,16 @@ export type TabStatsProps = {
 
   /** options */
   teamOptions: string[];
-  seasonTerms: string[];
-  pitchTypes: string[];
+  seasonTerms: readonly string[];
+  pitchTypes: readonly string[];
   yearOptions: number[];
 
   /** misc feedback (optional) */
   setErr?: (msg: string) => void;
   transientSaved?: () => void;
+
+  /** optional slug passed from parent */
+  playerSlug?: string;
 
   /** shared inline styles */
   styles: Styles;
@@ -693,7 +696,7 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
 
           const toNum = (v: any): number | null => {
             if (v == null || v === "") return null;
-            const s = String(v).trim().replaceAll(",", "");
+            const s = String(v).trim().replace(/,/g, "");
             const n = Number(s);
             return Number.isFinite(n) ? n : null;
           };

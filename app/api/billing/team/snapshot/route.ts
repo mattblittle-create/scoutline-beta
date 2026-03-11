@@ -3,6 +3,8 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { PLAN_PRICES_CENTS, normalizeCadence, normalizePlanTier } from "@/lib/billing/plans";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/billing/team/snapshot?teamId=abc123&planTier=Teams&cadence=Monthly&orgName=Foo&seatsUsed=42
 export async function GET(req: Request) {
   try {

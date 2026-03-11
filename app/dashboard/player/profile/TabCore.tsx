@@ -75,7 +75,7 @@ type Props = {
   gender: string;
 
   fieldErr: FieldErr;
-  GENDER_OPTIONS: string[];
+  GENDER_OPTIONS: readonly ("Male" | "Female")[];
   US_STATE_ABBRS: readonly string[];
 
   // handlers
@@ -105,11 +105,11 @@ type Props = {
   setGender: (v: string) => void;
 
   // refs
-  phoneRef: React.RefObject<HTMLInputElement>;
-  heightInRef: React.RefObject<HTMLInputElement>;
-  ageRef: React.RefObject<HTMLInputElement>;
-  dobRef: React.RefObject<HTMLInputElement>;
-  genderRef: React.RefObject<HTMLSelectElement>;
+  phoneRef: React.RefObject<HTMLInputElement | null>;
+  heightInRef: React.RefObject<HTMLInputElement | null>;
+  ageRef: React.RefObject<HTMLInputElement | null>;
+  dobRef: React.RefObject<HTMLInputElement | null>;
+  genderRef: React.RefObject<HTMLSelectElement | null>;
 
   // styles (reuse the exact objects you already have in page.tsx)
   labelStyle: React.CSSProperties;

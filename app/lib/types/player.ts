@@ -1,4 +1,4 @@
-// /lib/types/player.ts
+// app/lib/types/player.ts
 
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
 
@@ -81,10 +81,6 @@ export type AtomicProfile = {
   act?: number | null;
   academicBio?: string | null;
   academicBioPrivate?: boolean;
-
-  transcriptUrls?: string[];                                
-  reportCardUrls?: string[];                                
-  otherAcademicDocs?: { url: string; label?: string | null }[];
 
   // Intended majors
   areasOfStudyInput?: string | null;
@@ -268,6 +264,8 @@ export type PlayerProfilePayload = {
   // academics
   gradYear?: number | null;
   hsName?: string | null;
+  hsCity?: string | null;   // ✅ add this
+  hsState?: string | null;
   hometown?: string | null; // city
   state?: string | null;
 
@@ -307,6 +305,9 @@ export type PlayerProfilePayload = {
   // eligibility
   eligibilityRegistered?: boolean;
 
+  ncaaId?: string | null;
+  naiaEcid?: string | null;
+
   // commitment
   isCommitted?: boolean;
   committedProgram?: string | null;
@@ -315,12 +316,14 @@ export type PlayerProfilePayload = {
   // schedules
   hsScheduleUrl?: string | null;
   hsSchedulePrivate?: boolean;
+  hsWebsiteUrl?: string | null;
 
   travelTeamName?: string | null;
   travelTeamCity?: string | null;
   travelTeamState?: string | null;
   travelTeamScheduleUrl?: string | null;
   travelTeamSchedulePrivate?: boolean;
+  travelTeamWebsiteUrl?: string | null;
 
   // teams
   otherTeams?: Array<{

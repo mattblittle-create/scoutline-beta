@@ -293,14 +293,21 @@ function embedForExternalVideo(v: ExternalVideo): React.ReactNode {
 function loadState(email?: string | null): VideoSocialState {
   const raw = typeof window !== "undefined" ? localStorage.getItem(storageKey(email)) : null;
   if (!raw) return { externalVideos: [], localVideos: [], social: {}, primary: null };
-  try {
-    const parsed = JSON.parse(raw) as VideoSocialState;
-    return { externalVideos: [], localVideos: [], social: {}, primary: null, ...parsed };
-  } catch {
-    return { externalVideos: [], localVideos: [], social: {}, primary: null };
-  }
+try {
+  const parsed = JSON.parse(raw) as VideoSocialState;
+  return {
+    ...parsed,
+    externalVideos: Array.isArray(parsed?.externalVideos) ? parsed.externalVideos : [],
+    localVideos: Array.isArray(parsed?.localVideos) ? parsed.localVideos : [],
+    social: parsed?.social ?? {},
+    primary: parsed?.primary ?? null,
+  };
+} catch {
+  return { externalVideos: [], localVideos: [], social: {}, primary: null };
+}
 }
 function saveState(email: string | null | undefined, state: VideoSocialState) {
+  if (typeof window === "undefined") return;
   localStorage.setItem(storageKey(email), JSON.stringify(state));
 }
 
@@ -680,7 +687,9 @@ function saveSocial() {
     // derived flags for UI
     const localCount = state.localVideos.length;
     const isUnlimited = PLAN.maxLocal === "unlimited";
-    const maxLocalNum = isUnlimited ? Infinity : PLAN.maxLocal;
+    const maxLocalNum: number =
+      isUnlimited ? Infinity : typeof PLAN.maxLocal === "number" ? PLAN.maxLocal : 0;
+
     const atLocalLimit = !isUnlimited && localCount >= maxLocalNum;
     const uploadsDisabled = !PLAN.canUploadLocal || atLocalLimit;
 
@@ -786,20 +795,20 @@ function saveSocial() {
 
         {PLAN.enabled && (
           <>
-            {/* ---------- Local Uploads (DEV backend) ---------- */}
-            <div style={cardStyle}>
-              <div style={cardHeaderStyle}>
-                <span style={cardTitleStyle}>Upload Video Files</span>
-                <span style={pillStyle}>
-                  {planTier === "Walk-On" && planTier !== "All-American"
-                    ? `Local Uploads • ${state.localVideos.length}/${PLAN.maxLocal} used`
-                    : "Local Dev"}
-                </span>
-              </div>
-              <p style={{ margin: "8px 0 16px", color: "#4b5563" }}>
-                Uploads save to <code>/public/uploads/videos</code> in development. When you switch to S3, this button will
-                behave the same, but files will go to your bucket.
-              </p>
+           {/* ---------- Local Uploads (DEV backend) ---------- */}
+<div style={cardStyle}>
+  <div style={cardHeaderStyle}>
+    <span style={cardTitleStyle}>Upload Video Files</span>
+    <span style={pillStyle}>
+      {PLAN.maxLocal === "unlimited"
+        ? "Local Uploads • Unlimited"
+        : `Local Uploads • ${state.localVideos.length}/${PLAN.maxLocal} used`}
+    </span>
+  </div>
+  <p style={{ margin: "8px 0 16px", color: "#4b5563" }}>
+    Uploads save to <code>/public/uploads/videos</code> in development. When you switch to S3, this button will
+    behave the same, but files will go to your bucket.
+  </p>
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                 <input

@@ -1,6 +1,5 @@
 // app/dashboard/player/profile/billing/page.tsx
 import { prisma } from "@/lib/prisma";
-import { Plan } from "@prisma/client";
 import { cookies } from "next/headers";
 
 import DevPlayerSelector from "./DevPlayerSelector";
@@ -117,6 +116,9 @@ async function ensureDevInvoices(playerProfileId: string, amountCents: number, c
   });
 }
 
+type Cadence = "monthly" | "annual";
+type PlayerPlan = "REDSHIRT" | "WALK_ON" | "ALL_AMERICAN";
+
 export default async function PlayerBillingPage(props: {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
@@ -124,11 +126,13 @@ export default async function PlayerBillingPage(props: {
   const qp = searchParams["playerProfileId"];
   const playerProfileIdFromQuery = Array.isArray(qp) ? qp[0] : qp;
 
-  const playerProfileId = playerProfileIdFromQuery || getDevPlayerProfileIdFromCookie();
+  // ✅ single source of truth (string or null)
+  const rawId = playerProfileIdFromQuery || getDevPlayerProfileIdFromCookie();
+  const profileIdStr = typeof rawId === "string" && rawId.trim() ? rawId.trim() : null;
 
-  const profile = playerProfileId
+  const profile = profileIdStr
     ? await prisma.playerProfile.findUnique({
-        where: { id: playerProfileId },
+        where: { id: profileIdStr },
         select: {
           id: true,
           email: true,
@@ -137,35 +141,51 @@ export default async function PlayerBillingPage(props: {
           playerBillingStatus: true,
           playerCancelRequestedAt: true,
           playerCancelEffectiveAt: true,
-        } as any,
-      })
-    : null;
-
-const nowMs = Date.now();
-const effectiveAtMs = profile?.playerCancelEffectiveAt
-  ? new Date(profile.playerCancelEffectiveAt as any).getTime()
-  : null;
-
-const showCancelScheduled = effectiveAtMs != null && effectiveAtMs > nowMs;
-const isCanceledNow = effectiveAtMs != null && effectiveAtMs <= nowMs;
-
-  const planTier = (profile?.playerPlanTier || "REDSHIRT") as Plan;
-  const cadence = (profile?.playerBillingCadence || "monthly") as "monthly" | "annual";
-
-  const baseAmountCents = PRICE_CENTS[cadence][planTier];
-
-  const activeApp = profile
-    ? await prisma.discountApplication.findFirst({
-        where: {
-          targetType: "PLAYER",
-          targetId: profile.id,
-          status: "ACTIVE",
-          OR: [{ endsAt: null }, { endsAt: { gt: new Date() } }],
         },
-        orderBy: { appliedAt: "desc" },
-        include: { discountCode: true },
       })
     : null;
+
+  const nowMs = Date.now();
+  const effectiveAtMs = profile?.playerCancelEffectiveAt ? new Date(profile.playerCancelEffectiveAt).getTime() : null;
+
+  const showCancelScheduled = effectiveAtMs != null && effectiveAtMs > nowMs;
+  const isCanceledNow = effectiveAtMs != null && effectiveAtMs <= nowMs;
+
+  // Player billing page should NEVER price TEAM (TEAM is priced on team billing pages).
+  const cadence = (profile?.playerBillingCadence || "monthly") as Cadence;
+
+  // If anything upstream ever feeds TEAM into player billing, we safely coerce it to WALK_ON.
+  const planTierRaw = String((profile as any)?.playerPlanTier || "WALK_ON").toUpperCase();
+  const planTier: PlayerPlan =
+    planTierRaw === "REDSHIRT" || planTierRaw === "WALK_ON" || planTierRaw === "ALL_AMERICAN"
+      ? (planTierRaw as PlayerPlan)
+      : "WALK_ON";
+
+  const BASE_PRICE_CENTS: Record<Cadence, Record<PlayerPlan, number>> = {
+    monthly: { REDSHIRT: 0, WALK_ON: 2495, ALL_AMERICAN: 4995 },
+    annual: { REDSHIRT: 0, WALK_ON: 26500, ALL_AMERICAN: 51000 },
+  };
+
+  const baseAmountCents = BASE_PRICE_CENTS[cadence][planTier];
+
+  // dev-safe Prisma delegates
+  const p: any = prisma as any;
+
+  // Load active discount app + discount code (if model/relations exist)
+  const activeApp =
+    profileIdStr && p.discountApplication?.findFirst
+      ? await p.discountApplication.findFirst({
+          where: {
+            targetType: "PLAYER",
+            targetId: profileIdStr,
+            status: "ACTIVE",
+            OR: [{ endsAt: null }, { endsAt: { gt: new Date() } }],
+          },
+          include: {
+            discountCode: true,
+          },
+        })
+      : null;
 
   const discountType = activeApp?.discountCode?.type ?? null;
   const discountValue = activeApp?.discountCode?.value ?? null;
@@ -197,25 +217,23 @@ const isCanceledNow = effectiveAtMs != null && effectiveAtMs <= nowMs;
 
   const discountCents = Math.max(0, baseAmountCents - totalCents);
 
-  // dev-safe Prisma delegates
-  const p: any = prisma as any;
-
   const billingProfile: { paymentType: string | null; brand: string | null; last4: string | null } | null =
-    profile && p.playerBillingProfile?.findUnique
+    profileIdStr && p.playerBillingProfile?.findUnique
       ? await p.playerBillingProfile.findUnique({
-          where: { playerProfileId: profile.id },
+          where: { playerProfileId: profileIdStr },
           select: { paymentType: true, brand: true, last4: true },
         })
       : null;
 
-  if (profile) {
-    await ensureDevInvoices(profile.id, totalCents, cadence);
+  // Seed dev invoices if possible
+  if (profileIdStr) {
+    await ensureDevInvoices(profileIdStr, totalCents, cadence);
   }
 
   const invoices =
-    profile && p.playerInvoice?.findMany
+    profileIdStr && p.playerInvoice?.findMany
       ? await p.playerInvoice.findMany({
-          where: { playerProfileId: profile.id },
+          where: { playerProfileId: profileIdStr },
           orderBy: { invoiceDate: "desc" },
           take: 12,
           select: {
@@ -264,8 +282,8 @@ const isCanceledNow = effectiveAtMs != null && effectiveAtMs <= nowMs;
                 fontWeight: 800,
               }}
             >
-              Cancellation scheduled. Your account will remain active until{" "}
-              {fmtDate(profile.playerCancelEffectiveAt as any)}. After that date, access will be removed and billing will stop.
+              Cancellation scheduled. Your account will remain active until {fmtDate(profile.playerCancelEffectiveAt)}.
+              After that date, access will be removed and billing will stop.
             </div>
           ) : null}
 
@@ -331,19 +349,21 @@ const isCanceledNow = effectiveAtMs != null && effectiveAtMs <= nowMs;
                 </div>
               </div>
 
-              <div style={{ marginTop: 14 }}>
-                <PlayerBillingAdminTools
-                  playerProfileId={profile.id}
-                  currentPlan={String(planTier)}
-                  currentCadence={cadence}
-                  derivedStatus={derivedStatus}
-                />
-              </div>
+              {profileIdStr ? (
+                <div style={{ marginTop: 14 }}>
+                  <PlayerBillingAdminTools
+                    playerProfileId={profileIdStr}
+                    currentPlan={String(planTier)}
+                    currentCadence={cadence}
+                    derivedStatus={derivedStatus}
+                  />
+                </div>
+              ) : null}
 
               <div style={{ marginTop: 14 }}>
                 <BillingDiscountCodeRedeem
                   targetType="PLAYER"
-                  targetId={profile.id}
+                  targetId={profileIdStr ?? ""} // ✅ always string
                   planTier={String(planTier)}
                   cadence={cadence}
                   current={
@@ -364,7 +384,7 @@ const isCanceledNow = effectiveAtMs != null && effectiveAtMs <= nowMs;
               </div>
 
               <div style={{ marginTop: 14 }}>
-                <PlayerBillingPaymentMethod playerProfileId={profile.id} summary={billingProfile} />
+                <PlayerBillingPaymentMethod playerProfileId={profileIdStr ?? ""} summary={billingProfile} />
               </div>
             </>
           )}

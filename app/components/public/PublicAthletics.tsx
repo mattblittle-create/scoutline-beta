@@ -1,3 +1,4 @@
+// app/components/public/PublicAthletics.tsx
 "use client";
 
 import * as React from "react";
@@ -14,8 +15,8 @@ export type TeamEntry = {
   websiteUrl?: string | null;
 
   // Stats tab (used for the header line)
-  statsTeamName?: string | null;      // Actual Team (from Stats tab form)
-  statsSeason?: string | null;        // e.g., Fall, Spring, Summer, Winter
+  statsTeamName?: string | null; // Actual Team (from Stats tab form)
+  statsSeason?: string | null; // e.g., Fall, Spring, Summer, Winter
   statsYear?: string | number | null; // e.g., 2024
 
   // Link to season stats (uploaded in Stats tab "Link to Stats (upload)") — not shown here
@@ -37,15 +38,15 @@ export type TeamEntry = {
 
 export type AthleticsData = {
   // Topline
-  bio?: string | null;                    // Athletics tab → Player Bio
+  bio?: string | null; // Athletics tab → Player Bio
   eligibilityRegistered?: boolean | null; // NCAA/NAIA eligibility centers checkbox
 
   // Positions/handedness row (duplicated from header)
   primaryPos?: string | null;
   secondaryPos?: string[] | null;
   pitcher?: string | null; // e.g., RHP/LHP or R/L/S if you prefer
-  bats?: string | null;    // R/L/S
-  throws?: string | null;  // R/L/S
+  bats?: string | null; // R/L/S
+  throws?: string | null; // R/L/S
 
   // Teams (rows)
   teams?: TeamEntry[] | null;
@@ -76,8 +77,11 @@ export default function PublicAthletics({
     pitcher,
     bats,
     throws,
-    teams = [],
+    teams,
   } = athletics || {};
+
+  // ✅ Option A: normalize to array right before use
+  const teamsSafe: TeamEntry[] = Array.isArray(teams) ? teams : [];
 
   // ---- styles ----
   const safeCard: React.CSSProperties = {
@@ -229,17 +233,20 @@ export default function PublicAthletics({
   type GroupKey = string; // `${kindLower}|${teamNameLower}`
   const groups = new Map<GroupKey, TeamEntry[]>();
 
-  for (const t of teams) {
+  // ✅ FIX: iterate teamsSafe + tiny safety polish
+  for (const t of teamsSafe) {
+    if (!t) continue;
+
     const kindLower = normKey(t.kind);
     const teamName = norm(t.statsTeamName) || norm(t.name); // prefer Stats tab team name
     const teamLower = normKey(teamName);
     const key: GroupKey = `${kindLower}|${teamLower}`;
+
     if (!groups.has(key)) groups.set(key, []);
     groups.get(key)!.push(t);
   }
 
-  const latestFromGroup = (arr: TeamEntry[]): TeamEntry =>
-    arr.slice().sort(recencyCmp)[0];
+  const latestFromGroup = (arr: TeamEntry[]): TeamEntry => arr.slice().sort(recencyCmp)[0];
 
   // Split latest entries into HS / Travel / Others
   let latestHS: TeamEntry[] = [];
@@ -249,6 +256,7 @@ export default function PublicAthletics({
   for (const arr of groups.values()) {
     const latest = latestFromGroup(arr);
     const kindLower = normKey(latest.kind);
+
     if (kindLower === "high school") {
       latestHS.push(latest);
     } else if (kindLower === "travel") {
@@ -275,10 +283,8 @@ export default function PublicAthletics({
     fallbackLabel: string;
     team: TeamEntry;
   }) => {
-    const teamNameRaw =
-      (team.statsTeamName ?? team.name ?? "").trim() || fallbackLabel;
-    const loc =
-      [team.city, team.state].filter(Boolean).join(", ").trim() || null;
+    const teamNameRaw = (team.statsTeamName ?? team.name ?? "").trim() || fallbackLabel;
+    const loc = [team.city, team.state].filter(Boolean).join(", ").trim() || null;
 
     // ✅ CLICKABLE NAME LOGIC (NEW):
     // - Prefer websiteUrl
@@ -340,9 +346,7 @@ export default function PublicAthletics({
 
             {loc && <span style={teamMetaStyle}>• {loc}</span>}
 
-            {team.statsSeason && (
-              <span style={teamMetaStyle}>• {team.statsSeason}</span>
-            )}
+            {team.statsSeason && <span style={teamMetaStyle}>• {team.statsSeason}</span>}
 
             {yearStr && <span style={teamMetaStyle}>• {yearStr}</span>}
           </div>
@@ -379,9 +383,7 @@ export default function PublicAthletics({
         <span style={basePill}>Primary Pos: {primaryPos || "—"}</span>
         <span style={basePill}>
           Secondary Pos:{" "}
-          {secondaryPos && secondaryPos.length > 0
-            ? secondaryPos.join(", ")
-            : "—"}
+          {secondaryPos && secondaryPos.length > 0 ? secondaryPos.join(", ") : "—"}
         </span>
 
         {/* Only show Pitcher pill when handedness is present & valid */}

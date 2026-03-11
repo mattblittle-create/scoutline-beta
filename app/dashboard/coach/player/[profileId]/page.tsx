@@ -132,6 +132,18 @@ type Props = {
   searchParams?: { [key: string]: string | string[] | undefined };
 };
 
+/** ---------- Tiny shared response helpers ---------- */
+type ApiOkGeneric<T> = { ok: true; data: T };
+type ApiErrGeneric = { ok: false; error: string };
+
+function assertOk<T>(json: ApiOkGeneric<T> | ApiErrGeneric): asserts json is ApiOkGeneric<T> {
+  if (!json.ok) throw new Error(json.error || "Request failed");
+}
+
+// Add-note POST response
+type AddNoteOk = ApiOkGeneric<{ note: CoachNote }>;
+type AddNoteErr = ApiErrGeneric;
+
 export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
   const router = useRouter();
   const profileId = params.profileId;
@@ -146,7 +158,7 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-    // ---------------- Public Profile payload (same as /player/[slug]) ----------------
+  // ---------------- Public Profile payload (same as /player/[slug]) ----------------
   const sp = useSearchParams();
   const [publicData, setPublicData] = useState<any | null>(null);
   const [publicLoading, setPublicLoading] = useState(false);
@@ -237,7 +249,7 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
     };
   }, [profileId, sourceParam]);
 
-    // Fetch the same payload used by the public profile page, using slug from /api/coach/player/[profileId]
+  // Fetch the same payload used by the public profile page, using slug from /api/coach/player/[profileId]
   useEffect(() => {
     const slug = (user as any)?.slug ? String((user as any).slug) : "";
     if (!slug) return;
@@ -250,18 +262,18 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
         setPublicErr(null);
 
         // Keep it fresh in dev; safe in prod too.
-const debugParam = sp.get("debug") === "1";
-const demoParam = sp.get("demo") === "1";
+        const debugParam = sp.get("debug") === "1";
+        const demoParam = sp.get("demo") === "1";
 
-const qsParts: string[] = [];
-if (demoParam) qsParts.push("demo=1");
-if (debugParam) qsParts.push("debug=1");
+        const qsParts: string[] = [];
+        if (demoParam) qsParts.push("demo=1");
+        if (debugParam) qsParts.push("debug=1");
 
-// In dev we always want fresh data; in prod it's still safe for coaches.
-qsParts.push("fresh=1");
+        // In dev we always want fresh data; in prod it's still safe for coaches.
+        qsParts.push("fresh=1");
 
-const qs = qsParts.length ? `?${qsParts.join("&")}` : "";
-const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, { cache: "no-store" });
+        const qs = qsParts.length ? `?${qsParts.join("&")}` : "";
+        const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, { cache: "no-store" });
 
         if (res.status === 404) {
           if (!cancelled) {
@@ -388,9 +400,7 @@ const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, {
         setListsError(null);
 
         const res = await fetch("/api/coach/recruiting-lists", { method: "GET", cache: "no-store" });
-        const json: ListsGetOk | ApiErr = await res.json().catch(
-          () => ({ ok: false, error: "Bad response" } as any)
-        );
+        const json: ListsGetOk | ApiErr = await res.json().catch(() => ({ ok: false, error: "Bad response" } as any));
 
         if (cancelled) return;
 
@@ -457,9 +467,7 @@ const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, {
           cache: "no-store",
         });
 
-        const json: ListDetailOk | ApiErr = await res
-          .json()
-          .catch(() => ({ ok: false, error: "Bad response" } as any));
+        const json: ListDetailOk | ApiErr = await res.json().catch(() => ({ ok: false, error: "Bad response" } as any));
 
         if (cancelled) return;
 
@@ -492,7 +500,7 @@ const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, {
     };
   }, [selectedListId]);
 
-    async function refreshListsPreserveSelection() {
+  async function refreshListsPreserveSelection() {
     try {
       const res = await fetch("/api/coach/recruiting-lists", { method: "GET", cache: "no-store" });
       const json = await res.json().catch(() => ({}));
@@ -571,11 +579,18 @@ const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, {
         }),
       });
 
-      const json: { ok: boolean; data?: { note: CoachNote }; error?: string } = await res.json().catch(() => ({}));
+      const json: AddNoteOk | AddNoteErr = await res
+        .json()
+        .catch(() => ({ ok: false, error: "Bad response" } as AddNoteErr));
 
-      if (!res.ok || !json.ok || !json.data?.note) {
-        throw new Error(json?.error || `Failed to save note (status ${res.status})`);
+      if (!res.ok) {
+        // if server returned non-2xx, prefer payload error when available
+        if (!json.ok) throw new Error(json.error || `Failed to save note (status ${res.status})`);
+        throw new Error(`Failed to save note (status ${res.status})`);
       }
+
+      // ✅ narrows json; guarantees json.data.note exists
+      assertOk(json);
 
       setNotes((prev) => [json.data.note, ...prev]);
       setNewNoteText("");
@@ -653,7 +668,7 @@ const res = await fetch(`/api/public/player/${encodeURIComponent(slug)}${qs}`, {
         next.add(profileId);
         return next;
       });
-await refreshListsPreserveSelection();
+      await refreshListsPreserveSelection();
     } catch (e: any) {
       setListActionError(e?.message || "Failed to add player to list.");
     } finally {
@@ -683,7 +698,7 @@ await refreshListsPreserveSelection();
         next.delete(profileId);
         return next;
       });
-    await refreshListsPreserveSelection();
+      await refreshListsPreserveSelection();
     } catch (e: any) {
       setListActionError(e?.message || "Failed to remove player from list.");
     } finally {
@@ -708,11 +723,7 @@ await refreshListsPreserveSelection();
           <div style={ratingRow}>
             <div style={ratingLabel}>Internal Program Rating</div>
 
-            {ratingLoading ? (
-              <div style={mutedTiny}>Loading…</div>
-            ) : (
-              <RatingPicker value={rating} disabled={ratingSaving} onChange={(n) => saveRating(n)} />
-            )}
+            {ratingLoading ? <div style={mutedTiny}>Loading…</div> : <RatingPicker value={rating} disabled={ratingSaving} onChange={(n) => saveRating(n)} />}
 
             {ratingSaving ? <div style={mutedTiny}>Saving…</div> : null}
           </div>
@@ -739,17 +750,10 @@ await refreshListsPreserveSelection();
             {publicErr ? <div style={errorBox}>{publicErr}</div> : null}
 
             {!publicLoading && !publicErr && publicData?.profile ? (
-              <CoachPublicProfileBody
-                slug={String((user as any)?.slug || "")}
-                data={publicData}
-                cardStyle={card}
-                h1Style={h1}
-              />
+              <CoachPublicProfileBody slug={String((user as any)?.slug || "")} data={publicData} cardStyle={card} h1Style={h1} />
             ) : null}
 
-            {!publicLoading && !publicErr && !publicData?.profile ? (
-              <div style={muted}>Full public profile data not available yet.</div>
-            ) : null}
+            {!publicLoading && !publicErr && !publicData?.profile ? <div style={muted}>Full public profile data not available yet.</div> : null}
           </div>
 
           {/* Right */}
@@ -796,14 +800,14 @@ await refreshListsPreserveSelection();
                       <div key={note.id} style={noteCard}>
                         <div style={noteText}>{note.noteText}</div>
 
-<div style={noteMetaRow}>
-  <div style={noteMetaLeft}>By {formatNoteAttribution(note)}</div>
+                        <div style={noteMetaRow}>
+                          <div style={noteMetaLeft}>By {formatNoteAttribution(note)}</div>
 
-  <div style={noteMetaRight}>
-    <span style={noteDate}>{formatShortDate(note.createdAt)}</span>
-    <span style={pillStyle}>{note.sharedWithOrg ? "Shared" : "Private"}</span>
-  </div>
-</div>
+                          <div style={noteMetaRight}>
+                            <span style={noteDate}>{formatShortDate(note.createdAt)}</span>
+                            <span style={pillStyle}>{note.sharedWithOrg ? "Shared" : "Private"}</span>
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
@@ -872,12 +876,7 @@ await refreshListsPreserveSelection();
                     </button>
                   </div>
                 ) : (
-                  <button
-                    type="button"
-                    onClick={addPlayerToSelectedList}
-                    disabled={listSaving}
-                    style={{ ...btnGold, opacity: listSaving ? 0.7 : 1 }}
-                  >
+                  <button type="button" onClick={addPlayerToSelectedList} disabled={listSaving} style={{ ...btnGold, opacity: listSaving ? 0.7 : 1 }}>
                     {listSaving ? "Adding…" : "Add Player to List"}
                   </button>
                 )}
@@ -1000,12 +999,7 @@ function formatAvg(val: number | null): string {
   return fixed.startsWith("0") ? fixed.slice(1) : fixed;
 }
 
-function CoachPublicProfileBody(props: {
-  slug: string;
-  data: any;
-  cardStyle: CSSProperties;
-  h1Style: CSSProperties;
-}) {
+function CoachPublicProfileBody(props: { slug: string; data: any; cardStyle: CSSProperties; h1Style: CSSProperties }) {
   const data = props.data;
   const profile = (data?.profile ?? {}) as any;
 
@@ -1048,9 +1042,7 @@ function CoachPublicProfileBody(props: {
     reportCardUrls: toArray(ac.reportCards ?? ac.reportCardUrls ?? ac.reportCardUrl).map(String).filter(Boolean),
     otherDocs: toArray(ac.otherAcademicDocs)
       .map((d: any) =>
-        typeof d === "string"
-          ? { label: null, url: d }
-          : { label: d?.label ?? d?.name ?? null, url: d?.url ?? "" }
+        typeof d === "string" ? { label: null, url: d } : { label: d?.label ?? d?.name ?? null, url: d?.url ?? "" }
       )
       .filter((d: any) => !!d.url),
   };
@@ -1109,8 +1101,8 @@ function CoachPublicProfileBody(props: {
   const rawSeasons: any[] = Array.isArray(data?.stats?.seasons)
     ? data.stats.seasons
     : Array.isArray(profile.seasons)
-    ? profile.seasons
-    : [];
+      ? profile.seasons
+      : [];
 
   const statsTeams = rawSeasons.map((s: any) => ({
     kind: s?.kind ?? null,
@@ -1154,7 +1146,10 @@ function CoachPublicProfileBody(props: {
 
   // ---------- Coaches mapping ----------
   const toArr2 = (x: any): any[] => (Array.isArray(x) ? x : x == null ? [] : [x]);
-  const rawCoachesFromApi: any[] = toArr2(profile.coaches).concat(toArr2(profile.references)).concat(toArr2(profile.coachesReferences)).filter(Boolean);
+  const rawCoachesFromApi: any[] = toArr2(profile.coaches)
+    .concat(toArr2(profile.references))
+    .concat(toArr2(profile.coachesReferences))
+    .filter(Boolean);
 
   const coachesData: CoachesData = {
     coaches: rawCoachesFromApi.map((c) => ({
@@ -1191,7 +1186,13 @@ function CoachPublicProfileBody(props: {
 
       <PublicMetrics metrics={metricsData} cardStyle={props.cardStyle} h2Style={h2Public} pillStyle={pillStylePublic} />
 
-      <PublicStats stats={{ teams: statsTeams, seasons: rawSeasons }} title="Stats" cardStyle={props.cardStyle} h2Style={h2Public} pillStyle={pillStylePublic} />
+      <PublicStats
+        stats={{ teams: statsTeams, seasons: rawSeasons }}
+        title="Stats"
+        cardStyle={props.cardStyle}
+        h2Style={h2Public}
+        pillStyle={pillStylePublic}
+      />
 
       {showVideoSocial && (
         <PublicMedia
