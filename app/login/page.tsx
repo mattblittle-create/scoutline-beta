@@ -149,7 +149,6 @@ function LoginPageInner() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="current-password"
           />
-          <div className="sl-help">Use the password you set for your ScoutLine account.</div>
         </div>
 
         <div className="sl-links">
