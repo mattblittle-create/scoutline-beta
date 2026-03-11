@@ -268,9 +268,18 @@ export default function PricingPage() {
           </div>
 
           {/* Coaches link stays up top */}
-          <Link href="/onboarding/coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
-            College Coaches and Recruiters, set up your free account here!
-          </Link>
+<Link
+  href="/onboarding/coach"
+  className="sl-link-btn"
+  style={{
+    whiteSpace: "nowrap",
+    background: "#0ea5e9",
+    color: "#ffffff",
+    borderColor: "#0ea5e9",
+  }}
+>
+  College Coaches and Recruiters, set up your free account here!
+</Link>
 
         </div>
 
@@ -490,7 +499,7 @@ export default function PricingPage() {
         .sl-link-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-          background: #0ea5e9;
+          background: #e5e7eb;
           text-decoration: underline;
           text-underline-offset: 3px;
         }
