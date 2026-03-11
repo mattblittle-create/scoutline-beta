@@ -270,15 +270,28 @@ export default function PricingPage() {
           {/* Coaches link stays up top */}
 <Link
   href="/onboarding/coach"
-  className="sl-link-btn"
   style={{
     whiteSpace: "nowrap",
     background: "#0ea5e9",
     color: "#ffffff",
-    borderColor: "#0ea5e9",
+    border: "1px solid #0ea5e9",
+    padding: "10px 18px",
+    borderRadius: 999,
+    fontWeight: 800,
+    textDecoration: "none",
+    boxShadow: "0 4px 10px rgba(14,165,233,0.25)",
+    transition: "transform .15s ease, box-shadow .15s ease",
+  }}
+  onMouseEnter={(e) => {
+    e.currentTarget.style.transform = "translateY(-1px)";
+    e.currentTarget.style.boxShadow = "0 6px 14px rgba(14,165,233,0.35)";
+  }}
+  onMouseLeave={(e) => {
+    e.currentTarget.style.transform = "none";
+    e.currentTarget.style.boxShadow = "0 4px 10px rgba(14,165,233,0.25)";
   }}
 >
-  College Coaches and Recruiters, set up your free account here!
+  College Coaches and Recruiters — Create Your Free Account
 </Link>
 
         </div>
