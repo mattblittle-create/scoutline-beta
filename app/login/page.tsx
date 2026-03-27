@@ -31,12 +31,37 @@ function fallbackForRole(r: Role) {
     case "team":
       return "/dashboard/team";
     case "player":
-      return "/dashboard/player";
+      return "/dashboard/player/profile";
     case "parent":
-      return "/dashboard/player";
+      return "/dashboard/parent";
     default:
-      return "/dashboard/coach";
+      return "/dashboard/player/profile";
   }
+}
+
+function normalizeInternalPath(v: unknown): string | null {
+  const s = String(v || "").trim();
+  if (!s) return null;
+  if (!s.startsWith("/")) return null;
+  if (s.startsWith("//")) return null;
+  return s;
+}
+
+function pickRedirectFromResponse(json: any): string | null {
+  const candidates = [
+    json?.redirectTo,
+    json?.nextPath,
+    json?.next,
+    json?.redirect,
+    json?.url,
+  ];
+
+  for (const value of candidates) {
+    const safe = normalizeInternalPath(value);
+    if (safe) return safe;
+  }
+
+  return null;
 }
 
 function LoginPageInner() {
@@ -67,7 +92,7 @@ function LoginPageInner() {
   }, [search]);
 
   const nextPath = useMemo(() => {
-    return String(search.get("next") || "").trim();
+    return normalizeInternalPath(search.get("next"));
   }, [search]);
 
   const [email, setEmail] = useState(prefillEmail);
@@ -101,12 +126,19 @@ function LoginPageInner() {
         throw new Error(json?.error || "Invalid credentials.");
       }
 
-      if (nextPath) {
-        router.replace(nextPath);
-        return;
-      }
+      const serverRedirect = pickRedirectFromResponse(json);
 
-      router.replace(fallbackForRole(role));
+if (nextPath) {
+  router.replace(nextPath);
+  return;
+}
+
+if (serverRedirect) {
+  router.replace(serverRedirect);
+  return;
+}
+
+router.replace(fallbackForRole(role));
     } catch (err: any) {
       setError(err?.message || "Login failed.");
     } finally {
@@ -267,7 +299,8 @@ function LoginPageInner() {
         ) : null}
 
         <div className="sl-intro">
-          Access your ScoutLine account to manage your profile, team, recruiting tools, and billing.
+          Access your ScoutLine account to manage your profile, team, recruiting
+          tools, and billing.
         </div>
 
         <form onSubmit={onSubmit}>
@@ -306,7 +339,7 @@ function LoginPageInner() {
           ) : null}
 
           <button type="submit" className="sl-submit" disabled={submitting}>
-            {submitting ? "Signing in…" : "Log In"}
+            {submitting ? "Signing in..." : "Log In"}
           </button>
 
           {error ? <div className="sl-error">{error}</div> : null}

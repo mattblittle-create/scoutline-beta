@@ -25,6 +25,7 @@ export type MetricsPayload = {
 
   benchPress: MetricEntry[];
   squat: MetricEntry[];
+  deadLift: MetricEntry[];
   popTime: MetricEntry[];
   avgFbVelo: MetricEntry[];
   avgChVelo: MetricEntry[];
@@ -66,6 +67,7 @@ type TabMetricsProps = {
     popTime: boolean;
     benchPress: boolean;
     squat: boolean;
+    deadLift: boolean;
   };
   setMetricPrivate: React.Dispatch<
     React.SetStateAction<{
@@ -82,6 +84,7 @@ type TabMetricsProps = {
       popTime: boolean;
       benchPress: boolean;
       squat: boolean;
+      deadLift: boolean;
     }>
   >;
 
@@ -106,6 +109,9 @@ type TabMetricsProps = {
 
   squatEntries: MetricEntry[];
   setSquatEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
+  deadLiftEntries: MetricEntry[];
+  setDeadLiftEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
   popTimeEntries: MetricEntry[];
   setPopTimeEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
@@ -397,6 +403,8 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
     setBenchPressEntries,
     squatEntries,
     setSquatEntries,
+    deadLiftEntries,
+    setDeadLiftEntries,
     popTimeEntries,
     setPopTimeEntries,
     catcherThrowVeloEntries,
@@ -411,7 +419,6 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
     styles: { labelStyle, labelText, inputStyle, hrStyle, errText, qMark },
   } = props;
 
-  // ---- expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
     ref,
     () => ({
@@ -429,6 +436,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
 
         benchPress: benchPressEntries,
         squat: squatEntries,
+        deadLift: deadLiftEntries,
         popTime: popTimeEntries,
         avgFbVelo: avgFbVeloEntries,
         avgChVelo: avgChVeloEntries,
@@ -446,6 +454,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
       catcherThrowVeloEntries,
       benchPressEntries,
       squatEntries,
+      deadLiftEntries,
       popTimeEntries,
       avgFbVeloEntries,
       avgChVeloEntries,
@@ -586,6 +595,17 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
         entries={squatEntries}
         setEntries={setSquatEntries}
         idPrefix="m-squat"
+        styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
+      />
+      <hr style={hrStyle} />
+
+      <MetricSection
+        title="Dead Lift"
+        unitHint="lbs"
+        placeholderValue="405"
+        entries={deadLiftEntries}
+        setEntries={setDeadLiftEntries}
+        idPrefix="m-deadlift"
         styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
       />
 

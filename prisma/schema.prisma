@@ -1,92 +1,55 @@
-// prisma/schema.prisma
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL_NEON")
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
-/**
- * =========================
- * Core existing models
- * =========================
- */
-
 model User {
-  id           String  @id @default(cuid())
-  email        String  @unique
-  passwordHash String?
-  name         String?
-  role         String?
-  workPhone    String?
-  workPhoneExt String? // ✅ NEW (up to 6 digits)
-
-  // Privacy toggles
-  phonePrivate Boolean @default(true)
-  emailPrivate Boolean @default(true)
-
-  // Referrals / payouts (NEW)
-  referralsMade   Referral[] @relation("ReferralReferrerUser")
-  payoutsReceived Payout[]   @relation("PayoutPayeeUser")
-
-  program   String?
-  photoUrl  String?
-  slug      String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // 1:1 (optional) to Player
-  Player Player?
-
-  // ✅ NEW: 1:1 (optional) to CoachProfile (only exists for coaches)
-  coachProfile CoachProfile?
-
-  // Back-links
-  PlayerProfile       PlayerProfile[]
-  publicProfileCaches PublicProfileCache[]
-
-  // optional link to a College (for college / recruiting coaches)
-  // NOTE: kept here because it’s broadly useful across the app (views, notes, etc.)
-  collegeId String?
-  college   College? @relation(fields: [collegeId], references: [id], onDelete: SetNull)
-
-  // notifications
-  notifications Notification[]
-
-  recruitingListsCreated RecruitingList[]       @relation("RecruitingListsCreated")
-  recruitingListAccess   RecruitingListAccess[]
-
-  // Team relations
-  teamMemberships     TeamMembership[]
-  teamInvitesCreated  TeamInvite[]     @relation("TeamInviteCreatedBy")
-  teamInvitesAccepted TeamInvite[]     @relation("TeamInviteAcceptedBy")
-
-  // Coach invites (college staff)
-  coachInvitesCreated  CoachInvite[] @relation("CoachInviteCreatedBy")
-  coachInvitesAccepted CoachInvite[] @relation("CoachInviteAcceptedBy")
-
-  coachJoinRequestsCreated CoachJoinRequest[] @relation("CoachJoinRequestCreatedBy")
-  coachJoinRequestsDecided CoachJoinRequest[] @relation("CoachJoinRequestDecidedBy")
-
-  // Other back-relations
-  profileChangeLogsActed ProfileChangeLog[]
-  coachNotesAuthored     CoachNote[]
-  coachPlayerRatings     CoachPlayerRating[]
-  profileViewEvents      ProfileViewEvent[]
-  recruitingBoardAdded   RecruitingBoardEntry[]
-
-  // ✅ Backrelation for College.programProfileUpdatedByUser
-  programProfileEdits College[] @relation("CollegeProgramProfileUpdatedBy")
-
-  // ✅ Admin profile (only exists for staff)
-  adminProfile AdminUser?
-
-  // ✅ Backrelation for AdminAuditLog.actingUser
-  adminAuditLogsActing AdminAuditLog[] @relation("AdminAuditActingUser")
+  id                       String                 @id @default(cuid())
+  email                    String                 @unique
+  passwordHash             String?
+  name                     String?
+  role                     String?
+  workPhone                String?
+  phonePrivate             Boolean                @default(true)
+  program                  String?
+  photoUrl                 String?
+  slug                     String?                @unique
+  createdAt                DateTime               @default(now())
+  updatedAt                DateTime               @updatedAt
+  emailPrivate             Boolean                @default(true)
+  collegeId                String?
+  workPhoneExt             String?
+  adminAuditLogsActing     AdminAuditLog[]        @relation("AdminAuditActingUser")
+  adminProfile             AdminUser?
+  coachInvitesAccepted     CoachInvite[]          @relation("CoachInviteAcceptedBy")
+  coachInvitesCreated      CoachInvite[]          @relation("CoachInviteCreatedBy")
+  coachJoinRequestsDecided CoachJoinRequest[]     @relation("CoachJoinRequestDecidedBy")
+  coachJoinRequestsCreated CoachJoinRequest[]     @relation("CoachJoinRequestCreatedBy")
+  coachNotesAuthored       CoachNote[]
+  coachPlayerRatings       CoachPlayerRating[]
+  coachProfile             CoachProfile?
+  programProfileEdits      College[]              @relation("CollegeProgramProfileUpdatedBy")
+  notifications            Notification[]
+  parentProfile            ParentProfile?
+  payoutsReceived          Payout[]               @relation("PayoutPayeeUser")
+  Player                   Player?
+  PlayerProfile            PlayerProfile?
+  profileChangeLogsActed   ProfileChangeLog[]
+  profileViewEvents        ProfileViewEvent[]
+  publicProfileCaches      PublicProfileCache[]
+  recruitingBoardAdded     RecruitingBoardEntry[]
+  recruitingListsCreated   RecruitingList[]       @relation("RecruitingListsCreated")
+  recruitingListAccess     RecruitingListAccess[]
+  referralsMade            Referral[]             @relation("ReferralReferrerUser")
+  teamInvitesAccepted      TeamInvite[]           @relation("TeamInviteAcceptedBy")
+  teamInvitesCreated       TeamInvite[]           @relation("TeamInviteCreatedBy")
+  teamMemberships          TeamMembership[]
+  college                  College?               @relation(fields: [collegeId], references: [id])
 }
 
 model VerificationToken {
@@ -105,6 +68,725 @@ model VerificationToken {
   @@index([expiresAt])
 }
 
+model AdminUser {
+  id                   String          @id @default(cuid())
+  userId               String          @unique
+  isActive             Boolean         @default(true)
+  twoFactorRequired    Boolean         @default(true)
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+  auditLogs            AdminAuditLog[] @relation("AdminAuditAdminUser")
+  user                 User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  roles                AdminUserRole[]
+  createdDiscountCodes DiscountCode[]  @relation("DiscountCodeCreatedByAdmin")
+  updatedFeatureFlags  FeatureFlag[]   @relation("FeatureFlagUpdatedByAdmin")
+}
+
+model AdminUserRole {
+  id          String    @id @default(cuid())
+  adminUserId String
+  role        AdminRole
+  createdAt   DateTime  @default(now())
+  adminUser   AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
+
+  @@unique([adminUserId, role])
+  @@index([role])
+}
+
+model AdminAuditLog {
+  id           String     @id @default(cuid())
+  adminUserId  String?
+  actingUserId String?
+  action       String
+  entityType   String
+  entityId     String?
+  beforeJson   Json?
+  afterJson    Json?
+  ip           String?
+  userAgent    String?
+  requestId    String?
+  createdAt    DateTime   @default(now())
+  actingUser   User?      @relation("AdminAuditActingUser", fields: [actingUserId], references: [id])
+  adminUser    AdminUser? @relation("AdminAuditAdminUser", fields: [adminUserId], references: [id])
+
+  @@index([createdAt])
+  @@index([entityType, entityId])
+  @@index([action])
+}
+
+model FeatureFlag {
+  id                   String     @id @default(cuid())
+  key                  String     @unique
+  description          String?
+  enabled              Boolean    @default(false)
+  config               Json?
+  updatedByAdminUserId String?
+  createdAt            DateTime   @default(now())
+  updatedAt            DateTime   @updatedAt
+  updatedByAdminUser   AdminUser? @relation("FeatureFlagUpdatedByAdmin", fields: [updatedByAdminUserId], references: [id])
+}
+
+model ParentProfile {
+  id          String             @id @default(cuid())
+  userId      String             @unique
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  playerLinks ParentPlayerLink[]
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model ParentPlayerLink {
+  id              String        @id @default(cuid())
+  parentProfileId String
+  playerProfileId String
+  relationship    String?
+  isPrimary       Boolean       @default(false)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  parentProfile   ParentProfile @relation(fields: [parentProfileId], references: [id], onDelete: Cascade)
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@unique([parentProfileId, playerProfileId])
+  @@index([parentProfileId])
+}
+
+model CoachProfile {
+  id                       String               @id @default(cuid())
+  userId                   String               @unique
+  coachAccountType         CoachAccountType?
+  coachBillingStatus       CoachBillingStatus?
+  recruitingServiceName    String?
+  recruitingServiceWebsite String?
+  createdAt                DateTime             @default(now())
+  updatedAt                DateTime             @updatedAt
+  recruitingTargets        Json?
+  coachBio                 String?
+  staffTitle               String?
+  isProgramAdmin           Boolean              @default(false)
+  contactEmail             String?
+  coachInstagramUrl        String?
+  coachXUrl                String?
+  billingProfile           CoachBillingProfile?
+  user                     User                 @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([coachAccountType])
+  @@index([coachBillingStatus])
+}
+
+model RecruitingList {
+  id              String                 @id @default(cuid())
+  collegeId       String
+  name            String
+  description     String?
+  createdByUserId String
+  createdAt       DateTime               @default(now())
+  updatedAt       DateTime               @updatedAt
+  college         College                @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  createdByUser   User                   @relation("RecruitingListsCreated", fields: [createdByUserId], references: [id], onDelete: Cascade)
+  access          RecruitingListAccess[]
+  members         RecruitingListMember[]
+
+  @@unique([collegeId, name])
+  @@index([collegeId, createdAt])
+  @@index([createdByUserId])
+}
+
+model RecruitingListMember {
+  id              String         @id @default(cuid())
+  listId          String
+  playerProfileId String
+  label           String?
+  createdAt       DateTime       @default(now())
+  list            RecruitingList @relation(fields: [listId], references: [id], onDelete: Cascade)
+  playerProfile   PlayerProfile  @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, playerProfileId])
+  @@index([listId, createdAt])
+  @@index([playerProfileId])
+}
+
+model RecruitingListAccess {
+  id          String         @id @default(cuid())
+  listId      String
+  coachUserId String
+  canEdit     Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  coachUser   User           @relation(fields: [coachUserId], references: [id], onDelete: Cascade)
+  list        RecruitingList @relation(fields: [listId], references: [id], onDelete: Cascade)
+
+  @@unique([listId, coachUserId])
+  @@index([coachUserId])
+}
+
+model Player {
+  userId             String       @unique
+  gradYear           Int?
+  primaryPos         String?
+  secondaryPos       String?
+  throws             String?
+  bats               String?
+  heightIn           Int?
+  weightLb           Int?
+  hsName             String?
+  travelTeam         String?
+  hometown           String?
+  state              String?
+  gpa                Decimal?     @db.Decimal(4, 2)
+  act                Int?
+  sat                Int?
+  ncaaId             String?
+  plan               Plan         @default(REDSHIRT)
+  createdAt          DateTime     @default(now())
+  updatedAt          DateTime     @updatedAt
+  heightFt           Int?
+  pitcherHand        PitcherHand?
+  age                Int?
+  dob                DateTime?
+  dobPrivate         Boolean?     @default(true)
+  gender             Gender?
+  id                 Int          @id @default(autoincrement())
+  committedProgram   String?
+  committedProgramId String?
+  isCommitted        Boolean      @default(false)
+  publicEnabled      Boolean      @default(true)
+  publicVisibility   Visibility   @default(PUBLIC)
+  user               User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model PlayerProfile {
+  id                      String                 @id @default(cuid())
+  email                   String                 @unique
+  schemaVersion           Int
+  updatedAt               DateTime               @updatedAt
+  createdAt               DateTime               @default(now())
+  data                    Json
+  userId                  String?                @unique
+  billingConflictFlag     Boolean                @default(false)
+  hasActivePlayerBilling  Boolean                @default(false)
+  hasActiveTeamBilling    Boolean                @default(false)
+  ownerTeamId             String?
+  ownershipMode           OwnershipMode          @default(PLAYER_PRIMARY)
+  profileState            ProfileState           @default(PLAYER_OWNED_ACTIVE)
+  playerBillingCadence    String                 @default("monthly")
+  playerBillingStatus     String                 @default("Active")
+  playerPlanTier          Plan                   @default(REDSHIRT)
+  playerCancelEffectiveAt DateTime?
+  playerCancelRequestedAt DateTime?
+  coachInvites            CoachInvite[]
+  coachNotes              CoachNote[]
+  coachPlayerRatings      CoachPlayerRating[]
+  parentLinks             ParentPlayerLink[]
+  playerBillingProfile    PlayerBillingProfile?
+  playerInvoices          PlayerInvoice[]
+  ownerTeam               Team?                  @relation(fields: [ownerTeamId], references: [id])
+  user                    User?                  @relation(fields: [userId], references: [id])
+  changeLogs              ProfileChangeLog[]
+  viewEvents              ProfileViewEvent[]
+  recruitingBoardEntries  RecruitingBoardEntry[]
+  RecruitingListMember    RecruitingListMember[]
+  teamMemberships         TeamMembership[]
+  teamSnapshots           TeamProfileSnapshot[]
+
+  @@index([email])
+  @@index([ownerTeamId])
+  @@index([playerPlanTier])
+}
+
+model PublicProfileCache {
+  slug      String   @id
+  data      Json
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+}
+
+model Team {
+  id                String                @id @default(cuid())
+  name              String
+  slug              String                @unique
+  teamType          TeamType
+  city              String?
+  state             String?
+  logoUrl           String?
+  createdAt         DateTime              @default(now())
+  updatedAt         DateTime              @updatedAt
+  websiteUrl        String?
+  billingMode       TeamBillingMode       @default(NORMAL)
+  sponsorName       String?
+  sponsorNote       String?
+  billingCadence    String                @default("monthly")
+  billingStatus     String                @default("Active")
+  planTier          Plan                  @default(TEAM)
+  cancelEffectiveAt DateTime?
+  cancelRequestedAt DateTime?
+  contactEmail      String?
+  instagramUrl      String?
+  phone             String?
+  phoneExt          String?
+  phonePrivate      Boolean               @default(true)
+  xUrl              String?
+  coachNotes        CoachNote[]
+  ownerProfiles     PlayerProfile[]
+  profileViewEvents ProfileViewEvent[]
+  billingProfile    TeamBillingProfile?
+  invites           TeamInvite[]
+  invoices          TeamInvoice[]
+  memberships       TeamMembership[]
+  snapshots         TeamProfileSnapshot[]
+}
+
+model TeamMembership {
+  id                  String         @id @default(cuid())
+  userId              String?
+  teamId              String
+  role                TeamRole
+  season              String?
+  isPrimaryForProfile Boolean        @default(false)
+  startDate           DateTime?
+  endDate             DateTime?
+  createdAt           DateTime       @default(now())
+  isActive            Boolean        @default(true)
+  playerProfileId     String?
+  playerProfile       PlayerProfile? @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  team                Team           @relation(fields: [teamId], references: [id], onDelete: Cascade)
+  user                User?          @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([teamId, playerProfileId, role, season])
+  @@unique([userId, teamId, role, season])
+  @@index([teamId, role])
+  @@index([userId, role])
+  @@index([playerProfileId, role])
+  @@index([teamId, isActive])
+}
+
+model TeamInvite {
+  id              String       @id @default(cuid())
+  teamId          String
+  invitedEmail    String
+  parentEmail     String?
+  tokenHash       String       @unique
+  status          InviteStatus @default(PENDING)
+  createdByUserId String?
+  acceptedUserId  String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+  acceptedAt      DateTime?
+  expiresAt       DateTime?
+  acceptedUser    User?        @relation("TeamInviteAcceptedBy", fields: [acceptedUserId], references: [id])
+  createdByUser   User?        @relation("TeamInviteCreatedBy", fields: [createdByUserId], references: [id])
+  team            Team         @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId, status])
+  @@index([invitedEmail, status])
+}
+
+model CoachInvite {
+  id              String            @id @default(cuid())
+  collegeId       String
+  invitedEmail    String
+  tokenHash       String            @unique
+  status          CoachInviteStatus @default(PENDING)
+  canEditLists    Boolean           @default(false)
+  createdByUserId String?
+  acceptedUserId  String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+  acceptedAt      DateTime?
+  expiresAt       DateTime?
+  playerProfileId String?
+  staffRole       StaffRole         @default(ASSISTANT)
+  staffTitle      String?
+  acceptedUser    User?             @relation("CoachInviteAcceptedBy", fields: [acceptedUserId], references: [id])
+  college         College           @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  createdByUser   User?             @relation("CoachInviteCreatedBy", fields: [createdByUserId], references: [id])
+  PlayerProfile   PlayerProfile?    @relation(fields: [playerProfileId], references: [id])
+
+  @@index([collegeId, status])
+  @@index([invitedEmail, status])
+  @@index([createdByUserId])
+  @@index([acceptedUserId])
+}
+
+model CoachJoinRequest {
+  id                String            @id @default(cuid())
+  collegeId         String
+  requestedByUserId String
+  decidedByUserId   String?
+  requestedRole     StaffRole         @default(ASSISTANT)
+  proofUrl          String?
+  notes             String?
+  status            JoinRequestStatus @default(PENDING)
+  decidedAt         DateTime?
+  createdAt         DateTime          @default(now())
+  updatedAt         DateTime          @updatedAt
+  college           College           @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  decidedByUser     User?             @relation("CoachJoinRequestDecidedBy", fields: [decidedByUserId], references: [id])
+  requestedByUser   User              @relation("CoachJoinRequestCreatedBy", fields: [requestedByUserId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId, status])
+  @@index([requestedByUserId, status])
+  @@index([status, createdAt])
+}
+
+model TeamBillingProfile {
+  id                 String   @id @default(cuid())
+  teamId             String   @unique
+  provider           String   @default("VALOR")
+  providerCustomerId String?
+  providerPaymentRef String?
+  paymentType        String?
+  last4              String?
+  brand              String?
+  updatedAt          DateTime @updatedAt
+  createdAt          DateTime @default(now())
+  team               Team     @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId])
+}
+
+model TeamInvoice {
+  id               String            @id @default(cuid())
+  teamId           String
+  status           InvoiceStatus     @default(UPCOMING)
+  periodStart      DateTime
+  periodEnd        DateTime
+  amountCents      Int
+  currency         String            @default("USD")
+  externalId       String?
+  hostedUrl        String?
+  createdAt        DateTime          @default(now())
+  paidAt           DateTime?
+  commissionEvents CommissionEvent[]
+  team             Team              @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId, periodStart])
+  @@index([teamId, status])
+}
+
+model PlayerBillingProfile {
+  id                 String        @id @default(cuid())
+  playerProfileId    String        @unique
+  provider           String        @default("VALOR")
+  providerCustomerId String?
+  providerPaymentRef String?
+  paymentType        String?
+  last4              String?
+  brand              String?
+  updatedAt          DateTime      @updatedAt
+  createdAt          DateTime      @default(now())
+  playerProfile      PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@index([playerProfileId])
+}
+
+model PlayerInvoice {
+  id               String            @id @default(cuid())
+  playerProfileId  String
+  status           InvoiceStatus     @default(UPCOMING)
+  cadence          String            @default("monthly")
+  periodStart      DateTime
+  periodEnd        DateTime
+  invoiceDate      DateTime
+  dueDate          DateTime
+  amountCents      Int
+  amountPaidCents  Int               @default(0)
+  externalId       String?
+  hostedUrl        String?
+  paidAt           DateTime?
+  createdAt        DateTime          @default(now())
+  commissionEvents CommissionEvent[]
+  playerProfile    PlayerProfile     @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@index([playerProfileId, invoiceDate])
+  @@index([playerProfileId, status])
+  @@index([playerProfileId, periodStart])
+}
+
+model CoachBillingProfile {
+  id                 String       @id @default(cuid())
+  coachProfileId     String       @unique
+  provider           String       @default("VALOR")
+  providerCustomerId String?
+  providerPaymentRef String?
+  paymentType        String?
+  last4              String?
+  brand              String?
+  updatedAt          DateTime     @updatedAt
+  createdAt          DateTime     @default(now())
+  coachProfile       CoachProfile @relation(fields: [coachProfileId], references: [id], onDelete: Cascade)
+
+  @@index([coachProfileId])
+}
+
+model College {
+  id                            String                 @id @default(cuid())
+  name                          String
+  slug                          String                 @unique
+  conference                    String?
+  division                      String?
+  city                          String?
+  state                         String?
+  createdAt                     DateTime               @default(now())
+  updatedAt                     DateTime               @updatedAt
+  logoUrl                       String?
+  programWebsiteUrl             String?
+  websiteUrl                    String?
+  programProfileUpdatedAt       DateTime?
+  programProfileUpdatedByUserId String?
+  programBio                    String?
+  programInstagramUrl           String?
+  programXUrl                   String?
+  recruitingQuestionnaireUrl    String?
+  coachInvites                  CoachInvite[]
+  coachJoinRequests             CoachJoinRequest[]
+  coachNotes                    CoachNote[]
+  coachPlayerRatings            CoachPlayerRating[]
+  programProfileUpdatedByUser   User?                  @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
+  profileViewEvents             ProfileViewEvent[]
+  recruitingBoardEntries        RecruitingBoardEntry[]
+  recruitingLists               RecruitingList[]
+  coaches                       User[]
+
+  @@index([programProfileUpdatedByUserId])
+}
+
+model TeamProfileSnapshot {
+  id              String        @id @default(cuid())
+  teamId          String
+  playerProfileId String
+  snapshot        Json
+  createdAt       DateTime      @default(now())
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  team            Team          @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId])
+  @@index([playerProfileId])
+}
+
+model ProfileChangeLog {
+  id              String           @id @default(cuid())
+  playerProfileId String
+  actorUserId     String?
+  actorRole       ProfileActorRole
+  changeSummary   String
+  diff            Json?
+  changedAt       DateTime         @default(now())
+  actorUser       User?            @relation(fields: [actorUserId], references: [id])
+  playerProfile   PlayerProfile    @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@index([playerProfileId])
+  @@index([actorUserId])
+}
+
+model CoachNote {
+  id              String        @id @default(cuid())
+  playerProfileId String
+  coachUserId     String
+  teamId          String?
+  collegeId       String?
+  noteText        String
+  sharedWithOrg   Boolean       @default(true)
+  createdAt       DateTime      @default(now())
+  coachUser       User          @relation(fields: [coachUserId], references: [id], onDelete: Cascade)
+  college         College?      @relation(fields: [collegeId], references: [id])
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  team            Team?         @relation(fields: [teamId], references: [id])
+
+  @@index([playerProfileId])
+  @@index([coachUserId])
+  @@index([teamId])
+  @@index([collegeId])
+}
+
+model CoachPlayerRating {
+  id              String        @id @default(cuid())
+  collegeId       String
+  coachUserId     String
+  playerProfileId String
+  rating          Int           @default(0)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  coachUser       User          @relation(fields: [coachUserId], references: [id], onDelete: Cascade)
+  college         College       @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, coachUserId, playerProfileId])
+  @@index([collegeId, playerProfileId])
+  @@index([coachUserId])
+}
+
+model ProfileViewEvent {
+  id              String            @id @default(cuid())
+  playerProfileId String
+  viewerUserId    String?
+  viewerType      ProfileViewerType
+  source          ProfileViewSource
+  teamId          String?
+  collegeId       String?
+  ipHash          String?
+  userAgentHash   String?
+  viewedAt        DateTime          @default(now())
+  countedInWeekly Boolean           @default(false)
+  notifiedPlayer  Boolean           @default(false)
+  college         College?          @relation(fields: [collegeId], references: [id])
+  playerProfile   PlayerProfile     @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  team            Team?             @relation(fields: [teamId], references: [id])
+  viewerUser      User?             @relation(fields: [viewerUserId], references: [id])
+
+  @@index([playerProfileId, viewedAt])
+  @@index([viewerUserId])
+  @@index([teamId])
+  @@index([collegeId])
+}
+
+model RecruitingBoardEntry {
+  id              String        @id @default(cuid())
+  collegeId       String
+  playerProfileId String
+  addedByCoachId  String
+  label           String?
+  createdAt       DateTime      @default(now())
+  notifiedPlayer  Boolean       @default(false)
+  addedByCoach    User          @relation(fields: [addedByCoachId], references: [id], onDelete: Cascade)
+  college         College       @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, playerProfileId])
+  @@index([collegeId])
+  @@index([playerProfileId])
+  @@index([addedByCoachId])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  userId    String
+  type      NotificationType
+  message   String
+  data      Json?
+  readAt    DateTime?
+  createdAt DateTime         @default(now())
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@index([userId, readAt])
+}
+
+model DiscountCode {
+  id                   String                @id @default(cuid())
+  code                 String                @unique
+  type                 DiscountType
+  value                Int
+  appliesTo            DiscountAppliesTo     @default(BOTH)
+  plansAllowedJson     String                @default("[]")
+  cadence              String?
+  durationType         DiscountDurationType  @default(ONCE)
+  durationMonths       Int?
+  expiresAt            DateTime?
+  maxRedemptions       Int?
+  isActive             Boolean               @default(true)
+  oncePerTarget        Boolean               @default(false)
+  allowedTargetIdsJson String                @default("[]")
+  createdAt            DateTime              @default(now())
+  updatedAt            DateTime              @updatedAt
+  createdByAdminUserId String?
+  applications         DiscountApplication[]
+  createdByAdminUser   AdminUser?            @relation("DiscountCodeCreatedByAdmin", fields: [createdByAdminUserId], references: [id])
+}
+
+model DiscountApplication {
+  id             String             @id @default(cuid())
+  discountCodeId String
+  targetType     DiscountTargetType
+  targetId       String
+  planTier       String
+  cadence        String
+  status         DiscountAppStatus  @default(ACTIVE)
+  appliedAt      DateTime           @default(now())
+  endsAt         DateTime?
+  revokedAt      DateTime?
+  metadata       Json?
+  discountCode   DiscountCode       @relation(fields: [discountCodeId], references: [id])
+
+  @@index([targetType, targetId, status])
+  @@index([discountCodeId, status])
+}
+
+model Referral {
+  id             String             @id @default(cuid())
+  referrerUserId String?
+  targetType     DiscountTargetType
+  targetId       String
+  sourceType     ReferralSourceType @default(MANUAL)
+  sourceCode     String?
+  note           String?
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  metadata       Json?
+  commissions    CommissionEvent[]
+  referrerUser   User?              @relation("ReferralReferrerUser", fields: [referrerUserId], references: [id])
+
+  @@unique([targetType, targetId])
+  @@index([referrerUserId])
+  @@index([targetType, targetId])
+  @@index([sourceType])
+}
+
+model CommissionEvent {
+  id                    String           @id @default(cuid())
+  referralId            String
+  planTier              String
+  cadence               String
+  billedAmountCents     Int              @default(0)
+  commissionAmountCents Int              @default(0)
+  earnedAt              DateTime         @default(now())
+  eligibleAt            DateTime?
+  status                CommissionStatus @default(PENDING)
+  teamInvoiceId         String?
+  playerInvoiceId       String?
+  discountApplicationId String?
+  payoutId              String?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  metadata              Json?
+  note                  String?
+  payout                Payout?          @relation(fields: [payoutId], references: [id])
+  playerInvoice         PlayerInvoice?   @relation(fields: [playerInvoiceId], references: [id])
+  referral              Referral         @relation(fields: [referralId], references: [id], onDelete: Cascade)
+  teamInvoice           TeamInvoice?     @relation(fields: [teamInvoiceId], references: [id])
+
+  @@index([status, eligibleAt])
+  @@index([payoutId])
+  @@index([teamInvoiceId])
+  @@index([playerInvoiceId])
+  @@index([referralId, earnedAt])
+}
+
+model Payout {
+  id               String            @id @default(cuid())
+  payeeUserId      String?
+  status           PayoutStatus      @default(DRAFT)
+  amountCents      Int               @default(0)
+  method           String?
+  note             String?
+  sentAt           DateTime?
+  paidAt           DateTime?
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  commissionEvents CommissionEvent[]
+  payeeUser        User?             @relation("PayoutPayeeUser", fields: [payeeUserId], references: [id])
+
+  @@index([status])
+  @@index([payeeUserId])
+}
+
 enum TokenPurpose {
   VERIFY_EMAIL
   RESET_PASSWORD
@@ -119,86 +801,6 @@ enum AdminRole {
   MARKETING_ADMIN
   READ_ONLY
 }
-
-model AdminUser {
-  id     String @id @default(cuid())
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  isActive          Boolean @default(true)
-  twoFactorRequired Boolean @default(true)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  roles AdminUserRole[]
-
-  // ✅ Backrelations for admin-linked entities (named relations)
-  auditLogs            AdminAuditLog[] @relation("AdminAuditAdminUser")
-  updatedFeatureFlags  FeatureFlag[]   @relation("FeatureFlagUpdatedByAdmin")
-  createdDiscountCodes DiscountCode[]  @relation("DiscountCodeCreatedByAdmin")
-}
-
-model AdminUserRole {
-  id          String    @id @default(cuid())
-  adminUserId String
-  role        AdminRole
-
-  adminUser AdminUser @relation(fields: [adminUserId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-
-  @@unique([adminUserId, role])
-  @@index([role])
-}
-
-model AdminAuditLog {
-  id String @id @default(cuid())
-
-  adminUserId String?
-  adminUser   AdminUser? @relation("AdminAuditAdminUser", fields: [adminUserId], references: [id], onDelete: SetNull)
-
-  // if impersonating
-  actingUserId String?
-  actingUser   User?   @relation("AdminAuditActingUser", fields: [actingUserId], references: [id], onDelete: SetNull)
-
-  action     String
-  entityType String
-  entityId   String?
-
-  beforeJson Json?
-  afterJson  Json?
-
-  ip        String?
-  userAgent String?
-  requestId String?
-
-  createdAt DateTime @default(now())
-
-  @@index([createdAt])
-  @@index([entityType, entityId])
-  @@index([action])
-}
-
-model FeatureFlag {
-  id          String  @id @default(cuid())
-  key         String  @unique
-  description String?
-  enabled     Boolean @default(false)
-  config      Json?
-
-  updatedByAdminUserId String?
-  updatedByAdminUser   AdminUser? @relation("FeatureFlagUpdatedByAdmin", fields: [updatedByAdminUserId], references: [id], onDelete: SetNull)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-/**
- * =========================
- * Enums
- * =========================
- */
 
 enum Visibility {
   PUBLIC
@@ -320,12 +922,6 @@ enum CoachBillingStatus {
   CANCELED
 }
 
-/**
- * =========================
- * Referrals / Commissions / Payouts (Option B)
- * =========================
- */
-
 enum ReferralSourceType {
   DISCOUNT_CODE
   REFERRAL_LINK
@@ -333,130 +929,19 @@ enum ReferralSourceType {
 }
 
 enum CommissionStatus {
-  PENDING     // earned but not eligible yet (refund window / waiting for qualifying paid invoice)
-  ELIGIBLE    // ok to pay
-  PAID        // paid out
-  VOIDED      // clawback / reversed / invalid
+  PENDING
+  ELIGIBLE
+  PAID
+  VOIDED
 }
 
 enum PayoutStatus {
   DRAFT
   SENT
   PAID
-  FAILED
   CANCELED
+  FAILED
 }
-
-/**
- * =========================
- * Coach Profile (NEW)
- * Prevents "dangling OTHER" by keeping coach-only fields off User.
- * =========================
- */
-
-model CoachProfile {
-  id String @id @default(cuid())
-
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  coachAccountType   CoachAccountType?
-  coachBillingStatus CoachBillingStatus?
-
-  recruitingServiceName    String?
-  recruitingServiceWebsite String?
-
-  billingProfile CoachBillingProfile?
-
-  coachBio String?
-
-  staffTitle String?
-
-  isProgramAdmin Boolean @default(false)
-
-  contactEmail String?
-
-  coachXUrl         String?
-  coachInstagramUrl String?
-
-  recruitingTargets Json?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId])
-  @@index([coachAccountType])
-  @@index([coachBillingStatus])
-}
-
-/**
- * =========================
- * Recruiting Lists
- * =========================
- */
-
-model RecruitingList {
-  id String @id @default(cuid())
-
-  collegeId String
-  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-
-  name        String
-  description String?
-
-  createdByUserId String
-  createdByUser   User   @relation("RecruitingListsCreated", fields: [createdByUserId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  members RecruitingListMember[]
-  access  RecruitingListAccess[]
-
-  @@unique([collegeId, name])
-  @@index([collegeId, createdAt])
-  @@index([createdByUserId])
-}
-
-model RecruitingListMember {
-  id String @id @default(cuid())
-
-  listId String
-  list   RecruitingList @relation(fields: [listId], references: [id], onDelete: Cascade)
-
-  playerProfileId String
-  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-
-  label     String?
-  createdAt DateTime @default(now())
-
-  @@unique([listId, playerProfileId])
-  @@index([listId, createdAt])
-  @@index([playerProfileId])
-}
-
-model RecruitingListAccess {
-  id String @id @default(cuid())
-
-  listId String
-  list   RecruitingList @relation(fields: [listId], references: [id], onDelete: Cascade)
-
-  coachUserId String
-  coachUser   User   @relation(fields: [coachUserId], references: [id], onDelete: Cascade)
-
-  canEdit Boolean @default(false)
-
-  createdAt DateTime @default(now())
-
-  @@unique([listId, coachUserId])
-  @@index([coachUserId])
-}
-
-/**
- * =========================
- * Discounts (Step 2)
- * =========================
- */
 
 enum DiscountType {
   PERCENT
@@ -488,232 +973,9 @@ enum DiscountAppStatus {
   EXPIRED
 }
 
-/**
- * =========================
- * Team Billing (Step 3)
- * =========================
- */
-
 enum TeamBillingMode {
   NORMAL
   SPONSORED
-}
-
-/**
- * =========================
- * Player model
- * =========================
- */
-
-model Player {
-  id Int @id @default(autoincrement())
-
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  gradYear     Int?
-  primaryPos   String?
-  secondaryPos String?
-  pitcherHand  PitcherHand?
-  throws       String?
-  bats         String?
-
-  heightFt Int?
-  heightIn Int?
-
-  weightLb   Int?
-  hsName     String?
-  travelTeam String?
-  hometown   String?
-  state      String?
-
-  gpa    Decimal? @db.Decimal(4, 2)
-  act    Int?
-  sat    Int?
-  ncaaId String?
-
-  plan Plan @default(REDSHIRT)
-
-  isCommitted        Boolean @default(false)
-  committedProgram   String?
-  committedProgramId String?
-
-  age        Int?
-  dob        DateTime?
-  dobPrivate Boolean?  @default(true)
-  gender     Gender?
-
-  publicEnabled    Boolean    @default(true)
-  publicVisibility Visibility @default(PUBLIC)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([userId])
-}
-
-/**
- * =========================
- * PlayerProfile
- * =========================
- */
-
-model PlayerProfile {
-  id    String @id @default(cuid())
-  email String @unique
-
-  userId String?
-  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
-
-  profileState  ProfileState  @default(PLAYER_OWNED_ACTIVE)
-  ownershipMode OwnershipMode @default(PLAYER_PRIMARY)
-
-  ownerTeamId String?
-  ownerTeam   Team?   @relation(fields: [ownerTeamId], references: [id], onDelete: SetNull)
-
-  hasActiveTeamBilling   Boolean @default(false)
-  hasActivePlayerBilling Boolean @default(false)
-  billingConflictFlag    Boolean @default(false)
-
-  // ✅ Player Billing state
-  playerPlanTier       Plan   @default(REDSHIRT)
-  playerBillingCadence String @default("monthly")
-  playerBillingStatus  String @default("Active")
-
-  playerCancelRequestedAt DateTime?
-  playerCancelEffectiveAt DateTime?
-
-  schemaVersion Int
-  updatedAt     DateTime @updatedAt
-  createdAt     DateTime @default(now())
-
-  data Json
-
-  // ✅ Player billing relations
-  playerBillingProfile PlayerBillingProfile?
-  playerInvoices       PlayerInvoice[]
-
-  // Back-relations
-  teamSnapshots          TeamProfileSnapshot[]
-  changeLogs             ProfileChangeLog[]
-  coachNotes             CoachNote[]
-  coachPlayerRatings     CoachPlayerRating[]
-  viewEvents             ProfileViewEvent[]
-  recruitingBoardEntries RecruitingBoardEntry[]
-  teamMemberships        TeamMembership[]
-  RecruitingListMember   RecruitingListMember[]
-  coachInvites           CoachInvite[]
-
-  @@unique([userId])
-  @@index([email])
-  @@index([userId])
-  @@index([ownerTeamId])
-  @@index([playerPlanTier])
-}
-
-/**
- * =========================
- * PublicProfileCache
- * =========================
- */
-
-model PublicProfileCache {
-  slug      String   @id
-  data      Json
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-
-  userId String?
-  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
-
-  @@index([userId])
-}
-
-/**
- * =========================
- * Team & membership
- * =========================
- */
-
-model Team {
-  id       String   @id @default(cuid())
-  name     String
-  slug     String   @unique
-  teamType TeamType
-
-  // Org Profile fields (read/write)
-  city       String?
-  state      String?
-  websiteUrl String?
-  logoUrl    String?
-
-  // ✅ NEW: Public contact + socials (read/write)
-  contactEmail String?
-  phone        String?
-  phoneExt     String?
-  phonePrivate Boolean @default(true)
-  xUrl         String?
-  instagramUrl String?
-
-  // Billing / sponsorship
-  billingMode TeamBillingMode @default(NORMAL)
-  sponsorName String?
-  sponsorNote String?
-
-  // Billing state for Team dashboard
-  planTier       Plan   @default(TEAM)
-  billingCadence String @default("monthly")
-  billingStatus  String @default("Active")
-
-  cancelRequestedAt DateTime?
-  cancelEffectiveAt DateTime?
-
-  // Billing relations
-  billingProfile TeamBillingProfile?
-  invoices       TeamInvoice[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  memberships TeamMembership[]
-  snapshots   TeamProfileSnapshot[]
-
-  invites TeamInvite[]
-
-  ownerProfiles     PlayerProfile[]
-  coachNotes        CoachNote[]
-  profileViewEvents ProfileViewEvent[]
-}
-
-model TeamMembership {
-  id String @id @default(cuid())
-
-  userId String?
-  teamId String
-  role   TeamRole
-
-  playerProfileId String?
-  playerProfile   PlayerProfile? @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-
-  isActive Boolean @default(true)
-
-  season              String?
-  isPrimaryForProfile Boolean @default(false)
-
-  startDate DateTime?
-  endDate   DateTime?
-
-  createdAt DateTime @default(now())
-
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-  team Team  @relation(fields: [teamId], references: [id], onDelete: Cascade)
-
-  @@unique([teamId, playerProfileId, role, season])
-  @@unique([userId, teamId, role, season])
-  @@index([teamId, role])
-  @@index([userId, role])
-  @@index([playerProfileId, role])
-  @@index([teamId, isActive])
 }
 
 enum InviteStatus {
@@ -723,619 +985,10 @@ enum InviteStatus {
   CANCELLED
 }
 
-model TeamInvite {
-  id           String       @id @default(cuid())
-  teamId       String
-  invitedEmail String
-  parentEmail  String?
-  tokenHash    String
-  status       InviteStatus @default(PENDING)
-
-  createdByUserId String?
-  createdByUser   User?   @relation("TeamInviteCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
-
-  acceptedUserId String?
-  acceptedUser   User?   @relation("TeamInviteAcceptedBy", fields: [acceptedUserId], references: [id], onDelete: SetNull)
-
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  acceptedAt DateTime?
-  expiresAt  DateTime?
-
-  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
-
-  @@unique([tokenHash])
-  @@index([teamId, status])
-  @@index([invitedEmail, status])
-}
-
-model CoachInvite {
-  id           String            @id @default(cuid())
-  collegeId    String
-  invitedEmail String
-  tokenHash    String            @unique
-  status       CoachInviteStatus @default(PENDING)
-
-  // future-proof: default permission when they join staff (used later for list edit rights)
-  canEditLists Boolean @default(false)
-
-  // ✅ NEW: role assigned at invite time
-  staffRole StaffRole @default(ASSISTANT)
-
-  createdByUserId String?
-  createdByUser   User?   @relation("CoachInviteCreatedBy", fields: [createdByUserId], references: [id], onDelete: SetNull)
-
-  acceptedUserId String?
-  acceptedUser   User?   @relation("CoachInviteAcceptedBy", fields: [acceptedUserId], references: [id], onDelete: SetNull)
-
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  acceptedAt DateTime?
-  expiresAt  DateTime?
-
-  college         College        @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-  PlayerProfile   PlayerProfile? @relation(fields: [playerProfileId], references: [id])
-  playerProfileId String?
-
-  staffTitle String?
-
-  @@index([collegeId, status])
-  @@index([invitedEmail, status])
-  @@index([createdByUserId])
-  @@index([acceptedUserId])
-}
-
-model CoachJoinRequest {
-  id String @id @default(cuid())
-
-  collegeId String
-  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-
-  requestedByUserId String
-  requestedByUser   User   @relation("CoachJoinRequestCreatedBy", fields: [requestedByUserId], references: [id], onDelete: Cascade)
-
-  decidedByUserId String?
-  decidedByUser   User?   @relation("CoachJoinRequestDecidedBy", fields: [decidedByUserId], references: [id], onDelete: SetNull)
-
-  requestedRole StaffRole @default(ASSISTANT)
-
-  proofUrl String?
-  notes    String?
-
-  status    JoinRequestStatus @default(PENDING)
-  decidedAt DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([collegeId, status])
-  @@index([requestedByUserId, status])
-  @@index([status, createdAt])
-}
-
-/**
- * =========================
- * Team Invoices + Billing Profile
- * =========================
- */
-
 enum InvoiceStatus {
   UPCOMING
   OPEN
   PAID
   PAST_DUE
   VOID
-}
-
-model TeamBillingProfile {
-  id String @id @default(cuid())
-
-  teamId String @unique
-  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
-
-  provider           String  @default("VALOR")
-  providerCustomerId String?
-  providerPaymentRef String?
-  paymentType        String?
-  last4              String?
-  brand              String?
-
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-
-  @@index([teamId])
-}
-
-model TeamInvoice {
-  id String @id @default(cuid())
-
-  teamId String
-  team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
-
-  status      InvoiceStatus @default(UPCOMING)
-  periodStart DateTime
-  periodEnd   DateTime
-  amountCents Int
-  currency    String        @default("USD")
-
-  externalId String?
-  hostedUrl  String?
-
-  createdAt DateTime  @default(now())
-  paidAt    DateTime?
-
-  // NEW: commission linkage (optional)
-  commissionEvents CommissionEvent[]
-
-  @@index([teamId, periodStart])
-  @@index([teamId, status])
-}
-
-/**
- * =========================
- * Player Invoices + Billing Profile
- * =========================
- */
-
-model PlayerBillingProfile {
-  id String @id @default(cuid())
-
-  playerProfileId String        @unique
-  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-
-  provider           String  @default("VALOR")
-  providerCustomerId String?
-  providerPaymentRef String?
-  paymentType        String?
-  last4              String?
-  brand              String?
-
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-
-  @@index([playerProfileId])
-}
-
-model PlayerInvoice {
-  id String @id @default(cuid())
-
-  playerProfileId String
-  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-
-  status InvoiceStatus @default(UPCOMING)
-
-  cadence String @default("monthly")
-
-  periodStart DateTime
-  periodEnd   DateTime
-
-  invoiceDate DateTime
-  dueDate     DateTime
-
-  amountCents     Int
-  amountPaidCents Int @default(0)
-
-  externalId String?
-  hostedUrl  String?
-  paidAt     DateTime?
-
-  createdAt DateTime @default(now())
-
-  // NEW: commission linkage (optional)
-  commissionEvents CommissionEvent[]
-
-  @@index([playerProfileId, invoiceDate])
-  @@index([playerProfileId, status])
-  @@index([playerProfileId, periodStart])
-}
-
-/**
- * =========================
- * Coach Billing Profile model
- * =========================
- */
-
-model CoachBillingProfile {
-  id String @id @default(cuid())
-
-  coachProfileId String       @unique
-  coachProfile   CoachProfile @relation(fields: [coachProfileId], references: [id], onDelete: Cascade)
-
-  provider           String  @default("VALOR")
-  providerCustomerId String?
-  providerPaymentRef String?
-  paymentType        String? // "card" | "echeck"
-  last4              String?
-  brand              String?
-
-  updatedAt DateTime @updatedAt
-  createdAt DateTime @default(now())
-
-  @@index([coachProfileId])
-}
-
-/**
- * =========================
- * College model
- * =========================
- */
-
-model College {
-  id   String @id @default(cuid())
-  name String
-  slug String @unique
-
-  conference String?
-  division   String?
-  city       String?
-  state      String?
-
-  logoUrl           String?
-  websiteUrl        String?
-  programWebsiteUrl String?
-
-  programBio String?
-
-  recruitingQuestionnaireUrl String?
-  programXUrl                String?
-  programInstagramUrl        String?
-
-  programProfileUpdatedAt DateTime?
-
-  programProfileUpdatedByUserId String?
-  programProfileUpdatedByUser   User?   @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id], onDelete: SetNull)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  coaches                User[]
-  recruitingBoardEntries RecruitingBoardEntry[]
-  recruitingLists        RecruitingList[]
-  coachInvites           CoachInvite[]
-  coachNotes             CoachNote[]
-  coachPlayerRatings     CoachPlayerRating[]
-  profileViewEvents      ProfileViewEvent[]
-  coachJoinRequests      CoachJoinRequest[]
-
-  @@index([programProfileUpdatedByUserId])
-}
-
-/**
- * =========================
- * TeamProfileSnapshot
- * =========================
- */
-
-model TeamProfileSnapshot {
-  id              String @id @default(cuid())
-  teamId          String
-  playerProfileId String
-
-  team          Team          @relation(fields: [teamId], references: [id], onDelete: Cascade)
-  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-
-  snapshot  Json
-  createdAt DateTime @default(now())
-
-  @@index([teamId])
-  @@index([playerProfileId])
-}
-
-/**
- * =========================
- * ProfileChangeLog
- * =========================
- */
-
-model ProfileChangeLog {
-  id              String           @id @default(cuid())
-  playerProfileId String
-  actorUserId     String?
-  actorRole       ProfileActorRole
-  changeSummary   String
-  diff            Json?
-  changedAt       DateTime         @default(now())
-
-  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-  actorUser     User?         @relation(fields: [actorUserId], references: [id], onDelete: SetNull)
-
-  @@index([playerProfileId])
-  @@index([actorUserId])
-}
-
-/**
- * =========================
- * CoachNote
- * =========================
- */
-
-model CoachNote {
-  id              String @id @default(cuid())
-  playerProfileId String
-  coachUserId     String
-
-  teamId    String?
-  collegeId String?
-
-  noteText      String
-  sharedWithOrg Boolean  @default(true)
-  createdAt     DateTime @default(now())
-
-  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-  coachUser     User          @relation(fields: [coachUserId], references: [id], onDelete: Cascade)
-
-  team    Team?    @relation(fields: [teamId], references: [id], onDelete: SetNull)
-  college College? @relation(fields: [collegeId], references: [id], onDelete: SetNull)
-
-  @@index([playerProfileId])
-  @@index([coachUserId])
-  @@index([teamId])
-  @@index([collegeId])
-}
-
-model CoachPlayerRating {
-  id String @id @default(cuid())
-
-  // Scope: rating is per coach *and* per college program
-  collegeId String
-  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-
-  coachUserId String
-  coachUser   User   @relation(fields: [coachUserId], references: [id], onDelete: Cascade)
-
-  playerProfileId String
-  playerProfile   PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-
-  rating Int @default(0) // 0..5
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@unique([collegeId, coachUserId, playerProfileId])
-  @@index([collegeId, playerProfileId])
-  @@index([coachUserId])
-}
-
-/**
- * =========================
- * ProfileViewEvent
- * =========================
- */
-
-model ProfileViewEvent {
-  id              String            @id @default(cuid())
-  playerProfileId String
-  viewerUserId    String?
-  viewerType      ProfileViewerType
-  source          ProfileViewSource
-
-  teamId    String?
-  collegeId String?
-
-  ipHash        String?
-  userAgentHash String?
-
-  viewedAt        DateTime @default(now())
-  countedInWeekly Boolean  @default(false)
-  notifiedPlayer  Boolean  @default(false)
-
-  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-  viewerUser    User?         @relation(fields: [viewerUserId], references: [id], onDelete: SetNull)
-
-  team    Team?    @relation(fields: [teamId], references: [id], onDelete: SetNull)
-  college College? @relation(fields: [collegeId], references: [id], onDelete: SetNull)
-
-  @@index([playerProfileId, viewedAt])
-  @@index([viewerUserId])
-  @@index([teamId])
-  @@index([collegeId])
-}
-
-/**
- * =========================
- * RecruitingBoardEntry
- * =========================
- */
-
-model RecruitingBoardEntry {
-  id              String @id @default(cuid())
-  collegeId       String
-  playerProfileId String
-  addedByCoachId  String
-
-  label          String?
-  createdAt      DateTime @default(now())
-  notifiedPlayer Boolean  @default(false)
-
-  college       College       @relation(fields: [collegeId], references: [id], onDelete: Cascade)
-  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
-  addedByCoach  User          @relation(fields: [addedByCoachId], references: [id], onDelete: Cascade)
-
-  @@unique([collegeId, playerProfileId])
-  @@index([collegeId])
-  @@index([playerProfileId])
-  @@index([addedByCoachId])
-}
-
-/**
- * =========================
- * Notification
- * =========================
- */
-
-model Notification {
-  id        String           @id @default(cuid())
-  userId    String
-  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type      NotificationType
-  message   String
-  data      Json?
-  readAt    DateTime?
-  createdAt DateTime         @default(now())
-
-  @@index([userId, createdAt])
-  @@index([userId, readAt])
-}
-
-/**
- * =========================
- * Discounts (Step 2 models)
- * =========================
- */
-
-model DiscountCode {
-  id        String            @id @default(cuid())
-  code      String            @unique
-  type      DiscountType
-  value     Int
-  appliesTo DiscountAppliesTo @default(BOTH)
-
-  plansAllowedJson String  @default("[]")
-  cadence          String?
-
-  durationType   DiscountDurationType @default(ONCE)
-  durationMonths Int?
-
-  expiresAt      DateTime?
-  maxRedemptions Int?
-  isActive       Boolean   @default(true)
-
-  oncePerTarget        Boolean @default(false)
-  allowedTargetIdsJson String  @default("[]")
-
-  // ✅ optional creator tracking
-  createdByAdminUserId String?
-  createdByAdminUser   AdminUser? @relation("DiscountCodeCreatedByAdmin", fields: [createdByAdminUserId], references: [id], onDelete: SetNull)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  applications DiscountApplication[]
-}
-
-model DiscountApplication {
-  id             String       @id @default(cuid())
-  discountCodeId String
-  discountCode   DiscountCode @relation(fields: [discountCodeId], references: [id])
-
-  targetType DiscountTargetType
-  targetId   String
-
-  planTier String
-  cadence  String
-
-  status DiscountAppStatus @default(ACTIVE)
-
-  appliedAt DateTime  @default(now())
-  endsAt    DateTime?
-  revokedAt DateTime?
-
-  metadata Json?
-
-  @@index([targetType, targetId, status])
-  @@index([discountCodeId, status])
-}
-
-/**
- * =========================
- * Referrals / Commissions / Payouts (Models)
- * =========================
- */
-
-model Referral {
-  id String @id @default(cuid())
-
-  // who gets credit
-  referrerUserId String?
-  referrerUser   User? @relation("ReferralReferrerUser", fields: [referrerUserId], references: [id], onDelete: SetNull)
-
-  // who was referred (matches your DiscountTargetType)
-  targetType DiscountTargetType
-  targetId   String
-
-  sourceType ReferralSourceType @default(MANUAL)
-  sourceCode String? // discount code, referral slug, etc.
-
-  note     String?
-  metadata Json?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  commissions CommissionEvent[]
-
-  // Prevent double crediting a single target
-  @@unique([targetType, targetId])
-
-  @@index([referrerUserId])
-  @@index([targetType, targetId])
-  @@index([sourceType])
-}
-
-model CommissionEvent {
-  id String @id @default(cuid())
-
-  referralId String
-  referral   Referral @relation(fields: [referralId], references: [id], onDelete: Cascade)
-
-  // plan context at time of earning
-  planTier String
-  cadence  String
-
-  billedAmountCents     Int @default(0)
-  commissionAmountCents Int @default(0)
-
-  earnedAt   DateTime @default(now())
-  eligibleAt DateTime?
-  status     CommissionStatus @default(PENDING)
-
-  // Optional linkage (super useful)
-  teamInvoiceId   String?
-  teamInvoice     TeamInvoice?   @relation(fields: [teamInvoiceId], references: [id], onDelete: SetNull)
-
-  playerInvoiceId String?
-  playerInvoice   PlayerInvoice? @relation(fields: [playerInvoiceId], references: [id], onDelete: SetNull)
-
-  discountApplicationId String?
-
-  // payout linkage
-  payoutId String?
-  payout   Payout? @relation(fields: [payoutId], references: [id], onDelete: SetNull)
-
-  note     String?
-  metadata Json?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([status, eligibleAt])
-  @@index([payoutId])
-  @@index([teamInvoiceId])
-  @@index([playerInvoiceId])
-  @@index([referralId, earnedAt])
-}
-
-model Payout {
-  id String @id @default(cuid())
-
-  // who you paid
-  payeeUserId String?
-  payeeUser   User? @relation("PayoutPayeeUser", fields: [payeeUserId], references: [id], onDelete: SetNull)
-
-  status      PayoutStatus @default(DRAFT)
-  amountCents Int @default(0)
-
-  method String? // ACH / Check / PayPal / etc.
-  note   String?
-
-  sentAt DateTime?
-  paidAt DateTime?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  commissionEvents CommissionEvent[]
-
-  @@index([status])
-  @@index([payeeUserId])
 }

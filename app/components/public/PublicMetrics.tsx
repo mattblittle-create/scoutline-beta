@@ -147,6 +147,7 @@ const BASELINE_ALIASES: Record<string, MetricKey> = {
   popTime: "popTime",
   benchPress: "benchPress",
   squat: "squat",
+  deadLift: "deadLift",
 
   // common legacy/alt keys
   sixtyYd: "sixtyYdDash",
@@ -707,8 +708,9 @@ export default function PublicMetrics({
     { keys: ["infieldThrowVelo"], display: "Infield Throwing Velocity" },
     { keys: ["outfieldThrowVelo"], display: "Outfield Throwing Velocity" },
 
-    { keys: ["benchPress"], display: "Bench Press" },
-    { keys: ["squat"], display: "Squat" },
+{ keys: ["benchPress"], display: "Bench Press" },
+{ keys: ["squat"], display: "Squat" },
+{ keys: ["deadLift"], display: "Dead Lift" },
 
     { keys: ["popTime"], display: "Catcher Pop Time" },
     { keys: ["catcherThrowVelo"], display: "Catcher Throwing Velocity" },

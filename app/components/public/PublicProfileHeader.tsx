@@ -347,28 +347,29 @@ export default function PublicProfileHeader({
     return years;
   };
 
-  const baselineKeyFor = (key: string): string | null => {
-    const map: Record<string, string> = {
-      homeToFirst: "homeToFirst",
-      sixtyYdDash: "sixtyYdDash",
-      sixtyYd: "sixtyYdDash",
-      exitVelo: "exitVelo",
-      rawThrowVelo: "rawThrowVelo",
-      benchPress: "benchPress",
-      squat: "squat",
-      popTime: "popTime",
-      avgFbVelo: "avgFbVelo",
-      avgChVelo: "avgChVelo",
-      avgBbVelo: "avgBbVelo",
-      fbVelo: "avgFbVelo",
-      chVelo: "avgChVelo",
-      bbVelo: "avgBbVelo",
-      infieldVelo: "rawThrowVelo",
-      outfieldVelo: "rawThrowVelo",
-      catcherVelo: "rawThrowVelo",
-    };
-    return map[key] ?? null;
+const baselineKeyFor = (key: string): string | null => {
+  const map: Record<string, string> = {
+    homeToFirst: "homeToFirst",
+    sixtyYdDash: "sixtyYdDash",
+    sixtyYd: "sixtyYdDash",
+    exitVelo: "exitVelo",
+    rawThrowVelo: "rawThrowVelo",
+    benchPress: "benchPress",
+    squat: "squat",
+    deadLift: "deadLift",
+    popTime: "popTime",
+    avgFbVelo: "avgFbVelo",
+    avgChVelo: "avgChVelo",
+    avgBbVelo: "avgBbVelo",
+    fbVelo: "avgFbVelo",
+    chVelo: "avgChVelo",
+    bbVelo: "avgBbVelo",
+    infieldVelo: "rawThrowVelo",
+    outfieldVelo: "rawThrowVelo",
+    catcherVelo: "rawThrowVelo",
   };
+  return map[key] ?? null;
+};
 
   const unitForKey = (key: string): "sec" | "mph" | "lb" => {
     const secs = new Set(["homeToFirst", "sixtyYdDash", "sixtyYd", "popTime"]);
@@ -565,6 +566,7 @@ export default function PublicProfileHeader({
   const latestRawVelo = pickLatestByKey(m, "rawThrowVelo");
   const latestBench = pickLatestByKey(m, "benchPress");
   const latestSquat = pickLatestByKey(m, "squat");
+  const latestDeadLift = pickLatestByKey(m, "deadLift");
   const latestPopTime = pickLatestByKey(m, "popTime");
   const latestAvgFB = pickLatestByKey(m, "avgFbVelo");
   const latestAvgCH = pickLatestByKey(m, "avgChVelo");
@@ -855,26 +857,37 @@ export default function PublicProfileHeader({
           )}
         </div>
 
-        {/* Row 5 – strength */}
-        <div
-          style={{
-            marginTop: 6,
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            flexWrap: "wrap",
-          }}
-        >
-          <span
-            style={safePill}
-            title={buildTooltip("benchPress", latestBench)}
-          >
-            Bench: {fmtLb(latestBench.value)}
-          </span>
-          <span style={safePill} title={buildTooltip("squat", latestSquat)}>
-            Squat: {fmtLb(latestSquat.value)}
-          </span>
-        </div>
+{/* Row 5 – strength */}
+<div
+  style={{
+    marginTop: 6,
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    flexWrap: "wrap",
+  }}
+>
+  <span
+    style={safePill}
+    title={buildTooltip("benchPress", latestBench)}
+  >
+    Bench: {fmtLb(latestBench.value)}
+  </span>
+
+  <span
+    style={safePill}
+    title={buildTooltip("squat", latestSquat)}
+  >
+    Squat: {fmtLb(latestSquat.value)}
+  </span>
+
+  <span
+    style={safePill}
+    title={buildTooltip("deadLift", latestDeadLift)}
+  >
+    Dead Lift: {fmtLb(latestDeadLift.value)}
+  </span>
+</div>
 
         {/* Row 6 – catcher + pitching metrics */}
         {(showCatcherMetrics || showPitchingMetrics) && (

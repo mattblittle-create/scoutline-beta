@@ -44,7 +44,7 @@ function normalizeLogoUrl(raw: string) {
   if (/^https?:\/\//i.test(s)) return s;
   if (s.startsWith("//")) return `https:${s}`;
   if (/^[a-z0-9.-]+\.[a-z]{2,}([/].*)?$/i.test(s)) return `https://${s}`;
-  return s; // leave as-is; server will validate/normalize and may null it
+  return s;
 }
 
 function fileToDataUrl(file: File): Promise<string> {
@@ -62,7 +62,6 @@ function TeamsOnboardingPageInner() {
 
   const emailFromQuery = norm(search.get("email") || "");
 
-  // form fields
   const [adminFirstName, setAdminFirstName] = React.useState("");
   const [adminLastName, setAdminLastName] = React.useState("");
   const [adminEmail, setAdminEmail] = React.useState(emailFromQuery);
@@ -74,22 +73,19 @@ function TeamsOnboardingPageInner() {
   const [teamName, setTeamName] = React.useState("");
   const [city, setCity] = React.useState("");
 
-  // state selector (typeahead + dropdown)
   const [stateQuery, setStateQuery] = React.useState("");
   const [stateValue, setStateValue] = React.useState<StateAbbr | "">("");
   const [showStateSuggs, setShowStateSuggs] = React.useState(false);
 
   const [website, setWebsite] = React.useState("");
 
-  // ✅ Logo inputs (either file upload or URL)
-  const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>(""); // what we send if file chosen
-  const [logoUrlInput, setLogoUrlInput] = React.useState<string>(""); // optional URL paste
+  const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>("");
+  const [logoUrlInput, setLogoUrlInput] = React.useState<string>("");
   const [logoPreviewUrl, setLogoPreviewUrl] = React.useState<string | null>(null);
 
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  // Success / set-password UX (mirrors coach)
   const [okMsg, setOkMsg] = React.useState<string | null>(null);
   const [needsSetPassword, setNeedsSetPassword] = React.useState(false);
   const [setPasswordUrl, setSetPasswordUrl] = React.useState<string | null>(null);
@@ -100,7 +96,6 @@ function TeamsOnboardingPageInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emailFromQuery]);
 
-  // derived validation
   const firstOk = Boolean(adminFirstName.trim());
   const lastOk = Boolean(adminLastName.trim());
 
@@ -117,7 +112,6 @@ function TeamsOnboardingPageInner() {
 
   const canSubmit = firstOk && lastOk && emailOk && phoneOk && teamOk && cityOk && stateOk;
 
-  // state suggestions
   const stateSuggestions = React.useMemo(() => {
     const q = stateQuery.trim().toUpperCase();
     if (!q) return US_STATES.slice(0, 12);
@@ -154,7 +148,6 @@ function TeamsOnboardingPageInner() {
   }
 
   function effectiveLogoUrl() {
-    // file wins (data url) if set; otherwise use typed URL
     if (logoFileDataUrl) return logoFileDataUrl;
     const u = normalizeLogoUrl(logoUrlInput);
     return u || "";
@@ -203,8 +196,6 @@ function TeamsOnboardingPageInner() {
         city: c,
         state: st,
         website: web || null,
-
-        // ✅ NEW
         logoUrl: effectiveLogoUrl() || null,
       };
 
@@ -216,18 +207,25 @@ function TeamsOnboardingPageInner() {
 
       const needs = Boolean(json?.data?.needsSetPassword);
       const linkFromApi = String(json?.data?.setPasswordLink || "").trim();
-      const tokenFromApi = String(json?.data?.setPasswordToken || "").trim();
+      const tokenFromApi = String(
+        json?.data?.setPasswordToken ||
+          json?.data?.setPasswordJwt ||
+          json?.data?.token ||
+          ""
+      ).trim();
 
       if (needs) {
         setNeedsSetPassword(true);
 
         let url: string | null = null;
+
         if (linkFromApi) {
           url = linkFromApi
-            .replace("/auth/set-passwrod", "/auth/set-password")
+            .replace("/auth/set-passwrod", "/set-password")
+            .replace("/auth/set-password", "/set-password")
             .replace("toekn=", "token=");
         } else if (tokenFromApi) {
-          url = `${window.location.origin}/auth/set-password?token=${encodeURIComponent(tokenFromApi)}`;
+          url = `${window.location.origin}/set-password?token=${encodeURIComponent(tokenFromApi)}`;
         } else {
           url = null;
         }
@@ -281,12 +279,22 @@ function TeamsOnboardingPageInner() {
                     Open Link
                   </a>
 
-                  <button type="button" style={btnGold} onClick={() => router.push("/login?role=team")}>
+                  <button
+                    type="button"
+                    style={btnGold}
+                    onClick={() =>
+                      router.push(`/login?role=team&email=${encodeURIComponent(adminEmail.trim().toLowerCase())}`)
+                    }
+                  >
                     Go to Login
                   </button>
                 </div>
 
-                {toast ? <div style={{ marginTop: 8, ...hint, color: "#047857", fontWeight: 900 }}>{toast}</div> : null}
+                {toast ? (
+                  <div style={{ marginTop: 8, ...hint, color: "#047857", fontWeight: 900 }}>
+                    {toast}
+                  </div>
+                ) : null}
               </>
             ) : (
               <div style={{ marginTop: 10, ...hint }}>
@@ -430,7 +438,6 @@ function TeamsOnboardingPageInner() {
             <div style={hint}>Optional now; you can add/edit later in your team profile.</div>
           </Field>
 
-          {/* ✅ Logo: file upload OR URL paste */}
           <div style={{ display: "grid", gap: 10 }}>
             <Field label="Logo Upload (optional)">
               <input
@@ -448,7 +455,7 @@ function TeamsOnboardingPageInner() {
                   try {
                     const dataUrl = await fileToDataUrl(file);
                     setLogoFileDataUrl(dataUrl);
-                    setLogoUrlInput(""); // file wins; clear url field
+                    setLogoUrlInput("");
                     const blobUrl = URL.createObjectURL(file);
                     setLogoPreviewUrl(blobUrl);
                   } catch (err: any) {
@@ -469,7 +476,7 @@ function TeamsOnboardingPageInner() {
                   const v = e.target.value;
                   setLogoUrlInput(v);
                   if (v.trim()) {
-                    setLogoFileDataUrl(""); // URL wins if typed
+                    setLogoFileDataUrl("");
                     setLogoPreviewUrl(normalizeLogoUrl(v.trim()));
                   } else {
                     setLogoPreviewUrl(null);
@@ -485,7 +492,6 @@ function TeamsOnboardingPageInner() {
             {logoPreviewUrl ? (
               <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
                 <div style={{ fontWeight: 900, color: "#64748b", fontSize: 12 }}>Preview:</div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={logoPreviewUrl}
                   alt="Team logo preview"

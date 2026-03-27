@@ -395,27 +395,28 @@ const [naiaEcid, setNaiaEcid] = React.useState<string>("");
   const [popTimeEntries, setPopTimeEntries] = useState<MetricEntry[]>([]);
   const [catcherThrowVeloEntries, setCatcherThrowVeloEntries] = useState<MetricEntry[]>([]);   // NEW
 
-  // (Bench/Squat)
+  // Strength metrics
   const [benchPressEntries, setBenchPressEntries] = useState<MetricEntry[]>([]);
   const [squatEntries, setSquatEntries] = useState<MetricEntry[]>([]);
+  const [deadLiftEntries, setDeadLiftEntries] = useState<MetricEntry[]>([]);
 
   const [submitting, setSubmitting] = useState(false);
 
-  // --- NEW: per-metric privacy flags (default Public = false) ---
   const [metricPrivate, setMetricPrivate] = useState({
     homeToFirst: false,
     sixtyYdDash: false,
     exitVelo: false,
     rawThrowVelo: false,
-    infieldThrowVelo: false,   // NEW
-    outfieldThrowVelo: false,  // NEW
-    catcherThrowVelo: false,   // NEW
+    infieldThrowVelo: false,
+    outfieldThrowVelo: false,
+    catcherThrowVelo: false,
     avgFbVelo: false,
     avgChVelo: false,
     avgBbVelo: false,
     popTime: false,
     benchPress: false,
     squat: false,
+    deadLift: false,
   });
 
   // Notices
@@ -861,9 +862,9 @@ function removeStatFile(seasonId: string, fileIndex: number) {
     avgBbVeloEntries,
     popTimeEntries,
     catcherThrowVeloEntries,     // NEW
-    // Bench / Squat trigger clearing Saved!
     benchPressEntries,
     squatEntries,
+    deadLiftEntries,
     // NEW: metric privacy flags
     metricPrivate,
   ]);
@@ -1317,6 +1318,7 @@ useEffect(() => {
             popTime: !!mp.popTime,
             benchPress: !!mp.benchPress,
             squat: !!mp.squat,
+            deadLift: !!mp.deadLift,
           });
         }
 
@@ -1340,9 +1342,10 @@ useEffect(() => {
         setAvgBbVeloEntries(Array.isArray(m.avgBbVelo) ? m.avgBbVelo : []);
         setPopTimeEntries(Array.isArray(m.popTime) ? m.popTime : []);
 
-        // NEW: strength metrics
+        // Strength metrics
         setBenchPressEntries(Array.isArray(m.benchPress) ? m.benchPress : []);
         setSquatEntries(Array.isArray(m.squat) ? m.squat : []);
+        setDeadLiftEntries(Array.isArray(m.deadLift) ? m.deadLift : []);
 
                 // --- NEW: Stats Seasons (Tab 5) prefill from normalized payload ---
         if (Array.isArray(norm.statsSeasons)) {
@@ -1775,6 +1778,7 @@ const otherAcademicDocsPayload =
           popTime: [...popTimeEntries].sort(sortEntriesAsc),
           benchPress: [...benchPressEntries].sort(sortEntriesAsc),
           squat: [...squatEntries].sort(sortEntriesAsc),
+          deadLift: [...deadLiftEntries].sort(sortEntriesAsc),
         },
 
         // Metrics privacy
@@ -1982,6 +1986,7 @@ const otherAcademicDocsPayload =
         setPopTimeEntries(Array.isArray(m2.popTime) ? m2.popTime : []);
         setBenchPressEntries(Array.isArray(m2.benchPress) ? m2.benchPress : []);
         setSquatEntries(Array.isArray(m2.squat) ? m2.squat : []);
+        setDeadLiftEntries(Array.isArray(m2.deadLift) ? m2.deadLift : []);
       }
 
       if (norm.metricsPrivate) {
@@ -2000,6 +2005,7 @@ const otherAcademicDocsPayload =
           popTime: !!mp2.popTime,
           benchPress: !!mp2.benchPress,
           squat: !!mp2.squat,
+          deadLift: !!mp2.deadLift,
         });
       }
 
@@ -2367,6 +2373,8 @@ const otherAcademicDocsPayload =
             setBenchPressEntries={setBenchPressEntries}
             squatEntries={squatEntries}
             setSquatEntries={setSquatEntries}
+            deadLiftEntries={deadLiftEntries}
+            setDeadLiftEntries={setDeadLiftEntries}
 
             popTimeEntries={popTimeEntries}
             setPopTimeEntries={setPopTimeEntries}

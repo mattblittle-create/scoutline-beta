@@ -164,15 +164,16 @@ function CoachOnboardingPageInner() {
 
         let url: string | null = null;
 
-        if (linkFromApi) {
-          url = linkFromApi
-            .replace("/auth/set-passwrod", "/auth/set-password")
-            .replace("toekn=", "token=");
-        } else if (tokenFromApi) {
-          url = `${window.location.origin}/auth/set-password?token=${encodeURIComponent(tokenFromApi)}`;
-        } else {
-          url = null;
-        }
+if (linkFromApi) {
+  url = linkFromApi
+    .replace("/auth/set-passwrod", "/set-password")
+    .replace("/auth/set-password", "/set-password")
+    .replace("toekn=", "token=");
+} else if (tokenFromApi) {
+  url = `${window.location.origin}/set-password?token=${encodeURIComponent(tokenFromApi)}`;
+} else {
+  url = null;
+}
 
         setSetPasswordUrl(url);
 

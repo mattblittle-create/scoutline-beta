@@ -1180,6 +1180,20 @@ function CoachPublicProfileBody(props: { slug: string; data: any; cardStyle: CSS
         pillStyle={pillStylePublic}
       />
 
+      {primaryUrlFromApi ? (
+  <PublicMedia
+    media={mediaDataFromApi}
+    title="Primary Video"
+    primaryUrl={primaryUrlFromApi}
+    hidePrimaryInGrid={true}
+    showOnlyPrimary={true}
+    hideConnectRow={true}
+    cardStyle={props.cardStyle}
+    h2Style={h2Public}
+    pillStyle={pillStylePublic}
+  />
+) : null}
+
       <PublicAcademics academics={academicsData} cardStyle={props.cardStyle} h2Style={h2Public} pillStyle={pillStylePublic} />
 
       <PublicAthletics athletics={athleticsData} cardStyle={props.cardStyle} h2Style={h2Public} pillStyle={pillStylePublic} />

@@ -16,7 +16,8 @@ export type MetricKey =
   | "avgBbVelo"          // "BB Velo" — mph (pitchers)
   | "popTime"            // "Pop Time" — seconds (catchers)
   | "benchPress"         // "Bench Press" — lbs
-  | "squat";             // "Squat" — lbs
+  | "squat"              // "Squat" — lbs
+  | "deadLift";          // "Dead Lift" — lbs
 
 export type BaselineTable = Record<number /* age */, number /* avg value */>;
 export type BaselineData = Record<MetricKey, BaselineTable>;
@@ -146,6 +147,15 @@ export const BASELINES: BaselineData = {
     16: 215,
     17: 250,
     18: 285,
+  },
+
+  deadLift: {
+    13: 155,
+    14: 185,
+    15: 225,
+    16: 275,
+    17: 315,
+    18: 365,
   },
 };
 

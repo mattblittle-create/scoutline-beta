@@ -1,176 +1,108 @@
+// app/api/auth/set-password/route.ts
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
-import { jwtVerify } from "jose";
-import { sha256 } from "@/lib/hash";
-
-export const runtime = "nodejs";
-export const dynamic = "force-dynamic";
+import { prisma } from "@/lib/prisma";
+import {
+  consumeVerificationToken,
+  findValidVerificationToken,
+} from "@/lib/auth/tokens";
 
 type Body = {
-  token?: string;
-  password?: string;
+  token?: string | null;
+  password?: string | null;
+  next?: string | null;
 };
 
-function getSecret(): Uint8Array {
-  const secret = process.env.APP_SECRET;
-  if (!secret) throw new Error("Missing APP_SECRET");
-  return new TextEncoder().encode(secret);
-}
-
-function normalizeEmail(v: any) {
-  return String(v ?? "").trim().toLowerCase();
-}
-
-function asString(v: any) {
+function normalizeText(v: unknown) {
   return String(v ?? "").trim();
 }
 
-type AccountType = "TEAM" | "COACH" | "PLAYER" | "UNKNOWN";
+function validatePassword(pw: string): string | null {
+  if (!pw) return "Password is required.";
+  if (pw.length < 10) return "Password must be at least 10 characters.";
+  if (!/[A-Z]/.test(pw)) return "Password must include at least one capital letter.";
+  if (!/[0-9]/.test(pw)) return "Password must include at least one number.";
+  if (!/[^A-Za-z0-9\s]/.test(pw)) return "Password must include at least one symbol.";
+  return null;
+}
 
-function loginRedirectFor(accountType: AccountType) {
-  if (accountType === "TEAM") return "/login?role=team";
-  if (accountType === "COACH") return "/login?role=coach";
-  if (accountType === "PLAYER") return "/login?role=player";
-  return "/login";
+function normalizeNextPath(v: unknown): string | null {
+  const s = String(v ?? "").trim();
+  if (!s) return null;
+
+  // Only allow internal relative paths
+  if (!s.startsWith("/")) return null;
+  if (s.startsWith("//")) return null;
+
+  return s;
 }
 
 export async function POST(req: Request) {
   try {
-    const { token, password } = (await req.json()) as Body;
+    const body = (await req.json().catch(() => ({}))) as Body;
 
-    if (!token || typeof token !== "string") {
-      return NextResponse.json({ ok: false, error: "Missing token" }, { status: 400 });
+    const rawToken = normalizeText(body.token);
+    const password = normalizeText(body.password);
+    const next = normalizeNextPath(body.next);
+
+    if (!rawToken) {
+      return NextResponse.json(
+        { ok: false, error: "Token is required." },
+        { status: 400 }
+      );
     }
 
-    if (!password || typeof password !== "string" || password.length < 8) {
-      return NextResponse.json({ ok: false, error: "Password must be at least 8 characters" }, { status: 400 });
+    const pwErr = validatePassword(password);
+    if (pwErr) {
+      return NextResponse.json({ ok: false, error: pwErr }, { status: 400 });
     }
 
-    // 1) Verify JWT (integrity/expiry/purpose/email)
-    let email = "";
-    let purpose = "";
-    let hintedAccount = "";
-
-    try {
-      const { payload } = await jwtVerify(token, getSecret());
-      email = normalizeEmail((payload as any).email);
-      purpose = asString((payload as any).purpose);
-      hintedAccount = asString((payload as any).account); // optional future use
-    } catch {
-      return NextResponse.json({ ok: false, error: "Invalid or expired token" }, { status: 400 });
-    }
-
-    if (!email) {
-      return NextResponse.json({ ok: false, error: "Missing email in token" }, { status: 400 });
-    }
-
-    if (purpose !== "set-password") {
-      return NextResponse.json({ ok: false, error: "Invalid token purpose" }, { status: 400 });
-    }
-
-    // 2) Enforce single-use via DB row (atomic consume)
-    const tokenHash = sha256(token);
-    const now = new Date();
-
-    // 3) Hash password
-    const passwordHash = await bcrypt.hash(password, 12);
-
-    // 4) Transaction:
-    //    - consume this exact token if valid
-    //    - set passwordHash ONLY (do NOT touch role)
-    //    - invalidate sibling tokens
-    const result = await prisma.$transaction(async (tx) => {
-      const consumed = await tx.verificationToken.updateMany({
-        where: {
-          tokenHash,
-          purpose: "SET_PASSWORD",
-          consumedAt: null,
-          expiresAt: { gt: now },
-        },
-        data: { consumedAt: now },
-      });
-
-      if (consumed.count !== 1) {
-        return { ok: false as const, reason: "Token already used or expired" };
-      }
-
-      // IMPORTANT:
-      // - Do NOT create CoachProfile / Team / Player here
-      // - Do NOT clobber user.role
-      // - If user doesn't exist, create the bare minimum user row
-      await tx.user.upsert({
-        where: { email },
-        create: {
-          email,
-          passwordHash,
-          // Keep defaults consistent
-          phonePrivate: true,
-          emailPrivate: true,
-          // role intentionally NOT set here (role is assigned by onboarding flows)
-        },
-        update: { passwordHash },
-      });
-
-      await tx.verificationToken.updateMany({
-        where: { email, purpose: "SET_PASSWORD", consumedAt: null },
-        data: { consumedAt: now },
-      });
-
-      return { ok: true as const };
+    const token = await findValidVerificationToken({
+      rawToken,
+      purpose: "SET_PASSWORD",
     });
 
-    if (!result.ok) {
-      return NextResponse.json({ ok: false, error: result.reason }, { status: 400 });
+    if (!token?.email) {
+      return NextResponse.json(
+        { ok: false, error: "This setup link is invalid or has expired." },
+        { status: 400 }
+      );
     }
 
-    // After password set, determine what this account actually is (DB truth > token hint)
-    const user = await prisma.user.findUnique({
-      where: { email },
-      select: {
-        id: true,
-        email: true,
-        role: true,
-        Player: { select: { id: true } },
-        coachProfile: { select: { id: true } },
-        teamMemberships: {
-          select: { id: true, role: true, team: { select: { id: true, slug: true, name: true } } },
-        },
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    await prisma.user.update({
+      where: { email: token.email },
+      data: {
+        passwordHash,
+        updatedAt: new Date(),
       },
+      select: { id: true },
     });
 
-    let accountType: AccountType = "UNKNOWN";
-
-    const hasTeamAdminMembership =
-      !!user?.teamMemberships?.some((m: any) => String(m.role) === "TEAM_ADMIN");
-
-    if (hasTeamAdminMembership) accountType = "TEAM";
-    else if (user?.coachProfile?.id) accountType = "COACH";
-    else if (user?.Player?.id) accountType = "PLAYER";
-    else {
-      // As a fallback, use role string if present (but DB relations win)
-      const r = String(user?.role || "").toUpperCase();
-      if (r.includes("TEAM")) accountType = "TEAM";
-      else if (r.includes("COACH")) accountType = "COACH";
-      else if (r.includes("PLAYER")) accountType = "PLAYER";
-      else if (hintedAccount) {
-        const h = hintedAccount.toUpperCase();
-        if (h === "TEAM" || h === "COACH" || h === "PLAYER") accountType = h as AccountType;
-      }
-    }
-
-    const redirectTo = loginRedirectFor(accountType);
+    await consumeVerificationToken({
+      rawToken,
+      purpose: "SET_PASSWORD",
+    });
 
     return NextResponse.json({
       ok: true,
-      data: {
-        email,
-        accountType,
-        redirectTo,
-      },
+      email: token.email,
+      redirectTo: next || `/login?email=${encodeURIComponent(token.email)}`,
     });
   } catch (err: any) {
-    console.error("set-password error:", err);
-    return NextResponse.json({ ok: false, error: err?.message || "Server error" }, { status: 500 });
+    console.error("[auth] set-password error", {
+      message: err?.message || "Unknown error",
+      stack: err?.stack || null,
+      name: err?.name || null,
+      code: err?.code || null,
+      meta: err?.meta || null,
+      cause: err?.cause || null,
+    });
+
+    return NextResponse.json(
+      { ok: false, error: err?.message || "Failed to set password." },
+      { status: 500 }
+    );
   }
 }

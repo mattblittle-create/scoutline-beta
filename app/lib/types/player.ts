@@ -28,6 +28,11 @@ export type VideoSocialPayload = {
     xHandle?: string;
     instagramHandle?: string;
     youtubeChannelUrl?: string;
+    gameChangerUrl?: string;
+    maxPrepsUrl?: string;
+    rapsodoUrl?: string;
+    trackmanUrl?: string;
+    pocketRadarUrl?: string;
   };
   primary: { kind: "local" | "external"; id: string } | null;
 };

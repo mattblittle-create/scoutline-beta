@@ -2,16 +2,19 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { slugifyName, generateUniqueSlug } from "@/lib/slug";
-import crypto from "crypto";
-import { SignJWT } from "jose";
-import { sha256 } from "@/lib/hash";
+import {
+  createVerificationToken,
+  invalidateExistingTokens,
+} from "@/lib/auth/tokens";
+import { sendSetPasswordEmail } from "@/lib/email/sendSetPasswordEmail";
+import { getBaseUrl } from "@/lib/email/senders";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 type Body = {
   name: string;
-  role: string; // coach staff title (preset string)
+  role: string;
   collegeProgram: string;
   workEmail: string;
   workPhone?: string;
@@ -19,157 +22,245 @@ type Body = {
   phonePrivate?: boolean;
 };
 
-function digitsOnly(v: any) {
+function digitsOnly(v: unknown) {
   return String(v ?? "").replace(/\D+/g, "");
 }
 
-function normalizeEmail(v: any) {
+function normalizeEmail(v: unknown) {
   return String(v ?? "").trim().toLowerCase();
 }
 
-function getSecret(): Uint8Array {
-  const secret = process.env.APP_SECRET;
-  if (!secret) throw new Error("Missing APP_SECRET");
-  return new TextEncoder().encode(secret);
+function normalizeText(v: unknown) {
+  return String(v ?? "").trim();
 }
 
-async function makeSetPasswordJwt(email: string) {
-  // purpose must match /api/auth/set-password expectation: "set-password"
-  return new SignJWT({ email, purpose: "set-password" })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1h")
-    .sign(getSecret());
+function isEmail(v: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
 
-function getOriginFromHeaders(req: Request) {
-  const h = req.headers;
-  const proto = (h.get("x-forwarded-proto") || "http").split(",")[0].trim();
-  const host = (h.get("x-forwarded-host") || h.get("host") || "").split(",")[0].trim();
-  if (!host) return "";
-  return `${proto}://${host}`;
+function slugifyCollegeName(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/--+/g, "-");
+}
+
+async function ensureCollegeByName(collegeProgram: string) {
+  const existing = await prisma.college.findFirst({
+    where: {
+      name: {
+        equals: collegeProgram,
+        mode: "insensitive",
+      },
+    },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+    },
+  });
+
+  if (existing?.id) return existing;
+
+  const baseSlug = slugifyCollegeName(collegeProgram) || "college";
+  let slug = baseSlug;
+  let counter = 2;
+
+  for (;;) {
+    const clash = await prisma.college.findUnique({
+      where: { slug },
+      select: { id: true },
+    });
+
+    if (!clash?.id) break;
+
+    slug = `${baseSlug}-${counter}`;
+    counter += 1;
+  }
+
+  return prisma.college.create({
+    data: {
+      name: collegeProgram,
+      slug,
+    },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+    },
+  });
 }
 
 export async function POST(req: Request) {
+  let stage = "start";
+
   try {
+    stage = "parse-body";
     const reqBody = (await req.json().catch(() => ({}))) as Partial<Body>;
 
-    const name = String(reqBody?.name || "").trim();
-    const staffTitle = String(reqBody?.role || "").trim(); // ✅ store on CoachProfile
-    const collegeProgram = String(reqBody?.collegeProgram || "").trim();
+    const name = normalizeText(reqBody?.name);
+    const staffTitle = normalizeText(reqBody?.role);
+    const collegeProgram = normalizeText(reqBody?.collegeProgram);
 
     const workEmail = normalizeEmail(reqBody?.workEmail);
-    const workPhone = digitsOnly(reqBody?.workPhone || "").slice(0, 10);
-    const workPhoneExt = digitsOnly(reqBody?.workPhoneExt || "").slice(0, 6);
+    const workPhone = digitsOnly(reqBody?.workPhone).slice(0, 10);
+    const workPhoneExt = digitsOnly(reqBody?.workPhoneExt).slice(0, 6);
     const phonePrivate = reqBody?.phonePrivate === false ? false : true;
 
+    stage = "validate-input";
     if (!workEmail) {
-      return NextResponse.json({ ok: false, error: "Work email is required." }, { status: 400 });
-    }
-    if (!name) {
-      return NextResponse.json({ ok: false, error: "Coach name is required." }, { status: 400 });
-    }
-    if (!staffTitle) {
-      return NextResponse.json({ ok: false, error: "Role is required." }, { status: 400 });
-    }
-    if (!collegeProgram) {
-      return NextResponse.json({ ok: false, error: "College / University is required." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Work email is required." },
+        { status: 400 }
+      );
     }
 
-    // Determine slug only if missing
+    if (!isEmail(workEmail)) {
+      return NextResponse.json(
+        { ok: false, error: "Valid work email is required." },
+        { status: 400 }
+      );
+    }
+
+    if (!name) {
+      return NextResponse.json(
+        { ok: false, error: "Coach name is required." },
+        { status: 400 }
+      );
+    }
+
+    if (!staffTitle) {
+      return NextResponse.json(
+        { ok: false, error: "Role is required." },
+        { status: 400 }
+      );
+    }
+
+    if (!collegeProgram) {
+      return NextResponse.json(
+        { ok: false, error: "College / University is required." },
+        { status: 400 }
+      );
+    }
+
+    stage = "lookup-existing-user";
     const existing = await prisma.user.findUnique({
       where: { email: workEmail },
-      select: { id: true, slug: true, passwordHash: true },
+      select: {
+        id: true,
+        slug: true,
+        passwordHash: true,
+      },
     });
 
     let slugToSet: string | undefined;
     if (!existing?.slug && name) {
+      stage = "generate-user-slug";
       const base = slugifyName(name);
       slugToSet = await generateUniqueSlug(prisma, base);
     }
 
-    // We'll mint a set-password token ONLY if user currently has no passwordHash
-    const shouldMintSetPassword = !existing?.passwordHash;
+    stage = "ensure-college";
+    const college = await ensureCollegeByName(collegeProgram);
 
-    // Do everything in a transaction so the token matches the persisted user
+    stage = "upsert-user-and-coach-profile";
     const result = await prisma.$transaction(async (tx) => {
       const user = await tx.user.upsert({
         where: { email: workEmail },
         update: {
           name,
+          role: "COACH",
           program: collegeProgram,
           workPhone: workPhone || null,
           workPhoneExt: workPhoneExt || null,
           phonePrivate,
+          collegeId: college.id,
           ...(slugToSet ? { slug: slugToSet } : {}),
+          updatedAt: new Date(),
         },
         create: {
           email: workEmail,
           name,
+          role: "COACH",
           program: collegeProgram,
           workPhone: workPhone || null,
           workPhoneExt: workPhoneExt || null,
           phonePrivate,
-          slug: slugToSet,
-          // emailPrivate/phonePrivate already default; phonePrivate overridden above
+          collegeId: college.id,
+          ...(slugToSet ? { slug: slugToSet } : {}),
+          emailPrivate: false,
         },
-        select: { id: true, email: true, name: true, slug: true, passwordHash: true },
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          slug: true,
+          passwordHash: true,
+        },
       });
 
-      // Ensure CoachProfile exists + persist staffTitle (free/no billing)
-      await tx.coachProfile.upsert({
+      const coachProfile = await tx.coachProfile.upsert({
         where: { userId: user.id },
         create: {
           userId: user.id,
           staffTitle,
           coachAccountType: "COLLEGE_COACH" as any,
           coachBillingStatus: "NONE" as any,
+          contactEmail: workEmail,
           recruitingTargets: [],
         },
         update: {
           staffTitle,
           coachAccountType: "COLLEGE_COACH" as any,
           coachBillingStatus: "NONE" as any,
+          contactEmail: workEmail,
+          updatedAt: new Date(),
+        },
+        select: {
+          id: true,
         },
       });
 
-      let setPasswordToken: string | null = null;
-
-      if (!user.passwordHash) {
-        const jwt = await makeSetPasswordJwt(user.email);
-        const tokenHashDb = sha256(jwt);
-        const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
-
-        // invalidate any older outstanding SET_PASSWORD tokens for this email
-        await tx.verificationToken.updateMany({
-          where: { email: user.email, purpose: "SET_PASSWORD" as any, consumedAt: null },
-          data: { consumedAt: new Date() },
-        });
-
-        await tx.verificationToken.create({
-          data: {
-            id: crypto.randomUUID(),
-            email: user.email,
-            tokenHash: tokenHashDb,
-            purpose: "SET_PASSWORD" as any,
-            expiresAt,
-          },
-        });
-
-        setPasswordToken = jwt;
-      }
-
-      return { user, setPasswordToken };
+      return { user, coachProfile };
     });
 
-    // Build a link that works in dev + prod behind proxies
-    const origin = getOriginFromHeaders(req);
-    const setPasswordLink =
-      result.setPasswordToken && origin
-        ? `${origin}/auth/set-password?token=${encodeURIComponent(result.setPasswordToken)}`
-        : null;
+    const needsSetPassword = !result.user.passwordHash;
 
-    // In prod you’ll email the setPasswordLink. In dev, returning it is convenient.
+    let rawToken: string | null = null;
+    let setPasswordLink: string | null = null;
+    let expiresAt: Date | null = null;
+
+    if (needsSetPassword) {
+      stage = "invalidate-existing-set-password-tokens";
+      await invalidateExistingTokens({
+        email: workEmail,
+        purpose: "SET_PASSWORD",
+      });
+
+      stage = "create-set-password-token";
+      const tokenResult = await createVerificationToken({
+        email: workEmail,
+        purpose: "SET_PASSWORD",
+      });
+
+      rawToken = tokenResult.rawToken;
+      expiresAt = tokenResult.token.expiresAt;
+      setPasswordLink = `${getBaseUrl()}/set-password?token=${encodeURIComponent(
+        rawToken
+      )}`;
+
+      stage = "send-set-password-email";
+      await sendSetPasswordEmail({
+        to: workEmail,
+        rawToken,
+        roleLabel: "ScoutLine coach account",
+      });
+    }
+
+    stage = "return-success";
     return NextResponse.json({
       ok: true,
       data: {
@@ -180,22 +271,40 @@ export async function POST(req: Request) {
           slug: result.user.slug ?? null,
           staffTitle,
           program: collegeProgram,
+          collegeId: college.id,
+          collegeSlug: college.slug,
           workPhone: workPhone || null,
           workPhoneExt: workPhoneExt || null,
           phonePrivate,
         },
-        needsSetPassword: !result.user.passwordHash,
-        setPasswordToken: result.setPasswordToken, // keep for UI flow
-        setPasswordLink, // dev-friendly
+        coachProfileId: result.coachProfile.id,
+        needsSetPassword,
+        setPasswordToken: rawToken,
+        setPasswordLink,
+        expiresAt,
         emailDispatch: {
-          // placeholder for later (SendGrid/Postmark/etc.)
-          sent: false,
+          sent: needsSetPassword,
           to: workEmail,
         },
       },
     });
   } catch (err: any) {
-    console.error("coach onboarding error:", err);
-    return NextResponse.json({ ok: false, error: err?.message || "Server error" }, { status: 500 });
+    console.error("coach onboarding error:", {
+      stage,
+      message: err?.message || "Unknown error",
+      stack: err?.stack || null,
+      name: err?.name || null,
+      code: err?.code || null,
+      meta: err?.meta || null,
+      cause: err?.cause || null,
+    });
+
+    return NextResponse.json(
+      {
+        ok: false,
+        error: `Coach onboarding failed at stage: ${stage}. ${err?.message || "Server error"}`,
+      },
+      { status: 500 }
+    );
   }
 }

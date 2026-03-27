@@ -22,7 +22,17 @@ export type VideoSocialPayload = {
     fileSize: number;
     addedAt: number;
   }[];
-  social: { xHandle?: string; instagramHandle?: string; youtubeChannelUrl?: string };
+  social: {
+  xHandle?: string;
+  instagramHandle?: string;
+  youtubeChannelUrl?: string;
+
+  gameChangerUrl?: string;
+  maxPrepsUrl?: string;
+  rapsodoUrl?: string;
+  trackmanUrl?: string;
+  pocketRadarUrl?: string;
+};
   primary: { kind: "local" | "external"; id: string } | null;
 };
 
@@ -61,6 +71,12 @@ type SocialLinks = {
   xHandle?: string;
   instagramHandle?: string;
   youtubeChannelUrl?: string;
+
+  gameChangerUrl?: string;
+  maxPrepsUrl?: string;
+  rapsodoUrl?: string;
+  trackmanUrl?: string;
+  pocketRadarUrl?: string;
 };
 
 type PrimaryRef = { kind: "local" | "external"; id: string } | null;
@@ -613,11 +629,22 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
     const [xHandle, setXHandle] = useState(state.social.xHandle ?? "");
     const [igHandle, setIgHandle] = useState(state.social.instagramHandle ?? "");
     const [ytUrl, setYtUrl] = useState(state.social.youtubeChannelUrl ?? "");
-    useEffect(() => {
-      setXHandle(state.social.xHandle ?? "");
-      setIgHandle(state.social.instagramHandle ?? "");
-      setYtUrl(state.social.youtubeChannelUrl ?? "");
-    }, [state.social]);
+    const [gameChangerUrl, setGameChangerUrl] = useState(state.social.gameChangerUrl ?? "");
+    const [maxPrepsUrl, setMaxPrepsUrl] = useState(state.social.maxPrepsUrl ?? "");
+    const [rapsodoUrl, setRapsodoUrl] = useState(state.social.rapsodoUrl ?? "");
+    const [trackmanUrl, setTrackmanUrl] = useState(state.social.trackmanUrl ?? "");
+    const [pocketRadarUrl, setPocketRadarUrl] = useState(state.social.pocketRadarUrl ?? "");
+useEffect(() => {
+  setXHandle(state.social.xHandle ?? "");
+  setIgHandle(state.social.instagramHandle ?? "");
+  setYtUrl(state.social.youtubeChannelUrl ?? "");
+
+  setGameChangerUrl(state.social.gameChangerUrl ?? "");
+  setMaxPrepsUrl(state.social.maxPrepsUrl ?? "");
+  setRapsodoUrl(state.social.rapsodoUrl ?? "");
+  setTrackmanUrl(state.social.trackmanUrl ?? "");
+  setPocketRadarUrl(state.social.pocketRadarUrl ?? "");
+}, [state.social]);
 
     // --- keep state.social in sync with the inputs so it persists between tab switches
     function onXChange(v: string) {
@@ -631,6 +658,26 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
 function onYtChange(v: string) {
   setYtUrl(v);
   setState((s) => ({ ...s, social: { ...s.social, youtubeChannelUrl: v } }));
+}
+function onGameChangerChange(v: string) {
+  setGameChangerUrl(v);
+  setState((s) => ({ ...s, social: { ...s.social, gameChangerUrl: v } }));
+}
+function onMaxPrepsChange(v: string) {
+  setMaxPrepsUrl(v);
+  setState((s) => ({ ...s, social: { ...s.social, maxPrepsUrl: v } }));
+}
+function onRapsodoChange(v: string) {
+  setRapsodoUrl(v);
+  setState((s) => ({ ...s, social: { ...s.social, rapsodoUrl: v } }));
+}
+function onTrackmanChange(v: string) {
+  setTrackmanUrl(v);
+  setState((s) => ({ ...s, social: { ...s.social, trackmanUrl: v } }));
+}
+function onPocketRadarChange(v: string) {
+  setPocketRadarUrl(v);
+  setState((s) => ({ ...s, social: { ...s.social, pocketRadarUrl: v } }));
 }
 
 /* ---------- NEW: clear/remove social values ---------- */
@@ -646,6 +693,26 @@ function clearYt() {
   setYtUrl("");
   setState((s) => ({ ...s, social: { ...s.social, youtubeChannelUrl: undefined } }));
 }
+function clearGameChanger() {
+  setGameChangerUrl("");
+  setState((s) => ({ ...s, social: { ...s.social, gameChangerUrl: undefined } }));
+}
+function clearMaxPreps() {
+  setMaxPrepsUrl("");
+  setState((s) => ({ ...s, social: { ...s.social, maxPrepsUrl: undefined } }));
+}
+function clearRapsodo() {
+  setRapsodoUrl("");
+  setState((s) => ({ ...s, social: { ...s.social, rapsodoUrl: undefined } }));
+}
+function clearTrackman() {
+  setTrackmanUrl("");
+  setState((s) => ({ ...s, social: { ...s.social, trackmanUrl: undefined } }));
+}
+function clearPocketRadar() {
+  setPocketRadarUrl("");
+  setState((s) => ({ ...s, social: { ...s.social, pocketRadarUrl: undefined } }));
+}
 
 function saveSocial() {
       if (!PLAN.canSocial) {
@@ -653,15 +720,26 @@ function saveSocial() {
         return;
       }
       const next: SocialLinks = {
-        xHandle: normalizeHandle(xHandle),
-        instagramHandle: normalizeHandle(igHandle),
-        youtubeChannelUrl: ytUrl.trim() || undefined,
-      };
+  xHandle: normalizeHandle(xHandle),
+  instagramHandle: normalizeHandle(igHandle),
+  youtubeChannelUrl: ytUrl.trim() || undefined,
+
+  gameChangerUrl: gameChangerUrl.trim() || undefined,
+  maxPrepsUrl: maxPrepsUrl.trim() || undefined,
+  rapsodoUrl: rapsodoUrl.trim() || undefined,
+  trackmanUrl: trackmanUrl.trim() || undefined,
+  pocketRadarUrl: pocketRadarUrl.trim() || undefined,
+};
       setState((s) => ({ ...s, social: next }));
       // reflect normalized values back into the inputs
       setXHandle(next.xHandle ?? "");
-      setIgHandle(next.instagramHandle ?? "");
-      setYtUrl(next.youtubeChannelUrl ?? "");
+setIgHandle(next.instagramHandle ?? "");
+setYtUrl(next.youtubeChannelUrl ?? "");
+setGameChangerUrl(next.gameChangerUrl ?? "");
+setMaxPrepsUrl(next.maxPrepsUrl ?? "");
+setRapsodoUrl(next.rapsodoUrl ?? "");
+setTrackmanUrl(next.trackmanUrl ?? "");
+setPocketRadarUrl(next.pocketRadarUrl ?? "");
       flashMsg("Social links saved.");
     }
 
@@ -670,13 +748,23 @@ function saveSocial() {
       const x = normalizeHandle(xHandle || state.social.xHandle);
       const ig = normalizeHandle(igHandle || state.social.instagramHandle);
       const yt = (ytUrl || state.social.youtubeChannelUrl)?.trim();
+      const gc = (gameChangerUrl || state.social.gameChangerUrl)?.trim();
+      const mp = (maxPrepsUrl || state.social.maxPrepsUrl)?.trim();
+      const rap = (rapsodoUrl || state.social.rapsodoUrl)?.trim();
+      const tm = (trackmanUrl || state.social.trackmanUrl)?.trim();
+      const pr = (pocketRadarUrl || state.social.pocketRadarUrl)?.trim();
 
       if (x) links.push({ label: "Follow on X", href: `https://twitter.com/${x}` });
       if (ig) links.push({ label: "Follow on Instagram", href: `https://instagram.com/${ig}` });
       if (yt && isValidUrlMaybe(yt)) links.push({ label: "YouTube Channel", href: yt });
+      if (gc && isValidUrlMaybe(gc)) links.push({ label: "GameChanger Profile", href: gc });
+      if (mp && isValidUrlMaybe(mp)) links.push({ label: "MaxPreps Profile", href: mp });
+      if (rap && isValidUrlMaybe(rap)) links.push({ label: "Rapsodo Profile", href: rap });
+      if (tm && isValidUrlMaybe(tm)) links.push({ label: "TrackMan Profile", href: tm });
+      if (pr && isValidUrlMaybe(pr)) links.push({ label: "Pocket Radar Profile", href: pr });
 
       return links;
-    }, [xHandle, igHandle, ytUrl, state.social]);
+    }, [xHandle, igHandle, ytUrl, gameChangerUrl, maxPrepsUrl, rapsodoUrl, trackmanUrl, pocketRadarUrl, state.social]);
 
     // ----- Flash Msg -----
     function flashMsg(text: string) {
@@ -720,10 +808,16 @@ function saveSocial() {
 
           // Normalize social on the way out (reflect unsaved edits)
           const social: SocialLinks = {
-            xHandle: normalizeHandle(xHandle || state.social.xHandle),
-            instagramHandle: normalizeHandle(igHandle || state.social.instagramHandle),
-            youtubeChannelUrl: (ytUrl || state.social.youtubeChannelUrl)?.trim() || undefined,
-          };
+  xHandle: normalizeHandle(xHandle || state.social.xHandle),
+  instagramHandle: normalizeHandle(igHandle || state.social.instagramHandle),
+  youtubeChannelUrl: (ytUrl || state.social.youtubeChannelUrl)?.trim() || undefined,
+
+  gameChangerUrl: (gameChangerUrl || state.social.gameChangerUrl)?.trim() || undefined,
+  maxPrepsUrl: (maxPrepsUrl || state.social.maxPrepsUrl)?.trim() || undefined,
+  rapsodoUrl: (rapsodoUrl || state.social.rapsodoUrl)?.trim() || undefined,
+  trackmanUrl: (trackmanUrl || state.social.trackmanUrl)?.trim() || undefined,
+  pocketRadarUrl: (pocketRadarUrl || state.social.pocketRadarUrl)?.trim() || undefined,
+};
 
           // Keep primary only if it still points at an existing item
           const primary: PrimaryRef = (() => {
@@ -738,7 +832,7 @@ function saveSocial() {
           return { externalVideos: externals, localVideos: locals, social, primary };
         },
       }),
-      [state, xHandle, igHandle, ytUrl]
+      [state, xHandle, igHandle, ytUrl, gameChangerUrl, maxPrepsUrl, rapsodoUrl, trackmanUrl, pocketRadarUrl]
     );
 
     // ----- Render -----
@@ -1130,7 +1224,9 @@ function saveSocial() {
             <div style={cardStyle}>
               <div style={cardHeaderStyle}>
                 <span style={cardTitleStyle}>Connect Social Profiles</span>
-                <span style={pillStyle}>X / Instagram / YouTube</span>
+                <span style={pillStyle}>
+  X / Instagram / YouTube / GameChanger / MaxPreps / Rapsodo / TrackMan / Pocket Radar
+</span>
               </div>
 
               <div style={{ display: "grid", gap: 12 }}>
@@ -1164,6 +1260,61 @@ function saveSocial() {
                     disabled={!PLAN.canSocial}
                   />
                 </div>
+
+<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+  <label style={labelStyle}>GameChanger URL</label>
+  <input
+    placeholder="https://gc.com/..."
+    value={gameChangerUrl}
+    onChange={(e) => onGameChangerChange(e.target.value)}
+    style={inputStyle}
+    disabled={!PLAN.canSocial}
+  />
+</div>
+
+<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+  <label style={labelStyle}>MaxPreps URL</label>
+  <input
+    placeholder="https://www.maxpreps.com/..."
+    value={maxPrepsUrl}
+    onChange={(e) => onMaxPrepsChange(e.target.value)}
+    style={inputStyle}
+    disabled={!PLAN.canSocial}
+  />
+</div>
+
+<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+  <label style={labelStyle}>Rapsodo URL</label>
+  <input
+    placeholder="https://..."
+    value={rapsodoUrl}
+    onChange={(e) => onRapsodoChange(e.target.value)}
+    style={inputStyle}
+    disabled={!PLAN.canSocial}
+  />
+</div>
+
+<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+  <label style={labelStyle}>TrackMan URL</label>
+  <input
+    placeholder="https://..."
+    value={trackmanUrl}
+    onChange={(e) => onTrackmanChange(e.target.value)}
+    style={inputStyle}
+    disabled={!PLAN.canSocial}
+  />
+</div>
+
+<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+  <label style={labelStyle}>Pocket Radar URL</label>
+  <input
+    placeholder="https://..."
+    value={pocketRadarUrl}
+    onChange={(e) => onPocketRadarChange(e.target.value)}
+    style={inputStyle}
+    disabled={!PLAN.canSocial}
+  />
+</div>
 
 <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
   <button
@@ -1244,6 +1395,116 @@ function saveSocial() {
       </button>
     </span>
   ) : null}
+
+  {(gameChangerUrl || state.social.gameChangerUrl)?.trim() ? (
+  <span style={pillWrap}>
+    <a
+      href={(gameChangerUrl || state.social.gameChangerUrl)!.trim()}
+      target="_blank"
+      rel="noreferrer"
+      style={linkButtonStyle}
+    >
+      GameChanger Profile
+    </a>
+    <button
+      type="button"
+      onClick={clearGameChanger}
+      aria-label="Remove GameChanger URL"
+      title="Remove GameChanger URL"
+      style={closeXButtonStyle}
+    >
+      ×
+    </button>
+  </span>
+) : null}
+
+{(maxPrepsUrl || state.social.maxPrepsUrl)?.trim() ? (
+  <span style={pillWrap}>
+    <a
+      href={(maxPrepsUrl || state.social.maxPrepsUrl)!.trim()}
+      target="_blank"
+      rel="noreferrer"
+      style={linkButtonStyle}
+    >
+      MaxPreps Profile
+    </a>
+    <button
+      type="button"
+      onClick={clearMaxPreps}
+      aria-label="Remove MaxPreps URL"
+      title="Remove MaxPreps URL"
+      style={closeXButtonStyle}
+    >
+      ×
+    </button>
+  </span>
+) : null}
+
+{(rapsodoUrl || state.social.rapsodoUrl)?.trim() ? (
+  <span style={pillWrap}>
+    <a
+      href={(rapsodoUrl || state.social.rapsodoUrl)!.trim()}
+      target="_blank"
+      rel="noreferrer"
+      style={linkButtonStyle}
+    >
+      Rapsodo Profile
+    </a>
+    <button
+      type="button"
+      onClick={clearRapsodo}
+      aria-label="Remove Rapsodo URL"
+      title="Remove Rapsodo URL"
+      style={closeXButtonStyle}
+    >
+      ×
+    </button>
+  </span>
+) : null}
+
+{(trackmanUrl || state.social.trackmanUrl)?.trim() ? (
+  <span style={pillWrap}>
+    <a
+      href={(trackmanUrl || state.social.trackmanUrl)!.trim()}
+      target="_blank"
+      rel="noreferrer"
+      style={linkButtonStyle}
+    >
+      TrackMan Profile
+    </a>
+    <button
+      type="button"
+      onClick={clearTrackman}
+      aria-label="Remove TrackMan URL"
+      title="Remove TrackMan URL"
+      style={closeXButtonStyle}
+    >
+      ×
+    </button>
+  </span>
+) : null}
+
+{(pocketRadarUrl || state.social.pocketRadarUrl)?.trim() ? (
+  <span style={pillWrap}>
+    <a
+      href={(pocketRadarUrl || state.social.pocketRadarUrl)!.trim()}
+      target="_blank"
+      rel="noreferrer"
+      style={linkButtonStyle}
+    >
+      Pocket Radar Profile
+    </a>
+    <button
+      type="button"
+      onClick={clearPocketRadar}
+      aria-label="Remove Pocket Radar URL"
+      title="Remove Pocket Radar URL"
+      style={closeXButtonStyle}
+    >
+      ×
+    </button>
+  </span>
+) : null}
 </div>
               </div>
             </div>

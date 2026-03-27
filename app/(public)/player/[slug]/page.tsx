@@ -95,6 +95,7 @@ type PublicPayload = {
 
 const PUBLIC_SECTIONS: { id: string; label: string }[] = [
   { id: "core", label: "Core" },
+  { id: "primary-video", label: "Primary Video" },
   { id: "academics", label: "Academics" },
   { id: "athletics", label: "Athletics" },
   { id: "metrics", label: "Metrics" },
@@ -893,6 +894,22 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
           pillStyle={pillStyle}
         />
       </SectionWrapper>
+
+      {primaryUrlView ? (
+  <SectionWrapper id="primary-video">
+    <PublicMedia
+      media={mediaDataView}
+      title="Primary Video"
+      primaryUrl={primaryUrlView}
+      hidePrimaryInGrid={true}
+      showOnlyPrimary={true}
+      hideConnectRow={true}
+      cardStyle={card}
+      h2Style={h2}
+      pillStyle={pillStyle}
+    />
+  </SectionWrapper>
+) : null}
 
       <SectionWrapper id="academics">
         <PublicAcademics academics={academicsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />

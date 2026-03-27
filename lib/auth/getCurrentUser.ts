@@ -9,6 +9,10 @@ function normalizeEmail(v: string) {
   return String(v || "").trim().toLowerCase();
 }
 
+function isDevAuthEnabled() {
+  return (process.env.DEV_AUTH_ENABLED || "").trim().toLowerCase() === "true";
+}
+
 function canImpersonate(roleList: string[]) {
   return roleList.includes("SCOUTLINE_ADMIN") || roleList.includes("SUPPORT_AGENT");
 }
@@ -18,7 +22,7 @@ function canImpersonate(roleList: string[]) {
  * Use this for admin gates (requireAdmin), logging, etc.
  */
 export async function getRealUser() {
-  // ✅ 1) Normal cookie auth (prod + dev)
+  // 1) Normal cookie auth (prod + dev)
   const uid = cookies().get(UID_COOKIE)?.value?.trim();
   if (uid) {
     return prisma.user.findUnique({
@@ -27,12 +31,10 @@ export async function getRealUser() {
     });
   }
 
-  // ✅ 2) DEV-ONLY fallbacks (NO PROD)
-  if (process.env.NODE_ENV !== "production") {
+  // 2) Strict DEV-ONLY fallback
+  // This is disabled unless DEV_AUTH_ENABLED=true
+  if (process.env.NODE_ENV !== "production" && isDevAuthEnabled()) {
     const h = headers();
-
-    const devAuthEnabled = normalizeEmail(process.env.DEV_AUTH_ENABLED || "") === "true";
-    if (!devAuthEnabled) return null;
 
     const devHeader = normalizeEmail(h.get("x-dev-email") || "");
     const devCookie = normalizeEmail(cookies().get("scoutline_dev_email")?.value || "");

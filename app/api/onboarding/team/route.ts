@@ -2,9 +2,12 @@
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import crypto from "crypto";
-import { SignJWT } from "jose";
-import { sha256 } from "@/lib/hash";
+import {
+  createVerificationToken,
+  invalidateExistingTokens,
+} from "@/lib/auth/tokens";
+import { sendSetPasswordEmail } from "@/lib/email/sendSetPasswordEmail";
+import { getBaseUrl } from "@/lib/email/senders";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,7 +26,6 @@ type Body = {
   state?: string | null;
 
   website?: string | null;
-
   logoUrl?: string | null;
 };
 
@@ -31,42 +33,20 @@ function jsonError(message: string, status = 400) {
   return NextResponse.json({ ok: false, error: message }, { status });
 }
 
-function digitsOnly(v: any) {
+function digitsOnly(v: unknown) {
   return String(v ?? "").replace(/\D+/g, "");
 }
 
-function normalizeEmail(v: any) {
+function normalizeEmail(v: unknown) {
   return String(v ?? "").trim().toLowerCase();
 }
 
-function normalizeText(v: any) {
+function normalizeText(v: unknown) {
   return String(v ?? "").trim();
 }
 
 function isEmail(v: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
-}
-
-function getSecret(): Uint8Array {
-  const secret = process.env.APP_SECRET;
-  if (!secret) throw new Error("Missing APP_SECRET");
-  return new TextEncoder().encode(secret);
-}
-
-async function makeSetPasswordJwt(email: string) {
-  return new SignJWT({ email, purpose: "set-password" })
-    .setProtectedHeader({ alg: "HS256" })
-    .setIssuedAt()
-    .setExpirationTime("1h")
-    .sign(getSecret());
-}
-
-function getOriginFromHeaders(req: Request) {
-  const h = req.headers;
-  const proto = (h.get("x-forwarded-proto") || "http").split(",")[0].trim();
-  const host = (h.get("x-forwarded-host") || h.get("host") || "").split(",")[0].trim();
-  if (!host) return "";
-  return `${proto}://${host}`;
 }
 
 function slugifyTeamName(name: string) {
@@ -80,7 +60,7 @@ function slugifyTeamName(name: string) {
   );
 }
 
-function normalizeLogoUrl(v: any) {
+function normalizeLogoUrl(v: unknown) {
   const s = String(v ?? "").trim();
   if (!s) return null;
 
@@ -92,25 +72,45 @@ function normalizeLogoUrl(v: any) {
   return null;
 }
 
+async function ensureUniqueTeamSlug(tx: any, teamName: string) {
+  const baseSlug = slugifyTeamName(teamName);
+  let slug = baseSlug;
+
+  for (let i = 0; i < 25; i++) {
+    const exists = await tx.team.findUnique({
+      where: { slug },
+      select: { id: true },
+    });
+
+    if (!exists) return slug;
+    slug = `${baseSlug}-${i + 2}`;
+  }
+
+  throw new Error("Could not generate a unique team slug.");
+}
+
 export async function POST(req: Request) {
+  let stage = "start";
+
   try {
+    stage = "parse-body";
     const reqBody = (await req.json().catch(() => ({}))) as Partial<Body>;
 
     const adminEmail = normalizeEmail(reqBody?.adminEmail);
     const adminFirstName = normalizeText(reqBody?.adminFirstName);
     const adminLastName = normalizeText(reqBody?.adminLastName);
 
-    const adminPhone = digitsOnly(reqBody?.adminPhone || "").slice(0, 10);
-    const adminPhoneExt = digitsOnly(reqBody?.adminPhoneExt || "").slice(0, 6);
+    const adminPhone = digitsOnly(reqBody?.adminPhone).slice(0, 10);
+    const adminPhoneExt = digitsOnly(reqBody?.adminPhoneExt).slice(0, 6);
     const phonePrivate = reqBody?.phonePrivate === false ? false : true;
 
     const teamName = normalizeText(reqBody?.teamName);
     const city = normalizeText(reqBody?.city);
     const state = normalizeText(reqBody?.state).toUpperCase();
     const website = normalizeText(reqBody?.website) || null;
-
     const logoUrl = normalizeLogoUrl(reqBody?.logoUrl);
 
+    stage = "validate-input";
     if (!adminEmail) return jsonError("Admin email is required.");
     if (!isEmail(adminEmail)) return jsonError("Admin email must be a valid email address.");
     if (!adminFirstName) return jsonError("Admin first name is required.");
@@ -121,6 +121,7 @@ export async function POST(req: Request) {
     if (!city) return jsonError("City is required.");
     if (!state) return jsonError("State is required.");
 
+    stage = "lookup-existing-user";
     const existing = await prisma.user.findUnique({
       where: { email: adminEmail },
       select: {
@@ -129,7 +130,9 @@ export async function POST(req: Request) {
         passwordHash: true,
         Player: { select: { id: true } },
         coachProfile: { select: { id: true } },
-        teamMemberships: { select: { id: true } },
+        teamMemberships: {
+          select: { id: true, role: true, teamId: true },
+        },
       },
     });
 
@@ -147,16 +150,17 @@ export async function POST(req: Request) {
       );
     }
 
-    const shouldMintSetPassword = !existing?.passwordHash;
-
+    stage = "upsert-user-team-membership-team";
     const result = await prisma.$transaction(async (tx) => {
       const user = await tx.user.upsert({
         where: { email: adminEmail },
         update: {
           name: `${adminFirstName} ${adminLastName}`.trim(),
+          role: "TEAM_ADMIN",
           workPhone: adminPhone || null,
           workPhoneExt: adminPhoneExt || null,
           phonePrivate,
+          updatedAt: new Date(),
         },
         create: {
           email: adminEmail,
@@ -165,6 +169,7 @@ export async function POST(req: Request) {
           workPhone: adminPhone || null,
           workPhoneExt: adminPhoneExt || null,
           phonePrivate,
+          emailPrivate: false,
         },
         select: { id: true, email: true, name: true, passwordHash: true },
       });
@@ -175,11 +180,9 @@ export async function POST(req: Request) {
       });
 
       let teamId: string;
-      let teamSlug: string | null = null;
 
       if (existingAdminMembership?.team) {
         teamId = existingAdminMembership.team.id;
-        teamSlug = existingAdminMembership.team.slug ?? null;
 
         await tx.team.update({
           where: { id: teamId },
@@ -192,33 +195,28 @@ export async function POST(req: Request) {
           },
         });
       } else {
-        const baseSlug = slugifyTeamName(teamName);
-        let slug = baseSlug;
-
-        for (let i = 0; i < 25; i++) {
-          const exists = await tx.team.findUnique({ where: { slug }, select: { id: true } });
-          if (!exists) break;
-          slug = `${baseSlug}-${i + 2}`;
-        }
+        const slug = await ensureUniqueTeamSlug(tx, teamName);
 
         const team = await tx.team.create({
           data: {
             name: teamName,
             slug,
-            teamType: "TRAVEL" as any, // ✅ REQUIRED FIELD
+            teamType: "TRAVEL" as any,
             city,
             state,
             websiteUrl: website,
-            logoUrl: logoUrl,
+            logoUrl,
           },
-          select: { id: true, slug: true },
+          select: { id: true },
         });
 
         teamId = team.id;
-        teamSlug = team.slug;
 
         const existingAdminForTeam = await tx.teamMembership.findFirst({
-          where: { teamId: teamId, role: "TEAM_ADMIN" as any },
+          where: {
+            teamId,
+            role: "TEAM_ADMIN" as any,
+          },
           select: { id: true },
         });
 
@@ -229,60 +227,72 @@ export async function POST(req: Request) {
         await tx.teamMembership.create({
           data: {
             userId: user.id,
-            teamId: teamId,
+            teamId,
             role: "TEAM_ADMIN" as any,
             season: null,
             isPrimaryForProfile: true,
+            isActive: true,
           },
         });
-      }
-
-      let setPasswordToken: string | null = null;
-
-      if (!user.passwordHash) {
-        const jwt = await makeSetPasswordJwt(user.email);
-        const tokenHashDb = sha256(jwt);
-        const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
-
-        await tx.verificationToken.updateMany({
-          where: { email: user.email, purpose: "SET_PASSWORD" as any, consumedAt: null },
-          data: { consumedAt: new Date() },
-        });
-
-        await tx.verificationToken.create({
-          data: {
-            id: crypto.randomUUID(),
-            email: user.email,
-            tokenHash: tokenHashDb,
-            purpose: "SET_PASSWORD" as any,
-            expiresAt,
-          },
-        });
-
-        setPasswordToken = jwt;
       }
 
       const team = await tx.team.findUnique({
         where: { id: teamId },
-        select: { id: true, slug: true, name: true, city: true, state: true, websiteUrl: true, logoUrl: true },
+        select: {
+          id: true,
+          slug: true,
+          name: true,
+          city: true,
+          state: true,
+          websiteUrl: true,
+          logoUrl: true,
+        },
       });
 
-      return { user, team, setPasswordToken };
+      return { user, team };
     });
 
-    const origin = getOriginFromHeaders(req);
+    const needsSetPassword = !result.user.passwordHash;
 
-    const setPasswordLink =
-      result.setPasswordToken && origin
-        ? `${origin}/auth/set-password?token=${encodeURIComponent(result.setPasswordToken)}`
-        : null;
+    let rawToken: string | null = null;
+    let setPasswordLink: string | null = null;
+    let expiresAt: Date | null = null;
 
+    if (needsSetPassword) {
+      stage = "invalidate-existing-set-password-tokens";
+      await invalidateExistingTokens({
+        email: adminEmail,
+        purpose: "SET_PASSWORD",
+      });
+
+      stage = "create-set-password-token";
+      const tokenResult = await createVerificationToken({
+        email: adminEmail,
+        purpose: "SET_PASSWORD",
+      });
+
+      rawToken = tokenResult.rawToken;
+      expiresAt = tokenResult.token.expiresAt;
+      setPasswordLink = `${getBaseUrl()}/set-password?token=${encodeURIComponent(
+        rawToken
+      )}`;
+
+      stage = "send-set-password-email";
+      await sendSetPasswordEmail({
+        to: adminEmail,
+        rawToken,
+        roleLabel: "ScoutLine team admin account",
+      });
+    }
+
+    stage = "return-success";
     return NextResponse.json({
       ok: true,
       data: {
-        needsSetPassword: shouldMintSetPassword,
-        setPasswordToken: result.setPasswordToken,
+        needsSetPassword,
+        setPasswordToken: rawToken,
         setPasswordLink,
+        expiresAt,
         user: {
           id: result.user.id,
           email: result.user.email,
@@ -300,10 +310,29 @@ export async function POST(req: Request) {
           websiteUrl: result.team?.websiteUrl,
           logoUrl: result.team?.logoUrl ?? null,
         },
+        emailDispatch: {
+          sent: needsSetPassword,
+          to: adminEmail,
+        },
       },
     });
   } catch (err: any) {
-    console.error("team onboarding error:", err);
-    return NextResponse.json({ ok: false, error: err?.message || "Server error" }, { status: 500 });
+    console.error("team onboarding error:", {
+      stage,
+      message: err?.message || "Unknown error",
+      stack: err?.stack || null,
+      name: err?.name || null,
+      code: err?.code || null,
+      meta: err?.meta || null,
+      cause: err?.cause || null,
+    });
+
+    return NextResponse.json(
+      {
+        ok: false,
+        error: `Team onboarding failed at stage: ${stage}. ${err?.message || "Server error"}`,
+      },
+      { status: 500 }
+    );
   }
 }

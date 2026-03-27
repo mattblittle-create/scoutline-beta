@@ -28,6 +28,7 @@ type MetricKey =
   | "popTime"
   | "benchPress"
   | "squat"
+  | "deadLift"
   // position-specific throwing velocities
   | "infieldThrowVelo"
   | "outfieldThrowVelo"
@@ -46,6 +47,7 @@ const METRIC_UNIT: Record<MetricKey, "sec" | "mph" | "lbs"> = {
   popTime: "sec",
   benchPress: "lbs",
   squat: "lbs",
+  deadLift: "lbs",
 
   // position-specific throwing velocities
   infieldThrowVelo: "mph",
