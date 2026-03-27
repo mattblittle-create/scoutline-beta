@@ -1,3 +1,5 @@
+// app/api/admin/feature-flags/[id]/toggle/route.ts
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin/requireAdmin";
@@ -7,7 +9,11 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(_req: Request, ctx: { params: { id: string } }) {
-  const { admin, roles } = await requireAdmin("/staff");
+  const { admin } = await requireAdmin("/staff");
+  const roles = Array.isArray(admin.roles)
+    ? admin.roles.map((r: { role: string }) => r.role)
+    : [];
+
   if (!roles.includes("SCOUTLINE_ADMIN")) {
     return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
