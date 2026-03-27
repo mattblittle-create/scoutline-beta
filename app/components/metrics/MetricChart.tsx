@@ -210,15 +210,15 @@ export default function MetricChart({
               height={40} // room for two-line ticks
             />
             <YAxis domain={yDomain as any} tick={{ fontSize: 12 }} width={46} />
-            <Tooltip
-              formatter={(value: any, name: string) => {
-                if (typeof value === "number") {
-                  return [`${fmt(value)} ${unit}`, name];
-                }
-                return [value, name];
-              }}
-              labelFormatter={(label) => `${label}`}
-            />
+<Tooltip
+  formatter={(value: any, name: string | number | undefined) => {
+    const safeName = name == null ? "" : String(name);
+    const safeValue =
+      typeof value === "number" ? `${fmt(value)} ${unit}` : String(value ?? "");
+    return [safeValue, safeName];
+  }}
+  labelFormatter={(label) => `${label}`}
+/>
 
             {/* Horizontal average of player's values */}
             {avg != null && (
