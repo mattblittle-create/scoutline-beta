@@ -30,7 +30,7 @@ function guessRoleLabel(user: {
   coachProfile?: { id: string } | null;
   teamMemberships?: Array<{ role?: string | null }>;
   parentProfile?: { id: string } | null;
-  playerProfile?: { id: string } | null;
+  PlayerProfile?: { id: string } | null;
 }) {
   if (user.adminProfile?.id) return "ScoutLine admin account";
   if (user.coachProfile?.id) return "ScoutLine coach account";
@@ -41,7 +41,7 @@ function guessRoleLabel(user: {
   );
   if (hasTeamAdmin) return "ScoutLine team account";
 
-  if (user.playerProfile?.id) return "ScoutLine player account";
+  if (user.PlayerProfile?.id) return "ScoutLine player account";
 
   const role = String(user.role || "").trim().toUpperCase();
   if (role === "ADMIN") return "ScoutLine admin account";
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
         adminProfile: { select: { id: true } },
         coachProfile: { select: { id: true } },
         parentProfile: { select: { id: true } },
-        playerProfile: { select: { id: true } },
+        PlayerProfile: { select: { id: true } },
         teamMemberships: {
           where: { isActive: true },
           select: { role: true },
