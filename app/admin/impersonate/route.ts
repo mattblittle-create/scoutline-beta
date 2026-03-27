@@ -27,7 +27,7 @@ export async function GET(req: Request) {
 
   const { admin } = await requireAdmin("/staff");
 
-  const roleList = admin.roles.map((r) => r.role);
+  const roleList = admin.roles.map((r: { role: string }) => r.role);
   const canImpersonate = roleList.includes("SCOUTLINE_ADMIN") || roleList.includes("SUPPORT_AGENT");
   const dest = new URL(nextPath, url.origin);
 

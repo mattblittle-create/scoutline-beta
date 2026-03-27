@@ -117,7 +117,7 @@ export default async function AdminUserDetailPage({ params }: { params: { id: st
 
   if (!user) notFound();
 
-  const adminRoles = user.adminProfile?.roles?.map((r) => r.role) ?? [];
+  const adminRoles = user.adminProfile?.roles?.map((r: { role: string }) => r.role) ?? [];
   const canImpersonate = (ctx.roles ?? []).includes("SCOUTLINE_ADMIN") || (ctx.roles ?? []).includes("SUPPORT_AGENT");
 
   return (
