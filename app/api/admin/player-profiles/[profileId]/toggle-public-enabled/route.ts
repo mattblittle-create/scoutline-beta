@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(_req: Request, ctx: { params: { profileId: string } }) {
-  const { admin, roles } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin, roles } = await requireAdmin("/staff");
 
   const can = roles.includes("SCOUTLINE_ADMIN") || roles.includes("SUPPORT_AGENT");
   if (!can) return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });

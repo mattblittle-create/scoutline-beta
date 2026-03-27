@@ -3,7 +3,7 @@ import Link from "next/link";
 import { requireAdmin } from "@/lib/admin/requireAdmin";
 
 export default async function AdminHomePage() {
-  const { user, admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { user, admin } = await requireAdmin("/staff");
 
   return (
     <main style={{ padding: 24, fontFamily: "Arial, sans-serif", fontSize: 11 }}>

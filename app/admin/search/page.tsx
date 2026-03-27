@@ -113,7 +113,7 @@ export default async function AdminSearchPage({
 }: {
   searchParams: { q?: string };
 }) {
-  await requireAdmin({ redirectTo: "/staff" });
+  await requireAdmin("/staff");
 
   const q = norm(String(searchParams?.q ?? ""));
   const hasQ = q.length >= 2;

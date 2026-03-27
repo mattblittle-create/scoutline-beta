@@ -7,7 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(_req: Request, ctx: { params: { id: string } }) {
-  const { admin, roles } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin, roles } = await requireAdmin("/staff");
   if (!roles.includes("SCOUTLINE_ADMIN")) {
     return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }

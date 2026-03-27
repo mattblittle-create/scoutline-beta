@@ -25,7 +25,7 @@ export async function GET(req: Request) {
   const clear = url.searchParams.get("clear") === "1";
   const userId = String(url.searchParams.get("userId") ?? "").trim();
 
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
 
   const roleList = admin.roles.map((r) => r.role);
   const canImpersonate = roleList.includes("SCOUTLINE_ADMIN") || roleList.includes("SUPPORT_AGENT");

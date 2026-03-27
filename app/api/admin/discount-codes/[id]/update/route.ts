@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 export async function POST(req: Request, { params }: { params: { id: string } }) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
 
   const id = String(params?.id ?? "").trim();
   if (!id) return NextResponse.json({ ok: false, error: "Missing id" }, { status: 400 });

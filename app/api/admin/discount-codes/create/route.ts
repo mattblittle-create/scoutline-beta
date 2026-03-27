@@ -16,7 +16,7 @@ function normCode(s: any) {
 }
 
 export async function POST(req: Request) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
 
   try {
     const body = await req.json().catch(() => ({}));

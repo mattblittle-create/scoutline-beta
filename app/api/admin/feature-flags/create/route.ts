@@ -11,7 +11,7 @@ function isValidKey(key: string) {
 }
 
 export async function POST(req: Request) {
-  const { admin, roles } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin, roles } = await requireAdmin("/staff");
   if (!roles.includes("SCOUTLINE_ADMIN")) {
     return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }

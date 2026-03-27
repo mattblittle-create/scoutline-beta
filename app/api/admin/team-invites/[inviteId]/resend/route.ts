@@ -14,7 +14,7 @@ function addDays(d: Date, days: number) {
 }
 
 export async function POST(_req: Request, ctx: { params: { inviteId: string } }) {
-  const { admin, roles } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin, roles } = await requireAdmin("/staff");
 
   // Permission: Support + ScoutLine Admin can resend
   const can = roles.includes("SCOUTLINE_ADMIN") || roles.includes("SUPPORT_AGENT");

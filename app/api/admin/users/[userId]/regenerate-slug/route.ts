@@ -45,7 +45,7 @@ async function findUniqueSlug(args: { base: string; userId: string }) {
 }
 
 export async function POST(_req: Request, ctx: { params: { userId: string } }) {
-  const { admin, roles, user: adminUser } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin, roles, user: adminUser } = await requireAdmin("/staff");
 
   // Permission: Support + ScoutLine Admin can regenerate slugs
   const can =
