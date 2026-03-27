@@ -19,7 +19,6 @@ function slugify(raw: string) {
 }
 
 function baseFromUser(u: { email: string; name: string | null }) {
-  // Prefer name if present; otherwise email local-part
   const fromName = slugify(u.name || "");
   if (fromName) return fromName;
 
@@ -28,26 +27,26 @@ function baseFromUser(u: { email: string; name: string | null }) {
 }
 
 async function findUniqueSlug(args: { base: string; userId: string }) {
-  // Try base, then base-2, base-3...
   for (let i = 1; i <= 500; i++) {
     const candidate = i === 1 ? args.base : `${args.base}-${i}`;
     const hit = await prisma.user.findFirst({
       where: {
         slug: candidate,
-        NOT: { id: args.userId }, // exclude the user we're updating
+        NOT: { id: args.userId },
       },
       select: { id: true },
     });
     if (!hit) return candidate;
   }
-  // Extremely unlikely; fallback
   return `${args.base}-${Date.now()}`;
 }
 
 export async function POST(_req: Request, ctx: { params: { userId: string } }) {
-  const { admin, roles, user: adminUser } = await requireAdmin("/staff");
+  const { admin } = await requireAdmin("/staff");
+  const roles = Array.isArray(admin.roles)
+    ? admin.roles.map((r: { role: string }) => r.role)
+    : [];
 
-  // Permission: Support + ScoutLine Admin can regenerate slugs
   const can =
     roles.includes("SCOUTLINE_ADMIN") || roles.includes("SUPPORT_AGENT");
   if (!can) {
