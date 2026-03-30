@@ -2,6 +2,9 @@
 import { NextResponse } from "next/server";
 import { findValidVerificationToken } from "@/lib/auth/tokens";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 function normalizeText(v: unknown) {
   return String(v ?? "").trim();
 }

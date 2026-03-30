@@ -5,6 +5,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 function validatePassword(pw: string): string | null {
   if (pw.length < 10) return "Password must be at least 10 characters.";
@@ -37,7 +38,7 @@ function planPrice(plan: string, billing: string) {
   return "";
 }
 
-export default function ParentPasswordPage() {
+function ParentPasswordPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
@@ -370,5 +371,39 @@ export default function ParentPasswordPage() {
         }
       `}</style>
     </main>
+  );
+}
+
+export default function ParentPasswordPage() {
+  return (
+    <Suspense
+      fallback={
+        <main
+          style={{
+            maxWidth: 820,
+            margin: "0 auto",
+            padding: "24px 16px",
+            color: "#0f172a",
+          }}
+        >
+          <div
+            style={{
+              marginTop: 16,
+              padding: 14,
+              border: "1px solid #e5e7eb",
+              borderRadius: 12,
+              background: "#fff",
+              maxWidth: 560,
+              color: "#475569",
+              fontWeight: 700,
+            }}
+          >
+            Checking your setup link…
+          </div>
+        </main>
+      }
+    >
+      <ParentPasswordPageInner />
+    </Suspense>
   );
 }

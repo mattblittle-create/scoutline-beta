@@ -1,9 +1,11 @@
 // app/team/invite/accept/page.tsx
+
 "use client";
 
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 type AcceptData = {
   invite: {
@@ -44,7 +46,7 @@ function fmtDate(iso?: string | null) {
   return d.toLocaleString();
 }
 
-export default function TeamInviteAcceptPage() {
+function TeamInviteAcceptPageInner() {
   const router = useRouter();
   const search = useSearchParams();
   const token = String(search.get("token") || "").trim();
@@ -372,3 +374,24 @@ const btnGhost: React.CSSProperties = {
   fontWeight: 900,
   textDecoration: "none",
 };
+
+export default function TeamInviteAcceptPage() {
+  return (
+    <Suspense
+      fallback={
+        <main
+          style={{
+            maxWidth: 820,
+            margin: "0 auto",
+            padding: "24px 16px",
+            color: "#0f172a",
+          }}
+        >
+          <div style={boxMuted}>Loading invite…</div>
+        </main>
+      }
+    >
+      <TeamInviteAcceptPageInner />
+    </Suspense>
+  );
+}

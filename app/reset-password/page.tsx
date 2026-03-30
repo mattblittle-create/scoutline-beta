@@ -3,6 +3,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function validatePassword(pw: string): string | null {
@@ -13,7 +14,7 @@ function validatePassword(pw: string): string | null {
   return null;
 }
 
-export default function ResetPasswordPage() {
+function ResetPasswordPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
@@ -179,6 +180,14 @@ export default function ResetPasswordPage() {
         )}
       </section>
     </main>
+  );
+}
+
+export default function ResetPasswordPage() {
+  return (
+    <Suspense fallback={<main style={shell}><section style={card}><p style={muted}>Loading…</p></section></main>}>
+      <ResetPasswordPageInner />
+    </Suspense>
   );
 }
 
