@@ -207,7 +207,6 @@ const link: React.CSSProperties = {
     )}
   </div>
 )}
-)}
 
       {/* Pills row (row 2): Grad Year / GPA / SAT / ACT / Intended Major(s) */}
       <div
