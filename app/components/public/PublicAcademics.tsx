@@ -205,6 +205,12 @@ const link: React.CSSProperties = {
     ) : (
       academics.highSchool
     )}
+
+    {(academics.city || academics.state) ? (
+      <div style={{ marginTop: 4, color: "#475569" }}>
+        {[academics.city, academics.state].filter(Boolean).join(", ")}
+      </div>
+    ) : null}
   </div>
 )}
 
