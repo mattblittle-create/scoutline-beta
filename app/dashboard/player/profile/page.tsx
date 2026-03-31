@@ -58,7 +58,7 @@ const PITCH_TYPES = [
 // Gender options (Male/Female only)
 const GENDER_OPTIONS = ["Male", "Female"] as const;
 
-const MAX_PHOTO_BYTES = 35 * 1024 * 1024; // 35MB
+const MAX_PHOTO_BYTES = 75 * 1024 * 1024; // 75MB
 const ALLOWED_MIME = new Set([
   "image/jpeg",
   "image/png",
@@ -1047,7 +1047,7 @@ useEffect(() => {
       return;
     }
     if (f.size > MAX_PHOTO_BYTES) {
-      setErr("File too large (max 35MB).");
+      setErr("File too large (max 75MB).");
       return;
     }
 
