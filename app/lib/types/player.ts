@@ -78,8 +78,8 @@ export type AtomicProfile = {
   // academics
   gradYear?: number | null;
   hsName?: string | null;
-  hometown?: string | null;
-  state?: string | null;
+  hsCity?: string | null;
+  hsState?: string | null;
   hsGeneralWebsiteUrl?: string | null;
   gpa?: number | null;
   gpaScale?: string | null;
@@ -131,6 +131,7 @@ export type AtomicProfile = {
     city?: string | null;
     state?: string | null;
     scheduleUrl?: string | null;
+    websiteUrl?: string | null;
   }>;
 
   // legacy (first other team)
