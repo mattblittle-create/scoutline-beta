@@ -59,6 +59,10 @@ type Props = {
   submitting: boolean;
   /** Optional scoped busy state for the upload button (if you track it separately) */
   uploadingPhoto?: boolean;
+  /** True while a large image is being compressed client-side */
+  optimizingPhoto?: boolean;
+  /** Friendly message after optimization completes */
+  photoInfoMsg?: string | null;
 
   /** Provided by the parent (compute with useEffect in page.tsx) */
   isMobile: boolean;
@@ -160,6 +164,8 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
     photoFile,
     submitting,
     uploadingPhoto,
+    optimizingPhoto,
+    photoInfoMsg,
     isMobile,
     heightFt,
     heightIn,
@@ -457,8 +463,22 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
             </button>
 
             <span style={{ color: "#64748b", fontSize: 12 }}>
-              JPG, PNG, or WEBP up to 35MB.
+              JPG, PNG, or WEBP up to 75MB.
             </span>
+          </div>
+
+          <div style={{ gridColumn: "2 / 3" }}>
+            {optimizingPhoto && (
+              <div style={{ color: "#0f766e", fontWeight: 600, marginTop: 8 }}>
+                Optimizing image…
+              </div>
+            )}
+
+            {photoInfoMsg && (
+              <div style={{ color: "#059669", fontWeight: 600, marginTop: 6 }}>
+                {photoInfoMsg}
+              </div>
+            )}
           </div>
         </div>
       </section>

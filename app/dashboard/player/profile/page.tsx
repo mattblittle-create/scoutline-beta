@@ -135,6 +135,93 @@ function uid() {
     .replace(/-{2,}/g, "-");
 }
 
+async function readImageDimensions(file: File): Promise<{ width: number; height: number }> {
+  const objectUrl = URL.createObjectURL(file);
+
+  try {
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const el = new Image();
+      el.onload = () => resolve(el);
+      el.onerror = reject;
+      el.src = objectUrl;
+    });
+
+    return {
+      width: img.naturalWidth || img.width,
+      height: img.naturalHeight || img.height,
+    };
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
+async function compressImageFile(
+  file: File,
+  opts?: {
+    maxWidth?: number;
+    maxHeight?: number;
+    quality?: number;
+    outputType?: "image/jpeg" | "image/webp";
+  }
+): Promise<File> {
+  const {
+    maxWidth = 1600,
+    maxHeight = 1600,
+    quality = 0.82,
+    outputType = "image/jpeg",
+  } = opts || {};
+
+  // Skip compression for already-small files
+  if (file.size <= 2 * 1024 * 1024) {
+    return file;
+  }
+
+  const objectUrl = URL.createObjectURL(file);
+
+  try {
+    const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+      const el = new Image();
+      el.onload = () => resolve(el);
+      el.onerror = reject;
+      el.src = objectUrl;
+    });
+
+    const srcW = img.naturalWidth || img.width;
+    const srcH = img.naturalHeight || img.height;
+
+    if (!srcW || !srcH) return file;
+
+    const scale = Math.min(maxWidth / srcW, maxHeight / srcH, 1);
+    const targetW = Math.round(srcW * scale);
+    const targetH = Math.round(srcH * scale);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = targetW;
+    canvas.height = targetH;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return file;
+
+    ctx.drawImage(img, 0, 0, targetW, targetH);
+
+    const blob = await new Promise<Blob | null>((resolve) =>
+      canvas.toBlob(resolve, outputType, quality)
+    );
+
+    if (!blob) return file;
+
+    const originalBase = file.name.replace(/\.[^.]+$/, "");
+    const ext = outputType === "image/webp" ? "webp" : "jpg";
+
+    return new File([blob], `${originalBase}.${ext}`, {
+      type: outputType,
+      lastModified: Date.now(),
+    });
+  } finally {
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
 // --- Metrics types for UI/API ---
 export type MetricEntry = {
   monthYear: string;      // "mm/yyyy"
@@ -339,6 +426,7 @@ useEffect(() => {
   const [photoFile, setPhotoFile] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
+  const [optimizingPhoto, setOptimizingPhoto] = useState(false);
 
   // Baseball profile
   const [gradYear, setGradYear] = useState<string>("");
@@ -465,6 +553,7 @@ const [naiaEcid, setNaiaEcid] = React.useState<string>("");
   // Notices
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [photoInfoMsg, setPhotoInfoMsg] = useState<string | null>(null);
 // ===== ANCHOR: GLOBAL ERROR STATE =====
   const [globalErr, setGlobalErr] = useState<string | null>(null);
   const [savedVisible, setSavedVisible] = useState(false);
@@ -1020,9 +1109,10 @@ useEffect(() => {
     if (a != null) setAge(String(a));
   }, [dob]);
 
-  // (B) Photo: select & preview — fires when you choose a file
-  function onPickPhoto(e: React.ChangeEvent<HTMLInputElement>) {
+    // (B) Photo: select, optionally compress, then preview
+  async function onPickPhoto(e: React.ChangeEvent<HTMLInputElement>) {
     setErr(null);
+    setPhotoInfoMsg(null);
     const f = e.target.files?.[0] || null;
 
     if (!f) {
@@ -1042,18 +1132,59 @@ useEffect(() => {
       name.endsWith(".webp") ||
       name.endsWith(".heic") ||
       name.endsWith(".heif");
+
     if (!typeOk) {
       setErr("Only JPG, PNG, WEBP, or HEIC/HEIF images are allowed.");
       return;
     }
+
     if (f.size > MAX_PHOTO_BYTES) {
-      setErr("File too large (max 75MB).");
+      setErr(`File too large (max ${Math.round(MAX_PHOTO_BYTES / 1024 / 1024)}MB).`);
       return;
     }
 
-    setPhotoFile(f);
-    if (photoPreview?.startsWith("blob:")) URL.revokeObjectURL(photoPreview);
-    setPhotoPreview(URL.createObjectURL(f)); // ← instant preview
+    try {
+      const wasLarge = f.size > 2 * 1024 * 1024;
+
+      if (wasLarge) {
+        setOptimizingPhoto(true);
+      }
+
+  const compressed = await compressImageFile(f, {
+    maxWidth: 1600,
+    maxHeight: 1600,
+    quality: 0.82,
+    outputType: "image/jpeg",
+  });
+
+  setPhotoFile(compressed);
+
+  if (photoPreview?.startsWith("blob:")) URL.revokeObjectURL(photoPreview);
+  setPhotoPreview(URL.createObjectURL(compressed));
+
+  // Show friendly info message if compression happened
+  if (wasLarge) {
+    const beforeMB = (f.size / 1024 / 1024).toFixed(1);
+    const afterMB = (compressed.size / 1024 / 1024).toFixed(1);
+
+    setPhotoInfoMsg(
+      `Large image detected — optimized for faster upload (${beforeMB}MB → ${afterMB}MB).`
+    );
+  } else {
+    setPhotoInfoMsg(null);
+  }
+} catch (err) {
+  console.error("Photo compression failed:", err);
+  setPhotoInfoMsg(null);
+
+      // Fall back to original file if compression fails for any reason
+      setPhotoFile(f);
+
+      if (photoPreview?.startsWith("blob:")) URL.revokeObjectURL(photoPreview);
+      setPhotoPreview(URL.createObjectURL(f));
+    } finally {
+      setOptimizingPhoto(false);
+    }
   }
 
   // (C) Photo: upload to /api/player/photo
@@ -2194,6 +2325,8 @@ const otherAcademicDocsPayload =
     photoFile={photoFile}
     submitting={submitting}
     uploadingPhoto={uploadingPhoto}
+    optimizingPhoto={optimizingPhoto}
+    photoInfoMsg={photoInfoMsg}
     isMobile={isMobile}
     heightFt={heightFt}
     heightIn={heightIn}
@@ -2526,23 +2659,18 @@ const otherAcademicDocsPayload =
               {submitting ? "Saving…" : "Save Profile"}
             </button>
 
-            {msg && (
-              <span
-                style={{
-                  color: "#15803d",
-                  fontWeight: 700,
-                  opacity: savedVisible ? 1 : 0,
-                  transition: "opacity 400ms ease",
-                }}
-              >
-                {msg}
-              </span>
-            )}
-            {err && (
-              <span style={{ color: "#b91c1c", fontWeight: 700 }}>
-                {err}
-              </span>
-            )}
+{msg && (
+  <span style={{ color: "#15803d", fontWeight: 700 }}>
+    {msg}
+  </span>
+)}
+
+{err && (
+  <span style={{ color: "#b91c1c", fontWeight: 700 }}>
+    {err}
+  </span>
+)}
+
             {globalErr ? (
               <div style={{ color: "#b91c1c", fontWeight: 700, whiteSpace: "pre-wrap" }}>
                 {globalErr}
