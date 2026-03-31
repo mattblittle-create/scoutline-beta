@@ -176,11 +176,11 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
     // upload helpers
     userSlug,
-    // uploadEndpoint, // intentionally ignored to avoid mismatched paths
+    uploadEndpoint,
   } = props;
 
-  // Hard-coded endpoint so we *always* hit the local uploader we know exists.
-  const effectiveEndpoint = "/api/uploads/local";
+  // Use the endpoint passed by the parent; fall back to the cloud/non-local route
+  const effectiveEndpoint = uploadEndpoint || "/api/upload/academic";
 
   // Local label for the single slot so we can show the chosen file name immediately
   const [singleDocLabel, setSingleDocLabel] = React.useState<string>("");
@@ -314,15 +314,15 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     return null;
   }
 
-  // Always POST to /api/uploads/local, with folder="academic"
+  // Upload to the endpoint provided by the parent (production-safe)
   async function uploadFile(file: File): Promise<string> {
     const slug = inferUploadSlug() || "player";
     const fd = new FormData();
     fd.append("file", file);
-    fd.append("folder", "academic"); // <- tells the route to use /public/uploads/academic
-    fd.append("userSlug", slug);     // optional metadata; route currently ignores it
+    fd.append("folder", "academic");
+    fd.append("userSlug", slug);
 
-    const res = await fetch("/api/uploads/local", {
+    const res = await fetch(effectiveEndpoint, {
       method: "POST",
       body: fd,
     });
@@ -334,7 +334,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
     if (!res.ok || !json?.ok || !json?.url) {
       console.error("Academic upload failed:", {
-        endpoint: "/api/uploads/local",
+        endpoint: effectiveEndpoint,
         status: res.status,
         json,
       });
