@@ -15,6 +15,7 @@ export type AcademicsData = {
   act?: number | string | null;
 
   highSchool?: string | null;
+  highSchoolWebsite?: string | null;
   city?: string | null;
   state?: string | null;
 
@@ -133,11 +134,12 @@ export default function PublicAcademics({
     color: "#94a3b8",
     fontStyle: "italic",
   };
-  const link: React.CSSProperties = {
-    color: "#0369a1",
-    fontWeight: 700,
-    textDecoration: "none",
-  };
+const link: React.CSSProperties = {
+  color: "#0369a1",
+  fontWeight: 700,
+  textDecoration: "none",
+  transition: "all 0.15s ease",
+};
 
   // ---------- helpers ----------
   const valueOrDash = (v: any) =>
@@ -180,19 +182,32 @@ export default function PublicAcademics({
       <h2 style={safeH2}>{title}</h2>
 
       {/* School & location (row 1) */}
-      {(highSchool || city || state) && (
-        <div style={{ color: "#334155" }}>
-          <strong>High School:</strong>{" "}
-          {[
-            highSchool || undefined,
-            [city || undefined, state || undefined]
-              .filter(Boolean)
-              .join(", ") || undefined,
-          ]
-            .filter(Boolean)
-            .join(" • ")}
-        </div>
-      )}
+{academics.highSchool && (
+  <div>
+    <strong>High School:</strong>{" "}
+    {academics.highSchoolWebsite ? (
+      <a
+        href={academics.highSchoolWebsite}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={link}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.textDecoration = "underline";
+          e.currentTarget.style.opacity = "0.85";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.textDecoration = "none";
+          e.currentTarget.style.opacity = "1";
+        }}
+      >
+        {academics.highSchool}
+      </a>
+    ) : (
+      academics.highSchool
+    )}
+  </div>
+)}
+)}
 
       {/* Pills row (row 2): Grad Year / GPA / SAT / ACT / Intended Major(s) */}
       <div

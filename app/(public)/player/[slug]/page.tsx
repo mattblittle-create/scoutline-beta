@@ -496,16 +496,17 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   /** ---------- Academics mapping ---------- */
   const toArray = (x: any): any[] => (Array.isArray(x) ? x : x == null ? [] : [x]);
   const ac = (profile as any).academics ?? {};
-  const academicsData: AcademicsData = {
-    bio: ac.bio ?? ac.academicBio ?? null,
-    gradYear: profile.gradYear ?? ac.gradYear ?? null,
-    gpa: profile.gpa ?? ac.gpa ?? null,
-    gpaOutOf: ac.gpaOutOf ?? ac.gpa_scale ?? ac.gpaScale ?? null,
-    sat: ac.sat ?? ac.satScore ?? null,
-    act: ac.act ?? ac.actScore ?? null,
-    highSchool: ac.highSchool ?? ac.highSchoolName ?? null,
-    city: ac.city ?? ac.hsCity ?? null,
-    state: ac.state ?? ac.hsState ?? null,
+const academicsData: AcademicsData = {
+  bio: ac.bio ?? ac.academicBio ?? null,
+  gradYear: profile.gradYear ?? ac.gradYear ?? null,
+  gpa: profile.gpa ?? ac.gpa ?? null,
+  gpaOutOf: ac.gpaOutOf ?? ac.gpa_scale ?? ac.gpaScale ?? null,
+  sat: ac.sat ?? ac.satScore ?? null,
+  act: ac.act ?? ac.actScore ?? null,
+  highSchool: ac.highSchool ?? ac.highSchoolName ?? null,
+  highSchoolWebsite: ac.hsGeneralWebsiteUrl ?? null, // ✅ ADD THIS
+  city: ac.city ?? ac.hsCity ?? null,
+  state: ac.state ?? ac.hsState ?? null,
     areasOfStudy: Array.isArray(ac.areasOfStudy)
       ? ac.areasOfStudy
       : String(ac.areasOfStudyInput ?? ac.intendedMajors ?? ac.academicMajors ?? "")
