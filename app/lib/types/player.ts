@@ -80,6 +80,7 @@ export type AtomicProfile = {
   hsName?: string | null;
   hometown?: string | null;
   state?: string | null;
+  hsGeneralWebsiteUrl?: string | null;
   gpa?: number | null;
   gpaScale?: string | null;
   sat?: number | null;
@@ -212,6 +213,7 @@ export type PublicPayload = {
       sat: number | null;
       act: number | null;
       highSchool: string | null;
+      highSchoolWebsite?: string | null;
       city: string | null;
       state: string | null;
       areasOfStudy: string[];
@@ -271,6 +273,7 @@ export type PlayerProfilePayload = {
   hsName?: string | null;
   hsCity?: string | null;   // ✅ add this
   hsState?: string | null;
+  hsGeneralWebsiteUrl?: string | null;
   hometown?: string | null; // city
   state?: string | null;
 
@@ -336,6 +339,7 @@ export type PlayerProfilePayload = {
     city?: string | null;
     state?: string | null;
     scheduleUrl?: string | null;
+    websiteUrl?: string | null;
   }>;
   // legacy single other team (kept for back-compat with API)
   otherTeamName?: string | null;
