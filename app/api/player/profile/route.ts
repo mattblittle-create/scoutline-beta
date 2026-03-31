@@ -680,6 +680,7 @@ export async function POST(req: Request) {
     const hsName = safeTrim(body.hsName || "");
     const hsCity = safeTrim(body.hsCity || "");
     const hsState = safeTrim(body.hsState || "");
+    const hsGeneralWebsiteUrl = safeTrim(body.hsGeneralWebsiteUrl || "");
     const hometown = safeTrim(body.hometown || "");
     const state = safeTrim(body.state || "");
     const hsScheduleUrl = safeTrim(body.hsScheduleUrl || "");
@@ -884,6 +885,8 @@ export async function POST(req: Request) {
     if (hsScheduleUrl && !isLikelyUrl(hsScheduleUrl)) errors.hsScheduleUrl = "Enter a valid URL (http/https)";
     if (travelTeamScheduleUrl && !isLikelyUrl(travelTeamScheduleUrl))
       errors.travelTeamScheduleUrl = "Enter a valid URL (http/https)";
+    if (hsGeneralWebsiteUrl && !isLikelyUrl(hsGeneralWebsiteUrl))
+      errors.hsGeneralWebsiteUrl = "Enter a valid URL (http/https)";
     if (hsWebsiteUrl && !isLikelyUrl(hsWebsiteUrl))                                      // ✅ NEW
       errors.hsWebsiteUrl = "Enter a valid URL (http/https)";
     if (travelTeamWebsiteUrl && !isLikelyUrl(travelTeamWebsiteUrl))                      // ✅ NEW
@@ -968,6 +971,7 @@ export async function POST(req: Request) {
       hsName,
       hsCity,
       hsState,
+      hsGeneralWebsiteUrl,
       hometown,
       state,
       gpa,

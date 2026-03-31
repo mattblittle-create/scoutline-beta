@@ -642,7 +642,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
               display: "block",
             }}
           >
-            General school website. This can be shown as a clickable link on the public player profile.
+            General school website. This will be a clickable link on the public player profile.
           </span>
         </label>
       </div>

@@ -555,6 +555,7 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             sat: (atomic as any).sat ?? null,
             act: (atomic as any).act ?? null,
             highSchool: (atomic as any).hsName ?? null,
+            highSchoolWebsite: (atomic as any).hsGeneralWebsiteUrl ?? null,
             city: (atomic as any).hsCity ?? null,
             state: (atomic as any).hsState ?? null,
 

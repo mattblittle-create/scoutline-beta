@@ -2405,7 +2405,7 @@ const otherAcademicDocsPayload =
         {activeTab === "Academics" && (
           <TabAcademics
           userSlug={uploadSlug}                 // ✅ NEW: gives uploads a stable per-user folder
-          uploadEndpoint="/api/upload/academic" // ✅ (optional) explicit endpoint; can omit since it defaults
+          uploadEndpoint="/api/uploads/local"
             // values
             gradYear={gradYear}
             hsName={hsName}
