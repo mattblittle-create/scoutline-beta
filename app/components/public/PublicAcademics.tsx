@@ -80,6 +80,7 @@ export default function PublicAcademics({
     sat = null,
     act = null,
     highSchool = null,
+    highSchoolWebsite = null,
     city = null,
     state = null,
 
@@ -182,12 +183,12 @@ const link: React.CSSProperties = {
       <h2 style={safeH2}>{title}</h2>
 
       {/* School & location (row 1) */}
-{academics.highSchool && (
+{highSchool && (
   <div>
     <strong>High School:</strong>{" "}
-    {academics.highSchoolWebsite ? (
+    {highSchoolWebsite ? (
       <a
-        href={academics.highSchoolWebsite}
+        href={highSchoolWebsite}
         target="_blank"
         rel="noopener noreferrer"
         style={link}
@@ -200,15 +201,15 @@ const link: React.CSSProperties = {
           e.currentTarget.style.opacity = "1";
         }}
       >
-        {academics.highSchool}
+        {highSchool}
       </a>
     ) : (
-      academics.highSchool
+      highSchool
     )}
 
-    {(academics.city || academics.state) ? (
+    {(city || state) ? (
       <div style={{ marginTop: 4, color: "#475569" }}>
-        {[academics.city, academics.state].filter(Boolean).join(", ")}
+        {[city, state].filter(Boolean).join(", ")}
       </div>
     ) : null}
   </div>
