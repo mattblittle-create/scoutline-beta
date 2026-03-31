@@ -451,10 +451,11 @@ useEffect(() => {
 
   // --- Academics / Athletics: High School info ---
   const [hsName, setHsName] = useState<string>("");
-  const [hsCity, setHsCity] = useState<string>("");
-  const [hsState, setHsState] = useState<string>(""); // 2-letter
+  const [hsCity, setHsCity] = useState<string>(""); // 2-letter
+  const [hsState, setHsState] = useState<string>("");
+  const [hsGeneralWebsiteUrl, setHsGeneralWebsiteUrl] = useState<string>(""); // Academics: school main website
   const [hsScheduleUrl, setHsScheduleUrl] = useState<string>("");
-  const [hsWebsiteUrl, setHsWebsiteUrl] = useState<string>(""); // NEW: HS team website
+  const [hsWebsiteUrl, setHsWebsiteUrl] = useState<string>(""); // Athletics: HS team/baseball website
   const [hsSchedulePrivate, setHsSchedulePrivate] = useState<boolean>(false); // default Public
 
   // NEW: GPA + tests + docs
@@ -971,7 +972,7 @@ function removeStatFile(seasonId: string, fileIndex: number) {
     hometownCity, hometownState,
     photoFile, photoPreview, gradYear, primaryPos, secondaryPos, isPitcher, pitcherHand,
     throwsHand, batsSide, heightFt, heightIn, weightLb, age, dob, dobPrivate, gender,
-    hsName, hsCity, hsState, hsScheduleUrl, hsWebsiteUrl, hsSchedulePrivate,
+    hsName, hsCity, hsState, hsGeneralWebsiteUrl, hsScheduleUrl, hsWebsiteUrl, hsSchedulePrivate,
     gpa, gpaScale, sat, act, academicDocs, academicBio, academicBioPrivate,
     eligibilityRegistered,
     // commitment
@@ -1367,6 +1368,7 @@ useEffect(() => {
         // Prefer dedicated hsCity/hsState but fall back to hometown/state for older records
         setHsCity((src as any).hsCity ?? src.hometown ?? "");
         setHsState((src as any).hsState ?? src.state ?? "");
+        setHsGeneralWebsiteUrl((src as any).hsGeneralWebsiteUrl ?? "");
 
         // Core: Hometown (city/state)
         setHometownCity(src.hometown ?? (src as any).hsCity ?? "");
@@ -1639,6 +1641,7 @@ useEffect(() => {
       hsName: "Academics",
       hsCity: "Academics",
       hsState: "Academics",
+      hsGeneralWebsiteUrl: "Academics",
       gpa: "Academics",
       sat: "Academics",
       act: "Academics",
@@ -1664,7 +1667,7 @@ useEffect(() => {
   function focusFirstError(errors: Record<string, string>) {
     const order = [
       "dob","age","phone","hometownCity","hometownState","gender",
-      "gradYear","heightIn","hsName","hsCity","hsState",
+      "gradYear","heightIn","hsName","hsCity","hsState","hsGeneralWebsiteUrl",
       "hsScheduleUrl","hsWebsiteUrl","gpa","sat","act","academicBio",
       "travelTeamScheduleUrl","travelTeamWebsiteUrl","committedProgram","playerBio"
     ] as const;
@@ -1746,6 +1749,20 @@ const otherAcademicDocsPayload =
         return;
       } else if (fieldErr.hsWebsiteUrl) {
         setFieldErr(({ hsWebsiteUrl: _omit, ...rest }) => rest as any);
+      }
+    }
+
+        // HS general website URL check (Academics)
+    {
+      const hasGeneralWebsite = !!hsGeneralWebsiteUrl.trim();
+      const generalWebsiteValid = !hasGeneralWebsite || isLikelyUrl(hsGeneralWebsiteUrl);
+      if (!generalWebsiteValid) {
+        setFieldErr((prev) => ({ ...prev, hsGeneralWebsiteUrl: "Enter a valid URL (http/https)" }));
+        setErr("Please fix the highlighted fields.");
+        gotoTabForField("hsGeneralWebsiteUrl");
+        return;
+      } else if (fieldErr.hsGeneralWebsiteUrl) {
+        setFieldErr(({ hsGeneralWebsiteUrl: _omit, ...rest }) => rest as any);
       }
     }
 
@@ -1839,6 +1856,7 @@ const otherAcademicDocsPayload =
         hsName: safe(hsName || ""),
         hsCity: safe(hsCity || ""),
         hsState: safe(hsState || ""),
+        hsGeneralWebsiteUrl: safe(hsGeneralWebsiteUrl || ""),
         hometown: safe(hometownCity || ""), // Player.hometown
         state: safe(hometownState || ""),   // Player.state
 
@@ -2100,6 +2118,9 @@ const otherAcademicDocsPayload =
       if (typeof norm.hsName !== "undefined") setHsName(norm.hsName ?? hsName);
       if (typeof norm.hsCity !== "undefined") setHsCity(norm.hsCity ?? hsCity);
       if (typeof norm.hsState !== "undefined") setHsState(norm.hsState ?? hsState);
+      if (typeof norm.hsGeneralWebsiteUrl !== "undefined") {
+        setHsGeneralWebsiteUrl(norm.hsGeneralWebsiteUrl ?? hsGeneralWebsiteUrl);
+      }
 
       if (typeof norm.hometown !== "undefined") setHometownCity(norm.hometown ?? hometownCity);
       if (typeof norm.state !== "undefined") setHometownState(norm.state ?? hometownState);
@@ -2390,6 +2411,7 @@ const otherAcademicDocsPayload =
             hsName={hsName}
             hsCity={hsCity}
             hsState={hsState}
+            hsGeneralWebsiteUrl={hsGeneralWebsiteUrl}
             gpa={gpa}
             gpaScale={gpaScale}
             sat={sat}
@@ -2416,6 +2438,7 @@ const otherAcademicDocsPayload =
             setHsName={setHsName}
             setHsCity={setHsCity}
             setHsState={setHsState}
+            setHsGeneralWebsiteUrl={setHsGeneralWebsiteUrl}
             setGpa={setGpa}
             setGpaScale={setGpaScale}
             setSat={setSat}

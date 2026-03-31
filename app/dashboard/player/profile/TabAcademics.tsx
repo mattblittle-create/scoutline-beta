@@ -8,6 +8,7 @@ export type AcademicsPayload = {
   hsName: string;
   hsCity: string;
   hsState: string;
+  hsGeneralWebsiteUrl?: string;
   gpa: string;
   gpaScale: "5.0" | "4.0" | "100" | "";
   sat: string;
@@ -35,6 +36,7 @@ type Props = {
   hsName: string;
   hsCity: string;
   hsState: string;
+  hsGeneralWebsiteUrl: string;
   gpa: string;
   gpaScale: "5.0" | "4.0" | "100" | "";
   sat: string;
@@ -67,6 +69,7 @@ type Props = {
   setHsName: (v: string) => void;
   setHsCity: (v: string) => void;
   setHsState: (v: string) => void;
+  setHsGeneralWebsiteUrl: (v: string) => void;
   setGpa: (v: string) => void;
   setGpaScale: (v: "5.0" | "4.0" | "100" | "") => void;
   setSat: (v: string) => void;
@@ -122,6 +125,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     hsName,
     hsCity,
     hsState,
+    hsGeneralWebsiteUrl,
     gpa,
     gpaScale,
     sat,
@@ -148,6 +152,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     setHsName,
     setHsCity,
     setHsState,
+    setHsGeneralWebsiteUrl,
     setGpa,
     setGpaScale,
     setSat,
@@ -258,6 +263,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         hsName,
         hsCity,
         hsState,
+        hsGeneralWebsiteUrl,
         gpa,
         gpaScale,
         sat,
@@ -616,6 +622,27 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
             }}
           >
             PDF, Word, or Excel • Only one file allowed here.
+          </span>
+        </label>
+
+        <label style={labelStyle}>
+          <span style={labelText}>High School Website</span>
+          <input
+            type="url"
+            value={hsGeneralWebsiteUrl}
+            onChange={(e) => setHsGeneralWebsiteUrl(e.target.value)}
+            placeholder="https://www.yourschool.edu"
+            style={inputStyle}
+          />
+          <span
+            style={{
+              color: "#64748b",
+              fontSize: 12,
+              marginTop: 4,
+              display: "block",
+            }}
+          >
+            General school website. This can be shown as a clickable link on the public player profile.
           </span>
         </label>
       </div>
