@@ -221,12 +221,56 @@ function PlayerProfilePageInner() {
   const [hometownCity, setHometownCity] = useState<string>("");
   const [hometownState, setHometownState] = useState<string>("");
 
-  // EMAIL RESOLVER: only honor ?email=, otherwise start empty
+  // EMAIL RESOLVER:
+  // 1) honor ?email= when present
+  // 2) otherwise hydrate from the logged-in user
+  const [sessionEmail, setSessionEmail] = useState<string>("");
+
   const resolvedEmail = useMemo(() => {
     const fromQuery = searchParams?.get("email");
-    if (fromQuery && fromQuery.includes("@")) return fromQuery.trim();
+    if (fromQuery && fromQuery.includes("@")) return fromQuery.trim().toLowerCase();
+    if (sessionEmail && sessionEmail.includes("@")) return sessionEmail.trim().toLowerCase();
     return "";
-  }, [searchParams]);
+  }, [searchParams, sessionEmail]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadSessionEmail() {
+      try {
+        const res = await fetch("/api/auth/me", { cache: "no-store" });
+        const text = await res.text();
+
+        let json: any = null;
+        try {
+          json = text ? JSON.parse(text) : null;
+        } catch {
+          json = null;
+        }
+
+        if (cancelled) return;
+        if (!res.ok) return;
+
+        const nextEmail =
+          String(
+            json?.user?.email ??
+            json?.email ??
+            ""
+          ).trim().toLowerCase();
+
+        if (nextEmail) {
+          setSessionEmail(nextEmail);
+        }
+      } catch {
+        // no-op: page can still work via ?email= or manual email entry
+      }
+    }
+
+    loadSessionEmail();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // Build a tentative name-based slug for uploads (only if no publicSlug yet)
   const tentativeNameSlug = useMemo(() => {
@@ -247,12 +291,11 @@ const [phonePrivate, setPhonePrivate] = React.useState<boolean>(false);
 const [loadedEmail, setLoadedEmail] = useState<string | null>(null);
 
 // Canonical email key for this player profile:
-// - used by loadProfile()
-// - passed to Video/Social + Coaches tabs
-// - used as the identity in the save payload
+// - prefer resolved/session identity
+// - only fall back to typed email if needed
 const profileEmail = useMemo(
-  () => (resolvedEmail || email || "").trim().toLowerCase(),
-  [resolvedEmail, email]
+  () => (resolvedEmail || sessionEmail || email || "").trim().toLowerCase(),
+  [resolvedEmail, sessionEmail, email]
 );
 
 // Track if the user has manually touched/changed the email input
@@ -1031,8 +1074,27 @@ useEffect(() => {
       fd.append("userSlug", slugToUse);
 
       const res = await fetch("/api/upload/photo", { method: "POST", body: fd });
-      const json = await res.json();
-      if (!res.ok || !json?.ok) throw new Error(json?.error || "Upload failed");
+
+      const raw = await res.text();
+      let json: any = null;
+
+      try {
+        json = raw ? JSON.parse(raw) : null;
+      } catch {
+        json = null;
+      }
+
+      if (!res.ok) {
+        const message =
+          json?.error ||
+          (raw && raw.trim()) ||
+          "Upload failed";
+        throw new Error(message);
+      }
+
+      if (!json?.ok || !json?.url) {
+        throw new Error(json?.error || "Upload failed");
+      }
 
       // use the permanent https URL for preview so the UI matches the public page immediately
       setPhotoPreview(json.url || null);
@@ -1040,7 +1102,14 @@ useEffect(() => {
       transientSaved();
     } catch (e: any) {
       console.error(e);
-      setErr(e?.message || "Upload failed");
+
+      const rawMsg = String(e?.message || "").trim();
+      const friendly =
+        /entity too large|payload too large|request entity too large/i.test(rawMsg)
+          ? "Profile photo upload failed because the file is too large. Please use a smaller image."
+          : rawMsg || "Upload failed";
+
+      setErr(friendly);
     } finally {
       setUploadingPhoto(false);
     }
@@ -1128,9 +1197,12 @@ useEffect(() => {
         const photo = u.photoUrl ?? src.photoUrl;
         if (photo) setPhotoPreview(photo);
 
-        // Backfill email only if user hasn't edited it and the field is still empty
-        if (!didEditEmailRef.current && !email && (u.email ?? chosen)) {
-          setEmail((u.email ?? chosen) as string);
+        // Backfill email from the authenticated/saved profile identity
+        if (!didEditEmailRef.current) {
+          const hydratedEmail = String(u.email ?? chosen ?? "").trim().toLowerCase();
+          if (hydratedEmail) {
+            setEmail(hydratedEmail);
+          }
         }
 
         // Core: name + contact
