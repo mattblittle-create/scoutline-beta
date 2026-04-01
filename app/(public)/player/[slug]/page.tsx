@@ -19,6 +19,7 @@ import {
   normalizeActivityStatus,
   canViewSection,
   canViewCoreField,
+  feature,
 } from "@/app/lib/visibility";
 
 /** ---------- Shapes from API (loosely typed & defensive) ---------- */
@@ -969,7 +970,7 @@ const academicsData: AcademicsData = {
       <SectionWrapper id="metrics">
         <PublicMetrics
           metrics={metricsData}
-          canShowCharts={["All-American", "Teams"].includes(String(plan))}
+          canShowCharts={feature(ctx, "METRICS_GROWTH_CHARTS")}
           cardStyle={card}
           h2Style={h2}
           pillStyle={pillStyle}
