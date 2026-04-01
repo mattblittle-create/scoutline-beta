@@ -462,7 +462,7 @@ function MetricCard({
   title={trend.label}
   style={{
     color: trend.color,
-    fontWeight: 900,
+    fontWeight: 1200,
     fontSize: 20,          // ⬅️ bigger
     lineHeight: 1,
     display: "inline-flex",
@@ -576,7 +576,7 @@ function MetricCard({
   title={trend.label}
   style={{
     color: trend.color,
-    fontWeight: 900,
+    fontWeight: 1200,
     fontSize: 20,          // ⬅️ bigger
     lineHeight: 1,
     display: "inline-flex",
@@ -746,7 +746,7 @@ function MetricCard({
   title={trend.label}
   style={{
     color: trend.color,
-    fontWeight: 900,
+    fontWeight: 1200,
     fontSize: 20,          // ⬅️ bigger
     lineHeight: 1,
     display: "inline-flex",
