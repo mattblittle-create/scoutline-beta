@@ -212,8 +212,8 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       setNotFound(false);
 
       try {
-        const url = `/api/public/player/${encodeURIComponent(String(slug || "").trim())}?fresh=1${
-          showDebug ? "&debug=1" : ""
+        const url = `/api/public/player/${encodeURIComponent(String(slug || "").trim())}${
+          showDebug ? "?debug=1" : ""
         }`;
 
         const res = await fetch(url, { cache: "no-store" });
@@ -969,7 +969,7 @@ const academicsData: AcademicsData = {
       <SectionWrapper id="metrics">
         <PublicMetrics
           metrics={metricsData}
-          canShowCharts={true}
+          canShowCharts={["All-American", "Teams"].includes(String(plan))}
           cardStyle={card}
           h2Style={h2}
           pillStyle={pillStyle}
