@@ -458,17 +458,26 @@ function MetricCard({
             <div style={{ fontWeight: 800, color: "#0f172a" }}>
               {series._display}
             </div>
-            <span
-              title={trend.label}
-              style={{
-                color: trend.color,
-                fontWeight: 900,
-                fontSize: 16,
-                lineHeight: 1,
-              }}
-            >
-              {trend.arrow}
-            </span>
+<span
+  title={trend.label}
+  style={{
+    color: trend.color,
+    fontWeight: 900,
+    fontSize: 20,          // ⬅️ bigger
+    lineHeight: 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+    background: "#f1f5f9", // subtle badge background
+    border: `1px solid ${trend.color}30`, // soft tinted border
+    marginLeft: 4,
+  }}
+>
+  {trend.arrow}
+</span>
           </div>
 
           {benchmarks ? (
@@ -563,17 +572,26 @@ function MetricCard({
             <div style={{ fontWeight: 800, color: "#0f172a" }}>
               {series._display}
             </div>
-            <span
-              title={trend.label}
-              style={{
-                color: trend.color,
-                fontWeight: 900,
-                fontSize: 16,
-                lineHeight: 1,
-              }}
-            >
-              {trend.arrow}
-            </span>
+<span
+  title={trend.label}
+  style={{
+    color: trend.color,
+    fontWeight: 900,
+    fontSize: 20,          // ⬅️ bigger
+    lineHeight: 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+    background: "#f1f5f9", // subtle badge background
+    border: `1px solid ${trend.color}30`, // soft tinted border
+    marginLeft: 4,
+  }}
+>
+  {trend.arrow}
+</span>
           </div>
 
           {benchmarks ? (
@@ -724,17 +742,26 @@ function MetricCard({
             <div style={{ fontWeight: 800, color: "#0f172a" }}>
               {series._display}
             </div>
-            <span
-              title={trend.label}
-              style={{
-                color: trend.color,
-                fontWeight: 900,
-                fontSize: 16,
-                lineHeight: 1,
-              }}
-            >
-              {trend.arrow}
-            </span>
+<span
+  title={trend.label}
+  style={{
+    color: trend.color,
+    fontWeight: 900,
+    fontSize: 20,          // ⬅️ bigger
+    lineHeight: 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+    background: "#f1f5f9", // subtle badge background
+    border: `1px solid ${trend.color}30`, // soft tinted border
+    marginLeft: 4,
+  }}
+>
+  {trend.arrow}
+</span>
           </div>
 
           {benchmarks ? (
