@@ -614,6 +614,24 @@ const academicsData: AcademicsData = {
 
   /** ---------- Metrics mapping ---------- */
   const m = data.metrics ?? {};
+
+  const METRIC_META: Record<string, { label: string; unit: string | null }> = {
+    homeToFirst: { label: "Home to 1B", unit: "sec" },
+    sixtyYdDash: { label: "60 Yard Dash", unit: "sec" },
+    exitVelo: { label: "Exit Velocity", unit: "mph" },
+    rawThrowVelo: { label: "Raw Throwing Velocity", unit: "mph" },
+    infieldThrowVelo: { label: "Infield Throwing Velocity", unit: "mph" },
+    outfieldThrowVelo: { label: "Outfield Throwing Velocity", unit: "mph" },
+    catcherThrowVelo: { label: "Catcher Throwing Velocity", unit: "mph" },
+    avgFbVelo: { label: "Avg Fastball Velocity", unit: "mph" },
+    avgChVelo: { label: "Avg Changeup Velocity", unit: "mph" },
+    avgBbVelo: { label: "Avg Breaking Ball Velocity", unit: "mph" },
+    popTime: { label: "Catcher Pop Time", unit: "sec" },
+    benchPress: { label: "Bench Press", unit: "lbs" },
+    squat: { label: "Squat", unit: "lbs" },
+    deadLift: { label: "Dead Lift", unit: "lbs" },
+  };
+
   const seriesFromA =
     Array.isArray(m.series) &&
     m.series
@@ -634,7 +652,35 @@ const academicsData: AcademicsData = {
       }))
       .filter((s: any) => s.key);
 
-  const series = seriesFromA && seriesFromA.length ? seriesFromA : [];
+  const seriesFromRaw =
+    !seriesFromA || seriesFromA.length === 0
+      ? Object.entries(METRIC_META)
+          .map(([key, meta]) => {
+            const arr = Array.isArray((m as any)[key]) ? (m as any)[key] : [];
+            const points = arr
+              .filter((p: any) => p && (p.monthYear || p.date))
+              .map((p: any) => ({
+                date: String(p.date ?? p.monthYear ?? "").trim(),
+                value: p.value == null || p.value === "" ? null : Number(p.value),
+                source: p.source ?? null,
+              }))
+              .filter((p: any) => p.date);
+
+            return {
+              key,
+              label: meta.label,
+              unit: meta.unit,
+              points,
+              ageAverages: null,
+            };
+          })
+          .filter((s) => s.points.length > 0)
+      : [];
+
+  const series =
+    seriesFromA && seriesFromA.length > 0
+      ? seriesFromA
+      : seriesFromRaw;
 
   const metricsData: MetricsData = {
     dob: profile.dob ?? m.dob ?? null,
@@ -921,7 +967,15 @@ const academicsData: AcademicsData = {
       </SectionWrapper>
 
       <SectionWrapper id="metrics">
-        <PublicMetrics metrics={metricsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
+        <PublicMetrics
+          metrics={metricsData}
+          canShowCharts={
+            String(plan) === "All-American" || String(plan) === "Teams"
+          }
+          cardStyle={card}
+          h2Style={h2}
+          pillStyle={pillStyle}
+        />
       </SectionWrapper>
 
       <SectionWrapper id="stats">
