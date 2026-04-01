@@ -970,7 +970,9 @@ const academicsData: AcademicsData = {
         <PublicMetrics
           metrics={metricsData}
           canShowCharts={
-            String(plan) === "All-American" || String(plan) === "Teams"
+            ["All-American", "Teams"].includes(
+              String(data?.planTier ?? profile?.planTier ?? "")
+            )
           }
           cardStyle={card}
           h2Style={h2}
