@@ -23,17 +23,26 @@ export async function POST(req: Request) {
       },
     });
 
-    // 🔥 CRITICAL: keep Player.plan in sync with billing
-await prisma.player.updateMany({
-  where: {
-    PlayerProfile: {
-      id: playerProfileId,
-    },
-  },
-  data: {
-    plan: planTier, // "REDSHIRT" | "WALK_ON" | "ALL_AMERICAN"
-  },
+// Keep Player.plan in sync with billing/profile plan tier.
+// Public profile visibility reads Player.plan, so this must match.
+const profile = await prisma.playerProfile.findUnique({
+  where: { id: playerProfileId },
+  select: { email: true },
 });
+
+if (profile?.email) {
+  const user = await prisma.user.findFirst({
+    where: { email: { equals: profile.email.toLowerCase(), mode: "insensitive" } },
+    select: { id: true },
+  });
+
+  if (user?.id) {
+    await prisma.player.updateMany({
+      where: { userId: user.id },
+      data: { plan: planTier },
+    });
+  }
+}
 
     return NextResponse.json({ ok: true });
   } catch (e: any) {
