@@ -969,13 +969,7 @@ const academicsData: AcademicsData = {
       <SectionWrapper id="metrics">
         <PublicMetrics
           metrics={metricsData}
-          canShowCharts={(() => {
-            const raw = String(data?.planTier ?? profile?.planTier ?? "")
-              .trim()
-              .toUpperCase()
-              .replace(/[^A-Z]/g, "");
-            return raw === "ALLAMERICAN" || raw === "TEAMS";
-          })()}
+          canShowCharts={true}
           cardStyle={card}
           h2Style={h2}
           pillStyle={pillStyle}
