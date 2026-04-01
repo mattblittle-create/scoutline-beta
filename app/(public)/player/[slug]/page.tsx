@@ -213,7 +213,9 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       setNotFound(false);
 
       try {
-        const url = `/api/public/player/${encodeURIComponent(String(slug || "").trim())}?debug=1&fresh=1`;
+        const url = `/api/public/player/${encodeURIComponent(String(slug || "").trim())}${
+          showDebug ? "?debug=1" : ""
+        }`;
 
         const res = await fetch(url, { cache: "no-store" });
 
@@ -981,7 +983,7 @@ const points = arr
       <SectionWrapper id="metrics">
         <PublicMetrics
           metrics={metricsData}
-          canShowCharts={true}
+          canShowCharts={feature(ctx, "METRICS_GROWTH_CHARTS")}
           cardStyle={card}
           h2Style={h2}
           pillStyle={pillStyle}

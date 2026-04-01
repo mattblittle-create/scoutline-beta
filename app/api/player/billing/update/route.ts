@@ -23,6 +23,18 @@ export async function POST(req: Request) {
       },
     });
 
+    // 🔥 CRITICAL: keep Player.plan in sync with billing
+await prisma.player.updateMany({
+  where: {
+    PlayerProfile: {
+      id: playerProfileId,
+    },
+  },
+  data: {
+    plan: planTier, // "REDSHIRT" | "WALK_ON" | "ALL_AMERICAN"
+  },
+});
+
     return NextResponse.json({ ok: true });
   } catch (e: any) {
     return NextResponse.json({ ok: false, error: e?.message || "Failed" }, { status: 500 });
