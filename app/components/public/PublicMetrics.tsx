@@ -927,23 +927,23 @@ export default function PublicMetrics({
     { keys: ["homeToFirst"], display: "Home to 1B" },
     { keys: ["sixtyYdDash", "sixtyYd"], display: "60 Yard Dash" },
 
-    { keys: ["exitVelo"], display: "Exit Velocity" },
-    { keys: ["rawThrowVelo", "rawVelo"], display: "Raw Throwing Velocity" },
+    { keys: ["exitVelo"], display: "Exit Velo" },
+    { keys: ["rawThrowVelo", "rawVelo"], display: "Raw Throwing Velo" },
 
-    { keys: ["infieldThrowVelo"], display: "Infield Throwing Velocity" },
-    { keys: ["outfieldThrowVelo"], display: "Outfield Throwing Velocity" },
+    { keys: ["infieldThrowVelo"], display: "Infield Throwing Velo" },
+    { keys: ["outfieldThrowVelo"], display: "Outfield Throwing Velo" },
 
     { keys: ["benchPress"], display: "Bench Press" },
     { keys: ["squat"], display: "Squat" },
     { keys: ["deadLift"], display: "Dead Lift" },
 
     { keys: ["popTime"], display: "Catcher Pop Time" },
-    { keys: ["catcherThrowVelo"], display: "Catcher Throwing Velocity" },
+    { keys: ["catcherThrowVelo"], display: "Catcher Throwing Veloc" },
 
-    { keys: ["avgFbVelo", "avgFBVelo", "fbVelo"], display: "Avg Fastball Velocity" },
-    { keys: ["avgChVelo", "chVelo"], display: "Avg Changeup Velocity" },
+    { keys: ["avgFbVelo", "avgFBVelo", "fbVelo"], display: "Avg Fastball Velo" },
+    { keys: ["avgChVelo", "chVelo"], display: "Avg Changeup Velo" },
 
-    { keys: ["avgBbVelo", "bbVelo"], display: "Avg Breaking Ball Velocity" },
+    { keys: ["avgBbVelo", "bbVelo"], display: "Avg Breaking Ball Velo" },
   ];
 
   const byKey = new Map(series.map((s) => [String(s.key), s]));
