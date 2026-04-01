@@ -584,7 +584,7 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
           seasons: Array.isArray((atomic as any).statsSeasons) ? (atomic as any).statsSeasons.map(pruneSeasonStats) : [],
         },
 
-        metrics: ((atomic as any).metrics as any) ?? null,
+        metrics: ((atomic as any).metrics as any) ?? {},
         stats: {
           seasons: Array.isArray((atomic as any).statsSeasons) ? (atomic as any).statsSeasons.map(pruneSeasonStats) : [],
         },

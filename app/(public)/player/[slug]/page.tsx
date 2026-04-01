@@ -658,14 +658,27 @@ const academicsData: AcademicsData = {
       ? Object.entries(METRIC_META)
           .map(([key, meta]) => {
             const arr = Array.isArray((m as any)[key]) ? (m as any)[key] : [];
-            const points = arr
-              .filter((p: any) => p && (p.monthYear || p.date))
-              .map((p: any) => ({
-                date: String(p.date ?? p.monthYear ?? "").trim(),
-                value: p.value == null || p.value === "" ? null : Number(p.value),
-                source: p.source ?? null,
-              }))
-              .filter((p: any) => p.date);
+const points = arr
+  .map((p: any) => {
+    const rawDate = p?.date ?? p?.monthYear ?? "";
+
+    // normalize MM/YYYY safely
+    const normalizedDate = String(rawDate)
+      .trim()
+      .replace(/^(\d{1})\//, "0$1/"); // 4/2025 → 04/2025
+
+    const value =
+      p?.value == null || p?.value === "" ? null : Number(p.value);
+
+    return {
+      date: normalizedDate,
+      value: Number.isFinite(value) ? value : null,
+      source: p?.source ?? null,
+    };
+  })
+  .filter((p: any) => {
+    return p.date && p.value !== null;
+  });
 
             return {
               key,
@@ -675,7 +688,7 @@ const academicsData: AcademicsData = {
               ageAverages: null,
             };
           })
-          .filter((s) => s.points.length > 0)
+          .filter((s) => Array.isArray(s.points) && s.points.length >= 1)
       : [];
 
   const series =
