@@ -2,7 +2,11 @@
 "use client";
 
 import * as React from "react";
-import { BASELINES, type MetricKey } from "@/app/lib/metrics-baselines";
+import {
+  BASELINES,
+  COLLEGE_BENCHMARKS,
+  type MetricKey,
+} from "@/app/lib/metrics-baselines";
 
 /** ---------- Types ---------- */
 export type MetricPoint = {
@@ -243,6 +247,92 @@ function yStepForUnit(unit?: string | null): number {
   return 1;
 }
 
+function metricImprovesWhenLower(seriesKey: string): boolean {
+  const k = String(seriesKey || "").trim();
+  return k === "homeToFirst" || k === "sixtyYdDash" || k === "popTime";
+}
+
+function getTrendInfo(
+  seriesKey: string,
+  pts: Array<{ date: string; value: number | null; source?: string | null }>
+): {
+  arrow: "↑" | "↓" | "→";
+  color: string;
+  label: "Improving" | "Declining" | "Steady";
+} {
+  const valid = pts.filter((p) => p.value != null && Number.isFinite(p.value as any));
+  if (valid.length < 2) {
+    return { arrow: "→", color: "#64748b", label: "Steady" };
+  }
+
+  const sorted = [...valid].sort((a, b) => {
+    const ad = parseFlexibleDate(a.date)?.getTime() ?? 0;
+    const bd = parseFlexibleDate(b.date)?.getTime() ?? 0;
+    return ad - bd;
+  });
+
+  const prev = sorted[sorted.length - 2]?.value ?? null;
+  const latest = sorted[sorted.length - 1]?.value ?? null;
+
+  if (prev == null || latest == null) {
+    return { arrow: "→", color: "#64748b", label: "Steady" };
+  }
+
+  const delta = latest - prev;
+  const lowerIsBetter = metricImprovesWhenLower(seriesKey);
+
+  if (Math.abs(delta) < 0.0001) {
+    return { arrow: "→", color: "#64748b", label: "Steady" };
+  }
+
+  const improving = lowerIsBetter ? delta < 0 : delta > 0;
+
+  return improving
+    ? { arrow: "↑", color: "#15803d", label: "Improving" }
+    : { arrow: "↓", color: "#b91c1c", label: "Declining" };
+}
+
+function getTrajectoryLabel(
+  seriesKey: string,
+  dob: string | null | undefined,
+  pts: Array<{ date: string; value: number | null; source?: string | null }>
+): "Strong" | "Rising" | "Steady" | "Early" | "Watch" {
+  const valid = pts.filter((p) => p.value != null && Number.isFinite(p.value as any));
+  if (valid.length < 2) return "Early";
+
+  const sorted = [...valid].sort((a, b) => {
+    const ad = parseFlexibleDate(a.date)?.getTime() ?? 0;
+    const bd = parseFlexibleDate(b.date)?.getTime() ?? 0;
+    return ad - bd;
+  });
+
+  const first = sorted[0];
+  const latest = sorted[sorted.length - 1];
+  if (!first || !latest || first.value == null || latest.value == null) return "Early";
+
+  const lowerIsBetter = metricImprovesWhenLower(seriesKey);
+  const netDelta = latest.value - first.value;
+  const improving = lowerIsBetter ? netDelta < 0 : netDelta > 0;
+  const flat = Math.abs(netDelta) < 0.0001;
+
+  const latestAge = ageOnDate(dob, latest.date);
+  const baselineTable = baselineTableFor(seriesKey);
+  const baselineLatest =
+    latestAge != null && baselineTable ? baselineTable[latestAge] ?? null : null;
+
+  const aheadOfAverage =
+    baselineLatest != null
+      ? lowerIsBetter
+        ? latest.value < baselineLatest
+        : latest.value > baselineLatest
+      : false;
+
+  if (improving && aheadOfAverage) return "Strong";
+  if (improving) return "Rising";
+  if (flat) return "Steady";
+  return "Watch";
+}
+
 /** Helper: latest (by date) non-null value's source */
 function latestSourceFrom(
   pts: Array<{ date: string; value: number | null; source?: string | null }>
@@ -350,6 +440,9 @@ function MetricCard({
 
   const latestSource = latestSourceFrom(pts);
   const avgPts = avgSeriesFor(series, dob);
+  const trend = getTrendInfo(seriesKey, pts);
+  const trajectory = getTrajectoryLabel(seriesKey, dob, pts);
+  const benchmarks = COLLEGE_BENCHMARKS[toMetricKey(seriesKey) ?? (seriesKey as MetricKey)] ?? null;
 
   // If we require data to show (pos-specific metrics), hide if empty
   const hasAnyPoint = pts.some((p) => p.value != null && Number.isFinite(p.value as any));
@@ -359,13 +452,48 @@ function MetricCard({
   if (!showCharts) {
     return (
       <div style={cardInner}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-          <div style={{ fontWeight: 800, color: "#0f172a" }}>{series._display}</div>
-          <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
-            <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-            <span style={pill}>Source: {latestSource || "—"}</span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontWeight: 800, color: "#0f172a" }}>
+              {series._display}
+            </div>
+            <span
+              title={trend.label}
+              style={{
+                color: trend.color,
+                fontWeight: 900,
+                fontSize: 16,
+                lineHeight: 1,
+              }}
+            >
+              {trend.arrow}
+            </span>
           </div>
+
+          {benchmarks ? (
+            <div
+              style={{
+                color: "#caa042",
+                fontSize: 12,
+                fontWeight: 800,
+                lineHeight: 1.35,
+              }}
+            >
+              {benchmarks.D1 != null ? <div>D1 - {fmt(benchmarks.D1, series.unit)}</div> : null}
+              {benchmarks.D2 != null ? <div>D2 - {fmt(benchmarks.D2, series.unit)}</div> : null}
+              {benchmarks.D3 != null ? <div>D3 - {fmt(benchmarks.D3, series.unit)}</div> : null}
+              {benchmarks.JUCO != null ? <div>JUCO - {fmt(benchmarks.JUCO, series.unit)}</div> : null}
+            </div>
+          ) : null}
         </div>
+
+        <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
+          <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
+          <span style={pill}>Source: {latestSource || "—"}</span>
+          <span style={pill}>Trajectory: {trajectory}</span>
+        </div>
+      </div>
 
         {!hasAnyPoint && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No Metrics available.</div>}
       </div>
@@ -429,13 +557,48 @@ function MetricCard({
   if (allDates.length === 0) {
     return (
       <div style={cardInner}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-          <div style={{ fontWeight: 800, color: "#0f172a" }}>{series._display}</div>
-          <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
-            <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-            <span style={pill}>Source: {latestSource || "—"}</span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontWeight: 800, color: "#0f172a" }}>
+              {series._display}
+            </div>
+            <span
+              title={trend.label}
+              style={{
+                color: trend.color,
+                fontWeight: 900,
+                fontSize: 16,
+                lineHeight: 1,
+              }}
+            >
+              {trend.arrow}
+            </span>
           </div>
+
+          {benchmarks ? (
+            <div
+              style={{
+                color: "#caa042",
+                fontSize: 12,
+                fontWeight: 800,
+                lineHeight: 1.35,
+              }}
+            >
+              {benchmarks.D1 != null ? <div>D1 - {fmt(benchmarks.D1, series.unit)}</div> : null}
+              {benchmarks.D2 != null ? <div>D2 - {fmt(benchmarks.D2, series.unit)}</div> : null}
+              {benchmarks.D3 != null ? <div>D3 - {fmt(benchmarks.D3, series.unit)}</div> : null}
+              {benchmarks.JUCO != null ? <div>JUCO - {fmt(benchmarks.JUCO, series.unit)}</div> : null}
+            </div>
+          ) : null}
         </div>
+
+        <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
+          <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
+          <span style={pill}>Source: {latestSource || "—"}</span>
+          <span style={pill}>Trajectory: {trajectory}</span>
+        </div>
+      </div>
         <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No Metrics available.</div>
       </div>
     );
@@ -555,11 +718,46 @@ function MetricCard({
   return (
     <div style={cardInner}>
       {/* Header pills */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-        <div style={{ fontWeight: 800, color: "#0f172a" }}>{series._display}</div>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontWeight: 800, color: "#0f172a" }}>
+              {series._display}
+            </div>
+            <span
+              title={trend.label}
+              style={{
+                color: trend.color,
+                fontWeight: 900,
+                fontSize: 16,
+                lineHeight: 1,
+              }}
+            >
+              {trend.arrow}
+            </span>
+          </div>
+
+          {benchmarks ? (
+            <div
+              style={{
+                color: "#caa042",
+                fontSize: 12,
+                fontWeight: 800,
+                lineHeight: 1.35,
+              }}
+            >
+              {benchmarks.D1 != null ? <div>D1 - {fmt(benchmarks.D1, series.unit)}</div> : null}
+              {benchmarks.D2 != null ? <div>D2 - {fmt(benchmarks.D2, series.unit)}</div> : null}
+              {benchmarks.D3 != null ? <div>D3 - {fmt(benchmarks.D3, series.unit)}</div> : null}
+              {benchmarks.JUCO != null ? <div>JUCO - {fmt(benchmarks.JUCO, series.unit)}</div> : null}
+            </div>
+          ) : null}
+        </div>
+
         <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
           <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
           <span style={pill}>Source: {latestSource || "—"}</span>
+          <span style={pill}>Trajectory: {trajectory}</span>
         </div>
       </div>
 
@@ -708,9 +906,9 @@ export default function PublicMetrics({
     { keys: ["infieldThrowVelo"], display: "Infield Throwing Velocity" },
     { keys: ["outfieldThrowVelo"], display: "Outfield Throwing Velocity" },
 
-{ keys: ["benchPress"], display: "Bench Press" },
-{ keys: ["squat"], display: "Squat" },
-{ keys: ["deadLift"], display: "Dead Lift" },
+    { keys: ["benchPress"], display: "Bench Press" },
+    { keys: ["squat"], display: "Squat" },
+    { keys: ["deadLift"], display: "Dead Lift" },
 
     { keys: ["popTime"], display: "Catcher Pop Time" },
     { keys: ["catcherThrowVelo"], display: "Catcher Throwing Velocity" },
