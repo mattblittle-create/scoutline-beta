@@ -1052,7 +1052,7 @@ export default function PublicMetrics({
           flexWrap: "wrap",
         }}
       >
-        <h2 style={safeH2}>{title} TEST</h2>
+        <h2 style={safeH2}>{title}</h2>
 
         {showCharts && (
           <div style={{ display: "flex", gap: 20, alignItems: "center", color: "#475569", fontWeight: 800 }}>
