@@ -504,27 +504,27 @@ const academicsData: AcademicsData = {
   sat: ac.sat ?? ac.satScore ?? null,
   act: ac.act ?? ac.actScore ?? null,
   highSchool: ac.highSchool ?? ac.highSchoolName ?? null,
-  highSchoolWebsite: ac.hsGeneralWebsiteUrl ?? null, // ✅ ADD THIS
+  highSchoolWebsite: ac.highSchoolWebsite ?? ac.hsGeneralWebsiteUrl ?? null,
   city: ac.city ?? ac.hsCity ?? null,
   state: ac.state ?? ac.hsState ?? null,
-    areasOfStudy: Array.isArray(ac.areasOfStudy)
-      ? ac.areasOfStudy
-      : String(ac.areasOfStudyInput ?? ac.intendedMajors ?? ac.academicMajors ?? "")
-          .split(",")
-          .map((s: string) => s.trim())
-          .filter(Boolean),
-    transcriptUrls: toArray(ac.transcripts ?? ac.transcriptUrls ?? ac.transcriptUrl)
-      .map(String)
-      .filter(Boolean),
-    reportCardUrls: toArray(ac.reportCards ?? ac.reportCardUrls ?? ac.reportCardUrl)
-      .map(String)
-      .filter(Boolean),
-    otherDocs: toArray(ac.otherAcademicDocs)
-      .map((d: any) =>
-        typeof d === "string" ? { label: null, url: d } : { label: d?.label ?? d?.name ?? null, url: d?.url ?? "" }
-      )
-      .filter((d: any) => !!d.url),
-  };
+  areasOfStudy: Array.isArray(ac.areasOfStudy)
+    ? ac.areasOfStudy
+    : String(ac.areasOfStudyInput ?? ac.intendedMajors ?? ac.academicMajors ?? "")
+        .split(",")
+        .map((s: string) => s.trim())
+        .filter(Boolean),
+  transcriptUrls: toArray(ac.transcripts ?? ac.transcriptUrls ?? ac.transcriptUrl)
+    .map(String)
+    .filter(Boolean),
+  reportCardUrls: toArray(ac.reportCards ?? ac.reportCardUrls ?? ac.reportCardUrl)
+    .map(String)
+    .filter(Boolean),
+  otherDocs: toArray(ac.otherAcademicDocs)
+    .map((d: any) =>
+      typeof d === "string" ? { label: null, url: d } : { label: d?.label ?? d?.name ?? null, url: d?.url ?? "" }
+    )
+    .filter((d: any) => !!d.url),
+};
 
   /** ---------- Athletics mapping ---------- */
   const at = (profile as any).athletics ?? {};
