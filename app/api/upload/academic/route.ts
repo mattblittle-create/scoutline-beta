@@ -1,12 +1,12 @@
-// app/api/upload/academic/route.ts
 import { NextResponse } from "next/server";
-import path from "node:path";
-import fs from "node:fs/promises";
+import { put } from "@vercel/blob";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-const ALLOWED_EXTS = new Set([".pdf", ".doc", ".docx", ".xls", ".xlsx"]);
-const ALLOWED_MIME = new Set([
+const MAX_BYTES = 25 * 1024 * 1024; // 25MB
+
+const ALLOWED = new Set([
   "application/pdf",
   "application/msword",
   "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -14,9 +14,25 @@ const ALLOWED_MIME = new Set([
   "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
 ]);
 
-const MAX_BYTES = 25 * 1024 * 1024; // 25MB per file
+function extFor(name: string, type: string): string {
+  const lower = (name || "").toLowerCase();
 
-function toSafeSlug(v: string) {
+  if (lower.endsWith(".pdf") || type === "application/pdf") return ".pdf";
+  if (lower.endsWith(".doc") || type === "application/msword") return ".doc";
+  if (
+    lower.endsWith(".docx") ||
+    type === "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+  ) return ".docx";
+  if (lower.endsWith(".xls") || type === "application/vnd.ms-excel") return ".xls";
+  if (
+    lower.endsWith(".xlsx") ||
+    type === "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  ) return ".xlsx";
+
+  return "";
+}
+
+function safeSlug(v: string) {
   return (v || "")
     .trim()
     .toLowerCase()
@@ -26,72 +42,56 @@ function toSafeSlug(v: string) {
 
 export async function POST(req: Request) {
   try {
-    const formData = await req.formData();
+    const form = await req.formData();
+    const file = form.get("file") as File | null;
+    const userSlugRaw = String(form.get("userSlug") ?? "").trim();
+    const folderRaw = String(form.get("folder") ?? "academic").trim().toLowerCase();
 
-    const file = formData.get("file");
-    const userSlugRaw = formData.get("userSlug");
-    const folderRaw = String(formData.get("folder") ?? "academic").trim().toLowerCase();
-
-    if (!file || typeof file === "string") {
+    if (!file) {
       return NextResponse.json({ ok: false, error: "Missing file" }, { status: 400 });
     }
 
-    const userSlug =
-      typeof userSlugRaw === "string" && userSlugRaw.trim()
-        ? toSafeSlug(userSlugRaw)
-        : "player";
-
-    const fileObj = file as File;
-
-    if (fileObj.size > MAX_BYTES) {
+    if (file.size > MAX_BYTES) {
       return NextResponse.json(
         { ok: false, error: "File too large. Max 25MB." },
         { status: 400 }
       );
     }
 
-    const origName = fileObj.name || "academic-file";
-    const safeName =
-      origName
-        .replace(/[^a-zA-Z0-9.\- _]/g, "")
-        .replace(/\s+/g, " ")
-        .trim() || "academic-file";
+    const type = (file.type || "").toLowerCase();
+    const ext = extFor(file.name || "", type);
 
-    const ext = (path.extname(safeName) || "").toLowerCase();
-    const mime = String(fileObj.type || "").toLowerCase();
-
-    if (!ALLOWED_EXTS.has(ext) && !ALLOWED_MIME.has(mime)) {
+    if (!ALLOWED.has(type) && !ext) {
       return NextResponse.json(
         { ok: false, error: "Unsupported file type. Please upload PDF, Word, or Excel." },
         { status: 400 }
       );
     }
 
-    const baseNoExt = path.basename(safeName, ext || undefined);
-    const finalName = `${new Date().toISOString().replace(/[:.]/g, "-")}-${baseNoExt}${ext || ""}`;
+    const userSlug = safeSlug(userSlugRaw);
+    const baseName =
+      (file.name || "academic-file")
+        .replace(/\.[^.]+$/, "")
+        .replace(/[^a-zA-Z0-9._-]+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-+|-+$/g, "") || "academic-file";
 
-    const academicDir = path.join(
-      process.cwd(),
-      "public",
-      "uploads",
-      folderRaw,
-      userSlug
-    );
+    const key = `${folderRaw}/${userSlug}/${crypto.randomUUID()}-${baseName}${ext}`;
 
-    await fs.mkdir(academicDir, { recursive: true });
+    const blob = await put(key, file, {
+      access: "public",
+      contentType: type || "application/octet-stream",
+      addRandomSuffix: false,
+    });
 
-    const absPath = path.join(academicDir, finalName);
-    const arrayBuffer = await fileObj.arrayBuffer();
-    const buffer = Buffer.from(arrayBuffer);
-    await fs.writeFile(absPath, buffer);
-
-    const publicUrl = `/uploads/${folderRaw}/${userSlug}/${finalName}`;
-
-    return NextResponse.json({ ok: true, url: publicUrl }, { status: 200 });
-  } catch (err: any) {
-    console.error("Academic upload route error:", err);
+    return NextResponse.json({
+      ok: true,
+      url: blob.url,
+    });
+  } catch (e: any) {
+    console.error("[upload/academic] error:", e);
     return NextResponse.json(
-      { ok: false, error: err?.message || "Upload error" },
+      { ok: false, error: e?.message || "Upload failed" },
       { status: 500 }
     );
   }
