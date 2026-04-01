@@ -37,9 +37,14 @@ if (profile?.email) {
   });
 
   if (user?.id) {
+    const nextPlan =
+      planTier === "REDSHIRT" || planTier === "WALK_ON" || planTier === "ALL_AMERICAN"
+        ? planTier
+        : "REDSHIRT";
+
     await prisma.player.updateMany({
       where: { userId: user.id },
-      data: { plan: planTier },
+      data: { plan: nextPlan as any },
     });
   }
 }
