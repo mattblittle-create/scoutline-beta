@@ -2622,25 +2622,23 @@ const otherAcademicDocsPayload =
 
         {/* ========= TAB 5: STATS ========= */}
         {activeTab === "Stats" && (
-          <TabStats
-            statsPublic={statsPublic}
-            showCatcherMetrics={showCatcherMetrics}
-            showPitcherMetrics={showPitcherMetrics}
-            statsSeasons={statsSeasons}
-            addStatsSeason={addStatsSeason}
-            removeStatsSeason={removeStatsSeason}
-            updateStatsSeason={updateStatsSeason}
-            onPickStatFiles={onPickStatFiles}
-            removeStatFile={removeStatFile}
-            teamOptions={teamOptions}
-            seasonTerms={SEASON_TERMS}
-            pitchTypes={PITCH_TYPES}
-            yearOptions={yearOptions}
-            setErr={setErr}
-            transientSaved={transientSaved}
-            styles={{ labelStyle, labelText, inputStyle, hrStyle, errText }}
-            playerSlug={uploadSlug}   // ⚠️ NEW: actually feed TabStats the player slug
-          />
+        <TabStats
+          statsPublic={statsPublic}
+          showCatcherMetrics={showCatcherMetrics}
+          showPitcherMetrics={showPitcherMetrics}
+          statsSeasons={statsSeasons}
+          addStatsSeason={addStatsSeason}
+          removeStatsSeason={removeStatsSeason}
+          updateStatsSeason={updateStatsSeason}
+          teamOptions={teamOptions}
+          seasonTerms={SEASON_TERMS}
+          pitchTypes={PITCH_TYPES}
+          yearOptions={yearOptions}
+          setErr={setErr}
+          transientSaved={transientSaved}
+          styles={{ labelStyle, labelText, inputStyle, hrStyle, errText }}
+          playerSlug={uploadSlug}
+        />
         )}
 
         {/* ========= TAB 6: VIDEO / SOCIAL ========= */}
