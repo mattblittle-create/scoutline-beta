@@ -254,7 +254,11 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   // ---------- Safe profile fallbacks ----------
   const safeProfile: PublicProfile = (data?.profile ?? {}) as PublicProfile;
 
-  const vsRaw: any = (safeProfile as any).videoSocial ?? (safeProfile as any).videos ?? {};
+  const vsRaw: any =
+  (safeProfile as any).videoSocial ??
+  (safeProfile as any).videos ??
+  (safeProfile as any).media ??
+  {};
   const coreEmail = safeProfile.email ?? safeProfile.contact?.email ?? null;
   const corePhone = safeProfile.phone ?? safeProfile.contact?.phone ?? null;
 
