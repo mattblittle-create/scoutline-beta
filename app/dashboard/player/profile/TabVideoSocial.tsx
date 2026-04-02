@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState, useImperativeHandle } from "react";
+import { upload } from "@vercel/blob/client";
 
 /** ---------- NEW: payload & handle types for atomic save ---------- */
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
@@ -427,59 +428,43 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
     }
 
     // ----- Video uploads (POST /api/upload/video) -----
-    async function uploadLocalDev(file: File, draftId: string) {
-      return new Promise<void>((resolve, reject) => {
-        const form = new FormData();
-        form.append("file", file);
-        form.append("userSlug", resolvedEmail || "player");
+async function uploadLocalVideo(file: File, draftId: string) {
+  const userSlug = (resolvedEmail || "player").trim();
 
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/upload/video", true);
+  const blob = await upload(file.name, file, {
+    access: "public",
+    handleUploadUrl: "/api/upload/video/client",
+    multipart: true,
+    clientPayload: JSON.stringify({
+      userSlug,
+      originalName: file.name,
+    }),
+    onUploadProgress: ({ percentage }) => {
+      setState((s) => ({
+        ...s,
+        localVideos: s.localVideos.map((lv) =>
+          lv.id === draftId
+            ? { ...lv, progress: Math.round(percentage), status: "uploading" }
+            : lv
+        ),
+      }));
+    },
+  });
 
-        xhr.upload.onprogress = (evt) => {
-          if (evt.lengthComputable) {
-            const pct = Math.round((evt.loaded / evt.total) * 100);
-            setState((s) => ({
-              ...s,
-              localVideos: s.localVideos.map((lv) =>
-                lv.id === draftId ? { ...lv, progress: pct, status: "uploading" } : lv
-              ),
-            }));
+  setState((s) => ({
+    ...s,
+    localVideos: s.localVideos.map((lv) =>
+      lv.id === draftId
+        ? {
+            ...lv,
+            publicUrl: blob.url,
+            progress: 100,
+            status: "done",
           }
-        };
-
-        xhr.onload = () => {
-          try {
-            if (xhr.status >= 200 && xhr.status < 300) {
-              const json = JSON.parse(xhr.responseText) as {
-                ok: boolean;
-                files?: { publicUrl: string; filename: string; size: number; type: string }[];
-                error?: string;
-              };
-              if (!json.ok || !json.files?.length) {
-                throw new Error(json.error || "Upload failed");
-              }
-              const { publicUrl } = json.files[0];
-
-              setState((s) => ({
-                ...s,
-                localVideos: s.localVideos.map((lv) =>
-                  lv.id === draftId ? { ...lv, publicUrl, progress: 100, status: "done" } : lv
-                ),
-              }));
-              resolve();
-            } else {
-              reject(new Error(`Upload failed (status ${xhr.status})`));
-            }
-          } catch (e: any) {
-            reject(e);
-          }
-        };
-
-        xhr.onerror = () => reject(new Error("Network error during upload"));
-        xhr.send(form);
-      });
-    }
+        : lv
+    ),
+  }));
+}
 
     // Entire choose→validate→draft→upload flow
     async function onChooseLocalVideos(files: FileList | null) {
@@ -546,7 +531,7 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
             ...s,
             localVideos: s.localVideos.map((lv) => (lv.id === draft.id ? { ...lv, status: "uploading" } : lv)),
           }));
-          await uploadLocalDev(file, draft.id);
+          await uploadLocalVideo(file, draft.id);
           flashMsg(`Uploaded: ${draft.fileName}`);
         } catch (e: any) {
           setState((s) => ({
@@ -900,7 +885,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     </span>
   </div>
   <p style={{ margin: "8px 0 16px", color: "#4b5563" }}>
-    Uploaded videos are stored securely and will appear on the public profile after Save Profile.
+    Uploaded videos are stored securely and will appear on the public profile after you click Save Profile.
   </p>
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
