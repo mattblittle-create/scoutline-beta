@@ -11,6 +11,7 @@ import PublicStats from "@/app/components/public/PublicStats";
 import PublicMetrics, { MetricsData } from "@/app/components/public/PublicMetrics";
 import PublicMedia, { MediaData } from "@/app/components/public/PublicMedia";
 import PublicCoaches, { CoachesData } from "@/app/components/public/PublicCoaches";
+import ContactActionRow from "@/app/components/public/ContactActionRow";
 import CoachViewerTools from "./CoachViewerTools";
 
 import { toPublicMedia } from "@/app/lib/publicMedia";
@@ -297,22 +298,32 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
         .map((x) =>
           typeof x === "string"
             ? { url: x, title: null }
-            : { url: String(x?.url || x?.publicUrl || ""), title: x?.title ?? x?.name ?? null }
+            : {
+                url: String(x?.url || x?.publicUrl || "").trim(),
+                title: x?.title ?? x?.name ?? x?.label ?? null,
+              }
         )
         .filter((o) => !!o.url);
+
+    const rawLocalUploads = [
+      ...toArrayOrScalar((vsRaw as any).localVideos),
+      ...toArrayOrScalar((safeProfile as any).localVideos),
+      ...toArrayOrScalar((safeProfile as any).videoSocial?.localVideos),
+    ];
 
     const legacyUploads = [
       ...toArrayOrScalar((vsRaw as any).uploads),
       ...toArrayOrScalar((vsRaw as any).uploadedVideos),
       ...toArrayOrScalar((vsRaw as any).videoFiles),
     ];
+
     const legacyLinks = [
       ...toArrayOrScalar((vsRaw as any).links),
       ...toArrayOrScalar((vsRaw as any).videoLinks),
     ];
 
-    if (legacyUploads.length) {
-      const merged = (md.uploadedVideos ?? []).concat(legacyUploads);
+    if (rawLocalUploads.length || legacyUploads.length) {
+      const merged = (md.uploadedVideos ?? []).concat(rawLocalUploads, legacyUploads);
       const seen = new Set<string>();
       md.uploadedVideos = merged.filter((v) => (seen.has(v.url) ? false : (seen.add(v.url), true)));
     }
@@ -325,13 +336,45 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
 
     md = {
       ...md,
-      xUrl: (vsRaw as any).xUrl ?? md.xUrl ?? null,
-      instagramUrl: (vsRaw as any).instagramUrl ?? md.instagramUrl ?? null,
-      youtubeUrl: (vsRaw as any).youtubeUrl ?? (vsRaw as any).youtubeChannel ?? md.youtubeUrl ?? null,
+      xUrl: (vsRaw as any)?.xUrl ?? (vsRaw as any)?.social?.xUrl ?? md.xUrl ?? null,
+      instagramUrl: (vsRaw as any)?.instagramUrl ?? (vsRaw as any)?.social?.instagramUrl ?? md.instagramUrl ?? null,
+      youtubeUrl:
+        (vsRaw as any)?.youtubeUrl ??
+        (vsRaw as any)?.youtubeChannel ??
+        (vsRaw as any)?.social?.youtubeUrl ??
+        md.youtubeUrl ??
+        null,
+      gameChangerUrl:
+        (vsRaw as any)?.gameChangerUrl ??
+        (vsRaw as any)?.social?.gameChangerUrl ??
+        md.gameChangerUrl ??
+        null,
+      maxPrepsUrl:
+        (vsRaw as any)?.maxPrepsUrl ??
+        (vsRaw as any)?.social?.maxPrepsUrl ??
+        md.maxPrepsUrl ??
+        null,
+      rapsodoUrl:
+        (vsRaw as any)?.rapsodoUrl ??
+        (vsRaw as any)?.social?.rapsodoUrl ??
+        md.rapsodoUrl ??
+        null,
+      trackmanUrl:
+        (vsRaw as any)?.trackmanUrl ??
+        (vsRaw as any)?.trackManUrl ??
+        (vsRaw as any)?.social?.trackmanUrl ??
+        (vsRaw as any)?.social?.trackManUrl ??
+        md.trackmanUrl ??
+        null,
+      pocketRadarUrl:
+        (vsRaw as any)?.pocketRadarUrl ??
+        (vsRaw as any)?.social?.pocketRadarUrl ??
+        md.pocketRadarUrl ??
+        null,
     };
 
     return md;
-  }, [vsRaw, coreEmail, corePhone]);
+  }, [vsRaw, safeProfile, coreEmail, corePhone]);
 
   const primaryUrlFromApi: string | null = React.useMemo(() => {
     const raw: any = vsRaw;
@@ -728,26 +771,7 @@ const points = arr
   const connectEmail = coreEmail;
   const connectPhone = corePhone;
 
-  const xUrl = mediaDataView?.xUrl ?? null;
-  const instagramUrl = mediaDataView?.instagramUrl ?? null;
-  const youtubeUrl = mediaDataView?.youtubeUrl ?? null;
-
   const connectChatUrl = (mediaDataView as any)?.chatUrl ?? (vsRaw as any)?.chatUrl ?? null;
-
-  const hasPhone = showContactPhone && !!connectPhone;
-  const hasEmail = showContactEmail && !!connectEmail;
-  const hasX = showVideoSocial && !!xUrl;
-  const hasInstagram = showVideoSocial && !!instagramUrl;
-  const hasYouTube = showVideoSocial && !!youtubeUrl;
-  const hasChat = showChat && !!connectChatUrl;
-
-  const phoneTitle = hasPhone ? String(connectPhone) : showContactPhone ? "Phone not provided" : "Phone is private";
-  const emailTitle = hasEmail ? String(connectEmail) : showContactEmail ? "Email not provided" : "Email is private";
-
-  const xTitle = hasX ? String(xUrl) : "X not provided";
-  const instagramTitle = hasInstagram ? String(instagramUrl) : "Instagram not provided";
-  const youtubeTitle = hasYouTube ? String(youtubeUrl) : "YouTube not provided";
-  const chatTitle = hasChat ? String(connectChatUrl) : showChat ? "Chat feature coming soon" : "Not available";
 
   /** ---------- Render ---------- */
   return (
@@ -808,101 +832,19 @@ const points = arr
             <div style={connectRow}>
               <span style={connectLabel}>Connect:</span>
 
-              <a
-                href={hasPhone ? `tel:${connectPhone}` : undefined}
-                title={phoneTitle}
-                style={{
-                  ...connectIconLink,
-                  opacity: hasPhone ? 1 : 0.35,
-                  pointerEvents: hasPhone ? "auto" : "none",
-                  cursor: hasPhone ? "pointer" : "default",
-                }}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
-              >
-                <img src="/icons/call.webp" alt="Call" width={18} height={18} style={{ display: "block" }} />
-                <span style={srOnly}>Call</span>
-              </a>
-
-              <a
-                href={hasEmail ? `mailto:${connectEmail}` : undefined}
-                title={emailTitle}
-                style={{
-                  ...connectIconLink,
-                  opacity: hasEmail ? 1 : 0.35,
-                  pointerEvents: hasEmail ? "auto" : "none",
-                  cursor: hasEmail ? "pointer" : "default",
-                }}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
-              >
-                <img src="/icons/email.webp" alt="Email" width={18} height={18} style={{ display: "block" }} />
-                <span style={srOnly}>Email</span>
-              </a>
-
-              <a
-                href={hasX ? xUrl : undefined}
-                title={xTitle}
-                style={{
-                  ...connectIconLink,
-                  opacity: hasX ? 1 : 0.35,
-                  pointerEvents: hasX ? "auto" : "none",
-                  cursor: hasX ? "pointer" : "default",
-                }}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
-              >
-                <img src="/icons/x.webp" alt="X" width={18} height={18} style={{ display: "block" }} />
-                <span style={srOnly}>X</span>
-              </a>
-
-              <a
-                href={hasInstagram ? instagramUrl : undefined}
-                title={instagramTitle}
-                style={{
-                  ...connectIconLink,
-                  opacity: hasInstagram ? 1 : 0.35,
-                  pointerEvents: hasInstagram ? "auto" : "none",
-                  cursor: hasInstagram ? "pointer" : "default",
-                }}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
-              >
-                <img src="/icons/instagram.webp" alt="Instagram" width={18} height={18} style={{ display: "block" }} />
-                <span style={srOnly}>Instagram</span>
-              </a>
-
-              <a
-                href={hasYouTube ? youtubeUrl : undefined}
-                title={youtubeTitle}
-                style={{
-                  ...connectIconLink,
-                  opacity: hasYouTube ? 1 : 0.35,
-                  pointerEvents: hasYouTube ? "auto" : "none",
-                  cursor: hasYouTube ? "pointer" : "default",
-                }}
-                onMouseEnter={(e) => Object.assign(e.currentTarget.style, connectIconHover)}
-                onMouseLeave={(e) => Object.assign(e.currentTarget.style, { transform: "none", boxShadow: "none" })}
-              >
-                <img src="/icons/youtube.webp" alt="YouTube" width={48} height={48} style={{ display: "block" }} />
-                <span style={srOnly}>YouTube</span>
-              </a>
-
-              <span
-                title={chatTitle}
-                style={{
-                  ...connectIconLink,
-                  opacity: hasChat ? 1 : 0.6,
-                  cursor: hasChat ? "pointer" : "not-allowed",
-                }}
-                onMouseEnter={(e) => Object.assign((e.currentTarget as any).style, connectIconHover)}
-                onMouseLeave={(e) =>
-                  Object.assign((e.currentTarget as any).style, { transform: "none", boxShadow: "none" })
-                }
-              >
-                <img src="/icons/chat.png" alt="" aria-hidden="true" width={48} height={48} style={{ display: "block" }} />
-                <span style={srOnly}>ScoutLine Chat</span>
-              </span>
+              <ContactActionRow
+                email={showContactEmail ? connectEmail : null}
+                phoneDigits={showContactPhone ? connectPhone : null}
+                xUrl={showVideoSocial ? mediaDataView?.xUrl ?? null : null}
+                instagramUrl={showVideoSocial ? mediaDataView?.instagramUrl ?? null : null}
+                youtubeUrl={showVideoSocial ? mediaDataView?.youtubeUrl ?? null : null}
+                gameChangerUrl={showVideoSocial ? (mediaDataView as any)?.gameChangerUrl ?? null : null}
+                maxPrepsUrl={showVideoSocial ? (mediaDataView as any)?.maxPrepsUrl ?? null : null}
+                rapsodoUrl={showVideoSocial ? (mediaDataView as any)?.rapsodoUrl ?? null : null}
+                trackmanUrl={showVideoSocial ? (mediaDataView as any)?.trackmanUrl ?? null : null}
+                pocketRadarUrl={showVideoSocial ? (mediaDataView as any)?.pocketRadarUrl ?? null : null}
+                chatUrl={showChat ? connectChatUrl : null}
+              />
             </div>
 
             {searchParams.get("source") === "recruiting-board" ? (
