@@ -426,15 +426,15 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
       });
     }
 
-    // ----- LOCAL DEV UPLOADS (POST /api/uploads/local) -----
+    // ----- Video uploads (POST /api/upload/video) -----
     async function uploadLocalDev(file: File, draftId: string) {
       return new Promise<void>((resolve, reject) => {
         const form = new FormData();
-        form.append("folder", "videos");
         form.append("file", file);
+        form.append("userSlug", resolvedEmail || "player");
 
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/api/uploads/local", true);
+        xhr.open("POST", "/api/upload/video", true);
 
         xhr.upload.onprogress = (evt) => {
           if (evt.lengthComputable) {
@@ -900,8 +900,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     </span>
   </div>
   <p style={{ margin: "8px 0 16px", color: "#4b5563" }}>
-    Uploads save to <code>/public/uploads/videos</code> in development. When you switch to S3, this button will
-    behave the same, but files will go to your bucket.
+    Uploaded videos are stored securely and will appear on the public profile after Save Profile.
   </p>
 
               <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
