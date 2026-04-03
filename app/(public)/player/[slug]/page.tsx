@@ -775,16 +775,27 @@ const points = arr
     return [];
   })();
 
-  const coachesData: CoachesData = {
-    coaches: rawCoachesFromApi.map((c) => ({
+const coachesData: CoachesData = {
+  coaches: rawCoachesFromApi.map((c) => {
+    const teamOrOrg =
+      (
+        c?.teamOrOrg ||
+        c?.organization ||
+        c?.team ||
+        c?.org ||
+        null
+      );
+
+    return {
       firstName: c?.firstName ?? c?.first ?? null,
       lastName: c?.lastName ?? c?.last ?? null,
-      teamOrOrg: c?.teamOrOrg ?? c?.team ?? c?.organization ?? c?.org ?? null,
+      teamOrOrg: typeof teamOrOrg === "string" ? teamOrOrg.trim() || null : null,
       email: c?.email ?? c?.coachEmail ?? null,
       phone: c?.phone ?? c?.coachPhone ?? null,
       focus: c?.focus ?? c?.coachingFocus ?? c?.role ?? c?.position ?? null,
-    })),
-  };
+    };
+  }),
+};
 
   /** ---------- Connect row ---------- */
   const connectEmail = coreEmail;
