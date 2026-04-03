@@ -2642,24 +2642,24 @@ const otherAcademicDocsPayload =
         )}
 
         {/* ========= TAB 6: VIDEO / SOCIAL ========= */}
-        {activeTab === "Video / Social Media" && (
+        <div style={{ display: activeTab === "Video / Social Media" ? "block" : "none" }}>
           <TabVideoSocial
             ref={videoSocialRef}
             // Use the same canonical email key we use for loading/saving profile
             email={profileEmail}
             planTier="All-American"
           />
-        )}
+        </div>
 
         {/* ========= TAB 7: COACHES / REFERENCES ========= */}
-        {activeTab === "References" && (
+        <div style={{ display: activeTab === "References" ? "block" : "none" }}>
           <TabCoachesReferences
             ref={coachesRef}
             email={profileEmail}
             planTier="Walk-On"
             knownTeams={teamOptions}
           />
-        )}
+        </div>
 
         {/* Actions / messages */}
         <div style={{ marginTop: 16 }}>

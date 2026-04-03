@@ -998,59 +998,69 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           <div style={emptyStyle}>Preparing preview…</div>
                         )}
 
-                        <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8 }}>
-                          <div>
-                            <div id={titleId} style={{ fontWeight: 700 }}>
-                              {titleText}
-                            </div>
-                            <div style={{ color: "#6b7280", fontSize: 12 }}>
-                              {v.fileType} • {(v.fileSize / (1024 * 1024)).toFixed(1)} MB
-                            </div>
+                        <div style={{ marginTop: 8 }}>
+                          <div id={titleId} style={{ fontWeight: 700 }}>
+                            {titleText}
                           </div>
+                          <div style={{ color: "#6b7280", fontSize: 12 }}>
+                            {v.fileType} • {(v.fileSize / (1024 * 1024)).toFixed(1)} MB
+                          </div>
+                        </div>
+
+                        {/* Reorder / Primary controls */}
+                        <div
+                          style={{
+                            display: "flex",
+                            gap: 8,
+                            marginTop: 8,
+                            alignItems: "center",
+                            flexWrap: "wrap",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+                            <button
+                              type="button"
+                              onClick={() => moveLocal(v.id, -1)}
+                              disabled={atTop}
+                              aria-disabled={atTop}
+                              style={{ ...smallGhostButtonStyle, opacity: atTop ? 0.4 : 1 }}
+                              title="Move up"
+                              aria-label={`Move up: ${titleText}`}
+                            >
+                              ↑ Up
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => moveLocal(v.id, +1)}
+                              disabled={atBottom}
+                              aria-disabled={atBottom}
+                              style={{ ...smallGhostButtonStyle, opacity: atBottom ? 0.4 : 1 }}
+                              title="Move down"
+                              aria-label={`Move down: ${titleText}`}
+                            >
+                              ↓ Down
+                            </button>
+                            {!_isPrimary ? (
+                              <button
+                                type="button"
+                                onClick={() => setPrimary("local", v.id)}
+                                style={smallPrimaryButtonStyle}
+                                aria-label={`Set ${titleText} as primary highlight`}
+                              >
+                                Set as Primary
+                              </button>
+                            ) : null}
+                          </div>
+
                           <button
                             type="button"
                             onClick={() => removeLocal(v.id)}
                             style={removeButtonStyle}
-                            aria-label={`Remove Video ${titleText}`}
+                            aria-label={`Remove video ${titleText}`}
                           >
-                            Remove Video
+                            Remove
                           </button>
-                        </div>
-
-                        {/* Reorder / Primary controls */}
-                        <div style={{ display: "flex", gap: 8, marginTop: 8, alignItems: "center", flexWrap: "wrap" }}>
-                          <button
-                            type="button"
-                            onClick={() => moveLocal(v.id, -1)}
-                            disabled={atTop}
-                            aria-disabled={atTop}
-                            style={{ ...smallGhostButtonStyle, opacity: atTop ? 0.4 : 1 }}
-                            title="Move up"
-                            aria-label={`Move up: ${titleText}`}
-                          >
-                            ↑ Up
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => moveLocal(v.id, +1)}
-                            disabled={atBottom}
-                            aria-disabled={atBottom}
-                            style={{ ...smallGhostButtonStyle, opacity: atBottom ? 0.4 : 1 }}
-                            title="Move down"
-                            aria-label={`Move down: ${titleText}`}
-                          >
-                            ↓ Down
-                          </button>
-                          {!_isPrimary ? (
-                            <button
-                              type="button"
-                              onClick={() => setPrimary("local", v.id)}
-                              style={smallPrimaryButtonStyle}
-                              aria-label={`Set ${titleText} as primary highlight`}
-                            >
-                              Set as Primary
-                            </button>
-                          ) : null}
                         </div>
 
                         {/* Open link (local dev) */}
