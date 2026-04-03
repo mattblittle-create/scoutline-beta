@@ -657,27 +657,6 @@ async function uploadLocalVideo(file: File, draftId: string) {
             localVideos: s.localVideos.map((lv) => (lv.id === draft.id ? { ...lv, status: "uploading" } : lv)),
           }));
           await uploadLocalVideo(file, draft.id);
-          await fetch(`/api/player/profile?email=${encodeURIComponent(storageEmail)}`)
-  .then(res => res.json())
-  .then(json => {
-    const vs = json?.normalized?.videoSocial;
-    if (vs?.localVideos) {
-      setState((s) => ({
-        ...s,
-        localVideos: vs.localVideos.map((v: any) => ({
-          id: v.id,
-          title: v.title,
-          fileName: v.title || "video",
-          fileSize: v.fileSize,
-          fileType: v.fileType,
-          publicUrl: v.publicUrl,
-          progress: 100,
-          status: "done",
-          addedAt: v.addedAt,
-        })),
-      }));
-    }
-  });
           flashMsg(`Uploaded: ${draft.fileName}`);
         } catch (e: any) {
           setState((s) => ({
