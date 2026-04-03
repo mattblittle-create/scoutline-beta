@@ -1032,33 +1032,52 @@ export async function POST(req: Request) {
       playerBio,
       playerBioPrivate,
 
-      // --- Video / Social (Tab 6) (delete-safe) ---
+            // --- Video / Social (Tab 6) (delete-safe) ---
       externalVideos: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
-        if (!hasOwn(src, "externalVideos")) return existingData.externalVideos ?? undefined;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
+
+        if (!hasOwn(src, "externalVideos")) {
+          return existingData.externalVideos ?? undefined;
+        }
 
         const list = Array.isArray(src.externalVideos) ? src.externalVideos : [];
+
         return list
           .map((v: any) => {
+            const id = typeof v?.id === "string" ? v.id.trim() : "";
             const url = typeof v?.url === "string" ? v.url.trim() : "";
-            if (!url) return null;
+            if (!id || !url) return null;
+
             const title = typeof v?.title === "string" ? v.title.trim() : undefined;
+            const source =
+              typeof v?.source === "string" && v.source.trim()
+                ? v.source.trim()
+                : "unknown";
+            const addedAt = Number.isFinite(Number(v?.addedAt))
+              ? Number(v.addedAt)
+              : Date.now();
 
-            const source = typeof v?.source === "string" ? v.source.trim() : undefined;
-            const addedAt = Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now();
-
-            return { ...v, url, title, source, addedAt };
+            return { id, title, url, source, addedAt };
           })
           .filter(Boolean);
       })(),
 
       localVideos: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
-        if (!hasOwn(src, "localVideos")) return existingData.localVideos ?? undefined;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
+
+        if (!hasOwn(src, "localVideos")) {
+          return existingData.localVideos ?? undefined;
+        }
 
         const list = Array.isArray(src.localVideos) ? src.localVideos : [];
+
         return list
           .map((v: any) => {
+            const id = typeof v?.id === "string" ? v.id.trim() : "";
             const publicUrl =
               typeof v?.publicUrl === "string"
                 ? v.publicUrl.trim()
@@ -1066,33 +1085,69 @@ export async function POST(req: Request) {
                 ? v.url.trim()
                 : "";
 
-            if (!publicUrl) return null;
+            if (!id || !publicUrl) return null;
 
             const title = typeof v?.title === "string" ? v.title.trim() : undefined;
-            const fileType = typeof v?.fileType === "string" ? v.fileType.trim() : undefined;
-            const fileSize = Number.isFinite(Number(v?.fileSize)) ? Number(v.fileSize) : undefined;
-            const addedAt = Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now();
+            const fileType =
+              typeof v?.fileType === "string" ? v.fileType.trim() : undefined;
+            const fileSize = Number.isFinite(Number(v?.fileSize))
+              ? Number(v.fileSize)
+              : undefined;
+            const addedAt = Number.isFinite(Number(v?.addedAt))
+              ? Number(v.addedAt)
+              : Date.now();
 
-            return { ...v, title, publicUrl, fileType, fileSize, addedAt };
+            return { id, title, publicUrl, fileType, fileSize, addedAt };
           })
           .filter(Boolean);
       })(),
 
       social: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
 
-        if (!hasOwn(src, "social")) return existingData.social ?? undefined;
+        if (!hasOwn(src, "social")) {
+          return existingData.social ?? undefined;
+        }
 
         if (!isObj(src.social)) return {};
-        return { ...(existingData.social ?? {}), ...(src.social as any) };
+
+        return {
+          xHandle: safeTrim(src.social.xHandle || "") || undefined,
+          instagramHandle: safeTrim(src.social.instagramHandle || "") || undefined,
+          youtubeChannelUrl: safeTrim(src.social.youtubeChannelUrl || "") || undefined,
+          gameChangerUrl: safeTrim(src.social.gameChangerUrl || "") || undefined,
+          maxPrepsUrl: safeTrim(src.social.maxPrepsUrl || "") || undefined,
+          rapsodoUrl: safeTrim(src.social.rapsodoUrl || "") || undefined,
+          trackmanUrl: safeTrim(src.social.trackmanUrl || "") || undefined,
+          pocketRadarUrl: safeTrim(src.social.pocketRadarUrl || "") || undefined,
+        };
       })(),
 
       primary: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
 
-        if (!hasOwn(src, "primary")) return existingData.primary ?? null;
+        if (!hasOwn(src, "primary")) {
+          return existingData.primary ?? null;
+        }
 
-        return (isObj(src.primary) || src.primary == null) ? (src.primary ?? null) : null;
+        if (src.primary == null) return null;
+        if (!isObj(src.primary)) return null;
+
+        const kind =
+          src.primary.kind === "local" || src.primary.kind === "external"
+            ? src.primary.kind
+            : null;
+
+        const id =
+          typeof src.primary.id === "string" ? src.primary.id.trim() : "";
+
+        if (!kind || !id) return null;
+
+        return { kind, id };
       })(),
 
       // --- Coaches / References (Tab 7) (delete-safe) ---
