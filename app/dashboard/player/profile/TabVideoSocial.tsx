@@ -376,19 +376,20 @@ function saveState(email: string | null | undefined, state: VideoSocialState) {
   const safeState: VideoSocialState = {
     externalVideos: Array.isArray(state.externalVideos) ? state.externalVideos : [],
     localVideos: Array.isArray(state.localVideos)
-      ? state.localVideos.map((v) => ({
-          id: v.id,
-          title: v.title,
-          fileName: v.fileName,
-          fileSize: v.fileSize,
-          fileType: v.fileType,
-          publicUrl: v.publicUrl,
-          progress: v.publicUrl ? 100 : v.progress,
-          status: v.publicUrl ? "done" : v.status,
-          errorMsg: v.errorMsg,
-          addedAt: v.addedAt,
-          // intentionally do NOT persist previewUrl/blob URLs
-        }))
+      ? state.localVideos
+          .filter((v) => !!v.publicUrl)
+          .map((v) => ({
+            id: v.id,
+            title: v.title,
+            fileName: v.fileName,
+            fileSize: v.fileSize,
+            fileType: v.fileType,
+            publicUrl: v.publicUrl,
+            progress: 100,
+            status: "done" as UploadStatus,
+            errorMsg: undefined,
+            addedAt: v.addedAt,
+          }))
       : [],
     social: state.social ?? {},
     primary: state.primary ?? null,
@@ -414,11 +415,44 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
       primary: null,
     });
 
-    useEffect(() => {
-      const loaded = loadState(storageEmail);
-      setState(loaded);
-      setHydrated(true);
-    }, [storageEmail]);
+useEffect(() => {
+  async function load() {
+    try {
+      const res = await fetch(`/api/player/profile?email=${encodeURIComponent(storageEmail)}`);
+      const json = await res.json();
+
+      const vs = json?.normalized?.videoSocial;
+
+      if (vs) {
+        setState({
+          externalVideos: vs.externalVideos || [],
+          localVideos: (vs.localVideos || []).map((v: any) => ({
+            id: v.id,
+            title: v.title,
+            fileName: v.title || "video",
+            fileSize: v.fileSize || 0,
+            fileType: v.fileType || "video/mp4",
+            publicUrl: v.publicUrl,
+            progress: 100,
+            status: "done",
+            addedAt: v.addedAt || Date.now(),
+          })),
+          social: vs.social || {},
+          primary: vs.primary || null,
+        });
+      } else {
+        // fallback to localStorage
+        setState(loadState(storageEmail));
+      }
+    } catch {
+      setState(loadState(storageEmail));
+    }
+
+    setHydrated(true);
+  }
+
+  load();
+}, [storageEmail]);
 
     useEffect(() => {
       if (!hydrated) return;
@@ -476,7 +510,12 @@ async function uploadLocalVideo(file: File, draftId: string) {
     handleUploadUrl: "/api/upload/video/client",
     multipart: true,
     clientPayload: JSON.stringify({
+      email: (props.email || "").trim().toLowerCase(),
       userSlug,
+      draftId,
+      title: file.name.replace(/\.[^.]+$/, ""),
+      fileType: file.type,
+      fileSize: file.size,
       originalName: file.name,
     }),
     onUploadProgress: ({ percentage }) => {
@@ -589,6 +628,27 @@ async function uploadLocalVideo(file: File, draftId: string) {
             localVideos: s.localVideos.map((lv) => (lv.id === draft.id ? { ...lv, status: "uploading" } : lv)),
           }));
           await uploadLocalVideo(file, draft.id);
+          await fetch(`/api/player/profile?email=${encodeURIComponent(storageEmail)}`)
+  .then(res => res.json())
+  .then(json => {
+    const vs = json?.normalized?.videoSocial;
+    if (vs?.localVideos) {
+      setState((s) => ({
+        ...s,
+        localVideos: vs.localVideos.map((v: any) => ({
+          id: v.id,
+          title: v.title,
+          fileName: v.title || "video",
+          fileSize: v.fileSize,
+          fileType: v.fileType,
+          publicUrl: v.publicUrl,
+          progress: 100,
+          status: "done",
+          addedAt: v.addedAt,
+        })),
+      }));
+    }
+  });
           flashMsg(`Uploaded: ${draft.fileName}`);
         } catch (e: any) {
           setState((s) => ({

@@ -1,7 +1,8 @@
 // app/api/upload/video/client/route.ts
 
-import { handleUpload } from "@vercel/blob/client";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -23,14 +24,19 @@ function safeSlug(v: string) {
 
 export async function POST(request: Request): Promise<Response> {
   try {
-    const body = await request.json();
+    const body = (await request.json()) as HandleUploadBody;
 
     const jsonResponse = await handleUpload({
       body,
       request,
       onBeforeGenerateToken: async (pathname, clientPayload) => {
         let parsed: {
+          email?: string;
           userSlug?: string;
+          draftId?: string;
+          title?: string;
+          fileType?: string;
+          fileSize?: number;
           originalName?: string;
         } = {};
 
@@ -41,19 +47,116 @@ export async function POST(request: Request): Promise<Response> {
         }
 
         const userSlug = safeSlug(parsed.userSlug || "player");
-        const originalName = String(parsed.originalName || pathname || "video")
-          .replace(/[^a-zA-Z0-9._-]+/g, "-")
-          .replace(/-+/g, "-")
-          .replace(/^-+|-+$/g, "") || "video";
+        const originalName =
+          String(parsed.originalName || pathname || "video")
+            .replace(/[^a-zA-Z0-9._-]+/g, "-")
+            .replace(/-+/g, "-")
+            .replace(/^-+|-+$/g, "") || "video";
 
         return {
           allowedContentTypes: ALLOWED_VIDEO_TYPES,
           addRandomSuffix: true,
+          tokenPayload: JSON.stringify({
+            email: (parsed.email || "").trim().toLowerCase(),
+            userSlug,
+            draftId: parsed.draftId || "",
+            title: parsed.title || "",
+            fileType: parsed.fileType || "",
+            fileSize: Number.isFinite(Number(parsed.fileSize)) ? Number(parsed.fileSize) : 0,
+            originalName: parsed.originalName || "",
+          }),
           pathname: `videos/${userSlug}/${originalName}`,
         };
       },
-      onUploadCompleted: async () => {
-        return;
+
+      onUploadCompleted: async ({ blob, tokenPayload }) => {
+        try {
+          const parsed =
+            typeof tokenPayload === "string" && tokenPayload
+              ? JSON.parse(tokenPayload)
+              : {};
+
+          const email = String(parsed?.email || "").trim().toLowerCase();
+          if (!email) return;
+
+          const row = await prisma.playerProfile.findUnique({
+            where: { email },
+            select: { data: true },
+          });
+
+          const existingData = (row?.data as any) || {};
+          const existingLocalVideos = Array.isArray(existingData.localVideos)
+            ? existingData.localVideos
+            : [];
+
+          const newVideo = {
+            id:
+              typeof parsed?.draftId === "string" && parsed.draftId.trim()
+                ? parsed.draftId.trim()
+                : crypto.randomUUID(),
+            title:
+              typeof parsed?.title === "string" && parsed.title.trim()
+                ? parsed.title.trim()
+                : typeof parsed?.originalName === "string" && parsed.originalName.trim()
+                ? parsed.originalName.replace(/\.[^.]+$/, "").trim()
+                : "video",
+            publicUrl: String(blob.url || "").trim(),
+            fileType:
+              typeof parsed?.fileType === "string" && parsed.fileType.trim()
+                ? parsed.fileType.trim()
+                : String(blob.contentType || "video/mp4"),
+            fileSize: Number.isFinite(Number(parsed?.fileSize))
+              ? Number(parsed.fileSize)
+              : 0,
+            addedAt: Date.now(),
+          };
+
+          const deduped = [
+            newVideo,
+            ...existingLocalVideos.filter((v: any) => {
+              const sameId =
+                String(v?.id || "").trim() === newVideo.id;
+              const sameUrl =
+                String(v?.publicUrl || "").trim() === newVideo.publicUrl;
+              return !sameId && !sameUrl;
+            }),
+          ];
+
+          const nextData = {
+            ...existingData,
+            localVideos: deduped,
+            primary:
+              existingData?.primary && existingData.primary.kind === "local"
+                ? existingData.primary
+                : existingData?.primary ?? null,
+          };
+
+          await prisma.playerProfile.upsert({
+            where: { email },
+            create: {
+              email,
+              schemaVersion: 1,
+              data: nextData,
+            },
+            update: {
+              schemaVersion: 1,
+              data: nextData,
+            },
+          });
+
+          const user = await prisma.user.findFirst({
+            where: { email: { equals: email, mode: "insensitive" } },
+            select: { slug: true },
+          });
+
+          if (user?.slug) {
+            await prisma.publicProfileCache
+              .delete({ where: { slug: user.slug } })
+              .catch(() => {});
+          }
+        } catch (err) {
+          console.error("[video upload] onUploadCompleted DB update failed:", err);
+        }
       },
     });
 
