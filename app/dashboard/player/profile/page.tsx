@@ -2642,14 +2642,13 @@ const otherAcademicDocsPayload =
         )}
 
         {/* ========= TAB 6: VIDEO / SOCIAL ========= */}
-        <div style={{ display: activeTab === "Video / Social Media" ? "block" : "none" }}>
-          <TabVideoSocial
-            ref={videoSocialRef}
-            // Use the same canonical email key we use for loading/saving profile
-            email={profileEmail}
-            planTier="All-American"
-          />
-        </div>
+<div style={{ display: activeTab === "Video / Social Media" ? "block" : "none" }}>
+  <TabVideoSocial
+    ref={videoSocialRef}
+    email={profileEmail}
+    planTier="All-American"
+  />
+</div>
 
         {/* ========= TAB 7: COACHES / REFERENCES ========= */}
         <div style={{ display: activeTab === "References" ? "block" : "none" }}>
