@@ -143,7 +143,12 @@ export default function PublicCoaches({
         <div style={grid}>
           {coaches.map((c, i) => {
             const name = fullName(c?.firstName, c?.lastName);
-            const team = (c?.teamOrOrg ?? "").trim();
+            const team =
+              (c?.teamOrOrg ??
+              c?.organization ??
+              c?.team ??
+              c?.org ??
+   "").trim();
             const focus = (c?.focus ?? "").trim();
             const email = (c?.email ?? "").trim() || null;
             const phone = (c?.phone ?? "").trim() || null;
