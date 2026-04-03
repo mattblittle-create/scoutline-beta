@@ -322,25 +322,32 @@ function loadState(email?: string | null): VideoSocialState {
       ? parsed.externalVideos
       : [];
 
-    const localVideos = Array.isArray(parsed?.localVideos)
-      ? parsed.localVideos
-          .map((v: any) => ({
+    const localVideos: LocalVideo[] = Array.isArray(parsed?.localVideos)
+      ? parsed.localVideos.map((v: any): LocalVideo => {
+          const hasPublicUrl =
+            typeof v?.publicUrl === "string" && v.publicUrl.trim().length > 0;
+
+          const status: UploadStatus = hasPublicUrl ? "done" : "error";
+
+          return {
             id: typeof v?.id === "string" ? v.id : uid(),
             title: typeof v?.title === "string" ? v.title : undefined,
-            fileName: typeof v?.fileName === "string" ? v.fileName : (v?.title || "video"),
+            fileName:
+              typeof v?.fileName === "string"
+                ? v.fileName
+                : (v?.title || "video"),
             fileSize: Number.isFinite(Number(v?.fileSize)) ? Number(v.fileSize) : 0,
             fileType: typeof v?.fileType === "string" ? v.fileType : "video/mp4",
-            publicUrl: typeof v?.publicUrl === "string" && v.publicUrl.trim() ? v.publicUrl.trim() : undefined,
-            progress: typeof v?.publicUrl === "string" && v.publicUrl.trim() ? 100 : 0,
-            status: typeof v?.publicUrl === "string" && v.publicUrl.trim() ? "done" : "error",
-            errorMsg:
-              typeof v?.publicUrl === "string" && v.publicUrl.trim()
-                ? undefined
-                : "Upload did not finish. Please remove and upload again.",
+            publicUrl: hasPublicUrl ? v.publicUrl.trim() : undefined,
+            progress: hasPublicUrl ? 100 : 0,
+            status,
+            errorMsg: hasPublicUrl
+              ? undefined
+              : "Upload did not finish. Please remove and upload again.",
             addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
             previewUrl: undefined, // never trust persisted blob: URLs across sessions
-          }))
-          .filter(Boolean)
+          };
+        })
       : [];
 
     const social = parsed?.social ?? {};
