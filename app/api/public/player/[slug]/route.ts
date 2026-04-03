@@ -162,8 +162,20 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
           // ✅ coach compatibility
           if (Array.isArray(patched.profile.coaches)) {
             patched.profile.coaches = patched.profile.coaches.map((c: any) => {
-              const teamVal = c?.team ?? c?.teamOrOrg ?? null;
-              return { ...c, team: teamVal, teamOrOrg: teamVal };
+              const teamVal =
+                c?.teamOrOrg ||
+                c?.organization ||
+                c?.team ||
+                c?.org ||
+                null;
+
+              return {
+                ...c,
+                team: teamVal,
+                teamOrOrg: teamVal,
+                organization: teamVal,
+                org: teamVal,
+              };
             });
             patched.profile.references = patched.profile.coaches;
             patched.profile.coachesReferences = patched.profile.coaches;
@@ -624,18 +636,18 @@ return {
           const email = str(it.email ?? it.coachEmail).trim().toLowerCase();
           const phone = str(it.phone ?? it.coachPhone).trim();
 
-          const teamVal =
-            str(
-              it.teamOrOrg ??
-                it.team ??
-                it.organization ??
-                it.org ??
-                it.teamOrganization ??
-                it.teamName ??
-                it.school ??
-                it.program ??
-                ""
-            ).trim() || null;
+          const rawTeamVal =
+            it.teamOrOrg ||
+            it.organization ||
+            it.team ||
+            it.org ||
+            it.teamOrganization ||
+            it.teamName ||
+            it.school ||
+            it.program ||
+            "";
+
+          const teamVal = str(rawTeamVal).trim() || null;
 
           const focusVal =
             str(it.focus ?? it.coachingFocus ?? it.role ?? it.position ?? "").trim() || null;
@@ -667,6 +679,8 @@ return {
             lastName: last,
             team: teamVal,
             teamOrOrg: teamVal,
+            organization: teamVal,
+            org: teamVal,
             focus: focusVal,
             email: email || null,
             phone: phone || null,
