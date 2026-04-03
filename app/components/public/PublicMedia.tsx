@@ -48,6 +48,7 @@ export type VideoSocialPayload = {
     fileType: string;
     fileSize: number;
     addedAt: number;
+    category?: "Hitting" | "Fielding" | "Pitching" | "Baserunning" | null;
   }[];
   social: {
     xHandle?: string;
@@ -629,7 +630,10 @@ export default function PublicMedia(props: Props) {
   const uploadsBase =
     hidePrimaryInGrid && primaryUrl ? uploadsAll.filter((v: any) => !isPrimary(v.url)) : uploadsAll;
 
-  const uploads = uploadsBase.filter((v: any) => v?.category === activeUploadedCategory);
+    const uploads = uploadsBase.filter((v: any) => {
+    const cat = v?.category ?? null;
+    return cat === activeUploadedCategory;
+  });
   const links =
     hidePrimaryInGrid && primaryUrl ? linksAll.filter((v) => !isPrimary(v.url)) : linksAll;
 
@@ -693,7 +697,7 @@ export default function PublicMedia(props: Props) {
               <div style={{ color: "#94a3b8", fontStyle: "italic" }}>
                 {uploadsAll.length > 0 && hidePrimaryInGrid && hasPrimary
                   ? "Primary highlight is from uploads (hidden here)."
-                  : "No Videos available."}
+                  : "No videos available."}
               </div>
             ) : (
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0,1fr))", gap: 12 }}>

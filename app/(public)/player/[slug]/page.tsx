@@ -297,7 +297,26 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
     });
 
     const toArray = (x: any): any[] => (Array.isArray(x) ? x : x == null ? [] : [x]);
-    const toArrayOrScalar = (v: any): { url: string; title?: string | null }[] =>
+        const toArrayOrScalar = (
+      v: any
+    ): { url: string; title?: string | null; category?: string | null }[] =>
+      toArray(v)
+        .map((x) =>
+          typeof x === "string"
+            ? { url: x, title: null, category: null }
+            : {
+                url: String(x?.url || x?.publicUrl || "").trim(),
+                title: x?.title ?? x?.name ?? x?.label ?? null,
+                category:
+                  x?.category === "Hitting" ||
+                  x?.category === "Fielding" ||
+                  x?.category === "Pitching" ||
+                  x?.category === "Baserunning"
+                    ? x.category
+                    : null,
+              }
+        )
+        .filter((o) => !!o.url);
       toArray(v)
         .map((x) =>
           typeof x === "string"
