@@ -268,11 +268,9 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const cardViewUrl = `/player/${encodeURIComponent(slug)}/card`;
 
   // ✅ FIX: hooks must be called before any early return
-  const jumpSections = React.useMemo(() => {
-    const base = [...PUBLIC_SECTIONS];
-    if (isCoachViewer && !!playerProfileId) base.push({ id: "coach-notes", label: "Coach Notes" });
-    return base;
-  }, [isCoachViewer, playerProfileId]);
+const jumpSections = React.useMemo(() => {
+  return [...PUBLIC_SECTIONS];
+}, []);
 
   const idsFromLS = React.useMemo(() => {
     try {
@@ -807,11 +805,6 @@ const coachesData: CoachesData = {
   return (
     <main style={wrap}>
       {/* Coach-only jacket tools */}
-      <CoachViewerTools
-        isCoachViewer={isCoachViewer}
-        playerProfileId={playerProfileId}
-        sectionScrollMargin={SECTION_SCROLL_MARGIN}
-      />
 
       {/* Sticky block */}
       <section
@@ -842,11 +835,68 @@ const coachesData: CoachesData = {
               marginBottom: 10,
             }}
           >
-            <JumpToSectionNav sections={jumpSections} />
+<nav
+  aria-label="Jump to section"
+  style={{
+    marginTop: 0,
+    marginBottom: 0,
+    padding: 0,
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 8,
+    alignItems: "center",
+  }}
+>
+  <span
+    style={{
+      fontSize: 12,
+      fontWeight: 700,
+      color: "#64748b",
+      textTransform: "uppercase",
+      letterSpacing: 0.06,
+    }}
+  >
+    Jump to:
+  </span>
 
-            <a href={cardViewUrl} style={{ ...primaryButton, whiteSpace: "nowrap" }}>
-              View Player Card
-            </a>
+  {jumpSections.map((section) => (
+    <a
+      key={section.id}
+      href={`#${section.id}`}
+      style={{
+        fontSize: 13,
+        fontWeight: 700,
+        padding: "6px 10px",
+        borderRadius: 9999,
+        border: "1px solid #e5e7eb",
+        background: "#ffffff",
+        color: "#0f172a",
+        textDecoration: "none",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {section.label}
+    </a>
+  ))}
+
+  {/* 👇 ADD THIS */}
+  <a
+    href={cardViewUrl}
+    style={{
+      fontSize: 13,
+      fontWeight: 800,
+      padding: "6px 12px",
+      borderRadius: 9999,
+      border: "1px solid #eab308",
+      background: "#eab308",
+      color: "#334155",
+      textDecoration: "none",
+      whiteSpace: "nowrap",
+    }}
+  >
+    View Player Card
+  </a>
+</nav>
           </div>
 
           {/* Row B */}
