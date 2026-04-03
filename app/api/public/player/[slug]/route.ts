@@ -294,28 +294,37 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
 
             if (!publicUrl) return null;
 
-            return {
-              id: typeof v?.id === "string" && v.id.trim() ? v.id.trim() : mkId("loc"),
-              title:
-                typeof v?.title === "string"
-                  ? v.title.trim()
-                  : typeof v?.label === "string"
-                  ? v.label.trim()
-                  : undefined,
-              publicUrl,
-              fileType:
-                typeof v?.fileType === "string"
-                  ? v.fileType.trim()
-                  : typeof v?.type === "string"
-                  ? v.type
-                  : "",
-              fileSize: Number.isFinite(Number(v?.fileSize))
-                ? Number(v.fileSize)
-                : Number.isFinite(Number(v?.size))
-                ? Number(v.size)
-                : 0,
-              addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
-            };
+return {
+  id: typeof v?.id === "string" && v.id.trim() ? v.id.trim() : mkId("loc"),
+  title:
+    typeof v?.title === "string"
+      ? v.title.trim()
+      : typeof v?.label === "string"
+      ? v.label.trim()
+      : undefined,
+  publicUrl,
+  fileType:
+    typeof v?.fileType === "string"
+      ? v.fileType.trim()
+      : typeof v?.type === "string"
+      ? v.type
+      : "",
+  fileSize: Number.isFinite(Number(v?.fileSize))
+    ? Number(v.fileSize)
+    : Number.isFinite(Number(v?.size))
+    ? Number(v.size)
+    : 0,
+  addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
+
+  // ✅ ADD THIS LINE
+  category:
+    v?.category === "Hitting" ||
+    v?.category === "Fielding" ||
+    v?.category === "Pitching" ||
+    v?.category === "Baserunning"
+      ? v.category
+      : null,
+};
           })
           .filter(Boolean) as any,
 
