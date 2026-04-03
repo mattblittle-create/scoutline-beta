@@ -22,6 +22,7 @@ export type VideoSocialPayload = {
     fileType: string;
     fileSize: number;
     addedAt: number;
+    category?: VideoCategory | null;
   }[];
   social: {
   xHandle?: string;
@@ -54,6 +55,15 @@ type ExternalVideo = {
 
 type UploadStatus = "queued" | "uploading" | "done" | "error";
 
+type VideoCategory = "Hitting" | "Fielding" | "Pitching" | "Baserunning";
+
+const VIDEO_CATEGORIES: VideoCategory[] = [
+  "Hitting",
+  "Fielding",
+  "Pitching",
+  "Baserunning",
+];
+
 type LocalVideo = {
   id: string;
   title?: string;
@@ -66,6 +76,7 @@ type LocalVideo = {
   status?: UploadStatus;
   errorMsg?: string;
   addedAt: number;
+  category?: VideoCategory | null;
 };
 
 type SocialLinks = {
@@ -346,6 +357,13 @@ function loadState(email?: string | null): VideoSocialState {
               : "Upload did not finish. Please remove and upload again.",
             addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
             previewUrl: undefined, // never trust persisted blob: URLs across sessions
+            category:
+              v?.category === "Hitting" ||
+              v?.category === "Fielding" ||
+              v?.category === "Pitching" ||
+              v?.category === "Baserunning"
+                ? v.category
+                : null,
           };
         })
       : [];
@@ -389,6 +407,7 @@ function saveState(email: string | null | undefined, state: VideoSocialState) {
             status: "done" as UploadStatus,
             errorMsg: undefined,
             addedAt: v.addedAt,
+            category: v.category ?? null,
           }))
       : [],
     social: state.social ?? {},
@@ -436,6 +455,13 @@ useEffect(() => {
             progress: 100,
             status: "done",
             addedAt: v.addedAt || Date.now(),
+            category:
+              v?.category === "Hitting" ||
+              v?.category === "Fielding" ||
+              v?.category === "Pitching" ||
+              v?.category === "Baserunning"
+                ? v.category
+                : null,
           })),
           social: vs.social || {},
           primary: vs.primary || null,
@@ -463,6 +489,7 @@ useEffect(() => {
     const [msg, setMsg] = useState<string | null>(null);
     const [err, setErr] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const [activeUploadCategory, setActiveUploadCategory] = useState<VideoCategory>("Hitting");
 
     // ----- External Videos -----
     const [extUrl, setExtUrl] = useState("");
@@ -517,6 +544,7 @@ async function uploadLocalVideo(file: File, draftId: string) {
       fileType: file.type,
       fileSize: file.size,
       originalName: file.name,
+      category: activeUploadCategory,
     }),
     onUploadProgress: ({ percentage }) => {
       setState((s) => ({
@@ -602,6 +630,7 @@ async function uploadLocalVideo(file: File, draftId: string) {
           progress: 0,
           status: "queued",
           addedAt: Date.now(),
+          category: activeUploadCategory,
         }));
 
       const skippedCount = pickedAll.length - picked.length;
@@ -657,7 +686,13 @@ async function uploadLocalVideo(file: File, draftId: string) {
               lv.id === draft.id ? { ...lv, status: "error", errorMsg: e?.message || "Upload failed" } : lv
             ),
           }));
-          setErr(`Upload failed for ${draft.fileName}: ${e?.message || "Unknown error"}`);
+          const msg = String(e?.message || "");
+
+if (msg.toLowerCase().includes("storage quota exceeded")) {
+  setErr("Upload storage is full. Use External Video Links or remove older uploaded videos.");
+} else {
+  setErr(`Upload failed for ${draft.fileName}: ${msg || "Unknown error"}`);
+}
         }
       }
     }
@@ -687,6 +722,15 @@ async function uploadLocalVideo(file: File, draftId: string) {
     }
 
     // ----- Reorder & Primary -----
+    function setLocalCategory(id: string, category: VideoCategory) {
+  setState((s) => ({
+    ...s,
+    localVideos: s.localVideos.map((v) =>
+      v.id === id ? { ...v, category } : v
+    ),
+  }));
+}
+
     function moveLocal(id: string, dir: -1 | 1) {
       setState((s) => {
         const arr = s.localVideos.slice();
@@ -898,6 +942,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
               fileType: v.fileType,
               fileSize: v.fileSize,
               addedAt: v.addedAt,
+              category: v.category ?? null,
             }));
 
           const externals = state.externalVideos.map((v) => ({
@@ -1002,10 +1047,31 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     </span>
   </div>
   <p style={{ margin: "8px 0 16px", color: "#4b5563" }}>
-    Uploaded videos are stored securely and will appear on the public profile after you click Save Profile.
+    Select a section first, then upload videos into that section.
   </p>
 
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
+  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 12 }}>
+    {VIDEO_CATEGORIES.map((cat) => {
+      const active = activeUploadCategory === cat;
+      return (
+        <button
+          key={cat}
+          type="button"
+          onClick={() => setActiveUploadCategory(cat)}
+          style={{
+            ...smallGhostButtonStyle,
+            background: active ? "#e0f2fe" : "#fff",
+            border: active ? "1px solid #0ea5e9" : "1px solid #cbd5e1",
+            fontWeight: active ? 900 : 700,
+          }}
+        >
+          {cat}
+        </button>
+      );
+    })}
+  </div>
+
+  <div style={{ display: "flex", gap: 12, flexWrap: "wrap", alignItems: "center" }}>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -1057,7 +1123,9 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                     alignItems: "start",
                   }}
                 >
-                  {state.localVideos.map((v, idx) => {
+                  {state.localVideos
+                    .filter((v) => !v.category || v.category === activeUploadCategory)
+                    .map((v, idx) => {
                     const atTop = idx === 0;
                     const atBottom = idx === state.localVideos.length - 1;
                     const _isPrimary = isPrimaryLocal(v.id);
@@ -1178,6 +1246,30 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           >
                             Remove
                           </button>
+                        </div>
+
+                                                <div style={{ marginTop: 8 }}>
+                          <div style={{ fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 6 }}>
+                            Section: {v.category ?? "Not assigned"}
+                          </div>
+                          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                            {VIDEO_CATEGORIES.map((cat) => (
+                              <button
+                                key={cat}
+                                type="button"
+                                onClick={() => setLocalCategory(v.id, cat)}
+                                style={{
+                                  ...smallGhostButtonStyle,
+                                  padding: "4px 8px",
+                                  fontSize: 11,
+                                  background: v.category === cat ? "#e0f2fe" : "#fff",
+                                  fontWeight: v.category === cat ? 900 : 700,
+                                }}
+                              >
+                                {cat}
+                              </button>
+                            ))}
+                          </div>
                         </div>
 
                         {/* Open link (local dev) */}

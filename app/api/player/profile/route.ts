@@ -1097,7 +1097,15 @@ export async function POST(req: Request) {
               ? Number(v.addedAt)
               : Date.now();
 
-            return { id, title, publicUrl, fileType, fileSize, addedAt };
+            const category =
+              v?.category === "Hitting" ||
+              v?.category === "Fielding" ||
+              v?.category === "Pitching" ||
+              v?.category === "Baserunning"
+                ? v.category
+                : null;
+
+            return { id, title, publicUrl, fileType, fileSize, addedAt, category };
           })
           .filter(Boolean);
       })(),

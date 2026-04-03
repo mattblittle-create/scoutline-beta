@@ -28,7 +28,7 @@ export type MediaData = {
   pocketRadarUrl?: string | null;
 
   // videos
-  uploadedVideos?: { url: string; title?: string | null }[];
+  uploadedVideos?: { url: string; title?: string | null; category?: string | null }[];
   externalVideos?: { url: string; title?: string | null }[];
 };
 
@@ -222,7 +222,11 @@ function payloadToMediaData(
   opts?: { email?: string | null; phone?: string | null; chatUrl?: string | null }
 ): MediaData {
   const uploadedVideos =
-    payload.localVideos?.filter((v) => !!v.publicUrl).map((v) => ({ url: v.publicUrl, title: v.title })) ?? [];
+    payload.localVideos?.filter((v) => !!v.publicUrl).map((v) => ({
+      url: v.publicUrl,
+      title: v.title,
+      category: (v as any).category ?? null,
+    })) ?? [];
   const externalVideos = payload.externalVideos?.map((v) => ({ url: v.url, title: v.title })) ?? [];
 
   const xHandle = payload.social?.xHandle?.trim();
@@ -613,11 +617,14 @@ export default function PublicMedia(props: Props) {
 
   const isPrimary = (url: string | undefined | null) => sameUrl(url, primaryUrl);
 
-  const uploadsAll = dedupeByUrl(normArray<MediaLink>(uploadedVideos));
+  const uploadsAll = dedupeByUrl(normArray<any>(uploadedVideos));
+  const [activeUploadedCategory, setActiveUploadedCategory] = React.useState<"Hitting" | "Fielding" | "Pitching" | "Baserunning">("Hitting");
   const linksAll = dedupeByUrl(normArray<MediaLink>(externalVideos));
 
-  const uploads =
-    hidePrimaryInGrid && primaryUrl ? uploadsAll.filter((v) => !isPrimary(v.url)) : uploadsAll;
+  const uploadsBase =
+    hidePrimaryInGrid && primaryUrl ? uploadsAll.filter((v: any) => !isPrimary(v.url)) : uploadsAll;
+
+  const uploads = uploadsBase.filter((v: any) => v?.category === activeUploadedCategory);
   const links =
     hidePrimaryInGrid && primaryUrl ? linksAll.filter((v) => !isPrimary(v.url)) : linksAll;
 
@@ -650,6 +657,31 @@ export default function PublicMedia(props: Props) {
           <div style={{ marginTop: 12 }}>
             <div style={{ color: "#334155", fontSize: 13, fontWeight: 800, marginBottom: 6 }}>
               Uploaded Videos
+            </div>
+
+            <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
+              {(["Hitting", "Fielding", "Pitching", "Baserunning"] as const).map((cat) => {
+                const active = activeUploadedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setActiveUploadedCategory(cat)}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: active ? 900 : 700,
+                      padding: "6px 10px",
+                      borderRadius: 999,
+                      border: active ? "1px solid #0ea5e9" : "1px solid #cbd5e1",
+                      background: active ? "#e0f2fe" : "#fff",
+                      color: "#0f172a",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
             </div>
 
             {uploads.length === 0 ? (

@@ -38,6 +38,7 @@ export async function POST(request: Request): Promise<Response> {
           fileType?: string;
           fileSize?: number;
           originalName?: string;
+          category?: string;
         } = {};
 
         try {
@@ -64,6 +65,7 @@ export async function POST(request: Request): Promise<Response> {
             fileType: parsed.fileType || "",
             fileSize: Number.isFinite(Number(parsed.fileSize)) ? Number(parsed.fileSize) : 0,
             originalName: parsed.originalName || "",
+            category: parsed.category || "",
           }),
           pathname: `videos/${userSlug}/${originalName}`,
         };
@@ -109,6 +111,13 @@ export async function POST(request: Request): Promise<Response> {
               ? Number(parsed.fileSize)
               : 0,
             addedAt: Date.now(),
+            category:
+              parsed?.category === "Hitting" ||
+              parsed?.category === "Fielding" ||
+              parsed?.category === "Pitching" ||
+              parsed?.category === "Baserunning"
+                ? parsed.category
+                : null,
           };
 
           const deduped = [

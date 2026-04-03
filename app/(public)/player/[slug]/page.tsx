@@ -952,6 +952,7 @@ const points = arr
             media={mediaDataView}
             primaryUrl={primaryUrlView}
             hidePrimaryInGrid={true}
+            hideConnectRow={true}
             cardStyle={card}
             h2Style={h2}
             pillStyle={pillStyle}

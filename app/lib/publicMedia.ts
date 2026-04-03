@@ -26,7 +26,7 @@ export type MediaData = {
   trackmanUrl?: string | null;
   pocketRadarUrl?: string | null;
 
-  uploadedVideos?: { url: string; title?: string | null }[];
+  uploadedVideos?: { url: string; title?: string | null; category?: string | null }[];
   externalVideos?: { url: string; title?: string | null }[];
 };
 
@@ -38,13 +38,21 @@ function normArray<T = any>(x: any): T[] {
   return [x].filter(Boolean);
 }
 
-function toEntry(x: any): { url: string; title?: string | null } | null {
+function toEntry(x: any): { url: string; title?: string | null; category?: string | null } | null {
   if (!x) return null;
   if (typeof x === "string") return x.trim() ? { url: x.trim(), title: null } : null;
   const url = String(x?.url || x?.publicUrl || "").trim();
   if (!url) return null;
   const title = x?.title ?? x?.name ?? null;
-  return { url, title };
+    const category =
+    x?.category === "Hitting" ||
+    x?.category === "Fielding" ||
+    x?.category === "Pitching" ||
+    x?.category === "Baserunning"
+      ? x.category
+      : null;
+
+  return { url, title, category };
 }
 
 function dedupeByUrl(list: { url: string; title?: string | null }[]) {
