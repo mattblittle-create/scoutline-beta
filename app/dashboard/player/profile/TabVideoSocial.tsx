@@ -403,37 +403,9 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
     const planTier: PlanTier = props.planTier ?? "All-American";
     const PLAN = PLAN_RULES[planTier];
 
-    // ---- Stable storage key + hydration guard + anon→email migration ----
-    const [resolvedEmail, setResolvedEmail] = useState<string | null>(null);
-    const prevKeyRef = useRef<string | null>(null);
+    // ---- Stable storage key ----
+    const storageEmail = (props.email ?? "").trim().toLowerCase() || "anon";
     const [hydrated, setHydrated] = useState(false);
-
-    useEffect(() => {
-      const fromProp = (props.email ?? "").trim() || null;
-      const fromLS =
-        typeof window !== "undefined" ? (localStorage.getItem("scoutlineEmail") || "").trim() || null : null;
-      const key = fromProp ?? fromLS ?? "anon";
-      setResolvedEmail(key);
-    }, [props.email]);
-
-    useEffect(() => {
-      if (!resolvedEmail) return;
-      const prevKey = prevKeyRef.current;
-      if (prevKey && prevKey !== resolvedEmail) {
-        const prevState = loadState(prevKey);
-        const newState = loadState(resolvedEmail);
-        const newIsEmpty =
-          newState.externalVideos.length === 0 &&
-          newState.localVideos.length === 0 &&
-          Object.keys(newState.social).length === 0 &&
-          !newState.primary;
-
-        if (newIsEmpty) {
-          saveState(resolvedEmail, prevState); // migrate existing anon data
-        }
-      }
-      prevKeyRef.current = resolvedEmail;
-    }, [resolvedEmail]);
 
     const [state, setState] = useState<VideoSocialState>({
       externalVideos: [],
@@ -443,16 +415,15 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
     });
 
     useEffect(() => {
-      if (!resolvedEmail) return;
-      const loaded = loadState(resolvedEmail);
+      const loaded = loadState(storageEmail);
       setState(loaded);
       setHydrated(true);
-    }, [resolvedEmail]);
+    }, [storageEmail]);
 
     useEffect(() => {
-      if (!hydrated || !resolvedEmail) return;
-      saveState(resolvedEmail, state);
-    }, [state, hydrated, resolvedEmail]);
+      if (!hydrated) return;
+      saveState(storageEmail, state);
+    }, [state, hydrated, storageEmail]);
 
     // ----- UI messaging -----
     const [msg, setMsg] = useState<string | null>(null);
@@ -498,7 +469,7 @@ const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | nu
 
     // ----- Video uploads (POST /api/upload/video) -----
 async function uploadLocalVideo(file: File, draftId: string) {
-  const userSlug = (resolvedEmail || "player").trim();
+  const userSlug = storageEmail || "player";
 
   const blob = await upload(file.name, file, {
     access: "public",
@@ -547,7 +518,7 @@ async function uploadLocalVideo(file: File, draftId: string) {
     };
 
     // immediately persist the finished URL, don’t wait for effect timing
-    saveState(resolvedEmail, next);
+    saveState(storageEmail, next);
     return next;
   });
 }
