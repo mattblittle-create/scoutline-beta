@@ -308,24 +308,86 @@ function embedForExternalVideo(v: ExternalVideo): React.ReactNode {
 
 // ---------- Persistence (localStorage for now) ----------
 function loadState(email?: string | null): VideoSocialState {
-  const raw = typeof window !== "undefined" ? localStorage.getItem(storageKey(email)) : null;
-  if (!raw) return { externalVideos: [], localVideos: [], social: {}, primary: null };
-try {
-  const parsed = JSON.parse(raw) as VideoSocialState;
-  return {
-    ...parsed,
-    externalVideos: Array.isArray(parsed?.externalVideos) ? parsed.externalVideos : [],
-    localVideos: Array.isArray(parsed?.localVideos) ? parsed.localVideos : [],
-    social: parsed?.social ?? {},
-    primary: parsed?.primary ?? null,
-  };
-} catch {
-  return { externalVideos: [], localVideos: [], social: {}, primary: null };
-}
+  const raw =
+    typeof window !== "undefined" ? localStorage.getItem(storageKey(email)) : null;
+
+  if (!raw) {
+    return { externalVideos: [], localVideos: [], social: {}, primary: null };
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as VideoSocialState;
+
+    const externalVideos = Array.isArray(parsed?.externalVideos)
+      ? parsed.externalVideos
+      : [];
+
+    const localVideos = Array.isArray(parsed?.localVideos)
+      ? parsed.localVideos
+          .map((v: any) => ({
+            id: typeof v?.id === "string" ? v.id : uid(),
+            title: typeof v?.title === "string" ? v.title : undefined,
+            fileName: typeof v?.fileName === "string" ? v.fileName : (v?.title || "video"),
+            fileSize: Number.isFinite(Number(v?.fileSize)) ? Number(v.fileSize) : 0,
+            fileType: typeof v?.fileType === "string" ? v.fileType : "video/mp4",
+            publicUrl: typeof v?.publicUrl === "string" && v.publicUrl.trim() ? v.publicUrl.trim() : undefined,
+            progress: typeof v?.publicUrl === "string" && v.publicUrl.trim() ? 100 : 0,
+            status: typeof v?.publicUrl === "string" && v.publicUrl.trim() ? "done" : "error",
+            errorMsg:
+              typeof v?.publicUrl === "string" && v.publicUrl.trim()
+                ? undefined
+                : "Upload did not finish. Please remove and upload again.",
+            addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
+            previewUrl: undefined, // never trust persisted blob: URLs across sessions
+          }))
+          .filter(Boolean)
+      : [];
+
+    const social = parsed?.social ?? {};
+    const primary = parsed?.primary ?? null;
+
+    const safePrimary =
+      primary &&
+      ((primary.kind === "local" && localVideos.some((v) => v.id === primary.id && !!v.publicUrl)) ||
+        (primary.kind === "external" && externalVideos.some((v) => v.id === primary.id)))
+        ? primary
+        : null;
+
+    return {
+      externalVideos,
+      localVideos,
+      social,
+      primary: safePrimary,
+    };
+  } catch {
+    return { externalVideos: [], localVideos: [], social: {}, primary: null };
+  }
 }
 function saveState(email: string | null | undefined, state: VideoSocialState) {
   if (typeof window === "undefined") return;
-  localStorage.setItem(storageKey(email), JSON.stringify(state));
+
+  const safeState: VideoSocialState = {
+    externalVideos: Array.isArray(state.externalVideos) ? state.externalVideos : [],
+    localVideos: Array.isArray(state.localVideos)
+      ? state.localVideos.map((v) => ({
+          id: v.id,
+          title: v.title,
+          fileName: v.fileName,
+          fileSize: v.fileSize,
+          fileType: v.fileType,
+          publicUrl: v.publicUrl,
+          progress: v.publicUrl ? 100 : v.progress,
+          status: v.publicUrl ? "done" : v.status,
+          errorMsg: v.errorMsg,
+          addedAt: v.addedAt,
+          // intentionally do NOT persist previewUrl/blob URLs
+        }))
+      : [],
+    social: state.social ?? {},
+    primary: state.primary ?? null,
+  };
+
+  localStorage.setItem(storageKey(email), JSON.stringify(safeState));
 }
 
 // ---------- Component ----------
@@ -451,19 +513,36 @@ async function uploadLocalVideo(file: File, draftId: string) {
     },
   });
 
-  setState((s) => ({
-    ...s,
-    localVideos: s.localVideos.map((lv) =>
-      lv.id === draftId
-        ? {
-            ...lv,
-            publicUrl: blob.url,
-            progress: 100,
-            status: "done",
-          }
-        : lv
-    ),
-  }));
+  const blobUrl =
+    typeof blob?.url === "string" && blob.url.trim()
+      ? blob.url.trim()
+      : "";
+
+  if (!blobUrl) {
+    throw new Error("Upload finished but no Blob URL was returned.");
+  }
+
+  setState((s) => {
+    const next: VideoSocialState = {
+      ...s,
+      localVideos: s.localVideos.map((lv) =>
+        lv.id === draftId
+          ? {
+              ...lv,
+              publicUrl: blobUrl,
+              previewUrl: undefined,
+              progress: 100,
+              status: "done",
+              errorMsg: undefined,
+            }
+          : lv
+      ),
+    };
+
+    // immediately persist the finished URL, don’t wait for effect timing
+    saveState(resolvedEmail, next);
+    return next;
+  });
 }
 
     // Entire choose→validate→draft→upload flow
