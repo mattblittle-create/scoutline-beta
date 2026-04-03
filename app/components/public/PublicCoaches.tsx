@@ -6,7 +6,12 @@ import * as React from "react";
 export type CoachEntry = {
   firstName?: string | null;
   lastName?: string | null;
-  teamOrOrg?: string | null;   // Team / Organization
+
+  teamOrOrg?: string | null;   // preferred display field
+  organization?: string | null; // fallback from saved profile payload
+  team?: string | null;         // legacy fallback
+  org?: string | null;          // legacy fallback
+
   focus?: string | null;       // Coaching Focus
   email?: string | null;       // mailto link
   phone?: string | null;       // tel link (free-form; we normalize for href)
