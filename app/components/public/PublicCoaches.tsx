@@ -27,8 +27,16 @@ type Props = {
 
 /** Utilities */
 function fullName(first?: string | null, last?: string | null): string {
-  const f = (first ?? "").trim();
+  let f = (first ?? "").trim();
   const l = (last ?? "").trim();
+
+  if (f && l) {
+    const suffix = new RegExp(`\\s+${l.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i");
+    if (suffix.test(f)) {
+      f = f.replace(suffix, "").trim() || f;
+    }
+  }
+
   return (f || l) ? [f, l].filter(Boolean).join(" ") : "—";
 }
 

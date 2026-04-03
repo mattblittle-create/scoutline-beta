@@ -766,7 +766,13 @@ const points = arr
     const r = (profile as any).references;
     const cr = (profile as any).coachesReferences;
     const toArr2 = (x: any): any[] => (Array.isArray(x) ? x : x == null ? [] : [x]);
-    return toArr2(c).concat(toArr2(r)).concat(toArr2(cr)).filter(Boolean);
+
+    // Prefer the first populated source only, because the public API
+    // intentionally mirrors the same normalized array into all three keys.
+    if (toArr2(c).length) return toArr2(c).filter(Boolean);
+    if (toArr2(r).length) return toArr2(r).filter(Boolean);
+    if (toArr2(cr).length) return toArr2(cr).filter(Boolean);
+    return [];
   })();
 
   const coachesData: CoachesData = {

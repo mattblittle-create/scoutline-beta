@@ -619,20 +619,43 @@ return {
 
           const fn = str(it.firstName ?? it.first).trim();
           const ln = str(it.lastName ?? it.last).trim();
-          const nameLegacy = str(it.name ?? "").trim();
+          const nameLegacy = str(it.name ?? it.fullName ?? "").trim();
 
           const email = str(it.email ?? it.coachEmail).trim().toLowerCase();
           const phone = str(it.phone ?? it.coachPhone).trim();
 
-          const teamVal = str(it.team ?? it.teamOrOrg ?? it.organization ?? it.org ?? "").trim() || null;
-          const focusVal = str(it.focus ?? it.coachingFocus ?? it.role ?? it.position ?? "").trim() || null;
+          const teamVal =
+            str(
+              it.teamOrOrg ??
+                it.team ??
+                it.organization ??
+                it.org ??
+                it.teamOrganization ??
+                it.teamName ??
+                it.school ??
+                it.program ??
+                ""
+            ).trim() || null;
+
+          const focusVal =
+            str(it.focus ?? it.coachingFocus ?? it.role ?? it.position ?? "").trim() || null;
 
           let first = fn || null;
           let last = ln || null;
+
           if ((!first || !last) && nameLegacy) {
             const parts = nameLegacy.split(/\s+/).filter(Boolean);
             if (!first && parts.length > 0) first = parts[0];
             if (!last && parts.length > 1) last = parts.slice(1).join(" ");
+          }
+
+          // If firstName already contains the full name and lastName is separately present,
+          // avoid rendering "Tom Ras Ras" by removing the trailing duplicate last name.
+          if (first && last) {
+            const suffix = new RegExp(`\\s+${last.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i");
+            if (suffix.test(first)) {
+              first = first.replace(suffix, "").trim() || first;
+            }
           }
 
           const dedupeKey = [first ?? "", last ?? "", email ?? "", phone ?? ""].join("|");
