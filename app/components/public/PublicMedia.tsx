@@ -73,6 +73,9 @@ type BaseProps = {
   /** Primary item’s URL to feature as a hero + badge */
   primaryUrl?: string | null;
 
+  /** If false, do not render the primary hero card at the top */
+  showPrimaryHero?: boolean;
+
   /** If true, hide the primary item from the grids to avoid duplication (default: true) */
   hidePrimaryInGrid?: boolean;
 
@@ -302,6 +305,8 @@ export default function PublicMedia(props: Props) {
   const pillStyle =
     ("pillStyle" in props && props.pillStyle) || ("pillStyle" in (props as any) && (props as any).pillStyle);
   const primaryUrl = ("primaryUrl" in props && props.primaryUrl) || null;
+  const showPrimaryHero =
+    ("showPrimaryHero" in props ? (props as any).showPrimaryHero : undefined) ?? true;
   const hidePrimaryInGrid =
     ("hidePrimaryInGrid" in props ? (props as any).hidePrimaryInGrid : undefined) ?? true;
   const showOnlyPrimary =
@@ -650,7 +655,7 @@ export default function PublicMedia(props: Props) {
         </div>
       ) : null}
 
-      {hasPrimary && renderPrimaryHero()}
+      {hasPrimary && showPrimaryHero && renderPrimaryHero()}
 
       {!showOnlyPrimary ? (
         <>

@@ -951,7 +951,8 @@ const points = arr
           <PublicMedia
             media={mediaDataView}
             primaryUrl={primaryUrlView}
-            hidePrimaryInGrid={true}
+            showPrimaryHero={false}
+            hidePrimaryInGrid={false}
             hideConnectRow={true}
             cardStyle={card}
             h2Style={h2}
