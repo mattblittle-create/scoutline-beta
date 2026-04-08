@@ -475,7 +475,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {gpa && (
               <span>
-                GPA: <span style={{ fontWeight: 800 }}>{gpa}</span>
+                GPA:<span style={{ fontWeight: 800 }}>{gpa}</span>
               </span>
             )}
 
@@ -485,7 +485,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {bench && (
               <span>
-                Bench: <span style={{ fontWeight: 800 }}>{bench}</span>
+                Bench:<span style={{ fontWeight: 800 }}>{bench}</span>
               </span>
             )}
 
@@ -495,7 +495,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {squat && (
               <span>
-                Squat: <span style={{ fontWeight: 800 }}>{squat}</span>
+                Squat:<span style={{ fontWeight: 800 }}>{squat}</span>
               </span>
             )}
 
@@ -505,7 +505,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {deadLift && (
               <span>
-                Dead Lift: <span style={{ fontWeight: 800 }}>{deadLift}</span>
+                Dead Lift:<span style={{ fontWeight: 800 }}>{deadLift}</span>
               </span>
             )}
           </div>
