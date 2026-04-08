@@ -85,15 +85,6 @@ export default function PlayerCardPage() {
   const params = useParams();
   const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
 
-  if (!slug) {
-    return (
-      <main style={wrap}>
-        <h1 style={h1}>Player Card</h1>
-        <p>Invalid player URL.</p>
-      </main>
-    );
-  }
-
   const searchParams = useSearchParams();
   const fromTeaserCard = searchParams.get("from") === "teaser";
 
@@ -115,6 +106,13 @@ export default function PlayerCardPage() {
     let cancelled = false;
 
     (async () => {
+      if (!slug) {
+        setLoading(false);
+        setNotFound(false);
+        setErr("Invalid player URL.");
+        return;
+      }
+
       setLoading(true);
       setErr(null);
       setNotFound(false);
@@ -162,6 +160,15 @@ export default function PlayerCardPage() {
     if (fromTeaserCard) u.searchParams.set("from", "teaser");
     return u.toString();
   }, [fromTeaserCard]);
+
+    if (!slug) {
+    return (
+      <main style={wrap}>
+        <h1 style={h1}>Player Card</h1>
+        <p>Invalid player URL.</p>
+      </main>
+    );
+  }
 
   if (loading) {
     return (
