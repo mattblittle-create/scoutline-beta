@@ -444,17 +444,17 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
           }}
         >
           {/* Line 1: Height, Weight, GPA, Bench, Squat, Dead Lift */}
-          <div
-            style={{
-              fontSize: 13,
-              fontWeight: 600,
-              color: NAVY,
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 6,
-              alignItems: "center",
-            }}
-          >
+<div
+  style={{
+    fontSize: 13,
+    fontWeight: 600,
+    color: NAVY,
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 6,
+    alignItems: "center",
+  }}
+>
             {height && (
               <span>
                 <span style={{ fontWeight: 800 }}>{height}</span>
@@ -475,7 +475,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {gpa && (
               <span>
-                GPA:<span style={{ fontWeight: 800 }}>{gpa}</span>
+                GPA: <span style={{ fontWeight: 800 }}>{gpa}</span>
               </span>
             )}
 
@@ -485,7 +485,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {bench && (
               <span>
-                Bench:<span style={{ fontWeight: 800 }}>{bench}</span>
+                BENCH: <span style={{ fontWeight: 800 }}>{bench}</span>
               </span>
             )}
 
@@ -495,7 +495,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {squat && (
               <span>
-                Squat:<span style={{ fontWeight: 800 }}>{squat}</span>
+                SQT: <span style={{ fontWeight: 800 }}>{squat}</span>
               </span>
             )}
 
@@ -505,7 +505,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {deadLift && (
               <span>
-                Dead Lift:<span style={{ fontWeight: 800 }}>{deadLift}</span>
+                DL: <span style={{ fontWeight: 800 }}>{deadLift}</span>
               </span>
             )}
           </div>
