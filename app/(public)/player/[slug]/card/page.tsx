@@ -650,7 +650,7 @@ ${name}
     };
   }
 
-  const handleSend = React.useCallback(async () => {
+  const handleSend = async () => {
     if (typeof window === "undefined") return;
 
     const url = getCardShareUrl();
@@ -687,9 +687,9 @@ ${name}
     } catch {
       window.prompt("Copy this message:", `${subject}\n\n${body}`);
     }
-  }, [getCardShareUrl, data, fromTeaserCard, fullNameForCard, gpa, gradYear, positionsForCard, shareMode]);
+  };
 
-  const handleOpenDraft = React.useCallback(() => {
+  const handleOpenDraft = () => {
     if (typeof window === "undefined") return;
 
     const { introSubject, followUpSubject, introBody, followUpBody } = buildRecruitMessage();
@@ -699,9 +699,9 @@ ${name}
 
     const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
-  }, [shareMode, fullNameForCard, gradYear, positionsForCard, gpa, data, fromTeaserCard, getCardShareUrl]);
+  };
 
-  const handleCopySubjectOnly = React.useCallback(async () => {
+  const handleCopySubjectOnly = async () => {
     if (typeof window === "undefined") return;
 
     const { introSubject, followUpSubject } = buildRecruitMessage();
@@ -721,9 +721,9 @@ ${name}
     } catch {
       window.prompt("Copy this subject:", subject);
     }
-  }, [shareMode, fullNameForCard, gradYear, positionsForCard, gpa, data, fromTeaserCard, getCardShareUrl]);
+  };
 
-  const handleCopyFullEmail = React.useCallback(async () => {
+  const handleCopyFullEmail = async () => {
     if (typeof window === "undefined") return;
 
     const { introSubject, followUpSubject, introBody, followUpBody } = buildRecruitMessage();
@@ -746,7 +746,7 @@ ${name}
     } catch {
       window.prompt("Copy this email:", fullMessage);
     }
-  }, [shareMode, fullNameForCard, gradYear, positionsForCard, gpa, data, fromTeaserCard, getCardShareUrl]);
+  };
 
   return (
     <main style={wrap}>
