@@ -457,7 +457,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
           >
             {height && (
               <span>
-                Height: <span style={{ fontWeight: 800 }}>{height}</span>
+                <span style={{ fontWeight: 800 }}>{height}</span>
               </span>
             )}
 
@@ -465,7 +465,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
 
             {weight && (
               <span>
-                Weight: <span style={{ fontWeight: 800 }}>{weight}</span>
+                <span style={{ fontWeight: 800 }}>{weight}</span>
               </span>
             )}
 
