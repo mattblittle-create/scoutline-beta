@@ -22,6 +22,9 @@ export type CoachTeaserCardProps = {
   weight?: string; // e.g. 185 lb
   dob?: string; // formatted mm/dd/yyyy or similar (accepted but not displayed)
   gpa?: string; // e.g. 4.33
+  bench?: string | null;
+  squat?: string | null;
+  deadLift?: string | null;
   highSchool?: string | null; // unused but kept for compatibility
 
   bats?: string; // R / L / S
@@ -128,6 +131,9 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
     weight,
     dob, // still accepted but not rendered
     gpa,
+    bench,
+    squat,
+    deadLift,
     bats,
     throws,
     hometownCity,
@@ -352,7 +358,8 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
+                objectPosition: "center",
                 display: "block",
               }}
             />
@@ -436,7 +443,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
             gap: 10,
           }}
         >
-          {/* Line 1: Height, Weight, GPA */}
+          {/* Line 1: Height, Weight, GPA, Bench, Squat, Dead Lift */}
           <div
             style={{
               fontSize: 13,
@@ -469,6 +476,36 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
             {gpa && (
               <span>
                 GPA: <span style={{ fontWeight: 800 }}>{gpa}</span>
+              </span>
+            )}
+
+            {(height || weight || gpa) && bench && (
+              <span style={{ color: "#9ca3af" }}>•</span>
+            )}
+
+            {bench && (
+              <span>
+                Bench: <span style={{ fontWeight: 800 }}>{bench}</span>
+              </span>
+            )}
+
+            {(height || weight || gpa || bench) && squat && (
+              <span style={{ color: "#9ca3af" }}>•</span>
+            )}
+
+            {squat && (
+              <span>
+                Squat: <span style={{ fontWeight: 800 }}>{squat}</span>
+              </span>
+            )}
+
+            {(height || weight || gpa || bench || squat) && deadLift && (
+              <span style={{ color: "#9ca3af" }}>•</span>
+            )}
+
+            {deadLift && (
+              <span>
+                Dead Lift: <span style={{ fontWeight: 800 }}>{deadLift}</span>
               </span>
             )}
           </div>
@@ -839,7 +876,7 @@ const CoachTeaserCard: React.FC<CoachTeaserCardProps> = (props) => {
             >
               <div style={{ minWidth: 0, flex: "1 1 220px" }}>
                 <div style={{ marginBottom: 2 }}>
-                  View full profile on ScoutLine:
+                  Click link to view full player profile on ScoutLine
                 </div>
                 <a
                   href={profileUrl}

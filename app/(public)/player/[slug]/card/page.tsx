@@ -521,60 +521,40 @@ export default function PlayerCardPage() {
     const sixty = getLatestMetric(metrics, "sixtyYdDash");
     const ev = getLatestMetric(metrics, "exitVelo");
     const fb = getLatestMetric(metrics, "avgFbVelo");
-    const bb = getLatestMetric(metrics, "avgBbVelo");
+    const ch = getLatestMetric(metrics, "avgChVelo");
+    const br = getLatestMetric(metrics, "avgBbVelo");
 
     const gpaStr =
       gpa && Number.isFinite(Number(gpa)) ? `${Number(gpa).toFixed(2)} GPA` : null;
 
     const sixtyStr = sixty != null ? `${sixty.toFixed(2)} 60` : null;
     const evStr = ev != null ? `${Math.round(ev)} EV` : null;
+    const fbStr = fb != null ? `${Math.round(fb)} FB` : null;
+    const chStr = ch != null ? `${Math.round(ch)} CH` : null;
+    const brStr = br != null ? `${Math.round(br)} BR` : null;
 
-    const pitcherLabelForSubject = pitcherLabel || "P";
-    const fbStr = fb != null ? `FB ${Math.round(fb - 1)}-${Math.round(fb + 1)}` : null;
-    const bbStr = bb != null ? `CB ${Math.round(bb)}` : null;
+    const introSubject = [
+      name,
+      grad && posString ? `${grad} ${posString}` : grad || posString || null,
+      gpaStr,
+      sixtyStr,
+      evStr,
+      fbStr,
+      chStr,
+      brStr,
+      "ScoutLine Profile",
+    ]
+      .filter(Boolean)
+      .join(" | ");
 
-    let introSubject = "";
-
-    if (isPitcherOnly) {
-      introSubject = [
-        name,
-        grad ? `${grad} ${pitcherLabelForSubject}` : pitcherLabelForSubject,
-        gpaStr,
-        fbStr,
-        bbStr,
-        "ScoutLine Profile",
-      ]
-        .filter(Boolean)
-        .join(" | ");
-    } else if (isTwoWay) {
-      introSubject = [
-        name,
-        grad ? `${grad} ${posString}` : posString,
-        gpaStr,
-        sixtyStr,
-        evStr,
-        fbStr,
-        bbStr,
-        "ScoutLine Profile",
-      ]
-        .filter(Boolean)
-        .join(" | ");
-    } else {
-      introSubject = [
-        name,
-        grad ? `${grad} ${posString}` : posString,
-        gpaStr,
-        sixtyStr,
-        evStr,
-        "ScoutLine Profile",
-      ]
-        .filter(Boolean)
-        .join(" | ");
-    }
-
-    const followUpSubject = `Updated: ${name} | ${grad} ${posString} | ${
-      isPitcherOnly ? "New Bullpen / Metrics / Video" : "New Stats / Metrics / Video"
-    } | ScoutLine Profile`;
+    const followUpSubject = [
+      "Updated ScoutLine Profile:",
+      name,
+      grad && posString ? `${grad} ${posString}` : grad || posString || null,
+      "New Stats / Metrics / Video",
+    ]
+      .filter(Boolean)
+      .join(" | ");
 
     let introBody = "";
     let followUpBody = "";
@@ -650,43 +630,26 @@ ${name}
     };
   }
 
-  const handleSend = async () => {
+  const metricsForCard = (data as any)?.metrics || null;
+
+  const benchValue = getLatestMetric(metricsForCard, "benchPress");
+  const squatValue = getLatestMetric(metricsForCard, "squat");
+  const deadLiftValue = getLatestMetric(metricsForCard, "deadLift");
+
+  const benchForCard = benchValue != null ? `${Math.round(benchValue)} lb` : undefined;
+  const squatForCard = squatValue != null ? `${Math.round(squatValue)} lb` : undefined;
+  const deadLiftForCard = deadLiftValue != null ? `${Math.round(deadLiftValue)} lb` : undefined;
+
+  const handleSend = () => {
     if (typeof window === "undefined") return;
 
-    const url = getCardShareUrl();
     const { introSubject, followUpSubject, introBody, followUpBody } = buildRecruitMessage();
 
     const subject = shareMode === "followup" ? followUpSubject : introSubject;
     const body = shareMode === "followup" ? followUpBody : introBody;
 
-    try {
-      const navAny = navigator as any;
-      if (navAny.share) {
-        await navAny.share({
-          title: subject,
-          text: body,
-          url,
-        });
-        return;
-      }
-    } catch {}
-
-    try {
-      const fullMessage = `Subject: ${subject}\n\n${body}`;
-
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(fullMessage);
-        setToast(
-          shareMode === "followup"
-            ? "Follow-up recruit message copied. Paste into email."
-            : "Intro recruit message copied. Paste into email."
-        );
-      } else {
-        window.prompt("Copy this message:", fullMessage);
-      }
-    } catch {
-      window.prompt("Copy this message:", `${subject}\n\n${body}`);
-    }
+    const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
   };
 
   const handleOpenDraft = () => {
@@ -795,7 +758,7 @@ ${name}
           </div>
 
           <button type="button" onClick={handleSend} style={primaryButton}>
-            {shareMode === "followup" ? "Share Follow-Up" : "Share Intro"}
+            {shareMode === "followup" ? "Send Follow-Up Email" : "Send Intro Email"}
           </button>
 
           <button type="button" onClick={handleOpenDraft} style={secondaryButton}>
@@ -826,6 +789,9 @@ ${name}
           weight={weightForCard || undefined}
           dob={profile.dob || undefined}
           gpa={gpa || undefined}
+          bench={benchForCard}
+          squat={squatForCard}
+          deadLift={deadLiftForCard}
           bats={batsLabel}
           throws={throwsLabel}
           hometownCity={hometownCityForCard || undefined}
