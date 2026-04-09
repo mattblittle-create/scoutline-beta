@@ -776,7 +776,7 @@ ${name}
             onClick={handleSend}
             style={{ ...primaryButton, minWidth: 135, whiteSpace: "nowrap" }}
           >
-            {shareMode === "followup" ? "Send Follow Up" : "Send Introduction"}
+            {shareMode === "followup" ? "Send Follow Up" : "Send Intro"}
           </button>
 
           <button type="button" onClick={handleOpenDraft} style={secondaryButton}>

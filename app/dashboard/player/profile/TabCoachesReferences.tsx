@@ -140,102 +140,84 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
 ) {
   const PLAN = PLAN_RULES[planTier];
 
-  // ---- Stable storage key + hydration guard + anon→email migration ----
-  const [resolvedEmail, setResolvedEmail] = useState<string | null>(null);
-  const [hydrated, setHydrated] = useState(false);
-  const prevKeyRef = React.useRef<string | null>(null);
-
-  // decide which email key to use (prop → LS → anon)
-  useEffect(() => {
-    const fromProp = (emailProp ?? "").trim() || null;
-    const fromLS =
-      typeof window !== "undefined" ? (localStorage.getItem("scoutlineEmail") || "").trim() || null : null;
-    const key = fromProp ?? fromLS ?? "anon";
-    setResolvedEmail(key);
+  // ---- DB-first hydration; localStorage is only fallback/cache ----
+  const resolvedEmail = useMemo(() => {
+    return (emailProp ?? "").trim().toLowerCase();
   }, [emailProp]);
 
-  // migrate anon → email (if new key is empty)
-  useEffect(() => {
-    if (!resolvedEmail) return;
-    const prevKey = prevKeyRef.current;
-    if (prevKey && prevKey !== resolvedEmail) {
-      const prevState = loadState(prevKey);
-      const newState = loadState(resolvedEmail);
-      const newIsEmpty = newState.coaches.length === 0;
-
-      if (newIsEmpty && prevState.coaches.length > 0) {
-        saveState(resolvedEmail, prevState);
-      }
-    }
-    prevKeyRef.current = resolvedEmail;
-  }, [resolvedEmail]);
-
-  // actual local state
+  const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<CoachesState>({ coaches: [] });
 
-  // load once we know the key
-useEffect(() => {
-  if (!resolvedEmail) return;
+  useEffect(() => {
+    let cancelled = false;
 
-  const emailKey = resolvedEmail;
+    async function hydrate() {
+      if (!resolvedEmail) {
+        setState({ coaches: [] });
+        setHydrated(true);
+        return;
+      }
 
-  async function hydrate() {
-    const local = loadState(emailKey);
+      setHydrated(false);
 
-    // ✅ If localStorage already has data → use it
-    if (local.coaches.length > 0) {
-      setState(local);
-      setHydrated(true);
-      return;
-    }
+      try {
+        const res = await fetch(
+          `/api/player/profile?email=${encodeURIComponent(resolvedEmail)}`,
+          { cache: "no-store" }
+        );
 
-    // 🚨 Otherwise → pull from DB
-    try {
-      const res = await fetch(`/api/player/profile?email=${encodeURIComponent(emailKey)}`, {
-        cache: "no-store",
-      });
+        const json = await res.json();
 
-      const json = await res.json();
+        if (cancelled) return;
 
-      if (res.ok && json?.ok) {
-        const dbCoaches = json?.normalized?.coaches || [];
+        const dbCoaches = Array.isArray(json?.normalized?.coaches)
+          ? json.normalized.coaches
+          : [];
 
-        if (Array.isArray(dbCoaches) && dbCoaches.length > 0) {
+        if (dbCoaches.length > 0) {
           const mapped = dbCoaches.map((c: any) => {
-            const parts = String(c.name || "").split(" ");
+            const fullName = String(c?.name || "").trim();
+            const parts = fullName ? fullName.split(/\s+/) : [];
+
             return {
-              id: uid(),
+              id: String(c?.id || uid()),
               firstName: parts[0] || "",
               lastName: parts.slice(1).join(" ") || "",
-              team: c.organization || "",
-              email: c.email || "",
-              phone: c.phone || "",
-              focus: c.role || "",
-              addedAt: Date.now(),
+              team: String(c?.organization || "").trim(),
+              email: String(c?.email || "").trim(),
+              phone: String(c?.phone || "").trim(),
+              focus: String(c?.role || "").trim(),
+              addedAt: Number(c?.addedAt || Date.now()),
             };
           });
 
-          const newState = { coaches: mapped };
-
-          setState(newState);
-          saveState(emailKey, newState); // ✅ backfill localStorage
-        } else {
-          setState({ coaches: [] });
+          const nextState = { coaches: mapped };
+          setState(nextState);
+          saveState(resolvedEmail, nextState);
+          setHydrated(true);
+          return;
         }
-      } else {
-        setState({ coaches: [] });
+
+        // fallback only if DB has none
+        const local = loadState(resolvedEmail);
+        setState(local);
+        setHydrated(true);
+      } catch {
+        if (cancelled) return;
+
+        const local = loadState(resolvedEmail);
+        setState(local);
+        setHydrated(true);
       }
-    } catch {
-      setState({ coaches: [] });
     }
 
-    setHydrated(true);
-  }
+    hydrate();
 
-  hydrate();
-}, [resolvedEmail]);
+    return () => {
+      cancelled = true;
+    };
+  }, [resolvedEmail]);
 
-  // save after hydration (avoid blowing away storage on first mount)
   useEffect(() => {
     if (!hydrated || !resolvedEmail) return;
     saveState(resolvedEmail, state);
@@ -295,6 +277,14 @@ useEffect(() => {
     const set = new Set(knownTeams.filter(Boolean).map((t) => t.trim()).filter((t) => t.length > 0));
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [knownTeams]);
+
+  if (!hydrated) {
+    return (
+      <section style={{ maxWidth: 900, margin: "0 auto", padding: "8px 0 32px" }}>
+        <div style={{ color: "#64748b" }}>Loading references…</div>
+      </section>
+    );
+  }
 
   return (
     <section style={{ maxWidth: 900, margin: "0 auto", padding: "8px 0 32px" }}>
