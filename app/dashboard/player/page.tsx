@@ -117,6 +117,8 @@ export default function PlayerDashboardPage() {
   const [playerName, setPlayerName] = React.useState<string>("");
   const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
   const [showNotifications, setShowNotifications] = React.useState(false);
+  const [showChat, setShowChat] = React.useState(false);
+  const [selectedChatId, setSelectedChatId] = React.useState("coach-1");
   const notificationsRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
@@ -165,6 +167,45 @@ export default function PlayerDashboardPage() {
       cancelled = true;
     };
   }, []);
+
+    const chatThreads = [
+    {
+      id: "coach-1",
+      name: "Coach Daniels",
+      school: "Coastal Prep Baseball",
+      preview: "Thanks for sending over your player card.",
+      unread: true,
+      messages: [
+        { from: "coach", text: "Thanks for sending over your player card." },
+        { from: "coach", text: "We like your metrics and would like to follow along this spring." },
+        { from: "player", text: "Thank you, Coach. I’ll keep my profile updated with new stats and video." },
+      ],
+    },
+    {
+      id: "coach-2",
+      name: "Coach Miller",
+      school: "Piedmont College",
+      preview: "Please keep us updated with new video.",
+      unread: false,
+      messages: [
+        { from: "coach", text: "Please keep us updated with new video." },
+        { from: "player", text: "Absolutely. I’m adding fresh game clips soon." },
+      ],
+    },
+    {
+      id: "coach-3",
+      name: "Coach Ramirez",
+      school: "South Region Baseball",
+      preview: "We viewed your profile this week.",
+      unread: false,
+      messages: [
+        { from: "coach", text: "We viewed your profile this week." },
+      ],
+    },
+  ];
+
+  const selectedChat =
+    chatThreads.find((t) => t.id === selectedChatId) ?? chatThreads[0];
 
     React.useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
@@ -409,6 +450,7 @@ export default function PlayerDashboardPage() {
           <button
             type="button"
             title="ScoutLine Chat"
+            onClick={() => setShowChat(true)}
             style={{
               height: 42,
               padding: "0 14px",
@@ -557,7 +599,6 @@ export default function PlayerDashboardPage() {
           title="Recruiting Tool"
           description="Use ScoutLine’s fit and truth tools to better understand your recruiting level, best opportunities, and where you match."
           href="/dashboard/player/recruiting-tool"
-          disabled
           badge="Coming Soon"
         />
 
@@ -565,7 +606,6 @@ export default function PlayerDashboardPage() {
           title="College Search"
           description="Search colleges by region, division, conference, tuition, student life, admissions profile, and baseball fit."
           href="/dashboard/player/college-search"
-          disabled
           badge="Coming Soon"
         />
 
@@ -642,6 +682,295 @@ export default function PlayerDashboardPage() {
           </div>
         </div>
       </section>
+
+            {showChat && (
+        <div
+          style={{
+            position: "fixed",
+            right: 20,
+            bottom: 20,
+            width: 920,
+            maxWidth: "calc(100vw - 24px)",
+            height: 620,
+            maxHeight: "calc(100vh - 40px)",
+            background: "#ffffff",
+            border: "1px solid #e5e7eb",
+            borderRadius: 20,
+            boxShadow: "0 24px 60px rgba(0,0,0,0.18)",
+            zIndex: 200,
+            display: "grid",
+            gridTemplateColumns: "300px 1fr",
+            overflow: "hidden",
+          }}
+        >
+          {/* Left rail */}
+          <div
+            style={{
+              borderRight: "1px solid #e5e7eb",
+              background: "#f8fafc",
+              display: "flex",
+              flexDirection: "column",
+              minWidth: 0,
+            }}
+          >
+            <div
+              style={{
+                padding: 16,
+                borderBottom: "1px solid #e5e7eb",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: 10,
+              }}
+            >
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 900, color: "#0f172a" }}>
+                  ScoutLine Chat
+                </div>
+                <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>
+                  Coach conversations
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowChat(false)}
+                style={{
+                  border: "none",
+                  background: "transparent",
+                  cursor: "pointer",
+                  color: "#64748b",
+                  fontWeight: 900,
+                  fontSize: 18,
+                }}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div style={{ padding: 12, display: "grid", gap: 10, overflowY: "auto" }}>
+              {chatThreads.map((thread) => {
+                const active = thread.id === selectedChat.id;
+
+                return (
+                  <button
+                    key={thread.id}
+                    type="button"
+                    onClick={() => setSelectedChatId(thread.id)}
+                    style={{
+                      textAlign: "left",
+                      border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
+                      background: active ? "#e0f2fe" : "#ffffff",
+                      borderRadius: 14,
+                      padding: 12,
+                      cursor: "pointer",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        gap: 8,
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: 900,
+                          color: "#0f172a",
+                          fontSize: 14,
+                        }}
+                      >
+                        {thread.name}
+                      </div>
+
+                      {thread.unread ? (
+                        <span
+                          style={{
+                            minWidth: 8,
+                            height: 8,
+                            borderRadius: 999,
+                            background: "#ef4444",
+                            display: "inline-block",
+                          }}
+                        />
+                      ) : null}
+                    </div>
+
+                    <div
+                      style={{
+                        fontSize: 12,
+                        color: "#64748b",
+                        marginTop: 4,
+                        fontWeight: 700,
+                      }}
+                    >
+                      {thread.school}
+                    </div>
+
+                    <div
+                      style={{
+                        marginTop: 8,
+                        fontSize: 13,
+                        color: "#475569",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {thread.preview}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Main chat area */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minWidth: 0,
+              background: "#ffffff",
+            }}
+          >
+            <div
+              style={{
+                padding: 16,
+                borderBottom: "1px solid #e5e7eb",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                gap: 12,
+                flexWrap: "wrap",
+              }}
+            >
+              <div>
+                <div style={{ fontSize: 18, fontWeight: 900, color: "#0f172a" }}>
+                  {selectedChat.name}
+                </div>
+                <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>
+                  {selectedChat.school}
+                </div>
+              </div>
+
+              <div
+                style={{
+                  fontSize: 12,
+                  fontWeight: 800,
+                  color: "#0369a1",
+                  background: "#e0f2fe",
+                  border: "1px solid #bae6fd",
+                  borderRadius: 999,
+                  padding: "6px 10px",
+                }}
+              >
+                Chat Shell
+              </div>
+            </div>
+
+            <div
+              style={{
+                flex: 1,
+                overflowY: "auto",
+                padding: 16,
+                display: "grid",
+                gap: 12,
+                background: "#f8fafc",
+              }}
+            >
+              {selectedChat.messages.map((msg, idx) => {
+                const isPlayer = msg.from === "player";
+
+                return (
+                  <div
+                    key={idx}
+                    style={{
+                      display: "flex",
+                      justifyContent: isPlayer ? "flex-end" : "flex-start",
+                    }}
+                  >
+                    <div
+                      style={{
+                        maxWidth: "75%",
+                        padding: "12px 14px",
+                        borderRadius: 16,
+                        background: isPlayer ? "#e0f2fe" : "#ffffff",
+                        border: "1px solid #e5e7eb",
+                        color: "#0f172a",
+                        lineHeight: 1.45,
+                        fontSize: 14,
+                      }}
+                    >
+                      {msg.text}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div
+              style={{
+                padding: 16,
+                borderTop: "1px solid #e5e7eb",
+                background: "#ffffff",
+              }}
+            >
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr auto",
+                  gap: 10,
+                  alignItems: "end",
+                }}
+              >
+                <textarea
+                  placeholder="Compose a message to a coach..."
+                  disabled
+                  style={{
+                    minHeight: 72,
+                    width: "100%",
+                    resize: "none",
+                    borderRadius: 12,
+                    border: "1px solid #e5e7eb",
+                    padding: 12,
+                    outline: "none",
+                    background: "#f8fafc",
+                    color: "#64748b",
+                  }}
+                />
+
+                <button
+                  type="button"
+                  disabled
+                  style={{
+                    height: 42,
+                    padding: "0 16px",
+                    borderRadius: 10,
+                    border: "1px solid #e5e7eb",
+                    background: "#ffffff",
+                    color: "#94a3b8",
+                    fontWeight: 800,
+                    cursor: "not-allowed",
+                  }}
+                >
+                  Send
+                </button>
+              </div>
+
+              <div
+                style={{
+                  marginTop: 10,
+                  fontSize: 12,
+                  color: "#64748b",
+                  fontWeight: 700,
+                }}
+              >
+                Messaging workflow and live coach communication will be connected here next.
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
