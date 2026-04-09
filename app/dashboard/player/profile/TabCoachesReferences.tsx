@@ -174,12 +174,64 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
   const [state, setState] = useState<CoachesState>({ coaches: [] });
 
   // load once we know the key
-  useEffect(() => {
-    if (!resolvedEmail) return;
-    const loaded = loadState(resolvedEmail);
-    setState(loaded);
+useEffect(() => {
+  if (!resolvedEmail) return;
+
+  async function hydrate() {
+    const local = loadState(resolvedEmail);
+
+    // ✅ If localStorage already has data → use it
+    if (local.coaches.length > 0) {
+      setState(local);
+      setHydrated(true);
+      return;
+    }
+
+    // 🚨 Otherwise → pull from DB
+    try {
+      const res = await fetch(`/api/player/profile?email=${encodeURIComponent(resolvedEmail)}`, {
+        cache: "no-store",
+      });
+
+      const json = await res.json();
+
+      if (res.ok && json?.ok) {
+        const dbCoaches = json?.normalized?.coaches || [];
+
+        if (Array.isArray(dbCoaches) && dbCoaches.length > 0) {
+          const mapped = dbCoaches.map((c: any) => {
+            const parts = String(c.name || "").split(" ");
+            return {
+              id: uid(),
+              firstName: parts[0] || "",
+              lastName: parts.slice(1).join(" ") || "",
+              team: c.organization || "",
+              email: c.email || "",
+              phone: c.phone || "",
+              focus: c.role || "",
+              addedAt: Date.now(),
+            };
+          });
+
+          const newState = { coaches: mapped };
+
+          setState(newState);
+          saveState(resolvedEmail, newState); // ✅ backfill localStorage
+        } else {
+          setState({ coaches: [] });
+        }
+      } else {
+        setState({ coaches: [] });
+      }
+    } catch {
+      setState({ coaches: [] });
+    }
+
     setHydrated(true);
-  }, [resolvedEmail]);
+  }
+
+  hydrate();
+}, [resolvedEmail]);
 
   // save after hydration (avoid blowing away storage on first mount)
   useEffect(() => {
