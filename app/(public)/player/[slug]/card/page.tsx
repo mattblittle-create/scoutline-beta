@@ -767,7 +767,7 @@ ${name}
                 ...(shareMode === "followup" ? modeToggleBtnActive : {}),
               }}
             >
-              Follow-Up / Updated
+              Follow Up / Updated
             </button>
           </div>
 
@@ -776,7 +776,7 @@ ${name}
             onClick={handleSend}
             style={{ ...primaryButton, minWidth: 135, whiteSpace: "nowrap" }}
           >
-            {shareMode === "followup" ? "Send Update Email" : "Send Intro Email"}
+            {shareMode === "followup" ? "Send Follow Up" : "Send Intro Email"}
           </button>
 
           <button type="button" onClick={handleOpenDraft} style={secondaryButton}>
