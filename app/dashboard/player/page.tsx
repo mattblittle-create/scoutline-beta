@@ -116,6 +116,7 @@ export default function PlayerDashboardPage() {
 
   const [playerName, setPlayerName] = React.useState<string>("");
   const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
+  const [showNotifications, setShowNotifications] = React.useState(false);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -251,9 +252,11 @@ export default function PlayerDashboardPage() {
             )}
           </div>
 
+          <div style={{ position: "relative" }}></div>
           <button
             type="button"
             title="Notifications"
+            onClick={() => setShowNotifications((v) => !v)}
             style={{
               height: 42,
               minWidth: 42,
@@ -289,6 +292,99 @@ export default function PlayerDashboardPage() {
               12
             </span>
           </button>
+                      {showNotifications && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 52,
+                  right: 0,
+                  width: 360,
+                  maxWidth: "90vw",
+                  background: "#ffffff",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: 16,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
+                  padding: 16,
+                  zIndex: 100,
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: 14,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontWeight: 900,
+                      fontSize: 16,
+                      color: "#0f172a",
+                    }}
+                  >
+                    Notifications
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => setShowNotifications(false)}
+                    style={{
+                      border: "none",
+                      background: "transparent",
+                      cursor: "pointer",
+                      fontWeight: 900,
+                      color: "#64748b",
+                    }}
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <div style={{ display: "grid", gap: 10 }}>
+                  {[
+                    "Coach viewed your profile",
+                    "Your player card was saved to a recruiting board",
+                    "Coach searched for players matching your metrics",
+                    "New ScoutLine Chat message received",
+                    "Time to update stats / metrics",
+                  ].map((note, idx) => (
+                    <div
+                      key={idx}
+                      style={{
+                        padding: 12,
+                        borderRadius: 12,
+                        background: "#f8fafc",
+                        border: "1px solid #e2e8f0",
+                        fontSize: 14,
+                        color: "#334155",
+                        lineHeight: 1.4,
+                      }}
+                    >
+                      {note}
+                    </div>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  style={{
+                    marginTop: 14,
+                    width: "100%",
+                    padding: "10px 12px",
+                    borderRadius: 10,
+                    border: "1px solid #e5e7eb",
+                    background: "#ffffff",
+                    cursor: "pointer",
+                    fontWeight: 800,
+                    color: "#0f172a",
+                  }}
+                >
+                  Mark all as read
+                </button>
+              </div>
+            )}
+          </div>
 
           <button
             type="button"
