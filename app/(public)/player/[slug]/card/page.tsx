@@ -733,13 +733,25 @@ ${name}
           ← Back to full profile
         </a>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "flex-end", alignItems: "center" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "nowrap",
+            gap: 8,
+            justifyContent: "flex-end",
+            alignItems: "center",
+            overflowX: "auto",
+            whiteSpace: "nowrap",
+          }}
+        >
           <div style={modeToggleWrap}>
             <button
               type="button"
               onClick={() => setShareMode("intro")}
               style={{
                 ...modeToggleBtn,
+                minWidth: 120,
+                justifyContent: "center",
                 ...(shareMode === "intro" ? modeToggleBtnActive : {}),
               }}
             >
@@ -750,6 +762,8 @@ ${name}
               onClick={() => setShareMode("followup")}
               style={{
                 ...modeToggleBtn,
+                minWidth: 170,
+                justifyContent: "center",
                 ...(shareMode === "followup" ? modeToggleBtnActive : {}),
               }}
             >
@@ -757,7 +771,11 @@ ${name}
             </button>
           </div>
 
-          <button type="button" onClick={handleSend} style={primaryButton}>
+          <button
+            type="button"
+            onClick={handleSend}
+            style={{ ...primaryButton, minWidth: 165, whiteSpace: "nowrap" }}
+          >
             {shareMode === "followup" ? "Send Follow-Up Email" : "Send Intro Email"}
           </button>
 
@@ -773,7 +791,11 @@ ${name}
             Copy Full Email
           </button>
 
-          <button type="button" onClick={handlePrint} style={secondaryButton}>
+          <button
+            type="button"
+            onClick={handlePrint}
+            style={{ ...secondaryButton, minWidth: 135, whiteSpace: "nowrap" }}
+          >
             Print Player Card
           </button>
         </div>
