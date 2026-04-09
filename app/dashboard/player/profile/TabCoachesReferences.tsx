@@ -177,8 +177,10 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
 useEffect(() => {
   if (!resolvedEmail) return;
 
+  const emailKey = resolvedEmail;
+
   async function hydrate() {
-    const local = loadState(resolvedEmail);
+    const local = loadState(emailKey);
 
     // ✅ If localStorage already has data → use it
     if (local.coaches.length > 0) {
@@ -189,7 +191,7 @@ useEffect(() => {
 
     // 🚨 Otherwise → pull from DB
     try {
-      const res = await fetch(`/api/player/profile?email=${encodeURIComponent(resolvedEmail)}`, {
+      const res = await fetch(`/api/player/profile?email=${encodeURIComponent(emailKey)}`, {
         cache: "no-store",
       });
 
@@ -216,7 +218,7 @@ useEffect(() => {
           const newState = { coaches: mapped };
 
           setState(newState);
-          saveState(resolvedEmail, newState); // ✅ backfill localStorage
+          saveState(emailKey, newState); // ✅ backfill localStorage
         } else {
           setState({ coaches: [] });
         }
