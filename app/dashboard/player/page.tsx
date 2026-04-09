@@ -114,6 +114,56 @@ function DashboardCard({
 export default function PlayerDashboardPage() {
   const router = useRouter();
 
+  const [playerName, setPlayerName] = React.useState<string>("");
+  const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
+
+  React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadDashboardIdentity() {
+      try {
+        const meRes = await fetch("/api/auth/me", { cache: "no-store" });
+        const meJson = await meRes.json().catch(() => null);
+
+        const email = String(
+          meJson?.user?.email ??
+          meJson?.email ??
+          ""
+        ).trim().toLowerCase();
+
+        if (!email || cancelled) return;
+
+        const profileRes = await fetch(
+          `/api/player/profile?email=${encodeURIComponent(email)}`,
+          { cache: "no-store" }
+        );
+
+        const profileJson = await profileRes.json().catch(() => null);
+        if (cancelled || !profileRes.ok || !profileJson?.ok) return;
+
+        const norm = profileJson?.normalized ?? {};
+        const user = profileJson?.user ?? {};
+
+        const first = String(norm?.firstName ?? "").trim();
+        const last = String(norm?.lastName ?? "").trim();
+        const fullName = [first, last].filter(Boolean).join(" ").trim();
+
+        if (fullName) setPlayerName(fullName);
+
+        const photo = String(user?.photoUrl ?? norm?.photoUrl ?? "").trim();
+        if (photo) setPlayerPhotoUrl(photo);
+      } catch {
+        // no-op for dashboard shell
+      }
+    }
+
+    loadDashboardIdentity();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   return (
     <main style={{ maxWidth: 1120, margin: "0 auto", padding: "8px 0 40px" }}>
       {/* Header */}
@@ -136,7 +186,7 @@ export default function PlayerDashboardPage() {
               color: "#0f172a",
             }}
           >
-            Player Dashboard
+            {playerName ? `Player Dashboard - ${playerName}` : "Player Dashboard"}
           </h1>
 
           <p
@@ -162,6 +212,45 @@ export default function PlayerDashboardPage() {
             flexWrap: "wrap",
           }}
         >
+          <div
+            title={playerName || "Player photo"}
+            style={{
+              width: 42,
+              height: 42,
+              minWidth: 42,
+              borderRadius: "50%",
+              border: "1px solid #e5e7eb",
+              overflow: "hidden",
+              background: "#f8fafc",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {playerPhotoUrl ? (
+              <img
+                src={playerPhotoUrl}
+                alt={playerName || "Player"}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            ) : (
+              <span
+                style={{
+                  fontSize: 14,
+                  fontWeight: 900,
+                  color: "#64748b",
+                }}
+              >
+                {(playerName || "P").trim().charAt(0).toUpperCase()}
+              </span>
+            )}
+          </div>
+
           <button
             type="button"
             title="Notifications"
