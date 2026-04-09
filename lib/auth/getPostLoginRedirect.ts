@@ -103,10 +103,10 @@ export async function getPostLoginRedirect(userId: string): Promise<string> {
   if (legacyRole === "COACH") return "/dashboard/coach";
   if (legacyRole === "PARENT") return "/dashboard/parent";
   if (legacyRole === "PLAYER" && hasPlayerProfile) {
-    return "/dashboard/player/profile";
+    return "/dashboard/player";
   }
 
-  if (hasPlayerProfile) return "/dashboard/player/profile";
+  if (hasPlayerProfile) return "/dashboard/player";
 
-  return "/dashboard/player/profile";
+  return "/dashboard/player";
 }

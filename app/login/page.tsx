@@ -31,11 +31,11 @@ function fallbackForRole(r: Role) {
     case "team":
       return "/dashboard/team";
     case "player":
-      return "/dashboard/player/profile";
+      return "/dashboard/player";
     case "parent":
       return "/dashboard/parent";
     default:
-      return "/dashboard/player/profile";
+      return "/dashboard/player";
   }
 }
 
