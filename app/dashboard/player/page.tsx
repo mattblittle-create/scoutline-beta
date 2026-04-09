@@ -252,47 +252,48 @@ export default function PlayerDashboardPage() {
             )}
           </div>
 
-          <div style={{ position: "relative" }}></div>
-          <button
-            type="button"
-            title="Notifications"
-            onClick={() => setShowNotifications((v) => !v)}
-            style={{
-              height: 42,
-              minWidth: 42,
-              padding: "0 12px",
-              borderRadius: 999,
-              border: "1px solid #e5e7eb",
-              background: "#ffffff",
-              color: "#0f172a",
-              fontWeight: 800,
-              cursor: "pointer",
-              position: "relative",
-            }}
-          >
-            🔔
-            <span
+          <div style={{ position: "relative" }}>
+            <button
+              type="button"
+              title="Notifications"
+              onClick={() => setShowNotifications((v) => !v)}
               style={{
-                position: "absolute",
-                top: -4,
-                right: -2,
-                minWidth: 18,
-                height: 18,
+                height: 42,
+                minWidth: 42,
+                padding: "0 12px",
                 borderRadius: 999,
-                background: "#ef4444",
-                color: "#ffffff",
-                fontSize: 11,
-                fontWeight: 900,
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "0 5px",
+                border: "1px solid #e5e7eb",
+                background: "#ffffff",
+                color: "#0f172a",
+                fontWeight: 800,
+                cursor: "pointer",
+                position: "relative",
               }}
             >
-              12
-            </span>
-          </button>
-                      {showNotifications && (
+              🔔
+              <span
+                style={{
+                  position: "absolute",
+                  top: -4,
+                  right: -2,
+                  minWidth: 18,
+                  height: 18,
+                  borderRadius: 999,
+                  background: "#ef4444",
+                  color: "#ffffff",
+                  fontSize: 11,
+                  fontWeight: 900,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0 5px",
+                }}
+              >
+                12
+              </span>
+            </button>
+
+            {showNotifications && (
               <div
                 style={{
                   position: "absolute",
