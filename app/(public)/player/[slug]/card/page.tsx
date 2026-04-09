@@ -774,7 +774,7 @@ ${name}
           <button
             type="button"
             onClick={handleSend}
-            style={{ ...primaryButton, minWidth: 165, whiteSpace: "nowrap" }}
+            style={{ ...primaryButton, minWidth: 135, whiteSpace: "nowrap" }}
           >
             {shareMode === "followup" ? "Send Update Email" : "Send Intro Email"}
           </button>
