@@ -117,6 +117,7 @@ export default function PlayerDashboardPage() {
   const [playerName, setPlayerName] = React.useState<string>("");
   const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
   const [showNotifications, setShowNotifications] = React.useState(false);
+  const notificationsRef = React.useRef<HTMLDivElement | null>(null);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -164,6 +165,24 @@ export default function PlayerDashboardPage() {
       cancelled = true;
     };
   }, []);
+
+    React.useEffect(() => {
+    function handlePointerDown(event: MouseEvent) {
+      if (!showNotifications) return;
+
+      const target = event.target as Node | null;
+      if (!notificationsRef.current || !target) return;
+
+      if (!notificationsRef.current.contains(target)) {
+        setShowNotifications(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handlePointerDown);
+    return () => {
+      document.removeEventListener("mousedown", handlePointerDown);
+    };
+  }, [showNotifications]);
 
   return (
     <main style={{ maxWidth: 1120, margin: "0 auto", padding: "8px 0 40px" }}>
@@ -252,7 +271,7 @@ export default function PlayerDashboardPage() {
             )}
           </div>
 
-          <div style={{ position: "relative" }}>
+          <div ref={notificationsRef} style={{ position: "relative" }}>
             <button
               type="button"
               title="Notifications"
