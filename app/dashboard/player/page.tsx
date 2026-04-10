@@ -14,6 +14,20 @@ type DashboardCardProps = {
   badge?: string;
 };
 
+type ChatMessage = {
+  from: "coach" | "player";
+  text: string;
+};
+
+type ChatThread = {
+  id: string;
+  name: string;
+  school: string;
+  preview: string;
+  unread: boolean;
+  messages: ChatMessage[];
+};
+
 function DashboardCard({
   title,
   description,
@@ -116,10 +130,56 @@ export default function PlayerDashboardPage() {
 
   const [playerName, setPlayerName] = React.useState<string>("");
   const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
+  const [profileCompletion, setProfileCompletion] = React.useState<number>(0);
+  const [profileStatusLabel, setProfileStatusLabel] = React.useState<string>("Getting Started");
+  const [lastProfileUpdateLabel, setLastProfileUpdateLabel] = React.useState<string>("Not available");
   const [showNotifications, setShowNotifications] = React.useState(false);
   const [showChat, setShowChat] = React.useState(false);
   const [selectedChatId, setSelectedChatId] = React.useState("coach-1");
   const notificationsRef = React.useRef<HTMLDivElement | null>(null);
+
+    function computeCompletion(norm: any): number {
+    const checks = [
+      !!String(norm?.firstName ?? "").trim(),
+      !!String(norm?.lastName ?? "").trim(),
+      !!String(norm?.primaryPos ?? "").trim(),
+      !!String(norm?.gradYear ?? "").trim(),
+      !!String(norm?.gpa ?? "").trim(),
+      !!String(norm?.hsName ?? "").trim(),
+      !!String(norm?.travelTeamName ?? "").trim(),
+      !!String(norm?.playerBio ?? "").trim(),
+      Array.isArray(norm?.coaches) && norm.coaches.length > 0,
+      Array.isArray(norm?.externalVideos) && norm.externalVideos.length > 0,
+      Array.isArray(norm?.localVideos) && norm.localVideos.length > 0,
+      !!norm?.photoUrl,
+      !!norm?.metrics && Object.values(norm.metrics).some((arr: any) => Array.isArray(arr) && arr.length > 0),
+      Array.isArray(norm?.statsSeasons) && norm.statsSeasons.length > 0,
+    ];
+
+    const completeCount = checks.filter(Boolean).length;
+    return Math.round((completeCount / checks.length) * 100);
+  }
+
+  function completionLabel(score: number): string {
+    if (score >= 85) return "Recruiting Ready";
+    if (score >= 60) return "In Progress";
+    if (score >= 30) return "Building";
+    return "Getting Started";
+  }
+
+  function formatLastUpdated(value: unknown): string {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "Not available";
+
+    const dt = new Date(raw);
+    if (Number.isNaN(dt.getTime())) return "Not available";
+
+    return dt.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
 
   React.useEffect(() => {
     let cancelled = false;
@@ -156,6 +216,22 @@ export default function PlayerDashboardPage() {
 
         const photo = String(user?.photoUrl ?? norm?.photoUrl ?? "").trim();
         if (photo) setPlayerPhotoUrl(photo);
+
+        const completion = computeCompletion({
+          ...norm,
+          photoUrl: photo || norm?.photoUrl || "",
+        });
+        setProfileCompletion(completion);
+        setProfileStatusLabel(completionLabel(completion));
+
+        const updatedAt =
+          profileJson?.playerProfile?.updatedAt ??
+          profileJson?.updatedAt ??
+          norm?.updatedAt ??
+          user?.updatedAt ??
+          "";
+
+        setLastProfileUpdateLabel(formatLastUpdated(updatedAt));
       } catch {
         // no-op for dashboard shell
       }
@@ -168,7 +244,7 @@ export default function PlayerDashboardPage() {
     };
   }, []);
 
-    const chatThreads = [
+    const chatThreads: ChatThread[] = [
     {
       id: "coach-1",
       name: "Coach Daniels",
@@ -488,10 +564,10 @@ export default function PlayerDashboardPage() {
             Profile Status
           </div>
           <div style={{ marginTop: 6, fontSize: 24, fontWeight: 900, color: "#0f172a" }}>
-            In Progress
+            {profileStatusLabel}
           </div>
           <div style={{ marginTop: 6, color: "#475569", fontSize: 14 }}>
-            Continue updating your profile to improve recruiting visibility.
+            {profileCompletion}% complete
           </div>
         </div>
 
@@ -507,10 +583,10 @@ export default function PlayerDashboardPage() {
             Last Profile Update
           </div>
           <div style={{ marginTop: 6, fontSize: 24, fontWeight: 900, color: "#0f172a" }}>
-            Recent
+            {lastProfileUpdateLabel}
           </div>
           <div style={{ marginTop: 6, color: "#475569", fontSize: 14 }}>
-            Metrics, stats, grades, and video should stay current.
+            Keep metrics, stats, grades, video, and references current.
           </div>
         </div>
 
