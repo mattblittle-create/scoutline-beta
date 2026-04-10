@@ -741,14 +741,21 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
         }),
       });
 
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || json?.ok === false) {
-        throw new Error(json?.error || `Failed to send message (${res.status})`);
-      }
+const json = await res.json().catch(() => ({}));
+if (!res.ok || json?.ok === false) {
+  throw new Error(json?.error || `Failed to send message (${res.status})`);
+}
 
-      setChatDraft("");
-      setChatOkMsg("Message sent. The player can now reply in ScoutLine Chat.");
-      setTimeout(() => setChatOkMsg(null), 2500);
+const conversationId = json?.data?.conversation?.id;
+
+setChatDraft("");
+
+if (conversationId) {
+  router.push(`/dashboard/coach/chat?conversationId=${conversationId}`);
+} else {
+  setChatOkMsg("Message sent. The player can now reply in ScoutLine Chat.");
+  setTimeout(() => setChatOkMsg(null), 2500);
+}
     } catch (e: any) {
       setChatError(e?.message || "Failed to send message.");
     } finally {

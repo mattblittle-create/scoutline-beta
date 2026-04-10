@@ -233,14 +233,16 @@ export async function POST(req: Request) {
         createdMessageId = created.id;
       }
 
-      return NextResponse.json({
-        ok: true,
-        data: {
-          conversationId: existing.id,
-          existed: true,
-          createdMessageId,
-        },
-      });
+return NextResponse.json({
+  ok: true,
+  data: {
+    conversation: {
+      id: existing.id,
+    },
+    existed: true,
+    createdMessageId,
+  },
+});
     }
 
     const createdConversation = await prisma.$transaction(async (tx) => {
@@ -297,14 +299,16 @@ export async function POST(req: Request) {
       };
     });
 
-    return NextResponse.json({
-      ok: true,
-      data: {
-        conversationId: createdConversation.conversationId,
-        existed: false,
-        createdMessageId: createdConversation.createdMessageId,
-      },
-    });
+return NextResponse.json({
+  ok: true,
+  data: {
+    conversation: {
+      id: createdConversation.conversationId,
+    },
+    existed: false,
+    createdMessageId: createdConversation.createdMessageId,
+  },
+});
   } catch (err) {
     console.error("chat conversations create POST error", err);
     return NextResponse.json<Err>(
