@@ -28,6 +28,15 @@ type ChatThread = {
   messages: ChatMessage[];
 };
 
+type DashboardNotification = {
+  id: string;
+  type: string;
+  message: string;
+  data: any | null;
+  readAt: string | null;
+  createdAt: string;
+};
+
 function DashboardCard({
   title,
   description,
@@ -133,6 +142,8 @@ export default function PlayerDashboardPage() {
   const [profileCompletion, setProfileCompletion] = React.useState<number>(0);
   const [profileStatusLabel, setProfileStatusLabel] = React.useState<string>("Getting Started");
   const [lastProfileUpdateLabel, setLastProfileUpdateLabel] = React.useState<string>("Not available");
+  const [notifications, setNotifications] = React.useState<DashboardNotification[]>([]);
+  const [notificationsLoading, setNotificationsLoading] = React.useState(false);
   const [showNotifications, setShowNotifications] = React.useState(false);
   const [showChat, setShowChat] = React.useState(false);
   const [selectedChatId, setSelectedChatId] = React.useState("coach-1");
@@ -244,6 +255,45 @@ export default function PlayerDashboardPage() {
     };
   }, []);
 
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadNotifications() {
+      try {
+        setNotificationsLoading(true);
+
+        const res = await fetch("/api/notifications?limit=10", {
+          cache: "no-store",
+          credentials: "include",
+        });
+
+        const json = await res.json().catch(() => null);
+        if (cancelled) return;
+        if (!res.ok || !json?.ok) return;
+
+        const rows = Array.isArray(json?.data?.notifications)
+          ? json.data.notifications
+          : [];
+
+        setNotifications(rows);
+      } catch {
+        if (!cancelled) {
+          setNotifications([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setNotificationsLoading(false);
+        }
+      }
+    }
+
+    loadNotifications();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
     const chatThreads: ChatThread[] = [
     {
       id: "coach-1",
@@ -282,6 +332,55 @@ export default function PlayerDashboardPage() {
 
   const selectedChat =
     chatThreads.find((t) => t.id === selectedChatId) ?? chatThreads[0];
+
+  const unreadNotificationCount = notifications.filter((n) => !n.readAt).length;
+
+    async function markAllNotificationsRead() {
+    try {
+      const res = await fetch("/api/notifications/read-all", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      const json = await res.json().catch(() => null);
+      if (!res.ok || !json?.ok) return;
+
+      const now = new Date().toISOString();
+      setNotifications((prev) =>
+        prev.map((n) => ({
+          ...n,
+          readAt: n.readAt ?? now,
+        }))
+      );
+    } catch {
+      // no-op for now
+    }
+  }
+
+  async function markNotificationRead(notificationId: string) {
+    try {
+      const res = await fetch("/api/notifications/read", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ notificationId }),
+      });
+
+      const json = await res.json().catch(() => null);
+      if (!res.ok || !json?.ok) return;
+
+      const now = new Date().toISOString();
+      setNotifications((prev) =>
+        prev.map((n) =>
+          n.id === notificationId
+            ? { ...n, readAt: n.readAt ?? now }
+            : n
+        )
+      );
+    } catch {
+      // no-op for now
+    }
+  }
 
     React.useEffect(() => {
     function handlePointerDown(event: MouseEvent) {
@@ -425,7 +524,7 @@ export default function PlayerDashboardPage() {
                   padding: "0 5px",
                 }}
               >
-                12
+              {unreadNotificationCount}
               </span>
             </button>
 
@@ -479,32 +578,86 @@ export default function PlayerDashboardPage() {
                 </div>
 
                 <div style={{ display: "grid", gap: 10 }}>
-                  {[
-                    "Coach viewed your profile",
-                    "Your player card was saved to a recruiting board",
-                    "Coach searched for players matching your metrics",
-                    "New ScoutLine Chat message received",
-                    "Time to update stats / metrics",
-                  ].map((note, idx) => (
+                  {notificationsLoading ? (
                     <div
-                      key={idx}
                       style={{
                         padding: 12,
                         borderRadius: 12,
                         background: "#f8fafc",
                         border: "1px solid #e2e8f0",
                         fontSize: 14,
-                        color: "#334155",
-                        lineHeight: 1.4,
+                        color: "#64748b",
                       }}
                     >
-                      {note}
+                      Loading notifications...
                     </div>
-                  ))}
+                  ) : notifications.length === 0 ? (
+                    <div
+                      style={{
+                        padding: 12,
+                        borderRadius: 12,
+                        background: "#f8fafc",
+                        border: "1px solid #e2e8f0",
+                        fontSize: 14,
+                        color: "#64748b",
+                      }}
+                    >
+                      No notifications yet.
+                    </div>
+                  ) : (
+                    notifications.map((note) => (
+                      <button
+                        key={note.id}
+                        type="button"
+                        onClick={() => {
+                          if (!note.readAt) {
+                            markNotificationRead(note.id);
+                          }
+                        }}
+                        style={{
+                          padding: 12,
+                          borderRadius: 12,
+                          background: note.readAt ? "#ffffff" : "#f8fafc",
+                          border: "1px solid #e2e8f0",
+                          fontSize: 14,
+                          color: "#334155",
+                          lineHeight: 1.4,
+                          textAlign: "left",
+                          width: "100%",
+                          cursor: note.readAt ? "default" : "pointer",
+                        }}
+                      >
+                        <div
+                          style={{
+                            fontWeight: note.readAt ? 600 : 800,
+                            color: note.readAt ? "#64748b" : "#0f172a",
+                            marginBottom: 4,
+                          }}
+                        >
+                          {note.message}
+                        </div>
+
+                        <div
+                          style={{
+                            fontSize: 12,
+                            color: note.readAt ? "#94a3b8" : "#64748b",
+                          }}
+                        >
+                          {new Date(note.createdAt).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </div>
+                      </button>
+                    ))
+                  )}
                 </div>
 
                 <button
                   type="button"
+                  onClick={markAllNotificationsRead}
+                  disabled={unreadNotificationCount === 0}
                   style={{
                     marginTop: 14,
                     width: "100%",
@@ -512,9 +665,10 @@ export default function PlayerDashboardPage() {
                     borderRadius: 10,
                     border: "1px solid #e5e7eb",
                     background: "#ffffff",
-                    cursor: "pointer",
+                    cursor: unreadNotificationCount === 0 ? "not-allowed" : "pointer",
                     fontWeight: 800,
-                    color: "#0f172a",
+                    color: unreadNotificationCount === 0 ? "#94a3b8" : "#0f172a",
+                    opacity: unreadNotificationCount === 0 ? 0.7 : 1,
                   }}
                 >
                   Mark all as read
@@ -602,10 +756,10 @@ export default function PlayerDashboardPage() {
             Alerts
           </div>
           <div style={{ marginTop: 6, fontSize: 24, fontWeight: 900, color: "#0f172a" }}>
-            12 New
+            {unreadNotificationCount} New
           </div>
           <div style={{ marginTop: 6, color: "#475569", fontSize: 14 }}>
-            Profile views, messages, saves, search activity, and reminders.
+            Profile views, messages, saves, ownership updates, and reminders.
           </div>
         </div>
 
@@ -754,7 +908,7 @@ export default function PlayerDashboardPage() {
               fontWeight: 700,
             }}
           >
-            Chat shell coming next.
+            ScoutLine Chat is available from the dashboard header.
           </div>
         </div>
       </section>
