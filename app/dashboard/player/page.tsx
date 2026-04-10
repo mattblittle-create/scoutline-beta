@@ -37,6 +37,37 @@ type DashboardNotification = {
   createdAt: string;
 };
 
+type ApiChatConversation = {
+  id: string;
+  subject: string | null;
+  lastMessageAt: string | null;
+  unreadCount: number;
+  preview: string;
+  lastMessageCreatedAt: string | null;
+  otherParticipant: {
+    id: string;
+    name: string;
+    email: string;
+    photoUrl: string;
+    role: string;
+    staffTitle: string;
+    collegeName: string;
+  } | null;
+};
+
+type ApiChatMessage = {
+  id: string;
+  body: string;
+  createdAt: string;
+  senderUserId: string;
+  senderUser: {
+    id: string;
+    name: string;
+    email: string;
+    photoUrl: string;
+  };
+};
+
 function DashboardCard({
   title,
   description,
@@ -146,7 +177,14 @@ export default function PlayerDashboardPage() {
   const [notificationsLoading, setNotificationsLoading] = React.useState(false);
   const [showNotifications, setShowNotifications] = React.useState(false);
   const [showChat, setShowChat] = React.useState(false);
-  const [selectedChatId, setSelectedChatId] = React.useState("coach-1");
+  const [selectedChatId, setSelectedChatId] = React.useState<string>("");
+  const [chatConversations, setChatConversations] = React.useState<ApiChatConversation[]>([]);
+  const [chatMessages, setChatMessages] = React.useState<ApiChatMessage[]>([]);
+  const [chatLoading, setChatLoading] = React.useState(false);
+  const [chatMessagesLoading, setChatMessagesLoading] = React.useState(false);
+  const [chatDraft, setChatDraft] = React.useState("");
+  const [chatSending, setChatSending] = React.useState(false);
+  const [currentUserId, setCurrentUserId] = React.useState<string>("");
   const notificationsRef = React.useRef<HTMLDivElement | null>(null);
 
     function computeCompletion(norm: any): number {
@@ -218,6 +256,9 @@ export default function PlayerDashboardPage() {
 
         const norm = profileJson?.normalized ?? {};
         const user = profileJson?.user ?? {};
+
+        const meId = String(meJson?.user?.id ?? "").trim();
+        if (meId) setCurrentUserId(meId);
 
         const first = String(norm?.firstName ?? "").trim();
         const last = String(norm?.lastName ?? "").trim();
@@ -293,6 +334,102 @@ export default function PlayerDashboardPage() {
       cancelled = true;
     };
   }, []);
+
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadChatConversations() {
+      try {
+        setChatLoading(true);
+
+        const res = await fetch("/api/chat/conversations", {
+          cache: "no-store",
+          credentials: "include",
+        });
+
+        const json = await res.json().catch(() => null);
+        if (cancelled) return;
+        if (!res.ok || !json?.ok) return;
+
+        const rows = Array.isArray(json?.data?.conversations)
+          ? json.data.conversations
+          : [];
+
+        setChatConversations(rows);
+
+        if (!selectedChatId && rows.length > 0) {
+          setSelectedChatId(rows[0].id);
+        }
+      } catch {
+        if (!cancelled) {
+          setChatConversations([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setChatLoading(false);
+        }
+      }
+    }
+
+    loadChatConversations();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedChatId]);
+
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadMessages() {
+      if (!selectedChatId) {
+        setChatMessages([]);
+        return;
+      }
+
+      try {
+        setChatMessagesLoading(true);
+
+        const res = await fetch(
+          `/api/chat/messages?conversationId=${encodeURIComponent(selectedChatId)}`,
+          {
+            cache: "no-store",
+            credentials: "include",
+          }
+        );
+
+        const json = await res.json().catch(() => null);
+        if (cancelled) return;
+        if (!res.ok || !json?.ok) return;
+
+        const rows = Array.isArray(json?.data?.messages)
+          ? json.data.messages
+          : [];
+
+        setChatMessages(rows);
+
+        setChatConversations((prev) =>
+          prev.map((c) =>
+            c.id === selectedChatId ? { ...c, unreadCount: 0 } : c
+          )
+        );
+      } catch {
+        if (!cancelled) {
+          setChatMessages([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setChatMessagesLoading(false);
+        }
+      }
+    }
+
+    loadMessages();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedChatId]);
 
     const chatThreads: ChatThread[] = [
     {
@@ -379,6 +516,51 @@ export default function PlayerDashboardPage() {
       );
     } catch {
       // no-op for now
+    }
+  }
+
+    async function sendChatMessage() {
+    const message = chatDraft.trim();
+    if (!selectedChatId || !message) return;
+
+    try {
+      setChatSending(true);
+
+      const res = await fetch("/api/chat/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          conversationId: selectedChatId,
+          message,
+        }),
+      });
+
+      const json = await res.json().catch(() => null);
+      if (!res.ok || !json?.ok) return;
+
+      const created = json?.data?.message;
+      if (!created) return;
+
+      setChatMessages((prev) => [...prev, created]);
+      setChatDraft("");
+
+      setChatConversations((prev) =>
+        prev.map((c) =>
+          c.id === selectedChatId
+            ? {
+                ...c,
+                preview: created.body,
+                lastMessageAt: created.createdAt,
+                lastMessageCreatedAt: created.createdAt,
+              }
+            : c
+        )
+      );
+    } catch {
+      // no-op for now
+    } finally {
+      setChatSending(false);
     }
   }
 
