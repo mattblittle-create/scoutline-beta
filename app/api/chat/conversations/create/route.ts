@@ -139,6 +139,25 @@ export async function POST(req: Request) {
     const currentParticipantRole = inferChatParticipantRole(currentUserRow);
     const otherParticipantRole = inferChatParticipantRole(otherUserRow);
 
+    const canInitiateCoachFirst =
+      currentParticipantRole === "COACH" ||
+      currentParticipantRole === "TEAM_ADMIN" ||
+      currentParticipantRole === "SCOUTLINE_ADMIN";
+
+    if (!canInitiateCoachFirst) {
+      return NextResponse.json<Err>(
+        { ok: false, error: "Only coaches can initiate ScoutLine chat conversations." },
+        { status: 403 }
+      );
+    }
+
+    if (otherParticipantRole !== "PLAYER") {
+      return NextResponse.json<Err>(
+        { ok: false, error: "ScoutLine coach-first chat can only be initiated to a player." },
+        { status: 400 }
+      );
+    }
+
     const existing = await prisma.chatConversation.findFirst({
       where: {
         participants: {

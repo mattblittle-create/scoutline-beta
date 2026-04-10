@@ -192,6 +192,11 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
   const [listSaving, setListSaving] = useState(false);
   const [listActionError, setListActionError] = useState<string | null>(null);
 
+  const [chatDraft, setChatDraft] = useState("");
+  const [chatSending, setChatSending] = useState(false);
+  const [chatOkMsg, setChatOkMsg] = useState<string | null>(null);
+  const [chatError, setChatError] = useState<string | null>(null);
+
   // Load core player detail + metrics/stats snapshot
   useEffect(() => {
     let cancelled = false;
@@ -706,6 +711,51 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
     }
   };
 
+    async function sendFirstChatMessage() {
+    const otherUserId = String(user?.id || "").trim();
+    const initialMessage = chatDraft.trim();
+
+    if (!otherUserId) {
+      setChatError("Player user account is not available for chat.");
+      return;
+    }
+
+    if (!initialMessage) {
+      setChatError("Enter a message first.");
+      return;
+    }
+
+    try {
+      setChatSending(true);
+      setChatError(null);
+      setChatOkMsg(null);
+
+      const res = await fetch("/api/chat/conversations/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        cache: "no-store",
+        body: JSON.stringify({
+          otherUserId,
+          subject: "ScoutLine Coach Outreach",
+          initialMessage,
+        }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.ok === false) {
+        throw new Error(json?.error || `Failed to send message (${res.status})`);
+      }
+
+      setChatDraft("");
+      setChatOkMsg("Message sent. The player can now reply in ScoutLine Chat.");
+      setTimeout(() => setChatOkMsg(null), 2500);
+    } catch (e: any) {
+      setChatError(e?.message || "Failed to send message.");
+    } finally {
+      setChatSending(false);
+    }
+  }
+
   const playerName = user?.name || (user?.email ? user.email.split("@")[0] : "Player");
 
   return (
@@ -758,6 +808,41 @@ export default function CoachPlayerDetailPage({ params, searchParams }: Props) {
 
           {/* Right */}
           <div style={{ display: "grid", gap: 14 }}>
+            <div style={card}>
+              <div style={rowBetween}>
+                <div style={sectionTitle}>Message Player</div>
+                <div style={helperTiny}>Coach-initiated first contact through ScoutLine Chat.</div>
+              </div>
+
+              <div style={stackSm}>
+                <div style={tinyMutedText}>
+                  This creates the ScoutLine chat thread for this player. After that, the player can reply directly inside ScoutLine Chat.
+                </div>
+
+                <textarea
+                  value={chatDraft}
+                  onChange={(e) => setChatDraft(e.target.value)}
+                  rows={4}
+                  placeholder={`Message ${playerName}...`}
+                  style={textarea}
+                />
+
+                <div style={rowEnd}>
+                  <button
+                    type="button"
+                    onClick={sendFirstChatMessage}
+                    disabled={chatSending || !chatDraft.trim() || !user?.id}
+                    style={{ ...btnGold, opacity: chatSending || !chatDraft.trim() || !user?.id ? 0.6 : 1 }}
+                  >
+                    {chatSending ? "Sending…" : "Send ScoutLine Message"}
+                  </button>
+                </div>
+
+                {chatError ? <div style={tinyErrorText}>{chatError}</div> : null}
+                {chatOkMsg ? <div style={{ ...tinyMutedText, color: "#047857", fontWeight: 900 }}>{chatOkMsg}</div> : null}
+              </div>
+            </div>
+
             <div style={card}>
               <div style={rowBetween}>
                 <div style={sectionTitle}>Coach Notes</div>
