@@ -185,6 +185,10 @@ export default function PlayerDashboardPage() {
   const [chatDraft, setChatDraft] = React.useState("");
   const [chatSending, setChatSending] = React.useState(false);
   const [currentUserId, setCurrentUserId] = React.useState<string>("");
+
+  const selectedConversation =
+    chatConversations.find((c) => c.id === selectedChatId) ?? null;
+
   const notificationsRef = React.useRef<HTMLDivElement | null>(null);
 
     function computeCompletion(norm: any): number {
@@ -430,45 +434,6 @@ export default function PlayerDashboardPage() {
       cancelled = true;
     };
   }, [selectedChatId]);
-
-    const chatThreads: ChatThread[] = [
-    {
-      id: "coach-1",
-      name: "Coach Daniels",
-      school: "Coastal Prep Baseball",
-      preview: "Thanks for sending over your player card.",
-      unread: true,
-      messages: [
-        { from: "coach", text: "Thanks for sending over your player card." },
-        { from: "coach", text: "We like your metrics and would like to follow along this spring." },
-        { from: "player", text: "Thank you, Coach. I’ll keep my profile updated with new stats and video." },
-      ],
-    },
-    {
-      id: "coach-2",
-      name: "Coach Miller",
-      school: "Piedmont College",
-      preview: "Please keep us updated with new video.",
-      unread: false,
-      messages: [
-        { from: "coach", text: "Please keep us updated with new video." },
-        { from: "player", text: "Absolutely. I’m adding fresh game clips soon." },
-      ],
-    },
-    {
-      id: "coach-3",
-      name: "Coach Ramirez",
-      school: "South Region Baseball",
-      preview: "We viewed your profile this week.",
-      unread: false,
-      messages: [
-        { from: "coach", text: "We viewed your profile this week." },
-      ],
-    },
-  ];
-
-  const selectedChat =
-    chatThreads.find((t) => t.id === selectedChatId) ?? chatThreads[0];
 
   const unreadNotificationCount = notifications.filter((n) => !n.readAt).length;
 
@@ -1161,8 +1126,17 @@ export default function PlayerDashboardPage() {
             </div>
 
             <div style={{ padding: 12, display: "grid", gap: 10, overflowY: "auto" }}>
-              {chatThreads.map((thread) => {
-                const active = thread.id === selectedChat.id;
+{chatLoading ? (
+  <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
+    Loading conversations...
+  </div>
+) : chatConversations.length === 0 ? (
+  <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
+    No conversations yet.
+  </div>
+) : (
+  chatConversations.map((thread) => {
+    const active = thread.id === selectedChatId;
 
                 return (
                   <button
@@ -1258,10 +1232,10 @@ export default function PlayerDashboardPage() {
             >
               <div>
                 <div style={{ fontSize: 18, fontWeight: 900, color: "#0f172a" }}>
-                  {selectedChat.name}
+                  {selectedConversation?.otherParticipant?.name || "Conversation"}
                 </div>
                 <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>
-                  {selectedChat.school}
+                  {selectedConversation?.otherParticipant?.collegeName || ""}
                 </div>
               </div>
 
@@ -1290,8 +1264,12 @@ export default function PlayerDashboardPage() {
                 background: "#f8fafc",
               }}
             >
-              {selectedChat.messages.map((msg, idx) => {
-                const isPlayer = msg.from === "player";
+            {chatMessagesLoading ? (
+              <div style={{ color: "#64748b", fontSize: 14 }}>
+                Loading messages...
+              </div>
+            ) : chatMessages.map((msg) => {
+              const isPlayer = msg.senderUserId === currentUserId;
 
                 return (
                   <div
@@ -1313,7 +1291,7 @@ export default function PlayerDashboardPage() {
                         fontSize: 14,
                       }}
                     >
-                      {msg.text}
+                      {msg.body}
                     </div>
                   </div>
                 );
@@ -1335,38 +1313,39 @@ export default function PlayerDashboardPage() {
                   alignItems: "end",
                 }}
               >
-                <textarea
-                  placeholder="Compose a message to a coach..."
-                  disabled
-                  style={{
-                    minHeight: 72,
-                    width: "100%",
-                    resize: "none",
-                    borderRadius: 12,
-                    border: "1px solid #e5e7eb",
-                    padding: 12,
-                    outline: "none",
-                    background: "#f8fafc",
-                    color: "#64748b",
-                  }}
-                />
+<textarea
+  value={chatDraft}
+  onChange={(e) => setChatDraft(e.target.value)}
+  placeholder="Compose a message..."
+  style={{
+    minHeight: 72,
+    width: "100%",
+    resize: "none",
+    borderRadius: 12,
+    border: "1px solid #e5e7eb",
+    padding: 12,
+    outline: "none",
+  }}
+/>
 
-                <button
-                  type="button"
-                  disabled
-                  style={{
-                    height: 42,
-                    padding: "0 16px",
-                    borderRadius: 10,
-                    border: "1px solid #e5e7eb",
-                    background: "#ffffff",
-                    color: "#94a3b8",
-                    fontWeight: 800,
-                    cursor: "not-allowed",
-                  }}
-                >
-                  Send
-                </button>
+<button
+  type="button"
+  onClick={sendChatMessage}
+  disabled={chatSending || !chatDraft.trim()}
+  style={{
+    height: 42,
+    padding: "0 16px",
+    borderRadius: 10,
+    border: "1px solid #0ea5e9",
+    background: "#38bdf8",
+    color: "#083344",
+    fontWeight: 800,
+    cursor: chatSending ? "not-allowed" : "pointer",
+    opacity: chatSending ? 0.7 : 1,
+  }}
+>
+  {chatSending ? "Sending..." : "Send"}
+</button>
               </div>
 
               <div
