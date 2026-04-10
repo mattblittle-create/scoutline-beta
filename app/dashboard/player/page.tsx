@@ -14,20 +14,6 @@ type DashboardCardProps = {
   badge?: string;
 };
 
-type ChatMessage = {
-  from: "coach" | "player";
-  text: string;
-};
-
-type ChatThread = {
-  id: string;
-  name: string;
-  school: string;
-  preview: string;
-  unread: boolean;
-  messages: ChatMessage[];
-};
-
 type DashboardNotification = {
   id: string;
   type: string;
@@ -1125,89 +1111,90 @@ export default function PlayerDashboardPage() {
               </button>
             </div>
 
-            <div style={{ padding: 12, display: "grid", gap: 10, overflowY: "auto" }}>
-{chatLoading ? (
-  <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
-    Loading conversations...
-  </div>
-) : chatConversations.length === 0 ? (
-  <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
-    No conversations yet.
-  </div>
-) : (
-  chatConversations.map((thread) => {
-    const active = thread.id === selectedChatId;
+<div style={{ padding: 12, display: "grid", gap: 10, overflowY: "auto" }}>
+  {chatLoading ? (
+    <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
+      Loading conversations...
+    </div>
+  ) : chatConversations.length === 0 ? (
+    <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
+      No conversations yet.
+    </div>
+  ) : (
+    chatConversations.map((thread) => {
+      const active = thread.id === selectedChatId;
 
-                return (
-                  <button
-                    key={thread.id}
-                    type="button"
-                    onClick={() => setSelectedChatId(thread.id)}
-                    style={{
-                      textAlign: "left",
-                      border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
-                      background: active ? "#e0f2fe" : "#ffffff",
-                      borderRadius: 14,
-                      padding: 12,
-                      cursor: "pointer",
-                    }}
-                  >
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        gap: 8,
-                      }}
-                    >
-                      <div
-                        style={{
-                          fontWeight: 900,
-                          color: "#0f172a",
-                          fontSize: 14,
-                        }}
-                      >
-                        {thread.name}
-                      </div>
-
-                      {thread.unread ? (
-                        <span
-                          style={{
-                            minWidth: 8,
-                            height: 8,
-                            borderRadius: 999,
-                            background: "#ef4444",
-                            display: "inline-block",
-                          }}
-                        />
-                      ) : null}
-                    </div>
-
-                    <div
-                      style={{
-                        fontSize: 12,
-                        color: "#64748b",
-                        marginTop: 4,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {thread.school}
-                    </div>
-
-                    <div
-                      style={{
-                        marginTop: 8,
-                        fontSize: 13,
-                        color: "#475569",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {thread.preview}
-                    </div>
-                  </button>
-                );
-              })}
+      return (
+        <button
+          key={thread.id}
+          type="button"
+          onClick={() => setSelectedChatId(thread.id)}
+          style={{
+            textAlign: "left",
+            border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
+            background: active ? "#e0f2fe" : "#ffffff",
+            borderRadius: 14,
+            padding: 12,
+            cursor: "pointer",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            <div
+              style={{
+                fontWeight: 900,
+                color: "#0f172a",
+                fontSize: 14,
+              }}
+            >
+              {thread.otherParticipant?.name || "Unknown"}
             </div>
+
+            {thread.unreadCount > 0 ? (
+              <span
+                style={{
+                  minWidth: 8,
+                  height: 8,
+                  borderRadius: 999,
+                  background: "#ef4444",
+                  display: "inline-block",
+                }}
+              />
+            ) : null}
+          </div>
+
+          <div
+            style={{
+              fontSize: 12,
+              color: "#64748b",
+              marginTop: 4,
+              fontWeight: 700,
+            }}
+          >
+            {thread.otherParticipant?.collegeName || ""}
+          </div>
+
+          <div
+            style={{
+              marginTop: 8,
+              fontSize: 13,
+              color: "#475569",
+              lineHeight: 1.4,
+            }}
+          >
+            {thread.preview}
+          </div>
+        </button>
+      );
+    })
+  )}
+</div>
           </div>
 
           {/* Main chat area */}
@@ -1264,38 +1251,44 @@ export default function PlayerDashboardPage() {
                 background: "#f8fafc",
               }}
             >
-            {chatMessagesLoading ? (
-              <div style={{ color: "#64748b", fontSize: 14 }}>
-                Loading messages...
-              </div>
-            ) : chatMessages.map((msg) => {
-              const isPlayer = msg.senderUserId === currentUserId;
+{chatMessagesLoading ? (
+  <div style={{ color: "#64748b", fontSize: 14 }}>
+    Loading messages...
+  </div>
+) : chatMessages.length === 0 ? (
+  <div style={{ color: "#64748b", fontSize: 14 }}>
+    No messages yet.
+  </div>
+) : (
+  chatMessages.map((msg) => {
+    const isPlayer = msg.senderUserId === currentUserId;
 
-                return (
-                  <div
-                    key={idx}
-                    style={{
-                      display: "flex",
-                      justifyContent: isPlayer ? "flex-end" : "flex-start",
-                    }}
-                  >
-                    <div
-                      style={{
-                        maxWidth: "75%",
-                        padding: "12px 14px",
-                        borderRadius: 16,
-                        background: isPlayer ? "#e0f2fe" : "#ffffff",
-                        border: "1px solid #e5e7eb",
-                        color: "#0f172a",
-                        lineHeight: 1.45,
-                        fontSize: 14,
-                      }}
-                    >
-                      {msg.body}
-                    </div>
-                  </div>
-                );
-              })}
+    return (
+      <div
+        key={msg.id}
+        style={{
+          display: "flex",
+          justifyContent: isPlayer ? "flex-end" : "flex-start",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "75%",
+            padding: "12px 14px",
+            borderRadius: 16,
+            background: isPlayer ? "#e0f2fe" : "#ffffff",
+            border: "1px solid #e5e7eb",
+            color: "#0f172a",
+            lineHeight: 1.45,
+            fontSize: 14,
+          }}
+        >
+          {msg.body}
+        </div>
+      </div>
+    );
+  })
+)}
             </div>
 
             <div
