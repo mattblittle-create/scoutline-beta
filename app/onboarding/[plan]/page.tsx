@@ -63,8 +63,8 @@ export default function OnboardingPlanPage({ params }: PageProps) {
   const plan = normalizePlanSlug(params?.plan);
   const kind = classifyPlan(plan);
 
-  const billing = (search.get("billing") || "").trim().toLowerCase();
-  const billingQs = billing ? `?billing=${encodeURIComponent(billing)}` : "";
+  const billing = "monthly";
+  const billingQs = `?billing=${encodeURIComponent(billing)}`;
 
   React.useEffect(() => {
     if (kind === "COACH") router.replace(`/onboarding/coach${billingQs}`);
@@ -108,7 +108,7 @@ function PlayerOnboarding({ plan }: { plan: string }) {
   const search = useSearchParams();
 
   const prefillEmail = (search.get("email") || search.get("username") || "").trim();
-  const billing = (search.get("billing") || "").trim().toLowerCase();
+  const billing = "monthly";
 
   const [form, setForm] = React.useState<PlayerCoreForm>({
     email: prefillEmail,
@@ -226,7 +226,7 @@ function PlayerOnboarding({ plan }: { plan: string }) {
           `&playerFirstName=${encodeURIComponent(firstName)}` +
           `&playerLastName=${encodeURIComponent(lastName)}` +
           `&plan=${encodeURIComponent(plan)}` +
-          `&billing=${encodeURIComponent(billing || "monthly")}`;
+          `&billing=${encodeURIComponent("monthly")}`;
 
         fetch("/api/onboarding/player/parent-invite", {
           method: "POST",
@@ -237,7 +237,7 @@ function PlayerOnboarding({ plan }: { plan: string }) {
             playerFirstName: firstName,
             playerLastName: lastName,
             plan,
-            billing: billing || "monthly",
+            billing: "monthly",
             setupUrl: parentSetupUrl,
           }),
         }).catch((err) => {

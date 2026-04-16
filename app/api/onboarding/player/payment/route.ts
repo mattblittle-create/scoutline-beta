@@ -10,7 +10,7 @@ type Body = {
   plan?: string | null;
   email?: string | null;
   username?: string | null; // legacy fallback
-  cadence?: string | null;  // monthly | annual
+  cadence?: string | null;  // monthly
   method?: string | null;   // card | ach
 };
 
@@ -95,7 +95,7 @@ export async function POST(req: Request) {
 
     const plan = normalizeText(body.plan).toLowerCase();
     const email = normalizeEmail(body.email ?? body.username);
-    const cadence = normalizeText(body.cadence).toLowerCase();
+    const cadence = "monthly";
     const method = normalizeText(body.method).toLowerCase();
 
     if (!email) return jsonError("Email is required.");
@@ -105,7 +105,7 @@ export async function POST(req: Request) {
       return jsonError("Invalid player plan.");
     }
 
-    const allowedCadence = new Set(["monthly", "annual", ""]);
+    const allowedCadence = new Set(["monthly", ""]);
     if (!allowedCadence.has(cadence)) {
       return jsonError("Invalid billing cadence.");
     }

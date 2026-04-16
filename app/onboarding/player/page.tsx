@@ -28,7 +28,11 @@ function OnboardingPlayerBridgePageInner() {
         : q;
 
     if (mapped === "redshirt" || mapped === "walk-on" || mapped === "all-american") {
-      router.replace(`/onboarding/${encodeURIComponent(mapped)}`);
+      if (mapped === "redshirt") {
+        router.replace(`/onboarding/${encodeURIComponent(mapped)}`);
+      } else {
+        router.replace(`/onboarding/${encodeURIComponent(mapped)}?billing=monthly`);
+      }
     } else {
       router.replace("/pricing");
     }
