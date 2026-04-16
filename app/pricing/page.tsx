@@ -5,7 +5,7 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
-type Billing = "monthly" | "annual";
+type Billing = "monthly";
 type PlanKey = "redshirt" | "walkon" | "allamerican" | "team";
 
 type Plan = {
@@ -14,8 +14,6 @@ type Plan = {
   tagline: string;
   ctaHref: string;
   priceMonthly: string;
-  priceAnnual?: string;
-  priceAnnualNote?: string;
   highlight?: boolean;
   noteBelowPrice?: string;
 };
@@ -43,8 +41,6 @@ const PLANS: Plan[] = [
     tagline: "Ready to compete",
     ctaHref: "/onboarding/walk-on",
     priceMonthly: "$24.95 / month",
-    priceAnnual: "$265 / year",
-    priceAnnualNote: "12% off",
   },
   {
     key: "allamerican",
@@ -52,8 +48,6 @@ const PLANS: Plan[] = [
     tagline: "Time to get seen",
     ctaHref: "/onboarding/all-american",
     priceMonthly: "$49.95 / month",
-    priceAnnual: "$510 / year",
-    priceAnnualNote: "15% off",
     highlight: true,
   },
   {
@@ -160,7 +154,7 @@ function cellContent(val: FeatureCell | undefined) {
   return <span style={{ fontWeight: 700 }}>{val}</span>;
 }
 
-function planToOnboardingHref(planKey: PlanKey, billing: Billing): string {
+function planToOnboardingHref(planKey: PlanKey): string {
   const canonicalPlan =
     planKey === "walkon"
       ? "walk-on"
@@ -174,18 +168,11 @@ function planToOnboardingHref(planKey: PlanKey, billing: Billing): string {
     return `/onboarding/teams`;
   }
 
-  const supportsAnnual =
-    canonicalPlan === "walk-on" || canonicalPlan === "all-american";
-  const billingToPass: Billing =
-    billing === "annual" && supportsAnnual ? "annual" : "monthly";
-
-  return `/onboarding/${encodeURIComponent(
-    canonicalPlan
-  )}?billing=${encodeURIComponent(billingToPass)}`;
+  return `/onboarding/${encodeURIComponent(canonicalPlan)}?billing=monthly`;
 }
 
 export default function PricingPage() {
-  const [billing, setBilling] = useState<Billing>("monthly");
+  const billing: Billing = "monthly";
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -250,7 +237,7 @@ export default function PricingPage() {
           Choose the right plan for your recruiting journey.
         </div>
 
-        {/* Toggle + coach CTA */}
+        {/* Coach CTA */}
         <div
           style={{
             display: "flex",
@@ -261,51 +248,6 @@ export default function PricingPage() {
             flexWrap: "wrap",
           }}
         >
-          <div
-            role="group"
-            aria-label="Billing period"
-            style={{
-              display: "inline-flex",
-              border: "1px solid #e5e7eb",
-              borderRadius: 999,
-              overflow: "hidden",
-              background: "#fff",
-              boxShadow: "0 2px 8px rgba(15,23,42,0.06)",
-            }}
-          >
-            <button
-              aria-pressed={billing === "monthly"}
-              onClick={() => setBilling("monthly")}
-              className="sl-pill"
-              style={{
-                padding: "8px 14px",
-                border: "none",
-                cursor: "pointer",
-                background: billing === "monthly" ? "#0f172a" : "transparent",
-                color: billing === "monthly" ? "#fff" : "#0f172a",
-                fontWeight: 700,
-              }}
-            >
-              Monthly
-            </button>
-
-            <button
-              aria-pressed={billing === "annual"}
-              onClick={() => setBilling("annual")}
-              className="sl-pill"
-              style={{
-                padding: "8px 14px",
-                border: "none",
-                cursor: "pointer",
-                background: billing === "annual" ? "#0f172a" : "transparent",
-                color: billing === "annual" ? "#fff" : "#0f172a",
-                fontWeight: 700,
-              }}
-            >
-              Annually
-            </button>
-          </div>
-
           <div style={{ display: "grid", gap: 6, justifyItems: "center" }}>
             <Link
               href="/onboarding/coach"
@@ -376,10 +318,7 @@ export default function PricingPage() {
 
             {planOrder.map((key) => {
               const plan = planMap[key];
-              const priceText =
-                billing === "monthly" || !plan.priceAnnual
-                  ? plan.priceMonthly
-                  : plan.priceAnnual;
+              const priceText = plan.priceMonthly;
 
               return (
                 <div
@@ -476,24 +415,10 @@ export default function PricingPage() {
                       }}
                     >
                       {priceText}
-                      {billing === "annual" && plan.priceAnnualNote && (
-                        <span
-                          className="annual-note"
-                          style={{
-                            display: "block",
-                            fontSize: "0.8rem",
-                            color: "#6b7280",
-                            marginTop: 4,
-                            fontWeight: 700,
-                          }}
-                        >
-                          {plan.priceAnnualNote}
-                        </span>
-                      )}
                     </div>
 
                     <Link
-                      href={planToOnboardingHref(plan.key, billing)}
+                    href={planToOnboardingHref(plan.key)}
                       className="sl-link-btn gold"
                       style={{
                         display: "inline-block",
