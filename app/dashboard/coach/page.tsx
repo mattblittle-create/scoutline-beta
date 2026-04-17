@@ -74,6 +74,23 @@ export default function CoachDashboardHome() {
             </>
           }
         />
+
+        <Card
+          title="ScoutLine Chat"
+          subtitle="Coach-initiated conversations with players"
+          body={
+            <>
+              <p style={p}>
+                Manage your ScoutLine Chat conversations with players. Coaches open the first thread, and players can reply after the conversation starts.
+              </p>
+              <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <Link href="/dashboard/coach/chat" style={btnGold}>
+                  Open Chat
+                </Link>
+              </div>
+            </>
+          }
+        />
       </section>
     </main>
   );
