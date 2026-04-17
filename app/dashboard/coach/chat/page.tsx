@@ -316,7 +316,7 @@ export default function CoachChatPage() {
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "280 minmax(0, 1fr)",
+          gridTemplateColumns: "320inmax(0, 1fr)",
           gap: 16,
           minHeight: 620,
         }}
