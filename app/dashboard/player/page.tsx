@@ -432,12 +432,11 @@ export default function PlayerDashboardPage() {
     };
   }, [selectedChatId]);
 
-  const unreadNotificationCount = notifications.filter((n) => !n.readAt).length;
-  const unreadChatCount = chatConversations.reduce(
-    (sum, c) => sum + Number(c.unreadCount || 0),
-    0
-  );
-  const totalHeaderAlertCount = unreadNotificationCount + unreadChatCount;
+const unreadNotificationCount = notifications.filter((n) => !n.readAt).length;
+const unreadChatCount = chatConversations.reduce(
+  (sum, c) => sum + Number(c.unreadCount || 0),
+  0
+);
 
     async function markAllNotificationsRead() {
     try {
@@ -655,26 +654,28 @@ export default function PlayerDashboardPage() {
               }}
             >
               🔔
-              <span
-                style={{
-                  position: "absolute",
-                  top: -4,
-                  right: -2,
-                  minWidth: 18,
-                  height: 18,
-                  borderRadius: 999,
-                  background: "#ef4444",
-                  color: "#ffffff",
-                  fontSize: 11,
-                  fontWeight: 900,
-                  display: "inline-flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  padding: "0 5px",
-                }}
-              >
-              {totalHeaderAlertCount}
-              </span>
+              {unreadNotificationCount > 0 ? (
+                <span
+                  style={{
+                    position: "absolute",
+                    top: -4,
+                    right: -2,
+                    minWidth: 18,
+                    height: 18,
+                    borderRadius: 999,
+                    background: "#ef4444",
+                    color: "#ffffff",
+                    fontSize: 11,
+                    fontWeight: 900,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "0 5px",
+                  }}
+                >
+                  {unreadNotificationCount}
+                </span>
+              ) : null}
             </button>
 
             {showNotifications && (
@@ -928,7 +929,7 @@ export default function PlayerDashboardPage() {
             Alerts
           </div>
           <div style={{ marginTop: 6, fontSize: 24, fontWeight: 900, color: "#0f172a" }}>
-            {totalHeaderAlertCount} New
+            {unreadNotificationCount} New
           </div>
           <div style={{ marginTop: 6, color: "#475569", fontSize: 14 }}>
             Profile views, messages, saves, ownership updates, and reminders.
