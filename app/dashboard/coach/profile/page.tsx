@@ -217,14 +217,18 @@ type ApiOk = {
 
 type ApiErr = { ok: false; error: string };
 
-async function uploadImage(file: File, kind: "coach-photo" | "college-logo") {
+async function uploadImage(file: File, userSlug: string) {
   const fd = new FormData();
   fd.append("file", file);
-  fd.append("kind", kind);
+  fd.append("userSlug", userSlug);
 
-  const res = await fetch("/api/uploads/image", { method: "POST", body: fd });
+  const res = await fetch("/api/upload/photo", { method: "POST", body: fd });
   const json = await res.json();
-  if (!res.ok || !json?.ok || !json?.url) throw new Error(json?.error || `Upload failed (${res.status})`);
+
+  if (!res.ok || !json?.ok || !json?.url) {
+    throw new Error(json?.error || `Upload failed (${res.status})`);
+  }
+
   return String(json.url);
 }
 
@@ -597,7 +601,16 @@ export default function CoachProfilePage() {
     try {
       setErr(null);
       setUploadingCoachPhoto(true);
-      const url = await uploadImage(file, "coach-photo");
+      const uploadSlug =
+  (coachSlug || email.split("@")[0] || "")
+    .trim()
+    .toLowerCase();
+
+if (!uploadSlug) {
+  throw new Error("Missing coach slug/email for upload.");
+}
+
+const url = await uploadImage(file, uploadSlug);
       setPhotoUrl(url);
     } catch (e: any) {
       setErr(e?.message || "Failed to upload coach photo.");
