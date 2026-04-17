@@ -144,7 +144,7 @@ export default function CoachChatPage() {
       try {
         setLoadingMessages(true);
         setError(null);
-
+ 
         const res = await fetch(
           `/api/chat/messages?conversationId=${encodeURIComponent(selectedConversationId)}`,
           {
