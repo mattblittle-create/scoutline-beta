@@ -160,44 +160,70 @@ export async function POST(req: Request) {
 
     const now = new Date();
 
-    const created = await prisma.$transaction(async (tx) => {
-      const msg = await tx.chatMessage.create({
+const created = await prisma.$transaction(async (tx) => {
+  const msg = await tx.chatMessage.create({
+    data: {
+      conversationId,
+      senderUserId: user.id,
+      body: message,
+    },
+    include: {
+      senderUser: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+          photoUrl: true,
+        },
+      },
+    },
+  });
+
+  await tx.chatConversation.update({
+    where: { id: conversationId },
+    data: {
+      lastMessageAt: now,
+    },
+  });
+
+  await tx.chatConversationParticipant.updateMany({
+    where: {
+      conversationId,
+      userId: user.id,
+    },
+    data: {
+      lastReadAt: now,
+    },
+  });
+
+  const recipientParticipants = participant.conversation.participants.filter(
+    (p) => p.userId !== user.id
+  );
+
+  const senderLabel =
+    msg.senderUser.name?.trim() ||
+    msg.senderUser.email?.trim() ||
+    "ScoutLine user";
+
+  if (recipientParticipants.length > 0) {
+    await tx.notification.createMany({
+      data: recipientParticipants.map((p) => ({
+        userId: p.userId,
+        type: "COACH_MESSAGE",
+        message: `New message from ${senderLabel}`,
         data: {
           conversationId,
           senderUserId: user.id,
-          body: message,
+          senderName: msg.senderUser.name ?? null,
+          senderEmail: msg.senderUser.email ?? "",
+          messageId: msg.id,
         },
-        include: {
-          senderUser: {
-            select: {
-              id: true,
-              name: true,
-              email: true,
-              photoUrl: true,
-            },
-          },
-        },
-      });
-
-      await tx.chatConversation.update({
-        where: { id: conversationId },
-        data: {
-          lastMessageAt: now,
-        },
-      });
-
-      await tx.chatConversationParticipant.updateMany({
-        where: {
-          conversationId,
-          userId: user.id,
-        },
-        data: {
-          lastReadAt: now,
-        },
-      });
-
-      return msg;
+      })),
     });
+  }
+
+  return msg;
+});
 
     return NextResponse.json({
       ok: true,
