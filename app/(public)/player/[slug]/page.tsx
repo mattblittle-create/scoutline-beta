@@ -2,7 +2,7 @@
 "use client";
 
 import * as React from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import PublicProfileHeader from "@/app/components/public/PublicProfileHeader";
 import PublicAcademics, { AcademicsData } from "@/app/components/public/PublicAcademics";
@@ -166,6 +166,7 @@ function SectionWrapper({ id, children }: { id: string; children: React.ReactNod
 
 export default function PublicPlayerPage({ params }: { params: { slug: string } }) {
   const { slug } = params;
+  const router = useRouter();
   const searchParams = useSearchParams();
 
   const fromTeaserCard = searchParams.get("from") === "teaser";
@@ -203,6 +204,38 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       cancelled = true;
     };
   }, []);
+
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadCoachPlayerContext() {
+      if (!isCoachViewer || !playerProfileId) {
+        if (!cancelled) setPlayerUserId(null);
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/coach/player/${encodeURIComponent(playerProfileId)}`, {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const json = await res.json().catch(() => null);
+        if (cancelled) return;
+
+        const nextUserId = String(json?.data?.user?.id || "").trim();
+        setPlayerUserId(nextUserId || null);
+      } catch {
+        if (!cancelled) setPlayerUserId(null);
+      }
+    }
+
+    loadCoachPlayerContext();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isCoachViewer, playerProfileId]);
 
   // ---------------- Load public payload ----------------
   React.useEffect(() => {
@@ -264,6 +297,9 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
 
   const playerProfileId =
     String((safeProfile as any)?.playerProfileId || (safeProfile as any)?.id || "").trim() || null;
+
+  const [playerUserId, setPlayerUserId] = React.useState<string | null>(null);
+  const [messageRecruitSending, setMessageRecruitSending] = React.useState(false);
 
   const cardViewUrl = `/player/${encodeURIComponent(slug)}/card`;
 
@@ -801,6 +837,43 @@ const coachesData: CoachesData = {
 
   const connectChatUrl = (mediaDataView as any)?.chatUrl ?? (vsRaw as any)?.chatUrl ?? null;
 
+  async function handleMessageRecruit() {
+    if (!playerUserId || messageRecruitSending) return;
+
+    try {
+      setMessageRecruitSending(true);
+
+      const res = await fetch("/api/chat/conversations/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          otherUserId: playerUserId,
+          subject: "ScoutLine Coach Outreach",
+          initialMessage: "",
+        }),
+      });
+
+      const json = await res.json().catch(() => null);
+
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || `Failed to start chat (${res.status})`);
+      }
+
+      const conversationId = String(json?.data?.conversation?.id || "").trim();
+      if (!conversationId) {
+        throw new Error("Conversation was created, but no conversation id was returned.");
+      }
+
+      router.push(`/dashboard/coach/chat?conversationId=${encodeURIComponent(conversationId)}`);
+    } catch (e: any) {
+      window.alert(e?.message || "Failed to start ScoutLine Chat.");
+    } finally {
+      setMessageRecruitSending(false);
+    }
+  }
+
   /** ---------- Render ---------- */
   return (
     <main style={wrap}>
@@ -925,6 +998,39 @@ const coachesData: CoachesData = {
                 pocketRadarUrl={showVideoSocial ? (mediaDataView as any)?.pocketRadarUrl ?? null : null}
                 chatUrl={showChat ? connectChatUrl : null}
               />
+
+              {isCoachViewer ? (
+                <button
+                  type="button"
+                  onClick={handleMessageRecruit}
+                  disabled={!playerUserId || messageRecruitSending}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    minHeight: 34,
+                    padding: "0 12px",
+                    borderRadius: 10,
+                    border: "1px solid #0ea5e9",
+                    background: "#0ea5e9",
+                    color: "#ffffff",
+                    fontSize: 12,
+                    fontWeight: 900,
+                    whiteSpace: "nowrap",
+                    cursor:
+                      !playerUserId || messageRecruitSending
+                        ? "not-allowed"
+                        : "pointer",
+                    opacity:
+                      !playerUserId || messageRecruitSending
+                        ? 0.65
+                        : 1,
+                  }}
+                  title="Start ScoutLine Chat with this recruit"
+                >
+                  {messageRecruitSending ? "Opening Chat..." : "Message Recruit"}
+                </button>
+              ) : null}
             </div>
 
             {searchParams.get("source") === "recruiting-board" ? (
