@@ -99,7 +99,7 @@ export default function CoachChatPage() {
           throw new Error(json?.error || `Failed to load conversations (${res.status})`);
         }
 
-        const rows = Array.isArray(json?.data?.conversations)
+        const rows: ApiChatConversation[] = Array.isArray(json?.data?.conversations)
           ? json.data.conversations
           : [];
 
@@ -160,7 +160,7 @@ export default function CoachChatPage() {
           throw new Error(json?.error || `Failed to load messages (${res.status})`);
         }
 
-        const rows = Array.isArray(json?.data?.messages)
+        const rows: ApiChatMessage[] = Array.isArray(json?.data?.messages)
           ? json.data.messages
           : [];
 
