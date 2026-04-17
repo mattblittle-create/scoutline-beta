@@ -187,6 +187,8 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
 
   // ---------------- Coach viewer detection ----------------
   const [isCoachViewer, setIsCoachViewer] = React.useState(false);
+  const [playerUserId, setPlayerUserId] = React.useState<string | null>(null);
+  const [messageRecruitSending, setMessageRecruitSending] = React.useState(false);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -204,38 +206,6 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
       cancelled = true;
     };
   }, []);
-
-    React.useEffect(() => {
-    let cancelled = false;
-
-    async function loadCoachPlayerContext() {
-      if (!isCoachViewer || !playerProfileId) {
-        if (!cancelled) setPlayerUserId(null);
-        return;
-      }
-
-      try {
-        const res = await fetch(`/api/coach/player/${encodeURIComponent(playerProfileId)}`, {
-          method: "GET",
-          cache: "no-store",
-        });
-
-        const json = await res.json().catch(() => null);
-        if (cancelled) return;
-
-        const nextUserId = String(json?.data?.user?.id || "").trim();
-        setPlayerUserId(nextUserId || null);
-      } catch {
-        if (!cancelled) setPlayerUserId(null);
-      }
-    }
-
-    loadCoachPlayerContext();
-
-    return () => {
-      cancelled = true;
-    };
-  }, [isCoachViewer, playerProfileId]);
 
   // ---------------- Load public payload ----------------
   React.useEffect(() => {
@@ -298,8 +268,37 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const playerProfileId =
     String((safeProfile as any)?.playerProfileId || (safeProfile as any)?.id || "").trim() || null;
 
-  const [playerUserId, setPlayerUserId] = React.useState<string | null>(null);
-  const [messageRecruitSending, setMessageRecruitSending] = React.useState(false);
+  React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadCoachPlayerContext() {
+      if (!isCoachViewer || !playerProfileId) {
+        if (!cancelled) setPlayerUserId(null);
+        return;
+      }
+
+      try {
+        const res = await fetch(`/api/coach/player/${encodeURIComponent(playerProfileId)}`, {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const json = await res.json().catch(() => null);
+        if (cancelled) return;
+
+        const nextUserId = String(json?.data?.user?.id || "").trim();
+        setPlayerUserId(nextUserId || null);
+      } catch {
+        if (!cancelled) setPlayerUserId(null);
+      }
+    }
+
+    loadCoachPlayerContext();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isCoachViewer, playerProfileId]);
 
   const cardViewUrl = `/player/${encodeURIComponent(slug)}/card`;
 
