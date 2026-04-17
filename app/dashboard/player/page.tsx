@@ -286,12 +286,13 @@ export default function PlayerDashboardPage() {
     };
   }, []);
 
-    React.useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
 
-    async function loadNotifications() {
+    async function loadNotifications(silent = false) {
       try {
-        setNotificationsLoading(true);
+        if (!silent) setNotificationsLoading(true);
 
         const res = await fetch("/api/notifications?limit=10", {
           cache: "no-store",
@@ -302,35 +303,40 @@ export default function PlayerDashboardPage() {
         if (cancelled) return;
         if (!res.ok || !json?.ok) return;
 
-        const rows = Array.isArray(json?.data?.notifications)
+        const rows: DashboardNotification[] = Array.isArray(json?.data?.notifications)
           ? json.data.notifications
           : [];
 
         setNotifications(rows);
       } catch {
-        if (!cancelled) {
+        if (!cancelled && !silent) {
           setNotifications([]);
         }
       } finally {
-        if (!cancelled) {
+        if (!cancelled && !silent) {
           setNotificationsLoading(false);
         }
       }
     }
 
     loadNotifications();
+    intervalId = setInterval(() => {
+      loadNotifications(true);
+    }, 15000);
 
     return () => {
       cancelled = true;
+      if (intervalId) clearInterval(intervalId);
     };
   }, []);
 
-    React.useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
 
-    async function loadChatConversations() {
+    async function loadChatConversations(silent = false) {
       try {
-        setChatLoading(true);
+        if (!silent) setChatLoading(true);
 
         const res = await fetch("/api/chat/conversations", {
           cache: "no-store",
@@ -341,32 +347,37 @@ export default function PlayerDashboardPage() {
         if (cancelled) return;
         if (!res.ok || !json?.ok) return;
 
-        const rows = Array.isArray(json?.data?.conversations)
+        const rows: ApiChatConversation[] = Array.isArray(json?.data?.conversations)
           ? json.data.conversations
           : [];
 
         setChatConversations(rows);
 
-        if (!selectedChatId && rows.length > 0) {
-          setSelectedChatId(rows[0].id);
-        }
+        setSelectedChatId((prev) => {
+          if (prev && rows.some((r) => r.id === prev)) return prev;
+          return rows[0]?.id || "";
+        });
       } catch {
-        if (!cancelled) {
+        if (!cancelled && !silent) {
           setChatConversations([]);
         }
       } finally {
-        if (!cancelled) {
+        if (!cancelled && !silent) {
           setChatLoading(false);
         }
       }
     }
 
     loadChatConversations();
+    intervalId = setInterval(() => {
+      loadChatConversations(true);
+    }, 15000);
 
     return () => {
       cancelled = true;
+      if (intervalId) clearInterval(intervalId);
     };
-  }, [selectedChatId]);
+  }, []);
 
     React.useEffect(() => {
     let cancelled = false;
@@ -422,6 +433,11 @@ export default function PlayerDashboardPage() {
   }, [selectedChatId]);
 
   const unreadNotificationCount = notifications.filter((n) => !n.readAt).length;
+  const unreadChatCount = chatConversations.reduce(
+    (sum, c) => sum + Number(c.unreadCount || 0),
+    0
+  );
+  const totalHeaderAlertCount = unreadNotificationCount + unreadChatCount;
 
     async function markAllNotificationsRead() {
     try {
@@ -657,7 +673,7 @@ export default function PlayerDashboardPage() {
                   padding: "0 5px",
                 }}
               >
-              {unreadNotificationCount}
+              {totalHeaderAlertCount}
               </span>
             </button>
 
@@ -823,9 +839,32 @@ export default function PlayerDashboardPage() {
               color: "#0f172a",
               fontWeight: 900,
               cursor: "pointer",
+              position: "relative",
             }}
           >
             ScoutLine Chat
+            {unreadChatCount > 0 ? (
+              <span
+                style={{
+                  position: "absolute",
+                  top: -6,
+                  right: -6,
+                  minWidth: 18,
+                  height: 18,
+                  borderRadius: 999,
+                  background: "#ef4444",
+                  color: "#ffffff",
+                  fontSize: 11,
+                  fontWeight: 900,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "0 5px",
+                }}
+              >
+                {unreadChatCount}
+              </span>
+            ) : null}
           </button>
         </div>
       </section>
@@ -889,7 +928,7 @@ export default function PlayerDashboardPage() {
             Alerts
           </div>
           <div style={{ marginTop: 6, fontSize: 24, fontWeight: 900, color: "#0f172a" }}>
-            {unreadNotificationCount} New
+            {totalHeaderAlertCount} New
           </div>
           <div style={{ marginTop: 6, color: "#475569", fontSize: 14 }}>
             Profile views, messages, saves, ownership updates, and reminders.
@@ -1111,7 +1150,16 @@ export default function PlayerDashboardPage() {
               </button>
             </div>
 
-<div style={{ padding: 12, display: "grid", gap: 10, overflowY: "auto" }}>
+<div
+  style={{
+    padding: 12,
+    display: "grid",
+    gap: 8,
+    overflowY: "auto",
+    maxHeight: 520,
+    alignContent: "start",
+  }}
+>
   {chatLoading ? (
     <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
       Loading conversations...
@@ -1133,8 +1181,8 @@ export default function PlayerDashboardPage() {
             textAlign: "left",
             border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
             background: active ? "#e0f2fe" : "#ffffff",
-            borderRadius: 14,
-            padding: 12,
+            borderRadius: 12,
+            padding: "10px 12px",
             cursor: "pointer",
           }}
         >
@@ -1151,6 +1199,9 @@ export default function PlayerDashboardPage() {
                 fontWeight: 900,
                 color: "#0f172a",
                 fontSize: 14,
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
               }}
             >
               {thread.otherParticipant?.name || "Unknown"}
@@ -1160,10 +1211,12 @@ export default function PlayerDashboardPage() {
               <span
                 style={{
                   minWidth: 8,
+                  width: 8,
                   height: 8,
                   borderRadius: 999,
                   background: "#ef4444",
                   display: "inline-block",
+                  flexShrink: 0,
                 }}
               />
             ) : null}
@@ -1175,20 +1228,12 @@ export default function PlayerDashboardPage() {
               color: "#64748b",
               marginTop: 4,
               fontWeight: 700,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
             }}
           >
             {thread.otherParticipant?.collegeName || ""}
-          </div>
-
-          <div
-            style={{
-              marginTop: 8,
-              fontSize: 13,
-              color: "#475569",
-              lineHeight: 1.4,
-            }}
-          >
-            {thread.preview}
           </div>
         </button>
       );
@@ -1283,7 +1328,23 @@ export default function PlayerDashboardPage() {
             fontSize: 14,
           }}
         >
-          {msg.body}
+          <div>{msg.body}</div>
+          <div
+            style={{
+              marginTop: 6,
+              fontSize: 11,
+              color: "#64748b",
+              fontWeight: 700,
+            }}
+          >
+            {new Date(msg.createdAt).toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+            })}
+          </div>
         </div>
       </div>
     );
