@@ -316,9 +316,10 @@ export default function CoachChatPage() {
       <section
         style={{
           display: "grid",
-          gridTemplateColumns: "320inmax(0, 1fr)",
+          gridTemplateColumns: "300px minmax(0, 1fr)",
           gap: 16,
           minHeight: 620,
+          alignItems: "stretch",
         }}
       >
         <aside
@@ -329,6 +330,7 @@ export default function CoachChatPage() {
             overflow: "hidden",
             display: "grid",
             gridTemplateRows: "auto minmax(0, 1fr)",
+            minHeight: 620,
           }}
         >
           <div
@@ -355,10 +357,10 @@ export default function CoachChatPage() {
               type="text"
               value={conversationSearch}
               onChange={(e) => setConversationSearch(e.target.value)}
-              placeholder="Search player"
+              placeholder="Search"
               style={{
                 minWidth: 0,
-                width: 150,
+                width: 140,
                 border: "1px solid #e5e7eb",
                 borderRadius: 999,
                 padding: "8px 12px",
@@ -376,7 +378,8 @@ export default function CoachChatPage() {
               display: "grid",
               gap: 8,
               overflowY: "auto",
-              maxHeight: 20 * 48,
+              maxHeight: 720,
+              alignContent: "start",
             }}
           >
             {loadingConversations ? (
@@ -401,9 +404,9 @@ export default function CoachChatPage() {
                       border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
                       background: active ? "#e0f2fe" : "#ffffff",
                       borderRadius: 12,
-                      padding: "10px 12px",
+                      padding: "9px 12px",
                       cursor: "pointer",
-                      minHeight: 40,
+                      minHeight: 42,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "space-between",
