@@ -414,6 +414,8 @@ export default function PlayerDashboardPage() {
             c.id === selectedChatId ? { ...c, unreadCount: 0 } : c
           )
         );
+
+        await markChatNotificationsReadForConversation(selectedChatId);
       } catch {
         if (!cancelled) {
           setChatMessages([]);
@@ -458,6 +460,40 @@ const unreadChatCount = chatConversations.reduce(
     } catch {
       // no-op for now
     }
+  }
+
+  async function markChatNotificationsReadForConversation(conversationId: string) {
+    const targetId = String(conversationId || "").trim();
+    if (!targetId) return;
+
+    const matching = notifications.filter(
+      (n) =>
+        !n.readAt &&
+        n.type === "COACH_MESSAGE" &&
+        String(n.data?.conversationId || "").trim() === targetId
+    );
+
+    if (matching.length === 0) return;
+
+    await Promise.all(
+      matching.map((n) =>
+        fetch("/api/notifications/read", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify({ notificationId: n.id }),
+        }).catch(() => null)
+      )
+    );
+
+    const now = new Date().toISOString();
+    setNotifications((prev) =>
+      prev.map((n) =>
+        matching.some((m) => m.id === n.id)
+          ? { ...n, readAt: n.readAt ?? now }
+          : n
+      )
+    );
   }
 
   async function markNotificationRead(notificationId: string) {
@@ -1104,6 +1140,7 @@ const unreadChatCount = chatConversations.reduce(
             display: "grid",
             gridTemplateColumns: "300px 1fr",
             overflow: "hidden",
+            minHeight: 0,
           }}
         >
           {/* Left rail */}
@@ -1249,6 +1286,7 @@ const unreadChatCount = chatConversations.reduce(
               display: "flex",
               flexDirection: "column",
               minWidth: 0,
+              minHeight: 0,
               background: "#ffffff",
             }}
           >
@@ -1290,11 +1328,13 @@ const unreadChatCount = chatConversations.reduce(
             <div
               style={{
                 flex: 1,
+                minHeight: 0,
                 overflowY: "auto",
                 padding: 16,
                 display: "grid",
                 gap: 12,
                 background: "#f8fafc",
+                alignContent: "start",
               }}
             >
 {chatMessagesLoading ? (
