@@ -112,11 +112,11 @@ export async function GET() {
             : null,
         };
       })
-      .sort((a, b) => {
-        const aTs = a.lastMessageAt ? new Date(a.lastMessageAt).getTime() : 0;
-        const bTs = b.lastMessageAt ? new Date(b.lastMessageAt).getTime() : 0;
-        return bTs - aTs;
-      });
+.sort((a, b) => {
+  const aTs = a.lastMessageAt ? new Date(a.lastMessageAt).getTime() : 0;
+  const bTs = b.lastMessageAt ? new Date(b.lastMessageAt).getTime() : 0;
+  return bTs - aTs;
+});
 
     return NextResponse.json({
       ok: true,

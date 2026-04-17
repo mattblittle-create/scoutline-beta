@@ -44,6 +44,7 @@ export default function CoachChatPage() {
   const [selectedConversationId, setSelectedConversationId] = React.useState<string>("");
   const [messages, setMessages] = React.useState<ApiChatMessage[]>([]);
   const [draft, setDraft] = React.useState("");
+  const [conversationSearch, setConversationSearch] = React.useState("");
   const [loadingConversations, setLoadingConversations] = React.useState(false);
   const [loadingMessages, setLoadingMessages] = React.useState(false);
   const [sending, setSending] = React.useState(false);
@@ -51,6 +52,16 @@ export default function CoachChatPage() {
 
   const selectedConversation =
     conversations.find((c) => c.id === selectedConversationId) ?? null;
+
+  const filteredConversations = React.useMemo(() => {
+    const q = conversationSearch.trim().toLowerCase();
+    if (!q) return conversations;
+
+    return conversations.filter((c) => {
+      const name = String(c.otherParticipant?.name || "").toLowerCase();
+      return name.includes(q);
+    });
+  }, [conversations, conversationSearch]);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -324,24 +335,60 @@ export default function CoachChatPage() {
             style={{
               padding: 14,
               borderBottom: "1px solid #e5e7eb",
-              fontWeight: 900,
-              color: "#0f172a",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 10,
             }}
           >
-            Conversations
+            <div
+              style={{
+                fontWeight: 900,
+                color: "#0f172a",
+                whiteSpace: "nowrap",
+              }}
+            >
+              Conversations
+            </div>
+
+            <input
+              type="text"
+              value={conversationSearch}
+              onChange={(e) => setConversationSearch(e.target.value)}
+              placeholder="Search player"
+              style={{
+                minWidth: 0,
+                width: 150,
+                border: "1px solid #e5e7eb",
+                borderRadius: 999,
+                padding: "8px 12px",
+                fontSize: 13,
+                outline: "none",
+                color: "#0f172a",
+                background: "#ffffff",
+              }}
+            />
           </div>
 
-          <div style={{ padding: 12, display: "grid", gap: 10, overflowY: "auto" }}>
+          <div
+            style={{
+              padding: 12,
+              display: "grid",
+              gap: 8,
+              overflowY: "auto",
+              maxHeight: 20 * 48,
+            }}
+          >
             {loadingConversations ? (
               <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
                 Loading conversations...
               </div>
-            ) : conversations.length === 0 ? (
+            ) : filteredConversations.length === 0 ? (
               <div style={{ padding: 12, color: "#64748b", fontSize: 14 }}>
-                No conversations yet.
+                {conversationSearch.trim() ? "No matching conversations." : "No conversations yet."}
               </div>
             ) : (
-              conversations.map((thread) => {
+              filteredConversations.map((thread) => {
                 const active = thread.id === selectedConversationId;
 
                 return (
@@ -353,63 +400,42 @@ export default function CoachChatPage() {
                       textAlign: "left",
                       border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
                       background: active ? "#e0f2fe" : "#ffffff",
-                      borderRadius: 14,
-                      padding: 12,
+                      borderRadius: 12,
+                      padding: "10px 12px",
                       cursor: "pointer",
+                      minHeight: 40,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: 8,
                     }}
                   >
-                    <div
+                    <span
                       style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        gap: 8,
+                        fontWeight: active ? 900 : 800,
+                        color: "#0f172a",
+                        fontSize: 14,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
                       }}
                     >
-                      <div
+                      {thread.otherParticipant?.name || "Unknown"}
+                    </span>
+
+                    {thread.unreadCount > 0 ? (
+                      <span
                         style={{
-                          fontWeight: 900,
-                          color: "#0f172a",
-                          fontSize: 14,
+                          minWidth: 8,
+                          width: 8,
+                          height: 8,
+                          borderRadius: 999,
+                          background: "#ef4444",
+                          display: "inline-block",
+                          flexShrink: 0,
                         }}
-                      >
-                        {thread.otherParticipant?.name || "Unknown"}
-                      </div>
-
-                      {thread.unreadCount > 0 ? (
-                        <span
-                          style={{
-                            minWidth: 8,
-                            height: 8,
-                            borderRadius: 999,
-                            background: "#ef4444",
-                            display: "inline-block",
-                          }}
-                        />
-                      ) : null}
-                    </div>
-
-                    <div
-                      style={{
-                        fontSize: 12,
-                        color: "#64748b",
-                        marginTop: 4,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {thread.otherParticipant?.collegeName || thread.otherParticipant?.email || ""}
-                    </div>
-
-                    <div
-                      style={{
-                        marginTop: 8,
-                        fontSize: 13,
-                        color: "#475569",
-                        lineHeight: 1.4,
-                      }}
-                    >
-                      {thread.preview || "No messages yet."}
-                    </div>
+                      />
+                    ) : null}
                   </button>
                 );
               })
