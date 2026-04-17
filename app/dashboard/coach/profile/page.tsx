@@ -217,12 +217,26 @@ type ApiOk = {
 
 type ApiErr = { ok: false; error: string };
 
-async function uploadImage(file: File, userSlug: string) {
+async function uploadUserPhoto(file: File, userSlug: string) {
   const fd = new FormData();
   fd.append("file", file);
   fd.append("userSlug", userSlug);
 
   const res = await fetch("/api/upload/photo", { method: "POST", body: fd });
+  const json = await res.json();
+
+  if (!res.ok || !json?.ok || !json?.url) {
+    throw new Error(json?.error || `Upload failed (${res.status})`);
+  }
+
+  return String(json.url);
+}
+
+async function uploadCollegeLogo(file: File) {
+  const fd = new FormData();
+  fd.append("file", file);
+
+  const res = await fetch("/api/upload/college-logo", { method: "POST", body: fd });
   const json = await res.json();
 
   if (!res.ok || !json?.ok || !json?.url) {
@@ -610,7 +624,7 @@ if (!uploadSlug) {
   throw new Error("Missing coach slug/email for upload.");
 }
 
-const url = await uploadImage(file, uploadSlug);
+const url = await uploadUserPhoto(file, uploadSlug);
       setPhotoUrl(url);
     } catch (e: any) {
       setErr(e?.message || "Failed to upload coach photo.");
@@ -624,7 +638,7 @@ const url = await uploadImage(file, uploadSlug);
     try {
       setErr(null);
       setUploadingCollegeLogo(true);
-      const url = await uploadImage(file, "college-logo");
+      const url = await uploadCollegeLogo(file);
       setLogoUrl(url);
     } catch (e: any) {
       setErr(e?.message || "Failed to upload college logo.");
