@@ -24,11 +24,6 @@ export async function GET() {
         userId: user.id,
         archivedAt: null,
       },
-      orderBy: {
-        conversation: {
-          lastMessageAt: "desc",
-        },
-      },
       include: {
         conversation: {
           include: {
@@ -75,47 +70,53 @@ export async function GET() {
       },
     });
 
-    const conversations = rows.map((row) => {
-      const convo = row.conversation;
+    const conversations = rows
+      .map((row) => {
+        const convo = row.conversation;
 
-      const otherParticipants = convo.participants.filter(
-        (p) => p.userId !== user.id
-      );
+        const otherParticipants = convo.participants.filter(
+          (p) => p.userId !== user.id
+        );
 
-      const primaryOther = otherParticipants[0]?.user ?? null;
-      const lastMessage = convo.messages[0] ?? null;
+        const primaryOther = otherParticipants[0]?.user ?? null;
+        const lastMessage = convo.messages[0] ?? null;
 
-      const unreadCount = lastMessage?.createdAt && row.lastReadAt
-        ? lastMessage.createdAt > row.lastReadAt
+        const unreadCount = lastMessage?.createdAt && row.lastReadAt
+          ? lastMessage.createdAt > row.lastReadAt
+            ? 1
+            : 0
+          : lastMessage?.createdAt && !row.lastReadAt
           ? 1
-          : 0
-        : lastMessage?.createdAt && !row.lastReadAt
-        ? 1
-        : 0;
+          : 0;
 
-      return {
-        id: convo.id,
-        subject: convo.subject,
-        lastMessageAt: convo.lastMessageAt?.toISOString() ?? null,
-        unreadCount,
-        preview: lastMessage?.body ?? "",
-        lastMessageCreatedAt: lastMessage?.createdAt?.toISOString() ?? null,
-        otherParticipant: primaryOther
-          ? {
-              id: primaryOther.id,
-              name:
-                primaryOther.name ||
-                primaryOther.email ||
-                "Coach",
-              email: primaryOther.email ?? "",
-              photoUrl: primaryOther.photoUrl ?? "",
-              role: primaryOther.role ?? "",
-              staffTitle: primaryOther.coachProfile?.staffTitle ?? "",
-              collegeName: primaryOther.college?.name ?? "",
-            }
-          : null,
-      };
-    });
+        return {
+          id: convo.id,
+          subject: convo.subject,
+          lastMessageAt: convo.lastMessageAt?.toISOString() ?? null,
+          unreadCount,
+          preview: lastMessage?.body ?? "",
+          lastMessageCreatedAt: lastMessage?.createdAt?.toISOString() ?? null,
+          otherParticipant: primaryOther
+            ? {
+                id: primaryOther.id,
+                name:
+                  primaryOther.name ||
+                  primaryOther.email ||
+                  "Coach",
+                email: primaryOther.email ?? "",
+                photoUrl: primaryOther.photoUrl ?? "",
+                role: primaryOther.role ?? "",
+                staffTitle: primaryOther.coachProfile?.staffTitle ?? "",
+                collegeName: primaryOther.college?.name ?? "",
+              }
+            : null,
+        };
+      })
+      .sort((a, b) => {
+        const aTs = a.lastMessageAt ? new Date(a.lastMessageAt).getTime() : 0;
+        const bTs = b.lastMessageAt ? new Date(b.lastMessageAt).getTime() : 0;
+        return bTs - aTs;
+      });
 
     return NextResponse.json({
       ok: true,
