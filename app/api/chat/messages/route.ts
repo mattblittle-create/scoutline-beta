@@ -158,8 +158,6 @@ export async function POST(req: Request) {
       );
     }
 
-    const now = new Date();
-
 const created = await prisma.$transaction(async (tx) => {
   const msg = await tx.chatMessage.create({
     data: {
@@ -182,7 +180,7 @@ const created = await prisma.$transaction(async (tx) => {
   await tx.chatConversation.update({
     where: { id: conversationId },
     data: {
-      lastMessageAt: now,
+      lastMessageAt: msg.createdAt,
     },
   });
 
@@ -192,7 +190,7 @@ const created = await prisma.$transaction(async (tx) => {
       userId: user.id,
     },
     data: {
-      lastReadAt: now,
+      lastReadAt: msg.createdAt,
     },
   });
 
