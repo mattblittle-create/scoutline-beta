@@ -557,6 +557,7 @@ const unreadChatCount = chatConversations.reduce(
                 preview: created.body,
                 lastMessageAt: created.createdAt,
                 lastMessageCreatedAt: created.createdAt,
+                unreadCount: 0,
               }
             : c
         )
