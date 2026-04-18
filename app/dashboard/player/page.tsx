@@ -353,10 +353,10 @@ export default function PlayerDashboardPage() {
 
         setChatConversations(rows);
 
-        setSelectedChatId((prev) => {
-          if (prev && rows.some((r) => r.id === prev)) return prev;
-          return rows[0]?.id || "";
-        });
+setSelectedChatId((prev) => {
+  if (prev && rows.some((r) => r.id === prev)) return prev;
+  return rows[0]?.id || "";
+});
       } catch {
         if (!cancelled && !silent) {
           setChatConversations([]);
@@ -379,10 +379,12 @@ export default function PlayerDashboardPage() {
     };
   }, []);
 
-    React.useEffect(() => {
+  React.useEffect(() => {
     let cancelled = false;
 
     async function loadMessages() {
+      if (!showChat) return;
+
       if (!selectedChatId) {
         setChatMessages([]);
         return;
@@ -403,7 +405,7 @@ export default function PlayerDashboardPage() {
         if (cancelled) return;
         if (!res.ok || !json?.ok) return;
 
-        const rows = Array.isArray(json?.data?.messages)
+        const rows: ApiChatMessage[] = Array.isArray(json?.data?.messages)
           ? json.data.messages
           : [];
 
@@ -432,7 +434,7 @@ export default function PlayerDashboardPage() {
     return () => {
       cancelled = true;
     };
-  }, [selectedChatId]);
+  }, [selectedChatId, showChat]);
 
 const unreadNotificationCount = notifications.filter((n) => !n.readAt).length;
 const unreadChatCount = chatConversations.reduce(
