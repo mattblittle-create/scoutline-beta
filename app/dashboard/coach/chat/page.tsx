@@ -1,3 +1,5 @@
+// app/dashboard/coach/chat/page.tsx
+
 "use client";
 
 import React from "react";
@@ -238,6 +240,7 @@ export default function CoachChatPage() {
                 preview: created.body,
                 lastMessageAt: created.createdAt,
                 lastMessageCreatedAt: created.createdAt,
+                unreadCount: 0,
               }
             : c
         )
@@ -319,6 +322,8 @@ export default function CoachChatPage() {
           gridTemplateColumns: "300px minmax(0, 1fr)",
           gap: 16,
           minHeight: 620,
+          height: "calc(100vh - 220px)",
+          maxHeight: 760,
           alignItems: "stretch",
         }}
       >
@@ -330,7 +335,8 @@ export default function CoachChatPage() {
             overflow: "hidden",
             display: "grid",
             gridTemplateRows: "auto minmax(0, 1fr)",
-            minHeight: 620,
+            minHeight: 0,
+            height: "100%",
           }}
         >
           <div
@@ -378,7 +384,7 @@ export default function CoachChatPage() {
               display: "grid",
               gap: 8,
               overflowY: "auto",
-              maxHeight: 720,
+              minHeight: 0,
               alignContent: "start",
             }}
           >
@@ -454,6 +460,8 @@ export default function CoachChatPage() {
             display: "grid",
             gridTemplateRows: "auto minmax(0, 1fr) auto",
             minWidth: 0,
+            minHeight: 0,
+            height: "100%",
             overflow: "hidden",
           }}
         >
@@ -469,13 +477,11 @@ export default function CoachChatPage() {
             }}
           >
             <div>
-              <div style={{ fontWeight: 900, color: "#0f172a", fontSize: 16 }}>
-                {selectedConversation?.otherParticipant?.name || "Select a conversation"}
+              <div style={{ fontSize: 18, fontWeight: 900, color: "#0f172a" }}>
+                {selectedConversation?.otherParticipant?.name || "Conversation"}
               </div>
               <div style={{ fontSize: 13, color: "#64748b", marginTop: 4 }}>
-                {selectedConversation?.otherParticipant?.collegeName ||
-                  selectedConversation?.otherParticipant?.email ||
-                  ""}
+                {selectedConversation?.otherParticipant?.collegeName || ""}
               </div>
             </div>
 
@@ -499,6 +505,7 @@ export default function CoachChatPage() {
           <div
             style={{
               padding: 16,
+              minHeight: 0,
               overflowY: "auto",
               display: "grid",
               gap: 12,
