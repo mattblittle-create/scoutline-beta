@@ -21,6 +21,17 @@ type ApiChatConversation = {
     role: string;
     staffTitle: string;
     collegeName: string;
+
+    playerGradYear: number | null;
+    playerPrimaryPos: string;
+    playerSecondaryPos: string;
+    playerPitcherHand: string;
+    playerHsName: string;
+    playerHometown: string;
+    playerState: string;
+
+    playerMetaLine: string;
+    coachMetaLine: string;
   } | null;
 };
 
@@ -420,27 +431,42 @@ export default function CoachChatPage() {
                       border: active ? "1px solid #7dd3fc" : "1px solid #e5e7eb",
                       background: active ? "#e0f2fe" : "#ffffff",
                       borderRadius: 12,
-                      padding: "9px 12px",
+                      padding: "10px 12px",
                       cursor: "pointer",
-                      minHeight: 42,
+                      minHeight: 56,
                       display: "flex",
-                      alignItems: "center",
+                      alignItems: "flex-start",
                       justifyContent: "space-between",
                       gap: 8,
                     }}
                   >
-                    <span
-                      style={{
-                        fontWeight: active ? 900 : 800,
-                        color: "#0f172a",
-                        fontSize: 14,
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {thread.otherParticipant?.name || "Unknown"}
-                    </span>
+                    <div style={{ minWidth: 0, display: "grid", gap: 4, flex: 1 }}>
+                      <div
+                        style={{
+                          fontWeight: active ? 900 : 800,
+                          color: "#0f172a",
+                          fontSize: 14,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {thread.otherParticipant?.name || "Unknown"}
+                      </div>
+
+                      <div
+                        style={{
+                          fontSize: 12,
+                          color: "#64748b",
+                          fontWeight: 700,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {thread.otherParticipant?.playerMetaLine || ""}
+                      </div>
+                    </div>
 
                     {thread.unreadCount > 0 ? (
                       <span
@@ -452,6 +478,7 @@ export default function CoachChatPage() {
                           background: "#ef4444",
                           display: "inline-block",
                           flexShrink: 0,
+                          marginTop: 6,
                         }}
                       />
                     ) : null}

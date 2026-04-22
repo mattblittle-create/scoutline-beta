@@ -38,6 +38,17 @@ type ApiChatConversation = {
     role: string;
     staffTitle: string;
     collegeName: string;
+
+    playerGradYear: number | null;
+    playerPrimaryPos: string;
+    playerSecondaryPos: string;
+    playerPitcherHand: string;
+    playerHsName: string;
+    playerHometown: string;
+    playerState: string;
+
+    playerMetaLine: string;
+    coachMetaLine: string;
   } | null;
 };
 
@@ -1225,27 +1236,43 @@ const unreadChatCount = chatConversations.reduce(
             borderRadius: 12,
             padding: "10px 12px",
             cursor: "pointer",
+            minHeight: 56,
           }}
         >
           <div
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: "flex-start",
               gap: 8,
             }}
           >
-            <div
-              style={{
-                fontWeight: 900,
-                color: "#0f172a",
-                fontSize: 14,
-                overflow: "hidden",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-              }}
-            >
-              {thread.otherParticipant?.name || "Unknown"}
+            <div style={{ minWidth: 0, display: "grid", gap: 4, flex: 1 }}>
+              <div
+                style={{
+                  fontWeight: 900,
+                  color: "#0f172a",
+                  fontSize: 14,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {thread.otherParticipant?.name || "Unknown"}
+              </div>
+
+              <div
+                style={{
+                  fontSize: 12,
+                  color: "#64748b",
+                  fontWeight: 700,
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                }}
+              >
+                {thread.otherParticipant?.coachMetaLine || ""}
+              </div>
             </div>
 
             {thread.unreadCount > 0 ? (
@@ -1258,23 +1285,10 @@ const unreadChatCount = chatConversations.reduce(
                   background: "#ef4444",
                   display: "inline-block",
                   flexShrink: 0,
+                  marginTop: 6,
                 }}
               />
             ) : null}
-          </div>
-
-          <div
-            style={{
-              fontSize: 12,
-              color: "#64748b",
-              marginTop: 4,
-              fontWeight: 700,
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              whiteSpace: "nowrap",
-            }}
-          >
-            {thread.otherParticipant?.collegeName || ""}
           </div>
         </button>
       );

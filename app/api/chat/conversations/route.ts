@@ -9,6 +9,59 @@ export const dynamic = "force-dynamic";
 
 type Err = { ok: false; error: string };
 
+function buildPlayerPositionLine(player: any): string {
+  if (!player) return "";
+
+  const primaryRaw = String(player?.primaryPos || "").trim();
+  const secondaryRaw = String(player?.secondaryPos || "").trim();
+  const pitcherHandRaw = String(player?.pitcherHand || "").trim().toUpperCase();
+
+  const normalizePos = (pos: string) => {
+    const p = String(pos || "").trim().toUpperCase();
+    if (!p) return "";
+    if (p === "P") {
+      if (pitcherHandRaw === "RHP" || pitcherHandRaw === "LHP") return pitcherHandRaw;
+      return "P";
+    }
+    return pos;
+  };
+
+  const primary = normalizePos(primaryRaw);
+  const secondary =
+    secondaryRaw && secondaryRaw.toUpperCase() !== primaryRaw.toUpperCase()
+      ? normalizePos(secondaryRaw)
+      : "";
+
+  const pieces = [primary, secondary].filter(Boolean);
+  return pieces.join(" / ");
+}
+
+function buildPlayerMetaLine(player: any): string {
+  if (!player) return "";
+
+  const gradYear = player?.gradYear ? String(player.gradYear) : "";
+  const positions = buildPlayerPositionLine(player);
+
+  const hsName = String(player?.hsName || "").trim();
+  const hometown = String(player?.hometown || "").trim();
+  const state = String(player?.state || "").trim();
+
+  const location =
+    hsName ||
+    [hometown, state].filter(Boolean).join(", ");
+
+  return [gradYear, positions, location].filter(Boolean).join(" | ");
+}
+
+function buildCoachMetaLine(user: any): string {
+  if (!user) return "";
+
+  const staffTitle = String(user?.coachProfile?.staffTitle || "").trim();
+  const collegeName = String(user?.college?.name || "").trim();
+
+  return [staffTitle, collegeName].filter(Boolean).join(" | ");
+}
+
 export async function GET() {
   const user = await getCurrentUser();
   if (!user) {
@@ -44,6 +97,22 @@ export async function GET() {
                     college: {
                       select: {
                         name: true,
+                      },
+                    },
+                    Player: {
+                      select: {
+                        gradYear: true,
+                        primaryPos: true,
+                        secondaryPos: true,
+                        pitcherHand: true,
+                        hsName: true,
+                        hometown: true,
+                        state: true,
+                      },
+                    },
+                    PlayerProfile: {
+                      select: {
+                        id: true,
                       },
                     },
                   },
@@ -96,20 +165,31 @@ export async function GET() {
           unreadCount,
           preview: lastMessage?.body ?? "",
           lastMessageCreatedAt: lastMessage?.createdAt?.toISOString() ?? null,
-          otherParticipant: primaryOther
-            ? {
-                id: primaryOther.id,
-                name:
-                  primaryOther.name ||
-                  primaryOther.email ||
-                  "Coach",
-                email: primaryOther.email ?? "",
-                photoUrl: primaryOther.photoUrl ?? "",
-                role: primaryOther.role ?? "",
-                staffTitle: primaryOther.coachProfile?.staffTitle ?? "",
-                collegeName: primaryOther.college?.name ?? "",
-              }
-            : null,
+        otherParticipant: primaryOther
+          ? {
+              id: primaryOther.id,
+              name:
+                primaryOther.name ||
+                primaryOther.email ||
+                "Coach",
+              email: primaryOther.email ?? "",
+              photoUrl: primaryOther.photoUrl ?? "",
+              role: primaryOther.role ?? "",
+              staffTitle: primaryOther.coachProfile?.staffTitle ?? "",
+              collegeName: primaryOther.college?.name ?? "",
+
+              playerGradYear: primaryOther.Player?.gradYear ?? null,
+              playerPrimaryPos: primaryOther.Player?.primaryPos ?? "",
+              playerSecondaryPos: primaryOther.Player?.secondaryPos ?? "",
+              playerPitcherHand: primaryOther.Player?.pitcherHand ?? "",
+              playerHsName: primaryOther.Player?.hsName ?? "",
+              playerHometown: primaryOther.Player?.hometown ?? "",
+              playerState: primaryOther.Player?.state ?? "",
+
+              playerMetaLine: buildPlayerMetaLine(primaryOther.Player),
+              coachMetaLine: buildCoachMetaLine(primaryOther),
+            }
+          : null,
         };
       })
 .sort((a, b) => {
