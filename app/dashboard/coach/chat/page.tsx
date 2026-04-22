@@ -477,7 +477,7 @@ export default function CoachChatPage() {
         >
           <div
             style={{
-              padding: 16,
+              padding: 14,
               borderBottom: "1px solid #e5e7eb",
               display: "flex",
               justifyContent: "space-between",
@@ -514,7 +514,7 @@ export default function CoachChatPage() {
 
           <div
             style={{
-              padding: 16,
+              padding: 14,
               minHeight: 0,
               overflowY: "auto",
               display: "grid",
@@ -585,7 +585,7 @@ export default function CoachChatPage() {
 
           <div
             style={{
-              padding: 16,
+              padding: 14,
               borderTop: "1px solid #e5e7eb",
               display: "grid",
               gap: 10,
@@ -602,7 +602,7 @@ export default function CoachChatPage() {
               }
               disabled={!selectedConversationId || sending}
               style={{
-                minHeight: 88,
+                minHeight: 76,
                 width: "100%",
                 resize: "none",
                 borderRadius: 12,
