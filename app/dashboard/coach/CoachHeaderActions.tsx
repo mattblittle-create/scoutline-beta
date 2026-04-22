@@ -217,8 +217,50 @@ export default function CoachHeaderActions() {
   if (!show) return null;
 
   return (
-    <div style={actionsRow}>
-      <div ref={notificationsRef} style={{ position: "relative" }}>
+    <div style={actionsShell}>
+      <div style={actionsLeft}>
+        <Link href="/dashboard/coach" style={btnBlue}>
+          Back to Dashboard
+        </Link>
+
+        <Link
+          href="/dashboard/coach/profile"
+          style={isActive("/dashboard/coach/profile") ? btnGold : btnOutline}
+        >
+          Profile
+        </Link>
+
+        <Link
+          href="/dashboard/coach/recruiting-board"
+          style={isActive("/dashboard/coach/recruiting-board") ? btnGold : btnOutline}
+        >
+          Recruiting Board
+        </Link>
+
+        <Link
+          href="/dashboard/coach/chat"
+          style={isActive("/dashboard/coach/chat") ? btnGold : btnOutline}
+        >
+          Chat
+        </Link>
+
+        <Link
+          href="/dashboard/coach/invites"
+          style={isActive("/dashboard/coach/invites") ? btnGold : btnOutline}
+        >
+          Invites
+        </Link>
+
+        <Link
+          href="/dashboard/coach/directory"
+          style={isActive("/dashboard/coach/directory") ? btnGold : btnOutline}
+        >
+          Directory
+        </Link>
+      </div>
+
+      <div style={actionsRight}>
+        <div ref={notificationsRef} style={{ position: "relative" }}>
         <button
           type="button"
           title="Notifications"
@@ -306,61 +348,23 @@ export default function CoachHeaderActions() {
         )}
       </div>
 
-      <button
-        type="button"
-        title="ScoutLine Chat"
-        onClick={() => router.push("/dashboard/coach/chat")}
-        style={{
-          ...btnChat,
-          opacity: chatLoading ? 0.9 : 1,
-        }}
-      >
-        ScoutLine Chat
-        {unreadChatCount > 0 ? (
-          <span style={badgeRedPill}>
-            {unreadChatCount}
-          </span>
-        ) : null}
-      </button>
-
-      <Link href="/dashboard/coach" style={btnBlue}>
-        Back to Dashboard
-      </Link>
-
-      <Link
-        href="/dashboard/coach/profile"
-        style={isActive("/dashboard/coach/profile") ? btnGold : btnOutline}
-      >
-        Profile
-      </Link>
-
-      <Link
-        href="/dashboard/coach/recruiting-board"
-        style={isActive("/dashboard/coach/recruiting-board") ? btnGold : btnOutline}
-      >
-        Recruiting Board
-      </Link>
-
-      <Link
-        href="/dashboard/coach/chat"
-        style={isActive("/dashboard/coach/chat") ? btnGold : btnOutline}
-      >
-        Chat
-      </Link>
-
-      <Link
-        href="/dashboard/coach/invites"
-        style={isActive("/dashboard/coach/invites") ? btnGold : btnOutline}
-      >
-        Invites
-      </Link>
-
-      <Link
-        href="/dashboard/coach/directory"
-        style={isActive("/dashboard/coach/directory") ? btnGold : btnOutline}
-      >
-        Directory
-      </Link>
+        <button
+          type="button"
+          title="ScoutLine Chat"
+          onClick={() => router.push("/dashboard/coach/chat")}
+          style={{
+            ...btnChat,
+            opacity: chatLoading ? 0.9 : 1,
+          }}
+        >
+          ScoutLine Chat
+          {unreadChatCount > 0 ? (
+            <span style={badgeRedPill}>
+              {unreadChatCount}
+            </span>
+          ) : null}
+        </button>
+      </div>
     </div>
   );
 }
@@ -533,4 +537,28 @@ const markAllBtn: CSSProperties = {
   border: "1px solid #e5e7eb",
   background: "#ffffff",
   fontWeight: 800,
+};
+
+const actionsShell: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: 12,
+  flexWrap: "wrap",
+  width: "100%",
+};
+
+const actionsLeft: CSSProperties = {
+  display: "flex",
+  gap: 10,
+  alignItems: "center",
+  flexWrap: "wrap",
+};
+
+const actionsRight: CSSProperties = {
+  display: "flex",
+  gap: 10,
+  alignItems: "center",
+  marginLeft: "auto",
+  flexWrap: "wrap",
 };

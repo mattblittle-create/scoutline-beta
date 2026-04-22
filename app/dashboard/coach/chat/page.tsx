@@ -253,7 +253,17 @@ export default function CoachChatPage() {
   }
 
   return (
-    <main style={{ maxWidth: 1200, margin: "0 auto", padding: "16px 16px 28px" }}>
+    <main
+      style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        padding: "16px 16px 16px",
+        height: "calc(100vh - 140px)",
+        overflow: "hidden",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <div
         style={{
           display: "flex",
@@ -261,7 +271,7 @@ export default function CoachChatPage() {
           gap: 12,
           alignItems: "flex-start",
           flexWrap: "wrap",
-          marginBottom: 16,
+          marginBottom: 12,
         }}
       >
         <div>
@@ -321,9 +331,9 @@ export default function CoachChatPage() {
           display: "grid",
           gridTemplateColumns: "300px minmax(0, 1fr)",
           gap: 16,
-          minHeight: 620,
-          height: "calc(100vh - 220px)",
-          maxHeight: 760,
+          flex: 1,
+          minHeight: 0,
+          height: "100%",
           alignItems: "stretch",
         }}
       >
