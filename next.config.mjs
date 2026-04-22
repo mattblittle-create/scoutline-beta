@@ -4,6 +4,23 @@
 const nextConfig = {
   reactStrictMode: true,
 
+  // ✅ Force apex/root domain to redirect to www
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "myscoutline.com",
+          },
+        ],
+        destination: "https://www.myscoutline.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
+
   // ✅ Use remotePatterns (domains is deprecated)
   images: {
     remotePatterns: [
