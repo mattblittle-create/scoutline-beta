@@ -2,7 +2,10 @@
 
 import { NextRequest, NextResponse } from "next/server";
 
-const PRICING = {
+type Plan = "WALK_ON" | "ALL_AMERICAN";
+type Cadence = "monthly" | "annual";
+
+const PRICING: Record<Plan, Record<Cadence, number>> = {
   WALK_ON: {
     monthly: 2495,
     annual: 26500,
@@ -13,28 +16,42 @@ const PRICING = {
   },
 };
 
+function isPlan(value: unknown): value is Plan {
+  return value === "WALK_ON" || value === "ALL_AMERICAN";
+}
+
+function isCadence(value: unknown): value is Cadence {
+  return value === "monthly" || value === "annual";
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { plan, cadence, discountCode } = await req.json();
+    const body = await req.json();
 
-    const basePrice = PRICING[plan]?.[cadence];
+    const plan = body?.plan;
+    const cadence = body?.cadence;
+    const discountCode =
+      typeof body?.discountCode === "string" ? body.discountCode.trim() : "";
 
-    if (!basePrice) {
+    if (!isPlan(plan)) {
       return NextResponse.json({ error: "Invalid plan" }, { status: 400 });
     }
 
+    if (!isCadence(cadence)) {
+      return NextResponse.json({ error: "Invalid cadence" }, { status: 400 });
+    }
+
+    const basePrice = PRICING[plan][cadence];
+
     let discountAmount = 0;
 
-    // 🔥 SIMPLE DISCOUNT LOGIC (we will hook to DB later)
-    if (discountCode === "HALFOFF") {
+    // simple placeholder discount logic
+    if (discountCode.toUpperCase() === "HALFOFF") {
       discountAmount = Math.round(basePrice * 0.5);
     }
 
-    const discountedPrice = basePrice - discountAmount;
-
-    // 🔥 SURCHARGE (3%)
+    const discountedPrice = Math.max(0, basePrice - discountAmount);
     const surchargeAmount = Math.round(discountedPrice * 0.03);
-
     const finalPrice = discountedPrice + surchargeAmount;
 
     return NextResponse.json({
@@ -47,6 +64,8 @@ export async function POST(req: NextRequest) {
       finalPrice,
     });
   } catch (err) {
+    console.error("PLAYER_BILLING_ACTIVATION_SUMMARY_ERROR", err);
+
     return NextResponse.json(
       { error: "Failed to calculate summary" },
       { status: 500 }
