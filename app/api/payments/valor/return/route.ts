@@ -1,6 +1,8 @@
 // app/api/payments/valor/return/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
 import { PrismaClient, InvoiceStatus } from "@prisma/client";
 
 const prisma = new PrismaClient();

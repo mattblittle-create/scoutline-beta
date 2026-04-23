@@ -2,7 +2,7 @@
 
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 type Summary = {
@@ -16,7 +16,7 @@ type Summary = {
   error?: string;
 };
 
-export default function PlayerBillingPage() {
+function PlayerBillingPageInner() {
   const searchParams = useSearchParams();
 
   const [plan, setPlan] = useState<"WALK_ON" | "ALL_AMERICAN">("WALK_ON");
@@ -137,9 +137,7 @@ export default function PlayerBillingPage() {
 
         const profileData = await profileRes.json().catch(() => null);
 
-const resolvedProfileId =
-  profileData?.playerProfileId ||
-  "";
+        const resolvedProfileId = profileData?.playerProfileId || "";
 
         if (!profileRes.ok || !resolvedProfileId) {
           if (!cancelled) {
@@ -269,7 +267,6 @@ const resolvedProfileId =
         </div>
       ) : null}
 
-      {/* PLAN SELECT */}
       <div>
         <label>Plan</label>
         <select
@@ -282,7 +279,6 @@ const resolvedProfileId =
         </select>
       </div>
 
-      {/* CADENCE */}
       <div style={{ marginTop: 10 }}>
         <label>Billing</label>
         <select
@@ -295,7 +291,6 @@ const resolvedProfileId =
         </select>
       </div>
 
-      {/* DISCOUNT */}
       <div style={{ marginTop: 10 }}>
         <label>Discount Code</label>
         <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
@@ -311,7 +306,6 @@ const resolvedProfileId =
         </div>
       </div>
 
-      {/* SUMMARY */}
       <div
         style={{
           marginTop: 20,
@@ -353,5 +347,20 @@ const resolvedProfileId =
         {checkoutLoading ? "Redirecting..." : "Proceed to Payment"}
       </button>
     </div>
+  );
+}
+
+export default function PlayerBillingPage() {
+  return (
+    <Suspense
+      fallback={
+        <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "Arial" }}>
+          <h1>Complete Your Subscription</h1>
+          <p>Loading billing page...</p>
+        </div>
+      }
+    >
+      <PlayerBillingPageInner />
+    </Suspense>
   );
 }
