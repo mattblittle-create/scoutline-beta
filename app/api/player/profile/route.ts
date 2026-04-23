@@ -525,10 +525,10 @@ export async function GET(req: Request) {
       );
     }
 
-    const row = await prisma.playerProfile.findUnique({
-      where: { email },
-      select: { data: true, schemaVersion: true, updatedAt: true },
-    });
+const row = await prisma.playerProfile.findUnique({
+  where: { email },
+  select: { id: true, data: true, schemaVersion: true, updatedAt: true },
+});
 
     if (row?.data) {
       const fn = (row.data as any)?.firstName || null;
@@ -573,17 +573,18 @@ export async function GET(req: Request) {
         statsSeasons: resolveStatsSeasonsAbs(norm.statsSeasons ?? norm.seasons ?? [], base),
       };
 
-      return NextResponse.json({
-        ok: true,
-        user: {
-          email: userForGet?.email ?? email,
-          slug: userForGet?.slug ?? null,
-          photoUrl: userForGet?.photoUrl ?? null,
-        },
-        normalized: normalizedResolved,
-        schemaVersion: row.schemaVersion ?? 1,
-        updatedAt: row.updatedAt ?? null,
-      });
+return NextResponse.json({
+  ok: true,
+  playerProfileId: row.id,
+  user: {
+    email: userForGet?.email ?? email,
+    slug: userForGet?.slug ?? null,
+    photoUrl: userForGet?.photoUrl ?? null,
+  },
+  normalized: normalizedResolved,
+  schemaVersion: row.schemaVersion ?? 1,
+  updatedAt: row.updatedAt ?? null,
+});
     }
 
     const dev = await getByEmail(email);
