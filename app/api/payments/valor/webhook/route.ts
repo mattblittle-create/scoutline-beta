@@ -46,8 +46,13 @@ function verifyValorSignature(args: {
   }
 }
 
-function toUpperString(value: unknown) {
-  return typeof value === "string" ? value.trim().toUpperCase() : "";
+function toUpperString(...values: unknown[]) {
+  for (const value of values) {
+    if (typeof value === "string" && value.trim()) {
+      return value.trim().toUpperCase();
+    }
+  }
+  return "";
 }
 
 function firstString(...values: unknown[]) {
