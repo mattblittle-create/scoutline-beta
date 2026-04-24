@@ -56,6 +56,17 @@ function digitsOnly(v: any) {
   return String(v ?? "").replace(/\D+/g, "");
 }
 
+function formatPhoneNumber(v: any) {
+  const digits = digitsOnly(v).slice(0, 10);
+
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  }
+
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 export default function OnboardingPlanPage({ params }: PageProps) {
   const router = useRouter();
   const search = useSearchParams();
@@ -142,7 +153,7 @@ function PlayerOnboarding({ plan }: { plan: string }) {
     Boolean(form.parentEmail.trim()) &&
     isEmail(form.email.trim().toLowerCase()) &&
     isEmail(form.parentEmail.trim().toLowerCase()) &&
-    digitsOnly(form.phone).length >= 10;
+    digitsOnly(form.phone).length === 10;
 
   async function copyLink() {
     if (!setPasswordUrl) return;
@@ -339,8 +350,11 @@ function PlayerOnboarding({ plan }: { plan: string }) {
               className="input"
               type="tel"
               value={form.phone}
-              onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, phone: formatPhoneNumber(e.target.value) }))
+              }
               placeholder="(555) 555-5555"
+              maxLength={14}
               required
             />
           </div>
