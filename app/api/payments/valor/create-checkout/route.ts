@@ -40,7 +40,13 @@ function addYears(date: Date, years: number) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { plan, cadence: rawCadence, discountCode, playerProfileId } = await req.json();
+    const {
+      plan,
+      cadence: rawCadence,
+      discountCode,
+      playerProfileId,
+      paymentMethod,
+    } = await req.json();
 
 const cadence = normalizeCadence(rawCadence);
 const normalizedPlan = normalizePlan(plan);
@@ -71,7 +77,7 @@ const normalizedPlan = normalizePlan(plan);
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, cadence, discountCode }),
+        body: JSON.stringify({ plan, cadence, discountCode, paymentMethod }),
         cache: "no-store",
       }
     );

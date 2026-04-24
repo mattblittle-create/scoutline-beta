@@ -8,6 +8,7 @@ import { useSearchParams } from "next/navigation";
 type Summary = {
   plan: string;
   cadence: "monthly" | "annual";
+  paymentMethod: "card" | "ach";
   basePrice: number;
   discountAmount: number;
   discountedPrice: number;
@@ -21,6 +22,7 @@ function PlayerBillingPageInner() {
 
   const [plan, setPlan] = useState<"WALK_ON" | "ALL_AMERICAN">("WALK_ON");
   const [cadence, setCadence] = useState<"monthly" | "annual">("monthly");
+  const [paymentMethod, setPaymentMethod] = useState<"card" | "ach">("card");
   const [discountCode, setDiscountCode] = useState("");
   const [summary, setSummary] = useState<Summary | null>(null);
 
@@ -71,6 +73,7 @@ function PlayerBillingPageInner() {
           plan,
           cadence,
           discountCode,
+          paymentMethod,
         }),
       });
 
@@ -95,7 +98,7 @@ function PlayerBillingPageInner() {
   useEffect(() => {
     fetchSummary();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan, cadence]);
+  }, [plan, cadence, paymentMethod]);
 
   useEffect(() => {
     const fromQuery = searchParams.get("playerProfileId");
@@ -188,6 +191,7 @@ function PlayerBillingPageInner() {
           plan,
           cadence,
           discountCode,
+          paymentMethod,
           playerProfileId,
         }),
       });
@@ -279,21 +283,71 @@ function PlayerBillingPageInner() {
         </select>
       </div>
 
-<div style={{ marginTop: 10 }}>
-  <label>Billing</label>
-  <div
-    style={{
-      marginTop: 6,
-      padding: "8px 10px",
-      border: "1px solid #ccc",
-      borderRadius: 6,
-      background: "#f7f7f7",
-      maxWidth: 220,
-    }}
-  >
-    Monthly
-  </div>
-</div>
+      <div style={{ marginTop: 10 }}>
+        <label>Billing</label>
+        <div
+          style={{
+            marginTop: 6,
+            padding: "8px 10px",
+            border: "1px solid #ccc",
+            borderRadius: 6,
+            background: "#f7f7f7",
+            maxWidth: 220,
+          }}
+        >
+          Monthly
+        </div>
+      </div>
+
+      <div style={{ marginTop: 10 }}>
+        <label>Payment Method</label>
+
+        <div style={{ display: "grid", gap: 8, marginTop: 6 }}>
+          <label
+            style={{
+              display: "flex",
+              gap: 8,
+              alignItems: "center",
+              padding: "10px 12px",
+              border: "1px solid #d1d5db",
+              borderRadius: 10,
+            }}
+          >
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="card"
+              checked={paymentMethod === "card"}
+              onChange={() => setPaymentMethod("card")}
+            />
+            <span>Card — 3% processing fee applies</span>
+          </label>
+
+          <label
+            style={{
+              display: "flex",
+              gap: 8,
+              alignItems: "center",
+              padding: "10px 12px",
+              border: "1px solid #d1d5db",
+              borderRadius: 10,
+            }}
+          >
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="ach"
+              checked={paymentMethod === "ach"}
+              onChange={() => setPaymentMethod("ach")}
+            />
+            <span>ACH — no processing fee</span>
+          </label>
+        </div>
+
+        <div style={{ marginTop: 8, fontSize: 12, color: "#64748b", lineHeight: 1.4 }}>
+          Card payments include a 3% processing fee. ACH payments do not include a processing fee.
+        </div>
+      </div>
 
       <div style={{ marginTop: 10 }}>
         <label>Discount Code</label>
@@ -325,8 +379,10 @@ function PlayerBillingPageInner() {
             <p>Discount: -${(summary.discountAmount / 100).toFixed(2)}</p>
             <p>Subtotal: ${(summary.discountedPrice / 100).toFixed(2)}</p>
             <p>
-              Processing Fee (Cardholder): $
-              {(summary.surchargeAmount / 100).toFixed(2)}
+              {summary.paymentMethod === "card"
+                ? "Processing Fee (Card): "
+                : "Processing Fee (ACH): "}
+              ${(summary.surchargeAmount / 100).toFixed(2)}
             </p>
             <h3>Total Due: ${(summary.finalPrice / 100).toFixed(2)}</h3>
           </>

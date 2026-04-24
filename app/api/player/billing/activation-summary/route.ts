@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 type Plan = "WALK_ON" | "ALL_AMERICAN";
 type Cadence = "monthly" | "annual";
+type PaymentMethod = "card" | "ach";
 
 const PRICING: Record<Plan, Record<Cadence, number>> = {
   WALK_ON: {
@@ -21,8 +22,12 @@ function isPlan(value: unknown): value is Plan {
 }
 
 function isCadence(value: unknown): value is Cadence {
-  // Annual pricing is preserved in code but currently disabled for underwriting.
+  // Annual disabled per underwriting.
   return value === "monthly";
+}
+
+function normalizePaymentMethod(value: unknown): PaymentMethod {
+  return value === "ach" ? "ach" : "card";
 }
 
 export async function POST(req: NextRequest) {
@@ -31,6 +36,7 @@ export async function POST(req: NextRequest) {
 
     const plan = body?.plan;
     const cadence = body?.cadence;
+    const paymentMethod = normalizePaymentMethod(body?.paymentMethod);
     const discountCode =
       typeof body?.discountCode === "string" ? body.discountCode.trim() : "";
 
@@ -46,18 +52,21 @@ export async function POST(req: NextRequest) {
 
     let discountAmount = 0;
 
-    // simple placeholder discount logic
     if (discountCode.toUpperCase() === "HALFOFF") {
       discountAmount = Math.round(basePrice * 0.5);
     }
 
     const discountedPrice = Math.max(0, basePrice - discountAmount);
-    const surchargeAmount = Math.round(discountedPrice * 0.03);
+
+    const surchargeAmount =
+      paymentMethod === "card" ? Math.round(discountedPrice * 0.03) : 0;
+
     const finalPrice = discountedPrice + surchargeAmount;
 
     return NextResponse.json({
       plan,
       cadence,
+      paymentMethod,
       basePrice,
       discountAmount,
       discountedPrice,
