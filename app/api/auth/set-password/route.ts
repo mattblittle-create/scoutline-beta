@@ -1,4 +1,5 @@
 // app/api/auth/set-password/route.ts
+
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { prisma } from "@/lib/prisma";
@@ -6,6 +7,10 @@ import {
   consumeVerificationToken,
   findValidVerificationToken,
 } from "@/lib/auth/tokens";
+import { getPostLoginRedirect } from "@/lib/auth/getPostLoginRedirect";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type Body = {
   token?: string | null;
@@ -26,24 +31,12 @@ function validatePassword(pw: string): string | null {
   return null;
 }
 
-function normalizeNextPath(v: unknown): string | null {
-  const s = String(v ?? "").trim();
-  if (!s) return null;
-
-  // Only allow internal relative paths
-  if (!s.startsWith("/")) return null;
-  if (s.startsWith("//")) return null;
-
-  return s;
-}
-
 export async function POST(req: Request) {
   try {
     const body = (await req.json().catch(() => ({}))) as Body;
 
     const rawToken = normalizeText(body.token);
     const password = normalizeText(body.password);
-    const next = normalizeNextPath(body.next);
 
     if (!rawToken) {
       return NextResponse.json(
@@ -71,13 +64,16 @@ export async function POST(req: Request) {
 
     const passwordHash = await bcrypt.hash(password, 10);
 
-    await prisma.user.update({
+    const user = await prisma.user.update({
       where: { email: token.email },
       data: {
         passwordHash,
         updatedAt: new Date(),
       },
-      select: { id: true },
+      select: {
+        id: true,
+        email: true,
+      },
     });
 
     await consumeVerificationToken({
@@ -85,11 +81,33 @@ export async function POST(req: Request) {
       purpose: "SET_PASSWORD",
     });
 
-    return NextResponse.json({
+    const redirectTo = await getPostLoginRedirect(user.id);
+
+    const res = NextResponse.json({
       ok: true,
-      email: token.email,
-      redirectTo: next || `/login?email=${encodeURIComponent(token.email)}`,
+      email: user.email,
+      redirectTo,
     });
+
+    res.cookies.set("scoutline_uid", user.id, {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: process.env.NODE_ENV === "production",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 14,
+    });
+
+    if (process.env.NODE_ENV !== "production") {
+      res.cookies.set("scoutline_uid_dbg", user.id, {
+        httpOnly: false,
+        sameSite: "lax",
+        secure: false,
+        path: "/",
+        maxAge: 60 * 60 * 24 * 14,
+      });
+    }
+
+    return res;
   } catch (err: any) {
     console.error("[auth] set-password error", {
       message: err?.message || "Unknown error",

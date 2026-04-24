@@ -104,7 +104,7 @@ function SetPasswordPageInner() {
 
       setSuccess("Password set successfully. Redirecting...");
       window.setTimeout(() => {
-        router.push(String(json.redirectTo || next || "/login"));
+        router.replace(String(json.redirectTo || "/dashboard/player"));
       }, 900);
     } catch (err: any) {
       setError(err?.message || "Something went wrong.");
