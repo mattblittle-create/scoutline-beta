@@ -14,19 +14,35 @@ export default function PlayerBillingPaymentMethod(props: {
   summary: { paymentType: string | null; brand: string | null; last4: string | null } | null;
 }) {
   const [busy, setBusy] = useState(false);
+  const [msg, setMsg] = useState<string | null>(null);
 
-  const label =
-    props.summary?.last4
-      ? `${props.summary.paymentType || "card"} • ${props.summary.brand || ""} • **** ${props.summary.last4}`.replace(
-          /\s+/g,
-          " "
-        )
-      : "No payment method on file";
+  const label = props.summary?.last4
+    ? `${props.summary.paymentType || "card"} • ${props.summary.brand || ""} • **** ${
+        props.summary.last4
+      }`.replace(/\s+/g, " ")
+    : "No payment method on file";
 
   async function onGoToValor() {
+    setMsg(null);
     setBusy(true);
+
     try {
-      window.open("https://example.com/valor-hosted-payment-method", "_blank", "noopener,noreferrer");
+      const res = await fetch("/api/player/billing/payment-portal", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ playerProfileId: props.playerProfileId }),
+      });
+
+      const json = await res.json();
+
+      if (!res.ok || !json?.ok || !json?.url) {
+        setMsg(json?.error || "Could not open payment portal.");
+        return;
+      }
+
+      window.location.href = json.url;
+    } catch (err: any) {
+      setMsg(err?.message || "Request failed.");
     } finally {
       setBusy(false);
     }
@@ -38,7 +54,6 @@ export default function PlayerBillingPaymentMethod(props: {
 
       <div style={{ color: NAVY, marginBottom: 10 }}>{label}</div>
 
-      {/* Inline actions */}
       <div
         style={{
           display: "flex",
@@ -65,6 +80,8 @@ export default function PlayerBillingPaymentMethod(props: {
           >
             {busy ? "Opening…" : "Add / Update Payment Info"}
           </button>
+
+          {msg ? <span style={{ color: "#b91c1c", fontWeight: 700 }}>{msg}</span> : null}
         </div>
 
         <CancelAccountControl kind="PLAYER" targetId={props.playerProfileId} />

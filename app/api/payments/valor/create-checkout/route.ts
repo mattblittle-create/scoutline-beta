@@ -19,6 +19,13 @@ function normalizePlan(value: string): Plan {
   throw new Error("Invalid plan");
 }
 
+function normalizeCadence(value: unknown): "monthly" | "annual" {
+  // Annual is intentionally disabled for underwriting.
+  // Keep the type support so we can turn it back on later.
+  if (value === "monthly") return value;
+  throw new Error("Invalid cadence");
+}
+
 function addMonths(date: Date, months: number) {
   const next = new Date(date);
   next.setMonth(next.getMonth() + months);
@@ -33,7 +40,10 @@ function addYears(date: Date, years: number) {
 
 export async function POST(req: NextRequest) {
   try {
-    const { plan, cadence, discountCode, playerProfileId } = await req.json();
+    const { plan, cadence: rawCadence, discountCode, playerProfileId } = await req.json();
+
+const cadence = normalizeCadence(rawCadence);
+const normalizedPlan = normalizePlan(plan);
 
     if (!playerProfileId || typeof playerProfileId !== "string") {
       return NextResponse.json(
@@ -111,7 +121,7 @@ const invoice = await prisma.playerInvoice.create({
         hasActivePlayerBilling: false,
         playerBillingStatus: "Pending",
         playerBillingCadence: cadence,
-        playerPlanTier: normalizePlan(plan),
+        playerPlanTier: normalizedPlan,
       },
     });
 

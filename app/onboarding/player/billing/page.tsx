@@ -279,17 +279,21 @@ function PlayerBillingPageInner() {
         </select>
       </div>
 
-      <div style={{ marginTop: 10 }}>
-        <label>Billing</label>
-        <select
-          value={cadence}
-          onChange={(e) => setCadence(e.target.value as "monthly" | "annual")}
-          style={{ display: "block", marginTop: 6, minWidth: 220 }}
-        >
-          <option value="monthly">Monthly</option>
-          <option value="annual">Annual</option>
-        </select>
-      </div>
+<div style={{ marginTop: 10 }}>
+  <label>Billing</label>
+  <div
+    style={{
+      marginTop: 6,
+      padding: "8px 10px",
+      border: "1px solid #ccc",
+      borderRadius: 6,
+      background: "#f7f7f7",
+      maxWidth: 220,
+    }}
+  >
+    Monthly
+  </div>
+</div>
 
       <div style={{ marginTop: 10 }}>
         <label>Discount Code</label>

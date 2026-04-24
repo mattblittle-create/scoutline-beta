@@ -21,7 +21,8 @@ function isPlan(value: unknown): value is Plan {
 }
 
 function isCadence(value: unknown): value is Cadence {
-  return value === "monthly" || value === "annual";
+  // Annual pricing is preserved in code but currently disabled for underwriting.
+  return value === "monthly";
 }
 
 export async function POST(req: NextRequest) {
