@@ -65,9 +65,6 @@ function CoachOnboardingPageInner() {
   const [okMsg, setOkMsg] = React.useState<string | null>(null);
   const [needsSetPassword, setNeedsSetPassword] = React.useState(false);
 
-  const [setPasswordUrl, setSetPasswordUrl] = React.useState<string | null>(null);
-  const [toast, setToast] = React.useState<string | null>(null);
-
   React.useEffect(() => {
     if (emailFromQuery) setWorkEmail(emailFromQuery);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -88,25 +85,11 @@ function CoachOnboardingPageInner() {
 
   const canSubmit = firstOk && lastOk && roleOk && collegeOk && emailOk && phoneOk;
 
-  async function copyLink() {
-    if (!setPasswordUrl) return;
-    try {
-      await navigator.clipboard.writeText(setPasswordUrl);
-      setToast("Link copied!");
-      window.setTimeout(() => setToast(null), 1500);
-    } catch {
-      setToast("Could not copy link.");
-      window.setTimeout(() => setToast(null), 1500);
-    }
-  }
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     setOkMsg(null);
     setNeedsSetPassword(false);
-    setSetPasswordUrl(null);
-    setToast(null);
 
     const fn = firstName.trim();
     const ln = lastName.trim();
@@ -151,34 +134,9 @@ function CoachOnboardingPageInner() {
       }
 
       const needs = Boolean(json?.data?.needsSetPassword);
-      const linkFromApi = String(json?.data?.setPasswordLink || "").trim();
-      const tokenFromApi = String(
-        json?.data?.setPasswordToken ||
-          json?.data?.setPasswordJwt ||
-          json?.data?.token ||
-          ""
-      ).trim();
-
-      if (needs) {
-        setNeedsSetPassword(true);
-
-        let url: string | null = null;
-
-if (linkFromApi) {
-  url = linkFromApi
-    .replace("/auth/set-passwrod", "/set-password")
-    .replace("/auth/set-password", "/set-password")
-    .replace("toekn=", "token=");
-} else if (tokenFromApi) {
-  url = `${window.location.origin}/set-password?token=${encodeURIComponent(tokenFromApi)}`;
-} else {
-  url = null;
-}
-
-        setSetPasswordUrl(url);
 
         setOkMsg(
-          "You’re almost done — set your password using the link we sent to your email. Once set, come back and log in."
+          `You’re almost done — set your password using the link we sent to ${em}. Once set, come back and log in.`
         );
         return;
       }
@@ -204,49 +162,6 @@ if (linkFromApi) {
 
         {error ? <div style={errorBox}>{error}</div> : null}
         {okMsg ? <div style={okBox}>{okMsg}</div> : null}
-
-        {needsSetPassword ? (
-          <div style={setPwBox}>
-            <div style={{ fontWeight: 900, marginBottom: 6 }}>Set your password</div>
-            <div style={hint}>
-              We sent a password setup link to <b>{workEmail.trim().toLowerCase()}</b>.
-              {setPasswordUrl ? " In dev, use the buttons below:" : ""}
-            </div>
-
-            {setPasswordUrl ? (
-              <>
-                <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
-                  <button type="button" onClick={copyLink} style={btnGhost}>
-                    Copy Link
-                  </button>
-
-                  <a href={setPasswordUrl} style={btnGhostSolid}>
-                    Open Link
-                  </a>
-
-                  <button
-                    type="button"
-                    style={btnGold}
-                    onClick={() => router.push("/login?role=coach")}
-                    title="After setting your password, log in here."
-                  >
-                    Go to Login
-                  </button>
-                </div>
-
-                {toast ? (
-                  <div style={{ marginTop: 8, ...hint, color: "#047857", fontWeight: 900 }}>
-                    {toast}
-                  </div>
-                ) : null}
-              </>
-            ) : (
-              <div style={{ marginTop: 10, ...hint }}>
-                If you don’t see the email, check spam/junk. In dev, the set-password token/link may not be available yet.
-              </div>
-            )}
-          </div>
-        ) : null}
 
         <form onSubmit={onSubmit} style={{ marginTop: 14, display: "grid", gap: 12 }}>
           {/* ✅ Name matches Teams format */}

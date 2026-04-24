@@ -133,8 +133,6 @@ function PlayerOnboarding({ plan }: { plan: string }) {
   const [error, setError] = React.useState<string | null>(null);
   const [okMsg, setOkMsg] = React.useState<string | null>(null);
   const [needsSetPassword, setNeedsSetPassword] = React.useState(false);
-  const [setPasswordUrl, setSetPasswordUrl] = React.useState<string | null>(null);
-  const [toast, setToast] = React.useState<string | null>(null);
 
   const planLabel =
     plan === "redshirt"
@@ -155,18 +153,6 @@ function PlayerOnboarding({ plan }: { plan: string }) {
     isEmail(form.parentEmail.trim().toLowerCase()) &&
     digitsOnly(form.phone).length === 10;
 
-  async function copyLink() {
-    if (!setPasswordUrl) return;
-    try {
-      await navigator.clipboard.writeText(setPasswordUrl);
-      setToast("Link copied!");
-      window.setTimeout(() => setToast(null), 1500);
-    } catch {
-      setToast("Could not copy link.");
-      window.setTimeout(() => setToast(null), 1500);
-    }
-  }
-
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (submitting) return;
@@ -174,8 +160,6 @@ function PlayerOnboarding({ plan }: { plan: string }) {
     setError(null);
     setOkMsg(null);
     setNeedsSetPassword(false);
-    setSetPasswordUrl(null);
-    setToast(null);
 
     const email = form.email.trim().toLowerCase();
     const parentEmail = form.parentEmail.trim().toLowerCase();
@@ -228,7 +212,6 @@ function PlayerOnboarding({ plan }: { plan: string }) {
           : null;
 
         setNeedsSetPassword(true);
-        setSetPasswordUrl(url);
 
         const parentSetupUrl =
           `${window.location.origin}/onboarding/parent/password` +
@@ -255,9 +238,9 @@ function PlayerOnboarding({ plan }: { plan: string }) {
           console.error("Parent invite send failed:", err);
         });
 
-        setOkMsg(
-          "You’re almost done — set your password using the link we sent to your email. Your parent/secondary contact will also receive a setup email."
-        );
+      setOkMsg(
+        `You’re almost done — set your password using the link we sent to ${email}. Your parent/secondary contact will also receive a setup email.`
+      );
         return;
       }
 
@@ -281,50 +264,6 @@ function PlayerOnboarding({ plan }: { plan: string }) {
 
       {error ? <div className="error">{error}</div> : null}
       {okMsg ? <div className="ok">{okMsg}</div> : null}
-
-      {needsSetPassword ? (
-        <div className="setpw">
-          <div style={{ fontWeight: 900, marginBottom: 6 }}>Set your password</div>
-          <div className="hint">
-            We sent a password setup link to <b>{form.email.trim().toLowerCase()}</b>.
-            {setPasswordUrl ? " In dev, use the buttons below:" : ""}
-          </div>
-
-          {setPasswordUrl ? (
-            <>
-              <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
-                <button type="button" onClick={copyLink} className="sl-link-btn">
-                  Copy Link
-                </button>
-
-                <a href={setPasswordUrl} className="sl-link-btn solid">
-                  Open Link
-                </a>
-
-                <button
-                  type="button"
-                  className="primary-btn"
-                  onClick={() =>
-                    router.push(`/login?role=player&email=${encodeURIComponent(form.email.trim().toLowerCase())}`)
-                  }
-                >
-                  Go to Login
-                </button>
-              </div>
-
-              {toast ? (
-                <div style={{ marginTop: 8, color: "#047857", fontWeight: 900, fontSize: 12 }}>
-                  {toast}
-                </div>
-              ) : null}
-            </>
-          ) : (
-            <div className="hint" style={{ marginTop: 10 }}>
-              If you don’t see the email, check spam/junk.
-            </div>
-          )}
-        </div>
-      ) : null}
 
       <form onSubmit={onSubmit} style={{ marginTop: 16 }}>
         <div className="grid">
