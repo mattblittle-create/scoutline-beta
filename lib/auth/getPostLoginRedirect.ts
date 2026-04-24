@@ -56,11 +56,15 @@ export async function getPostLoginRedirect(userId: string): Promise<string> {
           teamId: true,
         },
       },
-      PlayerProfile: {
-        select: {
-          id: true,
-        },
-      },
+PlayerProfile: {
+  select: {
+    id: true,
+    playerPlanTier: true,
+    hasActivePlayerBilling: true,
+    hasActiveTeamBilling: true,
+    playerBillingStatus: true,
+  },
+},
       Player: {
         select: {
           id: true,
@@ -102,11 +106,31 @@ export async function getPostLoginRedirect(userId: string): Promise<string> {
   }
   if (legacyRole === "COACH") return "/dashboard/coach";
   if (legacyRole === "PARENT") return "/dashboard/parent";
-  if (legacyRole === "PLAYER" && hasPlayerProfile) {
-    return "/dashboard/player";
-  }
+const playerProfile = (user as any).PlayerProfile || (user as any).playerProfile || null;
 
-  if (hasPlayerProfile) return "/dashboard/player";
+const selectedPaidPlayerPlan =
+  playerProfile &&
+  ["WALK_ON", "ALL_AMERICAN"].includes(
+    String(playerProfile.playerPlanTier || "").toUpperCase()
+  );
 
+const needsPlayerPayment =
+  selectedPaidPlayerPlan &&
+  !playerProfile.hasActivePlayerBilling &&
+  !playerProfile.hasActiveTeamBilling &&
+  String(playerProfile.playerBillingStatus || "").toLowerCase() !== "active";
+
+if (needsPlayerPayment) {
+  return `/onboarding/player/billing?playerProfileId=${encodeURIComponent(
+    playerProfile.id
+  )}`;
+}
+
+if (legacyRole === "PLAYER" && hasPlayerProfile) {
   return "/dashboard/player";
+}
+
+if (hasPlayerProfile) return "/dashboard/player";
+
+return "/dashboard/player";
 }
