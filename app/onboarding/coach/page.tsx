@@ -135,6 +135,8 @@ function CoachOnboardingPageInner() {
 
       const needs = Boolean(json?.data?.needsSetPassword);
 
+      if (needs) {
+        setNeedsSetPassword(true);
         setOkMsg(
           `You’re almost done — set your password using the link we sent to ${em}. Once set, come back and log in.`
         );
@@ -351,30 +353,6 @@ const btnGold: React.CSSProperties = {
   fontWeight: 900,
 };
 
-const btnGhost: React.CSSProperties = {
-  display: "inline-block",
-  padding: "10px 14px",
-  borderRadius: 10,
-  border: "1px solid #e5e7eb",
-  background: "#fff",
-  color: "#0f172a",
-  fontWeight: 900,
-  cursor: "pointer",
-  textDecoration: "none",
-};
-
-const btnGhostSolid: React.CSSProperties = {
-  display: "inline-block",
-  padding: "10px 14px",
-  borderRadius: 10,
-  border: "1px solid #e5e7eb",
-  background: "#f8fafc",
-  color: "#0f172a",
-  fontWeight: 900,
-  cursor: "pointer",
-  textDecoration: "none",
-};
-
 const errorBox: React.CSSProperties = {
   marginTop: 12,
   padding: "10px 12px",
@@ -393,12 +371,4 @@ const okBox: React.CSSProperties = {
   color: "#14532d",
   borderRadius: 12,
   fontWeight: 900,
-};
-
-const setPwBox: React.CSSProperties = {
-  marginTop: 12,
-  padding: "12px 12px",
-  border: "1px solid #e5e7eb",
-  background: "#f8fafc",
-  borderRadius: 12,
 };
