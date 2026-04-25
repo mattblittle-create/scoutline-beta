@@ -531,7 +531,7 @@ async function toggleSavedCollege(collegeId: string) {
                   <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
                 </div>
 
-<div style={{ display: "flex", gap: 10 }}>
+<div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
   {college.admissionsUrl ? (
     <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
       Admissions
@@ -544,9 +544,6 @@ async function toggleSavedCollege(collegeId: string) {
     </a>
   ) : null}
 </div>
-
-<div style={{ marginLeft: "auto" }}>
-                </div>
               </article>
             );
           })}
