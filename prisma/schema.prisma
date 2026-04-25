@@ -1049,3 +1049,94 @@ enum InvoiceStatus {
   PAST_DUE
   VOID
 }
+
+enum CollegeRegion {
+  NORTHEAST
+  MID_ATLANTIC
+  SOUTHEAST
+  MIDWEST
+  SOUTHWEST
+  WEST
+  PACIFIC
+}
+
+enum CollegeControl {
+  PUBLIC
+  PRIVATE
+}
+
+enum CollegeSchoolType {
+  FOUR_YEAR
+  TWO_YEAR
+  COMMUNITY_COLLEGE
+  JUNIOR_COLLEGE
+  OTHER
+}
+
+enum CollegeVerificationStatus {
+  UNVERIFIED
+  VERIFIED
+  NEEDS_REVIEW
+  BROKEN_LINK
+}
+
+model College {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  slug String @unique
+
+  websiteUrl      String?
+  admissionsUrl   String?
+  academicsUrl    String?
+  majorsUrl       String?
+  applicationUrl  String?
+  financialAidUrl String?
+
+  city   String?
+  state  String
+  region CollegeRegion
+
+  control    CollegeControl
+  schoolType CollegeSchoolType @default(FOUR_YEAR)
+
+  tuitionInState       Int?
+  tuitionOutOfState    Int?
+  tuitionInternational Int?
+  tuitionYear          Int?
+
+  enrollmentTotal     Int?
+  enrollmentUndergrad Int?
+
+  acceptanceRate Decimal? @db.Decimal(5, 2)
+  graduationRate Decimal? @db.Decimal(5, 2)
+
+  dataSourceUrl      String?
+  lastVerifiedAt     DateTime?
+  verificationStatus CollegeVerificationStatus @default(UNVERIFIED)
+
+  academicAreas CollegeAcademicArea[]
+
+  @@index([name])
+  @@index([state])
+  @@index([region])
+  @@index([control])
+  @@index([schoolType])
+}
+
+model CollegeAcademicArea {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  collegeId String
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  name String
+
+  @@index([collegeId])
+  @@index([name])
+  @@unique([collegeId, name])
+}
