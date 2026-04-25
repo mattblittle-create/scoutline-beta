@@ -293,6 +293,7 @@ model PlayerProfile {
   viewEvents              ProfileViewEvent[]
   recruitingBoardEntries  RecruitingBoardEntry[]
   RecruitingListMember    RecruitingListMember[]
+  savedColleges           CollegeSavedSchool[]
   teamMemberships         TeamMembership[]
   teamSnapshots           TeamProfileSnapshot[]
 
@@ -582,14 +583,16 @@ model College {
 
   // Relations
   academicAreas               CollegeAcademicArea[]
+  baseballProgram             CollegeBaseballProgram?
   coachInvites                CoachInvite[]
   coachJoinRequests           CoachJoinRequest[]
   coachNotes                  CoachNote[]
   coachPlayerRatings          CoachPlayerRating[]
-  programProfileUpdatedByUser User?                  @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
+  programProfileUpdatedByUser User?                   @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
   profileViewEvents           ProfileViewEvent[]
   recruitingBoardEntries      RecruitingBoardEntry[]
   recruitingLists             RecruitingList[]
+  savedByPlayers              CollegeSavedSchool[]
   coaches                     User[]
 
   @@index([name])
@@ -1131,4 +1134,167 @@ model CollegeAcademicArea {
   @@unique([collegeId, name])
   @@index([collegeId])
   @@index([name])
+}
+
+model CollegeSavedSchool {
+  id              String @id @default(cuid())
+  playerProfileId String
+  collegeId       String
+
+  listName String  @default("Target Programs")
+  status   String  @default("SAVED")
+  notes    String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  college       College       @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([playerProfileId, collegeId])
+  @@index([playerProfileId])
+  @@index([collegeId])
+  @@index([listName])
+}
+
+enum CollegeAthleticDivision {
+  NCAA_D1
+  NCAA_D2
+  NCAA_D3
+  NAIA
+  NJCAA_D1
+  NJCAA_D2
+  NJCAA_D3
+  OTHER
+}
+
+enum CollegeRosterNeedLevel {
+  HIGH
+  MEDIUM
+  LOW
+  UNKNOWN
+}
+
+enum CollegeBaseballVerificationStatus {
+  UNVERIFIED
+  VERIFIED
+  NEEDS_REVIEW
+  BROKEN_LINK
+}
+
+model CollegeBaseballProgram {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  collegeId String  @unique
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  nickname String?
+  logoUrl  String?
+
+  baseballWebsiteUrl  String?
+  rosterUrl           String?
+  scheduleUrl         String?
+  campsUrl            String?
+  questionnaireUrl    String?
+  generalContactUrl   String?
+  generalContactEmail String?
+
+  division   CollegeAthleticDivision?
+  conference String?
+
+  currentRosterSize Int?
+  averageGpa        Decimal? @db.Decimal(4, 2)
+
+  scholarshipNotes   String?
+  scholarshipInfoUrl String?
+
+  transferHeavy Boolean @default(false)
+  jucoFriendly  Boolean @default(false)
+
+  dataSourceUrl      String?
+  lastVerifiedAt     DateTime?
+  verificationStatus CollegeBaseballVerificationStatus @default(UNVERIFIED)
+
+  coaches        CollegeBaseballCoach[]
+  rosterNeeds    CollegeBaseballRosterNeed[]
+  metricAverages CollegeBaseballMetricAverage[]
+
+  @@index([division])
+  @@index([conference])
+  @@index([transferHeavy])
+  @@index([jucoFriendly])
+}
+
+model CollegeBaseballCoach {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  name       String
+  title      String?
+  email      String?
+  phone      String?
+  bioUrl     String?
+  contactUrl String?
+
+  isHeadCoach Boolean @default(false)
+
+  @@index([programId])
+  @@index([isHeadCoach])
+}
+
+model CollegeBaseballRosterNeed {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  gradYear Int
+  position String
+
+  needLevel CollegeRosterNeedLevel @default(UNKNOWN)
+  notes     String?
+
+  sourceUrl      String?
+  lastVerifiedAt DateTime?
+
+  @@unique([programId, gradYear, position])
+  @@index([programId])
+  @@index([gradYear])
+  @@index([position])
+  @@index([needLevel])
+}
+
+model CollegeBaseballMetricAverage {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  position    String
+  metricKey   String
+  metricLabel String?
+
+  averageValue Decimal? @db.Decimal(8, 2)
+  minValue     Decimal? @db.Decimal(8, 2)
+  maxValue     Decimal? @db.Decimal(8, 2)
+  unit         String?
+
+  sampleSize     Int?
+  sourceUrl      String?
+  lastVerifiedAt DateTime?
+
+  @@unique([programId, position, metricKey])
+  @@index([programId])
+  @@index([position])
+  @@index([metricKey])
 }

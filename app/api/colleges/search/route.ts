@@ -1,114 +1,82 @@
-// app/api/colleges/search/route.ts
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
-// Temporary static list until the real database is wired up.
-const STATIC_COLLEGES = [
-  "Alabama",
-  "Arizona",
-  "Arizona State",
-  "Arkansas",
-  "Auburn",
-  "Baylor",
-  "Boston College",
-  "BYU",
-  "Cal",
-  "Cincinnati",
-  "Clemson",
-  "Coastal Carolina",
-  "Colorado",
-  "Columbia",
-  "Cornell",
-  "Creighton",
-  "Dartmouth",
-  "Duke",
-  "East Carolina",
-  "Florida",
-  "Florida State",
-  "Georgia",
-  "Georgia Tech",
-  "Gonzaga",
-  "Harvard",
-  "Indiana",
-  "Kansas",
-  "Kansas State",
-  "Kentucky",
-  "Liberty",
-  "Louisiana State",
-  "Louisville",
-  "Miami",
-  "Michigan",
-  "Michigan State",
-  "Mississippi State",
-  "Missouri",
-  "Nebraska",
-  "North Carolina",
-  "NC State",
-  "Notre Dame",
-  "Ohio State",
-  "Oklahoma",
-  "Oklahoma State",
-  "Ole Miss",
-  "Oregon",
-  "Oregon State",
-  "Penn State",
-  "Pepperdine",
-  "Pittsburgh",
-  "Rice",
-  "Rutgers",
-  "Santa Clara",
-  "South Carolina",
-  "South Florida",
-  "Southern Miss",
-  "Stanford",
-  "TCU",
-  "Tennessee",
-  "Texas",
-  "Texas A&M",
-  "Texas Tech",
-  "Tulane",
-  "UCLA",
-  "UCF",
-  "USC",
-  "Utah",
-  "Vanderbilt",
-  "Virginia",
-  "Virginia Tech",
-  "Washington",
-  "Washington State",
-  "Wake Forest",
-  "Wichita State",
-  "Yale",
-];
+export async function GET(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
 
-function slugify(name: string) {
-  return name
-    .toLowerCase()
-    .replace(/&/g, "and")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
+    const q = (searchParams.get("q") || "").trim();
+    const limit = Math.min(100, Math.max(1, Number(searchParams.get("limit") || 25)));
 
-export async function GET(req: Request) {
-  const url = new URL(req.url);
-  const q = (url.searchParams.get("q") || "").trim().toLowerCase();
-  const limit = Math.min(50, Math.max(1, Number(url.searchParams.get("limit") || 25) || 25));
+    const state = searchParams.get("state") || "";
+    const region = searchParams.get("region") || "";
+    const control = searchParams.get("control") || "";
+    const division = searchParams.get("division") || "";
+    const conference = searchParams.get("conference") || "";
 
-  // Match UI behavior: wait for 2+ chars
-  if (q.length < 2) {
-    return NextResponse.json({ ok: true, results: [] });
+    const minTuition = Number(searchParams.get("minTuition") || 0);
+    const maxTuition = Number(searchParams.get("maxTuition") || 999999);
+
+    const results = await prisma.college.findMany({
+      where: {
+        AND: [
+          q.length >= 2
+            ? {
+                name: {
+                  contains: q,
+                  mode: "insensitive",
+                },
+              }
+            : {},
+          state ? { state } : {},
+          region ? { region: region as any } : {},
+          control ? { control: control as any } : {},
+          {
+            tuitionInState: {
+              gte: minTuition || undefined,
+              lte: maxTuition || undefined,
+            },
+          },
+          division || conference
+            ? {
+                baseballProgram: {
+                  is: {
+                    ...(division ? { division: division as any } : {}),
+                    ...(conference ? { conference } : {}),
+                  },
+                },
+              }
+            : {},
+        ],
+      },
+      include: {
+        baseballProgram: {
+          select: {
+            division: true,
+            conference: true,
+            nickname: true,
+            baseballWebsiteUrl: true,
+          },
+        },
+      },
+      orderBy: {
+        name: "asc",
+      },
+      take: limit,
+    });
+
+    return NextResponse.json({
+      ok: true,
+      count: results.length,
+      results,
+    });
+  } catch (err) {
+    console.error("COLLEGE_SEARCH_ERROR", err);
+    return NextResponse.json(
+      { ok: false, error: "Failed to search colleges." },
+      { status: 500 }
+    );
   }
-
-  // Rank: prefix matches first (alphabetized), then substring matches (alphabetized)
-  const starts = STATIC_COLLEGES.filter(n => n.toLowerCase().startsWith(q)).sort((a, b) => a.localeCompare(b));
-  const contains = STATIC_COLLEGES
-    .filter(n => !n.toLowerCase().startsWith(q) && n.toLowerCase().includes(q))
-    .sort((a, b) => a.localeCompare(b));
-
-  const combined = [...starts, ...contains].slice(0, limit);
-
-  const results = combined.map(name => ({ id: slugify(name), name }));
-
-  return NextResponse.json({ ok: true, results });
 }
