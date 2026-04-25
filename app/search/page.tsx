@@ -3,6 +3,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 
 const TUITION_MAX = 100000;
 
@@ -475,18 +476,12 @@ async function toggleSavedCollege(collegeId: string) {
     flexWrap: "wrap",
   }}
 >
-  {college.websiteUrl ? (
-    <a
-      href={college.websiteUrl}
-      target="_blank"
-      rel="noreferrer"
-      style={{ color: "#0f172a", textDecorationColor: "#caa042" }}
-    >
-      {college.name}
-    </a>
-  ) : (
-    college.name
-  )}
+<Link
+  href={`/college/${college.slug}`}
+  style={{ color: "#0f172a", textDecorationColor: "#caa042" }}
+>
+  {college.name}
+</Link>
 
   {isLoggedIn ? (
     <button
