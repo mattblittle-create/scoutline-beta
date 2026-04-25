@@ -41,7 +41,7 @@ function PlayerBillingPageInner() {
 
   useEffect(() => {
   if (PAYMENTS_DISABLED) {
-    router.replace("/dashboard/player/profile");
+    router.replace("/dashboard/player");
   }
 }, [router]);
 
