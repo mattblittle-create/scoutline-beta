@@ -11,49 +11,49 @@ datasource db {
 }
 
 model User {
-  id                       String                 @id @default(cuid())
-  email                    String                 @unique
-  passwordHash             String?
-  name                     String?
-  role                     String?
-  workPhone                String?
-  phonePrivate             Boolean                @default(true)
-  program                  String?
-  photoUrl                 String?
-  slug                     String?                @unique
-  createdAt                DateTime               @default(now())
-  updatedAt                DateTime               @updatedAt
-  emailPrivate             Boolean                @default(true)
-  collegeId                String?
-  workPhoneExt             String?
-  adminAuditLogsActing     AdminAuditLog[]        @relation("AdminAuditActingUser")
-  adminProfile             AdminUser?
+  id                           String                        @id @default(cuid())
+  email                        String                        @unique
+  passwordHash                 String?
+  name                         String?
+  role                         String?
+  workPhone                    String?
+  phonePrivate                 Boolean                       @default(true)
+  program                      String?
+  photoUrl                     String?
+  slug                         String?                       @unique
+  createdAt                    DateTime                      @default(now())
+  updatedAt                    DateTime                      @updatedAt
+  emailPrivate                 Boolean                       @default(true)
+  collegeId                    String?
+  workPhoneExt                 String?
+  adminAuditLogsActing         AdminAuditLog[]               @relation("AdminAuditActingUser")
+  adminProfile                 AdminUser?
   chatConversationParticipants ChatConversationParticipant[]
-  chatMessagesSent         ChatMessage[]          @relation("ChatMessageSender")
-  coachInvitesAccepted     CoachInvite[]          @relation("CoachInviteAcceptedBy")
-  coachInvitesCreated      CoachInvite[]          @relation("CoachInviteCreatedBy")
-  coachJoinRequestsDecided CoachJoinRequest[]     @relation("CoachJoinRequestDecidedBy")
-  coachJoinRequestsCreated CoachJoinRequest[]     @relation("CoachJoinRequestCreatedBy")
-  coachNotesAuthored       CoachNote[]
-  coachPlayerRatings       CoachPlayerRating[]
-  coachProfile             CoachProfile?
-  programProfileEdits      College[]              @relation("CollegeProgramProfileUpdatedBy")
-  notifications            Notification[]
-  parentProfile            ParentProfile?
-  payoutsReceived          Payout[]               @relation("PayoutPayeeUser")
-  Player                   Player?
-  PlayerProfile            PlayerProfile?
-  profileChangeLogsActed   ProfileChangeLog[]
-  profileViewEvents        ProfileViewEvent[]
-  publicProfileCaches      PublicProfileCache[]
-  recruitingBoardAdded     RecruitingBoardEntry[]
-  recruitingListsCreated   RecruitingList[]       @relation("RecruitingListsCreated")
-  recruitingListAccess     RecruitingListAccess[]
-  referralsMade            Referral[]             @relation("ReferralReferrerUser")
-  teamInvitesAccepted      TeamInvite[]           @relation("TeamInviteAcceptedBy")
-  teamInvitesCreated       TeamInvite[]           @relation("TeamInviteCreatedBy")
-  teamMemberships          TeamMembership[]
-  college                  College?               @relation(fields: [collegeId], references: [id])
+  chatMessagesSent             ChatMessage[]                 @relation("ChatMessageSender")
+  coachInvitesAccepted         CoachInvite[]                 @relation("CoachInviteAcceptedBy")
+  coachInvitesCreated          CoachInvite[]                 @relation("CoachInviteCreatedBy")
+  coachJoinRequestsDecided     CoachJoinRequest[]            @relation("CoachJoinRequestDecidedBy")
+  coachJoinRequestsCreated     CoachJoinRequest[]            @relation("CoachJoinRequestCreatedBy")
+  coachNotesAuthored           CoachNote[]
+  coachPlayerRatings           CoachPlayerRating[]
+  coachProfile                 CoachProfile?
+  programProfileEdits          College[]                     @relation("CollegeProgramProfileUpdatedBy")
+  notifications                Notification[]
+  parentProfile                ParentProfile?
+  payoutsReceived              Payout[]                      @relation("PayoutPayeeUser")
+  Player                       Player?
+  PlayerProfile                PlayerProfile?
+  profileChangeLogsActed       ProfileChangeLog[]
+  profileViewEvents            ProfileViewEvent[]
+  publicProfileCaches          PublicProfileCache[]
+  recruitingBoardAdded         RecruitingBoardEntry[]
+  recruitingListsCreated       RecruitingList[]              @relation("RecruitingListsCreated")
+  recruitingListAccess         RecruitingListAccess[]
+  referralsMade                Referral[]                    @relation("ReferralReferrerUser")
+  teamInvitesAccepted          TeamInvite[]                  @relation("TeamInviteAcceptedBy")
+  teamInvitesCreated           TeamInvite[]                  @relation("TeamInviteCreatedBy")
+  teamMemberships              TeamMembership[]
+  college                      College?                      @relation(fields: [collegeId], references: [id])
 }
 
 model VerificationToken {
@@ -531,34 +531,72 @@ model CoachBillingProfile {
 }
 
 model College {
-  id                            String                 @id @default(cuid())
-  name                          String
-  slug                          String                 @unique
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  name String
+  slug String @unique
+
+  // General school info
+  websiteUrl      String?
+  admissionsUrl   String?
+  academicsUrl    String?
+  majorsUrl       String?
+  applicationUrl  String?
+  financialAidUrl String?
+
+  city   String?
+  state  String?
+  region CollegeRegion?
+
+  control    CollegeControl?
+  schoolType CollegeSchoolType @default(FOUR_YEAR)
+
+  tuitionInState       Int?
+  tuitionOutOfState    Int?
+  tuitionInternational Int?
+  tuitionYear          Int?
+
+  enrollmentTotal     Int?
+  enrollmentUndergrad Int?
+
+  acceptanceRate Decimal? @db.Decimal(5, 2)
+  graduationRate Decimal? @db.Decimal(5, 2)
+
+  dataSourceUrl      String?
+  lastVerifiedAt     DateTime?
+  verificationStatus CollegeVerificationStatus @default(UNVERIFIED)
+
+  // Existing athletics / coach-program fields
   conference                    String?
   division                      String?
-  city                          String?
-  state                         String?
-  createdAt                     DateTime               @default(now())
-  updatedAt                     DateTime               @updatedAt
   logoUrl                       String?
   programWebsiteUrl             String?
-  websiteUrl                    String?
   programProfileUpdatedAt       DateTime?
   programProfileUpdatedByUserId String?
   programBio                    String?
   programInstagramUrl           String?
   programXUrl                   String?
   recruitingQuestionnaireUrl    String?
-  coachInvites                  CoachInvite[]
-  coachJoinRequests             CoachJoinRequest[]
-  coachNotes                    CoachNote[]
-  coachPlayerRatings            CoachPlayerRating[]
-  programProfileUpdatedByUser   User?                  @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
-  profileViewEvents             ProfileViewEvent[]
-  recruitingBoardEntries        RecruitingBoardEntry[]
-  recruitingLists               RecruitingList[]
-  coaches                       User[]
 
+  // Relations
+  academicAreas               CollegeAcademicArea[]
+  coachInvites                CoachInvite[]
+  coachJoinRequests           CoachJoinRequest[]
+  coachNotes                  CoachNote[]
+  coachPlayerRatings          CoachPlayerRating[]
+  programProfileUpdatedByUser User?                  @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
+  profileViewEvents           ProfileViewEvent[]
+  recruitingBoardEntries      RecruitingBoardEntry[]
+  recruitingLists             RecruitingList[]
+  coaches                     User[]
+
+  @@index([name])
+  @@index([state])
+  @@index([region])
+  @@index([control])
+  @@index([schoolType])
   @@index([programProfileUpdatedByUserId])
 }
 
@@ -697,16 +735,16 @@ model ChatConversation {
 }
 
 model ChatConversationParticipant {
-  id               String           @id @default(cuid())
-  conversationId   String
-  userId           String
-  role             ChatParticipantRole
-  joinedAt         DateTime         @default(now())
-  lastReadAt       DateTime?
-  archivedAt       DateTime?
-  muted            Boolean          @default(false)
-  conversation     ChatConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
-  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id             String              @id @default(cuid())
+  conversationId String
+  userId         String
+  role           ChatParticipantRole
+  joinedAt       DateTime            @default(now())
+  lastReadAt     DateTime?
+  archivedAt     DateTime?
+  muted          Boolean             @default(false)
+  conversation   ChatConversation    @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([conversationId, userId])
   @@index([userId, joinedAt])
@@ -1080,52 +1118,6 @@ enum CollegeVerificationStatus {
   BROKEN_LINK
 }
 
-model College {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  name String
-  slug String @unique
-
-  websiteUrl      String?
-  admissionsUrl   String?
-  academicsUrl    String?
-  majorsUrl       String?
-  applicationUrl  String?
-  financialAidUrl String?
-
-  city   String?
-  state  String
-  region CollegeRegion
-
-  control    CollegeControl
-  schoolType CollegeSchoolType @default(FOUR_YEAR)
-
-  tuitionInState       Int?
-  tuitionOutOfState    Int?
-  tuitionInternational Int?
-  tuitionYear          Int?
-
-  enrollmentTotal     Int?
-  enrollmentUndergrad Int?
-
-  acceptanceRate Decimal? @db.Decimal(5, 2)
-  graduationRate Decimal? @db.Decimal(5, 2)
-
-  dataSourceUrl      String?
-  lastVerifiedAt     DateTime?
-  verificationStatus CollegeVerificationStatus @default(UNVERIFIED)
-
-  academicAreas CollegeAcademicArea[]
-
-  @@index([name])
-  @@index([state])
-  @@index([region])
-  @@index([control])
-  @@index([schoolType])
-}
-
 model CollegeAcademicArea {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
@@ -1136,7 +1128,7 @@ model CollegeAcademicArea {
 
   name String
 
+  @@unique([collegeId, name])
   @@index([collegeId])
   @@index([name])
-  @@unique([collegeId, name])
 }
