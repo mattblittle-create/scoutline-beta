@@ -97,16 +97,12 @@ export default function CollegeSearchPage() {
   const [q, setQ] = useState("");
   const [states, setStates] = useState<string[]>([]);
   const [stateInput, setStateInput] = useState("");
-
   const [regions, setRegions] = useState<string[]>([]);
   const [regionInput, setRegionInput] = useState("");
-
   const [divisions, setDivisions] = useState<string[]>([]);
   const [divisionInput, setDivisionInput] = useState("");
-
   const [conferences, setConferences] = useState<string[]>([]);
   const [conferenceInput, setConferenceInput] = useState("");
-
   const [control, setControl] = useState("");
   const [maxTuition, setMaxTuition] = useState(TUITION_MAX);
 
@@ -116,11 +112,11 @@ export default function CollegeSearchPage() {
 
   const hasAnySearch =
     q.trim().length >= 2 ||
-    states.length ||
-    regions.length ||
-    divisions.length ||
-    conferences.length ||
-    control ||
+    states.length > 0 ||
+    regions.length > 0 ||
+    divisions.length > 0 ||
+    conferences.length > 0 ||
+    !!control ||
     maxTuition < TUITION_MAX;
 
   useEffect(() => {
@@ -170,6 +166,7 @@ export default function CollegeSearchPage() {
     }
 
     const t = window.setTimeout(runSearch, 250);
+
     return () => {
       cancelled = true;
       window.clearTimeout(t);
@@ -177,7 +174,8 @@ export default function CollegeSearchPage() {
   }, [q, states, regions, divisions, conferences, control, maxTuition, hasAnySearch]);
 
   const stateMatches = useMemo(
-    () => STATES.filter((s) => s.startsWith(stateInput.toUpperCase()) && !states.includes(s)).slice(0, 10),
+    () =>
+      STATES.filter((s) => s.startsWith(stateInput.toUpperCase()) && !states.includes(s)).slice(0, 10),
     [stateInput, states]
   );
 
@@ -233,32 +231,37 @@ export default function CollegeSearchPage() {
 
         <div style={panelStyle}>
           <Field label="Search by college name">
-            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Example: South Carolina" style={inputStyle} />
+            <input
+              value={q}
+              onChange={(e) => setQ(e.target.value)}
+              placeholder="Example: South Carolina"
+              style={inputStyle}
+            />
           </Field>
 
           <div style={{ marginTop: 16, fontWeight: 900 }}>Advanced Filters</div>
 
           <div style={filterGridStyle}>
-<AutoChipField
-  label="States"
-  value={stateInput}
-  setValue={setStateInput}
-  selected={states}
-  setSelected={setStates}
-  matches={stateMatches.map((s) => [s, s])}
-  allOptions={STATES.map((s) => [s, s])}
-/>
+            <AutoChipField
+              label="States"
+              value={stateInput}
+              setValue={setStateInput}
+              selected={states}
+              setSelected={setStates}
+              matches={stateMatches.map((s) => [s, s])}
+              allOptions={STATES.map((s) => [s, s])}
+            />
 
-<AutoChipField
-  label="Regions"
-  value={regionInput}
-  setValue={setRegionInput}
-  selected={regions}
-  setSelected={setRegions}
-  matches={regionMatches.map(([v, l]) => [v, l])}
-  allOptions={REGIONS.map(([v, l]) => [v, l])}
-  labelFor={(v) => REGION_ABBR[v] || v}
-/>
+            <AutoChipField
+              label="Regions"
+              value={regionInput}
+              setValue={setRegionInput}
+              selected={regions}
+              setSelected={setRegions}
+              matches={regionMatches.map(([v, l]) => [v, l])}
+              allOptions={REGIONS.map(([v, l]) => [v, l])}
+              labelFor={(v) => REGION_ABBR[v] || v}
+            />
 
             <Field label="Public / Private">
               <select value={control} onChange={(e) => setControl(e.target.value)} style={inputStyle}>
@@ -268,40 +271,41 @@ export default function CollegeSearchPage() {
               </select>
             </Field>
 
-<AutoChipField
-  label="Divisions"
-  value={divisionInput}
-  setValue={setDivisionInput}
-  selected={divisions}
-  setSelected={setDivisions}
-  matches={divisionMatches.map(([v, l]) => [v, l])}
-  allOptions={DIVISIONS.map(([v, l]) => [v, l])}
-  labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
-/>
+            <AutoChipField
+              label="Divisions"
+              value={divisionInput}
+              setValue={setDivisionInput}
+              selected={divisions}
+              setSelected={setDivisions}
+              matches={divisionMatches.map(([v, l]) => [v, l])}
+              allOptions={DIVISIONS.map(([v, l]) => [v, l])}
+              labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
+            />
 
-<AutoChipField
-  label="Conferences"
-  value={conferenceInput}
-  setValue={setConferenceInput}
-  selected={conferences}
-  setSelected={setConferences}
-  matches={conferenceMatches.map((c) => [c, c])}
-  allOptions={CONFERENCES.map((c) => [c, c])}
-/>
+            <AutoChipField
+              label="Conferences"
+              value={conferenceInput}
+              setValue={setConferenceInput}
+              selected={conferences}
+              setSelected={setConferences}
+              matches={conferenceMatches.map((c) => [c, c])}
+              allOptions={CONFERENCES.map((c) => [c, c])}
+            />
 
-<Field label={`Max: $${maxTuition.toLocaleString()}`}>
-  <div style={{ maxWidth: 120 }}>
-    <input
-      type="range"
-      min={0}
-      max={TUITION_MAX}
-      step={1000}
-      value={maxTuition}
-      onChange={(e) => setMaxTuition(Number(e.target.value))}
-      style={{ width: "100%" }}
-    />
-  </div>
-</Field>
+            <Field label={`Max: $${maxTuition.toLocaleString()}`}>
+              <div style={{ maxWidth: 120 }}>
+                <input
+                  type="range"
+                  min={0}
+                  max={TUITION_MAX}
+                  step={1000}
+                  value={maxTuition}
+                  onChange={(e) => setMaxTuition(Number(e.target.value))}
+                  style={{ width: "100%" }}
+                />
+              </div>
+            </Field>
+          </div>
 
           <button type="button" onClick={clearFilters} style={clearButtonStyle}>
             Clear Filters
@@ -356,8 +360,17 @@ export default function CollegeSearchPage() {
                 </div>
 
                 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
-                  {college.admissionsUrl ? <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>Admissions</a> : null}
-                  {baseball?.baseballWebsiteUrl ? <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={buttonStyle}>Baseball Program</a> : null}
+                  {college.admissionsUrl ? (
+                    <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
+                      Admissions
+                    </a>
+                  ) : null}
+
+                  {baseball?.baseballWebsiteUrl ? (
+                    <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
+                      Baseball Program
+                    </a>
+                  ) : null}
                 </div>
               </article>
             );
@@ -388,13 +401,12 @@ function AutoChipField({
   labelFor?: (v: string) => string;
 }) {
   const [open, setOpen] = useState(false);
-
   const availableOptions = allOptions.filter(([raw]) => !selected.includes(raw));
 
   return (
     <Field label={label}>
       <div style={{ display: "grid", gap: 6, position: "relative" }}>
-        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", minHeight: 22 }}>
+        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", minHeight: 20 }}>
           {selected.map((item) => (
             <span key={item} style={chipStyle}>
               {labelFor ? labelFor(item) : item}
@@ -410,26 +422,26 @@ function AutoChipField({
           ))}
         </div>
 
-<div style={comboWrapStyle}>
-  <input
-    value={value}
-    onChange={(e) => {
-      setValue(e.target.value);
-      setOpen(false);
-    }}
-    placeholder="Type to search..."
-    style={comboInputStyle}
-  />
+        <div style={comboWrapStyle}>
+          <input
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+              setOpen(false);
+            }}
+            placeholder="Type to search..."
+            style={comboInputStyle}
+          />
 
-  <button
-    type="button"
-    onClick={() => setOpen((prev) => !prev)}
-    style={comboArrowStyle}
-    aria-label={`Open ${label} options`}
-  >
-    ▾
-  </button>
-</div>
+          <button
+            type="button"
+            onClick={() => setOpen((prev) => !prev)}
+            style={comboArrowStyle}
+            aria-label={`Open ${label} options`}
+          >
+            ▾
+          </button>
+        </div>
 
         {value ? (
           <div style={suggestionBoxStyle}>
@@ -455,22 +467,22 @@ function AutoChipField({
 
         {open ? (
           <div style={suggestionBoxStyle}>
-            {availableOptions.map(([raw, display]) => (
-              <button
-                key={raw}
-                type="button"
-                onClick={() => {
-                  setSelected((prev) => addUnique(prev, raw));
-                }}
-                style={suggestionStyle}
-              >
-                {display}
-              </button>
-            ))}
-
-            {!availableOptions.length ? (
+            {availableOptions.length ? (
+              availableOptions.map(([raw, display]) => (
+                <button
+                  key={raw}
+                  type="button"
+                  onClick={() => {
+                    setSelected((prev) => addUnique(prev, raw));
+                  }}
+                  style={suggestionStyle}
+                >
+                  {display}
+                </button>
+              ))
+            ) : (
               <div style={emptySuggestionStyle}>All selected</div>
-            ) : null}
+            )}
           </div>
         ) : null}
       </div>
@@ -497,118 +509,18 @@ function Info({ label, value }: { label: string; value: string }) {
 }
 
 const panelStyle: React.CSSProperties = { background: "#ffffff", border: "1px solid #e5e7eb", borderRadius: 18, boxShadow: "0 10px 28px rgba(15,23,42,0.08)", padding: 18, marginBottom: 18 };
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  boxSizing: "border-box",
-  padding: "8px 9px",
-  borderRadius: 9,
-  border: "1px solid #cbd5e1",
-  fontSize: 13,
-  outline: "none",
-};
-const filterGridStyle: React.CSSProperties = {
-  marginTop: 10,
-  display: "grid",
-  gridTemplateColumns: "150px 150px 125px 150px 180px 180px",
-  gap: 8,
-  alignItems: "start",
-};
+const inputStyle: React.CSSProperties = { width: "100%", boxSizing: "border-box", padding: "8px 9px", borderRadius: 9, border: "1px solid #cbd5e1", fontSize: 13, outline: "none" };
+const filterGridStyle: React.CSSProperties = { marginTop: 10, display: "grid", gridTemplateColumns: "150px 150px 125px 150px 180px 120px", gap: 8, alignItems: "start" };
 const clearButtonStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #cbd5e1", background: "#f8fafc", borderRadius: 999, padding: "8px 12px", fontWeight: 900, cursor: "pointer" };
 const errorStyle: React.CSSProperties = { border: "1px solid #fecaca", background: "#fff1f2", color: "#991b1b", borderRadius: 12, padding: 14, marginBottom: 16, fontWeight: 700 };
 const cardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 18, background: "#ffffff", padding: 18, boxShadow: "0 8px 20px rgba(15,23,42,0.05)" };
 const pillStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "6px 10px", fontSize: 12, fontWeight: 900, color: "#334155" };
 const buttonStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, padding: "9px 13px", background: "#caa042", color: "#0f172a", textDecoration: "none", fontWeight: 900, border: "1px solid #caa042" };
-const chipStyle: React.CSSProperties = {
-  position: "relative",
-  display: "inline-flex",
-  alignItems: "center",
-  minHeight: 20,
-  borderRadius: 999,
-  border: "1px solid #caa042",
-  background: "#fffaf0",
-  padding: "3px 16px 3px 7px",
-  fontSize: 10,
-  fontWeight: 900,
-  lineHeight: 1,
-};
-const chipXStyle: React.CSSProperties = {
-  position: "absolute",
-  top: -4,
-  right: 2,
-  border: "none",
-  background: "transparent",
-  cursor: "pointer",
-  fontSize: 11,
-  lineHeight: 1,
-  fontWeight: 900,
-  color: "#dc2626",
-  padding: 0,
-};
-const suggestionStyle: React.CSSProperties = {
-  textAlign: "left",
-  border: "1px solid #e5e7eb",
-  background: "#ffffff",
-  borderRadius: 8,
-  padding: "6px 8px",
-  cursor: "pointer",
-  fontWeight: 800,
-  fontSize: 12,
-};
-
-const dropdownButtonStyle: React.CSSProperties = {
-  width: 32,
-  border: "1px solid #cbd5e1",
-  background: "#f8fafc",
-  borderRadius: 9,
-  cursor: "pointer",
-  fontWeight: 900,
-};
-
-const suggestionBoxStyle: React.CSSProperties = {
-  display: "grid",
-  gap: 4,
-  maxHeight: 170,
-  overflowY: "auto",
-  border: "1px solid #e5e7eb",
-  background: "#ffffff",
-  borderRadius: 10,
-  padding: 6,
-  boxShadow: "0 8px 18px rgba(15,23,42,0.10)",
-  zIndex: 10,
-};
-
-const emptySuggestionStyle: React.CSSProperties = {
-  fontSize: 12,
-  color: "#64748b",
-  padding: "6px 8px",
-  fontWeight: 700,
-};
-
-const comboWrapStyle: React.CSSProperties = {
-  position: "relative",
-  width: "100%",
-};
-
-const comboInputStyle: React.CSSProperties = {
-  width: "100%",
-  boxSizing: "border-box",
-  padding: "8px 28px 8px 9px",
-  borderRadius: 9,
-  border: "1px solid #cbd5e1",
-  fontSize: 13,
-  outline: "none",
-};
-
-const comboArrowStyle: React.CSSProperties = {
-  position: "absolute",
-  right: 4,
-  top: "50%",
-  transform: "translateY(-50%)",
-  width: 22,
-  height: 22,
-  border: "none",
-  background: "transparent",
-  cursor: "pointer",
-  fontWeight: 900,
-  color: "#334155",
-};
+const chipStyle: React.CSSProperties = { position: "relative", display: "inline-flex", alignItems: "center", minHeight: 18, borderRadius: 999, border: "1px solid #caa042", background: "#fffaf0", padding: "3px 15px 3px 7px", fontSize: 10, fontWeight: 900, lineHeight: 1 };
+const chipXStyle: React.CSSProperties = { position: "absolute", top: -4, right: 1, border: "none", background: "transparent", cursor: "pointer", fontSize: 10, lineHeight: 1, fontWeight: 900, color: "#dc2626", padding: 0 };
+const comboWrapStyle: React.CSSProperties = { position: "relative", width: "100%" };
+const comboInputStyle: React.CSSProperties = { width: "100%", boxSizing: "border-box", padding: "8px 28px 8px 9px", borderRadius: 9, border: "1px solid #cbd5e1", fontSize: 13, outline: "none" };
+const comboArrowStyle: React.CSSProperties = { position: "absolute", right: 4, top: "50%", transform: "translateY(-50%)", width: 22, height: 22, border: "none", background: "transparent", cursor: "pointer", fontWeight: 900, color: "#334155" };
+const suggestionBoxStyle: React.CSSProperties = { display: "grid", gap: 4, maxHeight: 170, overflowY: "auto", border: "1px solid #e5e7eb", background: "#ffffff", borderRadius: 10, padding: 6, boxShadow: "0 8px 18px rgba(15,23,42,0.10)", zIndex: 10 };
+const suggestionStyle: React.CSSProperties = { textAlign: "left", border: "1px solid #e5e7eb", background: "#ffffff", borderRadius: 8, padding: "6px 8px", cursor: "pointer", fontWeight: 800, fontSize: 12 };
+const emptySuggestionStyle: React.CSSProperties = { fontSize: 12, color: "#64748b", padding: "6px 8px", fontWeight: 700 };
