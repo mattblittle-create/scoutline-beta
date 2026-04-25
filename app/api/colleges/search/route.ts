@@ -16,8 +16,13 @@ export async function GET(req: NextRequest) {
     const division = searchParams.get("division") || "";
     const conference = searchParams.get("conference") || "";
 
-    const minTuition = Number(searchParams.get("minTuition") || 0);
-    const maxTuition = Number(searchParams.get("maxTuition") || 999999);
+    const rawMinTuition = searchParams.get("minTuition");
+    const rawMaxTuition = searchParams.get("maxTuition");
+
+    const hasTuitionFilter = rawMinTuition !== null || rawMaxTuition !== null;
+
+    const minTuition = rawMinTuition ? Number(rawMinTuition) : undefined;
+    const maxTuition = rawMaxTuition ? Number(rawMaxTuition) : undefined;
 
     const results = await prisma.college.findMany({
       where: {
@@ -33,12 +38,14 @@ export async function GET(req: NextRequest) {
           state ? { state } : {},
           region ? { region: region as any } : {},
           control ? { control: control as any } : {},
-          {
-            tuitionInState: {
-              gte: minTuition || undefined,
-              lte: maxTuition || undefined,
-            },
+          hasTuitionFilter
+      ? {
+          tuitionInState: {
+            ...(minTuition !== undefined ? { gte: minTuition } : {}),
+            ...(maxTuition !== undefined ? { lte: maxTuition } : {}),
           },
+        }
+      : {},
           division || conference
             ? {
                 baseballProgram: {
