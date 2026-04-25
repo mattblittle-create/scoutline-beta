@@ -523,7 +523,7 @@ async function toggleSavedCollege(collegeId: string) {
                   </div>
                 </div>
 
-                <div style={{ marginTop: 16, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
+                <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
                   <Info label="Nickname" value={baseball?.nickname || "—"} />
                   <Info label="Division" value={pretty(baseball?.division)} />
                   <Info label="Conference" value={baseball?.conference || "—"} />
