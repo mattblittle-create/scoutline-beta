@@ -1,0 +1,126 @@
+// app/api/player/target-programs/route.ts
+
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { prisma } from "@/lib/prisma";
+
+export const dynamic = "force-dynamic";
+
+async function getCurrentPlayerProfile() {
+  const userId = cookies().get("scoutline_uid")?.value || "";
+
+  if (!userId) return null;
+
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: {
+      email: true,
+      PlayerProfile: {
+        select: { id: true },
+      },
+    },
+  });
+
+  if (!user?.email) return null;
+
+  if (user.PlayerProfile?.id) {
+    return user.PlayerProfile;
+  }
+
+  return prisma.playerProfile.findUnique({
+    where: { email: user.email },
+    select: { id: true },
+  });
+}
+
+export async function GET() {
+  try {
+    const profile = await getCurrentPlayerProfile();
+
+    if (!profile) {
+      return NextResponse.json({ ok: false, error: "Not logged in or player profile not found." }, { status: 401 });
+    }
+
+    const saved = await prisma.collegeSavedSchool.findMany({
+      where: { playerProfileId: profile.id },
+      include: {
+        college: {
+          include: {
+            baseballProgram: true,
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return NextResponse.json({ ok: true, saved });
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_GET_ERROR", err);
+    return NextResponse.json({ ok: false, error: "Could not load target programs." }, { status: 500 });
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const profile = await getCurrentPlayerProfile();
+
+    if (!profile) {
+      return NextResponse.json({ ok: false, error: "Not logged in or player profile not found." }, { status: 401 });
+    }
+
+    const { collegeId } = await req.json();
+
+    if (!collegeId || typeof collegeId !== "string") {
+      return NextResponse.json({ ok: false, error: "Missing collegeId." }, { status: 400 });
+    }
+
+    const saved = await prisma.collegeSavedSchool.upsert({
+      where: {
+        playerProfileId_collegeId: {
+          playerProfileId: profile.id,
+          collegeId,
+        },
+      },
+      update: {},
+      create: {
+        playerProfileId: profile.id,
+        collegeId,
+        listName: "Target Programs",
+        status: "SAVED",
+      },
+    });
+
+    return NextResponse.json({ ok: true, saved });
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_POST_ERROR", err);
+    return NextResponse.json({ ok: false, error: "Could not save target program." }, { status: 500 });
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const profile = await getCurrentPlayerProfile();
+
+    if (!profile) {
+      return NextResponse.json({ ok: false, error: "Not logged in or player profile not found." }, { status: 401 });
+    }
+
+    const { collegeId } = await req.json();
+
+    if (!collegeId || typeof collegeId !== "string") {
+      return NextResponse.json({ ok: false, error: "Missing collegeId." }, { status: 400 });
+    }
+
+    await prisma.collegeSavedSchool.deleteMany({
+      where: {
+        playerProfileId: profile.id,
+        collegeId,
+      },
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_DELETE_ERROR", err);
+    return NextResponse.json({ ok: false, error: "Could not remove target program." }, { status: 500 });
+  }
+}
