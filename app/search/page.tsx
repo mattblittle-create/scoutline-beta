@@ -22,6 +22,16 @@ const REGIONS = [
   ["PACIFIC", "Pacific"],
 ] as const;
 
+const REGION_ABBR: Record<string, string> = {
+  NORTHEAST: "NE",
+  MID_ATLANTIC: "MA",
+  SOUTHEAST: "SE",
+  MIDWEST: "MW",
+  SOUTHWEST: "SW",
+  WEST: "W",
+  PACIFIC: "P",
+};
+
 const DIVISIONS = [
   ["NCAA_D1", "NCAA D1"],
   ["NCAA_D2", "NCAA D2"],
@@ -245,7 +255,7 @@ export default function CollegeSearchPage() {
               selected={regions}
               setSelected={setRegions}
               matches={regionMatches.map(([v, l]) => [v, l])}
-              labelFor={(v) => REGIONS.find(([x]) => x === v)?.[1] || v}
+              labelFor={(v) => REGION_ABBR[v] || v}
             />
 
             <Field label="Public / Private">
@@ -275,7 +285,7 @@ export default function CollegeSearchPage() {
               matches={conferenceMatches.map((c) => [c, c])}
             />
 
-            <Field label={`Max Tuition: $${maxTuition.toLocaleString()}`}>
+            <Field label={`Max: $${maxTuition.toLocaleString()}`}>
               <input
                 type="range"
                 min={0}
@@ -431,13 +441,60 @@ function Info({ label, value }: { label: string; value: string }) {
 }
 
 const panelStyle: React.CSSProperties = { background: "#ffffff", border: "1px solid #e5e7eb", borderRadius: 18, boxShadow: "0 10px 28px rgba(15,23,42,0.08)", padding: 18, marginBottom: 18 };
-const inputStyle: React.CSSProperties = { width: "100%", boxSizing: "border-box", padding: "11px 12px", borderRadius: 12, border: "1px solid #cbd5e1", fontSize: 15, outline: "none" };
-const filterGridStyle: React.CSSProperties = { marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 12, alignItems: "start" };
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  boxSizing: "border-box",
+  padding: "8px 9px",
+  borderRadius: 9,
+  border: "1px solid #cbd5e1",
+  fontSize: 13,
+  outline: "none",
+};
+const filterGridStyle: React.CSSProperties = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: "120px 135px 125px 130px 150px 1fr",
+  gap: 8,
+  alignItems: "start",
+};
 const clearButtonStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #cbd5e1", background: "#f8fafc", borderRadius: 999, padding: "8px 12px", fontWeight: 900, cursor: "pointer" };
 const errorStyle: React.CSSProperties = { border: "1px solid #fecaca", background: "#fff1f2", color: "#991b1b", borderRadius: 12, padding: 14, marginBottom: 16, fontWeight: 700 };
 const cardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 18, background: "#ffffff", padding: 18, boxShadow: "0 8px 20px rgba(15,23,42,0.05)" };
 const pillStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "6px 10px", fontSize: 12, fontWeight: 900, color: "#334155" };
 const buttonStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, padding: "9px 13px", background: "#caa042", color: "#0f172a", textDecoration: "none", fontWeight: 900, border: "1px solid #caa042" };
-const chipStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", gap: 6, borderRadius: 999, border: "1px solid #caa042", background: "#fffaf0", padding: "5px 9px", fontSize: 12, fontWeight: 900 };
-const chipXStyle: React.CSSProperties = { border: "none", background: "transparent", cursor: "pointer", fontSize: 16, lineHeight: 1, fontWeight: 900 };
-const suggestionStyle: React.CSSProperties = { textAlign: "left", border: "1px solid #e5e7eb", background: "#ffffff", borderRadius: 10, padding: "8px 10px", cursor: "pointer", fontWeight: 800 };
+const chipStyle: React.CSSProperties = {
+  position: "relative",
+  display: "inline-flex",
+  alignItems: "center",
+  minHeight: 20,
+  borderRadius: 999,
+  border: "1px solid #caa042",
+  background: "#fffaf0",
+  padding: "3px 16px 3px 7px",
+  fontSize: 10,
+  fontWeight: 900,
+  lineHeight: 1,
+};
+const chipXStyle: React.CSSProperties = {
+  position: "absolute",
+  top: -4,
+  right: 2,
+  border: "none",
+  background: "transparent",
+  cursor: "pointer",
+  fontSize: 11,
+  lineHeight: 1,
+  fontWeight: 900,
+  color: "#dc2626",
+  padding: 0,
+};
+const suggestionStyle: React.CSSProperties = {
+  textAlign: "left",
+  border: "1px solid #e5e7eb",
+  background: "#ffffff",
+  borderRadius: 8,
+  padding: "6px 8px",
+  cursor: "pointer",
+  fontWeight: 800,
+  fontSize: 12,
+};
