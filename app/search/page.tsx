@@ -123,7 +123,7 @@ const hasAdvancedSearch =
     maxTuition < TUITION_MAX);
 
 const shouldSearch =
-  q.trim().length === 0 || q.trim().length >= 2 || hasAdvancedSearch;
+  q.trim().length >= 2 || hasAdvancedSearch;
 
 useEffect(() => {
   let cancelled = false;
@@ -376,7 +376,7 @@ if (isLoggedIn) {
 
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
 {!shouldSearch
-  ? "Type at least 2 characters to search."
+  ? "Type at least 2 characters to search by college name."
   : loading
   ? "Searching colleges..."
   : `${results.length} result${results.length === 1 ? "" : "s"} found.`}
