@@ -493,29 +493,31 @@ async function toggleSavedCollege(collegeId: string) {
                   <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
                 </div>
 
-                <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
-                  {college.admissionsUrl ? (
-                    <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
-                      Admissions
-                    </a>
-                  ) : null}
+<div style={{ display: "flex", gap: 10 }}>
+  {college.admissionsUrl ? (
+    <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
+      Admissions
+    </a>
+  ) : null}
 
-                  {baseball?.baseballWebsiteUrl ? (
-                    <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
-                      Baseball Program
-                    </a>
-                  ) : null}
+  {baseball?.baseballWebsiteUrl ? (
+    <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
+      Baseball Program
+    </a>
+  ) : null}
+</div>
 
-                  {isLoggedIn ? (
-  <button
+<div style={{ marginLeft: "auto" }}>
+  {isLoggedIn ? (
+    <button
     type="button"
     onClick={() => toggleSavedCollege(college.id)}
     disabled={savingCollegeId === college.id}
-    style={{
-      ...buttonStyle,
-      background: savedCollegeIds.includes(college.id) ? "#f8fafc" : "#0f172a",
-      borderColor: savedCollegeIds.includes(college.id) ? "#cbd5e1" : "#0f172a",
-      color: savedCollegeIds.includes(college.id) ? "#0f172a" : "#ffffff",
+style={{
+  ...buttonStyle,
+  background: savedCollegeIds.includes(college.id) ? "#f8fafc" : "#0ea5e9",
+  borderColor: savedCollegeIds.includes(college.id) ? "#cbd5e1" : "#0ea5e9",
+  color: savedCollegeIds.includes(college.id) ? "#0f172a" : "#ffffff",
       cursor: savingCollegeId === college.id ? "not-allowed" : "pointer",
       opacity: savingCollegeId === college.id ? 0.65 : 1,
     }}
