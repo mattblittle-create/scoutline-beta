@@ -110,6 +110,9 @@ export default function CollegeSearchPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
+  const [savingCollegeId, setSavingCollegeId] = useState("");
+
   const [authChecked, setAuthChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -152,6 +155,41 @@ useEffect(() => {
       }
     }
   }
+
+  useEffect(() => {
+  let cancelled = false;
+
+  async function loadSavedPrograms() {
+    if (!isLoggedIn) {
+      setSavedCollegeIds([]);
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/player/target-programs", {
+        cache: "no-store",
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (!cancelled && res.ok && data?.ok) {
+        const ids = (data.saved || [])
+          .map((item: any) => item?.collegeId)
+          .filter(Boolean);
+
+        setSavedCollegeIds(ids);
+      }
+    } catch {
+      if (!cancelled) setSavedCollegeIds([]);
+    }
+  }
+
+  loadSavedPrograms();
+
+  return () => {
+    cancelled = true;
+  };
+}, [isLoggedIn]);
 
   checkAuth();
 
@@ -246,6 +284,39 @@ if (isLoggedIn) {
       ).slice(0, 10),
     [conferenceInput, conferences]
   );
+
+async function toggleSavedCollege(collegeId: string) {
+  if (!isLoggedIn) return;
+
+  const isSaved = savedCollegeIds.includes(collegeId);
+
+  try {
+    setSavingCollegeId(collegeId);
+
+    const res = await fetch("/api/player/target-programs", {
+      method: isSaved ? "DELETE" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Save failed.");
+    }
+
+    setSavedCollegeIds((prev) =>
+      isSaved ? prev.filter((id) => id !== collegeId) : addUnique(prev, collegeId)
+    );
+  } catch (err) {
+    console.error("TARGET_PROGRAM_TOGGLE_ERROR", err);
+    setError("Could not update Target Programs.");
+  } finally {
+    setSavingCollegeId("");
+  }
+}
 
   function clearFilters() {
     setQ("");
@@ -434,6 +505,28 @@ if (isLoggedIn) {
                       Baseball Program
                     </a>
                   ) : null}
+
+                  {isLoggedIn ? (
+  <button
+    type="button"
+    onClick={() => toggleSavedCollege(college.id)}
+    disabled={savingCollegeId === college.id}
+    style={{
+      ...buttonStyle,
+      background: savedCollegeIds.includes(college.id) ? "#f8fafc" : "#0f172a",
+      borderColor: savedCollegeIds.includes(college.id) ? "#cbd5e1" : "#0f172a",
+      color: savedCollegeIds.includes(college.id) ? "#0f172a" : "#ffffff",
+      cursor: savingCollegeId === college.id ? "not-allowed" : "pointer",
+      opacity: savingCollegeId === college.id ? 0.65 : 1,
+    }}
+  >
+    {savingCollegeId === college.id
+      ? "Saving..."
+      : savedCollegeIds.includes(college.id)
+      ? "Saved ✓"
+      : "Save to Target Programs"}
+  </button>
+) : null}
                 </div>
               </article>
             );
