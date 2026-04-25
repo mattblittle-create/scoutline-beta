@@ -1,7 +1,16 @@
+// app/api/colleges/search/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
+
+function listParam(searchParams: URLSearchParams, key: string) {
+  return (searchParams.get(key) || "")
+    .split(",")
+    .map((v) => v.trim())
+    .filter(Boolean);
+}
 
 export async function GET(req: NextRequest) {
   try {
@@ -10,48 +19,38 @@ export async function GET(req: NextRequest) {
     const q = (searchParams.get("q") || "").trim();
     const limit = Math.min(100, Math.max(1, Number(searchParams.get("limit") || 25)));
 
-    const state = searchParams.get("state") || "";
-    const region = searchParams.get("region") || "";
-    const control = searchParams.get("control") || "";
-    const division = searchParams.get("division") || "";
-    const conference = searchParams.get("conference") || "";
+    const states = listParam(searchParams, "state");
+    const regions = listParam(searchParams, "region");
+    const controls = listParam(searchParams, "control");
+    const divisions = listParam(searchParams, "division");
+    const conferences = listParam(searchParams, "conference");
 
-    const rawMinTuition = searchParams.get("minTuition");
     const rawMaxTuition = searchParams.get("maxTuition");
-
-    const hasTuitionFilter = rawMinTuition !== null || rawMaxTuition !== null;
-
-    const minTuition = rawMinTuition ? Number(rawMinTuition) : undefined;
     const maxTuition = rawMaxTuition ? Number(rawMaxTuition) : undefined;
 
     const results = await prisma.college.findMany({
       where: {
         AND: [
           q.length >= 2
+            ? { name: { contains: q, mode: "insensitive" } }
+            : {},
+          states.length ? { state: { in: states } } : {},
+          regions.length ? { region: { in: regions as any[] } } : {},
+          controls.length ? { control: { in: controls as any[] } } : {},
+          maxTuition !== undefined
             ? {
-                name: {
-                  contains: q,
-                  mode: "insensitive",
-                },
+                OR: [
+                  { tuitionInState: { lte: maxTuition } },
+                  { tuitionInState: null },
+                ],
               }
             : {},
-          state ? { state } : {},
-          region ? { region: region as any } : {},
-          control ? { control: control as any } : {},
-          hasTuitionFilter
-      ? {
-          tuitionInState: {
-            ...(minTuition !== undefined ? { gte: minTuition } : {}),
-            ...(maxTuition !== undefined ? { lte: maxTuition } : {}),
-          },
-        }
-      : {},
-          division || conference
+          divisions.length || conferences.length
             ? {
                 baseballProgram: {
                   is: {
-                    ...(division ? { division: division as any } : {}),
-                    ...(conference ? { conference } : {}),
+                    ...(divisions.length ? { division: { in: divisions as any[] } } : {}),
+                    ...(conferences.length ? { conference: { in: conferences } } : {}),
                   },
                 },
               }
@@ -68,17 +67,11 @@ export async function GET(req: NextRequest) {
           },
         },
       },
-      orderBy: {
-        name: "asc",
-      },
+      orderBy: { name: "asc" },
       take: limit,
     });
 
-    return NextResponse.json({
-      ok: true,
-      count: results.length,
-      results,
-    });
+    return NextResponse.json({ ok: true, count: results.length, results });
   } catch (err) {
     console.error("COLLEGE_SEARCH_ERROR", err);
     return NextResponse.json(

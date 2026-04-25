@@ -4,6 +4,41 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 
+const TUITION_MAX = 100000;
+
+const STATES = [
+  "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME",
+  "MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA",
+  "RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"
+];
+
+const REGIONS = [
+  ["NORTHEAST", "Northeast"],
+  ["MID_ATLANTIC", "Mid-Atlantic"],
+  ["SOUTHEAST", "Southeast"],
+  ["MIDWEST", "Midwest"],
+  ["SOUTHWEST", "Southwest"],
+  ["WEST", "West"],
+  ["PACIFIC", "Pacific"],
+] as const;
+
+const DIVISIONS = [
+  ["NCAA_D1", "NCAA D1"],
+  ["NCAA_D2", "NCAA D2"],
+  ["NCAA_D3", "NCAA D3"],
+  ["NAIA", "NAIA"],
+  ["NJCAA_D1", "NJCAA D1"],
+  ["NJCAA_D2", "NJCAA D2"],
+  ["NJCAA_D3", "NJCAA D3"],
+] as const;
+
+const CONFERENCES = [
+  "ACC","SEC","Big Ten","Big 12","Pac-12","American Athletic Conference","Atlantic 10",
+  "ASUN","Big East","Big South","CAA","Conference USA","Horizon League","Ivy League",
+  "MAAC","MAC","MEAC","Missouri Valley","Mountain West","Northeast Conference",
+  "Ohio Valley","Patriot League","SoCon","Southland","Sun Belt","SWAC","WAC","West Coast Conference"
+];
+
 type CollegeResult = {
   id: string;
   name: string;
@@ -27,16 +62,15 @@ type CollegeResult = {
 
 function pretty(value?: string | null) {
   if (!value) return "—";
-
   const raw = value.replace(/_/g, " ").toUpperCase();
-
-  const words = raw.split(" ").map((word) => {
-    if (["NCAA", "NAIA", "NJCAA", "SEC", "ACC"].includes(word)) return word;
-    if (/^D[123]$/.test(word)) return word;
-    return word.charAt(0) + word.slice(1).toLowerCase();
-  });
-
-  return words.join(" ");
+  return raw
+    .split(" ")
+    .map((word) => {
+      if (["NCAA", "NAIA", "NJCAA", "SEC", "ACC"].includes(word)) return word;
+      if (/^D[123]$/.test(word)) return word;
+      return word.charAt(0) + word.slice(1).toLowerCase();
+    })
+    .join(" ");
 }
 
 function money(value?: number | null) {
@@ -44,33 +78,40 @@ function money(value?: number | null) {
   return `$${value.toLocaleString()}`;
 }
 
+function addUnique(list: string[], value: string) {
+  if (!value || list.includes(value)) return list;
+  return [...list, value];
+}
+
 export default function CollegeSearchPage() {
   const [q, setQ] = useState("");
-  const [state, setState] = useState("");
-  const [region, setRegion] = useState("");
+  const [states, setStates] = useState<string[]>([]);
+  const [stateInput, setStateInput] = useState("");
+
+  const [regions, setRegions] = useState<string[]>([]);
+  const [regionInput, setRegionInput] = useState("");
+
+  const [divisions, setDivisions] = useState<string[]>([]);
+  const [divisionInput, setDivisionInput] = useState("");
+
+  const [conferences, setConferences] = useState<string[]>([]);
+  const [conferenceInput, setConferenceInput] = useState("");
+
   const [control, setControl] = useState("");
-  const [division, setDivision] = useState("");
-  const [conference, setConference] = useState("");
-  const [minTuition, setMinTuition] = useState("");
-  const [maxTuition, setMaxTuition] = useState("");
+  const [maxTuition, setMaxTuition] = useState(TUITION_MAX);
 
   const [results, setResults] = useState<CollegeResult[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // temporary: filters visible now so you can test/build;
-  // later we can gate this with /api/auth/me
-  const advancedFiltersEnabled = true;
-
   const hasAnySearch =
     q.trim().length >= 2 ||
-    state ||
-    region ||
+    states.length ||
+    regions.length ||
+    divisions.length ||
+    conferences.length ||
     control ||
-    division ||
-    conference ||
-    minTuition ||
-    maxTuition;
+    maxTuition < TUITION_MAX;
 
   useEffect(() => {
     let cancelled = false;
@@ -87,16 +128,13 @@ export default function CollegeSearchPage() {
         setLoading(true);
 
         const params = new URLSearchParams();
-
         if (q.trim().length >= 2) params.set("q", q.trim());
-        if (state) params.set("state", state);
-        if (region) params.set("region", region);
+        if (states.length) params.set("state", states.join(","));
+        if (regions.length) params.set("region", regions.join(","));
+        if (divisions.length) params.set("division", divisions.join(","));
+        if (conferences.length) params.set("conference", conferences.join(","));
         if (control) params.set("control", control);
-        if (division) params.set("division", division);
-        if (conference) params.set("conference", conference);
-        if (minTuition) params.set("minTuition", minTuition);
-        if (maxTuition) params.set("maxTuition", maxTuition);
-
+        if (maxTuition < TUITION_MAX) params.set("maxTuition", String(maxTuition));
         params.set("limit", "100");
 
         const res = await fetch(`/api/colleges/search?${params.toString()}`, {
@@ -109,9 +147,7 @@ export default function CollegeSearchPage() {
           throw new Error(data?.error || "Search failed.");
         }
 
-        if (!cancelled) {
-          setResults(data.results || []);
-        }
+        if (!cancelled) setResults(data.results || []);
       } catch (err) {
         console.error("COLLEGE_SEARCH_PAGE_ERROR", err);
         if (!cancelled) {
@@ -119,45 +155,58 @@ export default function CollegeSearchPage() {
           setResults([]);
         }
       } finally {
-        if (!cancelled) {
-          setLoading(false);
-        }
+        if (!cancelled) setLoading(false);
       }
     }
 
     const t = window.setTimeout(runSearch, 250);
-
     return () => {
       cancelled = true;
       window.clearTimeout(t);
     };
-  }, [
-    q,
-    state,
-    region,
-    control,
-    division,
-    conference,
-    minTuition,
-    maxTuition,
-    hasAnySearch,
-  ]);
+  }, [q, states, regions, divisions, conferences, control, maxTuition, hasAnySearch]);
 
-  const helperText = useMemo(() => {
-    if (!hasAnySearch) return "Search by college name or use filters.";
-    if (loading) return "Searching colleges...";
-    return `${results.length} result${results.length === 1 ? "" : "s"} found.`;
-  }, [hasAnySearch, loading, results.length]);
+  const stateMatches = useMemo(
+    () => STATES.filter((s) => s.startsWith(stateInput.toUpperCase()) && !states.includes(s)).slice(0, 10),
+    [stateInput, states]
+  );
+
+  const regionMatches = useMemo(
+    () =>
+      REGIONS.filter(([value, label]) =>
+        label.toLowerCase().startsWith(regionInput.toLowerCase()) && !regions.includes(value)
+      ).slice(0, 10),
+    [regionInput, regions]
+  );
+
+  const divisionMatches = useMemo(
+    () =>
+      DIVISIONS.filter(([value, label]) =>
+        label.toLowerCase().startsWith(divisionInput.toLowerCase()) && !divisions.includes(value)
+      ).slice(0, 10),
+    [divisionInput, divisions]
+  );
+
+  const conferenceMatches = useMemo(
+    () =>
+      CONFERENCES.filter((c) =>
+        c.toLowerCase().startsWith(conferenceInput.toLowerCase()) && !conferences.includes(c)
+      ).slice(0, 10),
+    [conferenceInput, conferences]
+  );
 
   function clearFilters() {
     setQ("");
-    setState("");
-    setRegion("");
+    setStates([]);
+    setRegions([]);
+    setDivisions([]);
+    setConferences([]);
     setControl("");
-    setDivision("");
-    setConference("");
-    setMinTuition("");
-    setMaxTuition("");
+    setMaxTuition(TUITION_MAX);
+    setStateInput("");
+    setRegionInput("");
+    setDivisionInput("");
+    setConferenceInput("");
   }
 
   return (
@@ -167,89 +216,89 @@ export default function CollegeSearchPage() {
           <h1 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 900 }}>
             College Search
           </h1>
-
           <p style={{ margin: "10px auto 0", maxWidth: 760, color: "#475569", fontSize: "1.05rem" }}>
-            Search college programs, admissions links, and baseball info. Truth Fit recommendations
-            are coming next.
+            Search college programs, admissions links, and baseball info. Truth Fit recommendations are coming next.
           </p>
         </div>
 
         <div style={panelStyle}>
-          <label htmlFor="college-search" style={labelStyle}>
-            Search by college name
-          </label>
+          <Field label="Search by college name">
+            <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Example: South Carolina" style={inputStyle} />
+          </Field>
 
-          <input
-            id="college-search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Example: South Carolina"
-            style={inputStyle}
-          />
+          <div style={{ marginTop: 16, fontWeight: 900 }}>Advanced Filters</div>
 
-          {advancedFiltersEnabled && (
-            <div style={{ marginTop: 16 }}>
-              <div style={{ fontWeight: 900, marginBottom: 10 }}>Advanced Filters</div>
+          <div style={filterGridStyle}>
+            <AutoChipField
+              label="States"
+              value={stateInput}
+              setValue={setStateInput}
+              selected={states}
+              setSelected={setStates}
+              matches={stateMatches.map((s) => [s, s])}
+            />
 
-              <div style={filterGridStyle}>
-                <Field label="State">
-                  <input value={state} onChange={(e) => setState(e.target.value.toUpperCase())} placeholder="SC" style={inputStyle} />
-                </Field>
+            <AutoChipField
+              label="Regions"
+              value={regionInput}
+              setValue={setRegionInput}
+              selected={regions}
+              setSelected={setRegions}
+              matches={regionMatches.map(([v, l]) => [v, l])}
+              labelFor={(v) => REGIONS.find(([x]) => x === v)?.[1] || v}
+            />
 
-                <Field label="Region">
-                  <select value={region} onChange={(e) => setRegion(e.target.value)} style={inputStyle}>
-                    <option value="">Any</option>
-                    <option value="NORTHEAST">Northeast</option>
-                    <option value="MID_ATLANTIC">Mid-Atlantic</option>
-                    <option value="SOUTHEAST">Southeast</option>
-                    <option value="MIDWEST">Midwest</option>
-                    <option value="SOUTHWEST">Southwest</option>
-                    <option value="WEST">West</option>
-                    <option value="PACIFIC">Pacific</option>
-                  </select>
-                </Field>
+            <Field label="Public / Private">
+              <select value={control} onChange={(e) => setControl(e.target.value)} style={inputStyle}>
+                <option value="">Any</option>
+                <option value="PUBLIC">Public</option>
+                <option value="PRIVATE">Private</option>
+              </select>
+            </Field>
 
-                <Field label="Public / Private">
-                  <select value={control} onChange={(e) => setControl(e.target.value)} style={inputStyle}>
-                    <option value="">Any</option>
-                    <option value="PUBLIC">Public</option>
-                    <option value="PRIVATE">Private</option>
-                  </select>
-                </Field>
+            <AutoChipField
+              label="Divisions"
+              value={divisionInput}
+              setValue={setDivisionInput}
+              selected={divisions}
+              setSelected={setDivisions}
+              matches={divisionMatches.map(([v, l]) => [v, l])}
+              labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
+            />
 
-                <Field label="Division">
-                  <select value={division} onChange={(e) => setDivision(e.target.value)} style={inputStyle}>
-                    <option value="">Any</option>
-                    <option value="NCAA_D1">NCAA D1</option>
-                    <option value="NCAA_D2">NCAA D2</option>
-                    <option value="NCAA_D3">NCAA D3</option>
-                    <option value="NAIA">NAIA</option>
-                    <option value="NJCAA_D1">NJCAA D1</option>
-                    <option value="NJCAA_D2">NJCAA D2</option>
-                    <option value="NJCAA_D3">NJCAA D3</option>
-                  </select>
-                </Field>
+            <AutoChipField
+              label="Conferences"
+              value={conferenceInput}
+              setValue={setConferenceInput}
+              selected={conferences}
+              setSelected={setConferences}
+              matches={conferenceMatches.map((c) => [c, c])}
+            />
 
-                <Field label="Conference">
-                  <input value={conference} onChange={(e) => setConference(e.target.value)} placeholder="SEC" style={inputStyle} />
-                </Field>
+            <Field label={`Max Tuition: $${maxTuition.toLocaleString()}`}>
+              <input
+                type="range"
+                min={0}
+                max={TUITION_MAX}
+                step={1000}
+                value={maxTuition}
+                onChange={(e) => setMaxTuition(Number(e.target.value))}
+                style={{ width: "100%" }}
+              />
+            </Field>
+          </div>
 
-                <Field label="Min Tuition">
-                  <input value={minTuition} onChange={(e) => setMinTuition(e.target.value)} placeholder="0" inputMode="numeric" style={inputStyle} />
-                </Field>
+          <button type="button" onClick={clearFilters} style={clearButtonStyle}>
+            Clear Filters
+          </button>
 
-                <Field label="Max Tuition">
-                  <input value={maxTuition} onChange={(e) => setMaxTuition(e.target.value)} placeholder="50000" inputMode="numeric" style={inputStyle} />
-                </Field>
-              </div>
-
-              <button type="button" onClick={clearFilters} style={clearButtonStyle}>
-                Clear Filters
-              </button>
-            </div>
-          )}
-
-          <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>{helperText}</div>
+          <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
+            {!hasAnySearch
+              ? "Search by college name or use filters."
+              : loading
+              ? "Searching colleges..."
+              : `${results.length} result${results.length === 1 ? "" : "s"} found.`}
+          </div>
         </div>
 
         {error ? <div style={errorStyle}>{error}</div> : null}
@@ -271,7 +320,6 @@ export default function CollegeSearchPage() {
                         college.name
                       )}
                     </h2>
-
                     <div style={{ marginTop: 6, color: "#475569", fontWeight: 700 }}>
                       {[college.city, college.state].filter(Boolean).join(", ") || "Location TBD"}
                     </div>
@@ -293,17 +341,8 @@ export default function CollegeSearchPage() {
                 </div>
 
                 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
-                  {college.admissionsUrl ? (
-                    <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
-                      Admissions
-                    </a>
-                  ) : null}
-
-                  {baseball?.baseballWebsiteUrl ? (
-                    <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
-                      Baseball Program
-                    </a>
-                  ) : null}
+                  {college.admissionsUrl ? <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>Admissions</a> : null}
+                  {baseball?.baseballWebsiteUrl ? <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={buttonStyle}>Baseball Program</a> : null}
                 </div>
               </article>
             );
@@ -311,6 +350,65 @@ export default function CollegeSearchPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+function AutoChipField({
+  label,
+  value,
+  setValue,
+  selected,
+  setSelected,
+  matches,
+  labelFor,
+}: {
+  label: string;
+  value: string;
+  setValue: (v: string) => void;
+  selected: string[];
+  setSelected: React.Dispatch<React.SetStateAction<string[]>>;
+  matches: string[][];
+  labelFor?: (v: string) => string;
+}) {
+  return (
+    <Field label={label}>
+      <div style={{ display: "grid", gap: 8 }}>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+          {selected.map((item) => (
+            <span key={item} style={chipStyle}>
+              {labelFor ? labelFor(item) : item}
+              <button
+                type="button"
+                onClick={() => setSelected((prev) => prev.filter((x) => x !== item))}
+                style={chipXStyle}
+              >
+                ×
+              </button>
+            </span>
+          ))}
+        </div>
+
+        <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Type to search..." style={inputStyle} />
+
+        {value ? (
+          <div style={{ display: "grid", gap: 4 }}>
+            {matches.map(([raw, display]) => (
+              <button
+                key={raw}
+                type="button"
+                onClick={() => {
+                  setSelected((prev) => addUnique(prev, raw));
+                  setValue("");
+                }}
+                style={suggestionStyle}
+              >
+                {display}
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </Field>
   );
 }
 
@@ -332,86 +430,14 @@ function Info({ label, value }: { label: string; value: string }) {
   );
 }
 
-const panelStyle: React.CSSProperties = {
-  background: "#ffffff",
-  border: "1px solid #e5e7eb",
-  borderRadius: 18,
-  boxShadow: "0 10px 28px rgba(15,23,42,0.08)",
-  padding: 18,
-  marginBottom: 18,
-};
-
-const labelStyle: React.CSSProperties = {
-  display: "block",
-  fontWeight: 900,
-  marginBottom: 8,
-};
-
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  boxSizing: "border-box",
-  padding: "11px 12px",
-  borderRadius: 12,
-  border: "1px solid #cbd5e1",
-  fontSize: 15,
-  outline: "none",
-};
-
-const filterGridStyle: React.CSSProperties = {
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
-  gap: 12,
-};
-
-const clearButtonStyle: React.CSSProperties = {
-  marginTop: 12,
-  border: "1px solid #cbd5e1",
-  background: "#f8fafc",
-  borderRadius: 999,
-  padding: "8px 12px",
-  fontWeight: 900,
-  cursor: "pointer",
-};
-
-const errorStyle: React.CSSProperties = {
-  border: "1px solid #fecaca",
-  background: "#fff1f2",
-  color: "#991b1b",
-  borderRadius: 12,
-  padding: 14,
-  marginBottom: 16,
-  fontWeight: 700,
-};
-
-const cardStyle: React.CSSProperties = {
-  border: "1px solid #e5e7eb",
-  borderRadius: 18,
-  background: "#ffffff",
-  padding: 18,
-  boxShadow: "0 8px 20px rgba(15,23,42,0.05)",
-};
-
-const pillStyle: React.CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  border: "1px solid #e5e7eb",
-  background: "#f8fafc",
-  borderRadius: 999,
-  padding: "6px 10px",
-  fontSize: 12,
-  fontWeight: 900,
-  color: "#334155",
-};
-
-const buttonStyle: React.CSSProperties = {
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: 999,
-  padding: "9px 13px",
-  background: "#caa042",
-  color: "#0f172a",
-  textDecoration: "none",
-  fontWeight: 900,
-  border: "1px solid #caa042",
-};
+const panelStyle: React.CSSProperties = { background: "#ffffff", border: "1px solid #e5e7eb", borderRadius: 18, boxShadow: "0 10px 28px rgba(15,23,42,0.08)", padding: 18, marginBottom: 18 };
+const inputStyle: React.CSSProperties = { width: "100%", boxSizing: "border-box", padding: "11px 12px", borderRadius: 12, border: "1px solid #cbd5e1", fontSize: 15, outline: "none" };
+const filterGridStyle: React.CSSProperties = { marginTop: 10, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 12, alignItems: "start" };
+const clearButtonStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #cbd5e1", background: "#f8fafc", borderRadius: 999, padding: "8px 12px", fontWeight: 900, cursor: "pointer" };
+const errorStyle: React.CSSProperties = { border: "1px solid #fecaca", background: "#fff1f2", color: "#991b1b", borderRadius: 12, padding: 14, marginBottom: 16, fontWeight: 700 };
+const cardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 18, background: "#ffffff", padding: 18, boxShadow: "0 8px 20px rgba(15,23,42,0.05)" };
+const pillStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "6px 10px", fontSize: 12, fontWeight: 900, color: "#334155" };
+const buttonStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, padding: "9px 13px", background: "#caa042", color: "#0f172a", textDecoration: "none", fontWeight: 900, border: "1px solid #caa042" };
+const chipStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", gap: 6, borderRadius: 999, border: "1px solid #caa042", background: "#fffaf0", padding: "5px 9px", fontSize: 12, fontWeight: 900 };
+const chipXStyle: React.CSSProperties = { border: "none", background: "transparent", cursor: "pointer", fontSize: 16, lineHeight: 1, fontWeight: 900 };
+const suggestionStyle: React.CSSProperties = { textAlign: "left", border: "1px solid #e5e7eb", background: "#ffffff", borderRadius: 10, padding: "8px 10px", cursor: "pointer", fontWeight: 800 };
