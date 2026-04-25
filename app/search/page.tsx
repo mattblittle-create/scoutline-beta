@@ -239,24 +239,26 @@ export default function CollegeSearchPage() {
           <div style={{ marginTop: 16, fontWeight: 900 }}>Advanced Filters</div>
 
           <div style={filterGridStyle}>
-            <AutoChipField
-              label="States"
-              value={stateInput}
-              setValue={setStateInput}
-              selected={states}
-              setSelected={setStates}
-              matches={stateMatches.map((s) => [s, s])}
-            />
+<AutoChipField
+  label="States"
+  value={stateInput}
+  setValue={setStateInput}
+  selected={states}
+  setSelected={setStates}
+  matches={stateMatches.map((s) => [s, s])}
+  allOptions={STATES.map((s) => [s, s])}
+/>
 
-            <AutoChipField
-              label="Regions"
-              value={regionInput}
-              setValue={setRegionInput}
-              selected={regions}
-              setSelected={setRegions}
-              matches={regionMatches.map(([v, l]) => [v, l])}
-              labelFor={(v) => REGION_ABBR[v] || v}
-            />
+<AutoChipField
+  label="Regions"
+  value={regionInput}
+  setValue={setRegionInput}
+  selected={regions}
+  setSelected={setRegions}
+  matches={regionMatches.map(([v, l]) => [v, l])}
+  allOptions={REGIONS.map(([v, l]) => [v, l])}
+  labelFor={(v) => REGION_ABBR[v] || v}
+/>
 
             <Field label="Public / Private">
               <select value={control} onChange={(e) => setControl(e.target.value)} style={inputStyle}>
@@ -266,24 +268,26 @@ export default function CollegeSearchPage() {
               </select>
             </Field>
 
-            <AutoChipField
-              label="Divisions"
-              value={divisionInput}
-              setValue={setDivisionInput}
-              selected={divisions}
-              setSelected={setDivisions}
-              matches={divisionMatches.map(([v, l]) => [v, l])}
-              labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
-            />
+<AutoChipField
+  label="Divisions"
+  value={divisionInput}
+  setValue={setDivisionInput}
+  selected={divisions}
+  setSelected={setDivisions}
+  matches={divisionMatches.map(([v, l]) => [v, l])}
+  allOptions={DIVISIONS.map(([v, l]) => [v, l])}
+  labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
+/>
 
-            <AutoChipField
-              label="Conferences"
-              value={conferenceInput}
-              setValue={setConferenceInput}
-              selected={conferences}
-              setSelected={setConferences}
-              matches={conferenceMatches.map((c) => [c, c])}
-            />
+<AutoChipField
+  label="Conferences"
+  value={conferenceInput}
+  setValue={setConferenceInput}
+  selected={conferences}
+  setSelected={setConferences}
+  matches={conferenceMatches.map((c) => [c, c])}
+  allOptions={CONFERENCES.map((c) => [c, c])}
+/>
 
             <Field label={`Max: $${maxTuition.toLocaleString()}`}>
               <input
@@ -370,6 +374,7 @@ function AutoChipField({
   selected,
   setSelected,
   matches,
+  allOptions,
   labelFor,
 }: {
   label: string;
@@ -378,12 +383,17 @@ function AutoChipField({
   selected: string[];
   setSelected: React.Dispatch<React.SetStateAction<string[]>>;
   matches: string[][];
+  allOptions: string[][];
   labelFor?: (v: string) => string;
 }) {
+  const [open, setOpen] = useState(false);
+
+  const availableOptions = allOptions.filter(([raw]) => !selected.includes(raw));
+
   return (
     <Field label={label}>
-      <div style={{ display: "grid", gap: 8 }}>
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+      <div style={{ display: "grid", gap: 6, position: "relative" }}>
+        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", minHeight: 22 }}>
           {selected.map((item) => (
             <span key={item} style={chipStyle}>
               {labelFor ? labelFor(item) : item}
@@ -391,6 +401,7 @@ function AutoChipField({
                 type="button"
                 onClick={() => setSelected((prev) => prev.filter((x) => x !== item))}
                 style={chipXStyle}
+                aria-label={`Remove ${item}`}
               >
                 ×
               </button>
@@ -398,23 +409,67 @@ function AutoChipField({
           ))}
         </div>
 
-        <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Type to search..." style={inputStyle} />
+        <div style={{ display: "flex", gap: 4 }}>
+          <input
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+              setOpen(false);
+            }}
+            placeholder="Type to search..."
+            style={inputStyle}
+          />
+
+          <button
+            type="button"
+            onClick={() => setOpen((prev) => !prev)}
+            style={dropdownButtonStyle}
+            aria-label={`Open ${label} options`}
+          >
+            ▾
+          </button>
+        </div>
 
         {value ? (
-          <div style={{ display: "grid", gap: 4 }}>
-            {matches.map(([raw, display]) => (
+          <div style={suggestionBoxStyle}>
+            {matches.length ? (
+              matches.map(([raw, display]) => (
+                <button
+                  key={raw}
+                  type="button"
+                  onClick={() => {
+                    setSelected((prev) => addUnique(prev, raw));
+                    setValue("");
+                  }}
+                  style={suggestionStyle}
+                >
+                  {display}
+                </button>
+              ))
+            ) : (
+              <div style={emptySuggestionStyle}>No matches</div>
+            )}
+          </div>
+        ) : null}
+
+        {open ? (
+          <div style={suggestionBoxStyle}>
+            {availableOptions.map(([raw, display]) => (
               <button
                 key={raw}
                 type="button"
                 onClick={() => {
                   setSelected((prev) => addUnique(prev, raw));
-                  setValue("");
                 }}
                 style={suggestionStyle}
               >
                 {display}
               </button>
             ))}
+
+            {!availableOptions.length ? (
+              <div style={emptySuggestionStyle}>All selected</div>
+            ) : null}
           </div>
         ) : null}
       </div>
@@ -497,4 +552,33 @@ const suggestionStyle: React.CSSProperties = {
   cursor: "pointer",
   fontWeight: 800,
   fontSize: 12,
+};
+
+const dropdownButtonStyle: React.CSSProperties = {
+  width: 32,
+  border: "1px solid #cbd5e1",
+  background: "#f8fafc",
+  borderRadius: 9,
+  cursor: "pointer",
+  fontWeight: 900,
+};
+
+const suggestionBoxStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 4,
+  maxHeight: 170,
+  overflowY: "auto",
+  border: "1px solid #e5e7eb",
+  background: "#ffffff",
+  borderRadius: 10,
+  padding: 6,
+  boxShadow: "0 8px 18px rgba(15,23,42,0.10)",
+  zIndex: 10,
+};
+
+const emptySuggestionStyle: React.CSSProperties = {
+  fontSize: 12,
+  color: "#64748b",
+  padding: "6px 8px",
+  fontWeight: 700,
 };
