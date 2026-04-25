@@ -293,7 +293,7 @@ export default function CollegeSearchPage() {
             />
 
             <Field label={`Max: $${maxTuition.toLocaleString()}`}>
-              <div style={{ maxWidth: 120 }}>
+              <div style={{ width: "100%" }}>
                 <input
                   type="range"
                   min={0}
@@ -406,7 +406,7 @@ function AutoChipField({
   return (
     <Field label={label}>
       <div style={{ display: "grid", gap: 6, position: "relative" }}>
-        <div style={{ display: "flex", gap: 4, flexWrap: "wrap", minHeight: 20 }}>
+        <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
           {selected.map((item) => (
             <span key={item} style={chipStyle}>
               {labelFor ? labelFor(item) : item}
@@ -510,7 +510,7 @@ function Info({ label, value }: { label: string; value: string }) {
 
 const panelStyle: React.CSSProperties = { background: "#ffffff", border: "1px solid #e5e7eb", borderRadius: 18, boxShadow: "0 10px 28px rgba(15,23,42,0.08)", padding: 18, marginBottom: 18 };
 const inputStyle: React.CSSProperties = { width: "100%", boxSizing: "border-box", padding: "8px 9px", borderRadius: 9, border: "1px solid #cbd5e1", fontSize: 13, outline: "none" };
-const filterGridStyle: React.CSSProperties = { marginTop: 10, display: "grid", gridTemplateColumns: "150px 150px 125px 150px 180px 120px", gap: 8, alignItems: "start" };
+const filterGridStyle: React.CSSProperties = { marginTop: 10, display: "grid", gridTemplateColumns: "repeat(5, minmax(145px, 1fr)) 130px", gap: 10, alignItems: "start" };
 const clearButtonStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #cbd5e1", background: "#f8fafc", borderRadius: 999, padding: "8px 12px", fontWeight: 900, cursor: "pointer" };
 const errorStyle: React.CSSProperties = { border: "1px solid #fecaca", background: "#fff1f2", color: "#991b1b", borderRadius: 12, padding: 14, marginBottom: 16, fontWeight: 700 };
 const cardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 18, background: "#ffffff", padding: 18, boxShadow: "0 8px 20px rgba(15,23,42,0.05)" };
