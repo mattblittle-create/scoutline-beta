@@ -156,7 +156,14 @@ useEffect(() => {
     }
   }
 
-  useEffect(() => {
+  checkAuth();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
+
+useEffect(() => {
   let cancelled = false;
 
   async function loadSavedPrograms() {
@@ -190,13 +197,6 @@ useEffect(() => {
     cancelled = true;
   };
 }, [isLoggedIn]);
-
-  checkAuth();
-
-  return () => {
-    cancelled = true;
-  };
-}, []);
 
   useEffect(() => {
     let cancelled = false;
