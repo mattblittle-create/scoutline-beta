@@ -110,14 +110,55 @@ export default function CollegeSearchPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const hasAnySearch =
-    q.trim().length >= 2 ||
-    states.length > 0 ||
+  const [authChecked, setAuthChecked] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+const hasAdvancedSearch =
+  isLoggedIn &&
+  (states.length > 0 ||
     regions.length > 0 ||
     divisions.length > 0 ||
     conferences.length > 0 ||
     !!control ||
-    maxTuition < TUITION_MAX;
+    maxTuition < TUITION_MAX);
+
+const shouldSearch =
+  q.trim().length === 0 || q.trim().length >= 2 || hasAdvancedSearch;
+
+useEffect(() => {
+  let cancelled = false;
+
+  async function checkAuth() {
+    try {
+      const res = await fetch("/api/auth/me", { cache: "no-store" });
+      const data = await res.json().catch(() => null);
+
+      const email =
+        data?.email ||
+        data?.user?.email ||
+        data?.data?.email ||
+        "";
+
+      if (!cancelled) {
+        setIsLoggedIn(res.ok && !!email);
+      }
+    } catch {
+      if (!cancelled) {
+        setIsLoggedIn(false);
+      }
+    } finally {
+      if (!cancelled) {
+        setAuthChecked(true);
+      }
+    }
+  }
+
+  checkAuth();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -125,7 +166,7 @@ export default function CollegeSearchPage() {
     async function runSearch() {
       setError("");
 
-      if (!hasAnySearch) {
+      if (!shouldSearch) {
         setResults([]);
         return;
       }
@@ -134,13 +175,16 @@ export default function CollegeSearchPage() {
         setLoading(true);
 
         const params = new URLSearchParams();
-        if (q.trim().length >= 2) params.set("q", q.trim());
-        if (states.length) params.set("state", states.join(","));
-        if (regions.length) params.set("region", regions.join(","));
-        if (divisions.length) params.set("division", divisions.join(","));
-        if (conferences.length) params.set("conference", conferences.join(","));
-        if (control) params.set("control", control);
-        if (maxTuition < TUITION_MAX) params.set("maxTuition", String(maxTuition));
+if (q.trim().length >= 2) params.set("q", q.trim());
+
+if (isLoggedIn) {
+  if (states.length) params.set("state", states.join(","));
+  if (regions.length) params.set("region", regions.join(","));
+  if (divisions.length) params.set("division", divisions.join(","));
+  if (conferences.length) params.set("conference", conferences.join(","));
+  if (control) params.set("control", control);
+  if (maxTuition < TUITION_MAX) params.set("maxTuition", String(maxTuition));
+}
         params.set("limit", "100");
 
         const res = await fetch(`/api/colleges/search?${params.toString()}`, {
@@ -171,7 +215,7 @@ export default function CollegeSearchPage() {
       cancelled = true;
       window.clearTimeout(t);
     };
-  }, [q, states, regions, divisions, conferences, control, maxTuition, hasAnySearch]);
+  }, [q, states, regions, divisions, conferences, control, maxTuition, isLoggedIn, shouldSearch]);
 
   const stateMatches = useMemo(
     () =>
@@ -239,84 +283,103 @@ export default function CollegeSearchPage() {
             />
           </Field>
 
-          <div style={{ marginTop: 16, fontWeight: 900 }}>Advanced Filters</div>
+{isLoggedIn ? (
+  <>
+    <div style={{ marginTop: 16, fontWeight: 900 }}>Advanced Filters</div>
 
-          <div style={filterGridStyle}>
-            <AutoChipField
-              label="States"
-              value={stateInput}
-              setValue={setStateInput}
-              selected={states}
-              setSelected={setStates}
-              matches={stateMatches.map((s) => [s, s])}
-              allOptions={STATES.map((s) => [s, s])}
-            />
+    <div style={filterGridStyle}>
+      <AutoChipField
+        label="States"
+        value={stateInput}
+        setValue={setStateInput}
+        selected={states}
+        setSelected={setStates}
+        matches={stateMatches.map((s) => [s, s])}
+        allOptions={STATES.map((s) => [s, s])}
+      />
 
-            <AutoChipField
-              label="Regions"
-              value={regionInput}
-              setValue={setRegionInput}
-              selected={regions}
-              setSelected={setRegions}
-              matches={regionMatches.map(([v, l]) => [v, l])}
-              allOptions={REGIONS.map(([v, l]) => [v, l])}
-              labelFor={(v) => REGION_ABBR[v] || v}
-            />
+      <AutoChipField
+        label="Regions"
+        value={regionInput}
+        setValue={setRegionInput}
+        selected={regions}
+        setSelected={setRegions}
+        matches={regionMatches.map(([v, l]) => [v, l])}
+        allOptions={REGIONS.map(([v, l]) => [v, l])}
+        labelFor={(v) => REGION_ABBR[v] || v}
+      />
 
-            <Field label="Public / Private">
-              <select value={control} onChange={(e) => setControl(e.target.value)} style={inputStyle}>
-                <option value="">Any</option>
-                <option value="PUBLIC">Public</option>
-                <option value="PRIVATE">Private</option>
-              </select>
-            </Field>
+      <Field label="Public / Private">
+        <select value={control} onChange={(e) => setControl(e.target.value)} style={inputStyle}>
+          <option value="">Any</option>
+          <option value="PUBLIC">Public</option>
+          <option value="PRIVATE">Private</option>
+        </select>
+      </Field>
 
-            <AutoChipField
-              label="Divisions"
-              value={divisionInput}
-              setValue={setDivisionInput}
-              selected={divisions}
-              setSelected={setDivisions}
-              matches={divisionMatches.map(([v, l]) => [v, l])}
-              allOptions={DIVISIONS.map(([v, l]) => [v, l])}
-              labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
-            />
+      <AutoChipField
+        label="Divisions"
+        value={divisionInput}
+        setValue={setDivisionInput}
+        selected={divisions}
+        setSelected={setDivisions}
+        matches={divisionMatches.map(([v, l]) => [v, l])}
+        allOptions={DIVISIONS.map(([v, l]) => [v, l])}
+        labelFor={(v) => DIVISIONS.find(([x]) => x === v)?.[1] || v}
+      />
 
-            <AutoChipField
-              label="Conferences"
-              value={conferenceInput}
-              setValue={setConferenceInput}
-              selected={conferences}
-              setSelected={setConferences}
-              matches={conferenceMatches.map((c) => [c, c])}
-              allOptions={CONFERENCES.map((c) => [c, c])}
-            />
+      <AutoChipField
+        label="Conferences"
+        value={conferenceInput}
+        setValue={setConferenceInput}
+        selected={conferences}
+        setSelected={setConferences}
+        matches={conferenceMatches.map((c) => [c, c])}
+        allOptions={CONFERENCES.map((c) => [c, c])}
+      />
 
-            <Field label={`Max: $${maxTuition.toLocaleString()}`}>
-              <div style={{ width: "100%" }}>
-                <input
-                  type="range"
-                  min={0}
-                  max={TUITION_MAX}
-                  step={1000}
-                  value={maxTuition}
-                  onChange={(e) => setMaxTuition(Number(e.target.value))}
-                  style={{ width: "100%" }}
-                />
-              </div>
-            </Field>
-          </div>
+      <Field label={`Max: $${maxTuition.toLocaleString()}`}>
+        <div style={{ width: "100%" }}>
+          <input
+            type="range"
+            min={0}
+            max={TUITION_MAX}
+            step={1000}
+            value={maxTuition}
+            onChange={(e) => setMaxTuition(Number(e.target.value))}
+            style={{ width: "100%" }}
+          />
+        </div>
+      </Field>
+    </div>
+  </>
+) : authChecked ? (
+  <div
+    style={{
+      marginTop: 14,
+      padding: "10px 12px",
+      border: "1px solid #e5e7eb",
+      background: "#f8fafc",
+      borderRadius: 12,
+      color: "#475569",
+      fontWeight: 700,
+      fontSize: 13,
+    }}
+  >
+    Log in to unlock advanced filters like state, region, division, conference, and tuition.
+  </div>
+) : null}
 
           <button type="button" onClick={clearFilters} style={clearButtonStyle}>
             Clear Filters
           </button>
 
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
-            {!hasAnySearch
-              ? "Search by college name or use filters."
-              : loading
-              ? "Searching colleges..."
-              : `${results.length} result${results.length === 1 ? "" : "s"} found.`}
+{!shouldSearch
+  ? "Type at least 2 characters to search."
+  : loading
+  ? "Searching colleges..."
+  : `${results.length} result${results.length === 1 ? "" : "s"} found.`}
           </div>
         </div>
 
