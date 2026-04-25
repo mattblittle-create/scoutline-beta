@@ -3,7 +3,7 @@
 "use client";
 
 import React, { Suspense, useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Summary = {
   plan: string;
@@ -17,8 +17,12 @@ type Summary = {
   error?: string;
 };
 
+const PAYMENTS_DISABLED =
+  process.env.NEXT_PUBLIC_SC_PAYMENTS_DISABLED === "true";
+
 function PlayerBillingPageInner() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const [plan, setPlan] = useState<"WALK_ON" | "ALL_AMERICAN">("WALK_ON");
   const [cadence, setCadence] = useState<"monthly" | "annual">("monthly");
@@ -34,6 +38,16 @@ function PlayerBillingPageInner() {
   const paymentState = searchParams.get("payment") || "";
   const paymentMessage = searchParams.get("message") || "";
   const paymentRef = searchParams.get("ref") || "";
+
+  useEffect(() => {
+  if (PAYMENTS_DISABLED) {
+    router.replace("/dashboard/player/profile");
+  }
+}, [router]);
+
+if (PAYMENTS_DISABLED) {
+  return null;
+}
 
   const banner = useMemo(() => {
     if (!paymentState && !paymentMessage) return null;
