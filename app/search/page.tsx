@@ -289,18 +289,19 @@ export default function CollegeSearchPage() {
   allOptions={CONFERENCES.map((c) => [c, c])}
 />
 
-            <Field label={`Max: $${maxTuition.toLocaleString()}`}>
-              <input
-                type="range"
-                min={0}
-                max={TUITION_MAX}
-                step={1000}
-                value={maxTuition}
-                onChange={(e) => setMaxTuition(Number(e.target.value))}
-                style={{ width: "100%" }}
-              />
-            </Field>
-          </div>
+<Field label={`Max: $${maxTuition.toLocaleString()}`}>
+  <div style={{ maxWidth: 120 }}>
+    <input
+      type="range"
+      min={0}
+      max={TUITION_MAX}
+      step={1000}
+      value={maxTuition}
+      onChange={(e) => setMaxTuition(Number(e.target.value))}
+      style={{ width: "100%" }}
+    />
+  </div>
+</Field>
 
           <button type="button" onClick={clearFilters} style={clearButtonStyle}>
             Clear Filters
@@ -409,26 +410,26 @@ function AutoChipField({
           ))}
         </div>
 
-        <div style={{ display: "flex", gap: 4 }}>
-          <input
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-              setOpen(false);
-            }}
-            placeholder="Type to search..."
-            style={inputStyle}
-          />
+<div style={comboWrapStyle}>
+  <input
+    value={value}
+    onChange={(e) => {
+      setValue(e.target.value);
+      setOpen(false);
+    }}
+    placeholder="Type to search..."
+    style={comboInputStyle}
+  />
 
-          <button
-            type="button"
-            onClick={() => setOpen((prev) => !prev)}
-            style={dropdownButtonStyle}
-            aria-label={`Open ${label} options`}
-          >
-            ▾
-          </button>
-        </div>
+  <button
+    type="button"
+    onClick={() => setOpen((prev) => !prev)}
+    style={comboArrowStyle}
+    aria-label={`Open ${label} options`}
+  >
+    ▾
+  </button>
+</div>
 
         {value ? (
           <div style={suggestionBoxStyle}>
@@ -508,7 +509,7 @@ const inputStyle: React.CSSProperties = {
 const filterGridStyle: React.CSSProperties = {
   marginTop: 10,
   display: "grid",
-  gridTemplateColumns: "120px 135px 125px 130px 150px 1fr",
+  gridTemplateColumns: "150px 150px 125px 150px 180px 180px",
   gap: 8,
   alignItems: "start",
 };
@@ -581,4 +582,33 @@ const emptySuggestionStyle: React.CSSProperties = {
   color: "#64748b",
   padding: "6px 8px",
   fontWeight: 700,
+};
+
+const comboWrapStyle: React.CSSProperties = {
+  position: "relative",
+  width: "100%",
+};
+
+const comboInputStyle: React.CSSProperties = {
+  width: "100%",
+  boxSizing: "border-box",
+  padding: "8px 28px 8px 9px",
+  borderRadius: 9,
+  border: "1px solid #cbd5e1",
+  fontSize: 13,
+  outline: "none",
+};
+
+const comboArrowStyle: React.CSSProperties = {
+  position: "absolute",
+  right: 4,
+  top: "50%",
+  transform: "translateY(-50%)",
+  width: 22,
+  height: 22,
+  border: "none",
+  background: "transparent",
+  cursor: "pointer",
+  fontWeight: 900,
+  color: "#334155",
 };
