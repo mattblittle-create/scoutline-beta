@@ -25,10 +25,31 @@ type CollegeResult = {
 
 function pretty(value?: string | null) {
   if (!value) return "—";
-  return value
-    .replace(/_/g, " ")
-    .toLowerCase()
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+
+  const raw = value.replace(/_/g, " ").toUpperCase();
+
+  const fixes: Record<string, string> = {
+    NCAA: "NCAA",
+    NAIA: "NAIA",
+    NJCAA: "NJCAA",
+    SEC: "SEC",
+    ACC: "ACC",
+    BIG: "Big",
+    PAC: "Pac",
+    SUN: "Sun",
+  };
+
+  // Handle common patterns like NCAA_D1 → NCAA D1
+  const words = raw.split(" ").map((word) => {
+    if (fixes[word]) return fixes[word];
+
+    // Keep D1, D2, etc.
+    if (/^D[123]$/.test(word)) return word;
+
+    return word.charAt(0) + word.slice(1).toLowerCase();
+  });
+
+  return words.join(" ");
 }
 
 export default function CollegeSearchPage() {
