@@ -464,15 +464,53 @@ async function toggleSavedCollege(collegeId: string) {
               <article key={college.id} style={cardStyle}>
                 <div style={{ display: "flex", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
                   <div>
-                    <h2 style={{ margin: 0, fontSize: "1.35rem", fontWeight: 900 }}>
-                      {college.websiteUrl ? (
-                        <a href={college.websiteUrl} target="_blank" rel="noreferrer" style={{ color: "#0f172a", textDecorationColor: "#caa042" }}>
-                          {college.name}
-                        </a>
-                      ) : (
-                        college.name
-                      )}
-                    </h2>
+<h2
+  style={{
+    margin: 0,
+    fontSize: "1.35rem",
+    fontWeight: 900,
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    flexWrap: "wrap",
+  }}
+>
+  {college.websiteUrl ? (
+    <a
+      href={college.websiteUrl}
+      target="_blank"
+      rel="noreferrer"
+      style={{ color: "#0f172a", textDecorationColor: "#caa042" }}
+    >
+      {college.name}
+    </a>
+  ) : (
+    college.name
+  )}
+
+  {isLoggedIn ? (
+    <button
+      type="button"
+      title="Click the star icon and save this school to your Target Programs list."
+      onClick={() => toggleSavedCollege(college.id)}
+      disabled={savingCollegeId === college.id}
+      style={{
+        ...starButtonStyle,
+        background: savedCollegeIds.includes(college.id) ? "#caa042" : "transparent",
+        borderColor: savedCollegeIds.includes(college.id) ? "#caa042" : "#0ea5e9",
+        color: savedCollegeIds.includes(college.id) ? "#0f172a" : "#0ea5e9",
+        opacity: savingCollegeId === college.id ? 0.6 : 1,
+      }}
+      aria-label={
+        savedCollegeIds.includes(college.id)
+          ? "Remove from Target Programs"
+          : "Save to Target Programs"
+      }
+    >
+      ★
+    </button>
+  ) : null}
+</h2>
                     <div style={{ marginTop: 6, color: "#475569", fontWeight: 700 }}>
                       {[college.city, college.state].filter(Boolean).join(", ") || "Location TBD"}
                     </div>
@@ -508,27 +546,6 @@ async function toggleSavedCollege(collegeId: string) {
 </div>
 
 <div style={{ marginLeft: "auto" }}>
-  {isLoggedIn ? (
-    <button
-    type="button"
-    onClick={() => toggleSavedCollege(college.id)}
-    disabled={savingCollegeId === college.id}
-style={{
-  ...buttonStyle,
-  background: savedCollegeIds.includes(college.id) ? "#f8fafc" : "#0ea5e9",
-  borderColor: savedCollegeIds.includes(college.id) ? "#cbd5e1" : "#0ea5e9",
-  color: savedCollegeIds.includes(college.id) ? "#0f172a" : "#ffffff",
-      cursor: savingCollegeId === college.id ? "not-allowed" : "pointer",
-      opacity: savingCollegeId === college.id ? 0.65 : 1,
-    }}
-  >
-    {savingCollegeId === college.id
-      ? "Saving..."
-      : savedCollegeIds.includes(college.id)
-      ? "Saved ✓"
-      : "Save to Target Programs"}
-  </button>
-) : null}
                 </div>
               </article>
             );
@@ -682,3 +699,19 @@ const comboArrowStyle: React.CSSProperties = { position: "absolute", right: 4, t
 const suggestionBoxStyle: React.CSSProperties = { display: "grid", gap: 4, maxHeight: 170, overflowY: "auto", border: "1px solid #e5e7eb", background: "#ffffff", borderRadius: 10, padding: 6, boxShadow: "0 8px 18px rgba(15,23,42,0.10)", zIndex: 10 };
 const suggestionStyle: React.CSSProperties = { textAlign: "left", border: "1px solid #e5e7eb", background: "#ffffff", borderRadius: 8, padding: "6px 8px", cursor: "pointer", fontWeight: 800, fontSize: 12 };
 const emptySuggestionStyle: React.CSSProperties = { fontSize: 12, color: "#64748b", padding: "6px 8px", fontWeight: 700 };
+const starButtonStyle: React.CSSProperties = {
+  width: 26,
+  height: 26,
+  borderRadius: 999,
+  border: "2px solid #0ea5e9",
+  background: "transparent",
+  color: "#0ea5e9",
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontSize: 15,
+  fontWeight: 900,
+  lineHeight: 1,
+  cursor: "pointer",
+  padding: 0,
+};
