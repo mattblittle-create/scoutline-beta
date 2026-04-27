@@ -135,9 +135,9 @@ export default function TargetProgramsPage() {
               Search Colleges
             </Link>
 
-            <Link href="/dashboard/player" style={secondaryButtonStyle}>
-              Back to Dashboard
-            </Link>
+<Link href="/dashboard/player" style={backToDashboardStyle}>
+  Back to Dashboard
+</Link>
           </div>
         </div>
 
@@ -333,4 +333,17 @@ const errorStyle: React.CSSProperties = {
   padding: 14,
   marginBottom: 16,
   fontWeight: 700,
+};
+
+const backToDashboardStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "9px 13px",
+  background: "#0ea5e9",
+  color: "#ffffff",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #0ea5e9",
 };

@@ -3,6 +3,7 @@
 
 import React, { Suspense, useMemo, useState, useEffect, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 import { TAB_KEYS } from "./tabKeys";
 import TabCore from "./TabCore";
@@ -3048,4 +3049,17 @@ const errText: React.CSSProperties = {
   color: "#b91c1c",
   fontSize: 12,
   fontWeight: 600,
+};
+
+const backToDashboardStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "9px 13px",
+  background: "#0ea5e9",
+  color: "#ffffff",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #0ea5e9",
 };
