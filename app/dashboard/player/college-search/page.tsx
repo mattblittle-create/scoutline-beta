@@ -14,7 +14,7 @@ export default async function PlayerCollegeSearchPage() {
     <>
       <div style={{ maxWidth: 1180, margin: "0 auto", padding: "16px 16px 0" }}>
 <Link href="/dashboard/player" style={backToDashboardStyle}>
-  ← Back to Dashboard
+  Back to Dashboard
 </Link>
       </div>
 

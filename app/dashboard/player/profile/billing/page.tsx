@@ -2,6 +2,8 @@
 import { prisma } from "@/lib/prisma";
 import { cookies } from "next/headers";
 
+import Link from "next/link";
+
 import DevPlayerSelector from "./DevPlayerSelector";
 import PlayerBillingAdminTools from "./PlayerBillingAdminTools";
 import BillingDiscountCodeRedeem from "../../../team/billing/BillingDiscountCodeRedeem";
@@ -251,11 +253,26 @@ export default async function PlayerBillingPage(props: {
 
   const derivedStatus = computeDerivedStatusFromInvoices(invoices);
 
-  return (
-    <div style={{ padding: 16 }}>
-      <DevPlayerSelector />
+return (
+  <div style={{ padding: 16 }}>
+    <DevPlayerSelector />
 
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 12,
+        flexWrap: "wrap",
+        marginBottom: 12,
+      }}
+    >
       <h1 style={{ fontSize: 22, fontWeight: 900, margin: 0 }}>Player Billing</h1>
+
+      <Link href="/dashboard/player" style={backToDashboardStyle}>
+        Back to Dashboard
+      </Link>
+    </div>
 
       <div style={{ marginTop: 6, color: "#64748b", fontWeight: 700 }}>
         {profile ? (
@@ -393,3 +410,16 @@ export default async function PlayerBillingPage(props: {
     </div>
   );
 }
+
+const backToDashboardStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "9px 13px",
+  background: "#0ea5e9",
+  color: "#ffffff",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #0ea5e9",
+};

@@ -2242,9 +2242,24 @@ const otherAcademicDocsPayload =
     }
   }
 
-  return (
-    <main style={{ maxWidth: 860, margin: "0 auto" }}>
+return (
+  <main style={{ maxWidth: 860, margin: "0 auto" }}>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        gap: 12,
+        flexWrap: "wrap",
+        marginBottom: 12,
+      }}
+    >
       <h1 style={{ fontSize: "1.75rem", fontWeight: 900, margin: 0 }}>Player Profile</h1>
+
+      <Link href="/dashboard/player" style={backToDashboardStyle}>
+        Back to Dashboard
+      </Link>
+    </div>
       <p style={{ color: "#475569", marginTop: 4 }}>
         It is important to update your profile information on a regular basis. ScoutLine recommends
         updating Academics after each semester, Core and Athletics as necessary, Metrics every 6 to 8
