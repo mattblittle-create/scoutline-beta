@@ -60,9 +60,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   return (
     <main style={{ color: "#0f172a", fontFamily: "Arial, sans-serif" }}>
       <section style={{ maxWidth: 1120, margin: "0 auto", padding: "28px 16px 56px" }}>
-        <Link href="/search" style={backLinkStyle}>
-          ← Back to College Search
-        </Link>
+<Link href="/dashboard/player/college-search" style={backLinkStyle}>
+  ← Back to College Search
+</Link>
 
         <div style={heroStyle}>
           <div>
@@ -150,8 +150,14 @@ function ExternalButton({ href, children }: { href: string; children: React.Reac
 
 const backLinkStyle: React.CSSProperties = {
   display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
   marginBottom: 16,
-  color: "#0f172a",
+  color: "#ffffff",
+  background: "#0ea5e9",
+  border: "1px solid #0ea5e9",
+  borderRadius: 999,
+  padding: "9px 13px",
   textDecoration: "none",
   fontWeight: 900,
 };
