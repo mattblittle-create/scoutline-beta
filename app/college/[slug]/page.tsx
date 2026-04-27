@@ -1,6 +1,7 @@
 // app/college/[slug]/page.tsx
 
 import Link from "next/link";
+import CollegeSaveStar from "@/app/components/college/CollegeSaveStar";
 
 type PageProps = {
   params: {
@@ -65,9 +66,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
         <div style={heroStyle}>
           <div>
-            <h1 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 900 }}>
-              {college.name}
-            </h1>
+<div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+  <h1 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 900 }}>
+    {college.name}
+  </h1>
+
+  <CollegeSaveStar collegeId={college.id} />
+</div>
 
             <div style={{ marginTop: 8, color: "#475569", fontWeight: 800 }}>
               {[college.city, college.state].filter(Boolean).join(", ") || "Location TBD"}
