@@ -111,8 +111,9 @@ export default function CollegeSearchPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
-  const [savingCollegeId, setSavingCollegeId] = useState("");
+const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
+const [savedCollegeResults, setSavedCollegeResults] = useState<CollegeResult[]>([]);
+const [savingCollegeId, setSavingCollegeId] = useState("");
 
   const [showSavedOnly, setShowSavedOnly] = useState(false);
 
@@ -172,6 +173,7 @@ useEffect(() => {
   async function loadSavedPrograms() {
     if (!isLoggedIn) {
       setSavedCollegeIds([]);
+      setSavedCollegeResults([]);
       return;
     }
 
@@ -183,14 +185,24 @@ useEffect(() => {
       const data = await res.json().catch(() => null);
 
       if (!cancelled && res.ok && data?.ok) {
-        const ids = (data.saved || [])
-          .map((item: any) => item?.collegeId)
-          .filter(Boolean);
+const savedItems = data.saved || [];
 
-        setSavedCollegeIds(ids);
+const ids = savedItems
+  .map((item: any) => item?.collegeId)
+  .filter(Boolean);
+
+const colleges = savedItems
+  .map((item: any) => item?.college)
+  .filter(Boolean);
+
+setSavedCollegeIds(ids);
+setSavedCollegeResults(colleges);
       }
     } catch {
-      if (!cancelled) setSavedCollegeIds([]);
+      if (!cancelled) {
+        setSavedCollegeIds([]);
+        setSavedCollegeResults([]);
+}
     }
   }
 
@@ -310,9 +322,20 @@ async function toggleSavedCollege(collegeId: string) {
       throw new Error(data?.error || "Save failed.");
     }
 
-    setSavedCollegeIds((prev) =>
-      isSaved ? prev.filter((id) => id !== collegeId) : addUnique(prev, collegeId)
+setSavedCollegeIds((prev) =>
+  isSaved ? prev.filter((id) => id !== collegeId) : addUnique(prev, collegeId)
+);
+
+if (isSaved) {
+  setSavedCollegeResults((prev) => prev.filter((college) => college.id !== collegeId));
+} else {
+  const justSaved = results.find((college) => college.id === collegeId);
+  if (justSaved) {
+    setSavedCollegeResults((prev) =>
+      prev.some((college) => college.id === collegeId) ? prev : [justSaved, ...prev]
     );
+  }
+}
   } catch (err) {
     console.error("TARGET_PROGRAM_TOGGLE_ERROR", err);
     setError("Could not update Target Programs.");
@@ -320,6 +343,8 @@ async function toggleSavedCollege(collegeId: string) {
     setSavingCollegeId("");
   }
 }
+
+const visibleResults = showSavedOnly ? savedCollegeResults : results;
 
   function clearFilters() {
     setQ("");
@@ -481,7 +506,7 @@ async function toggleSavedCollege(collegeId: string) {
   ? "Type at least 2 characters to search by college name."
   : loading
   ? "Searching colleges..."
-  : `${results.length} result${results.length === 1 ? "" : "s"} found.`}
+: `${visibleResults.length} result${visibleResults.length === 1 ? "" : "s"} found.`}
           </div>
         </div>
 
@@ -489,10 +514,7 @@ async function toggleSavedCollege(collegeId: string) {
 
         <div style={{ display: "grid", gap: 14 }}>
           {results
-  .filter((college) =>
-    showSavedOnly ? savedCollegeIds.includes(college.id) : true
-  )
-  .map((college) => {
+{visibleResults.map((college) => {
             const baseball = college.baseballProgram;
 
             return (
