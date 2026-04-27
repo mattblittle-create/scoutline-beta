@@ -114,6 +114,8 @@ export default function CollegeSearchPage() {
   const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
   const [savingCollegeId, setSavingCollegeId] = useState("");
 
+  const [showSavedOnly, setShowSavedOnly] = useState(false);
+
   const [authChecked, setAuthChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -446,6 +448,34 @@ async function toggleSavedCollege(collegeId: string) {
             Clear Filters
           </button>
 
+<div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+  <button
+    type="button"
+    onClick={() => setShowSavedOnly(false)}
+    style={{
+      ...toggleButtonStyle,
+      background: !showSavedOnly ? "#0f172a" : "#f1f5f9",
+      color: !showSavedOnly ? "#ffffff" : "#0f172a",
+    }}
+  >
+    All Results
+  </button>
+
+  {isLoggedIn && (
+    <button
+      type="button"
+      onClick={() => setShowSavedOnly(true)}
+      style={{
+        ...toggleButtonStyle,
+        background: showSavedOnly ? "#0f172a" : "#f1f5f9",
+        color: showSavedOnly ? "#ffffff" : "#0f172a",
+      }}
+    >
+      Saved Programs
+    </button>
+  )}
+</div>
+
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
 {!shouldSearch
   ? "Type at least 2 characters to search by college name."
@@ -458,7 +488,11 @@ async function toggleSavedCollege(collegeId: string) {
         {error ? <div style={errorStyle}>{error}</div> : null}
 
         <div style={{ display: "grid", gap: 14 }}>
-          {results.map((college) => {
+          {results
+  .filter((college) =>
+    showSavedOnly ? savedCollegeIds.includes(college.id) : true
+  )
+  .map((college) => {
             const baseball = college.baseballProgram;
 
             return (
@@ -706,4 +740,13 @@ const starButtonStyle: React.CSSProperties = {
   lineHeight: 1,
   cursor: "pointer",
   padding: 0,
+};
+
+const toggleButtonStyle: React.CSSProperties = {
+  border: "1px solid #cbd5e1",
+  borderRadius: 999,
+  padding: "6px 12px",
+  fontWeight: 800,
+  cursor: "pointer",
+  fontSize: 12,
 };
