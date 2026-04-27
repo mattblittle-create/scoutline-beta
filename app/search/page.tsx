@@ -512,9 +512,8 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
 
         {error ? <div style={errorStyle}>{error}</div> : null}
 
-        <div style={{ display: "grid", gap: 14 }}>
-          {results
-{visibleResults.map((college) => {
+<div style={{ display: "grid", gap: 14 }}>
+  {visibleResults.map((college) => {
             const baseball = college.baseballProgram;
 
             return (
