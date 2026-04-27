@@ -1055,12 +1055,19 @@ const unreadChatCount = chatConversations.reduce(
           badge="Coming Soon"
         />
 
-        <DashboardCard
-          title="College Search"
-          description="Search colleges by region, division, conference, tuition, student life, admissions profile, and baseball fit."
-          href="/dashboard/player/college-search"
-          badge="Coming Soon"
-        />
+<DashboardCard
+  title="College Search"
+  description="Search colleges by region, division, conference, tuition, admissions profile, and baseball fit."
+  href="/dashboard/player/college-search"
+  badge="Live"
+/>
+
+<DashboardCard
+  title="Target Programs"
+  description="View and manage the college programs you saved from search."
+  href="/dashboard/player/target-programs"
+  badge="Live"
+/>
 
         <DashboardCard
           title="Plan Billing"
