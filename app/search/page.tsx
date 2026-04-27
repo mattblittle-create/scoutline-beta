@@ -43,6 +43,16 @@ const DIVISIONS = [
   ["NJCAA_D3", "NJCAA D3"],
 ] as const;
 
+const TARGET_STATUS_OPTIONS = [
+  ["SAVED", "Saved"],
+  ["INTERESTED", "Interested"],
+  ["CONTACTED", "Contacted"],
+  ["APPLIED", "Applied"],
+  ["VISITED", "Visited"],
+  ["OFFERED", "Offered"],
+  ["NOT_PURSUING", "Not Pursuing"],
+] as const;
+
 const CONFERENCES = [
   "ACC","SEC","Big Ten","Big 12","Pac-12","American Athletic Conference","Atlantic 10",
   "ASUN","Big East","Big South","CAA","Conference USA","Horizon League","Ivy League",
@@ -111,9 +121,10 @@ export default function CollegeSearchPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
-const [savedCollegeResults, setSavedCollegeResults] = useState<CollegeResult[]>([]);
-const [savingCollegeId, setSavingCollegeId] = useState("");
+  const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
+  const [savedCollegeResults, setSavedCollegeResults] = useState<CollegeResult[]>([]);
+  const [savedCollegeStatuses, setSavedCollegeStatuses] = useState<Record<string, string>>({});
+  const [savingCollegeId, setSavingCollegeId] = useState("");
 
   const [showSavedOnly, setShowSavedOnly] = useState(false);
 
@@ -172,9 +183,10 @@ useEffect(() => {
 
   async function loadSavedPrograms() {
     if (!isLoggedIn) {
-      setSavedCollegeIds([]);
-      setSavedCollegeResults([]);
-      return;
+setSavedCollegeIds([]);
+setSavedCollegeResults([]);
+setSavedCollegeStatuses({});
+return;
     }
 
     try {
@@ -195,13 +207,20 @@ const colleges = savedItems
   .map((item: any) => item?.college)
   .filter(Boolean);
 
+const statuses = savedItems.reduce((acc: Record<string, string>, item: any) => {
+  if (item?.collegeId) acc[item.collegeId] = item?.status || "SAVED";
+  return acc;
+}, {});
+
 setSavedCollegeIds(ids);
 setSavedCollegeResults(colleges);
+setSavedCollegeStatuses(statuses);
       }
     } catch {
       if (!cancelled) {
-        setSavedCollegeIds([]);
-        setSavedCollegeResults([]);
+setSavedCollegeIds([]);
+setSavedCollegeResults([]);
+setSavedCollegeStatuses({});
 }
     }
   }
@@ -328,19 +347,63 @@ setSavedCollegeIds((prev) =>
 
 if (isSaved) {
   setSavedCollegeResults((prev) => prev.filter((college) => college.id !== collegeId));
+  setSavedCollegeStatuses((prev) => {
+    const next = { ...prev };
+    delete next[collegeId];
+    return next;
+  });
 } else {
   const justSaved = results.find((college) => college.id === collegeId);
-  if (justSaved) {
-    setSavedCollegeResults((prev) =>
-      prev.some((college) => college.id === collegeId) ? prev : [justSaved, ...prev]
-    );
-  }
+if (justSaved) {
+  setSavedCollegeResults((prev) =>
+    prev.some((college) => college.id === collegeId) ? prev : [justSaved, ...prev]
+  );
+
+  setSavedCollegeStatuses((prev) => ({
+    ...prev,
+    [collegeId]: "SAVED",
+  }));
+}
 }
   } catch (err) {
     console.error("TARGET_PROGRAM_TOGGLE_ERROR", err);
     setError("Could not update Target Programs.");
   } finally {
     setSavingCollegeId("");
+  }
+}
+
+async function updateSavedStatus(collegeId: string, status: string) {
+  if (!isLoggedIn || !savedCollegeIds.includes(collegeId)) return;
+
+  const previous = savedCollegeStatuses[collegeId] || "SAVED";
+
+  setSavedCollegeStatuses((prev) => ({
+    ...prev,
+    [collegeId]: status,
+  }));
+
+  try {
+    const res = await fetch("/api/player/target-programs", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId, status }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Status update failed.");
+    }
+  } catch (err) {
+    console.error("TARGET_PROGRAM_STATUS_UPDATE_ERROR", err);
+    setSavedCollegeStatuses((prev) => ({
+      ...prev,
+      [collegeId]: previous,
+    }));
+    setError("Could not update target program status.");
   }
 }
 
@@ -573,13 +636,32 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
                   </div>
                 </div>
 
-                <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
-                  <Info label="Nickname" value={baseball?.nickname || "—"} />
-                  <Info label="Division" value={pretty(baseball?.division)} />
-                  <Info label="Conference" value={baseball?.conference || "—"} />
-                  <Info label="In-State Tuition" value={money(college.tuitionInState)} />
-                  <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
-                </div>
+<div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
+  <Info label="Nickname" value={baseball?.nickname || "—"} />
+  <Info label="Division" value={pretty(baseball?.division)} />
+  <Info label="Conference" value={baseball?.conference || "—"} />
+  <Info label="In-State Tuition" value={money(college.tuitionInState)} />
+  <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
+
+  {isLoggedIn && savedCollegeIds.includes(college.id) ? (
+    <label style={statusFieldStyle}>
+      <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+        Target Status
+      </span>
+      <select
+        value={savedCollegeStatuses[college.id] || "SAVED"}
+        onChange={(e) => updateSavedStatus(college.id, e.target.value)}
+        style={statusSelectStyle}
+      >
+        {TARGET_STATUS_OPTIONS.map(([value, label]) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
+      </select>
+    </label>
+  ) : null}
+</div>
 
 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
   {college.admissionsUrl ? (
@@ -770,4 +852,24 @@ const toggleButtonStyle: React.CSSProperties = {
   fontWeight: 800,
   cursor: "pointer",
   fontSize: 12,
+};
+
+const statusFieldStyle: React.CSSProperties = {
+  border: "1px solid #eef2f7",
+  background: "#f8fafc",
+  borderRadius: 12,
+  padding: "10px 12px",
+  display: "grid",
+  gap: 4,
+};
+
+const statusSelectStyle: React.CSSProperties = {
+  width: "100%",
+  border: "1px solid #cbd5e1",
+  borderRadius: 8,
+  padding: "7px 8px",
+  background: "#ffffff",
+  color: "#0f172a",
+  fontWeight: 800,
+  outline: "none",
 };

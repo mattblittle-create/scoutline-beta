@@ -6,6 +6,21 @@ import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
+/**
+ * Supported recruiting statuses
+ */
+const VALID_STATUSES = [
+  "SAVED",
+  "INTERESTED",
+  "CONTACTED",
+  "APPLIED",
+  "VISITED",
+  "OFFERED",
+  "NOT_PURSUING",
+] as const;
+
+type RecruitingStatus = (typeof VALID_STATUSES)[number];
+
 async function getCurrentPlayerProfile() {
   const userId = cookies().get("scoutline_uid")?.value || "";
 
@@ -33,12 +48,18 @@ async function getCurrentPlayerProfile() {
   });
 }
 
+/**
+ * GET - Load saved target programs
+ */
 export async function GET() {
   try {
     const profile = await getCurrentPlayerProfile();
 
     if (!profile) {
-      return NextResponse.json({ ok: false, error: "Not logged in or player profile not found." }, { status: 401 });
+      return NextResponse.json(
+        { ok: false, error: "Not logged in or player profile not found." },
+        { status: 401 }
+      );
     }
 
     const saved = await prisma.collegeSavedSchool.findMany({
@@ -56,22 +77,34 @@ export async function GET() {
     return NextResponse.json({ ok: true, saved });
   } catch (err) {
     console.error("TARGET_PROGRAMS_GET_ERROR", err);
-    return NextResponse.json({ ok: false, error: "Could not load target programs." }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: "Could not load target programs." },
+      { status: 500 }
+    );
   }
 }
 
+/**
+ * POST - Save a college (default status: SAVED)
+ */
 export async function POST(req: NextRequest) {
   try {
     const profile = await getCurrentPlayerProfile();
 
     if (!profile) {
-      return NextResponse.json({ ok: false, error: "Not logged in or player profile not found." }, { status: 401 });
+      return NextResponse.json(
+        { ok: false, error: "Not logged in or player profile not found." },
+        { status: 401 }
+      );
     }
 
     const { collegeId } = await req.json();
 
     if (!collegeId || typeof collegeId !== "string") {
-      return NextResponse.json({ ok: false, error: "Missing collegeId." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Missing collegeId." },
+        { status: 400 }
+      );
     }
 
     const saved = await prisma.collegeSavedSchool.upsert({
@@ -93,22 +126,86 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ ok: true, saved });
   } catch (err) {
     console.error("TARGET_PROGRAMS_POST_ERROR", err);
-    return NextResponse.json({ ok: false, error: "Could not save target program." }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: "Could not save target program." },
+      { status: 500 }
+    );
   }
 }
 
+/**
+ * PATCH - Update recruiting status
+ */
+export async function PATCH(req: NextRequest) {
+  try {
+    const profile = await getCurrentPlayerProfile();
+
+    if (!profile) {
+      return NextResponse.json(
+        { ok: false, error: "Not logged in or player profile not found." },
+        { status: 401 }
+      );
+    }
+
+    const { collegeId, status } = await req.json();
+
+    if (!collegeId || typeof collegeId !== "string") {
+      return NextResponse.json(
+        { ok: false, error: "Missing collegeId." },
+        { status: 400 }
+      );
+    }
+
+    if (!status || !VALID_STATUSES.includes(status)) {
+      return NextResponse.json(
+        { ok: false, error: "Invalid status value." },
+        { status: 400 }
+      );
+    }
+
+    const updated = await prisma.collegeSavedSchool.update({
+      where: {
+        playerProfileId_collegeId: {
+          playerProfileId: profile.id,
+          collegeId,
+        },
+      },
+      data: {
+        status,
+      },
+    });
+
+    return NextResponse.json({ ok: true, updated });
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_PATCH_ERROR", err);
+    return NextResponse.json(
+      { ok: false, error: "Could not update status." },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * DELETE - Remove saved college
+ */
 export async function DELETE(req: NextRequest) {
   try {
     const profile = await getCurrentPlayerProfile();
 
     if (!profile) {
-      return NextResponse.json({ ok: false, error: "Not logged in or player profile not found." }, { status: 401 });
+      return NextResponse.json(
+        { ok: false, error: "Not logged in or player profile not found." },
+        { status: 401 }
+      );
     }
 
     const { collegeId } = await req.json();
 
     if (!collegeId || typeof collegeId !== "string") {
-      return NextResponse.json({ ok: false, error: "Missing collegeId." }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Missing collegeId." },
+        { status: 400 }
+      );
     }
 
     await prisma.collegeSavedSchool.deleteMany({
@@ -121,6 +218,9 @@ export async function DELETE(req: NextRequest) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("TARGET_PROGRAMS_DELETE_ERROR", err);
-    return NextResponse.json({ ok: false, error: "Could not remove target program." }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: "Could not remove target program." },
+      { status: 500 }
+    );
   }
 }
