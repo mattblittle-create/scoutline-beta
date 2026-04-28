@@ -147,7 +147,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const { collegeId, status } = await req.json();
+    const { collegeId, status, notes } = await req.json();
 
     if (!collegeId || typeof collegeId !== "string") {
       return NextResponse.json(
@@ -156,12 +156,35 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    if (!status || !VALID_STATUSES.includes(status)) {
-      return NextResponse.json(
-        { ok: false, error: "Invalid status value." },
-        { status: 400 }
-      );
-    }
+const dataToUpdate: {
+  status?: RecruitingStatus;
+  notes?: string | null;
+} = {};
+
+if (typeof status !== "undefined") {
+  if (!status || !VALID_STATUSES.includes(status)) {
+    return NextResponse.json(
+      { ok: false, error: "Invalid status value." },
+      { status: 400 }
+    );
+  }
+
+  dataToUpdate.status = status;
+}
+
+if (typeof notes !== "undefined") {
+  dataToUpdate.notes =
+    typeof notes === "string" && notes.trim()
+      ? notes.trim().slice(0, 1000)
+      : null;
+}
+
+if (Object.keys(dataToUpdate).length === 0) {
+  return NextResponse.json(
+    { ok: false, error: "No updates provided." },
+    { status: 400 }
+  );
+}
 
     const updated = await prisma.collegeSavedSchool.update({
       where: {
@@ -170,9 +193,7 @@ export async function PATCH(req: NextRequest) {
           collegeId,
         },
       },
-      data: {
-        status,
-      },
+data: dataToUpdate,
     });
 
     return NextResponse.json({ ok: true, updated });

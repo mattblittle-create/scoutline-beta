@@ -69,6 +69,7 @@ export default function TargetProgramsPage() {
   const [loading, setLoading] = useState(true);
   const [removingCollegeId, setRemovingCollegeId] = useState("");
   const [updatingCollegeId, setUpdatingCollegeId] = useState("");
+  const [savingNotesCollegeId, setSavingNotesCollegeId] = useState("");
   const [error, setError] = useState("");
 
   async function loadSavedPrograms() {
@@ -129,6 +130,38 @@ export default function TargetProgramsPage() {
     setError("Could not update that program status.");
   } finally {
     setUpdatingCollegeId("");
+  }
+}
+
+async function updateProgramNotes(collegeId: string, notes: string) {
+  try {
+    setSavingNotesCollegeId(collegeId);
+    setError("");
+
+    const res = await fetch("/api/player/target-programs", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId, notes }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Could not update notes.");
+    }
+
+    setSaved((prev) =>
+      prev.map((item) =>
+        item.collegeId === collegeId ? { ...item, notes } : item
+      )
+    );
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_NOTES_UPDATE_ERROR", err);
+    setError("Could not update notes.");
+  } finally {
+    setSavingNotesCollegeId("");
   }
 }
 
@@ -271,6 +304,37 @@ export default function TargetProgramsPage() {
   </select>
 </label>
                   </div>
+
+                  <div style={{ marginTop: 12 }}>
+  <label style={notesFieldStyle}>
+    <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+      Notes
+    </span>
+
+    <textarea
+      value={item.notes || ""}
+      onChange={(e) => {
+        const nextNotes = e.target.value;
+
+        setSaved((prev) =>
+          prev.map((row) =>
+            row.collegeId === college.id ? { ...row, notes: nextNotes } : row
+          )
+        );
+      }}
+      onBlur={(e) => updateProgramNotes(college.id, e.target.value)}
+      placeholder="Add recruiting notes, coach contact history, camp info, next steps..."
+      maxLength={1000}
+      style={notesTextareaStyle}
+    />
+
+    <span style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>
+      {savingNotesCollegeId === college.id
+        ? "Saving notes..."
+        : `${(item.notes || "").length}/1000`}
+    </span>
+  </label>
+</div>
 
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
                     <Link href={`/college/${college.slug}`} style={primaryButtonStyle}>
@@ -426,4 +490,27 @@ const statusSelectStyle: React.CSSProperties = {
   color: "#0f172a",
   fontWeight: 800,
   outline: "none",
+};
+
+const notesFieldStyle: React.CSSProperties = {
+  border: "1px solid #eef2f7",
+  background: "#f8fafc",
+  borderRadius: 12,
+  padding: "10px 12px",
+  display: "grid",
+  gap: 6,
+};
+
+const notesTextareaStyle: React.CSSProperties = {
+  width: "100%",
+  minHeight: 78,
+  resize: "vertical",
+  border: "1px solid #cbd5e1",
+  borderRadius: 10,
+  padding: "9px 10px",
+  background: "#ffffff",
+  color: "#0f172a",
+  fontWeight: 700,
+  outline: "none",
+  boxSizing: "border-box",
 };
