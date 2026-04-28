@@ -66,22 +66,22 @@ export default function PlayerRecruitingToolPage() {
     }
   }
 
-async function toggleSavedCollege(collegeId: string) {
+async function toggleSavedCollege(collegeId: string, fitLabel: string) {
   const isSaved = savedCollegeIds.includes(collegeId);
 
   try {
     setSavingCollegeId(collegeId);
 
-await fetch("/api/player/target-programs", {
-  method: "POST",
+const res = await fetch("/api/player/target-programs", {
+  method: isSaved ? "DELETE" : "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
     collegeId,
-    priority: getPriorityFromFit(fit.label),
+    priority: getPriorityFromFit(fitLabel),
   }),
 });
 
-    const data = await res.json().catch(() => null);
+const data = await res.json().catch(() => null);
 
     if (!res.ok || !data?.ok) {
       throw new Error(data?.error || "Save failed.");
@@ -202,7 +202,7 @@ await fetch("/api/player/target-programs", {
                               ? "Remove from Target Programs"
                               : "Save to Target Programs"
                           }
-                          onClick={() => toggleSavedCollege(c.id)}
+                          onClick={() => toggleSavedCollege(c.id, fit.label)}
                           disabled={savingCollegeId === c.id}
                           style={{
                             width: 28,
