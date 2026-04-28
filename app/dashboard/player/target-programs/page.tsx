@@ -18,11 +18,19 @@ const TARGET_STATUS_OPTIONS = [
   ["NOT_PURSUING", "Not Pursuing"],
 ] as const;
 
+const TARGET_PRIORITY_OPTIONS = [
+  ["", "No Priority"],
+  ["HIGH", "High Priority"],
+  ["MEDIUM", "Medium Priority"],
+  ["LOW", "Low Priority"],
+] as const;
+
 type SavedProgram = {
   id: string;
   collegeId: string;
   listName: string;
   status: string;
+  priority?: string | null;
   notes?: string | null;
   college: {
     id: string;
@@ -132,6 +140,38 @@ export default function TargetProgramsPage() {
   } catch (err) {
     console.error("TARGET_PROGRAMS_STATUS_UPDATE_ERROR", err);
     setError("Could not update that program status.");
+  } finally {
+    setUpdatingCollegeId("");
+  }
+}
+
+async function updateProgramPriority(collegeId: string, priority: string) {
+  try {
+    setUpdatingCollegeId(collegeId);
+    setError("");
+
+    const res = await fetch("/api/player/target-programs", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId, priority }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Could not update priority.");
+    }
+
+    setSaved((prev) =>
+      prev.map((item) =>
+        item.collegeId === collegeId ? { ...item, priority } : item
+      )
+    );
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_PRIORITY_UPDATE_ERROR", err);
+    setError("Could not update that program priority.");
   } finally {
     setUpdatingCollegeId("");
   }
@@ -327,6 +367,25 @@ async function updateProgramNotes(collegeId: string, notes: string) {
     style={statusSelectStyle}
   >
     {TARGET_STATUS_OPTIONS.map(([value, label]) => (
+      <option key={value} value={value}>
+        {label}
+      </option>
+    ))}
+  </select>
+</label>
+
+<label style={statusFieldStyle}>
+  <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+    Priority
+  </span>
+
+  <select
+    value={item.priority || ""}
+    onChange={(e) => updateProgramPriority(college.id, e.target.value)}
+    disabled={updatingCollegeId === college.id}
+    style={statusSelectStyle}
+  >
+    {TARGET_PRIORITY_OPTIONS.map(([value, label]) => (
       <option key={value} value={value}>
         {label}
       </option>
