@@ -7,8 +7,34 @@ import React from "react";
 
 export default function PlayerRecruitingToolPage() {
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
+  const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
+  const [savingCollegeId, setSavingCollegeId] = React.useState("");
   const [loadingTruthFit, setLoadingTruthFit] = React.useState(false);
   const [truthFitError, setTruthFitError] = React.useState("");
+
+  React.useEffect(() => {
+  async function loadSaved() {
+    try {
+      const res = await fetch("/api/player/target-programs", {
+        cache: "no-store",
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.ok) {
+        const ids = (data.saved || [])
+          .map((item: any) => item?.collegeId)
+          .filter(Boolean);
+
+        setSavedCollegeIds(ids);
+      }
+    } catch {
+      setSavedCollegeIds([]);
+    }
+  }
+
+  loadSaved();
+}, []);
 
   async function loadTruthFit() {
     try {
@@ -33,6 +59,38 @@ export default function PlayerRecruitingToolPage() {
       setLoadingTruthFit(false);
     }
   }
+
+async function toggleSavedCollege(collegeId: string) {
+  const isSaved = savedCollegeIds.includes(collegeId);
+
+  try {
+    setSavingCollegeId(collegeId);
+
+    const res = await fetch("/api/player/target-programs", {
+      method: isSaved ? "DELETE" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Save failed.");
+    }
+
+    setSavedCollegeIds((prev) =>
+      isSaved
+        ? prev.filter((id) => id !== collegeId)
+        : [...prev, collegeId]
+    );
+  } catch (err) {
+    console.error("TRUTH_FIT_SAVE_ERROR", err);
+  } finally {
+    setSavingCollegeId("");
+  }
+}
 
   return (
     <main style={{ maxWidth: 960, margin: "0 auto", padding: "8px 0 40px" }}>
@@ -112,7 +170,7 @@ export default function PlayerRecruitingToolPage() {
                 const c = item.college;
                 const fit = item.truthFit;
 
-                return (
+                  return (
                   <article key={c.id} style={resultCardStyle}>
                     <div style={resultTopRowStyle}>
                       <div>
@@ -129,15 +187,46 @@ export default function PlayerRecruitingToolPage() {
                         </div>
                       </div>
 
-                      <div
-                        style={{
-                          ...fitBadgeStyle,
-                          color: getFitColor(fit.label),
-                          borderColor: getFitBorderColor(fit.label),
-                          background: getFitBackground(fit.label),
-                        }}
-                      >
-                        {fit.label} • {fit.score}
+                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                        <button
+                          type="button"
+                          title={
+                            savedCollegeIds.includes(c.id)
+                              ? "Remove from Target Programs"
+                              : "Save to Target Programs"
+                          }
+                          onClick={() => toggleSavedCollege(c.id)}
+                          disabled={savingCollegeId === c.id}
+                          style={{
+                            width: 28,
+                            height: 28,
+                            borderRadius: 999,
+                            border: "2px solid #0ea5e9",
+                            background: savedCollegeIds.includes(c.id)
+                              ? "#caa042"
+                              : "transparent",
+                            color: savedCollegeIds.includes(c.id)
+                              ? "#0f172a"
+                              : "#0ea5e9",
+                            fontWeight: 900,
+                            cursor:
+                              savingCollegeId === c.id ? "not-allowed" : "pointer",
+                            opacity: savingCollegeId === c.id ? 0.6 : 1,
+                          }}
+                        >
+                          ★
+                        </button>
+
+                        <div
+                          style={{
+                            ...fitBadgeStyle,
+                            color: getFitColor(fit.label),
+                            borderColor: getFitBorderColor(fit.label),
+                            background: getFitBackground(fit.label),
+                          }}
+                        >
+                          {fit.label} • {fit.score}
+                        </div>
                       </div>
                     </div>
 
