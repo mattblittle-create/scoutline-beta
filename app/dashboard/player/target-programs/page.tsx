@@ -74,6 +74,7 @@ export default function TargetProgramsPage() {
   const [updatingCollegeId, setUpdatingCollegeId] = useState("");
   const [savingNotesCollegeId, setSavingNotesCollegeId] = useState("");
   const [error, setError] = useState("");
+  const [statusFilter, setStatusFilter] = useState("ALL");
 
   async function loadSavedPrograms() {
     try {
@@ -196,6 +197,11 @@ async function updateProgramNotes(collegeId: string, notes: string) {
     }
   }
 
+  const filteredSaved =
+  statusFilter === "ALL"
+    ? saved
+    : saved.filter((item) => item.status === statusFilter);
+
   return (
     <main style={{ color: "#0f172a", fontFamily: "Arial, sans-serif" }}>
       <section style={{ maxWidth: 1120, margin: "0 auto", padding: "28px 16px 56px" }}>
@@ -222,6 +228,27 @@ async function updateProgramNotes(collegeId: string, notes: string) {
 
         {error ? <div style={errorStyle}>{error}</div> : null}
 
+        {saved.length > 0 ? (
+  <div style={filterBarStyle}>
+    {["ALL", ...TARGET_STATUS_OPTIONS.map(([value]) => value)].map((value) => (
+      <button
+        key={value}
+        type="button"
+        onClick={() => setStatusFilter(value)}
+        style={{
+          ...filterButtonStyle,
+          background: statusFilter === value ? "#0f172a" : "#f8fafc",
+          color: statusFilter === value ? "#ffffff" : "#0f172a",
+        }}
+      >
+        {value === "ALL"
+          ? "All"
+          : TARGET_STATUS_OPTIONS.find(([v]) => v === value)?.[1] || value}
+      </button>
+    ))}
+  </div>
+) : null}
+
         {loading ? (
           <div style={emptyStyle}>Loading Target Programs...</div>
         ) : saved.length === 0 ? (
@@ -238,7 +265,7 @@ async function updateProgramNotes(collegeId: string, notes: string) {
           </div>
         ) : (
           <div style={{ display: "grid", gap: 14 }}>
-            {saved.map((item) => {
+            {filteredSaved.map((item) => {
               const college = item.college;
               const baseball = college.baseballProgram;
 
@@ -516,4 +543,20 @@ const notesTextareaStyle: React.CSSProperties = {
   fontWeight: 700,
   outline: "none",
   boxSizing: "border-box",
+};
+
+const filterBarStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 8,
+  flexWrap: "wrap",
+  marginBottom: 16,
+};
+
+const filterButtonStyle: React.CSSProperties = {
+  border: "1px solid #cbd5e1",
+  borderRadius: 999,
+  padding: "7px 11px",
+  fontWeight: 900,
+  cursor: "pointer",
+  fontSize: 12,
 };
