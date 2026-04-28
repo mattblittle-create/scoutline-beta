@@ -109,7 +109,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const { collegeId } = await req.json();
+    const { collegeId, priority } = await req.json();
 
     if (!collegeId || typeof collegeId !== "string") {
       return NextResponse.json(
@@ -118,21 +118,24 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const saved = await prisma.collegeSavedSchool.upsert({
-      where: {
-        playerProfileId_collegeId: {
-          playerProfileId: profile.id,
-          collegeId,
-        },
-      },
-      update: {},
-      create: {
-        playerProfileId: profile.id,
-        collegeId,
-        listName: "Target Programs",
-        status: "SAVED",
-      },
-    });
+const saved = await prisma.collegeSavedSchool.upsert({
+  where: {
+    playerProfileId_collegeId: {
+      playerProfileId: profile.id,
+      collegeId,
+    },
+  },
+  update: {
+    ...(priority ? { priority } : {}),
+  },
+  create: {
+    playerProfileId: profile.id,
+    collegeId,
+    listName: "Target Programs",
+    status: "SAVED",
+    priority: priority || "MEDIUM",
+  },
+});
 
     return NextResponse.json({ ok: true, saved });
   } catch (err) {

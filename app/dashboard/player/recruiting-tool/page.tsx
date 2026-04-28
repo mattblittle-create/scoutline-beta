@@ -5,6 +5,12 @@
 import Link from "next/link";
 import React from "react";
 
+function getPriorityFromFit(label: string) {
+  if (label === "Strong Fit") return "HIGH";
+  if (label === "Match") return "MEDIUM";
+  return "LOW";
+}
+
 export default function PlayerRecruitingToolPage() {
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
@@ -66,13 +72,14 @@ async function toggleSavedCollege(collegeId: string) {
   try {
     setSavingCollegeId(collegeId);
 
-    const res = await fetch("/api/player/target-programs", {
-      method: isSaved ? "DELETE" : "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ collegeId }),
-    });
+await fetch("/api/player/target-programs", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    collegeId,
+    priority: getPriorityFromFit(fit.label),
+  }),
+});
 
     const data = await res.json().catch(() => null);
 
