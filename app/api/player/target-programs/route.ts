@@ -13,9 +13,12 @@ const VALID_STATUSES = [
   "SAVED",
   "INTERESTED",
   "CONTACTED",
-  "APPLIED",
   "VISITED",
   "OFFERED",
+  "COMMITTED",
+  "SIGNED",
+  "APPLIED",
+  "ACCEPTED",
   "NOT_PURSUING",
 ] as const;
 

@@ -47,9 +47,12 @@ const TARGET_STATUS_OPTIONS = [
   ["SAVED", "Saved"],
   ["INTERESTED", "Interested"],
   ["CONTACTED", "Contacted"],
-  ["APPLIED", "Applied"],
   ["VISITED", "Visited"],
   ["OFFERED", "Offered"],
+  ["COMMITTED", "Committed"],
+  ["SIGNED", "Signed"],
+  ["APPLIED", "Applied"],
+  ["ACCEPTED", "Accepted"],
   ["NOT_PURSUING", "Not Pursuing"],
 ] as const;
 
