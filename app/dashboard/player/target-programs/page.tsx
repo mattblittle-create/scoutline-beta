@@ -77,6 +77,43 @@ function money(value?: number | null) {
 
 export default function TargetProgramsPage() {
   const [saved, setSaved] = useState<SavedProgram[]>([]);
+
+  function getPriorityRank(priority?: string | null) {
+  switch (priority) {
+    case "HIGH":
+      return 1;
+    case "MEDIUM":
+      return 2;
+    case "LOW":
+      return 3;
+    default:
+      return 4;
+  }
+}
+
+function getStatusRank(status?: string) {
+  switch (status) {
+    case "COMMITTED":
+    case "SIGNED":
+      return 1;
+    case "OFFERED":
+      return 2;
+    case "VISITED":
+      return 3;
+    case "CONTACTED":
+      return 4;
+    case "INTERESTED":
+      return 5;
+    case "APPLIED":
+    case "ACCEPTED":
+      return 6;
+    case "NOT_PURSUING":
+      return 7;
+    default:
+      return 8; // SAVED
+  }
+}
+
   const [loading, setLoading] = useState(true);
   const [removingCollegeId, setRemovingCollegeId] = useState("");
   const [updatingCollegeId, setUpdatingCollegeId] = useState("");
@@ -305,7 +342,14 @@ async function updateProgramNotes(collegeId: string, notes: string) {
           </div>
         ) : (
           <div style={{ display: "grid", gap: 14 }}>
-            {filteredSaved.map((item) => {
+            {[...saved]
+  .sort((a, b) => {
+    const p = getPriorityRank(a.priority) - getPriorityRank(b.priority);
+    if (p !== 0) return p;
+
+    return getStatusRank(a.status) - getStatusRank(b.status);
+  })
+  .map((item) => {
               const college = item.college;
               const baseball = college.baseballProgram;
 
