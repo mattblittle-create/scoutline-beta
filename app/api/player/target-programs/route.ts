@@ -22,6 +22,14 @@ const VALID_STATUSES = [
   "NOT_PURSUING",
 ] as const;
 
+const VALID_PRIORITIES = [
+  "HIGH",
+  "MEDIUM",
+  "LOW",
+] as const;
+
+type TargetPriority = (typeof VALID_PRIORITIES)[number];
+
 type RecruitingStatus = (typeof VALID_STATUSES)[number];
 
 async function getCurrentPlayerProfile() {
@@ -150,7 +158,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const { collegeId, status, notes } = await req.json();
+    const { collegeId, status, notes, priority } = await req.json();
 
     if (!collegeId || typeof collegeId !== "string") {
       return NextResponse.json(
@@ -162,6 +170,7 @@ export async function PATCH(req: NextRequest) {
 const dataToUpdate: {
   status?: RecruitingStatus;
   notes?: string | null;
+  priority?: TargetPriority | null;
 } = {};
 
 if (typeof status !== "undefined") {
@@ -180,6 +189,19 @@ if (typeof notes !== "undefined") {
     typeof notes === "string" && notes.trim()
       ? notes.trim().slice(0, 1000)
       : null;
+}
+
+if (typeof priority !== "undefined") {
+  if (priority === null || priority === "") {
+    dataToUpdate.priority = null;
+  } else if (VALID_PRIORITIES.includes(priority)) {
+    dataToUpdate.priority = priority;
+  } else {
+    return NextResponse.json(
+      { ok: false, error: "Invalid priority value." },
+      { status: 400 }
+    );
+  }
 }
 
 if (Object.keys(dataToUpdate).length === 0) {

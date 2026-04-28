@@ -1143,6 +1143,7 @@ model CollegeSavedSchool {
 
   listName String  @default("Target Programs")
   status   String  @default("SAVED")
+  priority String?
   notes    String?
 
   createdAt DateTime @default(now())
