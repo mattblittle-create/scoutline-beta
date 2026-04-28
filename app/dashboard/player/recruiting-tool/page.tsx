@@ -217,16 +217,28 @@ async function toggleSavedCollege(collegeId: string) {
                           ★
                         </button>
 
-                        <div
-                          style={{
-                            ...fitBadgeStyle,
-                            color: getFitColor(fit.label),
-                            borderColor: getFitBorderColor(fit.label),
-                            background: getFitBackground(fit.label),
-                          }}
-                        >
-                          {fit.label} • {fit.score}
-                        </div>
+<div
+  title={
+    fit.label === "Not Yet"
+      ? `Not Yet = This school is currently a stretch based on your profile.\nScore: ${fit.score}/100\nFocus on improving key metrics to increase your fit.`
+      : fit.label === "Reach"
+      ? `Reach = You’re close but still slightly below typical benchmarks.\nScore: ${fit.score}/100`
+      : fit.label === "Match"
+      ? `Match = Your profile aligns well with this program.\nScore: ${fit.score}/100`
+      : fit.label === "Strong Fit"
+      ? `Strong Fit = You are a strong match for this program.\nScore: ${fit.score}/100`
+      : `Fit Score: ${fit.score}/100`
+  }
+  style={{
+    ...fitBadgeStyle,
+    color: getFitColor(fit.label),
+    borderColor: getFitBorderColor(fit.label),
+    background: getFitBackground(fit.label),
+    cursor: "help",
+  }}
+>
+  {fit.label} • {fit.score}
+</div>
                       </div>
                     </div>
 
