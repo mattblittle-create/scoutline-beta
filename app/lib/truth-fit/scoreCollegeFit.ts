@@ -42,6 +42,14 @@ function normalizePos(value?: string | null) {
   return String(value || "").trim().toUpperCase();
 }
 
+function formatGpa(value: number) {
+  return value.toFixed(2).replace(/\.00$/, "");
+}
+
+function formatPositions(positions: string[]) {
+  return positions.length ? positions.join("/") : "position";
+}
+
 export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   const reasons: string[] = [];
   const gaps: string[] = [];
@@ -57,20 +65,28 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
 
   if (playerGpa == null || collegeGpa == null) {
     earned += 20;
-    reasons.push("GPA fit is estimated because school/program GPA data is incomplete.");
+    reasons.push("Academic fit is estimated because player GPA or program GPA data is incomplete.");
   } else if (playerGpa >= collegeGpa) {
     earned += 35;
-    reasons.push("Player GPA meets or exceeds the program average.");
+    reasons.push(
+      `Your GPA (${formatGpa(playerGpa)}) meets or exceeds this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
   } else if (playerGpa >= collegeGpa - 0.25) {
     earned += 27;
-    reasons.push("Player GPA is close to the program average.");
-    gaps.push("Raise GPA slightly to strengthen academic fit.");
+    reasons.push(
+      `Your GPA (${formatGpa(playerGpa)}) is within 0.25 of this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
+    gaps.push("A small GPA bump could strengthen this academic fit.");
   } else if (playerGpa >= collegeGpa - 0.5) {
     earned += 18;
-    gaps.push("GPA is below the program average.");
+    gaps.push(
+      `Your GPA (${formatGpa(playerGpa)}) is below this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
   } else {
     earned += 8;
-    gaps.push("GPA is significantly below the program average.");
+    gaps.push(
+      `Your GPA (${formatGpa(playerGpa)}) is significantly below this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
   }
 
   // Position / grad-year need fit: 35 points
@@ -99,28 +115,38 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   const mediumNeed = matchingNeeds.some((n) => n.needLevel === "MEDIUM");
   const lowNeed = matchingNeeds.some((n) => n.needLevel === "LOW");
 
+  const posLabel = formatPositions(positions);
+
   if (highNeed) {
     earned += 35;
-    reasons.push("Program has a high roster need for this grad year and position.");
+    reasons.push(
+      `This program has a HIGH roster need matching your ${playerGradYear} class and ${posLabel} position profile.`
+    );
   } else if (mediumNeed) {
     earned += 27;
-    reasons.push("Program has a medium roster need for this grad year and position.");
+    reasons.push(
+      `This program has a MEDIUM roster need matching your ${playerGradYear} class and ${posLabel} position profile.`
+    );
   } else if (lowNeed) {
     earned += 18;
-    reasons.push("Program has a lower roster need match.");
+    reasons.push(
+      `This program has a LOW roster need match for your ${playerGradYear} class and ${posLabel} position profile.`
+    );
   } else if (needs.length === 0) {
     earned += 18;
-    reasons.push("Roster need fit is estimated because need data is not available yet.");
+    reasons.push("Roster need fit is estimated because program need data is not available yet.");
   } else {
     earned += 8;
-    gaps.push("No confirmed roster need match for this grad year and position yet.");
+    gaps.push(
+      `No confirmed roster need currently matches your ${playerGradYear || "grad year"} class and ${posLabel} position profile.`
+    );
   }
 
   // Metrics fit placeholder: 30 points
   possible += 30;
 
   earned += 18;
-  reasons.push("Metrics fit is estimated until program/conference metric averages are fully loaded.");
+  reasons.push("Metrics fit is currently estimated until program, division, and conference benchmark data is fully loaded.");
 
   const score = Math.round((earned / possible) * 100);
 
