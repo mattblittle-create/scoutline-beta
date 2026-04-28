@@ -5,6 +5,16 @@
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
+const TARGET_STATUS_OPTIONS = [
+  ["SAVED", "Saved"],
+  ["INTERESTED", "Interested"],
+  ["CONTACTED", "Contacted"],
+  ["APPLIED", "Applied"],
+  ["VISITED", "Visited"],
+  ["OFFERED", "Offered"],
+  ["NOT_PURSUING", "Not Pursuing"],
+] as const;
+
 type SavedProgram = {
   id: string;
   collegeId: string;
@@ -58,6 +68,7 @@ export default function TargetProgramsPage() {
   const [saved, setSaved] = useState<SavedProgram[]>([]);
   const [loading, setLoading] = useState(true);
   const [removingCollegeId, setRemovingCollegeId] = useState("");
+  const [updatingCollegeId, setUpdatingCollegeId] = useState("");
   const [error, setError] = useState("");
 
   async function loadSavedPrograms() {
@@ -88,6 +99,38 @@ export default function TargetProgramsPage() {
   useEffect(() => {
     loadSavedPrograms();
   }, []);
+
+  async function updateProgramStatus(collegeId: string, status: string) {
+  try {
+    setUpdatingCollegeId(collegeId);
+    setError("");
+
+    const res = await fetch("/api/player/target-programs", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId, status }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Could not update status.");
+    }
+
+    setSaved((prev) =>
+      prev.map((item) =>
+        item.collegeId === collegeId ? { ...item, status } : item
+      )
+    );
+  } catch (err) {
+    console.error("TARGET_PROGRAMS_STATUS_UPDATE_ERROR", err);
+    setError("Could not update that program status.");
+  } finally {
+    setUpdatingCollegeId("");
+  }
+}
 
   async function removeProgram(collegeId: string) {
     try {
@@ -209,7 +252,24 @@ export default function TargetProgramsPage() {
                     <Info label="Conference" value={baseball?.conference || "—"} />
                     <Info label="In-State Tuition" value={money(college.tuitionInState)} />
                     <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
-                    <Info label="Status" value={item.status || "SAVED"} />
+                    <label style={statusFieldStyle}>
+  <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+    Status
+  </span>
+
+  <select
+    value={item.status || "SAVED"}
+    onChange={(e) => updateProgramStatus(college.id, e.target.value)}
+    disabled={updatingCollegeId === college.id}
+    style={statusSelectStyle}
+  >
+    {TARGET_STATUS_OPTIONS.map(([value, label]) => (
+      <option key={value} value={value}>
+        {label}
+      </option>
+    ))}
+  </select>
+</label>
                   </div>
 
                   <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
@@ -346,4 +406,24 @@ const backToDashboardStyle: React.CSSProperties = {
   textDecoration: "none",
   fontWeight: 900,
   border: "1px solid #0ea5e9",
+};
+
+const statusFieldStyle: React.CSSProperties = {
+  border: "1px solid #eef2f7",
+  background: "#f8fafc",
+  borderRadius: 12,
+  padding: "10px 12px",
+  display: "grid",
+  gap: 4,
+};
+
+const statusSelectStyle: React.CSSProperties = {
+  width: "100%",
+  border: "1px solid #cbd5e1",
+  borderRadius: 8,
+  padding: "7px 8px",
+  background: "#ffffff",
+  color: "#0f172a",
+  fontWeight: 800,
+  outline: "none",
 };
