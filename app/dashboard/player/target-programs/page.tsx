@@ -45,14 +45,25 @@ type SavedProgram = {
     schoolType?: string | null;
     tuitionInState?: number | null;
     tuitionOutOfState?: number | null;
-    baseballProgram?: {
-      nickname?: string | null;
-      division?: string | null;
-      conference?: string | null;
-      baseballWebsiteUrl?: string | null;
-      rosterUrl?: string | null;
-      questionnaireUrl?: string | null;
-    } | null;
+baseballProgram?: {
+  nickname?: string | null;
+  division?: string | null;
+  conference?: string | null;
+  baseballWebsiteUrl?: string | null;
+  rosterUrl?: string | null;
+  questionnaireUrl?: string | null;
+  campsUrl?: string | null;
+  coaches?: Array<{
+    id: string;
+    name: string;
+    title?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    bioUrl?: string | null;
+    contactUrl?: string | null;
+    isHeadCoach?: boolean;
+  }>;
+} | null;
   };
 };
 
@@ -70,9 +81,9 @@ function pretty(value?: string | null) {
     .join(" ");
 }
 
-function money(value?: number | null) {
-  if (value == null) return "—";
-  return `$${value.toLocaleString()}`;
+function getPrimaryCoach(coaches?: SavedProgram["college"]["baseballProgram"]["coaches"]) {
+  if (!Array.isArray(coaches) || coaches.length === 0) return null;
+  return coaches.find((coach) => coach.isHeadCoach) || coaches[0];
 }
 
 export default function TargetProgramsPage() {
@@ -410,8 +421,9 @@ async function updateProgramNotes(collegeId: string, notes: string) {
 
                   <div style={{ display: "grid", gap: 14 }}>
                     {groupItems.map((item) => {
-                      const college = item.college;
-                      const baseball = college.baseballProgram;
+const college = item.college;
+const baseball = college.baseballProgram;
+const primaryCoach = getPrimaryCoach(baseball?.coaches);
 
                       return (
                 <article key={item.id} style={cardStyle}>
@@ -560,6 +572,36 @@ async function updateProgramNotes(collegeId: string, notes: string) {
       Questionnaire
     </a>
   ) : null}
+
+  {baseball?.campsUrl ? (
+  <a href={baseball.campsUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+    Camps
+  </a>
+) : null}
+
+{primaryCoach?.email ? (
+  <a href={`mailto:${primaryCoach.email}`} style={secondaryButtonStyle}>
+    Email Coach
+  </a>
+) : null}
+
+{primaryCoach?.phone ? (
+  <a href={`tel:${primaryCoach.phone.replace(/\D/g, "")}`} style={secondaryButtonStyle}>
+    Call Coach
+  </a>
+) : null}
+
+{primaryCoach?.bioUrl ? (
+  <a href={primaryCoach.bioUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+    Coach Bio
+  </a>
+) : null}
+
+{primaryCoach?.contactUrl ? (
+  <a href={primaryCoach.contactUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+    Contact Page
+  </a>
+) : null}
 </div>
                 </article>
               );
