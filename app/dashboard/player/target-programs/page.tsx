@@ -417,14 +417,20 @@ async function updateProgramNotes(collegeId: string, notes: string) {
                 <article key={item.id} style={cardStyle}>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
                     <div>
-                      <h2 style={{ margin: 0, fontSize: "1.35rem", fontWeight: 900 }}>
-                        <Link
-                          href={`/college/${college.slug}`}
-                          style={{ color: "#0f172a", textDecorationColor: "#caa042" }}
-                        >
-                          {college.name}
-                        </Link>
-                      </h2>
+<h2 style={schoolTitleStyle}>
+  <Link
+    href={`/college/${college.slug}`}
+    style={{ color: "#0f172a", textDecorationColor: "#caa042" }}
+  >
+    {college.name}
+  </Link>
+
+  <span style={schoolMetaTitleStyle}>
+    {[baseball?.nickname, pretty(baseball?.division), baseball?.conference]
+      .filter(Boolean)
+      .join(" • ")}
+  </span>
+</h2>
 
                       <div style={{ marginTop: 6, color: "#475569", fontWeight: 700 }}>
                         {[college.city, college.state].filter(Boolean).join(", ") || "Location TBD"}
@@ -447,18 +453,15 @@ async function updateProgramNotes(collegeId: string, notes: string) {
                     </button>
                   </div>
 
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 12 }}>
-                    <span style={pillStyle}>{pretty(college.region)}</span>
-                    <span style={pillStyle}>{pretty(college.control)}</span>
-                    <span style={pillStyle}>{pretty(college.schoolType)}</span>
-                  </div>
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 12 }}>
+  <span style={pillStyle}>{pretty(college.region)}</span>
+  <span style={pillStyle}>{pretty(college.control)}</span>
+  <span style={pillStyle}>{pretty(college.schoolType)}</span>
+  <span style={pillStyle}>In-State: {money(college.tuitionInState)}</span>
+  <span style={pillStyle}>Out-of-State: {money(college.tuitionOutOfState)}</span>
+</div>
 
                   <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
-                    <Info label="Nickname" value={baseball?.nickname || "—"} />
-                    <Info label="Division" value={pretty(baseball?.division)} />
-                    <Info label="Conference" value={baseball?.conference || "—"} />
-                    <Info label="In-State Tuition" value={money(college.tuitionInState)} />
-                    <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
                     <label style={statusFieldStyle}>
   <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
     Status
@@ -769,4 +772,20 @@ const priorityJumpButtonStyle: React.CSSProperties = {
   fontWeight: 900,
   fontSize: 11,
   flex: "0 0 auto",
+};
+
+const schoolTitleStyle: React.CSSProperties = {
+  margin: 0,
+  fontSize: "1.35rem",
+  fontWeight: 900,
+  display: "flex",
+  alignItems: "baseline",
+  gap: 8,
+  flexWrap: "wrap",
+};
+
+const schoolMetaTitleStyle: React.CSSProperties = {
+  fontSize: "0.9rem",
+  fontWeight: 800,
+  color: "#64748b",
 };
