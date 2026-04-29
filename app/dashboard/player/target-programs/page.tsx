@@ -274,6 +274,14 @@ async function updateProgramNotes(collegeId: string, notes: string) {
     }
   }
 
+  const statusCounts: Record<string, number> = {
+    ALL: saved.length,
+  };
+
+  for (const [value] of TARGET_STATUS_OPTIONS) {
+    statusCounts[value] = saved.filter((item) => item.status === value).length;
+  }
+
   const filteredSaved =
     statusFilter === "ALL"
       ? saved
@@ -339,9 +347,11 @@ async function updateProgramNotes(collegeId: string, notes: string) {
           color: statusFilter === value ? "#ffffff" : "#0f172a",
         }}
       >
-        {value === "ALL"
-          ? "All"
-          : TARGET_STATUS_OPTIONS.find(([v]) => v === value)?.[1] || value}
+{value === "ALL"
+  ? `All (${statusCounts.ALL})`
+  : `${
+      TARGET_STATUS_OPTIONS.find(([v]) => v === value)?.[1] || value
+    } (${statusCounts[value] || 0})`}
       </button>
     ))}
   </div>
