@@ -171,12 +171,25 @@ export async function GET() {
       })
       .sort((a, b) => b.truthFit.score - a.truthFit.score);
 
-    return NextResponse.json({
-      ok: true,
-      player: profile.player,
-      count: results.length,
-      results,
-    });
+return NextResponse.json({
+  ok: true,
+  player: profile.player,
+  debug: {
+    playerMetricKeys: Object.keys(profile.player.metrics || {}),
+    firstCollegeMetricAverageCount:
+      colleges[0]?.baseballProgram?.metricAverages?.length || 0,
+    firstCollegeMetricKeys:
+      colleges[0]?.baseballProgram?.metricAverages?.map((m) => ({
+        position: m.position,
+        metricKey: m.metricKey,
+        averageValue: asNumber(m.averageValue),
+        minValue: asNumber(m.minValue),
+        maxValue: asNumber(m.maxValue),
+      })) || [],
+  },
+  count: results.length,
+  results,
+});
   } catch (err) {
     console.error("PLAYER_TRUTH_FIT_ERROR", err);
     return NextResponse.json(
