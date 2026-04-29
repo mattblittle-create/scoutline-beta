@@ -112,6 +112,55 @@ function getNextAction(status?: string) {
   }
 }
 
+
+  function buildCoachEmailSubject(collegeName: string) {
+  return `Recruiting Interest - ${collegeName}`;
+}
+
+function buildCoachEmailBody({
+  collegeName,
+  coachName,
+  status,
+}: {
+  collegeName: string;
+  coachName?: string | null;
+  status?: string | null;
+}) {
+  const greeting = coachName ? `Coach ${coachName},` : "Coach,";
+
+  const statusLine =
+    status === "CONTACTED"
+      ? "I wanted to follow up and continue the conversation about your program."
+      : status === "VISITED"
+      ? "I enjoyed learning more about your program and wanted to stay in touch."
+      : status === "OFFERED"
+      ? "Thank you for the opportunity. I wanted to continue discussing fit, timeline, and next steps."
+      : "I wanted to introduce myself and express my interest in your baseball program.";
+
+  return [
+    greeting,
+    "",
+    statusLine,
+    "",
+    `I have added ${collegeName} to my ScoutLine Target Programs list and would like to learn more about your recruiting needs, roster opportunities, and next steps.`,
+    "",
+    "Thank you for your time,",
+    "",
+  ].join("\n");
+}
+
+function buildMailtoUrl({
+  email,
+  subject,
+  body,
+}: {
+  email: string;
+  subject: string;
+  body: string;
+}) {
+  return `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
 type BaseballCoach = {
   id: string;
   name: string;
@@ -627,8 +676,19 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
 ) : null}
 
 {primaryCoach?.email ? (
-  <a href={`mailto:${primaryCoach.email}`} style={secondaryButtonStyle}>
-    Email Coach
+  <a
+    href={buildMailtoUrl({
+      email: primaryCoach.email,
+      subject: buildCoachEmailSubject(college.name),
+      body: buildCoachEmailBody({
+        collegeName: college.name,
+        coachName: primaryCoach.name,
+        status: item.status,
+      }),
+    })}
+    style={secondaryButtonStyle}
+  >
+    Start Outreach
   </a>
 ) : null}
 
