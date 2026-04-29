@@ -134,19 +134,16 @@ const data = await res.json().catch(() => null);
 
         <div style={cardGridStyle}>
           <FeatureCard
-            eyebrow="Live Preview"
             title="Truth / Fit Analysis"
             description="Compare player academics, metrics, stats, and position data against college recruiting benchmarks."
           />
 
           <FeatureCard
-            eyebrow="Coming Soon"
             title="Opportunity Matching"
             description="Identify schools where your current profile best aligns with recruiting needs and roster opportunities."
           />
 
           <FeatureCard
-            eyebrow="Coming Soon"
             title="Development Priorities"
             description="Highlight the next most impactful areas for improvement to boost recruiting visibility."
           />
@@ -293,17 +290,14 @@ const data = await res.json().catch(() => null);
 }
 
 function FeatureCard({
-  eyebrow,
   title,
   description,
 }: {
-  eyebrow: string;
   title: string;
   description: string;
 }) {
   return (
     <div style={featureCardStyle}>
-      <div style={eyebrowStyle}>{eyebrow}</div>
       <div style={featureTitleStyle}>{title}</div>
       <div style={featureDescriptionStyle}>{description}</div>
     </div>
@@ -421,13 +415,6 @@ const featureCardStyle: React.CSSProperties = {
   padding: 20,
   background: "#f8fafc",
   border: "1px solid #e2e8f0",
-};
-
-const eyebrowStyle: React.CSSProperties = {
-  fontSize: 13,
-  fontWeight: 800,
-  color: "#64748b",
-  marginBottom: 8,
 };
 
 const featureTitleStyle: React.CSSProperties = {

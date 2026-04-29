@@ -33,11 +33,24 @@ export type TruthFitInput = {
   };
 };
 
+export type TruthFitBenchmarkSourceLevel =
+  | "SCHOOL"
+  | "CONFERENCE"
+  | "DIVISION"
+  | "GLOBAL"
+  | "ESTIMATED";
+
 export type TruthFitResult = {
   score: number;
   label: TruthFitLabel;
   reasons: string[];
   gaps: string[];
+  benchmarkSource: {
+    metrics: {
+      level: TruthFitBenchmarkSourceLevel;
+      label: string;
+    };
+  };
 };
 
 function labelFromScore(score: number): TruthFitLabel {
@@ -188,6 +201,10 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   ];
 
   const matchedMetricScores: number[] = [];
+  let metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] = {
+    level: "ESTIMATED",
+    label: "Estimated - benchmark data not available yet",
+  };
 
   for (const key of metricKeysToCheck) {
     const playerValue = latestMetricValue(input.player.metrics, key);
@@ -237,6 +254,11 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     }
 
     matchedMetricScores.push(metricScore);
+
+    metricsBenchmarkSource = {
+      level: "SCHOOL",
+      label: "School-specific program benchmark",
+    };
   }
 
   if (matchedMetricScores.length === 0) {
@@ -253,11 +275,11 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     earned += metricPoints;
 
     if (metricAverage >= 0.9) {
-      reasons.push("Your available metrics compare strongly against this program's benchmarks.");
+      reasons.push(`Your available metrics compare strongly against ${metricsBenchmarkSource.label}.`);
     } else if (metricAverage >= 0.7) {
-      reasons.push("Your available metrics are within range of this program's benchmarks.");
+      reasons.push(`Your available metrics are within range of ${metricsBenchmarkSource.label}.`);
     } else {
-      gaps.push("Your available metrics are currently below this program's benchmarks.");
+      gaps.push(`Your available metrics are currently below ${metricsBenchmarkSource.label}.`);
     }
   }
 
@@ -268,5 +290,8 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     label: labelFromScore(score),
     reasons,
     gaps,
+    benchmarkSource: {
+      metrics: metricsBenchmarkSource,
+    },
   };
 }

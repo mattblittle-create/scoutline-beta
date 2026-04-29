@@ -1045,35 +1045,30 @@ const unreadChatCount = chatConversations.reduce(
           title="Profile Editor"
           description="Open your player profile editor to update academics, athletics, metrics, stats, video, and references."
           href="/dashboard/player/profile"
-          badge="Live"
         />
 
         <DashboardCard
           title="Recruiting Tool"
           description="Use ScoutLine’s fit and truth tools to better understand your recruiting level, best opportunities, and where you match."
           href="/dashboard/player/recruiting-tool"
-          badge="Coming Soon"
         />
 
 <DashboardCard
   title="College Search"
   description="Search colleges by region, division, conference, tuition, admissions profile, and baseball fit."
   href="/dashboard/player/college-search"
-  badge="Live"
 />
 
 <DashboardCard
   title="Target Programs"
   description="View and manage the college programs you saved from search."
   href="/dashboard/player/target-programs"
-  badge="Live"
 />
 
         <DashboardCard
           title="Plan Billing"
           description="Manage your ScoutLine plan, review billing details, payment info, and upgrade options."
           href="/dashboard/player/profile/billing"
-          badge="Live"
         />
       </section>
 

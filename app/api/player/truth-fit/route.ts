@@ -174,19 +174,6 @@ export async function GET() {
 return NextResponse.json({
   ok: true,
   player: profile.player,
-  debug: {
-    playerMetricKeys: Object.keys(profile.player.metrics || {}),
-    firstCollegeMetricAverageCount:
-      colleges[0]?.baseballProgram?.metricAverages?.length || 0,
-    firstCollegeMetricKeys:
-      colleges[0]?.baseballProgram?.metricAverages?.map((m) => ({
-        position: m.position,
-        metricKey: m.metricKey,
-        averageValue: asNumber(m.averageValue),
-        minValue: asNumber(m.minValue),
-        maxValue: asNumber(m.maxValue),
-      })) || [],
-  },
   count: results.length,
   results,
 });
