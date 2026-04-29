@@ -1049,7 +1049,7 @@ const unreadChatCount = chatConversations.reduce(
 
         <DashboardCard
           title="Recruiting Tool"
-          description="Use ScoutLine’s fit and truth tools to better understand your recruiting level, best opportunities, and where you match."
+          description="Use this tool to better understand your recruiting level, best opportunities, and where you match."
           href="/dashboard/player/recruiting-tool"
         />
 
