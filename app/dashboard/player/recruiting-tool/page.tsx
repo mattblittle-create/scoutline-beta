@@ -252,8 +252,14 @@ const data = await res.json().catch(() => null);
                       <Info label="Nickname" value={c.baseballProgram?.nickname || "—"} />
                     </div>
 
-                    {Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
-                      <div style={reasonBoxStyle}>
+{fit?.benchmarkSource?.metrics?.label ? (
+  <div style={benchmarkSourceStyle}>
+    Metrics Source: {fit.benchmarkSource.metrics.label}
+  </div>
+) : null}
+
+{Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
+  <div style={reasonBoxStyle}>
                         <div style={reasonTitleStyle}>Why this fit showed up</div>
                         {fit.reasons.slice(0, 3).map((reason: string, index: number) => (
                           <div key={index} style={reasonLineStyle}>
@@ -588,4 +594,16 @@ const gapLineStyle: React.CSSProperties = {
   fontSize: 13,
   color: "#7c2d12",
   lineHeight: 1.45,
+};
+
+const benchmarkSourceStyle: React.CSSProperties = {
+  marginTop: 12,
+  border: "1px solid #e5e7eb",
+  background: "#f8fafc",
+  borderRadius: 999,
+  padding: "7px 11px",
+  width: "fit-content",
+  color: "#475569",
+  fontSize: 12,
+  fontWeight: 900,
 };
