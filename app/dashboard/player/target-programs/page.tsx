@@ -86,6 +86,32 @@ function money(value?: number | null) {
   return `$${value.toLocaleString()}`;
 }
 
+function getNextAction(status?: string) {
+  switch (status) {
+    case "INTERESTED":
+      return "Reach out to the coaching staff or complete the recruiting questionnaire.";
+    case "CONTACTED":
+      return "Follow up within 7–10 days and log any coach response in your notes.";
+    case "VISITED":
+      return "Send a thank-you message and update your notes with visit takeaways.";
+    case "OFFERED":
+      return "Review fit, costs, roster opportunity, and communicate your timeline clearly.";
+    case "COMMITTED":
+      return "Keep communication strong and confirm next steps with the coaching staff.";
+    case "SIGNED":
+      return "Stay ready academically and physically while preparing for your college transition.";
+    case "APPLIED":
+      return "Track admissions progress and keep the coaching staff updated.";
+    case "ACCEPTED":
+      return "Confirm enrollment details and continue communicating with the program.";
+    case "NOT_PURSUING":
+      return "No active action needed unless this school becomes relevant again.";
+    case "SAVED":
+    default:
+      return "Start outreach, complete the questionnaire, or add this school to your follow-up plan.";
+  }
+}
+
 type BaseballCoach = {
   id: string;
   name: string;
@@ -529,6 +555,11 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
 </label>
                   </div>
 
+                  <div style={nextActionStyle}>
+                    <span style={nextActionLabelStyle}>Next Action</span>
+                    <span>{getNextAction(item.status)}</span>
+                  </div>
+
                   <div style={{ marginTop: 12 }}>
   <label style={notesFieldStyle}>
     <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
@@ -858,4 +889,26 @@ const schoolMetaTitleStyle: React.CSSProperties = {
   fontSize: "0.9rem",
   fontWeight: 800,
   color: "#64748b",
+};
+
+const nextActionStyle: React.CSSProperties = {
+  marginTop: 12,
+  border: "1px solid #bae6fd",
+  background: "#e0f2fe",
+  borderRadius: 12,
+  padding: "10px 12px",
+  color: "#0c4a6e",
+  fontWeight: 800,
+  lineHeight: 1.45,
+  fontSize: 13,
+  display: "grid",
+  gap: 4,
+};
+
+const nextActionLabelStyle: React.CSSProperties = {
+  fontSize: 11,
+  textTransform: "uppercase",
+  letterSpacing: "0.04em",
+  color: "#0369a1",
+  fontWeight: 900,
 };
