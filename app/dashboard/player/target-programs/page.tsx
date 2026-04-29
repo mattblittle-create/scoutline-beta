@@ -81,7 +81,18 @@ function pretty(value?: string | null) {
     .join(" ");
 }
 
-function getPrimaryCoach(coaches?: SavedProgram["college"]["baseballProgram"]["coaches"]) {
+type BaseballCoach = {
+  id: string;
+  name: string;
+  title?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  bioUrl?: string | null;
+  contactUrl?: string | null;
+  isHeadCoach?: boolean;
+};
+
+function getPrimaryCoach(coaches?: BaseballCoach[] | null) {
   if (!Array.isArray(coaches) || coaches.length === 0) return null;
   return coaches.find((coach) => coach.isHeadCoach) || coaches[0];
 }
