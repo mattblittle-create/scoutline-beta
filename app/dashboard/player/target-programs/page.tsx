@@ -690,7 +690,18 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
   >
     Start Outreach
   </a>
-) : null}
+) : (
+  <span
+    title="Coach email is not available yet for this program."
+    style={{
+      ...secondaryButtonStyle,
+      opacity: 0.55,
+      cursor: "not-allowed",
+    }}
+  >
+    Coach Email Not Available
+  </span>
+)}
 
 {primaryCoach?.phone ? (
   <a href={`tel:${primaryCoach.phone.replace(/\D/g, "")}`} style={secondaryButtonStyle}>
