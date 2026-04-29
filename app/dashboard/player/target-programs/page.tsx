@@ -715,17 +715,20 @@ const notesTextareaStyle: React.CSSProperties = {
 const filterBarStyle: React.CSSProperties = {
   display: "flex",
   gap: 8,
-  flexWrap: "wrap",
-  marginBottom: 16,
+  overflowX: "auto",
+  whiteSpace: "nowrap",
+  paddingBottom: 6,
+  marginBottom: 10,
 };
 
 const filterButtonStyle: React.CSSProperties = {
   border: "1px solid #cbd5e1",
   borderRadius: 999,
-  padding: "7px 11px",
+  padding: "6px 9px",
   fontWeight: 900,
   cursor: "pointer",
-  fontSize: 12,
+  fontSize: 11,
+  flex: "0 0 auto",
 };
 
 const priorityGroupSectionStyle: React.CSSProperties = {
@@ -747,7 +750,9 @@ const priorityGroupHeaderStyle: React.CSSProperties = {
 const priorityJumpBarStyle: React.CSSProperties = {
   display: "flex",
   gap: 8,
-  flexWrap: "wrap",
+  overflowX: "auto",
+  whiteSpace: "nowrap",
+  paddingBottom: 6,
   marginBottom: 18,
 };
 
@@ -757,10 +762,11 @@ const priorityJumpButtonStyle: React.CSSProperties = {
   justifyContent: "center",
   border: "1px solid #cbd5e1",
   borderRadius: 999,
-  padding: "7px 11px",
+  padding: "6px 9px",
   background: "#ffffff",
   color: "#0f172a",
   textDecoration: "none",
   fontWeight: 900,
-  fontSize: 12,
+  fontSize: 11,
+  flex: "0 0 auto",
 };
