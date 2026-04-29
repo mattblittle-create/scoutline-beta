@@ -12,10 +12,19 @@ export type TruthFitInput = {
     gradYear?: number | null;
     primaryPos?: string | null;
     secondaryPos?: string | null;
+    metrics?: Record<string, Array<{ value?: number | null }>>;
   };
   college: {
     averageGpa?: number | null;
     division?: string | null;
+    metricAverages?: Array<{
+      position?: string | null;
+      metricKey?: string | null;
+      averageValue?: number | string | null;
+      minValue?: number | string | null;
+      maxValue?: number | string | null;
+      unit?: string | null;
+    }>;
     rosterNeeds?: Array<{
       gradYear?: number | null;
       position?: string | null;
@@ -48,6 +57,25 @@ function formatGpa(value: number) {
 
 function formatPositions(positions: string[]) {
   return positions.length ? positions.join("/") : "position";
+}
+
+function latestMetricValue(
+  metrics: Record<string, Array<{ value?: number | null }>> | undefined,
+  key: string
+) {
+  const entries = metrics?.[key];
+  if (!Array.isArray(entries) || entries.length === 0) return null;
+
+  const last = entries[entries.length - 1];
+  const value = Number(last?.value);
+
+  return Number.isFinite(value) ? value : null;
+}
+
+function toNumber(value: number | string | null | undefined) {
+  if (value == null) return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
 }
 
 export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
