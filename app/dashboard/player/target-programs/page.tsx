@@ -675,6 +675,23 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
   </a>
 ) : null}
 
+function getOutreachLabel(status?: string) {
+  switch (status) {
+    case "SAVED":
+      return "Start Outreach";
+    case "INTERESTED":
+      return "Contact Coach";
+    case "CONTACTED":
+      return "Follow Up";
+    case "VISITED":
+      return "Send Follow-Up";
+    case "OFFERED":
+      return "Continue Conversation";
+    default:
+      return "Contact Coach";
+  }
+}
+
 {primaryCoach?.email ? (
   <a
     href={buildMailtoUrl({
@@ -687,9 +704,9 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
       }),
     })}
     style={secondaryButtonStyle}
-  >
-    Start Outreach
-  </a>
+>
+  {getOutreachLabel(item.status)}
+</a>
 ) : (
   <span
     title="Coach email is not available yet for this program."
