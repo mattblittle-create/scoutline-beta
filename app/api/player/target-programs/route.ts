@@ -73,17 +73,21 @@ export async function GET() {
       );
     }
 
-    const saved = await prisma.collegeSavedSchool.findMany({
-      where: { playerProfileId: profile.id },
+const saved = await prisma.collegeSavedSchool.findMany({
+  where: { playerProfileId: profile.id },
+  include: {
+    college: {
       include: {
-        college: {
+        baseballProgram: {
           include: {
-            baseballProgram: true,
+            coaches: true,
           },
         },
       },
-      orderBy: { createdAt: "desc" },
-    });
+    },
+  },
+  orderBy: { createdAt: "desc" },
+});
 
     return NextResponse.json({ ok: true, saved });
   } catch (err) {

@@ -532,23 +532,35 @@ async function updateProgramNotes(collegeId: string, notes: string) {
   </label>
 </div>
 
-                  <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
-                    <Link href={`/college/${college.slug}`} style={primaryButtonStyle}>
-                      View Details
-                    </Link>
+<div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
+  <Link href={`/college/${college.slug}`} style={primaryButtonStyle}>
+    View Details
+  </Link>
 
-                    {college.admissionsUrl ? (
-                      <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
-                        Admissions
-                      </a>
-                    ) : null}
+  {college.admissionsUrl ? (
+    <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+      Admissions
+    </a>
+  ) : null}
 
-                    {baseball?.baseballWebsiteUrl ? (
-                      <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
-                        Baseball Program
-                      </a>
-                    ) : null}
-                  </div>
+  {baseball?.baseballWebsiteUrl ? (
+    <a href={baseball.baseballWebsiteUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+      Baseball Program
+    </a>
+  ) : null}
+
+  {baseball?.rosterUrl ? (
+    <a href={baseball.rosterUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+      Roster
+    </a>
+  ) : null}
+
+  {baseball?.questionnaireUrl ? (
+    <a href={baseball.questionnaireUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
+      Questionnaire
+    </a>
+  ) : null}
+</div>
                 </article>
               );
             })}
