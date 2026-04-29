@@ -112,6 +112,22 @@ function getNextAction(status?: string) {
   }
 }
 
+function getOutreachLabel(status?: string) {
+  switch (status) {
+    case "SAVED":
+      return "Start Outreach";
+    case "INTERESTED":
+      return "Contact Coach";
+    case "CONTACTED":
+      return "Follow Up";
+    case "VISITED":
+      return "Send Follow-Up";
+    case "OFFERED":
+      return "Continue Conversation";
+    default:
+      return "Contact Coach";
+  }
+}
 
   function buildCoachEmailSubject(collegeName: string) {
   return `Recruiting Interest - ${collegeName}`;
@@ -674,23 +690,6 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
     Camps
   </a>
 ) : null}
-
-function getOutreachLabel(status?: string) {
-  switch (status) {
-    case "SAVED":
-      return "Start Outreach";
-    case "INTERESTED":
-      return "Contact Coach";
-    case "CONTACTED":
-      return "Follow Up";
-    case "VISITED":
-      return "Send Follow-Up";
-    case "OFFERED":
-      return "Continue Conversation";
-    default:
-      return "Contact Coach";
-  }
-}
 
 {primaryCoach?.email ? (
   <a
