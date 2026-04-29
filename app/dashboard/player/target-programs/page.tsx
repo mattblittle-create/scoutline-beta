@@ -275,9 +275,23 @@ async function updateProgramNotes(collegeId: string, notes: string) {
   }
 
   const filteredSaved =
-  statusFilter === "ALL"
-    ? saved
-    : saved.filter((item) => item.status === statusFilter);
+    statusFilter === "ALL"
+      ? saved
+      : saved.filter((item) => item.status === statusFilter);
+
+  const sortedSaved = [...filteredSaved].sort((a, b) => {
+    const p = getPriorityRank(a.priority) - getPriorityRank(b.priority);
+    if (p !== 0) return p;
+
+    return getStatusRank(a.status) - getStatusRank(b.status);
+  });
+
+  const groupedSaved = {
+    HIGH: sortedSaved.filter((item) => item.priority === "HIGH"),
+    MEDIUM: sortedSaved.filter((item) => item.priority === "MEDIUM"),
+    LOW: sortedSaved.filter((item) => item.priority === "LOW"),
+    NONE: sortedSaved.filter((item) => !item.priority),
+  };
 
   return (
     <main style={{ color: "#0f172a", fontFamily: "Arial, sans-serif" }}>
@@ -341,19 +355,30 @@ async function updateProgramNotes(collegeId: string, notes: string) {
             </Link>
           </div>
         ) : (
-          <div style={{ display: "grid", gap: 14 }}>
-            {[...saved]
-  .sort((a, b) => {
-    const p = getPriorityRank(a.priority) - getPriorityRank(b.priority);
-    if (p !== 0) return p;
+          <div style={{ display: "grid", gap: 18 }}>
+            {(["HIGH", "MEDIUM", "LOW", "NONE"] as const).map((priorityGroup) => {
+              const groupItems = groupedSaved[priorityGroup];
 
-    return getStatusRank(a.status) - getStatusRank(b.status);
-  })
-  .map((item) => {
-              const college = item.college;
-              const baseball = college.baseballProgram;
+              if (groupItems.length === 0) return null;
 
               return (
+                <section key={priorityGroup} style={priorityGroupSectionStyle}>
+                  <div style={priorityGroupHeaderStyle}>
+                    {priorityGroup === "HIGH"
+                      ? `High Priority (${groupItems.length})`
+                      : priorityGroup === "MEDIUM"
+                      ? `Medium Priority (${groupItems.length})`
+                      : priorityGroup === "LOW"
+                      ? `Low Priority (${groupItems.length})`
+                      : `No Priority (${groupItems.length})`}
+                  </div>
+
+                  <div style={{ display: "grid", gap: 14 }}>
+                    {groupItems.map((item) => {
+                      const college = item.college;
+                      const baseball = college.baseballProgram;
+
+                      return (
                 <article key={item.id} style={cardStyle}>
                   <div style={{ display: "flex", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
                     <div>
@@ -487,6 +512,10 @@ async function updateProgramNotes(collegeId: string, notes: string) {
                     ) : null}
                   </div>
                 </article>
+              );
+            })}
+                  </div>
+                </section>
               );
             })}
           </div>
@@ -662,4 +691,20 @@ const filterButtonStyle: React.CSSProperties = {
   fontWeight: 900,
   cursor: "pointer",
   fontSize: 12,
+};
+
+const priorityGroupSectionStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 10,
+};
+
+const priorityGroupHeaderStyle: React.CSSProperties = {
+  fontSize: 15,
+  fontWeight: 900,
+  color: "#0f172a",
+  border: "1px solid #e5e7eb",
+  background: "#f8fafc",
+  borderRadius: 999,
+  padding: "8px 12px",
+  width: "fit-content",
 };
