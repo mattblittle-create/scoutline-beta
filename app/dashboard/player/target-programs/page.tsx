@@ -293,6 +293,13 @@ async function updateProgramNotes(collegeId: string, notes: string) {
     NONE: sortedSaved.filter((item) => !item.priority),
   };
 
+  const priorityJumpGroups = [
+    ["NONE", "No Priority", groupedSaved.NONE.length],
+    ["LOW", "Low Priority", groupedSaved.LOW.length],
+    ["MEDIUM", "Medium Priority", groupedSaved.MEDIUM.length],
+    ["HIGH", "High Priority", groupedSaved.HIGH.length],
+  ] as const;
+
   return (
     <main style={{ color: "#0f172a", fontFamily: "Arial, sans-serif" }}>
       <section style={{ maxWidth: 1120, margin: "0 auto", padding: "28px 16px 56px" }}>
@@ -340,6 +347,20 @@ async function updateProgramNotes(collegeId: string, notes: string) {
   </div>
 ) : null}
 
+{saved.length > 0 ? (
+  <div style={priorityJumpBarStyle}>
+    {priorityJumpGroups.map(([key, label, count]) => (
+      <a
+        key={key}
+        href={`#priority-${key.toLowerCase()}`}
+        style={priorityJumpButtonStyle}
+      >
+        {label} ({count})
+      </a>
+    ))}
+  </div>
+) : null}
+
         {loading ? (
           <div style={emptyStyle}>Loading Target Programs...</div>
         ) : saved.length === 0 ? (
@@ -362,7 +383,11 @@ async function updateProgramNotes(collegeId: string, notes: string) {
               if (groupItems.length === 0) return null;
 
               return (
-                <section key={priorityGroup} style={priorityGroupSectionStyle}>
+                <section
+  key={priorityGroup}
+  id={`priority-${priorityGroup.toLowerCase()}`}
+  style={priorityGroupSectionStyle}
+>
                   <div style={priorityGroupHeaderStyle}>
                     {priorityGroup === "HIGH"
                       ? `High Priority (${groupItems.length})`
@@ -707,4 +732,25 @@ const priorityGroupHeaderStyle: React.CSSProperties = {
   borderRadius: 999,
   padding: "8px 12px",
   width: "fit-content",
+};
+
+const priorityJumpBarStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 8,
+  flexWrap: "wrap",
+  marginBottom: 18,
+};
+
+const priorityJumpButtonStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  border: "1px solid #cbd5e1",
+  borderRadius: 999,
+  padding: "7px 11px",
+  background: "#ffffff",
+  color: "#0f172a",
+  textDecoration: "none",
+  fontWeight: 900,
+  fontSize: 12,
 };
