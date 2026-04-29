@@ -81,6 +81,11 @@ function pretty(value?: string | null) {
     .join(" ");
 }
 
+function money(value?: number | null) {
+  if (value == null) return "—";
+  return `$${value.toLocaleString()}`;
+}
+
 type BaseballCoach = {
   id: string;
   name: string;
