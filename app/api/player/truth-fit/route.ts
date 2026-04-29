@@ -79,6 +79,10 @@ async function getCurrentPlayerProfile() {
       secondaryPos:
         asString(user.Player?.secondaryPos) ??
         asString(normalized?.secondaryPos),
+      metrics:
+        normalized?.metrics && typeof normalized.metrics === "object"
+          ? normalized.metrics
+          : {},
     },
   };
 }
@@ -116,6 +120,16 @@ export async function GET() {
           college: {
             averageGpa: asNumber(baseball?.averageGpa),
             division: baseball?.division || college.division || null,
+            metricAverages:
+              baseball?.metricAverages?.map((metric) => ({
+                position: metric.position,
+                metricKey: metric.metricKey,
+                metricLabel: metric.metricLabel,
+                averageValue: metric.averageValue,
+                minValue: metric.minValue,
+                maxValue: metric.maxValue,
+                unit: metric.unit,
+              })) || [],
             rosterNeeds:
               baseball?.rosterNeeds?.map((need) => ({
                 gradYear: need.gradYear,
