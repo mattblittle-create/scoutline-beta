@@ -125,9 +125,9 @@ export async function GET() {
                 position: metric.position,
                 metricKey: metric.metricKey,
                 metricLabel: metric.metricLabel,
-                averageValue: metric.averageValue,
-                minValue: metric.minValue,
-                maxValue: metric.maxValue,
+                averageValue: asNumber(metric.averageValue),
+                minValue: asNumber(metric.minValue),
+                maxValue: asNumber(metric.maxValue),
                 unit: metric.unit,
               })) || [],
             rosterNeeds:
