@@ -170,11 +170,96 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     );
   }
 
-  // Metrics fit placeholder: 30 points
+  // Metrics fit: 30 points
   possible += 30;
 
-  earned += 18;
-  reasons.push("Metrics fit is currently estimated until program, division, and conference benchmark data is fully loaded.");
+  const metricAverages = input.college.metricAverages || [];
+
+  const metricKeysToCheck = [
+    "exitVelo",
+    "sixtyYdDash",
+    "homeToFirst",
+    "rawThrowVelo",
+    "infieldThrowVelo",
+    "outfieldThrowVelo",
+    "catcherThrowVelo",
+    "avgFbVelo",
+    "popTime",
+  ];
+
+  const matchedMetricScores: number[] = [];
+
+  for (const key of metricKeysToCheck) {
+    const playerValue = latestMetricValue(input.player.metrics, key);
+    if (playerValue == null) continue;
+
+    const benchmark = metricAverages.find((metric) => {
+      const metricKey = String(metric.metricKey || "").trim();
+      const metricPos = normalizePos(metric.position);
+
+      return (
+        metricKey === key &&
+        (!metricPos || positions.includes(metricPos))
+      );
+    });
+
+    if (!benchmark) continue;
+
+    const avg = toNumber(benchmark.averageValue);
+    const min = toNumber(benchmark.minValue);
+    const max = toNumber(benchmark.maxValue);
+
+    if (avg == null) continue;
+
+    const lowerIsBetter =
+      key === "sixtyYdDash" ||
+      key === "homeToFirst" ||
+      key === "popTime";
+
+    let metricScore = 0;
+
+    if (lowerIsBetter) {
+      if (playerValue <= avg) {
+        metricScore = 1;
+      } else if (max != null && playerValue <= max) {
+        metricScore = 0.7;
+      } else {
+        metricScore = 0.35;
+      }
+    } else {
+      if (playerValue >= avg) {
+        metricScore = 1;
+      } else if (min != null && playerValue >= min) {
+        metricScore = 0.7;
+      } else {
+        metricScore = 0.35;
+      }
+    }
+
+    matchedMetricScores.push(metricScore);
+  }
+
+  if (matchedMetricScores.length === 0) {
+    earned += 18;
+    reasons.push(
+      "Metrics fit is estimated because matching program benchmark data is not available yet."
+    );
+  } else {
+    const metricAverage =
+      matchedMetricScores.reduce((sum, value) => sum + value, 0) /
+      matchedMetricScores.length;
+
+    const metricPoints = Math.round(metricAverage * 30);
+    earned += metricPoints;
+
+    if (metricAverage >= 0.9) {
+      reasons.push("Your available metrics compare strongly against this program's benchmarks.");
+    } else if (metricAverage >= 0.7) {
+      reasons.push("Your available metrics are within range of this program's benchmarks.");
+    } else {
+      gaps.push("Your available metrics are currently below this program's benchmarks.");
+    }
+  }
 
   const score = Math.round((earned / possible) * 100);
 
