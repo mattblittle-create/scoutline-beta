@@ -66,6 +66,13 @@ async function getCurrentPlayerProfile() {
   const data = (profile.data || {}) as any;
   const normalized = data?.normalized || data;
 
+  const heightFt = asNumber(normalized?.heightFt);
+  const heightInOnly = asNumber(normalized?.heightIn);
+  const totalHeightIn =
+    heightFt != null && heightInOnly != null
+      ? heightFt * 12 + heightInOnly
+      : asNumber(user.Player?.heightIn) ?? heightInOnly;
+
   return {
     id: profile.id,
     email: profile.email || user.email,
@@ -82,9 +89,7 @@ async function getCurrentPlayerProfile() {
       secondaryPos:
         asString(user.Player?.secondaryPos) ??
         asString(normalized?.secondaryPos),
-      heightIn:
-        asNumber(user.Player?.heightIn) ??
-        asNumber(normalized?.heightIn),
+      heightIn: totalHeightIn,
       weightLb:
         asNumber(user.Player?.weightLb) ??
         asNumber(normalized?.weightLb),
