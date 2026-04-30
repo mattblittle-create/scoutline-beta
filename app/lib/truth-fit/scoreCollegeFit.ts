@@ -12,6 +12,8 @@ export type TruthFitInput = {
     gradYear?: number | null;
     primaryPos?: string | null;
     secondaryPos?: string | null;
+    heightIn?: number | null;
+    weightLb?: number | null;
     metrics?: Record<string, Array<{ value?: number | null }>>;
   };
   college: {
@@ -192,19 +194,19 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
 
   const metricAverages = input.college.metricAverages || [];
 
-const metricKeysToCheck = [
-  "exitVelo",
-  "sixtyYdDash",
-  "homeToFirst",
-  "rawThrowVelo",
-  "infieldThrowVelo",
-  "outfieldThrowVelo",
-  "catcherThrowVelo",
-  "avgFbVelo",
-  "popTime",
-  "weightLb",
-  "heightIn",
-];
+  const metricKeysToCheck = [
+    "exitVelo",
+    "sixtyYdDash",
+    "homeToFirst",
+    "rawThrowVelo",
+    "infieldThrowVelo",
+    "outfieldThrowVelo",
+    "catcherThrowVelo",
+    "avgFbVelo",
+    "popTime",
+    "heightIn",
+    "weightLb",
+  ];
 
   const matchedMetricScores: number[] = [];
   let metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =
@@ -214,7 +216,13 @@ const metricKeysToCheck = [
     };
 
   for (const key of metricKeysToCheck) {
-    const playerValue = latestMetricValue(input.player.metrics, key);
+    const playerValue =
+      key === "heightIn"
+        ? input.player.heightIn ?? null
+        : key === "weightLb"
+        ? input.player.weightLb ?? null
+        : latestMetricValue(input.player.metrics, key);
+
     if (playerValue == null) continue;
 
     const benchmark = metricAverages.find((metric) => {
