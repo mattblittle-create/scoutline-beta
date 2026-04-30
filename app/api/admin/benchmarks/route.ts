@@ -1,6 +1,7 @@
 // app/api/admin/benchmarks/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -22,8 +23,42 @@ function isValidScope(value: unknown): value is (typeof VALID_SCOPES)[number] {
   return VALID_SCOPES.includes(String(value) as any);
 }
 
+async function requireAdminUser() {
+  const userId = cookies().get("scoutline_uid")?.value || "";
+
+  if (!userId) return null;
+
+  const admin = await prisma.adminUser.findFirst({
+    where: {
+      userId,
+      isActive: true,
+    },
+    select: {
+      id: true,
+      userId: true,
+      roles: {
+        select: {
+          role: true,
+        },
+      },
+    },
+  });
+
+  return admin;
+}
+
+function unauthorized() {
+  return NextResponse.json(
+    { ok: false, error: "Admin access required." },
+    { status: 403 }
+  );
+}
+
 export async function GET(req: NextRequest) {
   try {
+    const admin = await requireAdminUser();
+    if (!admin) return unauthorized();
+
     const url = new URL(req.url);
 
     const scope = url.searchParams.get("scope");
@@ -61,6 +96,9 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    const admin = await requireAdminUser();
+    if (!admin) return unauthorized();
+
     const body = await req.json();
 
     const scope = body?.scope;
@@ -128,6 +166,9 @@ export async function POST(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   try {
+    const admin = await requireAdminUser();
+    if (!admin) return unauthorized();
+
     const body = await req.json();
 
     const id = asString(body?.id);
