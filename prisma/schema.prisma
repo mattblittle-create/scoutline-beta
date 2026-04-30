@@ -1299,3 +1299,38 @@ model CollegeBaseballMetricAverage {
   @@index([position])
   @@index([metricKey])
 }
+
+model BaseballMetricBenchmark {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  scope     BenchmarkScope
+  sourceKey String
+
+  position    String
+  metricKey   String
+  metricLabel String?
+
+  averageValue Decimal? @db.Decimal(8, 2)
+  minValue     Decimal? @db.Decimal(8, 2)
+  maxValue     Decimal? @db.Decimal(8, 2)
+  unit         String?
+
+  sampleSize Int?
+  sourceUrl  String?
+  sourceNote String?
+  verifiedAt DateTime?
+
+  @@unique([scope, sourceKey, position, metricKey])
+  @@index([scope, sourceKey])
+  @@index([position])
+  @@index([metricKey])
+}
+
+enum BenchmarkScope {
+  SCHOOL
+  CONFERENCE
+  DIVISION
+  GLOBAL
+}
