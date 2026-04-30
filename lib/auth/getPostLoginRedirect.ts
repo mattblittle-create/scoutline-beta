@@ -3,22 +3,18 @@ import { prisma } from "@/lib/prisma";
 
 export async function getPostLoginRedirect(userId: string): Promise<string> {
   // Admin first
-  const adminProfile =
-    (prisma as any).adminProfile &&
-    typeof (prisma as any).adminProfile.findFirst === "function"
-      ? await (prisma as any).adminProfile.findFirst({
-          where: {
-            userId,
-            isActive: true,
-          },
-          select: {
-            id: true,
-            roles: {
-              select: { role: true },
-            },
-          },
-        })
-      : null;
+  const adminProfile = await prisma.adminUser.findFirst({
+    where: {
+      userId,
+      isActive: true,
+    },
+    select: {
+      id: true,
+      roles: {
+        select: { role: true },
+      },
+    },
+  });
 
   if (adminProfile) {
     const roleList = (adminProfile.roles ?? []).map((r: any) =>
