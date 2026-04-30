@@ -192,17 +192,19 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
 
   const metricAverages = input.college.metricAverages || [];
 
-  const metricKeysToCheck = [
-    "exitVelo",
-    "sixtyYdDash",
-    "homeToFirst",
-    "rawThrowVelo",
-    "infieldThrowVelo",
-    "outfieldThrowVelo",
-    "catcherThrowVelo",
-    "avgFbVelo",
-    "popTime",
-  ];
+const metricKeysToCheck = [
+  "exitVelo",
+  "sixtyYdDash",
+  "homeToFirst",
+  "rawThrowVelo",
+  "infieldThrowVelo",
+  "outfieldThrowVelo",
+  "catcherThrowVelo",
+  "avgFbVelo",
+  "popTime",
+  "weightLb",
+  "heightIn",
+];
 
   const matchedMetricScores: number[] = [];
   let metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =

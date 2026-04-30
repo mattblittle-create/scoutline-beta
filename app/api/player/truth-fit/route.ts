@@ -34,6 +34,8 @@ async function getCurrentPlayerProfile() {
           gradYear: true,
           primaryPos: true,
           secondaryPos: true,
+          heightIn: true,
+          weightLb: true,
         },
       },
       PlayerProfile: {
@@ -80,6 +82,12 @@ async function getCurrentPlayerProfile() {
       secondaryPos:
         asString(user.Player?.secondaryPos) ??
         asString(normalized?.secondaryPos),
+      heightIn:
+        asNumber(user.Player?.heightIn) ??
+        asNumber(normalized?.heightIn),
+      weightLb:
+        asNumber(user.Player?.weightLb) ??
+        asNumber(normalized?.weightLb),
       metrics:
         normalized?.metrics && typeof normalized.metrics === "object"
           ? normalized.metrics
