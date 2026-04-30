@@ -25,6 +25,10 @@ export type TruthFitInput = {
       maxValue?: number | string | null;
       unit?: string | null;
     }>;
+    metricBenchmarkSource?: {
+      level: TruthFitBenchmarkSourceLevel;
+      label: string;
+    };
     rosterNeeds?: Array<{
       gradYear?: number | null;
       position?: string | null;
@@ -201,10 +205,11 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   ];
 
   const matchedMetricScores: number[] = [];
-  let metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] = {
-    level: "ESTIMATED",
-    label: "Estimated - benchmark data not available yet",
-  };
+  let metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =
+    input.college.metricBenchmarkSource || {
+      level: "ESTIMATED",
+      label: "Estimated - benchmark data not available yet",
+    };
 
   for (const key of metricKeysToCheck) {
     const playerValue = latestMetricValue(input.player.metrics, key);
