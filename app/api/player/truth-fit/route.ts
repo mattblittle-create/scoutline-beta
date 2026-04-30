@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
+import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
 
 export const dynamic = "force-dynamic";
 
@@ -111,25 +112,28 @@ export async function GET() {
       },
     });
 
-    const results = colleges
-      .map((college) => {
-        const baseball = college.baseballProgram;
+    const results = (
+      await Promise.all(
+        colleges.map(async (college) => {
+          const baseball = college.baseballProgram;
+
+          const bestMetrics = await getBestMetricBenchmarks({
+            programId: baseball?.id || null,
+            collegeName: college.name,
+            conference: baseball?.conference || college.conference || null,
+            division: String(baseball?.division || college.division || ""),
+          });
 
         const fit = scoreCollegeFit({
           player: profile.player,
           college: {
             averageGpa: asNumber(baseball?.averageGpa),
             division: baseball?.division || college.division || null,
-            metricAverages:
-              baseball?.metricAverages?.map((metric) => ({
-                position: metric.position,
-                metricKey: metric.metricKey,
-                metricLabel: metric.metricLabel,
-                averageValue: asNumber(metric.averageValue),
-                minValue: asNumber(metric.minValue),
-                maxValue: asNumber(metric.maxValue),
-                unit: metric.unit,
-              })) || [],
+            metricAverages: bestMetrics.benchmarks,
+            metricBenchmarkSource: {
+              level: bestMetrics.level,
+              label: bestMetrics.label,
+            },
             rosterNeeds:
               baseball?.rosterNeeds?.map((need) => ({
                 gradYear: need.gradYear,
@@ -168,8 +172,9 @@ export async function GET() {
           },
           truthFit: fit,
         };
-      })
-      .sort((a, b) => b.truthFit.score - a.truthFit.score);
+        })
+      )
+    ).sort((a, b) => b.truthFit.score - a.truthFit.score);
 
 return NextResponse.json({
   ok: true,
