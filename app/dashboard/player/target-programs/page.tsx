@@ -674,6 +674,16 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
                     <span>{getNextAction(item.status)}</span>
                   </div>
 
+                {Array.isArray(item.truthFit?.development) &&
+                  item.truthFit.development.length > 0 ? (
+                    <div style={fitDevelopmentStyle}>
+                      <span style={fitDevelopmentLabelStyle}>Truth Fit Development</span>
+                      {item.truthFit.development.slice(0, 2).map((tip, index) => (
+                        <span key={index}>• {tip}</span>
+                      ))}
+                    </div>
+                  ) : null}
+
                   <div style={{ marginTop: 12 }}>
   <label style={notesFieldStyle}>
     <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
@@ -1040,5 +1050,27 @@ const nextActionLabelStyle: React.CSSProperties = {
   textTransform: "uppercase",
   letterSpacing: "0.04em",
   color: "#0369a1",
+  fontWeight: 900,
+};
+
+const fitDevelopmentStyle: React.CSSProperties = {
+  marginTop: 10,
+  border: "1px solid #e0e7ff",
+  background: "#eef2ff",
+  borderRadius: 12,
+  padding: "10px 12px",
+  color: "#312e81",
+  fontWeight: 800,
+  lineHeight: 1.45,
+  fontSize: 13,
+  display: "grid",
+  gap: 4,
+};
+
+const fitDevelopmentLabelStyle: React.CSSProperties = {
+  fontSize: 11,
+  textTransform: "uppercase",
+  letterSpacing: "0.04em",
+  color: "#3730a3",
   fontWeight: 900,
 };
