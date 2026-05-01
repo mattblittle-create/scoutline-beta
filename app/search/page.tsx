@@ -433,9 +433,9 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
           <h1 style={{ margin: 0, fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 900 }}>
             College Search
           </h1>
-          <p style={{ margin: "10px auto 0", maxWidth: 760, color: "#475569", fontSize: "1.05rem" }}>
-            Search college programs, admissions links, and baseball info. Truth Fit recommendations are coming next.
-          </p>
+<p style={{ margin: "10px auto 0", maxWidth: 760, color: "#475569", fontSize: "1.05rem" }}>
+  Search college programs, save schools to Target Programs, and use Truth Fit to prioritize your recruiting plan.
+</p>
         </div>
 
         <div style={panelStyle}>
@@ -667,6 +667,16 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
 </div>
 
 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
+  {isLoggedIn && savedCollegeIds.includes(college.id) ? (
+    <Link href="/dashboard/player/target-programs" style={secondaryButtonStyle}>
+      Manage Target
+    </Link>
+  ) : null}
+
+  <Link href="/dashboard/player/recruiting-tool" style={secondaryButtonStyle}>
+    Truth Fit
+  </Link>
+
   {college.admissionsUrl ? (
     <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
       Admissions
@@ -823,6 +833,18 @@ const errorStyle: React.CSSProperties = { border: "1px solid #fecaca", backgroun
 const cardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 18, background: "#ffffff", padding: 18, boxShadow: "0 8px 20px rgba(15,23,42,0.05)" };
 const pillStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "6px 10px", fontSize: 12, fontWeight: 900, color: "#334155" };
 const buttonStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, padding: "9px 13px", background: "#caa042", color: "#0f172a", textDecoration: "none", fontWeight: 900, border: "1px solid #caa042" };
+const secondaryButtonStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "9px 13px",
+  background: "#ffffff",
+  color: "#0f172a",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #cbd5e1",
+};
 const chipStyle: React.CSSProperties = { position: "relative", display: "inline-flex", alignItems: "center", minHeight: 18, borderRadius: 999, border: "1px solid #caa042", background: "#fffaf0", padding: "3px 15px 3px 7px", fontSize: 10, fontWeight: 900, lineHeight: 1 };
 const chipXStyle: React.CSSProperties = { position: "absolute", top: -4, right: 1, border: "none", background: "transparent", cursor: "pointer", fontSize: 10, lineHeight: 1, fontWeight: 900, color: "#dc2626", padding: 0 };
 const comboWrapStyle: React.CSSProperties = { position: "relative", width: "100%" };
@@ -876,3 +898,4 @@ const statusSelectStyle: React.CSSProperties = {
   fontWeight: 800,
   outline: "none",
 };
+
