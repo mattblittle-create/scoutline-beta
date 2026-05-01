@@ -8,6 +8,17 @@ import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchm
 
 export const dynamic = "force-dynamic";
 
+function asNumber(value: unknown): number | null {
+  if (value == null) return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+
+function asString(value: unknown): string | null {
+  const s = String(value ?? "").trim();
+  return s ? s : null;
+}
+
 /**
  * Supported recruiting statuses
  */
