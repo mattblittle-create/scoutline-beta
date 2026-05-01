@@ -294,7 +294,9 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     } else if (metricAverage >= 0.7) {
       reasons.push(`Your available metrics are within range of ${metricsBenchmarkSource.label}.`);
     } else {
-      gaps.push(`Your available metrics are currently below ${metricsBenchmarkSource.label}.`);
+      gaps.push(
+        `Your available metrics are currently below the ${metricsBenchmarkSource.label.toLowerCase()}.`
+      );
     }
   }
 
