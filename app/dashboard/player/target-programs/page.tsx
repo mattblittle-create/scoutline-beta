@@ -486,6 +486,7 @@ async function updateProgramNotes(collegeId: string, notes: string) {
   <Link href="/dashboard/player" style={backToDashboardStyle}>
     Back to Dashboard
   </Link>
+</div>
         </div>
 
         {error ? <div style={errorStyle}>{error}</div> : null}
