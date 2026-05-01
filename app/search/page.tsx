@@ -161,6 +161,7 @@ export default function CollegeSearchPage() {
   const [savingCollegeId, setSavingCollegeId] = useState("");
 
   const [showSavedOnly, setShowSavedOnly] = useState(false);
+  const [sortBy, setSortBy] = useState("TRUTH_FIT");
 
   const [authChecked, setAuthChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -492,7 +493,21 @@ async function updateSavedPriority(collegeId: string, priority: string) {
   }
 }
 
-const visibleResults = showSavedOnly ? savedCollegeResults : results;
+const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort((a, b) => {
+  if (sortBy === "TRUTH_FIT") {
+    return (b.truthFit?.score || 0) - (a.truthFit?.score || 0);
+  }
+
+  if (sortBy === "IN_STATE_TUITION") {
+    return (a.tuitionInState ?? Number.MAX_SAFE_INTEGER) - (b.tuitionInState ?? Number.MAX_SAFE_INTEGER);
+  }
+
+  if (sortBy === "OUT_OF_STATE_TUITION") {
+    return (a.tuitionOutOfState ?? Number.MAX_SAFE_INTEGER) - (b.tuitionOutOfState ?? Number.MAX_SAFE_INTEGER);
+  }
+
+  return a.name.localeCompare(b.name);
+});
 
   function clearFilters() {
     setQ("");
@@ -506,6 +521,7 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
     setRegionInput("");
     setDivisionInput("");
     setConferenceInput("");
+    setSortBy("TRUTH_FIT");
   }
 
   return (
@@ -621,7 +637,7 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
             Clear Filters
           </button>
 
-<div style={{ display: "flex", gap: 8, marginTop: 12 }}>
+<div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap", alignItems: "center" }}>
   <button
     type="button"
     onClick={() => setShowSavedOnly(false)}
@@ -647,6 +663,16 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
       Saved Programs
     </button>
   )}
+  <select
+    value={sortBy}
+    onChange={(e) => setSortBy(e.target.value)}
+    style={sortSelectStyle}
+  >
+    <option value="TRUTH_FIT">Sort: Truth Fit</option>
+    <option value="SCHOOL_NAME">Sort: School Name</option>
+    <option value="IN_STATE_TUITION">Sort: In-State Tuition</option>
+    <option value="OUT_OF_STATE_TUITION">Sort: Out-of-State Tuition</option>
+  </select>
 </div>
 
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
@@ -997,6 +1023,17 @@ const toggleButtonStyle: React.CSSProperties = {
   border: "1px solid #cbd5e1",
   borderRadius: 999,
   padding: "6px 12px",
+  fontWeight: 800,
+  cursor: "pointer",
+  fontSize: 12,
+};
+
+const sortSelectStyle: React.CSSProperties = {
+  border: "1px solid #cbd5e1",
+  borderRadius: 999,
+  padding: "6px 12px",
+  background: "#ffffff",
+  color: "#0f172a",
   fontWeight: 800,
   cursor: "pointer",
   fontSize: 12,
