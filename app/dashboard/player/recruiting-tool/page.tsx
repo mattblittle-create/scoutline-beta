@@ -17,32 +17,33 @@ export default function PlayerRecruitingToolPage() {
   const [savingCollegeId, setSavingCollegeId] = React.useState("");
   const [loadingTruthFit, setLoadingTruthFit] = React.useState(false);
   const [truthFitError, setTruthFitError] = React.useState("");
+  const [hasLoadedTruthFit, setHasLoadedTruthFit] = React.useState(false);
 
   React.useEffect(() => {
-  async function loadSaved() {
-    try {
-      const res = await fetch("/api/player/target-programs", {
-        cache: "no-store",
-      });
+    async function loadSaved() {
+      try {
+        const res = await fetch("/api/player/target-programs", {
+          cache: "no-store",
+        });
 
-      const data = await res.json().catch(() => null);
+        const data = await res.json().catch(() => null);
 
-      if (res.ok && data?.ok) {
-        const ids = (data.saved || [])
-          .map((item: any) => item?.collegeId)
-          .filter(Boolean);
+        if (res.ok && data?.ok) {
+          const ids = (data.saved || [])
+            .map((item: any) => item?.collegeId)
+            .filter(Boolean);
 
-        setSavedCollegeIds(ids);
+          setSavedCollegeIds(ids);
+        }
+      } catch {
+        setSavedCollegeIds([]);
       }
-    } catch {
-      setSavedCollegeIds([]);
     }
-  }
 
-  loadSaved();
-}, []);
+    loadSaved();
+  }, []);
 
-  async function loadTruthFit() {
+  const loadTruthFit = React.useCallback(async () => {
     try {
       setLoadingTruthFit(true);
       setTruthFitError("");
@@ -58,46 +59,52 @@ export default function PlayerRecruitingToolPage() {
       }
 
       setTruthFitResults(data.results || []);
+      setHasLoadedTruthFit(true);
     } catch (err) {
       console.error("TRUTH_FIT_LOAD_ERROR", err);
       setTruthFitError("Could not load Truth Fit results.");
+      setHasLoadedTruthFit(true);
     } finally {
       setLoadingTruthFit(false);
     }
-  }
+  }, []);
 
-async function toggleSavedCollege(collegeId: string, fitLabel: string) {
-  const isSaved = savedCollegeIds.includes(collegeId);
+  React.useEffect(() => {
+    loadTruthFit();
+  }, [loadTruthFit]);
 
-  try {
-    setSavingCollegeId(collegeId);
+  async function toggleSavedCollege(collegeId: string, fitLabel: string) {
+    const isSaved = savedCollegeIds.includes(collegeId);
 
-const res = await fetch("/api/player/target-programs", {
-  method: isSaved ? "DELETE" : "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    collegeId,
-    priority: getPriorityFromFit(fitLabel),
-  }),
-});
+    try {
+      setSavingCollegeId(collegeId);
 
-const data = await res.json().catch(() => null);
+      const res = await fetch("/api/player/target-programs", {
+        method: isSaved ? "DELETE" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          collegeId,
+          priority: getPriorityFromFit(fitLabel),
+        }),
+      });
 
-    if (!res.ok || !data?.ok) {
-      throw new Error(data?.error || "Save failed.");
+      const data = await res.json().catch(() => null);
+
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Save failed.");
+      }
+
+      setSavedCollegeIds((prev) =>
+        isSaved
+          ? prev.filter((id) => id !== collegeId)
+          : [...prev, collegeId]
+      );
+    } catch (err) {
+      console.error("TRUTH_FIT_SAVE_ERROR", err);
+    } finally {
+      setSavingCollegeId("");
     }
-
-    setSavedCollegeIds((prev) =>
-      isSaved
-        ? prev.filter((id) => id !== collegeId)
-        : [...prev, collegeId]
-    );
-  } catch (err) {
-    console.error("TRUTH_FIT_SAVE_ERROR", err);
-  } finally {
-    setSavingCollegeId("");
   }
-}
 
   return (
     <main style={{ maxWidth: 960, margin: "0 auto", padding: "8px 0 40px" }}>
@@ -123,7 +130,7 @@ const data = await res.json().catch(() => null);
                 cursor: loadingTruthFit ? "not-allowed" : "pointer",
               }}
             >
-              {loadingTruthFit ? "Generating Truth Fit..." : "Generate Truth Fit"}
+              {loadingTruthFit ? "Generating Truth Fit..." : "Refresh Truth Fit"}
             </button>
           </div>
 
@@ -153,6 +160,19 @@ const data = await res.json().catch(() => null);
           <div style={errorStyle}>{truthFitError}</div>
         ) : null}
 
+        {loadingTruthFit && !truthFitResults.length ? (
+          <div style={infoBannerStyle}>
+            Generating your Truth Fit list from your current profile data...
+          </div>
+        ) : null}
+
+        {!loadingTruthFit && hasLoadedTruthFit && truthFitResults.length === 0 ? (
+          <div style={infoBannerStyle}>
+            No Truth Fit matches are available yet. Add baseball programs in the
+            college database, then refresh this page.
+          </div>
+        ) : null}
+
         {truthFitResults.length > 0 ? (
           <section style={{ marginTop: 28 }}>
             <div style={sectionHeaderStyle}>
@@ -173,8 +193,9 @@ const data = await res.json().catch(() => null);
               {truthFitResults.slice(0, 25).map((item) => {
                 const c = item.college;
                 const fit = item.truthFit;
+                const baseball = c.baseballProgram;
 
-                  return (
+                return (
                   <article key={c.id} style={resultCardStyle}>
                     <div style={resultTopRowStyle}>
                       <div>
@@ -188,6 +209,41 @@ const data = await res.json().catch(() => null);
                         <div style={locationStyle}>
                           {[c.city, c.state].filter(Boolean).join(", ") ||
                             "Location TBD"}
+                        </div>
+
+                        <div style={linkRowStyle}>
+                          {c.websiteUrl ? (
+                            <a
+                              href={c.websiteUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={smallLinkStyle}
+                            >
+                              School Site
+                            </a>
+                          ) : null}
+
+                          {c.admissionsUrl ? (
+                            <a
+                              href={c.admissionsUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={smallLinkStyle}
+                            >
+                              Admissions
+                            </a>
+                          ) : null}
+
+                          {baseball?.baseballWebsiteUrl ? (
+                            <a
+                              href={baseball.baseballWebsiteUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={smallLinkStyle}
+                            >
+                              Baseball Site
+                            </a>
+                          ) : null}
                         </div>
                       </div>
 
@@ -221,45 +277,35 @@ const data = await res.json().catch(() => null);
                           ★
                         </button>
 
-<div
-  title={
-    fit.label === "Not Yet"
-      ? `Not Yet = This school is currently a stretch based on your profile.\nScore: ${fit.score}/100\nFocus on improving key metrics to increase your fit.`
-      : fit.label === "Reach"
-      ? `Reach = You’re close but still slightly below typical benchmarks.\nScore: ${fit.score}/100`
-      : fit.label === "Match"
-      ? `Match = Your profile aligns well with this program.\nScore: ${fit.score}/100`
-      : fit.label === "Strong Fit"
-      ? `Strong Fit = You are a strong match for this program.\nScore: ${fit.score}/100`
-      : `Fit Score: ${fit.score}/100`
-  }
-  style={{
-    ...fitBadgeStyle,
-    color: getFitColor(fit.label),
-    borderColor: getFitBorderColor(fit.label),
-    background: getFitBackground(fit.label),
-    cursor: "help",
-  }}
->
-  {fit.label} • {fit.score}
-</div>
+                        <div
+                          title={getFitTooltip(fit.label, fit.score)}
+                          style={{
+                            ...fitBadgeStyle,
+                            color: getFitColor(fit.label),
+                            borderColor: getFitBorderColor(fit.label),
+                            background: getFitBackground(fit.label),
+                            cursor: "help",
+                          }}
+                        >
+                          {fit.label} • {fit.score}
+                        </div>
                       </div>
                     </div>
 
                     <div style={metaGridStyle}>
-                      <Info label="Division" value={pretty(c.baseballProgram?.division)} />
-                      <Info label="Conference" value={c.baseballProgram?.conference || "—"} />
-                      <Info label="Nickname" value={c.baseballProgram?.nickname || "—"} />
+                      <Info label="Division" value={pretty(baseball?.division)} />
+                      <Info label="Conference" value={baseball?.conference || "—"} />
+                      <Info label="Nickname" value={baseball?.nickname || "—"} />
                     </div>
 
-{fit?.benchmarkSource?.metrics?.label ? (
-  <div style={benchmarkSourceStyle}>
-    Metrics Source: {fit.benchmarkSource.metrics.label}
-  </div>
-) : null}
+                    {fit?.benchmarkSource?.metrics?.label ? (
+                      <div style={benchmarkSourceStyle}>
+                        Metrics Source: {fit.benchmarkSource.metrics.label}
+                      </div>
+                    ) : null}
 
-{Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
-  <div style={reasonBoxStyle}>
+                    {Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
+                      <div style={reasonBoxStyle}>
                         <div style={reasonTitleStyle}>Why this fit showed up</div>
                         {fit.reasons.slice(0, 3).map((reason: string, index: number) => (
                           <div key={index} style={reasonLineStyle}>
@@ -284,12 +330,12 @@ const data = await res.json().catch(() => null);
               })}
             </div>
           </section>
-        ) : (
+        ) : !loadingTruthFit && !hasLoadedTruthFit ? (
           <div style={infoBannerStyle}>
-            Generate Truth Fit to see ranked college recommendations based on
-            your current player profile.
+            Truth Fit will generate automatically using your current player
+            profile.
           </div>
-        )}
+        ) : null}
       </section>
     </main>
   );
@@ -332,6 +378,22 @@ function pretty(value?: string | null) {
       return word.charAt(0) + word.slice(1).toLowerCase();
     })
     .join(" ");
+}
+
+function getFitTooltip(label: string, score: number) {
+  if (label === "Strong Fit") {
+    return `Strong Fit = Your profile is currently tracking very well for this program.\nScore: ${score}/100`;
+  }
+
+  if (label === "Match") {
+    return `Match = Your profile aligns well with this program based on available data.\nScore: ${score}/100`;
+  }
+
+  if (label === "Possible Match") {
+    return `Possible Match = This school may be worth tracking, especially if some school-side data is still incomplete.\nScore: ${score}/100`;
+  }
+
+  return `Not Yet = This school is currently a stretch based on your profile and available benchmarks.\nScore: ${score}/100`;
 }
 
 function getFitColor(label: string) {
@@ -518,6 +580,21 @@ const locationStyle: React.CSSProperties = {
   fontSize: 13,
   color: "#64748b",
   fontWeight: 700,
+};
+
+const linkRowStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 10,
+  flexWrap: "wrap",
+  marginTop: 8,
+};
+
+const smallLinkStyle: React.CSSProperties = {
+  fontSize: 12,
+  color: "#0369a1",
+  fontWeight: 900,
+  textDecoration: "underline",
+  textDecorationColor: "#bae6fd",
 };
 
 const fitBadgeStyle: React.CSSProperties = {
