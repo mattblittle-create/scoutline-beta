@@ -391,6 +391,7 @@ function pretty(value?: string | null) {
     .map((word) => {
       if (["NCAA", "NAIA", "NJCAA", "SEC", "ACC"].includes(word)) return word;
       if (/^D[123]$/.test(word)) return word;
+      if (/^[A-Z]{2}$/.test(word)) return word;
       return word.charAt(0) + word.slice(1).toLowerCase();
     })
     .join(" ");
