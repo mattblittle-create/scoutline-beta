@@ -3,6 +3,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
+import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
+import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
 
 export const dynamic = "force-dynamic";
 
@@ -41,22 +43,76 @@ async function getCurrentPlayerProfile() {
     where: { id: userId },
     select: {
       email: true,
+      Player: {
+        select: {
+          gpa: true,
+          gradYear: true,
+          primaryPos: true,
+          secondaryPos: true,
+          heightIn: true,
+          weightLb: true,
+        },
+      },
       PlayerProfile: {
-        select: { id: true },
+        select: {
+          id: true,
+          email: true,
+          data: true,
+        },
       },
     },
   });
 
   if (!user?.email) return null;
 
-  if (user.PlayerProfile?.id) {
-    return user.PlayerProfile;
-  }
+  const profile =
+    user.PlayerProfile ||
+    (await prisma.playerProfile.findUnique({
+      where: { email: user.email },
+      select: {
+        id: true,
+        email: true,
+        data: true,
+      },
+    }));
 
-  return prisma.playerProfile.findUnique({
-    where: { email: user.email },
-    select: { id: true },
-  });
+  if (!profile) return null;
+
+  const data = (profile.data || {}) as any;
+  const normalized = data?.normalized || data;
+
+  const heightFt = asNumber(normalized?.heightFt);
+  const heightInOnly = asNumber(normalized?.heightIn);
+  const totalHeightIn =
+    heightFt != null && heightInOnly != null
+      ? heightFt * 12 + heightInOnly
+      : asNumber(user.Player?.heightIn) ?? heightInOnly;
+
+  return {
+    id: profile.id,
+    player: {
+      gpa:
+        asNumber(user.Player?.gpa) ??
+        asNumber(normalized?.gpa),
+      gradYear:
+        asNumber(user.Player?.gradYear) ??
+        asNumber(normalized?.gradYear),
+      primaryPos:
+        asString(user.Player?.primaryPos) ??
+        asString(normalized?.primaryPos),
+      secondaryPos:
+        asString(user.Player?.secondaryPos) ??
+        asString(normalized?.secondaryPos),
+      heightIn: totalHeightIn,
+      weightLb:
+        asNumber(user.Player?.weightLb) ??
+        asNumber(normalized?.weightLb),
+      metrics:
+        normalized?.metrics && typeof normalized.metrics === "object"
+          ? normalized.metrics
+          : {},
+    },
+  };
 }
 
 /**
@@ -73,7 +129,7 @@ export async function GET() {
       );
     }
 
-const saved = await prisma.collegeSavedSchool.findMany({
+const savedRows = await prisma.collegeSavedSchool.findMany({
   where: { playerProfileId: profile.id },
   include: {
     college: {
@@ -81,6 +137,8 @@ const saved = await prisma.collegeSavedSchool.findMany({
         baseballProgram: {
           include: {
             coaches: true,
+            rosterNeeds: true,
+            metricAverages: true,
           },
         },
       },
@@ -89,7 +147,51 @@ const saved = await prisma.collegeSavedSchool.findMany({
   orderBy: { createdAt: "desc" },
 });
 
-    return NextResponse.json({ ok: true, saved });
+const saved = await Promise.all(
+  savedRows.map(async (item) => {
+    const baseball = item.college.baseballProgram;
+
+    if (!baseball) {
+      return {
+        ...item,
+        truthFit: null,
+      };
+    }
+
+    const bestMetrics = await getBestMetricBenchmarks({
+      programId: baseball.id,
+      collegeName: item.college.name,
+      conference: baseball.conference || item.college.conference || null,
+      division: String(baseball.division || item.college.division || ""),
+    });
+
+    const truthFit = scoreCollegeFit({
+      player: profile.player,
+      college: {
+        averageGpa: asNumber(baseball.averageGpa),
+        division: baseball.division || item.college.division || null,
+        metricAverages: bestMetrics.benchmarks,
+        metricBenchmarkSource: {
+          level: bestMetrics.level,
+          label: bestMetrics.label,
+        },
+        rosterNeeds:
+          baseball.rosterNeeds?.map((need) => ({
+            gradYear: need.gradYear,
+            position: need.position,
+            needLevel: need.needLevel,
+          })) || [],
+      },
+    });
+
+    return {
+      ...item,
+      truthFit,
+    };
+  })
+);
+
+return NextResponse.json({ ok: true, saved });
   } catch (err) {
     console.error("TARGET_PROGRAMS_GET_ERROR", err);
     return NextResponse.json(
