@@ -279,6 +279,12 @@ export default function PlayerRecruitingToolPage() {
                           ★
                         </button>
 
+                        {savedCollegeIds.includes(c.id) ? (
+  <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
+    Manage
+  </Link>
+) : null}
+
                         <div
                           title={getFitTooltip(fit.label, fit.score)}
                           style={{
@@ -506,4 +512,12 @@ const developmentLineStyle: React.CSSProperties = {
   fontSize: 13,
   color: "#312e81",
   lineHeight: 1.45,
+};
+
+const manageSavedLinkStyle: React.CSSProperties = {
+  fontSize: 12,
+  color: "#0369a1",
+  fontWeight: 900,
+  textDecoration: "underline",
+  textDecorationColor: "#bae6fd",
 };
