@@ -82,6 +82,15 @@ type CollegeResult = {
     nickname?: string | null;
     baseballWebsiteUrl?: string | null;
   } | null;
+  truthFit?: {
+    score: number;
+    label: string;
+    benchmarkSource?: {
+      metrics?: {
+        label: string;
+      };
+    };
+  } | null;
 };
 
 function pretty(value?: string | null) {
@@ -105,6 +114,27 @@ function money(value?: number | null) {
 function addUnique(list: string[], value: string) {
   if (!value || list.includes(value)) return list;
   return [...list, value];
+}
+
+function getFitColor(label?: string | null) {
+  if (label === "Strong Fit") return "#15803d";
+  if (label === "Match") return "#0369a1";
+  if (label === "Possible Match") return "#b45309";
+  return "#b91c1c";
+}
+
+function getFitBackground(label?: string | null) {
+  if (label === "Strong Fit") return "#f0fdf4";
+  if (label === "Match") return "#e0f2fe";
+  if (label === "Possible Match") return "#fffbeb";
+  return "#fef2f2";
+}
+
+function getFitBorderColor(label?: string | null) {
+  if (label === "Strong Fit") return "#bbf7d0";
+  if (label === "Match") return "#bae6fd";
+  if (label === "Possible Match") return "#fde68a";
+  return "#fecaca";
 }
 
 export default function CollegeSearchPage() {
@@ -684,8 +714,22 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
                     </div>
                   </div>
 
-                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
-                    <span style={pillStyle}>{pretty(college.region)}</span>
+<div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
+  {isLoggedIn && college.truthFit ? (
+    <span
+      style={{
+        ...truthFitPillStyle,
+        color: getFitColor(college.truthFit.label),
+        background: getFitBackground(college.truthFit.label),
+        borderColor: getFitBorderColor(college.truthFit.label),
+      }}
+      title={college.truthFit.benchmarkSource?.metrics?.label || "Truth Fit score"}
+    >
+      Truth Fit: {college.truthFit.label} • {college.truthFit.score}
+    </span>
+  ) : null}
+
+  <span style={pillStyle}>{pretty(college.region)}</span>
                     <span style={pillStyle}>{pretty(college.control)}</span>
                     <span style={pillStyle}>{pretty(college.schoolType)}</span>
                   </div>
@@ -902,6 +946,15 @@ const clearButtonStyle: React.CSSProperties = { marginTop: 12, border: "1px soli
 const errorStyle: React.CSSProperties = { border: "1px solid #fecaca", background: "#fff1f2", color: "#991b1b", borderRadius: 12, padding: 14, marginBottom: 16, fontWeight: 700 };
 const cardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 18, background: "#ffffff", padding: 18, boxShadow: "0 8px 20px rgba(15,23,42,0.05)" };
 const pillStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "6px 10px", fontSize: 12, fontWeight: 900, color: "#334155" };
+const truthFitPillStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  border: "1px solid",
+  borderRadius: 999,
+  padding: "6px 10px",
+  fontSize: 12,
+  fontWeight: 900,
+};
 const buttonStyle: React.CSSProperties = { display: "inline-flex", alignItems: "center", justifyContent: "center", borderRadius: 999, padding: "9px 13px", background: "#caa042", color: "#0f172a", textDecoration: "none", fontWeight: 900, border: "1px solid #caa042" };
 const secondaryButtonStyle: React.CSSProperties = {
   display: "inline-flex",
