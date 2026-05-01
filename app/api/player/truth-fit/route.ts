@@ -1,6 +1,6 @@
 // app/api/player/truth-fit/route.ts
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
@@ -17,6 +17,12 @@ function asNumber(value: unknown): number | null {
 function asString(value: unknown): string | null {
   const s = String(value ?? "").trim();
   return s ? s : null;
+}
+
+function cleanFilter(value: string | null) {
+  const s = String(value || "").trim();
+  if (!s || s === "ALL") return null;
+  return s;
 }
 
 async function getCurrentPlayerProfile() {
@@ -101,7 +107,7 @@ async function getCurrentPlayerProfile() {
   };
 }
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
     const profile = await getCurrentPlayerProfile();
 
@@ -112,23 +118,35 @@ export async function GET() {
       );
     }
 
-const colleges = await prisma.college.findMany({
-  take: 250,
-  orderBy: { name: "asc" },
-  where: {
-    baseballProgram: {
-      isNot: null,
-    },
-  },
-  include: {
-    baseballProgram: {
-      include: {
-        rosterNeeds: true,
-        metricAverages: true,
+    const searchParams = req.nextUrl.searchParams;
+
+    const division = cleanFilter(searchParams.get("division"));
+    const region = cleanFilter(searchParams.get("region"));
+    const state = cleanFilter(searchParams.get("state"))?.toUpperCase() || null;
+    const control = cleanFilter(searchParams.get("control"));
+
+    const colleges = await prisma.college.findMany({
+      take: 250,
+      orderBy: { name: "asc" },
+      where: {
+        ...(region ? { region: region as any } : {}),
+        ...(state ? { state } : {}),
+        ...(control ? { control: control as any } : {}),
+        baseballProgram: {
+          is: {
+            ...(division ? { division: division as any } : {}),
+          },
+        },
       },
-    },
-  },
-});
+      include: {
+        baseballProgram: {
+          include: {
+            rosterNeeds: true,
+            metricAverages: true,
+          },
+        },
+      },
+    });
 
     const results = (
       await Promise.all(
@@ -142,64 +160,70 @@ const colleges = await prisma.college.findMany({
             division: String(baseball?.division || college.division || ""),
           });
 
-        const fit = scoreCollegeFit({
-          player: profile.player,
-          college: {
-            averageGpa: asNumber(baseball?.averageGpa),
-            division: baseball?.division || college.division || null,
-            metricAverages: bestMetrics.benchmarks,
-            metricBenchmarkSource: {
-              level: bestMetrics.level,
-              label: bestMetrics.label,
+          const fit = scoreCollegeFit({
+            player: profile.player,
+            college: {
+              averageGpa: asNumber(baseball?.averageGpa),
+              division: baseball?.division || college.division || null,
+              metricAverages: bestMetrics.benchmarks,
+              metricBenchmarkSource: {
+                level: bestMetrics.level,
+                label: bestMetrics.label,
+              },
+              rosterNeeds:
+                baseball?.rosterNeeds?.map((need) => ({
+                  gradYear: need.gradYear,
+                  position: need.position,
+                  needLevel: need.needLevel,
+                })) || [],
             },
-            rosterNeeds:
-              baseball?.rosterNeeds?.map((need) => ({
-                gradYear: need.gradYear,
-                position: need.position,
-                needLevel: need.needLevel,
-              })) || [],
-          },
-        });
+          });
 
-        return {
-          college: {
-            id: college.id,
-            name: college.name,
-            slug: college.slug,
-            websiteUrl: college.websiteUrl,
-            admissionsUrl: college.admissionsUrl,
-            city: college.city,
-            state: college.state,
-            region: college.region,
-            control: college.control,
-            schoolType: college.schoolType,
-            tuitionInState: college.tuitionInState,
-            tuitionOutOfState: college.tuitionOutOfState,
-            baseballProgram: baseball
-              ? {
-                  nickname: baseball.nickname,
-                  division: baseball.division,
-                  conference: baseball.conference,
-                  baseballWebsiteUrl: baseball.baseballWebsiteUrl,
-                  averageGpa: baseball.averageGpa,
-                  currentRosterSize: baseball.currentRosterSize,
-                  transferHeavy: baseball.transferHeavy,
-                  jucoFriendly: baseball.jucoFriendly,
-                }
-              : null,
-          },
-          truthFit: fit,
-        };
+          return {
+            college: {
+              id: college.id,
+              name: college.name,
+              slug: college.slug,
+              websiteUrl: college.websiteUrl,
+              admissionsUrl: college.admissionsUrl,
+              city: college.city,
+              state: college.state,
+              region: college.region,
+              control: college.control,
+              schoolType: college.schoolType,
+              tuitionInState: college.tuitionInState,
+              tuitionOutOfState: college.tuitionOutOfState,
+              baseballProgram: baseball
+                ? {
+                    nickname: baseball.nickname,
+                    division: baseball.division,
+                    conference: baseball.conference,
+                    baseballWebsiteUrl: baseball.baseballWebsiteUrl,
+                    averageGpa: baseball.averageGpa,
+                    currentRosterSize: baseball.currentRosterSize,
+                    transferHeavy: baseball.transferHeavy,
+                    jucoFriendly: baseball.jucoFriendly,
+                  }
+                : null,
+            },
+            truthFit: fit,
+          };
         })
       )
     ).sort((a, b) => b.truthFit.score - a.truthFit.score);
 
-return NextResponse.json({
-  ok: true,
-  player: profile.player,
-  count: results.length,
-  results,
-});
+    return NextResponse.json({
+      ok: true,
+      player: profile.player,
+      filters: {
+        division,
+        region,
+        state,
+        control,
+      },
+      count: results.length,
+      results,
+    });
   } catch (err) {
     console.error("PLAYER_TRUTH_FIT_ERROR", err);
     return NextResponse.json(
