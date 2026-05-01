@@ -275,6 +275,8 @@ function getStatusRank(status?: string) {
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [priorityFilter, setPriorityFilter] = useState("ALL");
   const [divisionFilter, setDivisionFilter] = useState("ALL");
+  const [regionFilter, setRegionFilter] = useState("ALL");
+  const [stateFilter, setStateFilter] = useState("ALL");
 
   async function loadSavedPrograms() {
     try {
@@ -450,7 +452,13 @@ async function updateProgramNotes(collegeId: string, notes: string) {
       divisionFilter === "ALL" ||
       item.college.baseballProgram?.division === divisionFilter;
 
-    return statusMatch && priorityMatch && divisionMatch;
+      const regionMatch =
+  regionFilter === "ALL" || item.college.region === regionFilter;
+
+const stateMatch =
+  stateFilter === "ALL" || item.college.state === stateFilter;
+
+    return statusMatch && priorityMatch && divisionMatch && regionMatch && stateMatch;
   });
 
   const sortedSaved = [...filteredSaved].sort((a, b) => {
@@ -568,6 +576,8 @@ async function updateProgramNotes(collegeId: string, notes: string) {
         setStatusFilter("ALL");
         setPriorityFilter("ALL");
         setDivisionFilter("ALL");
+        setRegionFilter("ALL");
+setStateFilter("ALL");
       }}
       style={clearFilterButtonStyle}
     >
