@@ -112,18 +112,23 @@ export async function GET() {
       );
     }
 
-    const colleges = await prisma.college.findMany({
-      take: 250,
-      orderBy: { name: "asc" },
+const colleges = await prisma.college.findMany({
+  take: 250,
+  orderBy: { name: "asc" },
+  where: {
+    baseballProgram: {
+      isNot: null,
+    },
+  },
+  include: {
+    baseballProgram: {
       include: {
-        baseballProgram: {
-          include: {
-            rosterNeeds: true,
-            metricAverages: true,
-          },
-        },
+        rosterNeeds: true,
+        metricAverages: true,
       },
-    });
+    },
+  },
+});
 
     const results = (
       await Promise.all(
