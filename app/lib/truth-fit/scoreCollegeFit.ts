@@ -6,6 +6,13 @@ export type TruthFitLabel =
   | "Possible Match"
   | "Not Yet";
 
+export type TruthFitBenchmarkSourceLevel =
+  | "SCHOOL"
+  | "CONFERENCE"
+  | "DIVISION"
+  | "GLOBAL"
+  | "ESTIMATED";
+
 export type TruthFitInput = {
   player: {
     gpa?: number | null;
@@ -39,13 +46,6 @@ export type TruthFitInput = {
   };
 };
 
-export type TruthFitBenchmarkSourceLevel =
-  | "SCHOOL"
-  | "CONFERENCE"
-  | "DIVISION"
-  | "GLOBAL"
-  | "ESTIMATED";
-
 export type TruthFitResult = {
   score: number;
   label: TruthFitLabel;
@@ -68,6 +68,22 @@ function labelFromScore(score: number): TruthFitLabel {
 
 function normalizePos(value?: string | null) {
   return String(value || "").trim().toUpperCase();
+}
+
+function expandedPositions(primary?: string | null, secondary?: string | null) {
+  const raw = [normalizePos(primary), normalizePos(secondary)].filter(Boolean);
+  const out = new Set<string>();
+
+  for (const pos of raw) {
+    out.add(pos);
+
+    if (pos === "LF" || pos === "CF" || pos === "RF") out.add("OF");
+    if (pos === "2B" || pos === "SS") out.add("MIF");
+    if (pos === "1B" || pos === "3B") out.add("CIF");
+    if (pos !== "P") out.add("Utility");
+  }
+
+  return Array.from(out);
 }
 
 function formatGpa(value: number) {
@@ -95,6 +111,27 @@ function toNumber(value: number | string | null | undefined) {
   if (value == null) return null;
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
+}
+
+function needLevel(value?: string | null) {
+  return String(value || "").trim().toUpperCase();
+}
+
+function metricWeight(key: string) {
+  if (key === "avgFbVelo") return 1.35;
+  if (key === "exitVelo") return 1.25;
+  if (key === "popTime") return 1.2;
+  if (
+    key === "infieldThrowVelo" ||
+    key === "outfieldThrowVelo" ||
+    key === "catcherThrowVelo"
+  ) {
+    return 1.15;
+  }
+  if (key === "sixtyYdDash" || key === "homeToFirst") return 1.1;
+  if (key === "avgChVelo" || key === "avgBbVelo") return 0.9;
+  if (key === "heightIn" || key === "weightLb") return 0.55;
+  return 1;
 }
 
 export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
@@ -140,7 +177,8 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   possible += 35;
 
   const playerGradYear = input.player.gradYear ?? null;
-  const positions = [
+  const positions = expandedPositions(input.player.primaryPos, input.player.secondaryPos);
+  const displayPositions = [
     normalizePos(input.player.primaryPos),
     normalizePos(input.player.secondaryPos),
   ].filter(Boolean);
@@ -158,11 +196,11 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     );
   });
 
-  const highNeed = matchingNeeds.some((n) => n.needLevel === "HIGH");
-  const mediumNeed = matchingNeeds.some((n) => n.needLevel === "MEDIUM");
-  const lowNeed = matchingNeeds.some((n) => n.needLevel === "LOW");
+  const highNeed = matchingNeeds.some((n) => needLevel(n.needLevel) === "HIGH");
+  const mediumNeed = matchingNeeds.some((n) => needLevel(n.needLevel) === "MEDIUM");
+  const lowNeed = matchingNeeds.some((n) => needLevel(n.needLevel) === "LOW");
 
-  const posLabel = formatPositions(positions);
+  const posLabel = formatPositions(displayPositions);
 
   if (highNeed) {
     earned += 35;
@@ -203,13 +241,16 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     "outfieldThrowVelo",
     "catcherThrowVelo",
     "avgFbVelo",
+    "avgChVelo",
+    "avgBbVelo",
     "popTime",
     "heightIn",
     "weightLb",
   ];
 
-  const matchedMetricScores: number[] = [];
-  let metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =
+  const matchedMetricScores: Array<{ score: number; weight: number }> = [];
+
+  const metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =
     input.college.metricBenchmarkSource || {
       level: "ESTIMATED",
       label: "Estimated - benchmark data not available yet",
@@ -229,10 +270,7 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       const metricKey = String(metric.metricKey || "").trim();
       const metricPos = normalizePos(metric.position);
 
-      return (
-        metricKey === key &&
-        (!metricPos || positions.includes(metricPos))
-      );
+      return metricKey === key && (!metricPos || positions.includes(metricPos));
     });
 
     if (!benchmark) continue;
@@ -268,12 +306,10 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       }
     }
 
-    matchedMetricScores.push(metricScore);
-
-    metricsBenchmarkSource = {
-      level: "SCHOOL",
-      label: "School-specific program benchmark",
-    };
+    matchedMetricScores.push({
+      score: metricScore,
+      weight: metricWeight(key),
+    });
   }
 
   if (matchedMetricScores.length === 0) {
@@ -282,9 +318,17 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       "Metrics fit is estimated because matching program benchmark data is not available yet."
     );
   } else {
-    const metricAverage =
-      matchedMetricScores.reduce((sum, value) => sum + value, 0) /
-      matchedMetricScores.length;
+    const weightedScoreTotal = matchedMetricScores.reduce(
+      (sum, item) => sum + item.score * item.weight,
+      0
+    );
+
+    const weightTotal = matchedMetricScores.reduce(
+      (sum, item) => sum + item.weight,
+      0
+    );
+
+    const metricAverage = weightTotal > 0 ? weightedScoreTotal / weightTotal : 0;
 
     const metricPoints = Math.round(metricAverage * 30);
     earned += metricPoints;
