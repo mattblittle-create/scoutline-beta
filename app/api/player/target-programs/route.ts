@@ -236,7 +236,10 @@ export async function POST(req: NextRequest) {
     }
 
 const safePriority: TargetPriority =
-  VALID_PRIORITIES.includes(priority) ? priority : "MEDIUM";
+  typeof priority === "string" &&
+  VALID_PRIORITIES.includes(priority as TargetPriority)
+    ? (priority as TargetPriority)
+    : "MEDIUM";
 
 const saved = await prisma.collegeSavedSchool.upsert({
   where: {
