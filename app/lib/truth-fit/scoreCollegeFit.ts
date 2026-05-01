@@ -51,6 +51,7 @@ export type TruthFitResult = {
   label: TruthFitLabel;
   reasons: string[];
   gaps: string[];
+  development: string[]; // 👈 NEW
   benchmarkSource: {
     metrics: {
       level: TruthFitBenchmarkSourceLevel;
@@ -141,6 +142,7 @@ function metricWeight(key: string) {
 export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   const reasons: string[] = [];
   const gaps: string[] = [];
+  const development: string[] = [];
 
   let earned = 0;
   let possible = 0;
@@ -345,7 +347,77 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       gaps.push(
         `Your available metrics are currently below the ${metricsBenchmarkSource.label.toLowerCase()}.`
       );
+
+      development.push("Improving your core athletic metrics will significantly increase your recruiting fit.");
     }
+  }
+
+  // Targeted development suggestions based on current player metrics
+  const exitVelo = latestMetricValue(input.player.metrics, "exitVelo");
+  const sixty = latestMetricValue(input.player.metrics, "sixtyYdDash");
+  const homeToFirst = latestMetricValue(input.player.metrics, "homeToFirst");
+  const infieldThrowVelo = latestMetricValue(input.player.metrics, "infieldThrowVelo");
+  const outfieldThrowVelo = latestMetricValue(input.player.metrics, "outfieldThrowVelo");
+  const catcherThrowVelo = latestMetricValue(input.player.metrics, "catcherThrowVelo");
+  const avgFbVelo = latestMetricValue(input.player.metrics, "avgFbVelo");
+
+  const primaryPos = normalizePos(input.player.primaryPos);
+  const secondaryPos = normalizePos(input.player.secondaryPos);
+
+  if (exitVelo != null && exitVelo < 90) {
+    development.push("Increasing exit velocity will help improve your offensive fit at most college levels.");
+  }
+
+  if (sixty != null && sixty > 7.0) {
+    development.push("Improving your 60-yard dash time can raise your fit score, especially for infield and outfield opportunities.");
+  }
+
+  if (homeToFirst != null && homeToFirst > 4.5) {
+    development.push("Improving home-to-first time can help show better game-speed athleticism.");
+  }
+
+  if (
+    infieldThrowVelo != null &&
+    infieldThrowVelo < 85 &&
+    (primaryPos === "1B" ||
+      primaryPos === "2B" ||
+      primaryPos === "SS" ||
+      primaryPos === "3B" ||
+      secondaryPos === "1B" ||
+      secondaryPos === "2B" ||
+      secondaryPos === "SS" ||
+      secondaryPos === "3B")
+  ) {
+    development.push("Adding infield throwing velocity will improve your defensive value on the left side or corner infield.");
+  }
+
+  if (
+    outfieldThrowVelo != null &&
+    outfieldThrowVelo < 88 &&
+    (primaryPos === "LF" ||
+      primaryPos === "CF" ||
+      primaryPos === "RF" ||
+      secondaryPos === "LF" ||
+      secondaryPos === "CF" ||
+      secondaryPos === "RF")
+  ) {
+    development.push("Improving outfield throwing velocity will strengthen your profile for college outfield roles.");
+  }
+
+  if (
+    catcherThrowVelo != null &&
+    catcherThrowVelo < 78 &&
+    (primaryPos === "C" || secondaryPos === "C")
+  ) {
+    development.push("Improving catcher throwing velocity can raise your defensive fit behind the plate.");
+  }
+
+  if (
+    avgFbVelo != null &&
+    avgFbVelo < 82 &&
+    (primaryPos === "P" || secondaryPos === "P")
+  ) {
+    development.push("Increasing average fastball velocity will improve your pitching fit against college benchmarks.");
   }
 
 const score = Math.round((earned / possible) * 100);
@@ -359,10 +431,11 @@ const hasEstimatedSections =
 return {
   score,
   label: labelFromScore(score, hasEstimatedSections),
-    reasons,
-    gaps,
-    benchmarkSource: {
-      metrics: metricsBenchmarkSource,
-    },
-  };
+  reasons,
+  gaps,
+  development: Array.from(new Set(development)).slice(0, 4),
+  benchmarkSource: {
+    metrics: metricsBenchmarkSource,
+  },
+};
 }
