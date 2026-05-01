@@ -228,6 +228,15 @@ function getFitBorderColor(label?: string | null) {
   return "#fecaca";
 }
 
+function SummaryCard({ label, value }: { label: string; value: number }) {
+  return (
+    <div style={summaryCardStyle}>
+      <div style={summaryValueStyle}>{value}</div>
+      <div style={summaryLabelStyle}>{label}</div>
+    </div>
+  );
+}
+
 export default function TargetProgramsPage() {
   const [saved, setSaved] = useState<SavedProgram[]>([]);
 
@@ -497,6 +506,12 @@ const stateMatch =
     ["HIGH", "High Priority", groupedSaved.HIGH.length],
   ] as const;
 
+  const highPriorityCount = saved.filter((item) => item.priority === "HIGH").length;
+  const contactedCount = saved.filter((item) => item.status === "CONTACTED").length;
+  const offersOrCommitsCount = saved.filter((item) =>
+    ["OFFERED", "COMMITTED", "SIGNED"].includes(item.status)
+  ).length;
+
   return (
     <main style={{ color: "#0f172a", fontFamily: "Arial, sans-serif" }}>
       <section style={{ maxWidth: 1120, margin: "0 auto", padding: "28px 16px 56px" }}>
@@ -524,6 +539,15 @@ const stateMatch =
   </Link>
 </div>
         </div>
+
+        {saved.length > 0 ? (
+          <div style={summaryGridStyle}>
+            <SummaryCard label="Total Saved" value={saved.length} />
+            <SummaryCard label="High Priority" value={highPriorityCount} />
+            <SummaryCard label="Contacted" value={contactedCount} />
+            <SummaryCard label="Offers / Commits" value={offersOrCommitsCount} />
+          </div>
+        ) : null}
 
         {error ? <div style={errorStyle}>{error}</div> : null}
 
@@ -1306,4 +1330,35 @@ const clearFilterButtonStyle: React.CSSProperties = {
   color: "#0f172a",
   fontWeight: 900,
   cursor: "pointer",
+};
+
+const summaryGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+  gap: 10,
+  marginBottom: 14,
+};
+
+const summaryCardStyle: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  background: "#ffffff",
+  borderRadius: 16,
+  padding: 14,
+  boxShadow: "0 4px 12px rgba(15,23,42,0.04)",
+};
+
+const summaryValueStyle: React.CSSProperties = {
+  fontSize: 28,
+  fontWeight: 900,
+  color: "#0f172a",
+  lineHeight: 1,
+};
+
+const summaryLabelStyle: React.CSSProperties = {
+  marginTop: 5,
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#64748b",
+  textTransform: "uppercase",
+  letterSpacing: "0.04em",
 };
