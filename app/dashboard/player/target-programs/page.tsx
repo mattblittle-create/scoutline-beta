@@ -277,6 +277,7 @@ function getStatusRank(status?: string) {
   const [divisionFilter, setDivisionFilter] = useState("ALL");
   const [regionFilter, setRegionFilter] = useState("ALL");
   const [stateFilter, setStateFilter] = useState("ALL");
+  const [sortBy, setSortBy] = useState("PRIORITY");
 
   async function loadSavedPrograms() {
     try {
@@ -462,6 +463,20 @@ const stateMatch =
   });
 
   const sortedSaved = [...filteredSaved].sort((a, b) => {
+    if (sortBy === "TRUTH_FIT") {
+      return (b.truthFit?.score || 0) - (a.truthFit?.score || 0);
+    }
+
+    if (sortBy === "STATUS") {
+      const s = getStatusRank(a.status) - getStatusRank(b.status);
+      if (s !== 0) return s;
+      return a.college.name.localeCompare(b.college.name);
+    }
+
+    if (sortBy === "SCHOOL_NAME") {
+      return a.college.name.localeCompare(b.college.name);
+    }
+
     const p = getPriorityRank(a.priority) - getPriorityRank(b.priority);
     if (p !== 0) return p;
 
@@ -650,6 +665,20 @@ const stateMatch =
       </select>
     </label>
 
+    <label style={filterFieldStyle}>
+      <span style={filterLabelStyle}>Sort By</span>
+      <select
+        value={sortBy}
+        onChange={(e) => setSortBy(e.target.value)}
+        style={filterSelectStyle}
+      >
+        <option value="PRIORITY">Priority</option>
+        <option value="TRUTH_FIT">Truth Fit Score</option>
+        <option value="STATUS">Status</option>
+        <option value="SCHOOL_NAME">School Name</option>
+      </select>
+    </label>
+
     <button
       type="button"
       onClick={() => {
@@ -658,6 +687,7 @@ const stateMatch =
         setDivisionFilter("ALL");
         setRegionFilter("ALL");
         setStateFilter("ALL");
+        setSortBy("PRIORITY");
       }}
       style={clearFilterButtonStyle}
     >
