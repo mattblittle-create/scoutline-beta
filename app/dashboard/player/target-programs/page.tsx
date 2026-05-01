@@ -474,15 +474,18 @@ async function updateProgramNotes(collegeId: string, notes: string) {
             </p>
           </div>
 
-          <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
-            <Link href="/dashboard/player/college-search" style={secondaryButtonStyle}>
-              Search Colleges
-            </Link>
+<div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+  <Link href="/dashboard/player/recruiting-tool" style={primaryButtonStyle}>
+    Recruiting Tool
+  </Link>
 
-<Link href="/dashboard/player" style={backToDashboardStyle}>
-  Back to Dashboard
-</Link>
-          </div>
+  <Link href="/dashboard/player/college-search" style={secondaryButtonStyle}>
+    Search Colleges
+  </Link>
+
+  <Link href="/dashboard/player" style={backToDashboardStyle}>
+    Back to Dashboard
+  </Link>
         </div>
 
         {error ? <div style={errorStyle}>{error}</div> : null}
