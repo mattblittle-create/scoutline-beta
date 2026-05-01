@@ -122,6 +122,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+const safePriority: TargetPriority =
+  VALID_PRIORITIES.includes(priority) ? priority : "MEDIUM";
+
 const saved = await prisma.collegeSavedSchool.upsert({
   where: {
     playerProfileId_collegeId: {
@@ -130,14 +133,14 @@ const saved = await prisma.collegeSavedSchool.upsert({
     },
   },
   update: {
-    ...(priority ? { priority } : {}),
+    priority: safePriority,
   },
   create: {
     playerProfileId: profile.id,
     collegeId,
     listName: "Target Programs",
     status: "SAVED",
-    priority: priority || "MEDIUM",
+    priority: safePriority,
   },
 });
 
