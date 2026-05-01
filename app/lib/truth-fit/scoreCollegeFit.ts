@@ -59,10 +59,14 @@ export type TruthFitResult = {
   };
 };
 
-function labelFromScore(score: number): TruthFitLabel {
+function labelFromScore(score: number, hasEstimatedSections = false): TruthFitLabel {
   if (score >= 90) return "Strong Fit";
   if (score >= 75) return "Match";
   if (score >= 60) return "Possible Match";
+
+  // During beta, avoid overly harsh labels when major data sections are incomplete.
+  if (hasEstimatedSections && score >= 50) return "Possible Match";
+
   return "Not Yet";
 }
 
@@ -344,11 +348,17 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     }
   }
 
-  const score = Math.round((earned / possible) * 100);
+const score = Math.round((earned / possible) * 100);
 
-  return {
-    score,
-    label: labelFromScore(score),
+const hasEstimatedSections =
+  playerGpa == null ||
+  collegeGpa == null ||
+  needs.length === 0 ||
+  matchedMetricScores.length === 0;
+
+return {
+  score,
+  label: labelFromScore(score, hasEstimatedSections),
     reasons,
     gaps,
     benchmarkSource: {
