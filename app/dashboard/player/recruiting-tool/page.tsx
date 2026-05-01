@@ -14,7 +14,15 @@ function getPriorityFromFit(label: string) {
 const DIVISION_OPTIONS = ["ALL", "NCAA_D1", "NCAA_D2", "NCAA_D3", "NAIA", "NJCAA_D1", "NJCAA_D2", "NJCAA_D3"];
 const REGION_OPTIONS = ["ALL", "NORTHEAST", "MID_ATLANTIC", "SOUTHEAST", "MIDWEST", "SOUTHWEST", "WEST", "PACIFIC"];
 const CONTROL_OPTIONS = ["ALL", "PUBLIC", "PRIVATE"];
-const STATE_OPTIONS = ["ALL", "SC", "NC", "GA", "VA", "TN", "FL", "AL", "MS", "KY"];
+const STATE_OPTIONS = [
+  "ALL",
+  "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA",
+  "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
+  "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ",
+  "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC",
+  "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+  "DC",
+];
 
 export default function PlayerRecruitingToolPage() {
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
@@ -316,6 +324,17 @@ export default function PlayerRecruitingToolPage() {
                         ))}
                       </div>
                     ) : null}
+
+                    {Array.isArray(fit.development) && fit.development.length > 0 ? (
+                      <div style={developmentBoxStyle}>
+                        <div style={developmentTitleStyle}>How to improve your fit</div>
+                        {fit.development.slice(0, 2).map((tip: string, index: number) => (
+                          <div key={index} style={developmentLineStyle}>
+                            • {tip}
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
                   </article>
                 );
               })}
@@ -468,3 +487,23 @@ const gapBoxStyle: React.CSSProperties = { marginTop: 10, border: "1px solid #fe
 const gapTitleStyle: React.CSSProperties = { fontSize: 12, fontWeight: 900, color: "#9a3412", marginBottom: 6 };
 const gapLineStyle: React.CSSProperties = { fontSize: 13, color: "#7c2d12", lineHeight: 1.45 };
 const benchmarkSourceStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "7px 11px", width: "fit-content", color: "#475569", fontSize: 12, fontWeight: 900 };
+const developmentBoxStyle: React.CSSProperties = {
+  marginTop: 10,
+  border: "1px solid #e0e7ff",
+  background: "#eef2ff",
+  borderRadius: 12,
+  padding: 12,
+};
+
+const developmentTitleStyle: React.CSSProperties = {
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#3730a3",
+  marginBottom: 6,
+};
+
+const developmentLineStyle: React.CSSProperties = {
+  fontSize: 13,
+  color: "#312e81",
+  lineHeight: 1.45,
+};
