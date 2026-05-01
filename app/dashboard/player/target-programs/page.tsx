@@ -32,6 +32,19 @@ type SavedProgram = {
   status: string;
   priority?: string | null;
   notes?: string | null;
+  truthFit?: {
+    score: number;
+    label: string;
+    reasons?: string[];
+    gaps?: string[];
+    development?: string[];
+    benchmarkSource?: {
+      metrics?: {
+        level: string;
+        label: string;
+      };
+    };
+  } | null;
   college: {
     id: string;
     name: string;
@@ -192,6 +205,27 @@ type BaseballCoach = {
 function getPrimaryCoach(coaches?: BaseballCoach[] | null) {
   if (!Array.isArray(coaches) || coaches.length === 0) return null;
   return coaches.find((coach) => coach.isHeadCoach) || coaches[0];
+}
+
+function getFitColor(label?: string | null) {
+  if (label === "Strong Fit") return "#15803d";
+  if (label === "Match") return "#0369a1";
+  if (label === "Possible Match") return "#b45309";
+  return "#b91c1c";
+}
+
+function getFitBackground(label?: string | null) {
+  if (label === "Strong Fit") return "#f0fdf4";
+  if (label === "Match") return "#e0f2fe";
+  if (label === "Possible Match") return "#fffbeb";
+  return "#fef2f2";
+}
+
+function getFitBorderColor(label?: string | null) {
+  if (label === "Strong Fit") return "#bbf7d0";
+  if (label === "Match") return "#bae6fd";
+  if (label === "Possible Match") return "#fde68a";
+  return "#fecaca";
 }
 
 export default function TargetProgramsPage() {
@@ -574,6 +608,20 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
                   </div>
 
 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 12 }}>
+  {item.truthFit ? (
+    <span
+      style={{
+        ...truthFitPillStyle,
+        color: getFitColor(item.truthFit.label),
+        background: getFitBackground(item.truthFit.label),
+        borderColor: getFitBorderColor(item.truthFit.label),
+      }}
+      title={item.truthFit.benchmarkSource?.metrics?.label || "Truth Fit score"}
+    >
+      Truth Fit: {item.truthFit.label} • {item.truthFit.score}
+    </span>
+  ) : null}
+
   <span style={pillStyle}>{pretty(college.region)}</span>
   <span style={pillStyle}>{pretty(college.control)}</span>
   <span style={pillStyle}>{pretty(college.schoolType)}</span>
@@ -758,6 +806,16 @@ const cardStyle: React.CSSProperties = {
   background: "#ffffff",
   padding: 18,
   boxShadow: "0 8px 20px rgba(15,23,42,0.05)",
+};
+
+const truthFitPillStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  border: "1px solid",
+  borderRadius: 999,
+  padding: "6px 10px",
+  fontSize: 12,
+  fontWeight: 900,
 };
 
 const pillStyle: React.CSSProperties = {
