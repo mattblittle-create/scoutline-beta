@@ -127,6 +127,7 @@ export default function CollegeSearchPage() {
   const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
   const [savedCollegeResults, setSavedCollegeResults] = useState<CollegeResult[]>([]);
   const [savedCollegeStatuses, setSavedCollegeStatuses] = useState<Record<string, string>>({});
+  const [savedCollegePriorities, setSavedCollegePriorities] = useState<Record<string, string>>({});
   const [savingCollegeId, setSavingCollegeId] = useState("");
 
   const [showSavedOnly, setShowSavedOnly] = useState(false);
@@ -189,6 +190,7 @@ useEffect(() => {
 setSavedCollegeIds([]);
 setSavedCollegeResults([]);
 setSavedCollegeStatuses({});
+setSavedCollegePriorities({});
 return;
     }
 
@@ -215,15 +217,22 @@ const statuses = savedItems.reduce((acc: Record<string, string>, item: any) => {
   return acc;
 }, {});
 
+const priorities = savedItems.reduce((acc: Record<string, string>, item: any) => {
+  if (item?.collegeId) acc[item.collegeId] = item?.priority || "";
+  return acc;
+}, {});
+
 setSavedCollegeIds(ids);
 setSavedCollegeResults(colleges);
 setSavedCollegeStatuses(statuses);
+setSavedCollegePriorities(priorities);
       }
     } catch {
       if (!cancelled) {
 setSavedCollegeIds([]);
 setSavedCollegeResults([]);
 setSavedCollegeStatuses({});
+setSavedCollegePriorities({});
 }
     }
   }
@@ -355,6 +364,11 @@ if (isSaved) {
     delete next[collegeId];
     return next;
   });
+  setSavedCollegePriorities((prev) => {
+  const next = { ...prev };
+  delete next[collegeId];
+  return next;
+});
 } else {
   const justSaved = results.find((college) => college.id === collegeId);
 if (justSaved) {
@@ -366,6 +380,10 @@ if (justSaved) {
     ...prev,
     [collegeId]: "SAVED",
   }));
+  setSavedCollegePriorities((prev) => ({
+  ...prev,
+  [collegeId]: "",
+}));
 }
 }
   } catch (err) {
@@ -407,6 +425,40 @@ async function updateSavedStatus(collegeId: string, status: string) {
       [collegeId]: previous,
     }));
     setError("Could not update target program status.");
+  }
+}
+
+async function updateSavedPriority(collegeId: string, priority: string) {
+  if (!isLoggedIn || !savedCollegeIds.includes(collegeId)) return;
+
+  const previous = savedCollegePriorities[collegeId] || "";
+
+  setSavedCollegePriorities((prev) => ({
+    ...prev,
+    [collegeId]: priority,
+  }));
+
+  try {
+    const res = await fetch("/api/player/target-programs", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ collegeId, priority }),
+    });
+
+    const data = await res.json().catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(data?.error || "Priority update failed.");
+    }
+  } catch (err) {
+    console.error("TARGET_PROGRAM_PRIORITY_UPDATE_ERROR", err);
+    setSavedCollegePriorities((prev) => ({
+      ...prev,
+      [collegeId]: previous,
+    }));
+    setError("Could not update target program priority.");
   }
 }
 
@@ -647,22 +699,40 @@ const visibleResults = showSavedOnly ? savedCollegeResults : results;
   <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
 
   {isLoggedIn && savedCollegeIds.includes(college.id) ? (
-    <label style={statusFieldStyle}>
-      <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
-        Target Status
-      </span>
-      <select
-        value={savedCollegeStatuses[college.id] || "SAVED"}
-        onChange={(e) => updateSavedStatus(college.id, e.target.value)}
-        style={statusSelectStyle}
-      >
-        {TARGET_STATUS_OPTIONS.map(([value, label]) => (
-          <option key={value} value={value}>
-            {label}
-          </option>
-        ))}
-      </select>
-    </label>
+    <>
+      <label style={statusFieldStyle}>
+        <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+          Target Status
+        </span>
+        <select
+          value={savedCollegeStatuses[college.id] || "SAVED"}
+          onChange={(e) => updateSavedStatus(college.id, e.target.value)}
+          style={statusSelectStyle}
+        >
+          {TARGET_STATUS_OPTIONS.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label style={statusFieldStyle}>
+        <span style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+          Target Priority
+        </span>
+        <select
+          value={savedCollegePriorities[college.id] || ""}
+          onChange={(e) => updateSavedPriority(college.id, e.target.value)}
+          style={statusSelectStyle}
+        >
+          <option value="">No Priority</option>
+          <option value="HIGH">High Priority</option>
+          <option value="MEDIUM">Medium Priority</option>
+          <option value="LOW">Low Priority</option>
+        </select>
+      </label>
+    </>
   ) : null}
 </div>
 
