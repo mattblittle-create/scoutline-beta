@@ -69,13 +69,14 @@ baseballProgram?: {
 
 function pretty(value?: string | null) {
   if (!value) return "—";
-  const raw = value.replace(/_/g, " ").toUpperCase();
+  const raw = String(value).replace(/_/g, " ").toUpperCase();
 
   return raw
     .split(" ")
     .map((word) => {
       if (["NCAA", "NAIA", "NJCAA", "SEC", "ACC"].includes(word)) return word;
       if (/^D[123]$/.test(word)) return word;
+      if (/^[A-Z]{2}$/.test(word)) return word;
       return word.charAt(0) + word.slice(1).toLowerCase();
     })
     .join(" ");
@@ -751,28 +752,12 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
   );
 }
 
-function Info({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={infoStyle}>
-      <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>{label}</div>
-      <div style={{ marginTop: 3, fontWeight: 900 }}>{value}</div>
-    </div>
-  );
-}
-
 const cardStyle: React.CSSProperties = {
   border: "1px solid #e5e7eb",
   borderRadius: 18,
   background: "#ffffff",
   padding: 18,
   boxShadow: "0 8px 20px rgba(15,23,42,0.05)",
-};
-
-const infoStyle: React.CSSProperties = {
-  border: "1px solid #eef2f7",
-  background: "#f8fafc",
-  borderRadius: 12,
-  padding: "10px 12px",
 };
 
 const pillStyle: React.CSSProperties = {
