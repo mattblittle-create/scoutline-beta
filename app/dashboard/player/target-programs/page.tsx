@@ -273,6 +273,8 @@ function getStatusRank(status?: string) {
   const [savingNotesCollegeId, setSavingNotesCollegeId] = useState("");
   const [error, setError] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
+  const [priorityFilter, setPriorityFilter] = useState("ALL");
+  const [divisionFilter, setDivisionFilter] = useState("ALL");
 
   async function loadSavedPrograms() {
     try {
@@ -435,10 +437,21 @@ async function updateProgramNotes(collegeId: string, notes: string) {
     statusCounts[value] = saved.filter((item) => item.status === value).length;
   }
 
-  const filteredSaved =
-    statusFilter === "ALL"
-      ? saved
-      : saved.filter((item) => item.status === statusFilter);
+  const filteredSaved = saved.filter((item) => {
+    const statusMatch =
+      statusFilter === "ALL" || item.status === statusFilter;
+
+    const priorityMatch =
+      priorityFilter === "ALL" ||
+      (priorityFilter === "NONE" && !item.priority) ||
+      item.priority === priorityFilter;
+
+    const divisionMatch =
+      divisionFilter === "ALL" ||
+      item.college.baseballProgram?.division === divisionFilter;
+
+    return statusMatch && priorityMatch && divisionMatch;
+  });
 
   const sortedSaved = [...filteredSaved].sort((a, b) => {
     const p = getPriorityRank(a.priority) - getPriorityRank(b.priority);
@@ -515,6 +528,55 @@ async function updateProgramNotes(collegeId: string, notes: string) {
 ) : null}
 
 {saved.length > 0 ? (
+  <div style={advancedFilterBarStyle}>
+    <label style={filterFieldStyle}>
+      <span style={filterLabelStyle}>Priority</span>
+      <select
+        value={priorityFilter}
+        onChange={(e) => setPriorityFilter(e.target.value)}
+        style={filterSelectStyle}
+      >
+        <option value="ALL">All Priorities</option>
+        <option value="HIGH">High Priority</option>
+        <option value="MEDIUM">Medium Priority</option>
+        <option value="LOW">Low Priority</option>
+        <option value="NONE">No Priority</option>
+      </select>
+    </label>
+
+    <label style={filterFieldStyle}>
+      <span style={filterLabelStyle}>Division</span>
+      <select
+        value={divisionFilter}
+        onChange={(e) => setDivisionFilter(e.target.value)}
+        style={filterSelectStyle}
+      >
+        <option value="ALL">All Divisions</option>
+        <option value="NCAA_D1">NCAA D1</option>
+        <option value="NCAA_D2">NCAA D2</option>
+        <option value="NCAA_D3">NCAA D3</option>
+        <option value="NAIA">NAIA</option>
+        <option value="NJCAA_D1">NJCAA D1</option>
+        <option value="NJCAA_D2">NJCAA D2</option>
+        <option value="NJCAA_D3">NJCAA D3</option>
+      </select>
+    </label>
+
+    <button
+      type="button"
+      onClick={() => {
+        setStatusFilter("ALL");
+        setPriorityFilter("ALL");
+        setDivisionFilter("ALL");
+      }}
+      style={clearFilterButtonStyle}
+    >
+      Clear Filters
+    </button>
+  </div>
+) : null}
+
+{saved.length > 0 ? (
   <div style={priorityJumpBarStyle}>
     {priorityJumpGroups.map(([key, label, count]) => (
       <a
@@ -541,6 +603,10 @@ async function updateProgramNotes(collegeId: string, notes: string) {
             <Link href="/dashboard/player/college-search" style={{ ...primaryButtonStyle, marginTop: 14 }}>
               Start Searching
             </Link>
+          </div>
+        ) : filteredSaved.length === 0 ? (
+          <div style={emptyStyle}>
+            No saved programs match the current filters.
           </div>
         ) : (
           <div style={{ display: "grid", gap: 18 }}>
@@ -1077,4 +1143,47 @@ const fitDevelopmentLabelStyle: React.CSSProperties = {
   letterSpacing: "0.04em",
   color: "#3730a3",
   fontWeight: 900,
+};
+
+const advancedFilterBarStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+  gap: 10,
+  border: "1px solid #e5e7eb",
+  background: "#f8fafc",
+  borderRadius: 16,
+  padding: 12,
+  marginBottom: 14,
+};
+
+const filterFieldStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 5,
+};
+
+const filterLabelStyle: React.CSSProperties = {
+  fontSize: 12,
+  color: "#64748b",
+  fontWeight: 900,
+};
+
+const filterSelectStyle: React.CSSProperties = {
+  height: 38,
+  border: "1px solid #cbd5e1",
+  borderRadius: 10,
+  background: "#ffffff",
+  color: "#0f172a",
+  fontWeight: 800,
+  padding: "0 10px",
+};
+
+const clearFilterButtonStyle: React.CSSProperties = {
+  height: 38,
+  alignSelf: "end",
+  border: "1px solid #cbd5e1",
+  borderRadius: 10,
+  background: "#ffffff",
+  color: "#0f172a",
+  fontWeight: 900,
+  cursor: "pointer",
 };
