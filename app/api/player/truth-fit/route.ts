@@ -356,7 +356,7 @@ const rankedDivisionFits = [...divisionFits].sort((a, b) => {
     if (fit === "Match") return 4;
     if (fit === "Possible Match") return 3;
     if (fit === "Reach / Not Yet") return 2;
-    return 1; // No Data Yet
+    return 1;
   };
 
   const aRank = fitRank(a.fitTier);
@@ -366,6 +366,17 @@ const rankedDivisionFits = [...divisionFits].sort((a, b) => {
 
   return b.bestScore - a.bestScore;
 });
+
+const recommendedLaneDivision = rankedDivisionFits[0]?.division || null;
+
+const orderedDivisionFits = ALL_DIVISIONS.map((division) => {
+  const fit = divisionFits.find((item) => item.division === division);
+  return {
+    ...fit,
+    division,
+    isRecommendedLane: division === recommendedLaneDivision,
+  };
+}).filter(Boolean);
 
 const dominantDivision = rankedDivisionFits[0]?.division || topKey(divisionCounts);
 const dominantFit = rankedDivisionFits[0]?.fitTier || topKey(labelCounts);
@@ -427,7 +438,8 @@ return NextResponse.json({
     projectionTier,
     outlook,
     topGaps,
-    divisionFits: rankedDivisionFits,
+    divisionFits: orderedDivisionFits,
+    recommendedLaneDivision,
   },
   filters: {
         division,

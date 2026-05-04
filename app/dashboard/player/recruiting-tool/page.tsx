@@ -308,18 +308,22 @@ body: JSON.stringify({
   ? truthFitSummary.divisionFits
   : [{ division: truthFitSummary.dominantDivision || "UNKNOWN" }]
 ).map((item: any) => (
-  <option key={item.division} value={item.division}>
-    {pretty(item.division)}
-  </option>
+<option key={item.division} value={item.division}>
+  {pretty(item.division)}
+  {item.isRecommendedLane ? " — Recommended Lane" : ""}
+</option>
 ))}
                 </select>
               </div>
 
               <div>
-                <div style={laneLabelStyle}>Division Fit</div>
-                <div style={laneValueStyle}>
-                  {selectedLaneFit?.fitTier || truthFitSummary.dominantFit}
-                </div>
+<div style={laneLabelStyle}>Division Fit</div>
+<div style={laneValueStyle}>
+  {selectedLaneFit?.fitTier || truthFitSummary.dominantFit}
+  {selectedLaneFit?.isRecommendedLane ? (
+    <span style={recommendedLaneBadgeStyle}>Recommended Lane</span>
+  ) : null}
+</div>
               </div>
 
               <div>
@@ -1011,6 +1015,18 @@ const laneSelectStyle: React.CSSProperties = {
   fontSize: 14,
   lineHeight: "20px",
   outline: "none",
+};
+
+const recommendedLaneBadgeStyle: React.CSSProperties = {
+  display: "inline-flex",
+  marginLeft: 8,
+  borderRadius: 999,
+  padding: "4px 8px",
+  background: "#dcfce7",
+  border: "1px solid #86efac",
+  color: "#14532d",
+  fontSize: 11,
+  fontWeight: 900,
 };
 
 const laneValueStyle: React.CSSProperties = {
