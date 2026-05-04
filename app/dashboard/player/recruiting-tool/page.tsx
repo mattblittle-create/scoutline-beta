@@ -650,7 +650,17 @@ function ExternalLink({ href, children }: { href: string; children: React.ReactN
 
 function pretty(value?: string | null) {
   if (!value) return "—";
-  const raw = String(value).replace(/_/g, " ").toUpperCase();
+
+  let raw = String(value).replace(/_/g, " ").toUpperCase();
+
+  // 🔥 Normalize common division patterns first
+  raw = raw
+    .replace("NCAA D1", "NCAA D1")
+    .replace("NCAA D2", "NCAA D2")
+    .replace("NCAA D3", "NCAA D3")
+    .replace("NJCAA D1", "NJCAA D1")
+    .replace("NJCAA D2", "NJCAA D2")
+    .replace("NJCAA D3", "NJCAA D3");
 
   return raw
     .split(" ")
