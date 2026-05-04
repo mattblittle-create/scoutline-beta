@@ -566,6 +566,16 @@ if (score >= 75 && gaps.length <= 1) {
   uniqueDevelopment.unshift("Next best action: keep this school on your radar, but prioritize stronger current-fit programs first.");
 }
 
+const sortedComparisons = [...metricComparisons].sort((a, b) => {
+  const priority = (m: any) => {
+    if (m.status === "BELOW") return 3;
+    if (m.status === "IN_RANGE") return 2;
+    return 1;
+  };
+
+  return priority(b) - priority(a);
+});
+
 return {
   score,
   label: labelFromScore(score, hasEstimatedSections),
@@ -573,19 +583,8 @@ return {
   reasons: Array.from(new Set(reasons)).slice(0, 6),
   gaps: Array.from(new Set(gaps)).slice(0, 5),
   development: uniqueDevelopment.slice(0, 4),
-  const sortedComparisons = [...metricComparisons].sort((a, b) => {
-    const priority = (m: any) => {
-      if (m.status === "BELOW") return 3;     // biggest impact
-      if (m.status === "IN_RANGE") return 2;
-      return 1; // ABOVE
-    };
-
-    return priority(b) - priority(a);
-  });
-
   metricComparisons: sortedComparisons.slice(0, 5),
   benchmarkSource: {
     metrics: metricsBenchmarkSource,
   },
 };
-}
