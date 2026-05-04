@@ -454,7 +454,7 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       reasons.push(`Your available metrics are within range of ${metricsBenchmarkSource.label}.`);
     } else {
       gaps.push(
-        `Your available metrics are currently below the ${metricsBenchmarkSource.label.toLowerCase()}.`
+        `Your available metrics are currently below the ${metricsBenchmarkSource.label}.`
       );
 
 development.push(
