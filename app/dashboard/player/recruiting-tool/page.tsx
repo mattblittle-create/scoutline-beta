@@ -6,6 +6,35 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 
+function projectionTierFromLane(division?: string | null, fit?: string | null) {
+  const d = String(division || "");
+  const f = String(fit || "");
+
+  if (d === "NCAA_D1" && (f === "Strong Fit" || f === "Match")) {
+    return "D1 Track";
+  }
+
+  if (
+    (d === "NCAA_D2" || d === "NAIA" || d === "NJCAA_D1") &&
+    (f === "Strong Fit" || f === "Match")
+  ) {
+    return "D2 / NAIA / JUCO Fit";
+  }
+
+  if (
+    (d === "NCAA_D3" || d === "NJCAA_D2" || d === "NJCAA_D3") &&
+    (f === "Strong Fit" || f === "Match" || f === "Possible Match")
+  ) {
+    return "D3 / JUCO Development Fit";
+  }
+
+  if (f === "Possible Match") {
+    return "Emerging College Prospect";
+  }
+
+  return "Developmental Prospect";
+}
+
 function getPriorityFromFit(label: string) {
   if (label === "Strong Fit") return "HIGH";
   if (label === "Match") return "MEDIUM";
@@ -64,6 +93,10 @@ function PlayerRecruitingToolContent() {
     truthFitSummary?.divisionFits?.find(
       (item: any) => item.division === selectedLaneDivision
     ) || truthFitSummary?.divisionFits?.[0] || null;
+
+  const selectedProjectionTier = selectedLaneFit
+    ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
+    : truthFitSummary?.projectionTier || "Developmental Prospect";
 
     React.useEffect(() => {
     async function loadPlanTier() {
@@ -260,7 +293,7 @@ body: JSON.stringify({
               <div style={{ gridColumn: "1 / -1" }}>
                 <div style={laneLabelStyle}>Player Projection</div>
                 <div style={projectionTierStyle}>
-                  {truthFitSummary.projectionTier || "Developmental Prospect"}
+                  {selectedProjectionTier}
                 </div>
               </div>
 
