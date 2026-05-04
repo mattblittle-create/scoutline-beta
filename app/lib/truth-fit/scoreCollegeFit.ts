@@ -343,12 +343,13 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
 
   const metricComparisons: TruthFitResult["metricComparisons"] = [];
 
-  const metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =
-    input.college.metricBenchmarkSource || {
-      level: "ESTIMATED",
-      label: "Estimated - benchmark data not available yet",
-      confidence: "LOW",
-    };
+  const metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] = {
+    level: input.college.metricBenchmarkSource?.level || "ESTIMATED",
+    label:
+      input.college.metricBenchmarkSource?.label ||
+      "Estimated - benchmark data not available yet",
+    confidence: input.college.metricBenchmarkSource?.confidence || "LOW",
+  };
 
   for (const key of metricKeysToCheck) {
     const playerValue =
