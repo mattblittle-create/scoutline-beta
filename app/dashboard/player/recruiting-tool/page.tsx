@@ -131,7 +131,7 @@ function PlayerRecruitingToolContent() {
     return () => window.clearTimeout(t);
   }, [selectedCollegeId, loadingTruthFit, truthFitResults.length]);
 
-  async function toggleSavedCollege(collegeId: string, fitLabel: string) {
+  async function toggleSavedCollege(collegeId: string, fitLabel: string, fitPriority?: string) {
     const isSaved = savedCollegeIds.includes(collegeId);
 
     try {
@@ -142,7 +142,7 @@ function PlayerRecruitingToolContent() {
         headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
   collegeId,
-  priority: fit.priority || getPriorityFromFit(fitLabel),
+  priority: fitPriority || getPriorityFromFit(fitLabel),
 }),
       });
 
@@ -318,7 +318,7 @@ body: JSON.stringify({
         ? "Remove from Target Programs"
         : "Save to Target Programs"
     }
-    onClick={() => toggleSavedCollege(c.id, fit.label)}
+    onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
     disabled={savingCollegeId === c.id}
     style={{
       width: 28,
