@@ -248,10 +248,48 @@ const enrichedResults = results.map((item, index) => {
   };
 });
 
-    return NextResponse.json({
-      ok: true,
-      player: profile.player,
-      filters: {
+const topResults = enrichedResults.slice(0, 25);
+
+const divisionCounts: Record<string, number> = {};
+const labelCounts: Record<string, number> = {};
+
+for (const r of topResults) {
+  const division = r.college?.baseballProgram?.division || "UNKNOWN";
+  const label = r.truthFit?.label || "UNKNOWN";
+
+  divisionCounts[division] = (divisionCounts[division] || 0) + 1;
+  labelCounts[label] = (labelCounts[label] || 0) + 1;
+}
+
+function topKey(obj: Record<string, number>) {
+  return Object.entries(obj)
+    .sort((a, b) => b[1] - a[1])[0]?.[0] || null;
+}
+
+const dominantDivision = topKey(divisionCounts);
+const dominantFit = topKey(labelCounts);
+
+let outlook = "Balanced recruiting opportunity across multiple levels.";
+
+if (dominantFit === "Strong Fit") {
+  outlook = "You are tracking as a strong recruit with multiple program fits.";
+} else if (dominantFit === "Match") {
+  outlook = "You have solid alignment with several programs at your current level.";
+} else if (dominantFit === "Possible Match") {
+  outlook = "You are close to matching college benchmarks—development will unlock more opportunities.";
+} else {
+  outlook = "You are still developing toward college-level benchmarks—focus on growth areas.";
+}
+
+return NextResponse.json({
+  ok: true,
+  player: profile.player,
+  summary: {
+    dominantDivision,
+    dominantFit,
+    outlook,
+  },
+  filters: {
         division,
         region,
         state,

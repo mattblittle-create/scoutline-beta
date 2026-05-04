@@ -40,6 +40,7 @@ function PlayerRecruitingToolContent() {
 
   const [planTier, setPlanTier] = React.useState("REDSHIRT");
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
+  const [truthFitSummary, setTruthFitSummary] = React.useState<any>(null);
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
   const [savingCollegeId, setSavingCollegeId] = React.useState("");
   const [loadingTruthFit, setLoadingTruthFit] = React.useState(false);
@@ -131,6 +132,7 @@ function PlayerRecruitingToolContent() {
         : rawResults;
 
       setTruthFitResults(sortedResults);
+      setTruthFitSummary(data.summary || null);
       setHasLoadedTruthFit(true);
     } catch (err) {
       console.error("TRUTH_FIT_LOAD_ERROR", err);
@@ -235,6 +237,35 @@ body: JSON.stringify({
             description="Highlight the next most impactful areas for improvement to boost recruiting visibility."
           />
         </div>
+
+        {truthFitSummary ? (
+  <section style={laneBoxStyle}>
+    <div style={laneTitleStyle}>Your Recruiting Lane</div>
+
+    <div style={laneGridStyle}>
+      <div>
+        <div style={laneLabelStyle}>Best Fit Level</div>
+        <div style={laneValueStyle}>
+          {pretty(truthFitSummary.dominantDivision)}
+        </div>
+      </div>
+
+      <div>
+        <div style={laneLabelStyle}>Current Fit Tier</div>
+        <div style={laneValueStyle}>
+          {truthFitSummary.dominantFit}
+        </div>
+      </div>
+
+      <div style={{ gridColumn: "1 / -1" }}>
+        <div style={laneLabelStyle}>Recruiting Outlook</div>
+        <div style={laneValueStyle}>
+          {truthFitSummary.outlook}
+        </div>
+      </div>
+    </div>
+  </section>
+) : null}
 
         <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
@@ -821,4 +852,38 @@ const manageSavedLinkStyle: React.CSSProperties = {
   fontWeight: 900,
   textDecoration: "underline",
   textDecorationColor: "#bae6fd",
+};
+
+const laneBoxStyle: React.CSSProperties = {
+  marginBottom: 18,
+  padding: 18,
+  borderRadius: 16,
+  background: "#f0fdf4",
+  border: "1px solid #bbf7d0",
+};
+
+const laneTitleStyle: React.CSSProperties = {
+  fontSize: 16,
+  fontWeight: 900,
+  marginBottom: 10,
+  color: "#14532d",
+};
+
+const laneGridStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 12,
+  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+};
+
+const laneLabelStyle: React.CSSProperties = {
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#166534",
+};
+
+const laneValueStyle: React.CSSProperties = {
+  marginTop: 4,
+  fontSize: 14,
+  fontWeight: 900,
+  color: "#052e16",
 };
