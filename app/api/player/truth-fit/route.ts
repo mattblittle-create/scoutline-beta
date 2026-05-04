@@ -339,10 +339,56 @@ const divisionFits = ALL_DIVISIONS.map((division) => {
   };
 });
 
-const rankedDivisionFits = [...divisionFits].sort((a, b) => b.bestScore - a.bestScore);
+const rankedDivisionFits = [...divisionFits].sort((a, b) => {
+  const fitRank = (fit: string) => {
+    if (fit === "Strong Fit") return 5;
+    if (fit === "Match") return 4;
+    if (fit === "Possible Match") return 3;
+    if (fit === "Reach / Not Yet") return 2;
+    return 1; // No Data Yet
+  };
+
+  const aRank = fitRank(a.fitTier);
+  const bRank = fitRank(b.fitTier);
+
+  if (bRank !== aRank) return bRank - aRank;
+
+  return b.bestScore - a.bestScore;
+});
 
 const dominantDivision = rankedDivisionFits[0]?.division || topKey(divisionCounts);
 const dominantFit = rankedDivisionFits[0]?.fitTier || topKey(labelCounts);
+
+function projectionTierFromLane(division?: string | null, fit?: string | null) {
+  const d = String(division || "");
+  const f = String(fit || "");
+
+  if (d === "NCAA_D1" && (f === "Strong Fit" || f === "Match")) {
+    return "D1 Track";
+  }
+
+  if (
+    (d === "NCAA_D2" || d === "NAIA" || d === "NJCAA_D1") &&
+    (f === "Strong Fit" || f === "Match")
+  ) {
+    return "D2 / NAIA / JUCO Fit";
+  }
+
+  if (
+    (d === "NCAA_D3" || d === "NJCAA_D2" || d === "NJCAA_D3") &&
+    (f === "Strong Fit" || f === "Match" || f === "Possible Match")
+  ) {
+    return "D3 / JUCO Development Fit";
+  }
+
+  if (f === "Possible Match") {
+    return "Emerging College Prospect";
+  }
+
+  return "Developmental Prospect";
+}
+
+const projectionTier = projectionTierFromLane(dominantDivision, dominantFit);
 
 const topGaps = Object.entries(gapCounts)
   .sort((a, b) => b[1] - a[1])
@@ -367,6 +413,7 @@ return NextResponse.json({
   summary: {
     dominantDivision,
     dominantFit,
+    projectionTier,
     outlook,
     topGaps,
     divisionFits: rankedDivisionFits,

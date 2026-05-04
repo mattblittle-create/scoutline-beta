@@ -145,6 +145,11 @@ function divisionLabel(value?: string | null) {
   return raw || "this level";
 }
 
+function formatMetricComparisonValue(value: number, unit?: string | null) {
+  const rounded = Number.isInteger(value) ? value : Number(value.toFixed(2));
+  return unit ? `${rounded} ${unit}` : String(rounded);
+}
+
 function metricLabel(key: string) {
   if (key === "exitVelo") return "Exit Velocity";
   if (key === "sixtyYdDash") return "60-Yard Dash";
@@ -426,7 +431,12 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     }
 
     if (metricScore === 0.35 && gaps.length < 5) {
-      gaps.push(`${metricLabel(key)} is currently below the benchmark range for this fit.`);
+      gaps.push(
+        `${metricLabel(key)} is below benchmark: you are at ${formatMetricComparisonValue(
+          playerValue,
+          benchmark.unit
+        )} vs benchmark ${formatMetricComparisonValue(avg, benchmark.unit)}.`
+      );
     }
   }
 
@@ -458,7 +468,7 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       reasons.push(`Your available metrics are within range of ${metricsBenchmarkSource.label}.`);
     } else {
       gaps.push(
-        `Your available metrics are currently below the ${metricsBenchmarkSource.label}.`
+        `Your overall metric profile is currently below the ${metricsBenchmarkSource.label}.`
       );
 
 development.push(

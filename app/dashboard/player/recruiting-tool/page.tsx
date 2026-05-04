@@ -257,8 +257,15 @@ body: JSON.stringify({
             <div style={laneTitleStyle}>Your Recruiting Lane</div>
 
             <div style={laneGridStyle}>
+              <div style={{ gridColumn: "1 / -1" }}>
+                <div style={laneLabelStyle}>Player Projection</div>
+                <div style={projectionTierStyle}>
+                  {truthFitSummary.projectionTier || "Developmental Prospect"}
+                </div>
+              </div>
+
               <div>
-              <div style={laneLabelStyle}>Division</div>
+                <div style={laneLabelStyle}>Division</div>
                 <select
                   value={selectedLaneDivision}
                   onChange={(e) => setSelectedLaneDivision(e.target.value)}
@@ -942,6 +949,19 @@ const laneLabelStyle: React.CSSProperties = {
   fontSize: 12,
   fontWeight: 900,
   color: "#166534",
+};
+
+const projectionTierStyle: React.CSSProperties = {
+  marginTop: 6,
+  display: "inline-flex",
+  width: "fit-content",
+  borderRadius: 999,
+  padding: "8px 12px",
+  background: "#dcfce7",
+  border: "1px solid #86efac",
+  color: "#14532d",
+  fontWeight: 900,
+  fontSize: 14,
 };
 
 const laneSelectStyle: React.CSSProperties = {
