@@ -35,6 +35,13 @@ function normalizeDivision(value?: string | null) {
   return String(value || "").trim().toUpperCase();
 }
 
+function formatDivisionLabel(value?: string | null) {
+  return String(value || "")
+    .trim()
+    .toUpperCase()
+    .replace(/_/g, " ");
+}
+
 function normalizeConference(value?: string | null) {
   return String(value || "").trim();
 }
@@ -111,7 +118,7 @@ export async function getBestMetricBenchmarks({
     if (divisionRows.length > 0) {
       return {
         level: "DIVISION",
-        label: `${divisionKey.replace(/_/g, " ")} division benchmark`,
+        label: `${formatDivisionLabel(divisionKey)} division benchmark`,
         benchmarks: mapBenchmarkRows(divisionRows),
       };
     }
