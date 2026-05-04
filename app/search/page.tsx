@@ -814,11 +814,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   ) : null}
 
 <Link
-  href={
-    savedCollegeIds.includes(college.id)
-      ? "/dashboard/player/target-programs"
-      : `/dashboard/player/recruiting-tool?collegeId=${college.id}`
-  }
+  href={`/dashboard/player/recruiting-tool?collegeId=${college.id}`}
   style={secondaryButtonStyle}
 >
   {savedCollegeIds.includes(college.id)

@@ -36,6 +36,7 @@ export default function PlayerRecruitingToolPage() {
 function PlayerRecruitingToolContent() {
   const searchParams = useSearchParams();
   const selectedCollegeId = searchParams.get("collegeId") || "";
+  const selectedCollegeRef = React.useRef<HTMLElement | null>(null);
 
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
@@ -116,6 +117,19 @@ function PlayerRecruitingToolContent() {
   React.useEffect(() => {
     loadTruthFit();
   }, [loadTruthFit]);
+
+    React.useEffect(() => {
+    if (!selectedCollegeId || loadingTruthFit || !truthFitResults.length) return;
+
+    const t = window.setTimeout(() => {
+      selectedCollegeRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }, 150);
+
+    return () => window.clearTimeout(t);
+  }, [selectedCollegeId, loadingTruthFit, truthFitResults.length]);
 
   async function toggleSavedCollege(collegeId: string, fitLabel: string) {
     const isSaved = savedCollegeIds.includes(collegeId);
@@ -269,6 +283,7 @@ function PlayerRecruitingToolContent() {
                 return (
                   <article
                     key={c.id}
+                    ref={c.id === selectedCollegeId ? selectedCollegeRef : null}
                     style={{
                       ...resultCardStyle,
                       borderColor: c.id === selectedCollegeId ? "#caa042" : "#e5e7eb",
@@ -295,46 +310,68 @@ function PlayerRecruitingToolContent() {
                         </div>
                       </div>
 
-                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                        <button
-                          type="button"
-                          title={savedCollegeIds.includes(c.id) ? "Remove from Target Programs" : "Save to Target Programs"}
-                          onClick={() => toggleSavedCollege(c.id, fit.label)}
-                          disabled={savingCollegeId === c.id}
-                          style={{
-                            width: 28,
-                            height: 28,
-                            borderRadius: 999,
-                            border: "2px solid #0ea5e9",
-                            background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
-                            color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
-                            fontWeight: 900,
-                            cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
-                            opacity: savingCollegeId === c.id ? 0.6 : 1,
-                          }}
-                        >
-                          ★
-                        </button>
+<div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+  <button
+    type="button"
+    title={
+      savedCollegeIds.includes(c.id)
+        ? "Remove from Target Programs"
+        : "Save to Target Programs"
+    }
+    onClick={() => toggleSavedCollege(c.id, fit.label)}
+    disabled={savingCollegeId === c.id}
+    style={{
+      width: 28,
+      height: 28,
+      borderRadius: 999,
+      border: "2px solid #0ea5e9",
+      background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
+      color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
+      fontWeight: 900,
+      cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
+      opacity: savingCollegeId === c.id ? 0.6 : 1,
+    }}
+  >
+    ★
+  </button>
 
-                        {savedCollegeIds.includes(c.id) ? (
-  <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
-    Manage
-  </Link>
-) : null}
+  {c.id === selectedCollegeId ? (
+    <span
+      style={{
+        border: "1px solid #caa042",
+        background: "#fffaf0",
+        color: "#7c5b12",
+        borderRadius: 999,
+        padding: "4px 10px",
+        fontSize: 11,
+        fontWeight: 900,
+      }}
+    >
+      {savedCollegeIds.includes(c.id)
+        ? "In Target Programs"
+        : "Not Saved"}
+    </span>
+  ) : null}
 
-                        <div
-                          title={getFitTooltip(fit.label, fit.score)}
-                          style={{
-                            ...fitBadgeStyle,
-                            color: getFitColor(fit.label),
-                            borderColor: getFitBorderColor(fit.label),
-                            background: getFitBackground(fit.label),
-                            cursor: "help",
-                          }}
-                        >
-                          {fit.label} • {fit.score}
-                        </div>
-                      </div>
+  {savedCollegeIds.includes(c.id) ? (
+    <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
+      Manage
+    </Link>
+  ) : null}
+
+  <div
+    title={getFitTooltip(fit.label, fit.score)}
+    style={{
+      ...fitBadgeStyle,
+      color: getFitColor(fit.label),
+      borderColor: getFitBorderColor(fit.label),
+      background: getFitBackground(fit.label),
+      cursor: "help",
+    }}
+  >
+    {fit.label} • {fit.score}
+  </div>
+</div>
                     </div>
 
                     <div style={metaGridStyle}>
