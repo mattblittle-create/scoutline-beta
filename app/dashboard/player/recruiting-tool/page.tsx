@@ -3,6 +3,7 @@
 "use client";
 
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import React from "react";
 
 function getPriorityFromFit(label: string) {
@@ -25,6 +26,9 @@ const STATE_OPTIONS = [
 ];
 
 export default function PlayerRecruitingToolPage() {
+  const searchParams = useSearchParams();
+  const selectedCollegeId = searchParams.get("collegeId") || "";
+
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
   const [savingCollegeId, setSavingCollegeId] = React.useState("");
@@ -80,7 +84,17 @@ export default function PlayerRecruitingToolPage() {
         throw new Error(data?.error || "Failed to load Truth Fit.");
       }
 
-      setTruthFitResults(data.results || []);
+      const rawResults = data.results || [];
+
+      const sortedResults = selectedCollegeId
+        ? [...rawResults].sort((a: any, b: any) => {
+            const aSelected = a?.college?.id === selectedCollegeId ? 1 : 0;
+            const bSelected = b?.college?.id === selectedCollegeId ? 1 : 0;
+            return bSelected - aSelected;
+          })
+        : rawResults;
+
+      setTruthFitResults(sortedResults);
       setHasLoadedTruthFit(true);
     } catch (err) {
       console.error("TRUTH_FIT_LOAD_ERROR", err);
@@ -89,7 +103,7 @@ export default function PlayerRecruitingToolPage() {
     } finally {
       setLoadingTruthFit(false);
     }
-  }, [divisionFilter, regionFilter, stateFilter, controlFilter]);
+  }, [divisionFilter, regionFilter, stateFilter, controlFilter, selectedCollegeId]);
 
   React.useEffect(() => {
     loadTruthFit();
@@ -220,6 +234,11 @@ export default function PlayerRecruitingToolPage() {
 
         {truthFitResults.length > 0 ? (
           <section style={{ marginTop: 28 }}>
+            {selectedCollegeId ? (
+              <div style={selectedCollegeBannerStyle}>
+                Showing the selected school from College Search first, followed by your full Truth Fit recommendations.
+              </div>
+            ) : null}
             <div style={sectionHeaderStyle}>
               <div>
                 <h2 style={sectionTitleStyle}>Recommended For You</h2>
@@ -240,7 +259,17 @@ export default function PlayerRecruitingToolPage() {
                 const baseball = c.baseballProgram;
 
                 return (
-                  <article key={c.id} style={resultCardStyle}>
+                  <article
+                    key={c.id}
+                    style={{
+                      ...resultCardStyle,
+                      borderColor: c.id === selectedCollegeId ? "#caa042" : "#e5e7eb",
+                      boxShadow:
+                        c.id === selectedCollegeId
+                          ? "0 8px 22px rgba(202,160,66,0.20)"
+                          : "0 1px 2px rgba(0,0,0,0.04)",
+                    }}
+                  >
                     <div style={resultTopRowStyle}>
                       <div>
                         <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
@@ -470,6 +499,16 @@ const filterLabelStyle: React.CSSProperties = { display: "grid", gap: 6 };
 const filterLabelTextStyle: React.CSSProperties = { fontSize: 12, fontWeight: 900, color: "#475569" };
 const selectStyle: React.CSSProperties = { height: 40, borderRadius: 10, border: "1px solid #cbd5e1", background: "#ffffff", color: "#0f172a", fontWeight: 800, padding: "0 10px" };
 const infoBannerStyle: React.CSSProperties = { marginTop: 28, padding: 18, borderRadius: 16, background: "#e0f2fe", border: "1px solid #bae6fd", color: "#0c4a6e", fontWeight: 700, lineHeight: 1.6 };
+const selectedCollegeBannerStyle: React.CSSProperties = {
+  marginBottom: 14,
+  padding: 14,
+  borderRadius: 14,
+  background: "#fffaf0",
+  border: "1px solid #f5d58b",
+  color: "#7c5b12",
+  fontWeight: 900,
+  lineHeight: 1.5,
+};
 const errorStyle: React.CSSProperties = { marginTop: 18, padding: 14, borderRadius: 14, background: "#fef2f2", border: "1px solid #fecaca", color: "#b91c1c", fontWeight: 800 };
 const sectionHeaderStyle: React.CSSProperties = { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, flexWrap: "wrap", marginBottom: 14 };
 const sectionTitleStyle: React.CSSProperties = { margin: 0, fontSize: "1.35rem", fontWeight: 900, color: "#0f172a" };

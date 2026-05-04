@@ -813,9 +813,20 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
     </Link>
   ) : null}
 
-  <Link href="/dashboard/player/recruiting-tool" style={secondaryButtonStyle}>
-    Truth Fit
-  </Link>
+<Link
+  href={
+    savedCollegeIds.includes(college.id)
+      ? "/dashboard/player/target-programs"
+      : `/dashboard/player/recruiting-tool?collegeId=${college.id}`
+  }
+  style={secondaryButtonStyle}
+>
+  {savedCollegeIds.includes(college.id)
+    ? college.truthFit
+      ? "View Truth Fit"
+      : "Generate Truth Fit"
+    : "Generate Truth Fit"}
+</Link>
 
   {college.admissionsUrl ? (
     <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>
@@ -1058,4 +1069,3 @@ const statusSelectStyle: React.CSSProperties = {
   fontWeight: 800,
   outline: "none",
 };
-
