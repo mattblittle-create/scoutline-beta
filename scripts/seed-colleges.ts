@@ -1,4 +1,4 @@
-// scripts/seed-college.ts
+// scripts/seed-colleges.ts
 
 import { PrismaClient } from "@prisma/client";
 
