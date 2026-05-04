@@ -301,43 +301,54 @@ function outlookForFit(fit: string) {
   return "This division is currently more of a reach based on available profile and benchmark data.";
 }
 
-const divisionFits = ALL_DIVISIONS.map((division) => {
-  const divisionResults = enrichedResults.filter(
-    (r) => String(r.college?.baseballProgram?.division || "") === division
-  );
+const divisionFits = await Promise.all(
+  ALL_DIVISIONS.map(async (division) => {
+    const divisionResults = enrichedResults.filter(
+      (r) => String(r.college?.baseballProgram?.division || "") === division
+    );
 
-  const best = [...divisionResults].sort(
-    (a, b) => (b.truthFit?.score || 0) - (a.truthFit?.score || 0)
-  )[0];
+    const bestMetrics = await getBestMetricBenchmarks({
+      programId: null,
+      collegeName: null,
+      conference: null,
+      division,
+    });
 
-  const divisionGapCounts: Record<string, number> = {};
+    const benchmarkOnlyFit = scoreCollegeFit({
+      player: profile.player,
+      college: {
+        averageGpa: null,
+        division,
+        metricAverages: bestMetrics.benchmarks,
+        metricBenchmarkSource: {
+          level: bestMetrics.level,
+          label: bestMetrics.label,
+          confidence: bestMetrics.confidence,
+        },
+        rosterNeeds: [],
+      },
+    });
 
-  for (const r of divisionResults) {
-    const gaps = Array.isArray(r.truthFit?.gaps) ? r.truthFit.gaps : [];
-    for (const gap of gaps) {
-      const key = String(gap || "").trim();
-      if (!key) continue;
-      divisionGapCounts[key] = (divisionGapCounts[key] || 0) + 1;
-    }
-  }
+    const actualBest = [...divisionResults].sort(
+      (a, b) => (b.truthFit?.score || 0) - (a.truthFit?.score || 0)
+    )[0];
 
-  const divisionTopGaps = Object.entries(divisionGapCounts)
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 2)
-    .map(([gap]) => gap);
+    const laneFit =
+      actualBest && actualBest.truthFit?.score > benchmarkOnlyFit.score
+        ? actualBest.truthFit
+        : benchmarkOnlyFit;
 
-  const fitTier = best?.truthFit?.label || "No Data Yet";
-  const bestScore = best?.truthFit?.score || 0;
-
-  return {
-    division,
-    fitTier,
-    bestScore,
-    count: divisionResults.length,
-    outlook: outlookForFit(fitTier),
-    topGaps: divisionTopGaps,
-  };
-});
+    return {
+      division,
+      fitTier: laneFit.label,
+      bestScore: laneFit.score,
+      count: divisionResults.length,
+      outlook: outlookForFit(laneFit.label),
+      topGaps: Array.isArray(laneFit.gaps) ? laneFit.gaps.slice(0, 2) : [],
+      benchmarkSource: laneFit.benchmarkSource?.metrics || null,
+    };
+  })
+);
 
 const rankedDivisionFits = [...divisionFits].sort((a, b) => {
   const fitRank = (fit: string) => {
