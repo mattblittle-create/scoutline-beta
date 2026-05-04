@@ -333,14 +333,27 @@ body: JSON.stringify({
                     }}
                   >
                     <div style={resultTopRowStyle}>
-                      <div>
-                        <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
-                          {c.name}
-                        </Link>
+<div>
+  <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
+    {c.name}
+  </Link>
 
-                        <div style={locationStyle}>
-                          {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-                        </div>
+  {item.isTopRecommendation ? (
+    <div
+      style={{
+        marginTop: 6,
+        fontSize: 12,
+        fontWeight: 900,
+        color: "#15803d",
+      }}
+    >
+      ⭐ Top Recommendation for You
+    </div>
+  ) : null}
+
+  <div style={locationStyle}>
+    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+  </div>
 
                         <div style={linkRowStyle}>
                           {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
@@ -510,6 +523,19 @@ body: JSON.stringify({
         • {reason}
       </div>
     ))}
+  </div>
+) : null}
+
+{item.priorityReason ? (
+  <div
+    style={{
+      marginTop: 8,
+      fontSize: 13,
+      fontWeight: 800,
+      color: "#0f172a",
+    }}
+  >
+    {item.priorityReason}
   </div>
 ) : null}
                   </article>

@@ -210,7 +210,43 @@ export async function GET(req: NextRequest) {
           };
         })
       )
-    ).sort((a, b) => b.truthFit.score - a.truthFit.score);
+).sort((a, b) => {
+  const labelRank = (l: string) => {
+    if (l === "Strong Fit") return 3;
+    if (l === "Match") return 2;
+    if (l === "Possible Match") return 1;
+    return 0;
+  };
+
+  const aRank = labelRank(a.truthFit.label);
+  const bRank = labelRank(b.truthFit.label);
+
+  if (bRank !== aRank) return bRank - aRank;
+
+  return b.truthFit.score - a.truthFit.score;
+});
+
+const enrichedResults = results.map((item, index) => {
+  const fit = item.truthFit;
+
+  let priorityReason = "";
+
+  if (fit.reasons?.some((r) => r.includes("HIGH roster need"))) {
+    priorityReason = "This program has an immediate roster need for your profile.";
+  } else if (fit.reasons?.some((r) => r.includes("GPA"))) {
+    priorityReason = "You are a strong academic fit for this program.";
+  } else if (fit.reasons?.some((r) => r.includes("metrics"))) {
+    priorityReason = "Your performance metrics align well with this program.";
+  } else {
+    priorityReason = "This program aligns well with your overall profile.";
+  }
+
+  return {
+    ...item,
+    isTopRecommendation: index === 0,
+    priorityReason,
+  };
+});
 
     return NextResponse.json({
       ok: true,
@@ -222,7 +258,7 @@ export async function GET(req: NextRequest) {
         control,
       },
       count: results.length,
-      results,
+      results: enrichedResults,
     });
   } catch (err) {
     console.error("PLAYER_TRUTH_FIT_ERROR", err);
