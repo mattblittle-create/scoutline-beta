@@ -588,3 +588,4 @@ return {
     metrics: metricsBenchmarkSource,
   },
 };
+}
