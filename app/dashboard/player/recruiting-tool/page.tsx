@@ -41,6 +41,7 @@ function PlayerRecruitingToolContent() {
   const [planTier, setPlanTier] = React.useState("REDSHIRT");
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
   const [truthFitSummary, setTruthFitSummary] = React.useState<any>(null);
+  const [selectedLaneDivision, setSelectedLaneDivision] = React.useState("");
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
   const [savingCollegeId, setSavingCollegeId] = React.useState("");
   const [loadingTruthFit, setLoadingTruthFit] = React.useState(false);
@@ -54,9 +55,10 @@ function PlayerRecruitingToolContent() {
   
   const isRedshirt = planTier === "REDSHIRT";
   const isAllAmerican = planTier === "ALL_AMERICAN";
-  const visibleTruthFitResults = isRedshirt
-    ? truthFitResults.slice(0, 3)
-    : truthFitResults;
+  const selectedLaneFit =
+    truthFitSummary?.divisionFits?.find(
+      (item: any) => item.division === selectedLaneDivision
+    ) || truthFitSummary?.divisionFits?.[0] || null;
 
     React.useEffect(() => {
     async function loadPlanTier() {
@@ -146,6 +148,13 @@ function PlayerRecruitingToolContent() {
   React.useEffect(() => {
     loadTruthFit();
   }, [loadTruthFit]);
+
+    React.useEffect(() => {
+    const firstDivision = truthFitSummary?.divisionFits?.[0]?.division || "";
+    if (firstDivision) {
+      setSelectedLaneDivision((prev) => prev || firstDivision);
+    }
+  }, [truthFitSummary]);
 
     React.useEffect(() => {
     if (!selectedCollegeId || loadingTruthFit || !truthFitResults.length) return;
@@ -239,46 +248,61 @@ body: JSON.stringify({
         </div>
 
         {truthFitSummary ? (
-  <section style={laneBoxStyle}>
-    <div style={laneTitleStyle}>Your Recruiting Lane</div>
+          <section style={laneBoxStyle}>
+            <div style={laneTitleStyle}>Your Recruiting Lane</div>
 
-    <div style={laneGridStyle}>
-      <div>
-        <div style={laneLabelStyle}>Best Fit Level</div>
-        <div style={laneValueStyle}>
-          {pretty(truthFitSummary.dominantDivision)}
-        </div>
-      </div>
-
-      <div>
-        <div style={laneLabelStyle}>Current Fit Tier</div>
-        <div style={laneValueStyle}>
-          {truthFitSummary.dominantFit}
-        </div>
-      </div>
-
-      <div style={{ gridColumn: "1 / -1" }}>
-        <div style={laneLabelStyle}>Recruiting Outlook</div>
-        <div style={laneValueStyle}>
-          {truthFitSummary.outlook}
-        </div>
-      </div>
-
-            {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
-        <div style={{ gridColumn: "1 / -1" }}>
-          <div style={laneLabelStyle}>What’s Holding You Back</div>
-          <div style={{ display: "grid", gap: 6, marginTop: 6 }}>
-            {truthFitSummary.topGaps.map((gap: string, index: number) => (
-              <div key={index} style={laneValueStyle}>
-                • {gap}
+            <div style={laneGridStyle}>
+              <div>
+                <div style={laneLabelStyle}>Division Fit View</div>
+                <select
+                  value={selectedLaneDivision}
+                  onChange={(e) => setSelectedLaneDivision(e.target.value)}
+                  style={laneSelectStyle}
+                >
+                  {(truthFitSummary.divisionFits || []).map((item: any) => (
+                    <option key={item.division} value={item.division}>
+                      {pretty(item.division)}
+                    </option>
+                  ))}
+                </select>
               </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-    </div>
-  </section>
-) : null}
+
+              <div>
+                <div style={laneLabelStyle}>Fit Tier</div>
+                <div style={laneValueStyle}>
+                  {selectedLaneFit?.fitTier || truthFitSummary.dominantFit}
+                </div>
+              </div>
+
+              <div>
+                <div style={laneLabelStyle}>Best Score</div>
+                <div style={laneValueStyle}>
+                  {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
+                </div>
+              </div>
+
+              <div style={{ gridColumn: "1 / -1" }}>
+                <div style={laneLabelStyle}>Recruiting Outlook</div>
+                <div style={laneValueStyle}>
+                  {truthFitSummary.outlook}
+                </div>
+              </div>
+
+              {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
+                <div style={{ gridColumn: "1 / -1" }}>
+                  <div style={laneLabelStyle}>What’s Holding You Back</div>
+                  <div style={{ display: "grid", gap: 6, marginTop: 6 }}>
+                    {truthFitSummary.topGaps.map((gap: string, index: number) => (
+                      <div key={index} style={laneValueStyle}>
+                        • {gap}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </div>
+          </section>
+        ) : null}
 
         <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
@@ -902,6 +926,18 @@ const laneLabelStyle: React.CSSProperties = {
   fontSize: 12,
   fontWeight: 900,
   color: "#166534",
+};
+
+const laneSelectStyle: React.CSSProperties = {
+  marginTop: 4,
+  width: "100%",
+  border: "1px solid #86efac",
+  borderRadius: 10,
+  padding: "8px 10px",
+  background: "#ffffff",
+  color: "#052e16",
+  fontWeight: 900,
+  outline: "none",
 };
 
 const laneValueStyle: React.CSSProperties = {

@@ -274,8 +274,27 @@ function topKey(obj: Record<string, number>) {
     .sort((a, b) => b[1] - a[1])[0]?.[0] || null;
 }
 
-const dominantDivision = topKey(divisionCounts);
-const dominantFit = topKey(labelCounts);
+const divisionFits = Object.entries(divisionCounts)
+  .map(([division]) => {
+    const divisionResults = topResults.filter(
+      (r) => (r.college?.baseballProgram?.division || "UNKNOWN") === division
+    );
+
+    const best = [...divisionResults].sort(
+      (a, b) => (b.truthFit?.score || 0) - (a.truthFit?.score || 0)
+    )[0];
+
+    return {
+      division,
+      fitTier: best?.truthFit?.label || "Reach / Not Yet",
+      bestScore: best?.truthFit?.score || 0,
+      count: divisionResults.length,
+    };
+  })
+  .sort((a, b) => b.bestScore - a.bestScore);
+
+const dominantDivision = divisionFits[0]?.division || topKey(divisionCounts);
+const dominantFit = divisionFits[0]?.fitTier || topKey(labelCounts);
 
 const topGaps = Object.entries(gapCounts)
   .sort((a, b) => b[1] - a[1])
