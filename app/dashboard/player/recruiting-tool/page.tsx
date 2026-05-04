@@ -4,7 +4,7 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 
 function getPriorityFromFit(label: string) {
   if (label === "Strong Fit") return "HIGH";
@@ -26,6 +26,14 @@ const STATE_OPTIONS = [
 ];
 
 export default function PlayerRecruitingToolPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 24 }}>Loading Recruiting Tool...</div>}>
+      <PlayerRecruitingToolContent />
+    </Suspense>
+  );
+}
+
+function PlayerRecruitingToolContent() {
   const searchParams = useSearchParams();
   const selectedCollegeId = searchParams.get("collegeId") || "";
 
