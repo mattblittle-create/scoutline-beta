@@ -38,6 +38,7 @@ function PlayerRecruitingToolContent() {
   const selectedCollegeId = searchParams.get("collegeId") || "";
   const selectedCollegeRef = React.useRef<HTMLElement | null>(null);
 
+  const [planTier, setPlanTier] = React.useState("REDSHIRT");
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
   const [savingCollegeId, setSavingCollegeId] = React.useState("");
@@ -49,6 +50,32 @@ function PlayerRecruitingToolContent() {
   const [regionFilter, setRegionFilter] = React.useState("ALL");
   const [stateFilter, setStateFilter] = React.useState("ALL");
   const [controlFilter, setControlFilter] = React.useState("ALL");
+  
+  const isRedshirt = planTier === "REDSHIRT";
+  const isAllAmerican = planTier === "ALL_AMERICAN";
+  const visibleTruthFitResults = isRedshirt
+    ? truthFitResults.slice(0, 3)
+    : truthFitResults;
+
+    React.useEffect(() => {
+    async function loadPlanTier() {
+      try {
+        const res = await fetch("/api/auth/me", { cache: "no-store" });
+        const data = await res.json().catch(() => null);
+
+        const nextPlan =
+          data?.user?.planTier ||
+          data?.planTier ||
+          "REDSHIRT";
+
+        setPlanTier(String(nextPlan || "REDSHIRT"));
+      } catch {
+        setPlanTier("REDSHIRT");
+      }
+    }
+
+    loadPlanTier();
+  }, []);
 
   React.useEffect(() => {
     async function loadSaved() {
@@ -270,12 +297,24 @@ body: JSON.stringify({
               </div>
 
               <div style={countPillStyle}>
-                Showing {Math.min(25, truthFitResults.length)} of {truthFitResults.length}
+                Showing {Math.min(25, visibleTruthFitResults.length)} of {truthFitResults.length}
               </div>
             </div>
 
+            {isRedshirt && truthFitResults.length > 3 ? (
+              <div style={upgradeBoxStyle}>
+                <div style={upgradeTitleStyle}>Unlock your full Truth Fit list</div>
+                <div style={upgradeTextStyle}>
+                  Redshirt players can preview the top 3 Truth Fit recommendations. Upgrade to Walk-On for the full list, or All-American for full list plus performance comparison insights.
+                </div>
+                <Link href="/dashboard/player/billing" style={upgradeButtonStyle}>
+                  View Upgrade Options
+                </Link>
+              </div>
+            ) : null}
+
             <div style={{ display: "grid", gap: 12 }}>
-              {truthFitResults.slice(0, 25).map((item) => {
+              {visibleTruthFitResults.slice(0, 25).map((item) => {
                 const c = item.college;
                 const fit = item.truthFit;
                 const baseball = c.baseballProgram;
@@ -391,7 +430,7 @@ body: JSON.stringify({
                       </div>
                     ) : null}
 
-                                        {Array.isArray(fit.metricComparisons) && fit.metricComparisons.length > 0 ? (
+                    {isAllAmerican && Array.isArray(fit.metricComparisons) && fit.metricComparisons.length > 0 ? (
                       <div style={comparisonBoxStyle}>
                         <div style={comparisonTitleStyle}>Key Performance vs Benchmark</div>
 
@@ -616,6 +655,40 @@ const filterGridStyle: React.CSSProperties = { display: "grid", gap: 10, gridTem
 const filterLabelStyle: React.CSSProperties = { display: "grid", gap: 6 };
 const filterLabelTextStyle: React.CSSProperties = { fontSize: 12, fontWeight: 900, color: "#475569" };
 const selectStyle: React.CSSProperties = { height: 40, borderRadius: 10, border: "1px solid #cbd5e1", background: "#ffffff", color: "#0f172a", fontWeight: 800, padding: "0 10px" };
+const upgradeBoxStyle: React.CSSProperties = {
+  marginBottom: 14,
+  padding: 16,
+  borderRadius: 16,
+  background: "#fffaf0",
+  border: "1px solid #f5d58b",
+  color: "#7c5b12",
+};
+
+const upgradeTitleStyle: React.CSSProperties = {
+  fontSize: 16,
+  fontWeight: 900,
+  marginBottom: 6,
+};
+
+const upgradeTextStyle: React.CSSProperties = {
+  fontSize: 13,
+  fontWeight: 800,
+  lineHeight: 1.5,
+  marginBottom: 12,
+};
+
+const upgradeButtonStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "9px 13px",
+  background: "#caa042",
+  color: "#0f172a",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #caa042",
+};
 const infoBannerStyle: React.CSSProperties = { marginTop: 28, padding: 18, borderRadius: 16, background: "#e0f2fe", border: "1px solid #bae6fd", color: "#0c4a6e", fontWeight: 700, lineHeight: 1.6 };
 const selectedCollegeBannerStyle: React.CSSProperties = {
   marginBottom: 14,
