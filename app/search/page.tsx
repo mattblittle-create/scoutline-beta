@@ -116,24 +116,27 @@ function addUnique(list: string[], value: string) {
   return [...list, value];
 }
 
-function getFitColor(label?: string | null) {
+function getFitColor(label: string) {
   if (label === "Strong Fit") return "#15803d";
   if (label === "Match") return "#0369a1";
   if (label === "Possible Match") return "#b45309";
+  if (label === "Reach / Not Yet") return "#b91c1c";
   return "#b91c1c";
 }
 
-function getFitBackground(label?: string | null) {
+function getFitBackground(label: string) {
   if (label === "Strong Fit") return "#f0fdf4";
   if (label === "Match") return "#e0f2fe";
   if (label === "Possible Match") return "#fffbeb";
+  if (label === "Reach / Not Yet") return "#fef2f2";
   return "#fef2f2";
 }
 
-function getFitBorderColor(label?: string | null) {
+function getFitBorderColor(label: string) {
   if (label === "Strong Fit") return "#bbf7d0";
   if (label === "Match") return "#bae6fd";
   if (label === "Possible Match") return "#fde68a";
+  if (label === "Reach / Not Yet") return "#fecaca";
   return "#fecaca";
 }
 

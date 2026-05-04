@@ -4,7 +4,7 @@ export type TruthFitLabel =
   | "Strong Fit"
   | "Match"
   | "Possible Match"
-  | "Not Yet";
+  | "Reach / Not Yet";
 
 export type TruthFitBenchmarkSourceLevel =
   | "SCHOOL"
@@ -49,9 +49,19 @@ export type TruthFitInput = {
 export type TruthFitResult = {
   score: number;
   label: TruthFitLabel;
+  priority: "HIGH" | "MEDIUM" | "LOW";
   reasons: string[];
   gaps: string[];
-  development: string[]; // 👈 NEW
+  development: string[];
+  metricComparisons: Array<{
+    key: string;
+    label: string;
+    playerValue: number;
+    benchmarkValue: number;
+    unit?: string | null;
+    lowerIsBetter: boolean;
+    status: "ABOVE" | "IN_RANGE" | "BELOW";
+  }>;
   benchmarkSource: {
     metrics: {
       level: TruthFitBenchmarkSourceLevel;
@@ -59,6 +69,12 @@ export type TruthFitResult = {
     };
   };
 };
+
+function priorityFromScore(score: number): "HIGH" | "MEDIUM" | "LOW" {
+  if (score >= 75) return "HIGH";
+  if (score >= 60) return "MEDIUM";
+  return "LOW";
+}
 
 function labelFromScore(score: number, hasEstimatedSections = false): TruthFitLabel {
   if (score >= 90) return "Strong Fit";
@@ -68,7 +84,7 @@ function labelFromScore(score: number, hasEstimatedSections = false): TruthFitLa
   // During beta, avoid overly harsh labels when major data sections are incomplete.
   if (hasEstimatedSections && score >= 50) return "Possible Match";
 
-  return "Not Yet";
+  return "Reach / Not Yet";
 }
 
 function normalizePos(value?: string | null) {
@@ -122,6 +138,86 @@ function needLevel(value?: string | null) {
   return String(value || "").trim().toUpperCase();
 }
 
+function divisionLabel(value?: string | null) {
+  const raw = String(value || "").replace(/_/g, " ").trim();
+  return raw || "this level";
+}
+
+function metricLabel(key: string) {
+  if (key === "exitVelo") return "Exit Velocity";
+  if (key === "sixtyYdDash") return "60-Yard Dash";
+  if (key === "homeToFirst") return "Home-to-First";
+  if (key === "rawThrowVelo") return "Raw Throwing Velocity";
+  if (key === "infieldThrowVelo") return "Infield Throwing Velocity";
+  if (key === "outfieldThrowVelo") return "Outfield Throwing Velocity";
+  if (key === "catcherThrowVelo") return "Catcher Throwing Velocity";
+  if (key === "avgFbVelo") return "Average Fastball Velocity";
+  if (key === "avgChVelo") return "Average Changeup Velocity";
+  if (key === "avgBbVelo") return "Average Breaking Ball Velocity";
+  if (key === "popTime") return "Pop Time";
+  if (key === "heightIn") return "Height";
+  if (key === "weightLb") return "Weight";
+  return key;
+}
+
+function positionMetricKeys(positions: string[]) {
+  const set = new Set<string>();
+
+  const has = (pos: string) => positions.includes(pos);
+
+  // Common offensive / athletic metrics
+  set.add("exitVelo");
+  set.add("sixtyYdDash");
+  set.add("homeToFirst");
+  set.add("heightIn");
+  set.add("weightLb");
+
+  if (has("P")) {
+    set.add("avgFbVelo");
+    set.add("avgChVelo");
+    set.add("avgBbVelo");
+    set.add("heightIn");
+    set.add("weightLb");
+  }
+
+  if (has("C")) {
+    set.add("popTime");
+    set.add("catcherThrowVelo");
+    set.add("exitVelo");
+  }
+
+  if (has("SS") || has("2B") || has("MIF")) {
+    set.add("infieldThrowVelo");
+    set.add("sixtyYdDash");
+    set.add("homeToFirst");
+  }
+
+  if (has("3B") || has("1B") || has("CIF")) {
+    set.add("infieldThrowVelo");
+    set.add("rawThrowVelo");
+    set.add("exitVelo");
+    set.add("heightIn");
+    set.add("weightLb");
+  }
+
+  if (has("LF") || has("CF") || has("RF") || has("OF")) {
+    set.add("outfieldThrowVelo");
+    set.add("sixtyYdDash");
+    set.add("homeToFirst");
+    set.add("exitVelo");
+  }
+
+  return Array.from(set);
+}
+
+function benchmarkConfidenceMultiplier(level?: TruthFitBenchmarkSourceLevel) {
+  if (level === "SCHOOL") return 1;
+  if (level === "CONFERENCE") return 0.98;
+  if (level === "DIVISION") return 0.96;
+  if (level === "GLOBAL") return 0.93;
+  return 0.88;
+}
+
 function metricWeight(key: string) {
   if (key === "avgFbVelo") return 1.35;
   if (key === "exitVelo") return 1.25;
@@ -154,8 +250,9 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   possible += 35;
 
   if (playerGpa == null || collegeGpa == null) {
-    earned += 20;
+    earned += 14;
     reasons.push("Academic fit is estimated because player GPA or program GPA data is incomplete.");
+    development.push("Adding or updating GPA will make Truth Fit more accurate.");
   } else if (playerGpa >= collegeGpa) {
     earned += 35;
     reasons.push(
@@ -224,7 +321,7 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       `This program has a LOW roster need match for your ${playerGradYear} class and ${posLabel} position profile.`
     );
   } else if (needs.length === 0) {
-    earned += 18;
+    earned += 12;
     reasons.push("Roster need fit is estimated because program need data is not available yet.");
   } else {
     earned += 8;
@@ -238,23 +335,11 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
 
   const metricAverages = input.college.metricAverages || [];
 
-  const metricKeysToCheck = [
-    "exitVelo",
-    "sixtyYdDash",
-    "homeToFirst",
-    "rawThrowVelo",
-    "infieldThrowVelo",
-    "outfieldThrowVelo",
-    "catcherThrowVelo",
-    "avgFbVelo",
-    "avgChVelo",
-    "avgBbVelo",
-    "popTime",
-    "heightIn",
-    "weightLb",
-  ];
+  const metricKeysToCheck = positionMetricKeys(positions);
 
   const matchedMetricScores: Array<{ score: number; weight: number }> = [];
+
+  const metricComparisons: TruthFitResult["metricComparisons"] = [];
 
   const metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] =
     input.college.metricBenchmarkSource || {
@@ -316,13 +401,37 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
       score: metricScore,
       weight: metricWeight(key),
     });
+
+    metricComparisons.push({
+      key,
+      label: metricLabel(key),
+      playerValue,
+      benchmarkValue: avg,
+      unit: benchmark.unit || null,
+      lowerIsBetter,
+      status:
+        metricScore === 1
+          ? "ABOVE"
+          : metricScore === 0.7
+          ? "IN_RANGE"
+          : "BELOW",
+    });
+
+    if (metricScore === 1 && reasons.length < 5) {
+      reasons.push(`${metricLabel(key)} is at or above the benchmark range for this fit.`);
+    }
+
+    if (metricScore === 0.35 && gaps.length < 5) {
+      gaps.push(`${metricLabel(key)} is currently below the benchmark range for this fit.`);
+    }
   }
 
   if (matchedMetricScores.length === 0) {
-    earned += 18;
+    earned += 10;
     reasons.push(
-      "Metrics fit is estimated because matching program benchmark data is not available yet."
+      "Metrics fit is estimated because matching player metrics or program benchmark data is not available yet."
     );
+    development.push("Adding verified metrics will make your Truth Fit results more accurate and actionable.");
   } else {
     const weightedScoreTotal = matchedMetricScores.reduce(
       (sum, item) => sum + item.score * item.weight,
@@ -348,7 +457,9 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
         `Your available metrics are currently below the ${metricsBenchmarkSource.label.toLowerCase()}.`
       );
 
-      development.push("Improving your core athletic metrics will significantly increase your recruiting fit.");
+development.push(
+  `Improving your core athletic metrics will significantly increase your recruiting fit for ${divisionLabel(input.college.division)} programs.`
+);
     }
   }
 
@@ -365,7 +476,9 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   const secondaryPos = normalizePos(input.player.secondaryPos);
 
   if (exitVelo != null && exitVelo < 90) {
-    development.push("Increasing exit velocity will help improve your offensive fit at most college levels.");
+development.push(
+  `Increasing exit velocity will help improve your offensive fit for ${divisionLabel(input.college.division)} programs.`
+);
   }
 
   if (sixty != null && sixty > 7.0) {
@@ -417,10 +530,12 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     avgFbVelo < 82 &&
     (primaryPos === "P" || secondaryPos === "P")
   ) {
-    development.push("Increasing average fastball velocity will improve your pitching fit against college benchmarks.");
+development.push(
+  `Increasing average fastball velocity will improve your pitching fit against ${divisionLabel(input.college.division)} benchmarks.`
+);
   }
 
-const score = Math.round((earned / possible) * 100);
+const rawScore = Math.round((earned / possible) * 100);
 
 const hasEstimatedSections =
   playerGpa == null ||
@@ -428,12 +543,47 @@ const hasEstimatedSections =
   needs.length === 0 ||
   matchedMetricScores.length === 0;
 
+const confidenceMultiplier = benchmarkConfidenceMultiplier(metricsBenchmarkSource.level);
+
+const score = Math.max(
+  0,
+  Math.min(100, Math.round(rawScore * confidenceMultiplier))
+);
+
+if (confidenceMultiplier < 1) {
+  reasons.push(
+    `Truth Fit confidence is adjusted because this result uses ${metricsBenchmarkSource.label.toLowerCase()}.`
+  );
+}
+
+const uniqueDevelopment = Array.from(new Set(development));
+
+if (score >= 75 && gaps.length <= 1) {
+  uniqueDevelopment.unshift("Next best action: add this school to Target Programs and prepare a personalized coach outreach email.");
+} else if (score >= 60) {
+  uniqueDevelopment.unshift("Next best action: track this school while improving the gaps listed above.");
+} else {
+  uniqueDevelopment.unshift("Next best action: keep this school on your radar, but prioritize stronger current-fit programs first.");
+}
+
 return {
   score,
   label: labelFromScore(score, hasEstimatedSections),
-  reasons,
-  gaps,
-  development: Array.from(new Set(development)).slice(0, 4),
+  priority: priorityFromScore(score),
+  reasons: Array.from(new Set(reasons)).slice(0, 6),
+  gaps: Array.from(new Set(gaps)).slice(0, 5),
+  development: uniqueDevelopment.slice(0, 4),
+  const sortedComparisons = [...metricComparisons].sort((a, b) => {
+    const priority = (m: any) => {
+      if (m.status === "BELOW") return 3;     // biggest impact
+      if (m.status === "IN_RANGE") return 2;
+      return 1; // ABOVE
+    };
+
+    return priority(b) - priority(a);
+  });
+
+  metricComparisons: sortedComparisons.slice(0, 5),
   benchmarkSource: {
     metrics: metricsBenchmarkSource,
   },

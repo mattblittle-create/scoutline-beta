@@ -140,10 +140,10 @@ function PlayerRecruitingToolContent() {
       const res = await fetch("/api/player/target-programs", {
         method: isSaved ? "DELETE" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          collegeId,
-          priority: getPriorityFromFit(fitLabel),
-        }),
+body: JSON.stringify({
+  collegeId,
+  priority: fit.priority || getPriorityFromFit(fitLabel),
+}),
       });
 
       const data = await res.json().catch(() => null);
@@ -359,6 +359,10 @@ function PlayerRecruitingToolContent() {
     </Link>
   ) : null}
 
+                          <div style={priorityBadgeStyle}>
+                          {getPriorityBadgeText(fit.priority)}
+                        </div>
+
   <div
     title={getFitTooltip(fit.label, fit.score)}
     style={{
@@ -387,12 +391,55 @@ function PlayerRecruitingToolContent() {
                       </div>
                     ) : null}
 
-                    {Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
-                      <div style={reasonBoxStyle}>
-                        <div style={reasonTitleStyle}>Why this fit showed up</div>
-                        {fit.reasons.slice(0, 3).map((reason: string, index: number) => (
-                          <div key={index} style={reasonLineStyle}>• {reason}</div>
-                        ))}
+                                        {Array.isArray(fit.metricComparisons) && fit.metricComparisons.length > 0 ? (
+                      <div style={comparisonBoxStyle}>
+                        <div style={comparisonTitleStyle}>Key Performance vs Benchmark</div>
+
+                        <div style={{ display: "grid", gap: 8 }}>
+                          {fit.metricComparisons.slice(0, 4).map((metric: any) => (
+                            <div key={metric.key} style={comparisonRowStyle}>
+                              <div style={{ fontWeight: 900 }}>{metric.label}</div>
+
+                              <div style={comparisonValueStyle}>
+                                You: {formatMetricValue(metric.playerValue, metric.unit)}
+                              </div>
+
+                              <div style={comparisonValueStyle}>
+                                Benchmark: {formatMetricValue(metric.benchmarkValue, metric.unit)}
+                              </div>
+
+                              <div
+                                style={{
+                                  ...comparisonStatusStyle,
+                                  background:
+                                    metric.status === "ABOVE"
+                                      ? "#f0fdf4"
+                                      : metric.status === "IN_RANGE"
+                                      ? "#fffbeb"
+                                      : "#fef2f2",
+                                  borderColor:
+                                    metric.status === "ABOVE"
+                                      ? "#bbf7d0"
+                                      : metric.status === "IN_RANGE"
+                                      ? "#fde68a"
+                                      : "#fecaca",
+                                  color:
+                                    metric.status === "ABOVE"
+                                      ? "#15803d"
+                                      : metric.status === "IN_RANGE"
+                                      ? "#b45309"
+                                      : "#b91c1c",
+                                }}
+                              >
+                                {metric.status === "ABOVE"
+                                  ? "Above"
+                                  : metric.status === "IN_RANGE"
+                                  ? "In Range"
+                                  : "Below"}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
                       </div>
                     ) : null}
 
@@ -405,16 +452,27 @@ function PlayerRecruitingToolContent() {
                       </div>
                     ) : null}
 
-                    {Array.isArray(fit.development) && fit.development.length > 0 ? (
-                      <div style={developmentBoxStyle}>
-                        <div style={developmentTitleStyle}>How to improve your fit</div>
-                        {fit.development.slice(0, 2).map((tip: string, index: number) => (
-                          <div key={index} style={developmentLineStyle}>
-                            • {tip}
-                          </div>
-                        ))}
-                      </div>
-                    ) : null}
+{Array.isArray(fit.development) && fit.development.length > 0 ? (
+  <div style={developmentBoxStyle}>
+    <div style={developmentTitleStyle}>What to do next</div>
+    {fit.development.map((tip: string, index: number) => (
+      <div key={index} style={developmentLineStyle}>
+        • {tip}
+      </div>
+    ))}
+  </div>
+) : null}
+
+{Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
+  <div style={reasonBoxStyle}>
+    <div style={reasonTitleStyle}>Why this fit showed up</div>
+    {fit.reasons.slice(0, 3).map((reason: string, index: number) => (
+      <div key={index} style={reasonLineStyle}>
+        • {reason}
+      </div>
+    ))}
+  </div>
+) : null}
                   </article>
                 );
               })}
@@ -496,17 +554,30 @@ function pretty(value?: string | null) {
     .join(" ");
 }
 
+function formatMetricValue(value: number, unit?: string | null) {
+  const rounded = Number.isInteger(value) ? value : Number(value.toFixed(2));
+  return unit ? `${rounded} ${unit}` : String(rounded);
+}
+
+function getPriorityBadgeText(priority?: string | null) {
+  if (priority === "HIGH") return "High Priority";
+  if (priority === "MEDIUM") return "Medium Priority";
+  if (priority === "LOW") return "Low Priority";
+  return "Priority TBD";
+}
+
 function getFitTooltip(label: string, score: number) {
   if (label === "Strong Fit") return `Strong Fit = Your profile is currently tracking very well for this program.\nScore: ${score}/100`;
   if (label === "Match") return `Match = Your profile aligns well with this program based on available data.\nScore: ${score}/100`;
   if (label === "Possible Match") return `Possible Match = This school may be worth tracking, especially if some school-side data is still incomplete.\nScore: ${score}/100`;
-  return `Not Yet = This school is currently a stretch based on your profile and available benchmarks.\nScore: ${score}/100`;
+    return `Reach / Not Yet = This school is currently a reach based on your profile and available benchmarks, but it can still be tracked as a longer-term target.\nScore: ${score}/100`;
 }
 
 function getFitColor(label: string) {
   if (label === "Strong Fit") return "#15803d";
   if (label === "Match") return "#0369a1";
   if (label === "Possible Match") return "#b45309";
+  if (label === "Reach / Not Yet") return "#b91c1c";
   return "#b91c1c";
 }
 
@@ -514,6 +585,7 @@ function getFitBorderColor(label: string) {
   if (label === "Strong Fit") return "#bbf7d0";
   if (label === "Match") return "#bae6fd";
   if (label === "Possible Match") return "#fde68a";
+  if (label === "Reach / Not Yet") return "#fecaca";
   return "#fecaca";
 }
 
@@ -521,6 +593,7 @@ function getFitBackground(label: string) {
   if (label === "Strong Fit") return "#f0fdf4";
   if (label === "Match") return "#e0f2fe";
   if (label === "Possible Match") return "#fffbeb";
+  if (label === "Reach / Not Yet") return "#fef2f2";
   return "#fef2f2";
 }
 
@@ -566,6 +639,15 @@ const locationStyle: React.CSSProperties = { marginTop: 5, fontSize: 13, color: 
 const linkRowStyle: React.CSSProperties = { display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 };
 const smallLinkStyle: React.CSSProperties = { fontSize: 12, color: "#0369a1", fontWeight: 900, textDecoration: "underline", textDecorationColor: "#bae6fd" };
 const fitBadgeStyle: React.CSSProperties = { border: "1px solid", borderRadius: 999, padding: "7px 11px", fontSize: 13, fontWeight: 900 };
+const priorityBadgeStyle: React.CSSProperties = {
+  border: "1px solid #f5d58b",
+  background: "#fffaf0",
+  color: "#7c5b12",
+  borderRadius: 999,
+  padding: "7px 11px",
+  fontSize: 12,
+  fontWeight: 900,
+};
 const metaGridStyle: React.CSSProperties = { marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 10 };
 const infoBoxStyle: React.CSSProperties = { border: "1px solid #eef2f7", background: "#f8fafc", borderRadius: 12, padding: "10px 12px" };
 const infoLabelStyle: React.CSSProperties = { fontSize: 12, color: "#64748b", fontWeight: 800 };
@@ -577,6 +659,42 @@ const gapBoxStyle: React.CSSProperties = { marginTop: 10, border: "1px solid #fe
 const gapTitleStyle: React.CSSProperties = { fontSize: 12, fontWeight: 900, color: "#9a3412", marginBottom: 6 };
 const gapLineStyle: React.CSSProperties = { fontSize: 13, color: "#7c2d12", lineHeight: 1.45 };
 const benchmarkSourceStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "7px 11px", width: "fit-content", color: "#475569", fontSize: 12, fontWeight: 900 };
+const comparisonBoxStyle: React.CSSProperties = {
+  marginTop: 12,
+  border: "1px solid #e5e7eb",
+  background: "#ffffff",
+  borderRadius: 12,
+  padding: 12,
+};
+
+const comparisonTitleStyle: React.CSSProperties = {
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#334155",
+  marginBottom: 8,
+};
+
+const comparisonRowStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "1.2fr 1fr 1fr auto",
+  gap: 8,
+  alignItems: "center",
+  fontSize: 12,
+};
+
+const comparisonValueStyle: React.CSSProperties = {
+  color: "#475569",
+  fontWeight: 800,
+};
+
+const comparisonStatusStyle: React.CSSProperties = {
+  border: "1px solid",
+  borderRadius: 999,
+  padding: "4px 8px",
+  fontSize: 11,
+  fontWeight: 900,
+  textAlign: "center",
+};
 const developmentBoxStyle: React.CSSProperties = {
   marginTop: 10,
   border: "1px solid #e0e7ff",
