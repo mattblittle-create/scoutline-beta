@@ -274,27 +274,74 @@ function topKey(obj: Record<string, number>) {
     .sort((a, b) => b[1] - a[1])[0]?.[0] || null;
 }
 
-const divisionFits = Object.entries(divisionCounts)
-  .map(([division]) => {
-    const divisionResults = topResults.filter(
-      (r) => (r.college?.baseballProgram?.division || "UNKNOWN") === division
-    );
+const ALL_DIVISIONS = [
+  "NCAA_D1",
+  "NCAA_D2",
+  "NCAA_D3",
+  "NAIA",
+  "NJCAA_D1",
+  "NJCAA_D2",
+  "NJCAA_D3",
+];
 
-    const best = [...divisionResults].sort(
-      (a, b) => (b.truthFit?.score || 0) - (a.truthFit?.score || 0)
-    )[0];
+function outlookForFit(fit: string) {
+  if (fit === "Strong Fit") {
+    return "You are tracking as a strong recruit for this division.";
+  }
+  if (fit === "Match") {
+    return "You have solid alignment with programs at this division.";
+  }
+  if (fit === "Possible Match") {
+    return "You are close to matching this division—development will unlock more opportunities.";
+  }
+  if (fit === "No Data Yet") {
+    return "ScoutLine does not have enough matching program data for this division yet.";
+  }
+  return "This division is currently more of a reach based on available profile and benchmark data.";
+}
 
-    return {
-      division,
-      fitTier: best?.truthFit?.label || "Reach / Not Yet",
-      bestScore: best?.truthFit?.score || 0,
-      count: divisionResults.length,
-    };
-  })
-  .sort((a, b) => b.bestScore - a.bestScore);
+const divisionFits = ALL_DIVISIONS.map((division) => {
+  const divisionResults = enrichedResults.filter(
+    (r) => String(r.college?.baseballProgram?.division || "") === division
+  );
 
-const dominantDivision = divisionFits[0]?.division || topKey(divisionCounts);
-const dominantFit = divisionFits[0]?.fitTier || topKey(labelCounts);
+  const best = [...divisionResults].sort(
+    (a, b) => (b.truthFit?.score || 0) - (a.truthFit?.score || 0)
+  )[0];
+
+  const divisionGapCounts: Record<string, number> = {};
+
+  for (const r of divisionResults) {
+    const gaps = Array.isArray(r.truthFit?.gaps) ? r.truthFit.gaps : [];
+    for (const gap of gaps) {
+      const key = String(gap || "").trim();
+      if (!key) continue;
+      divisionGapCounts[key] = (divisionGapCounts[key] || 0) + 1;
+    }
+  }
+
+  const divisionTopGaps = Object.entries(divisionGapCounts)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 2)
+    .map(([gap]) => gap);
+
+  const fitTier = best?.truthFit?.label || "No Data Yet";
+  const bestScore = best?.truthFit?.score || 0;
+
+  return {
+    division,
+    fitTier,
+    bestScore,
+    count: divisionResults.length,
+    outlook: outlookForFit(fitTier),
+    topGaps: divisionTopGaps,
+  };
+});
+
+const rankedDivisionFits = [...divisionFits].sort((a, b) => b.bestScore - a.bestScore);
+
+const dominantDivision = rankedDivisionFits[0]?.division || topKey(divisionCounts);
+const dominantFit = rankedDivisionFits[0]?.fitTier || topKey(labelCounts);
 
 const topGaps = Object.entries(gapCounts)
   .sort((a, b) => b[1] - a[1])
@@ -321,6 +368,7 @@ return NextResponse.json({
     dominantFit,
     outlook,
     topGaps,
+    divisionFits: rankedDivisionFits,
   },
   filters: {
         division,

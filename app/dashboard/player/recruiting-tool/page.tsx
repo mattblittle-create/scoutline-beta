@@ -258,7 +258,7 @@ body: JSON.stringify({
 
             <div style={laneGridStyle}>
               <div>
-                <div style={laneLabelStyle}>Division Fit View</div>
+              <div style={laneLabelStyle}>Division</div>
                 <select
                   value={selectedLaneDivision}
                   onChange={(e) => setSelectedLaneDivision(e.target.value)}
@@ -276,7 +276,7 @@ body: JSON.stringify({
               </div>
 
               <div>
-                <div style={laneLabelStyle}>Fit Tier</div>
+                <div style={laneLabelStyle}>Division Fit</div>
                 <div style={laneValueStyle}>
                   {selectedLaneFit?.fitTier || truthFitSummary.dominantFit}
                 </div>
@@ -292,15 +292,15 @@ body: JSON.stringify({
               <div style={{ gridColumn: "1 / -1" }}>
                 <div style={laneLabelStyle}>Recruiting Outlook</div>
                 <div style={laneValueStyle}>
-                  {truthFitSummary.outlook}
+                  {selectedLaneFit?.outlook || truthFitSummary.outlook}
                 </div>
               </div>
 
-              {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
+              {Array.isArray(selectedLaneFit?.topGaps) && selectedLaneFit.topGaps.length > 0 ? (
                 <div style={{ gridColumn: "1 / -1" }}>
                   <div style={laneLabelStyle}>What’s Holding You Back</div>
                   <div style={{ display: "grid", gap: 6, marginTop: 6 }}>
-                    {truthFitSummary.topGaps.map((gap: string, index: number) => (
+                    {selectedLaneFit.topGaps.map((gap: string, index: number) => (
                       <div key={index} style={laneValueStyle}>
                         • {gap}
                       </div>
