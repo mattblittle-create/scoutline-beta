@@ -55,6 +55,11 @@ function PlayerRecruitingToolContent() {
   
   const isRedshirt = planTier === "REDSHIRT";
   const isAllAmerican = planTier === "ALL_AMERICAN";
+
+  const visibleTruthFitResults = isRedshirt
+    ? truthFitResults.slice(0, 3)
+    : truthFitResults;
+
   const selectedLaneFit =
     truthFitSummary?.divisionFits?.find(
       (item: any) => item.division === selectedLaneDivision
