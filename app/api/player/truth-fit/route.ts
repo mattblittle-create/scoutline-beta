@@ -252,6 +252,7 @@ const topResults = enrichedResults.slice(0, 25);
 
 const divisionCounts: Record<string, number> = {};
 const labelCounts: Record<string, number> = {};
+const gapCounts: Record<string, number> = {};
 
 for (const r of topResults) {
   const division = r.college?.baseballProgram?.division || "UNKNOWN";
@@ -259,6 +260,13 @@ for (const r of topResults) {
 
   divisionCounts[division] = (divisionCounts[division] || 0) + 1;
   labelCounts[label] = (labelCounts[label] || 0) + 1;
+
+  const gaps = Array.isArray(r.truthFit?.gaps) ? r.truthFit.gaps : [];
+  for (const gap of gaps) {
+    const key = String(gap || "").trim();
+    if (!key) continue;
+    gapCounts[key] = (gapCounts[key] || 0) + 1;
+  }
 }
 
 function topKey(obj: Record<string, number>) {
@@ -268,6 +276,11 @@ function topKey(obj: Record<string, number>) {
 
 const dominantDivision = topKey(divisionCounts);
 const dominantFit = topKey(labelCounts);
+
+const topGaps = Object.entries(gapCounts)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 2)
+  .map(([gap]) => gap);
 
 let outlook = "Balanced recruiting opportunity across multiple levels.";
 
@@ -288,6 +301,7 @@ return NextResponse.json({
     dominantDivision,
     dominantFit,
     outlook,
+    topGaps,
   },
   filters: {
         division,

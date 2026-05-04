@@ -263,6 +263,19 @@ body: JSON.stringify({
           {truthFitSummary.outlook}
         </div>
       </div>
+
+            {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
+        <div style={{ gridColumn: "1 / -1" }}>
+          <div style={laneLabelStyle}>What’s Holding You Back</div>
+          <div style={{ display: "grid", gap: 6, marginTop: 6 }}>
+            {truthFitSummary.topGaps.map((gap: string, index: number) => (
+              <div key={index} style={laneValueStyle}>
+                • {gap}
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   </section>
 ) : null}
