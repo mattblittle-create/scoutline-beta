@@ -37,6 +37,7 @@ export type TruthFitInput = {
     metricBenchmarkSource?: {
       level: TruthFitBenchmarkSourceLevel;
       label: string;
+      confidence?: "HIGH" | "MEDIUM" | "LOW";
     };
     rosterNeeds?: Array<{
       gradYear?: number | null;
@@ -66,6 +67,7 @@ export type TruthFitResult = {
     metrics: {
       level: TruthFitBenchmarkSourceLevel;
       label: string;
+      confidence: "HIGH" | "MEDIUM" | "LOW";
     };
   };
 };
@@ -345,6 +347,7 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
     input.college.metricBenchmarkSource || {
       level: "ESTIMATED",
       label: "Estimated - benchmark data not available yet",
+      confidence: "LOW",
     };
 
   for (const key of metricKeysToCheck) {

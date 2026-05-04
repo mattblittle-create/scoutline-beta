@@ -22,6 +22,7 @@ export type BestMetricBenchmark = {
 export type BestMetricBenchmarkResult = {
   level: BenchmarkSourceLevel;
   label: string;
+  confidence: "HIGH" | "MEDIUM" | "LOW";
   benchmarks: BestMetricBenchmark[];
 };
 
@@ -44,6 +45,12 @@ function formatDivisionLabel(value?: string | null) {
 
 function normalizeConference(value?: string | null) {
   return String(value || "").trim();
+}
+
+function confidenceForLevel(level: BenchmarkSourceLevel): "HIGH" | "MEDIUM" | "LOW" {
+  if (level === "SCHOOL") return "HIGH";
+  if (level === "CONFERENCE") return "MEDIUM";
+  return "LOW";
 }
 
 function mapBenchmarkRows(rows: any[]): BestMetricBenchmark[] {
@@ -81,6 +88,7 @@ export async function getBestMetricBenchmarks({
       return {
         level: "SCHOOL",
         label: `${collegeName || "School"} program benchmark`,
+        confidence: confidenceForLevel("SCHOOL"),
         benchmarks: mapBenchmarkRows(schoolRows),
       };
     }
@@ -100,6 +108,7 @@ export async function getBestMetricBenchmarks({
       return {
         level: "CONFERENCE",
         label: `${conferenceKey} conference benchmark`,
+        confidence: confidenceForLevel("CONFERENCE"),
         benchmarks: mapBenchmarkRows(conferenceRows),
       };
     }
@@ -119,6 +128,7 @@ export async function getBestMetricBenchmarks({
       return {
         level: "DIVISION",
         label: `${formatDivisionLabel(divisionKey)} division benchmark`,
+        confidence: confidenceForLevel("DIVISION"),
         benchmarks: mapBenchmarkRows(divisionRows),
       };
     }
@@ -135,6 +145,7 @@ export async function getBestMetricBenchmarks({
     return {
       level: "GLOBAL",
       label: "Global position benchmark",
+      confidence: confidenceForLevel("GLOBAL"),
       benchmarks: mapBenchmarkRows(globalRows),
     };
   }
@@ -142,6 +153,7 @@ export async function getBestMetricBenchmarks({
   return {
     level: "ESTIMATED",
     label: "Estimated - benchmark data not available yet",
+    confidence: confidenceForLevel("ESTIMATED"),
     benchmarks: [],
   };
 }
