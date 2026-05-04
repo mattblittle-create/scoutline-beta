@@ -109,7 +109,7 @@ const POSITION_ALIASES: Record<string, string> = {
   RF: "OF",
   MIF: "SS",
   CIF: "3B",
-  Utility: "OF",
+  UTILITY: "OF",
 };
 
 function round(value: number, unit: string) {
@@ -174,7 +174,8 @@ function buildRows(): Row[] {
           metricLabel: template.label,
           unit: template.unit,
           ...adjusted,
-          sourceNote: "ScoutLine division baseline - estimated recruiting benchmark",
+          sourceNote:
+  "ScoutLine composite division baseline estimate based on public recruiting benchmark ranges from PBR, Perfect Game, NCSA, Baseball Factory, Driveline, and OnBaseU-style player development references.",
         });
       }
     }
@@ -193,7 +194,7 @@ function buildRows(): Row[] {
           metricLabel: template.label,
           unit: template.unit,
           ...adjusted,
-          sourceNote: `ScoutLine division baseline - ${alias} uses ${basePosition} benchmark profile`,
+          sourceNote: `ScoutLine composite division baseline estimate - ${alias} uses ${basePosition} benchmark profile.`,
         });
       }
     }

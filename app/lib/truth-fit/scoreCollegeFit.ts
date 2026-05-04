@@ -101,7 +101,7 @@ function expandedPositions(primary?: string | null, secondary?: string | null) {
     if (pos === "LF" || pos === "CF" || pos === "RF") out.add("OF");
     if (pos === "2B" || pos === "SS") out.add("MIF");
     if (pos === "1B" || pos === "3B") out.add("CIF");
-    if (pos !== "P") out.add("Utility");
+    if (pos !== "P") out.add("UTILITY");
   }
 
   return Array.from(out);
