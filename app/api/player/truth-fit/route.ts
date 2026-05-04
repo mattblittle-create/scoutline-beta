@@ -169,6 +169,7 @@ export async function GET(req: NextRequest) {
               metricBenchmarkSource: {
                 level: bestMetrics.level,
                 label: bestMetrics.label,
+                confidence: bestMetrics.confidence,
               },
               rosterNeeds:
                 baseball?.rosterNeeds?.map((need) => ({

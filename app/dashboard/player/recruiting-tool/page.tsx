@@ -516,6 +516,10 @@ body: JSON.stringify({
                     {fit?.benchmarkSource?.metrics?.label ? (
                       <div style={benchmarkSourceStyle}>
                         Metrics Source: {fit.benchmarkSource.metrics.label}
+                        {" "}
+                          <span style={confidenceTextStyle}>
+                            ({fit.benchmarkSource.metrics.confidence || "LOW"} confidence)
+                        </span>
                       </div>
                     ) : null}
 
@@ -844,6 +848,10 @@ const gapBoxStyle: React.CSSProperties = { marginTop: 10, border: "1px solid #fe
 const gapTitleStyle: React.CSSProperties = { fontSize: 12, fontWeight: 900, color: "#9a3412", marginBottom: 6 };
 const gapLineStyle: React.CSSProperties = { fontSize: 13, color: "#7c2d12", lineHeight: 1.45 };
 const benchmarkSourceStyle: React.CSSProperties = { marginTop: 12, border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "7px 11px", width: "fit-content", color: "#475569", fontSize: 12, fontWeight: 900 };
+const confidenceTextStyle: React.CSSProperties = {
+  color: "#64748b",
+  fontWeight: 800,
+};
 const comparisonBoxStyle: React.CSSProperties = {
   marginTop: 12,
   border: "1px solid #e5e7eb",
