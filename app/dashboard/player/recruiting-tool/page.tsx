@@ -264,11 +264,14 @@ body: JSON.stringify({
                   onChange={(e) => setSelectedLaneDivision(e.target.value)}
                   style={laneSelectStyle}
                 >
-                  {(truthFitSummary.divisionFits || []).map((item: any) => (
-                    <option key={item.division} value={item.division}>
-                      {pretty(item.division)}
-                    </option>
-                  ))}
+{(truthFitSummary.divisionFits?.length
+  ? truthFitSummary.divisionFits
+  : [{ division: truthFitSummary.dominantDivision || "UNKNOWN" }]
+).map((item: any) => (
+  <option key={item.division} value={item.division}>
+    {pretty(item.division)}
+  </option>
+))}
                 </select>
               </div>
 
@@ -936,12 +939,16 @@ const laneLabelStyle: React.CSSProperties = {
 const laneSelectStyle: React.CSSProperties = {
   marginTop: 4,
   width: "100%",
+  minHeight: 42,
+  height: 42,
   border: "1px solid #86efac",
   borderRadius: 10,
   padding: "8px 10px",
   background: "#ffffff",
   color: "#052e16",
   fontWeight: 900,
+  fontSize: 14,
+  lineHeight: "20px",
   outline: "none",
 };
 
