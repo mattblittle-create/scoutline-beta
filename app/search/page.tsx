@@ -544,7 +544,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Example: South Carolina"
+              placeholder="Type at least 2 characters to search by college name."
               style={inputStyle}
             />
           </Field>
