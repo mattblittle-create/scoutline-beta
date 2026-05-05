@@ -105,6 +105,21 @@ function decimalOrUndefined(value: unknown): number | undefined {
   return Number.isFinite(n) ? n : undefined;
 }
 
+function normalizeConference(value: unknown): string | undefined {
+  const s = clean(value);
+  if (!s) return undefined;
+
+  const upper = s.toUpperCase().replace(/[_-]/g, " ").replace(/\s+/g, " ").trim();
+
+  if (upper === "BIG TEN" || upper === "B1G") return "Big Ten";
+  if (upper === "SEC") return "SEC";
+  if (upper === "ACC") return "ACC";
+  if (upper === "BIG 12") return "Big 12";
+  if (upper === "PAC 12") return "Pac-12";
+
+  return s;
+}
+
 function boolOrDefault(value: unknown, fallback = false): boolean {
   const s = String(value ?? "").trim().toLowerCase();
   if (!s) return fallback;
@@ -265,7 +280,7 @@ async function main() {
           generalContactUrl: clean(row.generalContactUrl),
           generalContactEmail: clean(row.generalContactEmail),
           division: row.division || undefined,
-          conference: clean(row.conference),
+          conference: normalizeConference(row.conference),
           currentRosterSize: intOrUndefined(row.currentRosterSize),
           averageGpa: decimalOrUndefined(row.averageGpa),
           scholarshipNotes: clean(row.scholarshipNotes),
@@ -287,7 +302,7 @@ async function main() {
           generalContactUrl: clean(row.generalContactUrl),
           generalContactEmail: clean(row.generalContactEmail),
           division: row.division || undefined,
-          conference: clean(row.conference),
+          conference: normalizeConference(row.conference),
           currentRosterSize: intOrUndefined(row.currentRosterSize),
           averageGpa: decimalOrUndefined(row.averageGpa),
           scholarshipNotes: clean(row.scholarshipNotes),

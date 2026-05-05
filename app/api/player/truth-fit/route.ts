@@ -132,11 +132,15 @@ export async function GET(req: NextRequest) {
         ...(region ? { region: region as any } : {}),
         ...(state ? { state } : {}),
         ...(control ? { control: control as any } : {}),
-        baseballProgram: {
-          is: {
-            ...(division ? { division: division as any } : {}),
-          },
-        },
+baseballProgram: {
+  is: {
+    ...(division ? { division: division as any } : {}),
+    OR: [
+      { baseballWebsiteUrl: { not: null } },
+      { currentRosterSize: { gt: 0 } },
+    ],
+  },
+},
       },
       include: {
         baseballProgram: {
