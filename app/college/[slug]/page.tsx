@@ -29,6 +29,35 @@ function money(value?: number | null) {
   return `$${value.toLocaleString()}`;
 }
 
+function formatPercent(value?: number | string | null) {
+  if (value == null || value === "") return "—";
+
+  const n = Number(value);
+  if (!Number.isFinite(n)) return "—";
+
+  return `${Math.round(n * 100)}%`;
+}
+
+function selectivityTier(value?: number | string | null) {
+  if (value == null || value === "") return null;
+
+  const n = Number(value);
+  if (!Number.isFinite(n)) return null;
+
+  if (n < 0.15) return "Highly Selective";
+  if (n < 0.35) return "Selective";
+  if (n < 0.65) return "Moderate";
+  return "Accessible";
+}
+
+function formatPercentWithTier(value?: number | string | null) {
+  const percent = formatPercent(value);
+  const tier = selectivityTier(value);
+
+  if (percent === "—") return "—";
+  return tier ? `${tier} (${percent})` : percent;
+}
+
 async function getCollege(slug: string) {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.myscoutline.com";
 
@@ -95,8 +124,8 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             <Info label="International Tuition" value={money(college.tuitionInternational)} />
             <Info label="Enrollment" value={college.enrollmentTotal?.toLocaleString?.() || "—"} />
             <Info label="Undergrad Enrollment" value={college.enrollmentUndergrad?.toLocaleString?.() || "—"} />
-            <Info label="Acceptance Rate" value={college.acceptanceRate ? `${college.acceptanceRate}%` : "—"} />
-            <Info label="Graduation Rate" value={college.graduationRate ? `${college.graduationRate}%` : "—"} />
+            <Info label="Acceptance Rate" value={formatPercentWithTier(college.acceptanceRate)} />
+            <Info label="Graduation Rate" value={formatPercent(college.graduationRate)} />
 
             <div style={buttonRowStyle}>
               {college.websiteUrl ? <ExternalButton href={college.websiteUrl}>School Website</ExternalButton> : null}
