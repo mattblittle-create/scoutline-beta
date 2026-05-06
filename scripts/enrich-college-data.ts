@@ -126,15 +126,15 @@ async function fetchScorecardMatch(row: Row): Promise<any | null> {
     throw new Error("Missing COLLEGE_SCORECARD_API_KEY in .env.local");
   }
 
-const searchName = SCORECARD_NAME_ALIASES[row.name] || row.name;
+  const searchName = SCORECARD_NAME_ALIASES[row.name] || row.name;
 
-const params = new URLSearchParams({
-  api_key: API_KEY,
-  "school.name": searchName,
-  "school.state": row.state,
-  fields: FIELDS.join(","),
-  per_page: "10",
-});
+  const params = new URLSearchParams({
+    api_key: API_KEY,
+    "school.name": searchName,
+    "school.state": row.state,
+    fields: FIELDS.join(","),
+    per_page: "10",
+  });
 
   let res = await fetch(`${SCORECARD_BASE_URL}?${params.toString()}`);
   let data = await res.json();
@@ -142,12 +142,12 @@ const params = new URLSearchParams({
   let results = Array.isArray(data?.results) ? data.results : [];
 
   if (!results.length) {
-const fallbackParams = new URLSearchParams({
-  api_key: API_KEY,
-  search: searchName,
-  fields: FIELDS.join(","),
-  per_page: "10",
-});
+  const fallbackParams = new URLSearchParams({
+    api_key: API_KEY,
+    search: searchName,
+    fields: FIELDS.join(","),
+    per_page: "10",
+  });
 
     res = await fetch(`${SCORECARD_BASE_URL}?${fallbackParams.toString()}`);
     data = await res.json();
