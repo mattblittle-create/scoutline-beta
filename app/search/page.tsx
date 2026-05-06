@@ -57,7 +57,7 @@ const TARGET_STATUS_OPTIONS = [
 ] as const;
 
 const CONFERENCES = [
-  "ACC","SEC","Big Ten","Big 12","Pac-12","American Athletic Conference","Atlantic 10",
+  "ACC","SEC","Big Ten","Big 12","Pac-12","AAC","Atlantic 10",
   "ASUN","Big East","Big South","CAA","Conference USA","Horizon League","Ivy League",
   "MAAC","MAC","MEAC","Missouri Valley","Mountain West","Northeast Conference",
   "Ohio Valley","Patriot League","SoCon","Southland","Sun Belt","SWAC","WAC","West Coast Conference"
