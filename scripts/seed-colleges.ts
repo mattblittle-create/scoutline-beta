@@ -183,7 +183,7 @@ const colleges: SeedCollege[] = [
       nickname: "Pirates",
       baseballWebsiteUrl: "https://ecupirates.com/sports/baseball",
       division: "NCAA_D1",
-      conference: "American Athletic Conference",
+      conference: "AAC",
     },
   },
   {
