@@ -544,7 +544,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Click on the school name in the results below to see additional information."
+              placeholder="Type at least 2 characters to search by college name..."
               style={inputStyle}
             />
           </Field>
@@ -680,7 +680,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
 
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
 {!shouldSearch
-  ? "Type at least 2 characters to search by college name..."
+  ? "Click on the school name in the results below to see additional information."
   : loading
   ? "Searching colleges..."
 : `${visibleResults.length} result${visibleResults.length === 1 ? "" : "s"} found.`}
