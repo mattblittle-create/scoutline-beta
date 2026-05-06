@@ -22,6 +22,35 @@ const FIELDS = [
   "latest.student.size",
 ];
 
+const SCORECARD_NAME_ALIASES: Record<string, string> = {
+  "University of California Berkeley": "University of California-Berkeley",
+  "Virginia Tech": "Virginia Polytechnic Institute and State University",
+  UCLA: "University of California-Los Angeles",
+  BYU: "Brigham Young University",
+  TCU: "Texas Christian University",
+  UCF: "University of Central Florida",
+  "Fresno State": "California State University-Fresno",
+  "University of Massachusetts Amherst": "University of Massachusetts-Amherst",
+  "UNC Asheville": "University of North Carolina Asheville",
+  "USC Upstate": "University of South Carolina-Upstate",
+  "North Carolina A&T State University": "North Carolina A & T State University",
+  "UNC Wilmington": "University of North Carolina Wilmington",
+  "University of Wisconsin Milwaukee": "University of Wisconsin-Milwaukee",
+  "University of Nevada Las Vegas": "University of Nevada-Las Vegas",
+  "University of Nevada Reno": "University of Nevada-Reno",
+  LIU: "Long Island University",
+  "University of Tennessee at Martin": "The University of Tennessee-Martin",
+  "Army West Point": "United States Military Academy",
+  "The Citadel": "Citadel Military College of South Carolina",
+  "Texas A&M University Corpus Christi": "Texas A & M University-Corpus Christi",
+  "University of Louisiana Monroe": "University of Louisiana at Monroe",
+  "Alabama A&M University": "Alabama A & M University",
+  "Florida A&M University": "Florida Agricultural and Mechanical University",
+  "Prairie View A&M University": "Prairie View A & M University",
+  "Southern University and A&M College": "Southern University and A & M College",
+  "University of Texas Arlington": "The University of Texas at Arlington",
+};
+
 function parseCsvLine(line: string): string[] {
   const out: string[] = [];
   let current = "";
@@ -97,13 +126,15 @@ async function fetchScorecardMatch(row: Row): Promise<any | null> {
     throw new Error("Missing COLLEGE_SCORECARD_API_KEY in .env.local");
   }
 
-  const params = new URLSearchParams({
-    api_key: API_KEY,
-    "school.name": row.name,
-    "school.state": row.state,
-    fields: FIELDS.join(","),
-    per_page: "10",
-  });
+const searchName = SCORECARD_NAME_ALIASES[row.name] || row.name;
+
+const params = new URLSearchParams({
+  api_key: API_KEY,
+  "school.name": searchName,
+  "school.state": row.state,
+  fields: FIELDS.join(","),
+  per_page: "10",
+});
 
   let res = await fetch(`${SCORECARD_BASE_URL}?${params.toString()}`);
   let data = await res.json();
@@ -111,12 +142,12 @@ async function fetchScorecardMatch(row: Row): Promise<any | null> {
   let results = Array.isArray(data?.results) ? data.results : [];
 
   if (!results.length) {
-    const fallbackParams = new URLSearchParams({
-      api_key: API_KEY,
-      search: row.name,
-      fields: FIELDS.join(","),
-      per_page: "10",
-    });
+const fallbackParams = new URLSearchParams({
+  api_key: API_KEY,
+  search: searchName,
+  fields: FIELDS.join(","),
+  per_page: "10",
+});
 
     res = await fetch(`${SCORECARD_BASE_URL}?${fallbackParams.toString()}`);
     data = await res.json();
