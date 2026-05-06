@@ -544,7 +544,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              placeholder="Type at least 2 characters to search by college name."
+              placeholder="Click on the school name in the results below to see additional information."
               style={inputStyle}
             />
           </Field>
@@ -555,7 +555,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
 
     <div style={filterGridStyle}>
       <AutoChipField
-        label="States"
+        label="State(s)"
         value={stateInput}
         setValue={setStateInput}
         selected={states}
@@ -565,7 +565,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
       />
 
       <AutoChipField
-        label="Regions"
+        label="Region(s)"
         value={regionInput}
         setValue={setRegionInput}
         selected={regions}
@@ -584,7 +584,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
       </Field>
 
       <AutoChipField
-        label="Divisions"
+        label="Division(s)"
         value={divisionInput}
         setValue={setDivisionInput}
         selected={divisions}
@@ -595,7 +595,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
       />
 
       <AutoChipField
-        label="Conferences"
+        label="Conference(s)"
         value={conferenceInput}
         setValue={setConferenceInput}
         selected={conferences}
@@ -680,7 +680,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
 
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
 {!shouldSearch
-  ? "Type at least 2 characters to search by college name."
+  ? "Type at least 2 characters to search by college name..."
   : loading
   ? "Searching colleges..."
 : `${visibleResults.length} result${visibleResults.length === 1 ? "" : "s"} found.`}
