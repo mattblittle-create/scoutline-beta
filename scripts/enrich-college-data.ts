@@ -109,14 +109,37 @@ function normalizeName(value: string) {
 }
 
 function scoreMatch(row: Row, school: any): number {
-  const rowName = normalizeName(row.name || "");
+  const displayName = row.name || "";
+  const aliasName = SCORECARD_NAME_ALIASES[displayName] || displayName;
+
+  const rowName = normalizeName(displayName);
+  const aliasNormalized = normalizeName(aliasName);
   const apiName = normalizeName(school["school.name"] || "");
 
   let score = 0;
 
   if (rowName && apiName && rowName === apiName) score += 100;
-  if (rowName && apiName && (rowName.includes(apiName) || apiName.includes(rowName))) score += 50;
-  if (clean(row.state).toUpperCase() === clean(school["school.state"]).toUpperCase()) score += 25;
+  if (aliasNormalized && apiName && aliasNormalized === apiName) score += 100;
+
+  if (
+    rowName &&
+    apiName &&
+    (rowName.includes(apiName) || apiName.includes(rowName))
+  ) {
+    score += 50;
+  }
+
+  if (
+    aliasNormalized &&
+    apiName &&
+    (aliasNormalized.includes(apiName) || apiName.includes(aliasNormalized))
+  ) {
+    score += 50;
+  }
+
+  if (clean(row.state).toUpperCase() === clean(school["school.state"]).toUpperCase()) {
+    score += 25;
+  }
 
   return score;
 }
