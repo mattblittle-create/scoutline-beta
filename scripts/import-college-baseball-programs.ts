@@ -82,7 +82,51 @@ type CsvRow = {
   baseballVerificationStatus?: VerificationStatus;
 };
 
-const CSV_PATH = path.join(process.cwd(), "data", "college-baseball-programs.csv");
+const VALID_DIVISIONS: Division[] = [
+  "NCAA_D1",
+  "NCAA_D2",
+  "NCAA_D3",
+  "NAIA",
+  "NJCAA_D1",
+  "NJCAA_D2",
+  "NJCAA_D3",
+  "OTHER",
+];
+
+const DEFAULT_CSV_PATH = path.join(
+  process.cwd(),
+  "data",
+  "college-baseball-programs.csv"
+);
+
+function getArgValue(flag: string): string | undefined {
+  const index = process.argv.indexOf(flag);
+  if (index === -1) return undefined;
+  return process.argv[index + 1];
+}
+
+function resolveCsvPath(): string {
+  const fileArg = getArgValue("--file");
+
+  if (!fileArg) return DEFAULT_CSV_PATH;
+
+  return path.isAbsolute(fileArg)
+    ? fileArg
+    : path.join(process.cwd(), fileArg);
+}
+
+function resolveDefaultDivision(): Division | undefined {
+  const divisionArg = getArgValue("--division");
+  if (!divisionArg) return undefined;
+
+  if (!VALID_DIVISIONS.includes(divisionArg as Division)) {
+    throw new Error(
+      `Invalid --division "${divisionArg}". Valid options: ${VALID_DIVISIONS.join(", ")}`
+    );
+  }
+
+  return divisionArg as Division;
+}
 
 function clean(value: unknown): string | undefined {
   const s = String(value ?? "").trim();
@@ -115,7 +159,7 @@ function normalizeConference(value: unknown): string | undefined {
   if (upper === "SEC") return "SEC";
   if (upper === "ACC") return "ACC";
   if (upper === "BIG 12") return "Big 12";
-  if (upper === "PAC 12") return "Pac-12";
+  if (upper === "PAC 12" || upper === "PAC-12") return "Pac-12";
 
   return s;
 }
@@ -190,13 +234,18 @@ function requireField(row: CsvRow, field: keyof CsvRow) {
 }
 
 async function main() {
-  if (!fs.existsSync(CSV_PATH)) {
-    throw new Error(`CSV not found at ${CSV_PATH}`);
+  const csvPath = resolveCsvPath();
+  const defaultDivision = resolveDefaultDivision();
+
+  if (!fs.existsSync(csvPath)) {
+    throw new Error(`CSV not found at ${csvPath}`);
   }
 
-  const content = fs.readFileSync(CSV_PATH, "utf8");
+  const content = fs.readFileSync(csvPath, "utf8");
   const rows = parseCsv(content);
 
+  console.log(`Using CSV: ${csvPath}`);
+  console.log(`Default division: ${defaultDivision ?? "none - using CSV row values"}`);
   console.log(`Found ${rows.length} college baseball program rows.`);
 
   let seeded = 0;
@@ -212,6 +261,8 @@ async function main() {
       skipped += 1;
       continue;
     }
+
+    const resolvedDivision = row.division || defaultDivision;
 
     const college = await prisma.college.upsert({
       where: { slug },
@@ -266,7 +317,12 @@ async function main() {
       },
     });
 
-    if (row.division || row.baseballWebsiteUrl || row.baseballNickname || row.conference) {
+    if (
+      resolvedDivision ||
+      row.baseballWebsiteUrl ||
+      row.baseballNickname ||
+      row.conference
+    ) {
       await prisma.collegeBaseballProgram.upsert({
         where: { collegeId: college.id },
         update: {
@@ -279,7 +335,7 @@ async function main() {
           questionnaireUrl: clean(row.questionnaireUrl),
           generalContactUrl: clean(row.generalContactUrl),
           generalContactEmail: clean(row.generalContactEmail),
-          division: row.division || undefined,
+          division: resolvedDivision || undefined,
           conference: normalizeConference(row.conference),
           currentRosterSize: intOrUndefined(row.currentRosterSize),
           averageGpa: decimalOrUndefined(row.averageGpa),
@@ -301,7 +357,7 @@ async function main() {
           questionnaireUrl: clean(row.questionnaireUrl),
           generalContactUrl: clean(row.generalContactUrl),
           generalContactEmail: clean(row.generalContactEmail),
-          division: row.division || undefined,
+          division: resolvedDivision || undefined,
           conference: normalizeConference(row.conference),
           currentRosterSize: intOrUndefined(row.currentRosterSize),
           averageGpa: decimalOrUndefined(row.averageGpa),
