@@ -461,7 +461,7 @@ async function fetchScorecardMatch(row: Row): Promise<any | null> {
 
   const best = ranked[0];
 
-  if (!best || best.score < 65) return null;
+  if (!best || best.score < 40) return null;
 
   return best.school;
 }
