@@ -56,12 +56,166 @@ const TARGET_STATUS_OPTIONS = [
   ["NOT_PURSUING", "Not Pursuing"],
 ] as const;
 
-const CONFERENCES = [
-  "ACC","SEC","Big Ten","Big 12","Pac-12","AAC","Atlantic 10",
-  "ASUN","Big East","Big South","CAA","Conference USA","Horizon League","Ivy League",
-  "MAAC","MAC","MEAC","Missouri Valley","Mountain West","Northeast Conference",
-  "Ohio Valley","Patriot League","SoCon","Southland","Sun Belt","SWAC","WAC","West Coast Conference"
-];
+const CONFERENCES_BY_DIVISION: Record<string, string[]> = {
+  NCAA_D1: [
+    "ACC",
+    "AAC",
+    "ASUN",
+    "Atlantic 10",
+    "Big 12",
+    "Big East",
+    "Big South",
+    "Big Ten",
+    "CAA",
+    "Conference USA",
+    "Horizon League",
+    "Ivy League",
+    "MAAC",
+    "MAC",
+    "MEAC",
+    "Missouri Valley",
+    "Mountain West",
+    "Northeast Conference",
+    "Ohio Valley",
+    "Pac-12",
+    "Patriot League",
+    "SoCon",
+    "Southland",
+    "Sun Belt",
+    "SWAC",
+    "WAC",
+    "West Coast Conference",
+  ],
+
+  NCAA_D2: [
+    "Central Atlantic Collegiate Conference (CACC)",
+    "Conference Carolinas",
+    "East Coast Conference (ECC)",
+    "Great American Conference (GAC)",
+    "Great Lakes Intercollegiate Athletic Conference (GLIAC)",
+    "Great Lakes Valley Conference (GLVC)",
+    "Great Midwest Athletic Conference (G-MAC)",
+    "Great Northwest Athletic Conference (GNAC)",
+    "Gulf South Conference (GSC)",
+    "Lone Star Conference (LSC)",
+    "Mountain East Conference (MEC)",
+    "Northeast-10 Conference (NE10)",
+    "Northern Sun Intercollegiate Conference (NSIC)",
+    "Pacific West Conference (PacWest)",
+    "Peach Belt Conference (PBC)",
+    "Pennsylvania State Athletic Conference (PSAC)",
+    "Rocky Mountain Athletic Conference (RMAC)",
+    "South Atlantic Conference (SAC)",
+    "Southern Intercollegiate Athletic Conference (SIAC)",
+  ],
+
+  NCAA_D3: [
+    "Allegheny Mountain Collegiate Conference (AMCC)",
+    "American Rivers Conference (A-R-C)",
+    "American Southwest Conference (ASC)",
+    "Atlantic East Conference (AEC)",
+    "Centennial Conference",
+    "Coast to Coast Athletic Conference (C2C)",
+    "College Conference of Illinois and Wisconsin (CCIW)",
+    "Collegiate Conference of the South (CCS)",
+    "Conference of New England (CNE)",
+    "Great Northeast Athletic Conference (GNAC)",
+    "Heartland Collegiate Athletic Conference (HCAC)",
+    "Landmark Conference",
+    "Little East Conference (LEC)",
+    "Middle Atlantic Conferences (MAC)",
+    "Midwest Conference",
+    "Minnesota Intercollegiate Athletic Conference (MIAC)",
+    "New England Women’s and Men’s Athletic Conference (NEWMAC)",
+    "New Jersey Athletic Conference (NJAC)",
+    "North Atlantic Conference (NAC)",
+    "North Coast Athletic Conference (NCAC)",
+    "Northern Athletics Collegiate Conference (NACC)",
+    "Northwest Conference (NWC)",
+    "Ohio Athletic Conference (OAC)",
+    "Old Dominion Athletic Conference (ODAC)",
+    "Presidents’ Athletic Conference (PAC)",
+    "Skyline Conference",
+    "Southern California Intercollegiate Athletic Conference (SCIAC)",
+    "Southern Collegiate Athletic Conference (SCAC)",
+    "St. Louis Intercollegiate Athletic Conference (SLIAC)",
+    "State University of New York Athletic Conference (SUNYAC)",
+    "United East Conference",
+    "Upper Midwest Athletic Conference (UMAC)",
+    "USA South Athletic Conference",
+    "Wisconsin Intercollegiate Athletic Conference (WIAC)",
+  ],
+
+  NAIA: [
+    "American Midwest Conference (AMC)",
+    "Appalachian Athletic Conference (AAC)",
+    "California Pacific Conference (CalPac)",
+    "Cascade Collegiate Conference (CCC)",
+    "Chicagoland Collegiate Athletic Conference (CCAC)",
+    "Frontier Conference",
+    "Great Plains Athletic Conference (GPAC)",
+    "Gulf Coast Athletic Conference (GCAC)",
+    "Golden State Athletic Conference (GSAC)",
+    "Heart of America Athletic Conference (HAAC)",
+    "Kansas Collegiate Athletic Conference (KCAC)",
+    "Mid-South Conference",
+    "Red River Athletic Conference (RRAC)",
+    "River States Conference (RSC)",
+    "Sooner Athletic Conference (SAC)",
+    "Southern States Athletic Conference (SSAC)",
+    "The Sun Conference",
+    "Wolverine-Hoosier Athletic Conference (WHAC)",
+  ],
+
+  NJCAA_D1: [
+    "NJCAA Region 1",
+    "NJCAA Region 2",
+    "NJCAA Region 3",
+    "NJCAA Region 4",
+    "NJCAA Region 5",
+    "NJCAA Region 6",
+    "NJCAA Region 7",
+    "NJCAA Region 8",
+    "NJCAA Region 9",
+    "NJCAA Region 10",
+    "NJCAA Region 11",
+    "NJCAA Region 14",
+    "NJCAA Region 16",
+    "NJCAA Region 17",
+    "NJCAA Region 22",
+    "NJCAA Region 23",
+    "NJCAA Region 24",
+  ],
+
+  NJCAA_D2: [
+    "NJCAA Region 2",
+    "NJCAA Region 3",
+    "NJCAA Region 4",
+    "NJCAA Region 7",
+    "NJCAA Region 8",
+    "NJCAA Region 10",
+    "NJCAA Region 12",
+    "NJCAA Region 16",
+    "NJCAA Region 19",
+    "NJCAA Region 20",
+    "NJCAA Region 24",
+  ],
+
+  NJCAA_D3: [
+    "NJCAA Region 3",
+    "NJCAA Region 4",
+    "NJCAA Region 10",
+    "NJCAA Region 12",
+    "NJCAA Region 15",
+    "NJCAA Region 19",
+    "NJCAA Region 20",
+    "NJCAA Region 21",
+  ],
+};
+
+const ALL_CONFERENCES = Array.from(
+  new Set(Object.values(CONFERENCES_BY_DIVISION).flat())
+).sort((a, b) => a.localeCompare(b));
 
 type CollegeResult = {
   id: string;
@@ -357,13 +511,32 @@ if (isLoggedIn) {
     [divisionInput, divisions]
   );
 
-  const conferenceMatches = useMemo(
-    () =>
-      CONFERENCES.filter((c) =>
-        c.toLowerCase().startsWith(conferenceInput.toLowerCase()) && !conferences.includes(c)
-      ).slice(0, 10),
-    [conferenceInput, conferences]
+const availableConferences = useMemo(() => {
+  if (!divisions.length) return ALL_CONFERENCES;
+
+  return Array.from(
+    new Set(
+      divisions.flatMap((division) => CONFERENCES_BY_DIVISION[division] || [])
+    )
+  ).sort((a, b) => a.localeCompare(b));
+}, [divisions]);
+
+const conferenceMatches = useMemo(
+  () =>
+    availableConferences.filter((c) =>
+      c.toLowerCase().startsWith(conferenceInput.toLowerCase()) &&
+      !conferences.includes(c)
+    ),
+  [availableConferences, conferenceInput, conferences]
+);
+
+useEffect(() => {
+  if (!divisions.length) return;
+
+  setConferences((current) =>
+    current.filter((conference) => availableConferences.includes(conference))
   );
+}, [availableConferences, divisions.length]);
 
 async function toggleSavedCollege(collegeId: string) {
   if (!isLoggedIn) return;
@@ -601,7 +774,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
         selected={conferences}
         setSelected={setConferences}
         matches={conferenceMatches.map((c) => [c, c])}
-        allOptions={CONFERENCES.map((c) => [c, c])}
+        allOptions={availableConferences.map((c) => [c, c])}
       />
 
       <Field label={`Max: $${maxTuition.toLocaleString()}`}>
