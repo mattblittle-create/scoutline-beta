@@ -853,7 +853,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
 
           <div style={{ marginTop: 10, color: "#64748b", fontSize: 14 }}>
 {!shouldSearch
-  ? "Click on the school name in the results below to see additional information."
+  ? "Click on the school name in the results below to see more information."
   : loading
   ? "Searching colleges..."
 : `${visibleResults.length} result${visibleResults.length === 1 ? "" : "s"} found.`}
