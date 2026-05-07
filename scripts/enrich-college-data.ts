@@ -1,8 +1,11 @@
 // scripts/enrich-college-data.ts
 
-import "dotenv/config";
+import dotenv from "dotenv";
 import fs from "fs";
 import path from "path";
+
+dotenv.config({ path: path.join(process.cwd(), ".env.local") });
+dotenv.config({ path: path.join(process.cwd(), ".env") });
 
 const DEFAULT_CSV_PATH = path.join(
   process.cwd(),
