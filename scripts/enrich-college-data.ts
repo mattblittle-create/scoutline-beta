@@ -3,7 +3,27 @@
 import fs from "fs";
 import path from "path";
 
-const CSV_PATH = path.join(process.cwd(), "data", "college-baseball-programs.csv");
+const DEFAULT_CSV_PATH = path.join(
+  process.cwd(),
+  "data",
+  "college-baseball-programs.csv"
+);
+
+function getArgValue(flag: string): string | undefined {
+  const index = process.argv.indexOf(flag);
+  if (index === -1) return undefined;
+  return process.argv[index + 1];
+}
+
+function resolveCsvPath(): string {
+  const fileArg = getArgValue("--file");
+
+  if (!fileArg) return DEFAULT_CSV_PATH;
+
+  return path.isAbsolute(fileArg)
+    ? fileArg
+    : path.join(process.cwd(), fileArg);
+}
 
 const API_KEY = process.env.COLLEGE_SCORECARD_API_KEY || "";
 const SCORECARD_BASE_URL = "https://api.data.gov/ed/collegescorecard/v1/schools";
@@ -189,7 +209,15 @@ async function fetchScorecardMatch(row: Row): Promise<any | null> {
 }
 
 async function main() {
-  const raw = fs.readFileSync(CSV_PATH, "utf8").replace(/^\uFEFF/, "");
+const csvPath = resolveCsvPath();
+
+if (!fs.existsSync(csvPath)) {
+  throw new Error(`CSV not found at ${csvPath}`);
+}
+
+console.log(`Using CSV: ${csvPath}`);
+
+const raw = fs.readFileSync(csvPath, "utf8").replace(/^\uFEFF/, "");
   const lines = raw.split(/\r?\n/).filter(Boolean);
 
   const headers = parseCsvLine(lines[0]);
@@ -260,7 +288,7 @@ async function main() {
     ...rows.map((row) => headers.map((h) => escapeCsv(row[h])).join(",")),
   ].join("\n");
 
-  fs.writeFileSync(CSV_PATH, output, "utf8");
+  fs.writeFileSync(csvPath, output, "utf8");
 
   console.log("");
   console.log(`Done. Updated ${updated}; skipped ${skipped}; failed ${failed}.`);
