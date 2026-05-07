@@ -1,5 +1,6 @@
 // scripts/import-college-baseball-programs.ts
 
+import "dotenv/config";
 import fs from "fs";
 import path from "path";
 import { PrismaClient } from "@prisma/client";
