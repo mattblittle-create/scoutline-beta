@@ -172,7 +172,11 @@ function formatDate(value?: string | null) {
   });
 }
 
-function metricValue(metric: NonNullable<CollegeDetail["baseballProgram"]>["metricAverages"][number]) {
+type MetricAverage = NonNullable<
+  NonNullable<CollegeDetail["baseballProgram"]>["metricAverages"]
+>[number];
+
+function metricValue(metric: MetricAverage) {
   const avg = formatDecimal(metric.averageValue);
   const min = formatDecimal(metric.minValue);
   const max = formatDecimal(metric.maxValue);
