@@ -35,6 +35,30 @@ type CollegeDetail = {
   dataSourceUrl?: string | null;
   lastVerifiedAt?: string | null;
   verificationStatus?: string | null;
+  truthFit?: {
+    score: number;
+    label: string;
+    priority: "HIGH" | "MEDIUM" | "LOW";
+    reasons: string[];
+    gaps: string[];
+    development: string[];
+    metricComparisons: Array<{
+      key: string;
+      label: string;
+      playerValue: number;
+      benchmarkValue: number;
+      unit?: string | null;
+      lowerIsBetter: boolean;
+      status: "ABOVE" | "IN_RANGE" | "BELOW";
+    }>;
+    benchmarkSource?: {
+      metrics?: {
+        level: string;
+        label: string;
+        confidence: "HIGH" | "MEDIUM" | "LOW";
+      };
+    };
+  } | null;
   academicAreas?: Array<{
     id: string;
     name: string;
@@ -187,6 +211,28 @@ function metricValue(metric: MetricAverage) {
   return "—";
 }
 
+function comparisonText(item: NonNullable<CollegeDetail["truthFit"]>["metricComparisons"][number]) {
+  const unit = item.unit ? ` ${item.unit}` : "";
+  const player = Number.isInteger(item.playerValue)
+    ? item.playerValue
+    : Number(item.playerValue.toFixed(2));
+  const benchmark = Number.isInteger(item.benchmarkValue)
+    ? item.benchmarkValue
+    : Number(item.benchmarkValue.toFixed(2));
+
+  if (item.status === "ABOVE") {
+    return item.lowerIsBetter
+      ? `${player}${unit} is better than benchmark ${benchmark}${unit}`
+      : `${player}${unit} is above benchmark ${benchmark}${unit}`;
+  }
+
+  if (item.status === "IN_RANGE") {
+    return `${player}${unit} is within range of benchmark ${benchmark}${unit}`;
+  }
+
+  return `${player}${unit} trails benchmark ${benchmark}${unit}`;
+}
+
 async function getCollege(slug: string): Promise<CollegeDetail | null> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.myscoutline.com";
 
@@ -214,6 +260,7 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   }
 
   const baseball = college.baseballProgram;
+  const truthFit = college.truthFit;
   const coaches = baseball?.coaches || [];
   const rosterNeeds = baseball?.rosterNeeds || [];
   const metricAverages = baseball?.metricAverages || [];
@@ -267,6 +314,64 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             ) : null}
           </div>
         </div>
+
+        <section style={{ ...cardStyle, marginBottom: 16 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "flex-start" }}>
+            <div>
+              <h2 style={sectionTitleStyle}>Truth Fit Breakdown</h2>
+              <p style={{ margin: "0 0 12px", color: "#64748b", fontWeight: 800, lineHeight: 1.5 }}>
+                Personalized fit analysis based on your player profile, academics, roster needs, and available benchmark data.
+              </p>
+            </div>
+
+            {truthFit ? (
+              <div style={scoreBadgeStyle}>
+                <div style={{ fontSize: 34, fontWeight: 950, lineHeight: 1 }}>{truthFit.score}</div>
+                <div style={{ fontSize: 12, fontWeight: 900 }}>{truthFit.label}</div>
+              </div>
+            ) : null}
+          </div>
+
+          {truthFit ? (
+            <>
+              <div style={gridStyle}>
+                <Info label="Fit Label" value={truthFit.label} />
+                <Info label="Priority" value={truthFit.priority} />
+                <Info label="Benchmark Source" value={truthFit.benchmarkSource?.metrics?.label || "Estimated"} />
+                <Info label="Confidence" value={truthFit.benchmarkSource?.metrics?.confidence || "LOW"} />
+              </div>
+
+              <div style={truthGridStyle}>
+                <TruthList title="Why This Fits" items={truthFit.reasons} empty="No positive fit reasons available yet." />
+                <TruthList title="Gaps to Watch" items={truthFit.gaps} empty="No major gaps identified yet." />
+                <TruthList title="Next Development Steps" items={truthFit.development} empty="No development steps available yet." />
+              </div>
+
+              {truthFit.metricComparisons?.length ? (
+                <div style={{ marginTop: 14 }}>
+                  <h3 style={subTitleStyle}>Metric Comparisons</h3>
+                  <div style={{ display: "grid", gap: 8 }}>
+                    {truthFit.metricComparisons.map((item) => (
+                      <div key={item.key} style={miniCardStyle}>
+                        <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
+                          <strong>{item.label}</strong>
+                          <span style={item.status === "ABOVE" ? statusGoodStyle : item.status === "IN_RANGE" ? statusMidStyle : statusGapStyle}>
+                            {item.status.replace(/_/g, " ")}
+                          </span>
+                        </div>
+                        <div style={{ marginTop: 6, color: "#475569", fontWeight: 800, fontSize: 13 }}>
+                          {comparisonText(item)}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </>
+          ) : (
+            <EmptyState text="Log in as a player with a completed profile to see a personalized Truth Fit breakdown for this school." />
+          )}
+        </section>
 
         <div style={gridStyle}>
           <section style={cardStyle}>
@@ -477,6 +582,34 @@ function EmptyState({ text }: { text: string }) {
   );
 }
 
+function TruthList({
+  title,
+  items,
+  empty,
+}: {
+  title: string;
+  items?: string[];
+  empty: string;
+}) {
+  return (
+    <div style={miniCardStyle}>
+      <h3 style={subTitleStyle}>{title}</h3>
+
+      {items?.length ? (
+        <ul style={{ margin: 0, paddingLeft: 18, display: "grid", gap: 7 }}>
+          {items.map((item) => (
+            <li key={item} style={{ color: "#334155", fontWeight: 800, lineHeight: 1.45 }}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div style={{ color: "#64748b", fontWeight: 800 }}>{empty}</div>
+      )}
+    </div>
+  );
+}
+
 function ExternalButton({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a href={href} target="_blank" rel="noreferrer" style={buttonStyle}>
@@ -627,6 +760,50 @@ const miniCardStyle: React.CSSProperties = {
   background: "#f8fafc",
   borderRadius: 14,
   padding: 12,
+};
+
+const truthGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+  gap: 12,
+  marginTop: 14,
+};
+
+const scoreBadgeStyle: React.CSSProperties = {
+  minWidth: 112,
+  borderRadius: 18,
+  background: "#0f172a",
+  color: "#ffffff",
+  padding: "14px 16px",
+  textAlign: "center",
+  boxShadow: "0 10px 24px rgba(15,23,42,0.18)",
+};
+
+const subTitleStyle: React.CSSProperties = {
+  margin: "0 0 9px",
+  fontSize: "0.95rem",
+  fontWeight: 950,
+};
+
+const statusGoodStyle: React.CSSProperties = {
+  ...smallGoldTagStyle,
+  background: "#ecfdf5",
+  border: "1px solid #bbf7d0",
+  color: "#166534",
+};
+
+const statusMidStyle: React.CSSProperties = {
+  ...smallGoldTagStyle,
+  background: "#eff6ff",
+  border: "1px solid #bfdbfe",
+  color: "#1d4ed8",
+};
+
+const statusGapStyle: React.CSSProperties = {
+  ...smallGoldTagStyle,
+  background: "#fff1f2",
+  border: "1px solid #fecdd3",
+  color: "#be123c",
 };
 
 const tableStyle: React.CSSProperties = {
