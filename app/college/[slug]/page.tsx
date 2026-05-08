@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { cookies } from "next/headers";
 import CollegeSaveStar from "@/app/components/college/CollegeSaveStar";
+import CollegeRecruitingStatusCard from "@/app/components/college/CollegeRecruitingStatusCard";
 
 type PageProps = {
   params: {
@@ -341,6 +342,11 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             ) : null}
           </div>
         </div>
+
+        <CollegeRecruitingStatusCard
+          collegeId={college.id}
+          collegeName={college.name}
+        />
 
         <section style={{ ...cardStyle, marginBottom: 16 }}>
           <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap", alignItems: "flex-start" }}>
