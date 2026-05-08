@@ -504,11 +504,17 @@ async function main() {
         continue;
       }
 
-      const tuitionInState = toNumber(match["latest.cost.tuition.in_state"]);
-      const tuitionOutOfState = toNumber(match["latest.cost.tuition.out_of_state"]);
-      const acceptanceRate = toNumber(match["latest.admissions.admission_rate.overall"]);
-      const graduationRate = toNumber(match["latest.completion.completion_rate_4yr_150nt"]);
-      const enrollmentUndergrad = toNumber(match["latest.student.size"]);
+    const matchedCity = clean(match["school.city"]);
+    const matchedState = clean(match["school.state"]);
+
+    const tuitionInState = toNumber(match["latest.cost.tuition.in_state"]);
+    const tuitionOutOfState = toNumber(match["latest.cost.tuition.out_of_state"]);
+    const acceptanceRate = toNumber(match["latest.admissions.admission_rate.overall"]);
+    const graduationRate = toNumber(match["latest.completion.completion_rate_4yr_150nt"]);
+    const enrollmentUndergrad = toNumber(match["latest.student.size"]);
+
+if (!row.city && matchedCity) row.city = matchedCity;
+if (!row.state && matchedState) row.state = matchedState;
 
       if (!row.tuitionInState && tuitionInState != null) {
         row.tuitionInState = String(Math.round(tuitionInState));
