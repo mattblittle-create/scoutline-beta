@@ -417,51 +417,76 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 <TruthList title="Gaps to Watch" items={truthFit.gaps} empty="No major gaps identified yet." />
                 <TruthList title="Next Development Steps" items={truthFit.development} empty="No development steps available yet." />
               </div>
+              {truthFit.metricComparisons?.length ? (
+  <div style={{ marginTop: 14 }}>
+    <h3 style={subTitleStyle}>Compare Me</h3>
 
-<h3 style={subTitleStyle}>Compare Me</h3>
-<p style={compareIntroStyle}>
-  See how your current profile stacks up against this program’s available benchmark data.
-</p>
-                  <div style={{ display: "grid", gap: 8 }}>
-                    {truthFit.metricComparisons.map((item) => (
-                      <div key={item.key} style={miniCardStyle}>
-                        <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
-                          <strong>{item.label}</strong>
-                          <span style={item.status === "ABOVE" ? statusGoodStyle : item.status === "IN_RANGE" ? statusMidStyle : statusGapStyle}>
-                            {item.status.replace(/_/g, " ")}
-                          </span>
-                        </div>
-<div style={compareRowStyle}>
-  <div>
-    <div style={compareLabelStyle}>You</div>
-    <div style={compareValueStyle}>
-      {Number.isInteger(item.playerValue)
-        ? item.playerValue
-        : Number(item.playerValue.toFixed(2))}
-      {item.unit ? ` ${item.unit}` : ""}
+    <p style={compareIntroStyle}>
+      See how your current profile stacks up against this program’s available benchmark data.
+    </p>
+
+    <div style={{ display: "grid", gap: 8 }}>
+      {truthFit.metricComparisons.map((item) => (
+        <div key={item.key} style={miniCardStyle}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 10,
+              flexWrap: "wrap",
+            }}
+          >
+            <strong>{item.label}</strong>
+
+            <span
+              style={
+                item.status === "ABOVE"
+                  ? statusGoodStyle
+                  : item.status === "IN_RANGE"
+                  ? statusMidStyle
+                  : statusGapStyle
+              }
+            >
+              {item.status.replace(/_/g, " ")}
+            </span>
+          </div>
+
+          <div style={compareRowStyle}>
+            <div>
+              <div style={compareLabelStyle}>You</div>
+
+              <div style={compareValueStyle}>
+                {Number.isInteger(item.playerValue)
+                  ? item.playerValue
+                  : Number(item.playerValue.toFixed(2))}
+                {item.unit ? ` ${item.unit}` : ""}
+              </div>
+            </div>
+
+            <div>
+              <div style={compareLabelStyle}>Benchmark</div>
+
+              <div style={compareValueStyle}>
+                {Number.isInteger(item.benchmarkValue)
+                  ? item.benchmarkValue
+                  : Number(item.benchmarkValue.toFixed(2))}
+                {item.unit ? ` ${item.unit}` : ""}
+              </div>
+            </div>
+
+            <div>
+              <div style={compareLabelStyle}>Read</div>
+
+              <div style={compareTextStyle}>
+                {comparisonText(item)}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
-
-  <div>
-    <div style={compareLabelStyle}>Benchmark</div>
-    <div style={compareValueStyle}>
-      {Number.isInteger(item.benchmarkValue)
-        ? item.benchmarkValue
-        : Number(item.benchmarkValue.toFixed(2))}
-      {item.unit ? ` ${item.unit}` : ""}
-    </div>
-  </div>
-
-  <div>
-    <div style={compareLabelStyle}>Read</div>
-    <div style={compareTextStyle}>{comparisonText(item)}</div>
-  </div>
-</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
+) : null}
             </>
           ) : (
             <EmptyState text="Log in as a player with a completed profile to see a personalized Truth Fit breakdown for this school." />
