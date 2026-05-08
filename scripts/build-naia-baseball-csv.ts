@@ -107,11 +107,12 @@ async function fetchText(url: string): Promise<string> {
     },
   });
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch ${url}: ${res.status}`);
-  }
+if (!res.ok) {
+  console.warn(`WARN: Failed to fetch ${url}: ${res.status}`);
+  return "";
+}
 
-  return res.text();
+return res.text();
 }
 
 function extractConferencePages(html: string) {
@@ -168,6 +169,10 @@ function extractTeamsFromConferencePage(html: string, conference: string): Team[
   return Array.from(bySlug.values());
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function main() {
   const mainHtml = await fetchText(SOURCE_URL);
   const conferencePages = extractConferencePages(mainHtml);
@@ -177,8 +182,17 @@ async function main() {
   const allTeams: Team[] = [];
 
   for (const page of conferencePages) {
-    const html = await fetchText(page.url);
-    const teams = extractTeamsFromConferencePage(html, page.conference);
+await sleep(1200);
+
+const html = await fetchText(page.url);
+
+if (page.conference === "American Midwest Conference") {
+  const debugPath = path.join(process.cwd(), "data", "debug-naia-conf.html");
+  fs.writeFileSync(debugPath, html, "utf8");
+  console.log(`Saved conference debug HTML: ${debugPath}`);
+}
+
+const teams = extractTeamsFromConferencePage(html, page.conference);
 
     console.log(`${page.conference}: ${teams.length}`);
 
