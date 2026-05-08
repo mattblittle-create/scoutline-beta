@@ -286,6 +286,93 @@ function cleanNaiaSchoolName(name: string): string {
   return name.replace(/\s*\([^)]+\)\s*$/, "").trim();
 }
 
+const NAIA_STATE_OVERRIDES: Record<string, string> = {
+  "Arizona Christian": "AZ",
+  "Arkansas Baptist": "AR",
+  "Ave Maria": "FL",
+  Baker: "KS",
+  "Benedictine Mesa": "AZ",
+  "British Columbia": "BC",
+  "Central Methodist": "MO",
+  "College of Idaho": "ID",
+  "College of the Ozarks": "MO",
+  Corban: "OR",
+  Cornerstone: "MI",
+  "Eastern Oregon": "OR",
+  "Florida Memorial": "FL",
+  "Florida National": "FL",
+  "Georgia Gwinnett": "GA",
+  Graceland: "IA",
+  "Grand View": "IA",
+  Hastings: "NE",
+  "Hope International": "CA",
+  "Houston-Victoria": "TX",
+  "Huston-Tillotson": "TX",
+  "Indiana South Bend": "IN",
+  "Indiana Southeast": "IN",
+  "Indiana Tech": "IN",
+  "Indiana Wesleyan": "IN",
+  "IU Kokomo": "IN",
+  "Jarvis Christian": "TX",
+  "Kansas Wesleyan": "KS",
+  "Kentucky Christian": "KY",
+  "La Sierra": "CA",
+  "Lawrence Tech": "MI",
+  "Louisiana Christian": "LA",
+  Lourdes: "OH",
+  Marian: "IN",
+  "Mayville State": "ND",
+  "Michigan-Dearborn": "MI",
+  "Mid-America Christian": "OK",
+  "MidAmerica Nazarene": "KS",
+  "Middle Georgia State": "GA",
+  Midland: "NE",
+  Midway: "KY",
+  "Missouri Baptist": "MO",
+  "Missouri Valley": "MO",
+  Morris: "SC",
+  "Mount Marty": "SD",
+  "Mount Mercy": "IA",
+  "New College of Florida": "FL",
+  "Northwestern Ohio": "OH",
+  "Oklahoma City": "OK",
+  "Oklahoma Panhandle State": "OK",
+  "Oklahoma Wesleyan": "OK",
+  "Oregon Tech": "OR",
+  OUAZ: "AZ",
+  "Our Lady of the Lake": "TX",
+  Park: "MO",
+  "Peru State": "NE",
+  Point: "GA",
+  "Rio Grande": "OH",
+  "Saint Mary": "KS",
+  "Science and Arts": "OK",
+  "Shawnee State": "OH",
+  "Siena Heights": "MI",
+  Southwest: "NM",
+  Southwestern: "KS",
+  "Southwestern Christian": "OK",
+  "Spartanburg Methodist": "SC",
+  Sterling: "KS",
+  Stillman: "AL",
+  Tabor: "KS",
+  "Tennessee Southern": "TN",
+  "Tennessee Wesleyan": "TN",
+  "Texas A&M  Texarkana": "TX",
+  "Texas A&M Texarkana": "TX",
+  "Texas College": "TX",
+  "Texas Wesleyan": "TX",
+  Thomas: "GA",
+  "Truett McConnell": "GA",
+  UHSP: "MO",
+  "Union Commonwealth": "KY",
+  "Valley City State": "ND",
+  Viterbo: "WI",
+  "Voorhees University": "SC",
+  Waldorf: "IA",
+  "William Woods": "MO",
+};
+
 async function main() {
   const mainHtml = await fetchText(SOURCE_URL);
   const conferencePages = extractConferencePages(mainHtml);
@@ -326,7 +413,10 @@ const teams = await extractTeamsFromConferencePage(
   const rows = teams.map((team) => {
   const rawName = clean(team.name);
   const name = cleanNaiaSchoolName(rawName);
-  const state = stateFromNaiaName(rawName);
+  const state =
+    stateFromNaiaName(rawName) ||
+    NAIA_STATE_OVERRIDES[name] ||
+    "";
 
     return {
       name,
