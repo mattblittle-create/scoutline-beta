@@ -116,7 +116,18 @@ async function main() {
     throw new Error(`Failed to fetch NAIA directory: ${res.status}`);
   }
 
-  const data = (await res.json()) as Member[];
+const text = await res.text();
+
+console.log("Status:", res.status);
+console.log("Content-Type:", res.headers.get("content-type"));
+console.log("Body preview:");
+console.log(text.slice(0, 500));
+
+if (!text.trim()) {
+  throw new Error("NAIA endpoint returned an empty response body.");
+}
+
+const data = JSON.parse(text) as Member[];
 
   const rows = data
     .map((member) => {
