@@ -99,6 +99,35 @@ function escapeCsv(value: unknown): string {
   return s;
 }
 
+const NJCAA_D1_STATE_OVERRIDES: Record<string, string> = {
+  "Allen County Community College": "KS",
+  "Alvin Community College": "TX",
+  "Amarillo College": "TX",
+  "Andrew College": "GA",
+  "Angelina College": "TX",
+  "Arizona Western College": "AZ",
+  "Barton Community College": "KS",
+  "Baton Rouge Community College": "LA",
+  "Blinn College": "TX",
+  "Bossier Parish Community College": "LA",
+  "Calhoun Community College": "AL",
+  "Central Arizona College": "AZ",
+  "Chattahoochee Valley Community College": "AL",
+  "Chattanooga State Community College": "TN",
+  "Chipola  College": "FL",
+  "Chipola College": "FL",
+  "Cisco College": "TX",
+  "Clarendon College": "TX",
+  "Cleveland State Community College": "TN",
+  "Cloud County Community College": "KS",
+  "Coastal Alabama - South": "AL",
+  "Coastal Bend College": "TX",
+  "Cochise College": "AZ",
+  "Coffeyville Community College": "KS",
+  "Colby Community College": "KS",
+  "College of Central Florida": "FL",
+};
+
 function stateFromNameOrPageName(name: string, pageName: string): string {
   const haystack = `${name} ${pageName}`.toLowerCase();
 
@@ -266,7 +295,10 @@ async function main() {
   const rows = teams.map((team) => {
     const rawName = clean(team.name);
     const name = cleanSchoolName(rawName);
-    const state = stateFromNameOrPageName(rawName, team.pageName);
+    const state =
+      stateFromNameOrPageName(rawName, team.pageName) ||
+      NJCAA_D1_STATE_OVERRIDES[name] ||
+      "";
 
     const baseballWebsiteUrl = `${BASE_URL}/sports/bsb/2024-25/div1/teams/${team.pageName}`;
 
