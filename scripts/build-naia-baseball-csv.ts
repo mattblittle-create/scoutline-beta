@@ -136,6 +136,14 @@ async function main() {
   }
 
   const html = await res.text();
+
+  const debugPath = path.join(process.cwd(), "data", "debug-naia-teams.html");
+  fs.writeFileSync(debugPath, html, "utf8");
+
+  console.log(`Saved debug HTML: ${debugPath}`);
+  console.log("HTML preview:");
+  console.log(html.slice(0, 1000));
+
   const teams = extractTeamLinks(html);
 
   const rows = teams.map((team) => {
