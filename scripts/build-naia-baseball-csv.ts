@@ -134,31 +134,70 @@ function extractConferencePages(html: string) {
   return Array.from(byUrl.values());
 }
 
-function extractTeamsFromConferencePage(html: string, conference: string): Team[] {
-  const linkMatches = [...html.matchAll(/<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)];
+async function extractTeamsFromConferencePage(
+  html: string,
+  conference: string
+): Promise<Team[]> {
+  const jsonMatch = html.match(
+    /teamsDataEndp\.set\("([^"]+\.json)"/i
+  );
 
-  const teams = linkMatches
-    .map((match) => {
-      const href = clean(match[1]);
-      const label = stripHtml(match[2]);
+  if (!jsonMatch?.[1]) {
+    console.warn(`No JSON endpoint found for ${conference}`);
+    return [];
+  }
+
+  const jsonUrl = jsonMatch[1];
+
+  console.log(`JSON: ${conference} -> ${jsonUrl}`);
+
+  const res = await fetch(jsonUrl, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 ScoutLine NAIA importer",
+    },
+  });
+
+  if (!res.ok) {
+    console.warn(`JSON fetch failed for ${conference}: ${res.status}`);
+    return [];
+  }
+
+  const data = await res.json();
+
+  const possibleArrays = [
+    data,
+    data?.teams,
+    data?.rows,
+    data?.data,
+  ].filter(Array.isArray);
+
+  const source = possibleArrays[0];
+
+  if (!source) {
+    console.warn(`No team array found for ${conference}`);
+    return [];
+  }
+
+  const teams: Team[] = source
+    .map((item: any) => {
+      const name =
+        clean(item?.team) ||
+        clean(item?.name) ||
+        clean(item?.school) ||
+        clean(item?.institution);
+
+      const url =
+        clean(item?.url) ||
+        clean(item?.teamUrl) ||
+        clean(item?.link);
 
       return {
-        name: label,
+        name,
         conference,
-        baseballWebsiteUrl: absolutizeUrl(href),
+        baseballWebsiteUrl: absolutizeUrl(url),
       };
     })
-    .filter((team) => {
-      return (
-        team.name.length > 1 &&
-        team.baseballWebsiteUrl.includes("/sports/bsb/2024-25/teams/") &&
-        !team.baseballWebsiteUrl.includes("?") &&
-        !team.baseballWebsiteUrl.includes("#") &&
-        !team.name.toLowerCase().includes("team") &&
-        !team.name.toLowerCase().includes("schedule") &&
-        !team.name.toLowerCase().includes("stats")
-      );
-    });
+    .filter((team: Team) => team.name.length > 1);
 
   const bySlug = new Map<string, Team>();
 
@@ -192,7 +231,10 @@ if (page.conference === "American Midwest Conference") {
   console.log(`Saved conference debug HTML: ${debugPath}`);
 }
 
-const teams = extractTeamsFromConferencePage(html, page.conference);
+const teams = await extractTeamsFromConferencePage(
+  html,
+  page.conference
+);
 
     console.log(`${page.conference}: ${teams.length}`);
 
