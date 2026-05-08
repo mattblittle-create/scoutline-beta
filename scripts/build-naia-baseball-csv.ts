@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 
 const SOURCE_URL = "https://naiastats.prestosports.com/sports/bsb/2024-25/teams";
+const BASE_URL = "https://naiastats.prestosports.com";
 const OUTPUT_PATH = path.join(process.cwd(), "data", "naia-baseball-programs.csv");
 
 const HEADERS = [
@@ -51,6 +52,12 @@ const HEADERS = [
   "baseballVerificationStatus",
 ];
 
+type Team = {
+  name: string;
+  conference: string;
+  baseballWebsiteUrl: string;
+};
+
 function clean(value: unknown): string {
   return String(value ?? "").trim();
 }
@@ -89,20 +96,54 @@ function absolutizeUrl(href: string): string {
   const s = clean(href);
   if (!s) return "";
   if (s.startsWith("http://") || s.startsWith("https://")) return s;
-  if (s.startsWith("/")) return `https://naiastats.prestosports.com${s}`;
-  return `https://naiastats.prestosports.com/sports/bsb/2024-25/${s}`;
+  if (s.startsWith("/")) return `${BASE_URL}${s}`;
+  return `${BASE_URL}/${s.replace(/^\/+/, "")}`;
 }
 
-function extractTeamLinks(html: string) {
-  const links = [...html.matchAll(/<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)];
+async function fetchText(url: string): Promise<string> {
+  const res = await fetch(url, {
+    headers: {
+      "User-Agent": "Mozilla/5.0 ScoutLine NAIA baseball importer",
+    },
+  });
 
-  const teams = links
+  if (!res.ok) {
+    throw new Error(`Failed to fetch ${url}: ${res.status}`);
+  }
+
+  return res.text();
+}
+
+function extractConferencePages(html: string) {
+  const optionMatches = [
+    ...html.matchAll(/<option[^>]+value="([^"]*\/sports\/bsb\/2024-25\/conf\/[^"]+\/teams\?jsRendering=true)"[^>]*>([\s\S]*?)<\/option>/gi),
+  ];
+
+  const pages = optionMatches.map((match) => ({
+    url: absolutizeUrl(match[1]),
+    conference: stripHtml(match[2]),
+  }));
+
+  const byUrl = new Map<string, (typeof pages)[number]>();
+
+  for (const page of pages) {
+    byUrl.set(page.url, page);
+  }
+
+  return Array.from(byUrl.values());
+}
+
+function extractTeamsFromConferencePage(html: string, conference: string): Team[] {
+  const linkMatches = [...html.matchAll(/<a[^>]+href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi)];
+
+  const teams = linkMatches
     .map((match) => {
       const href = clean(match[1]);
       const label = stripHtml(match[2]);
 
       return {
         name: label,
+        conference,
         baseballWebsiteUrl: absolutizeUrl(href),
       };
     })
@@ -111,40 +152,46 @@ function extractTeamLinks(html: string) {
         team.name.length > 1 &&
         team.baseballWebsiteUrl.includes("/sports/bsb/2024-25/teams/") &&
         !team.baseballWebsiteUrl.includes("?") &&
-        !team.baseballWebsiteUrl.includes("#")
+        !team.baseballWebsiteUrl.includes("#") &&
+        !team.name.toLowerCase().includes("team") &&
+        !team.name.toLowerCase().includes("schedule") &&
+        !team.name.toLowerCase().includes("stats")
       );
     });
 
-  const bySlug = new Map<string, (typeof teams)[number]>();
+  const bySlug = new Map<string, Team>();
 
   for (const team of teams) {
     bySlug.set(slugify(team.name), team);
   }
 
-  return Array.from(bySlug.values()).sort((a, b) => a.name.localeCompare(b.name));
+  return Array.from(bySlug.values());
 }
 
 async function main() {
-  const res = await fetch(SOURCE_URL, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 ScoutLine NAIA baseball importer",
-    },
-  });
+  const mainHtml = await fetchText(SOURCE_URL);
+  const conferencePages = extractConferencePages(mainHtml);
 
-  if (!res.ok) {
-    throw new Error(`Failed to fetch NAIA baseball teams: ${res.status}`);
+  console.log(`Conference pages found: ${conferencePages.length}`);
+
+  const allTeams: Team[] = [];
+
+  for (const page of conferencePages) {
+    const html = await fetchText(page.url);
+    const teams = extractTeamsFromConferencePage(html, page.conference);
+
+    console.log(`${page.conference}: ${teams.length}`);
+
+    allTeams.push(...teams);
   }
 
-  const html = await res.text();
+  const bySlug = new Map<string, Team>();
 
-  const debugPath = path.join(process.cwd(), "data", "debug-naia-teams.html");
-  fs.writeFileSync(debugPath, html, "utf8");
+  for (const team of allTeams) {
+    bySlug.set(slugify(team.name), team);
+  }
 
-  console.log(`Saved debug HTML: ${debugPath}`);
-  console.log("HTML preview:");
-  console.log(html.slice(0, 1000));
-
-  const teams = extractTeamLinks(html);
+  const teams = Array.from(bySlug.values()).sort((a, b) => a.name.localeCompare(b.name));
 
   const rows = teams.map((team) => {
     const name = clean(team.name);
@@ -182,7 +229,7 @@ async function main() {
       generalContactUrl: "",
       generalContactEmail: "",
       division: "NAIA",
-      conference: "",
+      conference: team.conference,
       logoUrl: "",
       currentRosterSize: "",
       averageGpa: "",
@@ -205,8 +252,8 @@ async function main() {
 
   fs.writeFileSync(OUTPUT_PATH, csv, "utf8");
 
+  console.log("");
   console.log(`Created ${OUTPUT_PATH}`);
-  console.log(`Source: ${SOURCE_URL}`);
   console.log(`NAIA baseball rows: ${rows.length}`);
 }
 
