@@ -367,12 +367,50 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
           {truthFit ? (
             <>
-              <div style={gridStyle}>
-                <Info label="Fit Label" value={truthFit.label} />
-                <Info label="Priority" value={truthFit.priority} />
-                <Info label="Benchmark Source" value={truthFit.benchmarkSource?.metrics?.label || "Estimated"} />
-                <Info label="Confidence" value={truthFit.benchmarkSource?.metrics?.confidence || "LOW"} />
-              </div>
+<div style={gridStyle}>
+  <Info label="Fit Label" value={truthFit.label} />
+  <Info label="Priority" value={truthFit.priority} />
+  <Info label="Benchmark Source" value={truthFit.benchmarkSource?.metrics?.label || "Estimated"} />
+  <Info label="Confidence" value={truthFit.benchmarkSource?.metrics?.confidence || "LOW"} />
+</div>
+
+<div style={outlookGridStyle}>
+  <div style={outlookCardStyle}>
+    <div style={outlookLabelStyle}>Projected Recruiting Lane</div>
+    <div style={outlookValueStyle}>
+      {truthFit.score >= 90
+        ? "High-Level Recruit"
+        : truthFit.score >= 75
+        ? "Strong College Fit"
+        : truthFit.score >= 60
+        ? "Developmental Prospect"
+        : "Long-Term Development"}
+    </div>
+  </div>
+
+  <div style={outlookCardStyle}>
+    <div style={outlookLabelStyle}>Strongest Attribute</div>
+    <div style={outlookValueStyle}>
+      {truthFit.metricComparisons?.find((m) => m.status === "ABOVE")?.label ||
+        "Academic / roster fit"}
+    </div>
+  </div>
+
+  <div style={outlookCardStyle}>
+    <div style={outlookLabelStyle}>Top Development Area</div>
+    <div style={outlookValueStyle}>
+      {truthFit.metricComparisons?.find((m) => m.status === "BELOW")?.label ||
+        "Continue overall development"}
+    </div>
+  </div>
+
+  <div style={outlookCardStyle}>
+    <div style={outlookLabelStyle}>Best Current Division Fit</div>
+    <div style={outlookValueStyle}>
+      {pretty(baseball?.division) || "Unknown"}
+    </div>
+  </div>
+</div>
 
               <div style={truthGridStyle}>
                 <TruthList title="Why This Fits" items={truthFit.reasons} empty="No positive fit reasons available yet." />
@@ -907,6 +945,36 @@ const truthGridStyle: React.CSSProperties = {
   gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
   gap: 12,
   marginTop: 14,
+};
+
+const outlookGridStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: 12,
+  marginTop: 14,
+};
+
+const outlookCardStyle: React.CSSProperties = {
+  borderRadius: 16,
+  padding: "14px 16px",
+  background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+  color: "#ffffff",
+  boxShadow: "0 8px 20px rgba(15,23,42,0.15)",
+};
+
+const outlookLabelStyle: React.CSSProperties = {
+  fontSize: 11,
+  fontWeight: 900,
+  letterSpacing: 0.5,
+  textTransform: "uppercase",
+  opacity: 0.72,
+  marginBottom: 6,
+};
+
+const outlookValueStyle: React.CSSProperties = {
+  fontSize: 16,
+  fontWeight: 950,
+  lineHeight: 1.3,
 };
 
 const scoreBadgeStyle: React.CSSProperties = {
