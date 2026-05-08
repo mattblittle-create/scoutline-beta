@@ -223,6 +223,69 @@ function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+function stateFromNaiaName(name: string): string {
+  const match = name.match(/\(([^)]+)\)/);
+  if (!match?.[1]) return "";
+
+  const raw = match[1].trim().toLowerCase();
+
+  const map: Record<string, string> = {
+    al: "AL",
+    ala: "AL",
+    ark: "AR",
+    ar: "AR",
+    az: "AZ",
+    calif: "CA",
+    ca: "CA",
+    ga: "GA",
+    ill: "IL",
+    il: "IL",
+    ind: "IN",
+    in: "IN",
+    iowa: "IA",
+    ia: "IA",
+    kan: "KS",
+    ks: "KS",
+    ky: "KY",
+    la: "LA",
+    mich: "MI",
+    mi: "MI",
+    mo: "MO",
+    mont: "MT",
+    mt: "MT",
+    neb: "NE",
+    ne: "NE",
+    nc: "NC",
+    nd: "ND",
+    ohio: "OH",
+    oh: "OH",
+    okla: "OK",
+    ok: "OK",
+    ore: "OR",
+    or: "OR",
+    pa: "PA",
+    sc: "SC",
+    sd: "SD",
+    tenn: "TN",
+    tn: "TN",
+    texas: "TX",
+    tx: "TX",
+    va: "VA",
+    wash: "WA",
+    wa: "WA",
+    wva: "WV",
+    wv: "WV",
+    wis: "WI",
+    wi: "WI",
+  };
+
+  return map[raw] || raw.toUpperCase();
+}
+
+function cleanNaiaSchoolName(name: string): string {
+  return name.replace(/\s*\([^)]+\)\s*$/, "").trim();
+}
+
 async function main() {
   const mainHtml = await fetchText(SOURCE_URL);
   const conferencePages = extractConferencePages(mainHtml);
@@ -261,13 +324,15 @@ const teams = await extractTeamsFromConferencePage(
   const teams = Array.from(bySlug.values()).sort((a, b) => a.name.localeCompare(b.name));
 
   const rows = teams.map((team) => {
-    const name = clean(team.name);
+  const rawName = clean(team.name);
+  const name = cleanNaiaSchoolName(rawName);
+  const state = stateFromNaiaName(rawName);
 
     return {
       name,
       slug: slugify(name),
       city: "",
-      state: "",
+      state,
       region: "",
       control: "",
       schoolType: "FOUR_YEAR",
