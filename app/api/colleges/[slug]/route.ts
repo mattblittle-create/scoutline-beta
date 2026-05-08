@@ -93,6 +93,112 @@ async function getCurrentPlayerProfile() {
   };
 }
 
+function similarityScore(base: any, candidate: any) {
+  let score = 0;
+
+  const baseProgram = base.baseballProgram;
+  const candidateProgram = candidate.baseballProgram;
+
+  if (baseProgram?.division && candidateProgram?.division === baseProgram.division) {
+    score += 40;
+  }
+
+  if (base.region && candidate.region === base.region) {
+    score += 18;
+  }
+
+  if (base.state && candidate.state === base.state) {
+    score += 10;
+  }
+
+  if (base.control && candidate.control === base.control) {
+    score += 8;
+  }
+
+  if (baseProgram?.conference && candidateProgram?.conference === baseProgram.conference) {
+    score += 14;
+  }
+
+  const baseTuition = asNumber(base.tuitionOutOfState ?? base.tuitionInState);
+  const candidateTuition = asNumber(candidate.tuitionOutOfState ?? candidate.tuitionInState);
+
+  if (baseTuition != null && candidateTuition != null) {
+    const diff = Math.abs(baseTuition - candidateTuition);
+
+    if (diff <= 5000) score += 8;
+    else if (diff <= 10000) score += 5;
+    else if (diff <= 20000) score += 2;
+  }
+
+  const baseEnrollment = asNumber(base.enrollmentUndergrad ?? base.enrollmentTotal);
+  const candidateEnrollment = asNumber(candidate.enrollmentUndergrad ?? candidate.enrollmentTotal);
+
+  if (baseEnrollment != null && candidateEnrollment != null) {
+    const diff = Math.abs(baseEnrollment - candidateEnrollment);
+
+    if (diff <= 1500) score += 6;
+    else if (diff <= 4000) score += 4;
+    else if (diff <= 8000) score += 2;
+  }
+
+  return score;
+}
+
+async function getSimilarSchools(college: any) {
+  const baseball = college.baseballProgram;
+
+  const candidates = await prisma.college.findMany({
+    where: {
+      id: { not: college.id },
+      OR: [
+        baseball?.division
+          ? {
+              baseballProgram: {
+                is: {
+                  division: baseball.division,
+                },
+              },
+            }
+          : {},
+        college.region ? { region: college.region } : {},
+        college.state ? { state: college.state } : {},
+      ],
+    },
+    take: 75,
+    include: {
+      baseballProgram: true,
+    },
+  });
+
+  return candidates
+    .map((candidate) => ({
+      score: similarityScore(college, candidate),
+      college: {
+        id: candidate.id,
+        name: candidate.name,
+        slug: candidate.slug,
+        city: candidate.city,
+        state: candidate.state,
+        region: candidate.region,
+        control: candidate.control,
+        schoolType: candidate.schoolType,
+        tuitionInState: candidate.tuitionInState,
+        tuitionOutOfState: candidate.tuitionOutOfState,
+        baseballProgram: candidate.baseballProgram
+          ? {
+              nickname: candidate.baseballProgram.nickname,
+              division: candidate.baseballProgram.division,
+              conference: candidate.baseballProgram.conference,
+              currentRosterSize: candidate.baseballProgram.currentRosterSize,
+            }
+          : null,
+      },
+    }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.college.name.localeCompare(b.college.name))
+    .slice(0, 6);
+}
+
 export async function GET(
   _req: NextRequest,
   { params }: { params: { slug: string } }
@@ -153,11 +259,14 @@ export async function GET(
       });
     }
 
+    const similarSchools = await getSimilarSchools(college);
+
     return NextResponse.json({
       ok: true,
       college: {
         ...college,
         truthFit,
+        similarSchools,
       },
     });
   } catch (err) {
