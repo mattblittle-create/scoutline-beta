@@ -190,22 +190,23 @@ async function extractTeamsFromConferencePage(
 
   const teams: Team[] = source
     .map((item: any) => {
-      const name =
-        clean(item?.team) ||
-        clean(item?.name) ||
-        clean(item?.school) ||
-        clean(item?.institution);
+const name =
+  clean(item?.name) ||
+  clean(item?.team) ||
+  clean(item?.school) ||
+  clean(item?.institution);
 
-      const url =
-        clean(item?.url) ||
-        clean(item?.teamUrl) ||
-        clean(item?.link);
+const pageName = clean(item?.pageName);
 
-      return {
-        name,
-        conference,
-        baseballWebsiteUrl: absolutizeUrl(url),
-      };
+const baseballWebsiteUrl = pageName
+  ? `https://naiastats.prestosports.com/sports/bsb/2024-25/teams/${pageName}`
+  : "";
+
+return {
+  name,
+  conference,
+  baseballWebsiteUrl,
+};
     })
     .filter((team: Team) => team.name.length > 1);
 
