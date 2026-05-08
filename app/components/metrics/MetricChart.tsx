@@ -1,7 +1,7 @@
 // app/components/metrics/MetricChart.tsx
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   LineChart,
   Line,
@@ -108,6 +108,11 @@ export default function MetricChart({
   metricKey,
   dob,
 }: Props) {
+    const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   // Build chart rows: value + baseline aligned by month
   const data = useMemo(() => {
     const withDate = entries
@@ -195,7 +200,8 @@ export default function MetricChart({
         )}
       </div>
 
-      {/* Chart */}
+{/* Chart */}
+{mounted ? (
 <div
   style={{
     width: "100%",
@@ -260,6 +266,17 @@ export default function MetricChart({
           </LineChart>
         </ResponsiveContainer>
       </div>
+) : (
+  <div
+    style={{
+      width: "100%",
+      height: 260,
+      borderRadius: 10,
+      background: "#f8fafc",
+      border: "1px solid #e5e7eb",
+    }}
+  />
+)}
 
       {/* Inline legend aligned with the x-axis */}
       <div
