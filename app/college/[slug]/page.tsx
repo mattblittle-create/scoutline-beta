@@ -1,6 +1,7 @@
 // app/college/[slug]/page.tsx
 
 import Link from "next/link";
+import { cookies } from "next/headers";
 import CollegeSaveStar from "@/app/components/college/CollegeSaveStar";
 
 type PageProps = {
@@ -235,9 +236,13 @@ function comparisonText(item: NonNullable<CollegeDetail["truthFit"]>["metricComp
 
 async function getCollege(slug: string): Promise<CollegeDetail | null> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://www.myscoutline.com";
+  const cookieHeader = cookies().toString();
 
   const res = await fetch(`${baseUrl}/api/colleges/${encodeURIComponent(slug)}`, {
     cache: "no-store",
+    headers: {
+      cookie: cookieHeader,
+    },
   });
 
   const data = await res.json();
