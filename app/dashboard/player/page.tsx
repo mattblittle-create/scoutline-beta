@@ -182,6 +182,8 @@ export default function PlayerDashboardPage() {
   const [chatDraft, setChatDraft] = React.useState("");
   const [chatSending, setChatSending] = React.useState(false);
   const [currentUserId, setCurrentUserId] = React.useState<string>("");
+  const [suggestedPrograms, setSuggestedPrograms] = React.useState<any[]>([]);
+  const [loadingSuggestedPrograms, setLoadingSuggestedPrograms] = React.useState(false);
 
   const selectedConversation =
     chatConversations.find((c) => c.id === selectedChatId) ?? null;
@@ -291,6 +293,41 @@ export default function PlayerDashboardPage() {
     }
 
     loadDashboardIdentity();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadSuggestedPrograms() {
+      try {
+        setLoadingSuggestedPrograms(true);
+
+        const res = await fetch("/api/player/truth-fit", {
+          cache: "no-store",
+        });
+
+        const data = await res.json().catch(() => null);
+
+        if (cancelled) return;
+
+        if (!res.ok || !data?.ok) {
+          setSuggestedPrograms([]);
+          return;
+        }
+
+        setSuggestedPrograms((data.results || []).slice(0, 3));
+      } catch {
+        if (!cancelled) setSuggestedPrograms([]);
+      } finally {
+        if (!cancelled) setLoadingSuggestedPrograms(false);
+      }
+    }
+
+    loadSuggestedPrograms();
 
     return () => {
       cancelled = true;
@@ -1031,6 +1068,195 @@ const unreadChatCount = chatConversations.reduce(
             </button>
           </div>
         </div>
+      </section>
+
+            {/* Suggested Programs */}
+      <section
+        style={{
+          marginTop: 24,
+          marginBottom: 24,
+          border: "1px solid #e5e7eb",
+          borderRadius: 18,
+          padding: 18,
+          background: "#ffffff",
+          boxShadow: "0 8px 20px rgba(15,23,42,0.05)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 12,
+            flexWrap: "wrap",
+            alignItems: "flex-start",
+          }}
+        >
+          <div>
+            <h2 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 900 }}>
+              Suggested Programs
+            </h2>
+
+            <p
+              style={{
+                margin: "6px 0 0",
+                color: "#64748b",
+                fontWeight: 700,
+                lineHeight: 1.45,
+              }}
+            >
+              Schools ScoutLine thinks may fit your profile based on Truth Fit scoring.
+            </p>
+          </div>
+
+          <Link
+            href="/dashboard/player/recruiting-tool"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 999,
+              padding: "9px 13px",
+              background: "#caa042",
+              color: "#0f172a",
+              textDecoration: "none",
+              fontWeight: 900,
+              border: "1px solid #caa042",
+            }}
+          >
+            View Full Truth Fit
+          </Link>
+        </div>
+
+        {loadingSuggestedPrograms ? (
+          <div style={{ marginTop: 14, color: "#64748b", fontWeight: 800 }}>
+            Loading suggested programs...
+          </div>
+        ) : suggestedPrograms.length ? (
+          <div
+            style={{
+              marginTop: 14,
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+              gap: 12,
+            }}
+          >
+            {suggestedPrograms.map((item) => {
+              const college = item.college;
+              const fit = item.truthFit;
+
+              return (
+                <div
+                  key={college.id}
+                  style={{
+                    border: "1px solid #eef2f7",
+                    borderRadius: 16,
+                    padding: 14,
+                    background: "#f8fafc",
+                  }}
+                >
+                  <div style={{ fontWeight: 900, fontSize: 16 }}>
+                    {college.name}
+                  </div>
+
+                  <div
+                    style={{
+                      marginTop: 4,
+                      color: "#64748b",
+                      fontSize: 13,
+                      fontWeight: 800,
+                    }}
+                  >
+                    {[college.city, college.state].filter(Boolean).join(", ") ||
+                      "Location TBD"}
+                  </div>
+
+                  {fit ? (
+                    <div
+                      style={{
+                        marginTop: 10,
+                        display: "inline-flex",
+                        borderRadius: 999,
+                        padding: "6px 10px",
+                        background: "#ecfdf5",
+                        border: "1px solid #bbf7d0",
+                        color: "#166534",
+                        fontSize: 12,
+                        fontWeight: 900,
+                      }}
+                    >
+                      {fit.label} • {fit.score}
+                    </div>
+                  ) : null}
+
+                  <div
+                    style={{
+                      marginTop: 10,
+                      color: "#475569",
+                      fontSize: 13,
+                      fontWeight: 800,
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    {item.priorityReason ||
+                      fit?.reasons?.[0] ||
+                      "This program may align with your current profile."}
+                  </div>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 8,
+                      flexWrap: "wrap",
+                      marginTop: 12,
+                    }}
+                  >
+                    <Link
+                      href={`/college/${college.slug}`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: 999,
+                        padding: "8px 11px",
+                        background: "#ffffff",
+                        color: "#0f172a",
+                        textDecoration: "none",
+                        fontWeight: 900,
+                        border: "1px solid #cbd5e1",
+                        fontSize: 13,
+                      }}
+                    >
+                      View School
+                    </Link>
+
+                    <Link
+                      href={`/dashboard/player/recruiting-tool?collegeId=${college.id}`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        borderRadius: 999,
+                        padding: "8px 11px",
+                        background: "#0ea5e9",
+                        color: "#ffffff",
+                        textDecoration: "none",
+                        fontWeight: 900,
+                        border: "1px solid #0ea5e9",
+                        fontSize: 13,
+                      }}
+                    >
+                      Analyze Fit
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          <div style={{ marginTop: 14, color: "#64748b", fontWeight: 800 }}>
+            Complete your profile metrics to unlock suggested programs.
+          </div>
+        )}
       </section>
 
       {/* Main dashboard cards */}

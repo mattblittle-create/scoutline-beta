@@ -196,19 +196,14 @@ export default function MetricChart({
       </div>
 
       {/* Chart */}
-        <div
-          style={{
-            width: "100%",
-            minWidth: 280,
-            height: 260,
-            minHeight: 260,
-          }}
-        >
-        <ResponsiveContainer
-          width="100%"
-          height="100%"
-          minWidth={280}
-        >
+<div
+  style={{
+    width: "100%",
+    minWidth: 280,
+    height: 260,
+  }}
+>
+  <ResponsiveContainer width="100%" height="100%" minWidth={280}>
           <LineChart
             data={data}
             margin={{ top: 10, right: 16, bottom: 28, left: 0 }} // extra bottom for 2-line ticks

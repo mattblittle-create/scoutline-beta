@@ -143,6 +143,19 @@ function getOutreachLabel(status?: string) {
   }
 }
 
+function getQuickStatusOptions(status?: string) {
+  const current = status || "SAVED";
+
+  const options = [
+    ["INTERESTED", "Interested"],
+    ["CONTACTED", "Contacted"],
+    ["VISITED", "Visited"],
+    ["OFFERED", "Offered"],
+  ] as const;
+
+  return options.filter(([value]) => value !== current);
+}
+
   function buildCoachEmailSubject(collegeName: string) {
   return `Recruiting Interest - ${collegeName}`;
 }
@@ -239,6 +252,20 @@ function SummaryCard({ label, value }: { label: string; value: number }) {
 
 export default function TargetProgramsPage() {
   const [saved, setSaved] = useState<SavedProgram[]>([]);
+
+  const [expandedProgramIds, setExpandedProgramIds] = useState<string[]>([]);
+
+function isProgramExpanded(collegeId: string) {
+  return expandedProgramIds.includes(collegeId);
+}
+
+function toggleProgramExpanded(collegeId: string) {
+  setExpandedProgramIds((prev) =>
+    prev.includes(collegeId)
+      ? prev.filter((id) => id !== collegeId)
+      : [...prev, collegeId]
+  );
+}
 
   function getPriorityRank(priority?: string | null) {
   switch (priority) {
@@ -499,11 +526,47 @@ const stateMatch =
     NONE: sortedSaved.filter((item) => !item.priority),
   };
 
+  const statusPipelineGroups = [
+    {
+      key: "SAVED",
+      label: "Saved",
+      description: "Schools you have saved but have not actively started with yet.",
+      items: sortedSaved.filter((item) => (item.status || "SAVED") === "SAVED"),
+    },
+    {
+      key: "INTERESTED",
+      label: "Interested",
+      description: "Schools you want to learn more about or begin prioritizing.",
+      items: sortedSaved.filter((item) => item.status === "INTERESTED"),
+    },
+    {
+      key: "CONTACTED",
+      label: "Contacted",
+      description: "Programs where you have started outreach or communication.",
+      items: sortedSaved.filter((item) => item.status === "CONTACTED"),
+    },
+    {
+      key: "VISITED",
+      label: "Visited",
+      description: "Programs where you have visited, attended camp, or had meaningful in-person exposure.",
+      items: sortedSaved.filter((item) => item.status === "VISITED"),
+    },
+    {
+      key: "OFFERED",
+      label: "Offers / Decisions",
+      description: "Programs with offers, commitments, applications, acceptances, or final decisions.",
+      items: sortedSaved.filter((item) =>
+        ["OFFERED", "COMMITTED", "SIGNED", "APPLIED", "ACCEPTED", "NOT_PURSUING"].includes(item.status || "")
+      ),
+    },
+  ] as const;
+
   const priorityJumpGroups = [
-    ["NONE", "No Priority", groupedSaved.NONE.length],
-    ["LOW", "Low Priority", groupedSaved.LOW.length],
-    ["MEDIUM", "Medium Priority", groupedSaved.MEDIUM.length],
-    ["HIGH", "High Priority", groupedSaved.HIGH.length],
+    ["SAVED", "Saved", statusPipelineGroups.find((g) => g.key === "SAVED")?.items.length || 0],
+    ["INTERESTED", "Interested", statusPipelineGroups.find((g) => g.key === "INTERESTED")?.items.length || 0],
+    ["CONTACTED", "Contacted", statusPipelineGroups.find((g) => g.key === "CONTACTED")?.items.length || 0],
+    ["VISITED", "Visited", statusPipelineGroups.find((g) => g.key === "VISITED")?.items.length || 0],
+    ["OFFERED", "Offers / Decisions", statusPipelineGroups.find((g) => g.key === "OFFERED")?.items.length || 0],
   ] as const;
 
   const highPriorityCount = saved.filter((item) => item.priority === "HIGH").length;
@@ -725,7 +788,7 @@ const stateMatch =
     {priorityJumpGroups.map(([key, label, count]) => (
       <a
         key={key}
-        href={`#priority-${key.toLowerCase()}`}
+        href={`#pipeline-${key.toLowerCase()}`}
         style={priorityJumpButtonStyle}
       >
         {label} ({count})
@@ -754,32 +817,34 @@ const stateMatch =
           </div>
         ) : (
           <div style={{ display: "grid", gap: 18 }}>
-            {(["HIGH", "MEDIUM", "LOW", "NONE"] as const).map((priorityGroup) => {
-              const groupItems = groupedSaved[priorityGroup];
+{statusPipelineGroups.map((group) => {
+  const groupItems = group.items;
 
-              if (groupItems.length === 0) return null;
+  if (groupItems.length === 0) return null;
 
-              return (
-                <section
-  key={priorityGroup}
-  id={`priority-${priorityGroup.toLowerCase()}`}
-  style={priorityGroupSectionStyle}
->
-                  <div style={priorityGroupHeaderStyle}>
-                    {priorityGroup === "HIGH"
-                      ? `High Priority (${groupItems.length})`
-                      : priorityGroup === "MEDIUM"
-                      ? `Medium Priority (${groupItems.length})`
-                      : priorityGroup === "LOW"
-                      ? `Low Priority (${groupItems.length})`
-                      : `No Priority (${groupItems.length})`}
-                  </div>
+  return (
+    <section
+      key={group.key}
+      id={`pipeline-${group.key.toLowerCase()}`}
+      style={priorityGroupSectionStyle}
+    >
+      <div style={pipelineGroupHeaderStyle}>
+        <div>
+          <div style={pipelineGroupTitleStyle}>
+            {group.label} ({groupItems.length})
+          </div>
+          <div style={pipelineGroupDescriptionStyle}>
+            {group.description}
+          </div>
+        </div>
+      </div>
 
                   <div style={{ display: "grid", gap: 14 }}>
                     {groupItems.map((item) => {
 const college = item.college;
 const baseball = college.baseballProgram;
 const primaryCoach = getPrimaryCoach(baseball?.coaches);
+const expanded = isProgramExpanded(college.id);
 
                       return (
                 <article key={item.id} style={cardStyle}>
@@ -883,12 +948,32 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
 </label>
                   </div>
 
+                  <div style={quickActionWrapStyle}>
+                    <span style={quickActionLabelStyle}>Quick Move</span>
+
+                    <div style={quickActionButtonRowStyle}>
+                      {getQuickStatusOptions(item.status).map(([value, label]) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => updateProgramStatus(college.id, value)}
+                          disabled={updatingCollegeId === college.id}
+                          style={quickActionButtonStyle}
+                        >
+                          {label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
                   <div style={nextActionStyle}>
                     <span style={nextActionLabelStyle}>Next Action</span>
                     <span>{getNextAction(item.status)}</span>
                   </div>
 
-                {Array.isArray(item.truthFit?.development) &&
+                  {expanded ? (
+                    <>
+                      {Array.isArray(item.truthFit?.development) &&
                   item.truthFit.development.length > 0 ? (
                     <div style={fitDevelopmentStyle}>
                       <span style={fitDevelopmentLabelStyle}>Truth Fit Development</span>
@@ -933,6 +1018,14 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
   <Link href={`/college/${college.slug}`} style={primaryButtonStyle}>
     View Details
   </Link>
+
+  <button
+    type="button"
+    onClick={() => toggleProgramExpanded(college.id)}
+    style={secondaryButtonStyle}
+  >
+    {expanded ? "Hide Details" : "Show Details"}
+  </button>
 
   {college.admissionsUrl ? (
     <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={secondaryButtonStyle}>
@@ -1010,6 +1103,8 @@ const primaryCoach = getPrimaryCoach(baseball?.coaches);
   </a>
 ) : null}
 </div>
+                    </>
+                  ) : null}
                 </article>
               );
             })}
@@ -1147,6 +1242,41 @@ const statusSelectStyle: React.CSSProperties = {
   outline: "none",
 };
 
+const quickActionWrapStyle: React.CSSProperties = {
+  marginTop: 10,
+  border: "1px solid #e5e7eb",
+  background: "#ffffff",
+  borderRadius: 12,
+  padding: "10px 12px",
+};
+
+const quickActionLabelStyle: React.CSSProperties = {
+  display: "block",
+  fontSize: 11,
+  textTransform: "uppercase",
+  letterSpacing: "0.04em",
+  color: "#64748b",
+  fontWeight: 900,
+  marginBottom: 8,
+};
+
+const quickActionButtonRowStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 8,
+  flexWrap: "wrap",
+};
+
+const quickActionButtonStyle: React.CSSProperties = {
+  border: "1px solid #cbd5e1",
+  borderRadius: 999,
+  background: "#f8fafc",
+  color: "#0f172a",
+  padding: "7px 10px",
+  fontSize: 12,
+  fontWeight: 900,
+  cursor: "pointer",
+};
+
 const notesFieldStyle: React.CSSProperties = {
   border: "1px solid #eef2f7",
   background: "#f8fafc",
@@ -1203,6 +1333,28 @@ const priorityGroupHeaderStyle: React.CSSProperties = {
   borderRadius: 999,
   padding: "8px 12px",
   width: "fit-content",
+};
+
+const pipelineGroupHeaderStyle: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  background: "linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)",
+  borderRadius: 16,
+  padding: "12px 14px",
+  boxShadow: "0 4px 12px rgba(15,23,42,0.04)",
+};
+
+const pipelineGroupTitleStyle: React.CSSProperties = {
+  fontSize: 16,
+  fontWeight: 950,
+  color: "#0f172a",
+};
+
+const pipelineGroupDescriptionStyle: React.CSSProperties = {
+  marginTop: 4,
+  fontSize: 12,
+  fontWeight: 800,
+  color: "#64748b",
+  lineHeight: 1.4,
 };
 
 const priorityJumpBarStyle: React.CSSProperties = {

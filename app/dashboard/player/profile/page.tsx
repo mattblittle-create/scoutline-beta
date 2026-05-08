@@ -19,18 +19,6 @@ import { PlayerProfilePayload } from "@/app/lib/types/player";
 import * as XLSX from "xlsx";
 import { mapFirstPlayer } from "@/app/lib/stats/gamechangerMapping";
 
-// Charts
-import {
-  ResponsiveContainer,
-  LineChart,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Line,
-  ReferenceLine,
-} from "recharts";
-
 const POS_OPTIONS = ["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "CIF", "MIF", "OF"] as const;
 const SECONDARY_OPTIONS = ["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "CIF", "MIF", "OF", "none"] as const;
 const THROWS_OPTIONS = ["R", "L", "S"] as const;
