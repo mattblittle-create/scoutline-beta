@@ -101,18 +101,28 @@ function absolutizeUrl(href: string): string {
 }
 
 async function fetchText(url: string): Promise<string> {
-  const res = await fetch(url, {
-    headers: {
-      "User-Agent": "Mozilla/5.0 ScoutLine NAIA baseball importer",
-    },
-  });
+  for (let attempt = 1; attempt <= 4; attempt += 1) {
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 ScoutLine NAIA baseball importer",
+      },
+    });
 
-if (!res.ok) {
-  console.warn(`WARN: Failed to fetch ${url}: ${res.status}`);
+    if (res.ok) {
+      return res.text();
+    }
+
+    console.warn(`WARN: Failed to fetch ${url}: ${res.status} attempt ${attempt}/4`);
+
+    if (res.status === 459) {
+      await sleep(8000 * attempt);
+      continue;
+    }
+
+    return "";
+  }
+
   return "";
-}
-
-return res.text();
 }
 
 function extractConferencePages(html: string) {
@@ -221,7 +231,7 @@ async function main() {
   const allTeams: Team[] = [];
 
   for (const page of conferencePages) {
-await sleep(1200);
+await sleep(4500);
 
 const html = await fetchText(page.url);
 
