@@ -418,9 +418,10 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                 <TruthList title="Next Development Steps" items={truthFit.development} empty="No development steps available yet." />
               </div>
 
-              {truthFit.metricComparisons?.length ? (
-                <div style={{ marginTop: 14 }}>
-                  <h3 style={subTitleStyle}>Metric Comparisons</h3>
+<h3 style={subTitleStyle}>Compare Me</h3>
+<p style={compareIntroStyle}>
+  See how your current profile stacks up against this program’s available benchmark data.
+</p>
                   <div style={{ display: "grid", gap: 8 }}>
                     {truthFit.metricComparisons.map((item) => (
                       <div key={item.key} style={miniCardStyle}>
@@ -430,9 +431,32 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                             {item.status.replace(/_/g, " ")}
                           </span>
                         </div>
-                        <div style={{ marginTop: 6, color: "#475569", fontWeight: 800, fontSize: 13 }}>
-                          {comparisonText(item)}
-                        </div>
+<div style={compareRowStyle}>
+  <div>
+    <div style={compareLabelStyle}>You</div>
+    <div style={compareValueStyle}>
+      {Number.isInteger(item.playerValue)
+        ? item.playerValue
+        : Number(item.playerValue.toFixed(2))}
+      {item.unit ? ` ${item.unit}` : ""}
+    </div>
+  </div>
+
+  <div>
+    <div style={compareLabelStyle}>Benchmark</div>
+    <div style={compareValueStyle}>
+      {Number.isInteger(item.benchmarkValue)
+        ? item.benchmarkValue
+        : Number(item.benchmarkValue.toFixed(2))}
+      {item.unit ? ` ${item.unit}` : ""}
+    </div>
+  </div>
+
+  <div>
+    <div style={compareLabelStyle}>Read</div>
+    <div style={compareTextStyle}>{comparisonText(item)}</div>
+  </div>
+</div>
                       </div>
                     ))}
                   </div>
@@ -991,6 +1015,45 @@ const subTitleStyle: React.CSSProperties = {
   margin: "0 0 9px",
   fontSize: "0.95rem",
   fontWeight: 950,
+};
+
+const compareIntroStyle: React.CSSProperties = {
+  margin: "-3px 0 10px",
+  color: "#64748b",
+  fontSize: 13,
+  fontWeight: 800,
+  lineHeight: 1.45,
+};
+
+const compareRowStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "110px 130px 1fr",
+  gap: 12,
+  alignItems: "center",
+  marginTop: 10,
+};
+
+const compareLabelStyle: React.CSSProperties = {
+  fontSize: 11,
+  color: "#64748b",
+  fontWeight: 900,
+  textTransform: "uppercase",
+  letterSpacing: 0.4,
+};
+
+const compareValueStyle: React.CSSProperties = {
+  marginTop: 3,
+  fontSize: 18,
+  fontWeight: 950,
+  color: "#0f172a",
+};
+
+const compareTextStyle: React.CSSProperties = {
+  marginTop: 3,
+  color: "#475569",
+  fontWeight: 800,
+  fontSize: 13,
+  lineHeight: 1.45,
 };
 
 const statusGoodStyle: React.CSSProperties = {
