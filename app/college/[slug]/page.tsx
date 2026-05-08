@@ -60,6 +60,27 @@ type CollegeDetail = {
       };
     };
   } | null;
+    similarSchools?: Array<{
+    score: number;
+    college: {
+      id: string;
+      name: string;
+      slug: string;
+      city?: string | null;
+      state?: string | null;
+      region?: string | null;
+      control?: string | null;
+      schoolType?: string | null;
+      tuitionInState?: number | null;
+      tuitionOutOfState?: number | null;
+      baseballProgram?: {
+        nickname?: string | null;
+        division?: string | null;
+        conference?: string | null;
+        currentRosterSize?: number | null;
+      } | null;
+    };
+  }>;
   academicAreas?: Array<{
     id: string;
     name: string;
@@ -270,6 +291,7 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   const rosterNeeds = baseball?.rosterNeeds || [];
   const metricAverages = baseball?.metricAverages || [];
   const academicAreas = college.academicAreas || [];
+  const similarSchools = college.similarSchools || [];
 
   return (
     <main style={{ color: "#0f172a", fontFamily: "Arial, sans-serif" }}>
@@ -547,6 +569,113 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             )}
           </section>
         </div>
+
+        <section style={{ ...cardStyle, marginTop: 16 }}>
+          <h2 style={sectionTitleStyle}>Similar Schools</h2>
+
+          {similarSchools.length ? (
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+                gap: 12,
+              }}
+            >
+              {similarSchools.map((item) => {
+                const s = item.college;
+
+                return (
+                  <Link
+                    key={s.id}
+                    href={`/college/${s.slug}`}
+                    style={{
+                      textDecoration: "none",
+                      color: "#0f172a",
+                    }}
+                  >
+                    <div
+                      style={{
+                        border: "1px solid #e5e7eb",
+                        borderRadius: 16,
+                        padding: 14,
+                        background: "#fff",
+                        height: "100%",
+                        transition: "all 0.15s ease",
+                        boxShadow: "0 4px 12px rgba(15,23,42,0.05)",
+                      }}
+                    >
+                      <div
+                        style={{
+                          fontWeight: 900,
+                          fontSize: 16,
+                          marginBottom: 4,
+                        }}
+                      >
+                        {s.name}
+                      </div>
+
+                      <div
+                        style={{
+                          color: "#64748b",
+                          fontSize: 13,
+                          fontWeight: 800,
+                          marginBottom: 10,
+                        }}
+                      >
+                        {[s.city, s.state].filter(Boolean).join(", ")}
+                      </div>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: 6,
+                          flexWrap: "wrap",
+                          marginBottom: 10,
+                        }}
+                      >
+                        {s.baseballProgram?.division ? (
+                          <span style={goldPillStyle}>
+                            {pretty(s.baseballProgram.division)}
+                          </span>
+                        ) : null}
+
+                        {s.region ? (
+                          <span style={pillStyle}>
+                            {pretty(s.region)}
+                          </span>
+                        ) : null}
+                      </div>
+
+                      <div
+                        style={{
+                          fontSize: 12,
+                          color: "#475569",
+                          fontWeight: 800,
+                          lineHeight: 1.5,
+                        }}
+                      >
+                        {s.baseballProgram?.conference || "Conference TBD"}
+                      </div>
+
+                      <div
+                        style={{
+                          marginTop: 8,
+                          fontSize: 12,
+                          color: "#475569",
+                          fontWeight: 800,
+                        }}
+                      >
+                        Tuition: {money(s.tuitionOutOfState ?? s.tuitionInState)}
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <EmptyState text="No similar schools found yet." />
+          )}
+        </section>
 
         <section style={{ ...cardStyle, marginTop: 16 }}>
           <h2 style={sectionTitleStyle}>Data Verification</h2>
