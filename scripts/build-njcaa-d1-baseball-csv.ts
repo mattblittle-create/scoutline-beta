@@ -438,7 +438,7 @@ async function main() {
       slug: slugify(name),
       city: "",
       state,
-      region: team.region ? `REGION_${team.region}` : "",
+      region: "",
       control: "PUBLIC",
       schoolType: "JUNIOR_COLLEGE",
       websiteUrl: "",
