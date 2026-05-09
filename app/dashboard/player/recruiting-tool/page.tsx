@@ -459,9 +459,30 @@ body: JSON.stringify({
                   >
 <div style={resultTopRowStyle}>
   <div>
-    <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
-      {c.name}
-    </Link>
+<div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+  <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
+    {c.name}
+  </Link>
+
+  {item.isTopRecommendation ? (
+    <span
+      title="ScoutLine top recommendation based on fit score, program strength, and recruiting relevance."
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        borderRadius: 999,
+        padding: "4px 9px",
+        background: "#ecfdf5",
+        border: "1px solid #bbf7d0",
+        color: "#15803d",
+        fontSize: 11,
+        fontWeight: 900,
+      }}
+    >
+      ⭐ Top Recommendation
+    </span>
+  ) : null}
+</div>
 
 <div
   style={{
@@ -592,19 +613,6 @@ body: JSON.stringify({
 >
   {fit.label} • {fit.score}
 </div>
-
-{item.isTopRecommendation ? (
-  <div
-    style={{
-      marginTop: 8,
-      fontSize: 12,
-      fontWeight: 900,
-      color: "#15803d",
-    }}
-  >
-    ⭐ Top Recommendation for You
-  </div>
-) : null}
 
 {item.priorityReason ? (
   <div
