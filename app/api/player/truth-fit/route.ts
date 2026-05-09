@@ -559,7 +559,30 @@ const rankedDivisionFits = [...divisionFits].sort((a, b) => {
   return b.bestScore - a.bestScore;
 });
 
-const recommendedLaneDivision = rankedDivisionFits[0]?.division || null;
+const divisionPrestigeRank: Record<string, number> = {
+  NCAA_D1: 7,
+  NCAA_D2: 6,
+  NCAA_D3: 5,
+  NAIA: 4,
+  NJCAA_D1: 3,
+  NJCAA_D2: 2,
+  NJCAA_D3: 1,
+};
+
+const recommendedLaneDivision =
+  [...divisionFits]
+    .filter((item) =>
+      ["Strong Fit", "Match", "Possible Match"].includes(item.fitTier)
+    )
+    .sort((a, b) => {
+      const aRank = divisionPrestigeRank[a.division] || 0;
+      const bRank = divisionPrestigeRank[b.division] || 0;
+
+      if (bRank !== aRank) return bRank - aRank;
+      return b.bestScore - a.bestScore;
+    })[0]?.division ||
+  rankedDivisionFits[0]?.division ||
+  null;
 
 const orderedDivisionFits = ALL_DIVISIONS.map((division) => {
   const fit = divisionFits.find((item) => item.division === division);
@@ -602,6 +625,62 @@ function projectionTierFromLane(division?: string | null, fit?: string | null) {
   return "Developmental Prospect";
 }
 
+const recommendedDivisionResults = [...enrichedResults].sort((a, b) => {
+  const aDivision = String(a.college?.baseballProgram?.division || "");
+  const bDivision = String(b.college?.baseballProgram?.division || "");
+
+  const aIsRecommendedDivision = aDivision === recommendedLaneDivision ? 1 : 0;
+  const bIsRecommendedDivision = bDivision === recommendedLaneDivision ? 1 : 0;
+
+  if (bIsRecommendedDivision !== aIsRecommendedDivision) {
+    return bIsRecommendedDivision - aIsRecommendedDivision;
+  }
+
+  const aGeo =
+    a.geographyLabel === "In-State Fit"
+      ? 3
+      : a.geographyLabel === "Nearby Regional Fit"
+      ? 2
+      : a.geographyLabel === "Regional Fit"
+      ? 1
+      : 0;
+
+  const bGeo =
+    b.geographyLabel === "In-State Fit"
+      ? 3
+      : b.geographyLabel === "Nearby Regional Fit"
+      ? 2
+      : b.geographyLabel === "Regional Fit"
+      ? 1
+      : 0;
+
+  if (bGeo !== aGeo) return bGeo - aGeo;
+
+  const aScore = Number(a.truthFit?.score || 0);
+  const bScore = Number(b.truthFit?.score || 0);
+
+  if (bScore !== aScore) return bScore - aScore;
+
+  return a.college.name.localeCompare(b.college.name);
+});
+
+const finalResults = recommendedDivisionResults.map((item, index) => {
+  const score = Number(item.truthFit?.score || 0);
+  const fitType = String(item.fitType || "");
+  const geo = String(item.geographyLabel || "");
+
+  const isTopRecommendation =
+    index < 3 &&
+    score >= 60 &&
+    fitType !== "Reach School" &&
+    ["In-State Fit", "Nearby Regional Fit", "Regional Fit"].includes(geo);
+
+  return {
+    ...item,
+    isTopRecommendation,
+  };
+});
+
 const projectionTier = projectionTierFromLane(dominantDivision, dominantFit);
 
 const topGaps = Object.entries(gapCounts)
@@ -640,7 +719,7 @@ return NextResponse.json({
         control,
       },
       count: results.length,
-      results: enrichedResults,
+      results: finalResults,
     });
   } catch (err) {
     console.error("PLAYER_TRUTH_FIT_ERROR", err);
