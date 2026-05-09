@@ -95,6 +95,16 @@ async function getCurrentPlayerProfile() {
       secondaryPos:
         asString(user.Player?.secondaryPos) ??
         asString(normalized?.secondaryPos),
+      homeState:
+        asString(normalized?.homeState) ??
+        asString(normalized?.state) ??
+        asString(normalized?.playerState) ??
+        asString(normalized?.addressState),
+      homeZip:
+        asString(normalized?.homeZip) ??
+        asString(normalized?.zip) ??
+        asString(normalized?.zipcode) ??
+        asString(normalized?.postalCode),
       heightIn: totalHeightIn,
       weightLb:
         asNumber(user.Player?.weightLb) ??
@@ -223,10 +233,51 @@ baseballProgram: {
     return 0;
   };
 
+  const playerState = String(profile.player.homeState || "").toUpperCase();
+
+  const regionalMap: Record<string, string[]> = {
+    NORTHEAST: ["ME","NH","VT","MA","RI","CT","NY","NJ","PA"],
+    MID_ATLANTIC: ["DE","MD","DC","VA","WV","NC","SC"],
+    SOUTHEAST: ["SC","NC","GA","FL","AL","MS","TN","KY","AR","LA"],
+    MIDWEST: ["OH","MI","IN","IL","WI","MN","IA","MO","ND","SD","NE","KS"],
+    SOUTHWEST: ["TX","OK","NM","AZ"],
+    WEST: ["CO","UT","ID","MT","WY","NV"],
+    PACIFIC: ["CA","OR","WA","AK","HI"],
+  };
+
+  const playerRegion =
+    Object.entries(regionalMap).find(([, states]) =>
+      states.includes(playerState)
+    )?.[0] || null;
+
+  function proximityScore(item: any) {
+    const schoolState = String(item.college?.state || "").toUpperCase();
+    const schoolRegion = String(item.college?.region || "");
+
+    if (playerState && schoolState === playerState) {
+      return 3;
+    }
+
+    if (playerRegion && schoolRegion === playerRegion) {
+      return 2;
+    }
+
+    return 1;
+  }
+
   const aRank = labelRank(a.truthFit.label);
   const bRank = labelRank(b.truthFit.label);
 
-  if (bRank !== aRank) return bRank - aRank;
+  if (bRank !== aRank) {
+    return bRank - aRank;
+  }
+
+  const aProximity = proximityScore(a);
+  const bProximity = proximityScore(b);
+
+  if (bProximity !== aProximity) {
+    return bProximity - aProximity;
+  }
 
   return b.truthFit.score - a.truthFit.score;
 });

@@ -19,6 +19,8 @@ export type TruthFitInput = {
     gradYear?: number | null;
     primaryPos?: string | null;
     secondaryPos?: string | null;
+    homeState?: string | null;
+    homeZip?: string | null;
     heightIn?: number | null;
     weightLb?: number | null;
     metrics?: Record<string, Array<{ value?: number | null }>>;
@@ -70,6 +72,9 @@ export type TruthFitResult = {
       confidence: "HIGH" | "MEDIUM" | "LOW";
     };
   };
+
+  projectionTag: string;
+  projectionSummary: string;
 };
 
 function priorityFromScore(score: number): "HIGH" | "MEDIUM" | "LOW" {
@@ -223,6 +228,77 @@ function benchmarkConfidenceMultiplier(level?: TruthFitBenchmarkSourceLevel) {
   if (level === "DIVISION") return 0.96;
   if (level === "GLOBAL") return 0.93;
   return 0.88;
+}
+
+function projectionFromFit({
+  score,
+  label,
+  reasons,
+  gaps,
+  development,
+  metricComparisons,
+}: {
+  score: number;
+  label: TruthFitLabel;
+  reasons: string[];
+  gaps: string[];
+  development: string[];
+  metricComparisons: TruthFitResult["metricComparisons"];
+}) {
+  const hasStrongMetric = metricComparisons.some((item) => item.status === "ABOVE");
+  const hasMetricGap = metricComparisons.some((item) => item.status === "BELOW");
+  const hasAcademicStrength = reasons.some((reason) =>
+    reason.toLowerCase().includes("gpa")
+  );
+  const hasRosterNeed = reasons.some((reason) =>
+    reason.toLowerCase().includes("roster need")
+  );
+
+  if (score >= 88 && hasRosterNeed && hasStrongMetric) {
+    return {
+      projectionTag: "Immediate Impact Prospect",
+      projectionSummary:
+        "Your profile shows strong alignment with this program’s roster need and available benchmark data.",
+    };
+  }
+
+  if (score >= 78 && (label === "Strong Fit" || label === "Match")) {
+    return {
+      projectionTag: "Strong Division Fit",
+      projectionSummary:
+        "Your current profile is tracking well for this program’s competitive level.",
+    };
+  }
+
+  if (hasAcademicStrength && score >= 65) {
+    return {
+      projectionTag: "High Academic Fit",
+      projectionSummary:
+        "Your academic profile appears to strengthen this recruiting fit.",
+    };
+  }
+
+  if (score >= 58 && hasMetricGap && development.length > 0) {
+    return {
+      projectionTag: "Developmental Upside",
+      projectionSummary:
+        "You are close enough to track this program, but your development areas should guide your next training focus.",
+    };
+  }
+
+  if (score < 58 && gaps.length > 0) {
+    return {
+      projectionTag: "Stretch Opportunity",
+      projectionSummary:
+        "This program is currently more of a reach based on available profile and benchmark data.",
+    };
+  }
+
+  return {
+    projectionTag: "Emerging College Prospect",
+    projectionSummary:
+      "This fit is still developing as ScoutLine collects more profile, roster, and benchmark data.",
+  };
 }
 
 function metricWeight(key: string) {
@@ -590,9 +666,20 @@ const sortedComparisons = [...metricComparisons].sort((a, b) => {
   return priority(b) - priority(a);
 });
 
+const label = labelFromScore(score, hasEstimatedSections);
+
+const projection = projectionFromFit({
+  score,
+  label,
+  reasons: Array.from(new Set(reasons)),
+  gaps: Array.from(new Set(gaps)),
+  development: uniqueDevelopment,
+  metricComparisons: sortedComparisons,
+});
+
 return {
   score,
-  label: labelFromScore(score, hasEstimatedSections),
+  label,
   priority: priorityFromScore(score),
   reasons: Array.from(new Set(reasons)).slice(0, 6),
   gaps: Array.from(new Set(gaps)).slice(0, 5),
@@ -601,5 +688,7 @@ return {
   benchmarkSource: {
     metrics: metricsBenchmarkSource,
   },
+  projectionTag: projection.projectionTag,
+  projectionSummary: projection.projectionSummary,
 };
 }

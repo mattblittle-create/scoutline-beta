@@ -98,6 +98,13 @@ function PlayerRecruitingToolContent() {
     ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
     : truthFitSummary?.projectionTier || "Developmental Prospect";
 
+  const topProjection =
+    visibleTruthFitResults.find(
+      (item: any) =>
+        item?.truthFit?.projectionTag &&
+        item?.truthFit?.projectionSummary
+    )?.truthFit || null;
+
     React.useEffect(() => {
     async function loadPlanTier() {
       try {
@@ -355,6 +362,53 @@ body: JSON.stringify({
             </div>
           </section>
         ) : null}
+
+        {topProjection ? (
+  <section
+    style={{
+      marginTop: 16,
+      border: "1px solid #fde68a",
+      background: "#fffbeb",
+      borderRadius: 18,
+      padding: 18,
+      boxShadow: "0 8px 20px rgba(15,23,42,0.05)",
+    }}
+  >
+    <div
+      style={{
+        fontSize: 12,
+        fontWeight: 900,
+        color: "#92400e",
+        textTransform: "uppercase",
+        letterSpacing: "0.04em",
+      }}
+    >
+      Recruiting Projection
+    </div>
+
+    <div
+      style={{
+        marginTop: 6,
+        fontSize: "1.35rem",
+        fontWeight: 950,
+        color: "#0f172a",
+      }}
+    >
+      {topProjection.projectionTag}
+    </div>
+
+    <p
+      style={{
+        margin: "8px 0 0",
+        color: "#78350f",
+        fontWeight: 800,
+        lineHeight: 1.5,
+      }}
+    >
+      {topProjection.projectionSummary}
+    </p>
+  </section>
+) : null}
 
         <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
