@@ -523,12 +523,33 @@ body: JSON.stringify({
       </Link>
     ) : null}
 
-    <div style={priorityBadgeStyle}>
-      {getPriorityBadgeText(fit.priority)}
-    </div>
+{item.geographyLabel ? (
+  <div
+    title="Shows how close this school is to the player’s home state or recruiting region."
+    style={{
+      borderRadius: 999,
+      padding: "4px 10px",
+      fontSize: 11,
+      fontWeight: 900,
+      border: "1px solid #bfdbfe",
+      background: "#eff6ff",
+      color: "#1e3a8a",
+    }}
+  >
+    {item.geographyLabel}
+  </div>
+) : null}
+
+<div
+  title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
+  style={priorityBadgeStyle}
+>
+  {getPriorityBadgeText(fit.priority)}
+</div>
 
     {item.fitType ? (
       <div
+        title="Plain-English recruiting category based on current fit score and development gap."
         style={{
           borderRadius: 999,
           padding: "4px 10px",
@@ -555,24 +576,6 @@ body: JSON.stringify({
     }}
   >
     ⭐ Top Recommendation for You
-  </div>
-) : null}
-
-{item.geographyLabel ? (
-  <div
-    style={{
-      marginTop: 8,
-      display: "inline-flex",
-      borderRadius: 999,
-      padding: "5px 9px",
-      border: "1px solid #bfdbfe",
-      background: "#eff6ff",
-      color: "#1e3a8a",
-      fontSize: 12,
-      fontWeight: 900,
-    }}
-  >
-    {item.geographyLabel}
   </div>
 ) : null}
 
