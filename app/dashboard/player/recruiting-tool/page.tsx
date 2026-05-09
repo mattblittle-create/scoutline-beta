@@ -476,19 +476,6 @@ body: JSON.stringify({
   <div style={locationStyle}>
     {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
   </div>
-
-  <div
-    title={getFitTooltip(fit.label, fit.score)}
-    style={{
-      ...fitBadgeStyle,
-      color: getFitColor(fit.label),
-      borderColor: getFitBorderColor(fit.label),
-      background: getFitBackground(fit.label),
-      cursor: "help",
-    }}
-  >
-    {fit.label} • {fit.score}
-  </div>
 </div>
 
     <div style={linkRowStyle}>
@@ -588,6 +575,22 @@ body: JSON.stringify({
       </div>
     ) : null}
   </div>
+</div>
+
+<div
+  title={getFitTooltip(fit.label, fit.score)}
+  style={{
+    borderRadius: 999,
+    padding: "4px 10px",
+    fontSize: 11,
+    fontWeight: 900,
+    border: `1px solid ${getFitBorderColor(fit.label)}`,
+    background: getFitBackground(fit.label),
+    color: getFitColor(fit.label),
+    lineHeight: 1.2,
+  }}
+>
+  {fit.label} • {fit.score}
 </div>
 
 {item.isTopRecommendation ? (
