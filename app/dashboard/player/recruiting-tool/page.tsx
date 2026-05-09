@@ -463,9 +463,33 @@ body: JSON.stringify({
       {c.name}
     </Link>
 
-    <div style={locationStyle}>
-      {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-    </div>
+<div
+  style={{
+    marginTop: 6,
+    display: "flex",
+    justifyContent: "space-between",
+    gap: 12,
+    alignItems: "center",
+    flexWrap: "wrap",
+  }}
+>
+  <div style={locationStyle}>
+    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+  </div>
+
+  <div
+    title={getFitTooltip(fit.label, fit.score)}
+    style={{
+      ...fitBadgeStyle,
+      color: getFitColor(fit.label),
+      borderColor: getFitBorderColor(fit.label),
+      background: getFitBackground(fit.label),
+      cursor: "help",
+    }}
+  >
+    {fit.label} • {fit.score}
+  </div>
+</div>
 
     <div style={linkRowStyle}>
       {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
