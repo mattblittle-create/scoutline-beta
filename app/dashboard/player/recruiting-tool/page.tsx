@@ -588,7 +588,7 @@ body: JSON.stringify({
         whiteSpace: "nowrap",
       }}
     >
-      {fit.label} • {fit.score}
+      Match Score {fit.score}/100
     </div>
   </div>
 </div>
