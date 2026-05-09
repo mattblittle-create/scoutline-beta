@@ -506,7 +506,23 @@ body: JSON.stringify({
     </div>
   </div>
 
-  <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: 6,
+    alignItems: "flex-end",
+  }}
+>
+  <div
+    style={{
+      display: "flex",
+      gap: 8,
+      alignItems: "center",
+      flexWrap: "wrap",
+      justifyContent: "flex-end",
+    }}
+  >
     <button
       type="button"
       title={
@@ -596,22 +612,23 @@ body: JSON.stringify({
       </div>
     ) : null}
   </div>
-</div>
 
-<div
-  title={getFitTooltip(fit.label, fit.score)}
-  style={{
-    borderRadius: 999,
-    padding: "4px 10px",
-    fontSize: 11,
-    fontWeight: 900,
-    border: `1px solid ${getFitBorderColor(fit.label)}`,
-    background: getFitBackground(fit.label),
-    color: getFitColor(fit.label),
-    lineHeight: 1.2,
-  }}
->
-  {fit.label} • {fit.score}
+  <div
+    title={getFitTooltip(fit.label, fit.score)}
+    style={{
+      borderRadius: 999,
+      padding: "4px 10px",
+      fontSize: 11,
+      fontWeight: 900,
+      border: `1px solid ${getFitBorderColor(fit.label)}`,
+      background: getFitBackground(fit.label),
+      color: getFitColor(fit.label),
+      lineHeight: 1.2,
+      whiteSpace: "nowrap",
+    }}
+  >
+    {fit.label} • {fit.score}
+  </div>
 </div>
 
 {item.priorityReason ? (
