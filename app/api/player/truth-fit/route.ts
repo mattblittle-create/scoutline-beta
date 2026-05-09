@@ -226,23 +226,25 @@ baseballProgram: {
         })
       )
 ).sort((a, b) => {
-  const labelRank = (l: string) => {
-    if (l === "Strong Fit") return 3;
-    if (l === "Match") return 2;
-    if (l === "Possible Match") return 1;
-    return 0;
-  };
-
   const playerState = String(profile.player.homeState || "").toUpperCase();
 
   const regionalMap: Record<string, string[]> = {
-    NORTHEAST: ["ME","NH","VT","MA","RI","CT","NY","NJ","PA"],
-    MID_ATLANTIC: ["DE","MD","DC","VA","WV","NC","SC"],
-    SOUTHEAST: ["SC","NC","GA","FL","AL","MS","TN","KY","AR","LA"],
-    MIDWEST: ["OH","MI","IN","IL","WI","MN","IA","MO","ND","SD","NE","KS"],
-    SOUTHWEST: ["TX","OK","NM","AZ"],
-    WEST: ["CO","UT","ID","MT","WY","NV"],
-    PACIFIC: ["CA","OR","WA","AK","HI"],
+    SOUTHEAST: ["SC", "NC", "GA", "FL", "AL", "MS", "TN", "KY", "AR", "LA", "VA"],
+    MID_ATLANTIC: ["DE", "MD", "DC", "VA", "WV", "NC", "SC", "PA", "NJ"],
+    NORTHEAST: ["ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA"],
+    MIDWEST: ["OH", "MI", "IN", "IL", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS"],
+    SOUTHWEST: ["TX", "OK", "NM", "AZ"],
+    WEST: ["CO", "UT", "ID", "MT", "WY", "NV"],
+    PACIFIC: ["CA", "OR", "WA", "AK", "HI"],
+  };
+
+  const neighborStates: Record<string, string[]> = {
+    SC: ["NC", "GA", "TN", "VA", "FL"],
+    NC: ["SC", "VA", "GA", "TN"],
+    GA: ["SC", "NC", "FL", "AL", "TN"],
+    FL: ["GA", "AL", "SC"],
+    TN: ["KY", "VA", "NC", "GA", "AL", "MS", "AR", "MO"],
+    VA: ["NC", "TN", "KY", "WV", "MD", "DC", "SC"],
   };
 
   const playerRegion =
@@ -250,36 +252,83 @@ baseballProgram: {
       states.includes(playerState)
     )?.[0] || null;
 
-  function proximityScore(item: any) {
+  function geographyRank(item: any) {
     const schoolState = String(item.college?.state || "").toUpperCase();
     const schoolRegion = String(item.college?.region || "");
 
-    if (playerState && schoolState === playerState) {
-      return 3;
-    }
-
-    if (playerRegion && schoolRegion === playerRegion) {
-      return 2;
-    }
-
+    if (playerState && schoolState === playerState) return 5;
+    if (playerState && (neighborStates[playerState] || []).includes(schoolState)) return 4;
+    if (playerRegion && schoolRegion === playerRegion) return 3;
     return 1;
   }
 
-  const aRank = labelRank(a.truthFit.label);
-  const bRank = labelRank(b.truthFit.label);
+  function fitScore(item: any) {
+    const label = item.truthFit?.label || "";
+    const score = Number(item.truthFit?.score || 0);
 
-  if (bRank !== aRank) {
-    return bRank - aRank;
+    const labelBonus =
+      label === "Strong Fit"
+        ? 30
+        : label === "Match"
+        ? 20
+        : label === "Possible Match"
+        ? 10
+        : 0;
+
+    return labelBonus + score;
   }
 
-  const aProximity = proximityScore(a);
-  const bProximity = proximityScore(b);
+  function programStrengthScore(item: any) {
+    const division = String(item.college?.baseballProgram?.division || "");
+    const conference = String(item.college?.baseballProgram?.conference || "").toUpperCase();
+    const rosterSize = Number(item.college?.baseballProgram?.currentRosterSize || 0);
 
-  if (bProximity !== aProximity) {
-    return bProximity - aProximity;
+    const divisionScore =
+      division === "NCAA_D1"
+        ? 40
+        : division === "NCAA_D2"
+        ? 32
+        : division === "NAIA"
+        ? 28
+        : division === "NJCAA_D1"
+        ? 26
+        : division === "NCAA_D3"
+        ? 24
+        : division === "NJCAA_D2"
+        ? 18
+        : division === "NJCAA_D3"
+        ? 14
+        : 8;
+
+    const conferenceBonus =
+      ["SEC", "ACC", "BIG TEN", "BIG 12", "PAC-12", "SUN BELT", "AMERICAN ATHLETIC", "AAC", "CONFERENCE USA"].some((name) =>
+        conference.includes(name)
+      )
+        ? 10
+        : 0;
+
+    const rosterBonus =
+      rosterSize >= 40 ? 5 : rosterSize >= 30 ? 3 : rosterSize >= 20 ? 1 : 0;
+
+    return divisionScore + conferenceBonus + rosterBonus;
   }
 
-  return b.truthFit.score - a.truthFit.score;
+  const aGeo = geographyRank(a);
+  const bGeo = geographyRank(b);
+
+  if (bGeo !== aGeo) return bGeo - aGeo;
+
+  const aFit = fitScore(a);
+  const bFit = fitScore(b);
+
+  if (bFit !== aFit) return bFit - aFit;
+
+  const aProgram = programStrengthScore(a);
+  const bProgram = programStrengthScore(b);
+
+  if (bProgram !== aProgram) return bProgram - aProgram;
+
+  return a.college.name.localeCompare(b.college.name);
 });
 
 const enrichedResults = results.map((item, index) => {
