@@ -313,20 +313,29 @@ baseballProgram: {
     return divisionScore + conferenceBonus + rosterBonus;
   }
 
+  const filtersActive = Boolean(division || region || state || control);
+
   const aGeo = geographyRank(a);
   const bGeo = geographyRank(b);
-
-  if (bGeo !== aGeo) return bGeo - aGeo;
 
   const aFit = fitScore(a);
   const bFit = fitScore(b);
 
-  if (bFit !== aFit) return bFit - aFit;
-
   const aProgram = programStrengthScore(a);
   const bProgram = programStrengthScore(b);
 
+  // Default mode: feel local and realistic first.
+  if (!filtersActive) {
+    if (bGeo !== aGeo) return bGeo - aGeo;
+    if (bFit !== aFit) return bFit - aFit;
+    if (bProgram !== aProgram) return bProgram - aProgram;
+    return a.college.name.localeCompare(b.college.name);
+  }
+
+  // Filtered mode: respect the player's refined search intent first.
+  if (bFit !== aFit) return bFit - aFit;
   if (bProgram !== aProgram) return bProgram - aProgram;
+  if (bGeo !== aGeo) return bGeo - aGeo;
 
   return a.college.name.localeCompare(b.college.name);
 });
