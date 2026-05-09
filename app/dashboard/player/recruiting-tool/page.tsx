@@ -525,6 +525,24 @@ body: JSON.stringify({
     </div>
   ) : null}
 
+{item.geographyLabel ? (
+  <div
+    style={{
+      marginTop: 8,
+      display: "inline-flex",
+      borderRadius: 999,
+      padding: "5px 9px",
+      border: "1px solid #bfdbfe",
+      background: "#eff6ff",
+      color: "#1e3a8a",
+      fontSize: 12,
+      fontWeight: 900,
+    }}
+  >
+    {item.geographyLabel}
+  </div>
+) : null}
+
   {item.priorityReason ? (
     <div
       style={{
@@ -542,6 +560,37 @@ body: JSON.stringify({
       {item.priorityReason}
     </div>
   ) : null}
+
+  {Array.isArray(fit?.development) && fit.development.length > 0 ? (
+  <div
+    style={{
+      marginTop: 10,
+      padding: "10px 12px",
+      borderRadius: 12,
+      border: "1px solid #bfdbfe",
+      background: "#eff6ff",
+      color: "#1e3a8a",
+      fontSize: 13,
+      fontWeight: 800,
+      lineHeight: 1.45,
+    }}
+  >
+    <div
+      style={{
+        fontSize: 11,
+        textTransform: "uppercase",
+        letterSpacing: "0.04em",
+        fontWeight: 950,
+        color: "#1d4ed8",
+        marginBottom: 4,
+      }}
+    >
+      Highest Impact Improvement
+    </div>
+
+    {fit.development[0]}
+  </div>
+) : null}
 
   <div style={locationStyle}>
     {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}

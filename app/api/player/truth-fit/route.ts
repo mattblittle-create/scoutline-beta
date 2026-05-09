@@ -344,6 +344,57 @@ const enrichedResults = results.map((item, index) => {
   const fit = item.truthFit;
   const baseball = item.college?.baseballProgram;
 
+    const playerState = String(profile.player.homeState || "").toUpperCase();
+
+  const regionalMap: Record<string, string[]> = {
+    SOUTHEAST: ["SC", "NC", "GA", "FL", "AL", "MS", "TN", "KY", "AR", "LA", "VA"],
+    MID_ATLANTIC: ["DE", "MD", "DC", "VA", "WV", "NC", "SC", "PA", "NJ"],
+    NORTHEAST: ["ME", "NH", "VT", "MA", "RI", "CT", "NY", "NJ", "PA"],
+    MIDWEST: ["OH", "MI", "IN", "IL", "WI", "MN", "IA", "MO", "ND", "SD", "NE", "KS"],
+    SOUTHWEST: ["TX", "OK", "NM", "AZ"],
+    WEST: ["CO", "UT", "ID", "MT", "WY", "NV"],
+    PACIFIC: ["CA", "OR", "WA", "AK", "HI"],
+  };
+
+  const neighborStates: Record<string, string[]> = {
+    SC: ["NC", "GA", "TN", "VA", "FL"],
+    NC: ["SC", "VA", "GA", "TN"],
+    GA: ["SC", "NC", "FL", "AL", "TN"],
+    FL: ["GA", "AL", "SC"],
+    TN: ["KY", "VA", "NC", "GA", "AL", "MS", "AR", "MO"],
+    VA: ["NC", "TN", "KY", "WV", "MD", "DC", "SC"],
+  };
+
+  const playerRegion =
+    Object.entries(regionalMap).find(([, states]) =>
+      states.includes(playerState)
+    )?.[0] || null;
+
+  const schoolState = String(item.college?.state || "").toUpperCase();
+  const schoolRegion = String(item.college?.region || "");
+
+  const geographyLabel =
+    playerState && schoolState === playerState
+      ? "In-State Fit"
+      : playerState && (neighborStates[playerState] || []).includes(schoolState)
+      ? "Nearby Regional Fit"
+      : playerRegion && schoolRegion === playerRegion
+      ? "Regional Fit"
+      : "National Opportunity";
+
+  const fitScore = Number(fit?.score || 0);
+
+  const fitType =
+    fitScore >= 88 && String(fit?.label || "") === "Strong Fit"
+      ? "Strong Fit"
+      : fitScore >= 76
+      ? "Competitive Fit"
+      : fitScore >= 62
+      ? "Developmental Fit"
+      : fitScore >= 50
+      ? "Stretch Fit"
+      : "Reach School";
+
   const fitLabel = fit?.label || "Fit";
   const division = String(baseball?.division || "").replace(/_/g, " ");
   const state = item.college?.state || "";
@@ -385,6 +436,8 @@ const enrichedResults = results.map((item, index) => {
     ...item,
     isTopRecommendation: index === 0,
     priorityReason,
+    geographyLabel,
+    fitType,
   };
 });
 

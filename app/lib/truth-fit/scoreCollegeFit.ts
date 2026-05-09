@@ -566,13 +566,21 @@ development.push(
   const secondaryPos = normalizePos(input.player.secondaryPos);
 
   if (exitVelo != null && exitVelo < 90) {
-development.push(
-  `Increasing exit velocity will help improve your offensive fit for ${divisionLabel(input.college.division)} programs.`
-);
+    const targetExitVelo = exitVelo < 85 ? 90 : 92;
+
+    development.push(
+      `Improving exit velocity from ${Math.round(exitVelo)} to ${targetExitVelo} mph would strengthen your offensive profile for ${divisionLabel(input.college.division)} programs.`
+    );
   }
 
   if (sixty != null && sixty > 7.0) {
-    development.push("Improving your 60-yard dash time can raise your fit score, especially for infield and outfield opportunities.");
+    const targetSixty = sixty > 7.25 ? 6.95 : 6.9;
+
+    development.push(
+      `Improving 60-yard from ${sixty.toFixed(2)} to ${targetSixty.toFixed(
+        2
+      )} would increase ${divisionLabel(input.college.division)} fit scores substantially, especially for infield and outfield opportunities.`
+    );
   }
 
   if (homeToFirst != null && homeToFirst > 4.5) {
