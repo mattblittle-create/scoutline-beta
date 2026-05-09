@@ -514,6 +514,14 @@ body: JSON.stringify({
     alignItems: "flex-end",
   }}
 >
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: 6,
+    alignItems: "flex-end",
+  }}
+>
   <div
     style={{
       display: "flex",
@@ -547,53 +555,29 @@ body: JSON.stringify({
       ★
     </button>
 
-    {c.id === selectedCollegeId ? (
-      <span
+    {item.geographyLabel ? (
+      <div
+        title="Shows how close this school is to the player’s home state or recruiting region."
         style={{
-          border: "1px solid #caa042",
-          background: "#fffaf0",
-          color: "#7c5b12",
           borderRadius: 999,
           padding: "4px 10px",
           fontSize: 11,
           fontWeight: 900,
+          border: "1px solid #bfdbfe",
+          background: "#eff6ff",
+          color: "#1e3a8a",
         }}
       >
-        {savedCollegeIds.includes(c.id)
-          ? "In Target Programs"
-          : "Not Saved"}
-      </span>
+        {item.geographyLabel}
+      </div>
     ) : null}
 
-    {savedCollegeIds.includes(c.id) ? (
-      <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
-        Manage
-      </Link>
-    ) : null}
-
-{item.geographyLabel ? (
-  <div
-    title="Shows how close this school is to the player’s home state or recruiting region."
-    style={{
-      borderRadius: 999,
-      padding: "4px 10px",
-      fontSize: 11,
-      fontWeight: 900,
-      border: "1px solid #bfdbfe",
-      background: "#eff6ff",
-      color: "#1e3a8a",
-    }}
-  >
-    {item.geographyLabel}
-  </div>
-) : null}
-
-<div
-  title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
-  style={priorityBadgeStyle}
->
-  {getPriorityBadgeText(fit.priority)}
-</div>
+    <div
+      title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
+      style={priorityBadgeStyle}
+    >
+      {getPriorityBadgeText(fit.priority)}
+    </div>
 
     {item.fitType ? (
       <div
@@ -629,6 +613,30 @@ body: JSON.stringify({
   >
     {fit.label} • {fit.score}
   </div>
+
+  {c.id === selectedCollegeId ? (
+    <span
+      style={{
+        border: "1px solid #caa042",
+        background: "#fffaf0",
+        color: "#7c5b12",
+        borderRadius: 999,
+        padding: "4px 10px",
+        fontSize: 11,
+        fontWeight: 900,
+      }}
+    >
+      {savedCollegeIds.includes(c.id)
+        ? "In Target Programs"
+        : "Not Saved"}
+    </span>
+  ) : null}
+
+  {savedCollegeIds.includes(c.id) ? (
+    <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
+      Manage
+    </Link>
+  ) : null}
 </div>
 
 {item.priorityReason ? (
