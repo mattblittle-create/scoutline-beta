@@ -506,24 +506,119 @@ body: JSON.stringify({
                           : "0 1px 2px rgba(0,0,0,0.04)",
                     }}
                   >
-                    <div style={resultTopRowStyle}>
-<div>
-  <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
-    {c.name}
-  </Link>
+<div style={resultTopRowStyle}>
+  <div>
+    <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
+      {c.name}
+    </Link>
 
-  {item.isTopRecommendation ? (
-    <div
+    <div style={locationStyle}>
+      {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+    </div>
+
+    <div style={linkRowStyle}>
+      {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
+      {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
+      {baseball?.baseballWebsiteUrl ? <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink> : null}
+    </div>
+  </div>
+
+  <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
+    <button
+      type="button"
+      title={
+        savedCollegeIds.includes(c.id)
+          ? "Remove from Target Programs"
+          : "Save to Target Programs"
+      }
+      onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
+      disabled={savingCollegeId === c.id}
       style={{
-        marginTop: 6,
-        fontSize: 12,
+        width: 28,
+        height: 28,
+        borderRadius: 999,
+        border: "2px solid #0ea5e9",
+        background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
+        color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
         fontWeight: 900,
-        color: "#15803d",
+        cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
+        opacity: savingCollegeId === c.id ? 0.6 : 1,
       }}
     >
-      ⭐ Top Recommendation for You
+      ★
+    </button>
+
+    {c.id === selectedCollegeId ? (
+      <span
+        style={{
+          border: "1px solid #caa042",
+          background: "#fffaf0",
+          color: "#7c5b12",
+          borderRadius: 999,
+          padding: "4px 10px",
+          fontSize: 11,
+          fontWeight: 900,
+        }}
+      >
+        {savedCollegeIds.includes(c.id)
+          ? "In Target Programs"
+          : "Not Saved"}
+      </span>
+    ) : null}
+
+    {savedCollegeIds.includes(c.id) ? (
+      <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
+        Manage
+      </Link>
+    ) : null}
+
+    <div style={priorityBadgeStyle}>
+      {getPriorityBadgeText(fit.priority)}
     </div>
-  ) : null}
+
+    <div
+      title={getFitTooltip(fit.label, fit.score)}
+      style={{
+        ...fitBadgeStyle,
+        color: getFitColor(fit.label),
+        borderColor: getFitBorderColor(fit.label),
+        background: getFitBackground(fit.label),
+        cursor: "help",
+      }}
+    >
+      {fit.label} • {fit.score}
+    </div>
+
+    {item.fitType ? (
+      <div
+        style={{
+          borderRadius: 999,
+          padding: "4px 10px",
+          fontSize: 11,
+          fontWeight: 900,
+          border: "1px solid #cbd5e1",
+          background: "#f8fafc",
+          color: "#334155",
+        }}
+      >
+        {item.fitType}
+      </div>
+    ) : null}
+  </div>
+</div>
+
+{item.isTopRecommendation ? (
+  <div
+    style={{
+      marginTop: 8,
+      fontSize: 12,
+      fontWeight: 900,
+      color: "#15803d",
+    }}
+  >
+    ⭐ Top Recommendation for You
+  </div>
+) : null}
 
 {item.geographyLabel ? (
   <div
@@ -543,25 +638,25 @@ body: JSON.stringify({
   </div>
 ) : null}
 
-  {item.priorityReason ? (
-    <div
-      style={{
-        marginTop: 10,
-        padding: "10px 12px",
-        borderRadius: 12,
-        border: "1px solid #fde68a",
-        background: "#fffbeb",
-        color: "#78350f",
-        fontSize: 13,
-        fontWeight: 800,
-        lineHeight: 1.45,
-      }}
-    >
-      {item.priorityReason}
-    </div>
-  ) : null}
+{item.priorityReason ? (
+  <div
+    style={{
+      marginTop: 10,
+      padding: "10px 12px",
+      borderRadius: 12,
+      border: "1px solid #fde68a",
+      background: "#fffbeb",
+      color: "#78350f",
+      fontSize: 13,
+      fontWeight: 800,
+      lineHeight: 1.45,
+    }}
+  >
+    {item.priorityReason}
+  </div>
+) : null}
 
-  {Array.isArray(fit?.development) && fit.development.length > 0 ? (
+{Array.isArray(fit?.development) && fit.development.length > 0 ? (
   <div
     style={{
       marginTop: 10,
@@ -591,85 +686,6 @@ body: JSON.stringify({
     {fit.development[0]}
   </div>
 ) : null}
-
-  <div style={locationStyle}>
-    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-  </div>
-
-                        <div style={linkRowStyle}>
-                          {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
-                          {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
-                          {baseball?.baseballWebsiteUrl ? <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink> : null}
-                        </div>
-                      </div>
-
-<div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-  <button
-    type="button"
-    title={
-      savedCollegeIds.includes(c.id)
-        ? "Remove from Target Programs"
-        : "Save to Target Programs"
-    }
-    onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
-    disabled={savingCollegeId === c.id}
-    style={{
-      width: 28,
-      height: 28,
-      borderRadius: 999,
-      border: "2px solid #0ea5e9",
-      background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
-      color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
-      fontWeight: 900,
-      cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
-      opacity: savingCollegeId === c.id ? 0.6 : 1,
-    }}
-  >
-    ★
-  </button>
-
-  {c.id === selectedCollegeId ? (
-    <span
-      style={{
-        border: "1px solid #caa042",
-        background: "#fffaf0",
-        color: "#7c5b12",
-        borderRadius: 999,
-        padding: "4px 10px",
-        fontSize: 11,
-        fontWeight: 900,
-      }}
-    >
-      {savedCollegeIds.includes(c.id)
-        ? "In Target Programs"
-        : "Not Saved"}
-    </span>
-  ) : null}
-
-  {savedCollegeIds.includes(c.id) ? (
-    <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
-      Manage
-    </Link>
-  ) : null}
-
-                          <div style={priorityBadgeStyle}>
-                          {getPriorityBadgeText(fit.priority)}
-                        </div>
-
-  <div
-    title={getFitTooltip(fit.label, fit.score)}
-    style={{
-      ...fitBadgeStyle,
-      color: getFitColor(fit.label),
-      borderColor: getFitBorderColor(fit.label),
-      background: getFitBackground(fit.label),
-      cursor: "help",
-    }}
-  >
-    {fit.label} • {fit.score}
-  </div>
-</div>
-                    </div>
 
                     <div style={metaGridStyle}>
                       <Info label="Division" value={pretty(baseball?.division)} />
