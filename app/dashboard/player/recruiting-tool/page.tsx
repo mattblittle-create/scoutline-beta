@@ -525,6 +525,24 @@ body: JSON.stringify({
     </div>
   ) : null}
 
+  {item.priorityReason ? (
+    <div
+      style={{
+        marginTop: 10,
+        padding: "10px 12px",
+        borderRadius: 12,
+        border: "1px solid #fde68a",
+        background: "#fffbeb",
+        color: "#78350f",
+        fontSize: 13,
+        fontWeight: 800,
+        lineHeight: 1.45,
+      }}
+    >
+      {item.priorityReason}
+    </div>
+  ) : null}
+
   <div style={locationStyle}>
     {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
   </div>
