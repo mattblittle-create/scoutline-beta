@@ -459,45 +459,34 @@ body: JSON.stringify({
                   >
 <div style={resultTopRowStyle}>
   <div>
-<div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-  <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
-    {c.name}
-  </Link>
+    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+      <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
+        {c.name}
+      </Link>
 
-  {item.isTopRecommendation ? (
-    <span
-      title="ScoutLine top recommendation based on fit score, program strength, and recruiting relevance."
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        borderRadius: 999,
-        padding: "4px 9px",
-        background: "#ecfdf5",
-        border: "1px solid #bbf7d0",
-        color: "#15803d",
-        fontSize: 11,
-        fontWeight: 900,
-      }}
-    >
-      ⭐ Top Recommendation
-    </span>
-  ) : null}
-</div>
+      {item.isTopRecommendation ? (
+        <span
+          title="ScoutLine top recommendation based on fit score, program strength, and recruiting relevance."
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            borderRadius: 999,
+            padding: "4px 9px",
+            background: "#ecfdf5",
+            border: "1px solid #bbf7d0",
+            color: "#15803d",
+            fontSize: 11,
+            fontWeight: 900,
+          }}
+        >
+          ⭐ Top Recommendation
+        </span>
+      ) : null}
+    </div>
 
-<div
-  style={{
-    marginTop: 6,
-    display: "flex",
-    justifyContent: "space-between",
-    gap: 12,
-    alignItems: "center",
-    flexWrap: "wrap",
-  }}
->
-  <div style={locationStyle}>
-    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-  </div>
-</div>
+    <div style={locationStyle}>
+      {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+    </div>
 
     <div style={linkRowStyle}>
       {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
@@ -506,137 +495,102 @@ body: JSON.stringify({
     </div>
   </div>
 
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: 6,
-    alignItems: "flex-end",
-  }}
->
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: 6,
-    alignItems: "flex-end",
-  }}
->
   <div
     style={{
       display: "flex",
-      gap: 8,
-      alignItems: "center",
-      flexWrap: "wrap",
-      justifyContent: "flex-end",
+      flexDirection: "column",
+      gap: 6,
+      alignItems: "flex-end",
     }}
   >
-    <button
-      type="button"
-      title={
-        savedCollegeIds.includes(c.id)
-          ? "Remove from Target Programs"
-          : "Save to Target Programs"
-      }
-      onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
-      disabled={savingCollegeId === c.id}
+    <div
       style={{
-        width: 28,
-        height: 28,
-        borderRadius: 999,
-        border: "2px solid #0ea5e9",
-        background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
-        color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
-        fontWeight: 900,
-        cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
-        opacity: savingCollegeId === c.id ? 0.6 : 1,
+        display: "flex",
+        gap: 8,
+        alignItems: "center",
+        flexWrap: "wrap",
+        justifyContent: "flex-end",
       }}
     >
-      ★
-    </button>
-
-    {item.geographyLabel ? (
-      <div
-        title="Shows how close this school is to the player’s home state or recruiting region."
+      <button
+        type="button"
+        title={savedCollegeIds.includes(c.id) ? "Remove from Target Programs" : "Save to Target Programs"}
+        onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
+        disabled={savingCollegeId === c.id}
         style={{
+          width: 28,
+          height: 28,
           borderRadius: 999,
-          padding: "4px 10px",
-          fontSize: 11,
+          border: "2px solid #0ea5e9",
+          background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
+          color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
           fontWeight: 900,
-          border: "1px solid #bfdbfe",
-          background: "#eff6ff",
-          color: "#1e3a8a",
+          cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
+          opacity: savingCollegeId === c.id ? 0.6 : 1,
         }}
       >
-        {item.geographyLabel}
-      </div>
-    ) : null}
+        ★
+      </button>
 
-    <div
-      title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
-      style={priorityBadgeStyle}
-    >
-      {getPriorityBadgeText(fit.priority)}
+      {item.geographyLabel ? (
+        <div
+          title="Shows how close this school is to the player's home state or recruiting region."
+          style={{
+            borderRadius: 999,
+            padding: "4px 10px",
+            fontSize: 11,
+            fontWeight: 900,
+            border: "1px solid #bfdbfe",
+            background: "#eff6ff",
+            color: "#1e3a8a",
+          }}
+        >
+          {item.geographyLabel}
+        </div>
+      ) : null}
+
+      <div
+        title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
+        style={priorityBadgeStyle}
+      >
+        {getPriorityBadgeText(fit.priority)}
+      </div>
+
+      {item.fitType ? (
+        <div
+          title="Plain-English recruiting category based on current fit score and development gap."
+          style={{
+            borderRadius: 999,
+            padding: "4px 10px",
+            fontSize: 11,
+            fontWeight: 900,
+            border: "1px solid #cbd5e1",
+            background: "#f8fafc",
+            color: "#334155",
+          }}
+        >
+          {item.fitType}
+        </div>
+      ) : null}
     </div>
 
-    {item.fitType ? (
-      <div
-        title="Plain-English recruiting category based on current fit score and development gap."
-        style={{
-          borderRadius: 999,
-          padding: "4px 10px",
-          fontSize: 11,
-          fontWeight: 900,
-          border: "1px solid #cbd5e1",
-          background: "#f8fafc",
-          color: "#334155",
-        }}
-      >
-        {item.fitType}
-      </div>
-    ) : null}
-  </div>
-
-  <div
-    title={getFitTooltip(fit.label, fit.score)}
-    style={{
-      borderRadius: 999,
-      padding: "4px 10px",
-      fontSize: 11,
-      fontWeight: 900,
-      border: `1px solid ${getFitBorderColor(fit.label)}`,
-      background: getFitBackground(fit.label),
-      color: getFitColor(fit.label),
-      lineHeight: 1.2,
-      whiteSpace: "nowrap",
-    }}
-  >
-    {fit.label} • {fit.score}
-  </div>
-
-  {c.id === selectedCollegeId ? (
-    <span
+    <div
+      title={getFitTooltip(fit.label, fit.score)}
       style={{
-        border: "1px solid #caa042",
-        background: "#fffaf0",
-        color: "#7c5b12",
         borderRadius: 999,
         padding: "4px 10px",
         fontSize: 11,
         fontWeight: 900,
+        border: `1px solid ${getFitBorderColor(fit.label)}`,
+        background: getFitBackground(fit.label),
+        color: getFitColor(fit.label),
+        lineHeight: 1.2,
+        whiteSpace: "nowrap",
       }}
     >
-      {savedCollegeIds.includes(c.id)
-        ? "In Target Programs"
-        : "Not Saved"}
-    </span>
-  ) : null}
-
-  {savedCollegeIds.includes(c.id) ? (
-    <Link href="/dashboard/player/target-programs" style={manageSavedLinkStyle}>
-      Manage
-    </Link>
-  ) : null}
+      {fit.label} • {fit.score}
+    </div>
+  </div>
 </div>
 
 {item.priorityReason ? (
