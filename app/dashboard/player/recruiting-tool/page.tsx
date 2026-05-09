@@ -773,19 +773,6 @@ body: JSON.stringify({
     ))}
   </div>
 ) : null}
-
-{item.priorityReason ? (
-  <div
-    style={{
-      marginTop: 8,
-      fontSize: 13,
-      fontWeight: 800,
-      color: "#0f172a",
-    }}
-  >
-    {item.priorityReason}
-  </div>
-) : null}
                   </article>
                 );
               })}
