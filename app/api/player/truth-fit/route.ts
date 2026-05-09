@@ -342,17 +342,43 @@ baseballProgram: {
 
 const enrichedResults = results.map((item, index) => {
   const fit = item.truthFit;
+  const baseball = item.college?.baseballProgram;
+
+  const fitLabel = fit?.label || "Fit";
+  const division = String(baseball?.division || "").replace(/_/g, " ");
+  const state = item.college?.state || "";
+  const conference = baseball?.conference || "";
+
+  const hasHighRosterNeed = fit.reasons?.some((r) =>
+    r.includes("HIGH roster need")
+  );
+
+  const hasAcademicFit = fit.reasons?.some((r) =>
+    r.toLowerCase().includes("gpa")
+  );
+
+  const hasMetricStrength =
+    fit.reasons?.some((r) => r.toLowerCase().includes("metrics")) ||
+    fit.metricComparisons?.some((m) => m.status === "ABOVE");
+
+  const topGap = Array.isArray(fit.gaps) ? fit.gaps[0] : null;
 
   let priorityReason = "";
 
-  if (fit.reasons?.some((r) => r.includes("HIGH roster need"))) {
-    priorityReason = "This program has an immediate roster need for your profile.";
-  } else if (fit.reasons?.some((r) => r.includes("GPA"))) {
-    priorityReason = "You are a strong academic fit for this program.";
-  } else if (fit.reasons?.some((r) => r.includes("metrics"))) {
-    priorityReason = "Your performance metrics align well with this program.";
+  if (hasHighRosterNeed) {
+    priorityReason = `${fitLabel} • ${division || "College"} program • immediate roster need for your profile.`;
+  } else if (hasMetricStrength && hasAcademicFit) {
+    priorityReason = `${fitLabel} • strong academic and athletic alignment with this program.`;
+  } else if (hasMetricStrength) {
+    priorityReason = `${fitLabel} • your metrics compare well with this program's benchmark data.`;
+  } else if (hasAcademicFit) {
+    priorityReason = `${fitLabel} • your academic profile strengthens this match.`;
+  } else if (topGap) {
+    priorityReason = `${fitLabel} • good school to track while improving: ${topGap}`;
   } else {
-    priorityReason = "This program aligns well with your overall profile.";
+    priorityReason = `${fitLabel} • ${[division, conference, state]
+      .filter(Boolean)
+      .join(" • ") || "program fit based on your current profile"}.`;
   }
 
   return {
