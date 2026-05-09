@@ -576,19 +576,6 @@ body: JSON.stringify({
       {getPriorityBadgeText(fit.priority)}
     </div>
 
-    <div
-      title={getFitTooltip(fit.label, fit.score)}
-      style={{
-        ...fitBadgeStyle,
-        color: getFitColor(fit.label),
-        borderColor: getFitBorderColor(fit.label),
-        background: getFitBackground(fit.label),
-        cursor: "help",
-      }}
-    >
-      {fit.label} • {fit.score}
-    </div>
-
     {item.fitType ? (
       <div
         style={{
