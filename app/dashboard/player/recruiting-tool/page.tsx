@@ -938,13 +938,16 @@ const linkRowStyle: React.CSSProperties = { display: "flex", gap: 10, flexWrap: 
 const smallLinkStyle: React.CSSProperties = { fontSize: 12, color: "#0369a1", fontWeight: 900, textDecoration: "underline", textDecorationColor: "#bae6fd" };
 const fitBadgeStyle: React.CSSProperties = { border: "1px solid", borderRadius: 999, padding: "7px 11px", fontSize: 13, fontWeight: 900 };
 const priorityBadgeStyle: React.CSSProperties = {
-  border: "1px solid #f5d58b",
-  background: "#fffaf0",
-  color: "#7c5b12",
   borderRadius: 999,
-  padding: "7px 11px",
-  fontSize: 12,
+  padding: "4px 10px",
+  fontSize: 11,
   fontWeight: 900,
+  border: "1px solid #cbd5e1",
+  background: "#f8fafc",
+  color: "#334155",
+  display: "inline-flex",
+  alignItems: "center",
+  lineHeight: 1.2,
 };
 const metaGridStyle: React.CSSProperties = { marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: 10 };
 const infoBoxStyle: React.CSSProperties = { border: "1px solid #eef2f7", background: "#f8fafc", borderRadius: 12, padding: "10px 12px" };
