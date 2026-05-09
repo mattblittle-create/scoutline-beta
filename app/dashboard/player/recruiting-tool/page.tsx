@@ -188,10 +188,15 @@ function PlayerRecruitingToolContent() {
   }, [loadTruthFit]);
 
     React.useEffect(() => {
-    const firstDivision = truthFitSummary?.divisionFits?.[0]?.division || "";
-    if (firstDivision) {
-      setSelectedLaneDivision((prev) => prev || firstDivision);
-    }
+const recommendedDivision =
+  truthFitSummary?.recommendedLaneDivision ||
+  truthFitSummary?.divisionFits?.find((item: any) => item?.isRecommendedLane)?.division ||
+  truthFitSummary?.divisionFits?.[0]?.division ||
+  "";
+
+if (recommendedDivision) {
+  setSelectedLaneDivision((prev) => prev || recommendedDivision);
+}
   }, [truthFitSummary]);
 
     React.useEffect(() => {
