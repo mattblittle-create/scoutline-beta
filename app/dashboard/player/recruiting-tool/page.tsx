@@ -7,27 +7,63 @@ import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { compareRecommendations } from "@/lib/recommendations/ranking";
 
-function getRecruitingStrategy(summary: any) {
-  const lane = String(summary?.recommendedLaneDivision || summary?.dominantDivision || "").replace(/_/g, " ");
-  const fit = String(summary?.dominantFit || "");
+function getRecruitingStrategy(summary: any, laneFit?: any) {
+  const dominantFit = String(summary?.dominantFit || "");
+  const projectionTier = String(summary?.projectionTier || "");
+  const topGap = summary?.topGaps?.[0] || "";
+  const recommendedLane = String(summary?.recommendedLaneDivision || "");
 
-  if (!lane) {
-    return "Build your profile with more verified metrics, academic info, and video to improve recommendation accuracy.";
+  const strongestMetric =
+    laneFit?.metricComparisons?.find((m: any) => m.status === "ABOVE")
+      ?.label || "";
+
+  const hasHighAcademicFit =
+    laneFit?.reasons?.some((r: string) =>
+      r.toLowerCase().includes("gpa")
+    ) || false;
+
+  const hasRosterNeed =
+    laneFit?.reasons?.some((r: string) =>
+      r.toLowerCase().includes("roster need")
+    ) || false;
+
+  if (projectionTier === "D1 Track") {
+    return "You currently project as a potential NCAA D1-level recruit. Prioritize high-exposure events, verified metrics, and direct communication with programs in your recruiting lane.";
   }
 
-  if (fit === "Strong Fit") {
-    return `Focus your outreach on ${lane} programs while maintaining a balanced list of regional backup options.`;
+  if (
+    recommendedLane === "NCAA_D2" ||
+    recommendedLane === "NAIA" ||
+    recommendedLane === "NJCAA_D1"
+  ) {
+    return "Your strongest recruiting opportunities currently appear within NCAA D2, NAIA, and upper-level JUCO programs. Focus on programs where your current metrics and roster fit create immediate opportunity.";
   }
 
-  if (fit === "Match") {
-    return `Prioritize realistic ${lane} programs, especially schools with strong regional fit and active roster needs.`;
+  if (
+    recommendedLane === "NCAA_D3" ||
+    recommendedLane === "NJCAA_D2" ||
+    recommendedLane === "NJCAA_D3"
+  ) {
+    return "Your current recruiting lane favors development-focused programs. Continued physical development and verified metrics could significantly expand future recruiting opportunities.";
   }
 
-  if (fit === "Possible Match") {
-    return `Use ${lane} as a development lane while building metrics, video, and coach communication momentum.`;
+  if (hasHighAcademicFit) {
+    return "Your academic profile strengthens your recruiting flexibility. Include academically selective schools and private programs in your recruiting strategy.";
   }
 
-  return `Treat ${lane} as a stretch lane for now and focus on measurable development areas before expanding outreach.`;
+  if (hasRosterNeed) {
+    return "Several programs currently show roster alignment with your graduation class and position group. Prioritize direct outreach to programs showing immediate positional need.";
+  }
+
+  if (strongestMetric) {
+    return `Your ${strongestMetric} currently stands out most against benchmark data. Lead with this metric in recruiting outreach and player promotion materials.`;
+  }
+
+  if (dominantFit === "Possible Match" && topGap) {
+    return `You are close to stronger recruiting alignment. Continued development in ${topGap.toLowerCase()} could significantly improve recruiting visibility.`;
+  }
+
+  return "Continue building verified metrics, athletic development, and recruiting exposure to expand your available recruiting opportunities.";
 }
 
 function getLaneConfidence(laneFit: any) {
@@ -64,6 +100,69 @@ function getLaneConfidence(laneFit: any) {
   return {
     label: "Limited Data",
     title: "ScoutLine has limited data for this lane. Treat this as an early recruiting starting point.",
+  };
+}
+
+function getRecruitabilityTimeline(laneFit: any) {
+  const score = Number(laneFit?.bestScore || 0);
+  const fitTier = String(laneFit?.fitTier || "");
+  const gaps = Array.isArray(laneFit?.topGaps) ? laneFit.topGaps : [];
+  const confidence = getLaneConfidence(laneFit).label;
+
+  if (
+    score >= 82 &&
+    (fitTier === "Strong Fit" || fitTier === "Match") &&
+    confidence !== "Limited Data"
+  ) {
+    return {
+      label: "Ready Now",
+      title:
+        "This player currently shows strong enough alignment to begin targeted outreach in this lane.",
+    };
+  }
+
+  if (score >= 65 || fitTier === "Possible Match") {
+    return {
+      label: "6–12 Month Development",
+      title:
+        "This player is close to this lane and should focus on the highest-impact development areas before expanding outreach.",
+    };
+  }
+
+  if (gaps.length > 0) {
+    return {
+      label: "Development Track",
+      title:
+        "This player should treat this lane as a longer-term target while building metrics, video, and profile strength.",
+    };
+  }
+
+  return {
+    label: "Early Evaluation",
+    title:
+      "ScoutLine needs more player and benchmark data before assigning a stronger recruitability timeline.",
+  };
+}
+
+function getLaneHighlights(laneFit: any) {
+  const comparisons = Array.isArray(laneFit?.metricComparisons)
+    ? laneFit.metricComparisons
+    : [];
+
+  const above = comparisons.filter((m: any) => m.status === "ABOVE");
+  const below = comparisons.filter((m: any) => m.status === "BELOW");
+
+  const strongestMetric =
+    above.sort(
+      (a: any, b: any) =>
+        Number(b.playerValue || 0) - Number(a.playerValue || 0)
+    )[0] || null;
+
+  const biggestGap = below[0] || null;
+
+  return {
+    strongestMetric,
+    biggestGap,
   };
 }
 
@@ -603,6 +702,26 @@ body: JSON.stringify({
   ) : null}
 </div>
 
+{selectedLaneFit ? (
+  <div
+    title={getRecruitabilityTimeline(selectedLaneFit).title}
+    style={{
+      display: "inline-flex",
+      marginTop: 8,
+      marginLeft: 8,
+      borderRadius: 999,
+      padding: "5px 9px",
+      background: "#ffffff",
+      border: "1px solid #bfdbfe",
+      color: "#1e3a8a",
+      fontSize: 12,
+      fontWeight: 900,
+    }}
+  >
+    {getRecruitabilityTimeline(selectedLaneFit).label}
+  </div>
+) : null}
+
       <div style={{ gridColumn: "1 / -1" }}>
         <div style={laneLabelStyle}>Recruiting Outlook</div>
         <div style={laneValueStyle}>
@@ -613,9 +732,111 @@ body: JSON.stringify({
       <div style={{ gridColumn: "1 / -1" }}>
         <div style={laneLabelStyle}>Recruiting Strategy</div>
         <div style={laneValueStyle}>
-          {getRecruitingStrategy(truthFitSummary)}
+          {getRecruitingStrategy(truthFitSummary, selectedLaneFit)}
         </div>
       </div>
+
+{selectedLaneFit ? (
+  <div
+    style={{
+      gridColumn: "1 / -1",
+      marginTop: 14,
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      gap: 10,
+    }}
+  >
+    <div
+      style={{
+        borderRadius: 14,
+        border: "1px solid #bbf7d0",
+        background: "#f0fdf4",
+        padding: "12px 14px",
+      }}
+    >
+      <div
+        style={{
+          fontSize: 11,
+          fontWeight: 950,
+          textTransform: "uppercase",
+          letterSpacing: "0.04em",
+          color: "#166534",
+          marginBottom: 4,
+        }}
+      >
+        Strongest Metric
+      </div>
+
+      <div
+        style={{
+          fontSize: 15,
+          fontWeight: 900,
+          color: "#14532d",
+        }}
+      >
+        {getLaneHighlights(selectedLaneFit).strongestMetric?.label || "Still Building"}
+      </div>
+
+      <div
+        style={{
+          marginTop: 4,
+          fontSize: 12,
+          color: "#166534",
+          lineHeight: 1.4,
+        }}
+      >
+        {getLaneHighlights(selectedLaneFit).strongestMetric
+          ? "One of the player's best benchmark comparisons in this recruiting lane."
+          : "Add verified metrics to improve ScoutLine analysis confidence."}
+      </div>
+    </div>
+
+    <div
+      style={{
+        borderRadius: 14,
+        border: "1px solid #fde68a",
+        background: "#fffbeb",
+        padding: "12px 14px",
+      }}
+    >
+      <div
+        style={{
+          fontSize: 11,
+          fontWeight: 950,
+          textTransform: "uppercase",
+          letterSpacing: "0.04em",
+          color: "#92400e",
+          marginBottom: 4,
+        }}
+      >
+        Biggest Development Gap
+      </div>
+
+      <div
+        style={{
+          fontSize: 15,
+          fontWeight: 900,
+          color: "#78350f",
+        }}
+      >
+        {getLaneHighlights(selectedLaneFit).biggestGap?.label || "No Major Gap Identified"}
+      </div>
+
+      <div
+        style={{
+          marginTop: 4,
+          fontSize: 12,
+          color: "#92400e",
+          lineHeight: 1.4,
+        }}
+      >
+        {getLaneHighlights(selectedLaneFit).biggestGap
+          ? "Improving this area would most increase recruiting opportunities in this lane."
+          : "Current profile aligns well with available benchmark data."}
+      </div>
+    </div>
+  </div>
+) : null}
 
       {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
         <div style={{ gridColumn: "1 / -1" }}>
