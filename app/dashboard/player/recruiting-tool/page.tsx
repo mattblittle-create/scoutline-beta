@@ -773,7 +773,6 @@ body: JSON.stringify({
   ) : null}
 </div>
 
-      <div style={{ gridColumn: "1 / -1" }}>
 {selectedLaneFit ? (() => {
   const meter = getRecruitabilityMeter(selectedLaneFit);
   const meterColor = getRecruitabilityMeterColor(meter.label);
