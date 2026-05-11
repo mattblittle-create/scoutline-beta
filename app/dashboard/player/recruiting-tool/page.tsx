@@ -52,10 +52,6 @@ function getRecommendationPills(item: any) {
 
   if (item?.isTopRecommendation) pills.push("TOP RECOMMENDATION");
 
-  if (fit?.label === "Strong Fit") pills.push("STRONG MATCH");
-  else if (fit?.label === "Match") pills.push("MATCH");
-  else if (fit?.label === "Possible Match") pills.push("POSSIBLE MATCH");
-
   if (typeof miles === "number") {
     if (miles <= 50) pills.push("LOCAL FIT");
     else if (miles <= 150) pills.push("REGIONAL FIT");
