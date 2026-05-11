@@ -617,7 +617,7 @@ body: JSON.stringify({
       flexDirection: "column",
       gap: 8,
       alignItems: "flex-end",
-      marginLeft: "auto",
+      justifySelf: "end",
       minWidth: 360,
     }}
   >
@@ -669,6 +669,7 @@ body: JSON.stringify({
       ) : null}
 
       <div
+        title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
         style={{
           borderRadius: 999,
           padding: "6px 12px",
@@ -680,7 +681,7 @@ body: JSON.stringify({
           whiteSpace: "nowrap",
         }}
       >
-        {fit.priority || "Priority"}
+          title="Recruiting tip based on current fit score and development gap."
       </div>
 
       {item.fitType ? (
@@ -709,6 +710,7 @@ body: JSON.stringify({
       }}
     >
       <div
+        title={getFitTooltip(fit.label, fit.score)}
         style={{
           borderRadius: 999,
           padding: "6px 14px",
@@ -1078,7 +1080,12 @@ const sectionTitleStyle: React.CSSProperties = { margin: 0, fontSize: "1.35rem",
 const sectionSubtitleStyle: React.CSSProperties = { margin: "6px 0 0", color: "#64748b", fontSize: 14, lineHeight: 1.5 };
 const countPillStyle: React.CSSProperties = { border: "1px solid #e5e7eb", background: "#f8fafc", borderRadius: 999, padding: "7px 11px", fontSize: 12, fontWeight: 900, color: "#334155" };
 const resultCardStyle: React.CSSProperties = { border: "1px solid #e5e7eb", borderRadius: 16, padding: 16, background: "#ffffff", boxShadow: "0 1px 2px rgba(0,0,0,0.04)" };
-const resultTopRowStyle: React.CSSProperties = { display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap", alignItems: "flex-start" };
+const resultTopRowStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "minmax(0, 1fr) auto",
+  gap: 16,
+  alignItems: "start",
+};
 const collegeNameStyle: React.CSSProperties = { fontWeight: 900, color: "#0f172a", textDecorationColor: "#caa042", fontSize: "1.12rem" };
 const locationStyle: React.CSSProperties = { marginTop: 5, fontSize: 13, color: "#64748b", fontWeight: 700 };
 const linkRowStyle: React.CSSProperties = { display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 };
