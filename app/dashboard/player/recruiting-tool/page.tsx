@@ -650,57 +650,57 @@ body: JSON.stringify({
         ★
       </button>
 
-      {item.geographyLabel ? (
-        <div
-          title="Location relevenace of school to player."
-          style={{
-            borderRadius: 999,
-            padding: "6px 12px",
-            fontSize: 12,
-            fontWeight: 900,
-            border: "1px solid #bfdbfe",
-            background: "#eff6ff",
-            color: "#1e3a8a",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {item.geographyLabel}
-        </div>
-      ) : null}
+{item.geographyLabel ? (
+  <div
+    title="How geographically relevant this school is to the player based on home state and recruiting region."
+    style={{
+      borderRadius: 999,
+      padding: "6px 12px",
+      fontSize: 12,
+      fontWeight: 900,
+      border: "1px solid #bfdbfe",
+      background: "#eff6ff",
+      color: "#1e3a8a",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {item.geographyLabel}
+  </div>
+) : null}
 
-      <div
-        title="Should I target this school? Based on Truth Fit score: gpa, grad year and roster alignment, player metrics vs division/program benchmark data, and Recruiting Lane."
-        style={{
-          borderRadius: 999,
-          padding: "6px 12px",
-          fontSize: 12,
-          fontWeight: 900,
-          border: "1px solid #facc15",
-          background: "#fffbeb",
-          color: "#92400e",
-          whiteSpace: "nowrap",
-        }}
-      >
-        {getPriorityBadgeText(fit.priority)}
-      </div>
+<div
+  title="How strongly ScoutLine recommends targeting this school based on overall Truth Fit, roster opportunity, recruiting lane, and player-to-program alignment."
+  style={{
+    borderRadius: 999,
+    padding: "6px 12px",
+    fontSize: 12,
+    fontWeight: 900,
+    border: "1px solid #facc15",
+    background: "#fffbeb",
+    color: "#92400e",
+    whiteSpace: "nowrap",
+  }}
+>
+  {getPriorityBadgeText(fit.priority)}
+</div>
 
-      {item.fitType ? (
-        <div
-          title="Can I play here? Based on academic fit + athletic fit + roster fit + division fit + data confidence."
-          style={{
-            borderRadius: 999,
-            padding: "6px 12px",
-            fontSize: 12,
-            fontWeight: 900,
-            border: "1px solid #facc15",
-            background: "#fffbeb",
-            color: "#92400e",
-            whiteSpace: "nowrap",
-          }}
-        >
-          {item.fitType}
-        </div>
-      ) : null}
+{item.fitType ? (
+  <div
+    title="Overall player-to-program fit based on academics, athletic metrics, roster needs, division benchmarks, and available recruiting data."
+    style={{
+      borderRadius: 999,
+      padding: "6px 12px",
+      fontSize: 12,
+      fontWeight: 900,
+      border: "1px solid #facc15",
+      background: "#fffbeb",
+      color: "#92400e",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {item.fitType}
+  </div>
+) : null}
     </div>
 
     <div
