@@ -650,6 +650,24 @@ body: JSON.stringify({
         ★
       </button>
 
+{item.fitType ? (
+  <div
+    title="Overall player-to-program fit based on academics, athletic metrics, roster needs, division benchmarks, and available recruiting data."
+    style={{
+      borderRadius: 999,
+      padding: "6px 12px",
+      fontSize: 12,
+      fontWeight: 900,
+      border: "1px solid #facc15",
+      background: "#fffbeb",
+      color: "#92400e",
+      whiteSpace: "nowrap",
+    }}
+  >
+    {item.fitType}
+  </div>
+) : null}
+
 {item.geographyLabel ? (
   <div
     title="How geographically relevant this school is to the player based on home state and recruiting region."
@@ -683,24 +701,6 @@ body: JSON.stringify({
 >
   {getPriorityBadgeText(fit.priority)}
 </div>
-
-{item.fitType ? (
-  <div
-    title="Overall player-to-program fit based on academics, athletic metrics, roster needs, division benchmarks, and available recruiting data."
-    style={{
-      borderRadius: 999,
-      padding: "6px 12px",
-      fontSize: 12,
-      fontWeight: 900,
-      border: "1px solid #facc15",
-      background: "#fffbeb",
-      color: "#92400e",
-      whiteSpace: "nowrap",
-    }}
-  >
-    {item.fitType}
-  </div>
-) : null}
     </div>
 
     <div
