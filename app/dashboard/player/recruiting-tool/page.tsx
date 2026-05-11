@@ -750,7 +750,7 @@ body: JSON.stringify({
     <div style={laneTitleStyle}>Your Recruiting Lane</div>
 
     <div style={laneGridStyle}>
-      <div style={{ gridColumn: "1 / -1" }}>
+      <div>
         <div style={laneLabelStyle}>Player Projection</div>
         <div style={projectionTierStyle}>{selectedProjectionTier}</div>
       </div>
@@ -1892,7 +1892,8 @@ const laneTitleStyle: React.CSSProperties = {
 const laneGridStyle: React.CSSProperties = {
   display: "grid",
   gap: 12,
-  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+  alignItems: "start",
 };
 
 const laneLabelStyle: React.CSSProperties = {
