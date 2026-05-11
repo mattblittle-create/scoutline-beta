@@ -705,18 +705,23 @@ body: JSON.stringify({
 {selectedLaneFit ? (
   <div
     title={getRecruitabilityTimeline(selectedLaneFit).title}
-    style={{
-      display: "inline-flex",
-      marginTop: 8,
-      marginLeft: 8,
-      borderRadius: 999,
-      padding: "5px 9px",
-      background: "#ffffff",
-      border: "1px solid #bfdbfe",
-      color: "#1e3a8a",
-      fontSize: 12,
-      fontWeight: 900,
-    }}
+style={{
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "fit-content",
+  maxWidth: "100%",
+  marginTop: 8,
+  borderRadius: 999,
+  padding: "5px 10px",
+  background: "#ffffff",
+  border: "1px solid #bfdbfe",
+  color: "#1e3a8a",
+  fontSize: 12,
+  fontWeight: 900,
+  lineHeight: 1.2,
+  whiteSpace: "nowrap",
+}}
   >
     {getRecruitabilityTimeline(selectedLaneFit).label}
   </div>
