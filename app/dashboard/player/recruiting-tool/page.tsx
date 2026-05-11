@@ -144,6 +144,41 @@ function getRecruitabilityTimeline(laneFit: any) {
   };
 }
 
+function getRecruitabilityMeter(laneFit: any) {
+  const score = Number(laneFit?.bestScore || 0);
+  const fitTier = String(laneFit?.fitTier || "");
+
+  if (score >= 88 && fitTier === "Strong Fit") {
+    return {
+      label: "Highly Recruitable",
+      value: 92,
+      title: "Strong current fit with this recruiting lane based on available benchmark and profile data.",
+    };
+  }
+
+  if (score >= 76 || fitTier === "Match") {
+    return {
+      label: "Recruitable",
+      value: 78,
+      title: "Solid current fit with this recruiting lane. Continued development can strengthen opportunity.",
+    };
+  }
+
+  if (score >= 62 || fitTier === "Possible Match") {
+    return {
+      label: "Developing Recruit",
+      value: 62,
+      title: "Close to stronger recruiting alignment. Key development areas will matter.",
+    };
+  }
+
+  return {
+    label: "Early Stage Prospect",
+    value: 42,
+    title: "Still building toward this recruiting lane based on available data.",
+  };
+}
+
 function getLaneHighlights(laneFit: any) {
   const comparisons = Array.isArray(laneFit?.metricComparisons)
     ? laneFit.metricComparisons
@@ -703,6 +738,58 @@ body: JSON.stringify({
 </div>
 
       <div style={{ gridColumn: "1 / -1" }}>
+      {selectedLaneFit ? (
+  <div style={{ gridColumn: "1 / -1" }}>
+    <div style={laneLabelStyle}>Recruitability Meter</div>
+
+    <div
+      title={getRecruitabilityMeter(selectedLaneFit).title}
+      style={{
+        marginTop: 8,
+        padding: 12,
+        borderRadius: 14,
+        background: "#ffffff",
+        border: "1px solid #bfdbfe",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 12,
+          marginBottom: 8,
+          alignItems: "center",
+        }}
+      >
+        <div style={{ fontSize: 15, fontWeight: 950, color: "#1e3a8a" }}>
+          {getRecruitabilityMeter(selectedLaneFit).label}
+        </div>
+
+        <div style={{ fontSize: 12, fontWeight: 900, color: "#334155" }}>
+          {getRecruitabilityMeter(selectedLaneFit).value}/100
+        </div>
+      </div>
+
+      <div
+        style={{
+          height: 10,
+          borderRadius: 999,
+          background: "#e2e8f0",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${getRecruitabilityMeter(selectedLaneFit).value}%`,
+            borderRadius: 999,
+            background: "#1d4ed8",
+          }}
+        />
+      </div>
+    </div>
+  </div>
+) : null}
         <div style={laneLabelStyle}>Recruiting Outlook</div>
         <div style={laneValueStyle}>
 <>
