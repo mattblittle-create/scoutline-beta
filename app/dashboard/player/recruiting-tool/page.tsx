@@ -615,8 +615,10 @@ body: JSON.stringify({
     style={{
       display: "flex",
       flexDirection: "column",
-      gap: 6,
+      gap: 8,
       alignItems: "flex-end",
+      marginLeft: "auto",
+      minWidth: 360,
     }}
   >
     <div
@@ -634,8 +636,8 @@ body: JSON.stringify({
         onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
         disabled={savingCollegeId === c.id}
         style={{
-          width: 28,
-          height: 28,
+          width: 32,
+          height: 32,
           borderRadius: 999,
           border: "2px solid #0ea5e9",
           background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
@@ -653,12 +655,13 @@ body: JSON.stringify({
           title="Shows how close this school is to the player's home state or recruiting region."
           style={{
             borderRadius: 999,
-            padding: "4px 10px",
-            fontSize: 11,
+            padding: "6px 12px",
+            fontSize: 12,
             fontWeight: 900,
             border: "1px solid #bfdbfe",
             background: "#eff6ff",
             color: "#1e3a8a",
+            whiteSpace: "nowrap",
           }}
         >
           {item.geographyLabel}
@@ -666,23 +669,31 @@ body: JSON.stringify({
       ) : null}
 
       <div
-        title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
-        style={priorityBadgeStyle}
+        style={{
+          borderRadius: 999,
+          padding: "6px 12px",
+          fontSize: 12,
+          fontWeight: 900,
+          border: "1px solid #facc15",
+          background: "#fffbeb",
+          color: "#92400e",
+          whiteSpace: "nowrap",
+        }}
       >
-        {getPriorityBadgeText(fit.priority)}
+        {fit.priority || "Priority"}
       </div>
 
       {item.fitType ? (
         <div
-          title="Plain-English recruiting category based on current fit score and development gap."
           style={{
             borderRadius: 999,
-            padding: "4px 10px",
-            fontSize: 11,
+            padding: "6px 12px",
+            fontSize: 12,
             fontWeight: 900,
-            border: "1px solid #cbd5e1",
-            background: "#f8fafc",
-            color: "#334155",
+            border: "1px solid #facc15",
+            background: "#fffbeb",
+            color: "#92400e",
+            whiteSpace: "nowrap",
           }}
         >
           {item.fitType}
@@ -691,20 +702,26 @@ body: JSON.stringify({
     </div>
 
     <div
-      title={getFitTooltip(fit.label, fit.score)}
       style={{
-        borderRadius: 999,
-        padding: "4px 10px",
-        fontSize: 11,
-        fontWeight: 900,
-        border: `1px solid ${getFitBorderColor(fit.label)}`,
-        background: getFitBackground(fit.label),
-        color: getFitColor(fit.label),
-        lineHeight: 1.2,
-        whiteSpace: "nowrap",
+        display: "flex",
+        justifyContent: "flex-end",
+        width: "100%",
       }}
     >
-      Match Score {fit.score}/100
+      <div
+        style={{
+          borderRadius: 999,
+          padding: "6px 14px",
+          fontSize: 12,
+          fontWeight: 900,
+          border: "1px solid #86efac",
+          background: "#f0fdf4",
+          color: "#166534",
+          whiteSpace: "nowrap",
+        }}
+      >
+        Match Score {fit.score}/100
+      </div>
     </div>
   </div>
 </div>
