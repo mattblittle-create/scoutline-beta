@@ -833,31 +833,28 @@ body: JSON.stringify({
   </div>
 ) : null}
 
-      {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
-        <div style={{ gridColumn: "1 / -1" }}>
-          <div style={laneLabelStyle}>Top Development Priorities</div>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
-            {truthFitSummary.topGaps.slice(0, 3).map((gap: string, index: number) => (
-              <span
-                key={index}
-                style={{
-                  borderRadius: 999,
-                  padding: "5px 9px",
-                  background: "#fff",
-                  border: "1px solid #bfdbfe",
-                  color: "#334155",
-                  fontSize: 12,
-                  fontWeight: 800,
-                }}
-              >
-                {gap}
-              </span>
-            ))}
-          </div>
-        </div>
-      ) : null}
+{Array.isArray(selectedLaneFit?.topGaps) && selectedLaneFit.topGaps.length > 0 ? (
+  <div style={{ gridColumn: "1 / -1" }}>
+    <div style={laneLabelStyle}>Top Development Priorities</div>
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
+      {selectedLaneFit.topGaps.slice(0, 3).map((gap: string, index: number) => (
+        <span
+          key={index}
+          style={{
+            borderRadius: 999,
+            padding: "5px 9px",
+            background: "#fff",
+            border: "1px solid #bfdbfe",
+            color: "#334155",
+            fontSize: 12,
+            fontWeight: 800,
+          }}
+        >
+          {pretty(selectedLaneFit.division)}: {gap}
+        </span>
+      ))}
     </div>
-  </section>
+  </div>
 ) : null}
 
         <section style={filterPanelStyle}>
