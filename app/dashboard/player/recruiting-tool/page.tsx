@@ -495,76 +495,98 @@ body: JSON.stringify({
           />
         </div>
 
-        {truthFitSummary ? (
-          <section style={laneBoxStyle}>
-            <div style={laneTitleStyle}>Your Recruiting Lane</div>
+{truthFitSummary ? (
+  <section
+    style={{
+      ...laneBoxStyle,
+      border: "1px solid #dbeafe",
+      background: "#eff6ff",
+    }}
+  >
+    <div style={laneTitleStyle}>Your Recruiting Lane</div>
 
-            <div style={laneGridStyle}>
-              <div style={{ gridColumn: "1 / -1" }}>
-                <div style={laneLabelStyle}>Player Projection</div>
-                <div style={projectionTierStyle}>
-                  {selectedProjectionTier}
-                </div>
-              </div>
+    <div style={laneGridStyle}>
+      <div style={{ gridColumn: "1 / -1" }}>
+        <div style={laneLabelStyle}>Player Projection</div>
+        <div style={projectionTierStyle}>{selectedProjectionTier}</div>
+      </div>
 
-              <div>
-                <div style={laneLabelStyle}>Division</div>
-                <select
-                  value={selectedLaneDivision}
-                  onChange={(e) => setSelectedLaneDivision(e.target.value)}
-                  style={laneSelectStyle}
-                >
-{(truthFitSummary.divisionFits?.length
-  ? truthFitSummary.divisionFits
-  : [{ division: truthFitSummary.dominantDivision || "UNKNOWN" }]
-).map((item: any) => (
-<option key={item.division} value={item.division}>
-  {pretty(item.division)}
-  {item.isRecommendedLane ? " — Recommended Lane" : ""}
-</option>
-))}
-                </select>
-              </div>
+      <div>
+        <div style={laneLabelStyle}>Best Lane</div>
+        <select
+          value={selectedLaneDivision}
+          onChange={(e) => setSelectedLaneDivision(e.target.value)}
+          style={laneSelectStyle}
+        >
+          {(truthFitSummary.divisionFits?.length
+            ? truthFitSummary.divisionFits
+            : [{ division: truthFitSummary.dominantDivision || "UNKNOWN" }]
+          ).map((item: any) => (
+            <option key={item.division} value={item.division}>
+              {pretty(item.division)}
+              {item.isRecommendedLane ? " — Best Lane" : ""}
+            </option>
+          ))}
+        </select>
+      </div>
 
-              <div>
-<div style={laneLabelStyle}>Division Fit</div>
-<div style={laneValueStyle}>
-  {selectedLaneFit?.fitTier || truthFitSummary.dominantFit}
-  {selectedLaneFit?.isRecommendedLane ? (
-    <span style={recommendedLaneBadgeStyle}>Recommended Lane</span>
-  ) : null}
-</div>
-              </div>
+      <div>
+        <div style={laneLabelStyle}>Division Fit</div>
+        <div style={laneValueStyle}>
+          {selectedLaneFit?.fitTier || truthFitSummary.dominantFit}
+          {selectedLaneFit?.isRecommendedLane ? (
+            <span style={recommendedLaneBadgeStyle}>Best Lane</span>
+          ) : null}
+        </div>
+      </div>
 
-              <div>
-                <div style={laneLabelStyle}>Best Score</div>
-                <div style={laneValueStyle}>
-                  {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
-                </div>
-              </div>
+      <div>
+        <div style={laneLabelStyle}>Best Score</div>
+        <div style={laneValueStyle}>
+          {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
+        </div>
+      </div>
 
-              <div style={{ gridColumn: "1 / -1" }}>
-                <div style={laneLabelStyle}>Recruiting Outlook</div>
-                <div style={laneValueStyle}>
-                  {selectedLaneFit?.outlook || truthFitSummary.outlook}
-                </div>
-              </div>
+      <div style={{ gridColumn: "1 / -1" }}>
+        <div style={laneLabelStyle}>Recruiting Outlook</div>
+        <div style={laneValueStyle}>
+          {selectedLaneFit?.outlook || truthFitSummary.outlook}
+        </div>
+      </div>
 
-              {Array.isArray(selectedLaneFit?.topGaps) && selectedLaneFit.topGaps.length > 0 ? (
-                <div style={{ gridColumn: "1 / -1" }}>
-                  <div style={laneLabelStyle}>What’s Holding You Back</div>
-                  <div style={{ display: "grid", gap: 6, marginTop: 6 }}>
-                    {selectedLaneFit.topGaps.map((gap: string, index: number) => (
-                      <div key={index} style={laneValueStyle}>
-                        • {gap}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
-          </section>
-        ) : null}
+      <div style={{ gridColumn: "1 / -1" }}>
+        <div style={laneLabelStyle}>Recruiting Strategy</div>
+        <div style={laneValueStyle}>
+          {getRecruitingStrategy(truthFitSummary)}
+        </div>
+      </div>
+
+      {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
+        <div style={{ gridColumn: "1 / -1" }}>
+          <div style={laneLabelStyle}>Top Development Priorities</div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
+            {truthFitSummary.topGaps.slice(0, 3).map((gap: string, index: number) => (
+              <span
+                key={index}
+                style={{
+                  borderRadius: 999,
+                  padding: "5px 9px",
+                  background: "#fff",
+                  border: "1px solid #bfdbfe",
+                  color: "#334155",
+                  fontSize: 12,
+                  fontWeight: 800,
+                }}
+              >
+                {gap}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </div>
+  </section>
+) : null}
 
         <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
@@ -613,116 +635,6 @@ body: JSON.stringify({
 
         {truthFitResults.length > 0 ? (
           <section style={{ marginTop: 28 }}>
-            {truthFitSummary ? (
-  <section
-    style={{
-      marginBottom: 18,
-      padding: 16,
-      borderRadius: 16,
-      border: "1px solid #dbeafe",
-      background: "#eff6ff",
-      color: "#0f172a",
-    }}
-  >
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        gap: 16,
-        flexWrap: "wrap",
-        alignItems: "flex-start",
-      }}
-    >
-      <div>
-        <div
-          style={{
-            fontSize: 12,
-            fontWeight: 950,
-            textTransform: "uppercase",
-            letterSpacing: "0.06em",
-            color: "#1d4ed8",
-            marginBottom: 6,
-          }}
-        >
-          Your Recruiting Lane
-        </div>
-
-        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 950, color: "#0f172a" }}>
-          {truthFitSummary.projectionTier || "Recruiting Projection"}
-        </h2>
-
-        <p style={{ margin: "8px 0 0", color: "#334155", fontSize: 14, lineHeight: 1.55 }}>
-          {truthFitSummary.outlook || "ScoutLine is building your recruiting projection from available profile and program data."}
-        </p>
-      </div>
-
-      <div
-        style={{
-          display: "grid",
-          gap: 8,
-          minWidth: 220,
-        }}
-      >
-        <div style={countPillStyle}>
-          Best Lane: {pretty(truthFitSummary.recommendedLaneDivision || truthFitSummary.dominantDivision || "TBD")}
-        </div>
-
-        <div style={countPillStyle}>
-          Fit Tier: {truthFitSummary.dominantFit || "TBD"}
-        </div>
-      </div>
-    </div>
-
-    <div
-      style={{
-        marginTop: 14,
-        padding: 12,
-        borderRadius: 12,
-        background: "#ffffff",
-        border: "1px solid #bfdbfe",
-        color: "#1e3a8a",
-        fontSize: 13,
-        fontWeight: 800,
-        lineHeight: 1.5,
-      }}
-    >
-      <strong>Recruiting Strategy:</strong> {getRecruitingStrategy(truthFitSummary)}
-    </div>
-
-    {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
-      <div
-        style={{
-          marginTop: 10,
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 8,
-          alignItems: "center",
-        }}
-      >
-        <span style={{ fontSize: 12, fontWeight: 950, color: "#1e3a8a" }}>
-          Top development priorities:
-        </span>
-
-        {truthFitSummary.topGaps.slice(0, 3).map((gap: string, index: number) => (
-          <span
-            key={index}
-            style={{
-              borderRadius: 999,
-              padding: "5px 9px",
-              background: "#fff",
-              border: "1px solid #bfdbfe",
-              color: "#334155",
-              fontSize: 12,
-              fontWeight: 800,
-            }}
-          >
-            {gap}
-          </span>
-        ))}
-      </div>
-    ) : null}
-  </section>
-) : null}
             {selectedCollegeId ? (
               <div style={selectedCollegeBannerStyle}>
                 Showing the selected school from College Search first, followed by your full Truth Fit recommendations.
