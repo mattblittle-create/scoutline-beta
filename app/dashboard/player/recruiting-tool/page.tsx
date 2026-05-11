@@ -7,6 +7,29 @@ import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { compareRecommendations } from "@/lib/recommendations/ranking";
 
+function getRecruitingStrategy(summary: any) {
+  const lane = String(summary?.recommendedLaneDivision || summary?.dominantDivision || "").replace(/_/g, " ");
+  const fit = String(summary?.dominantFit || "");
+
+  if (!lane) {
+    return "Build your profile with more verified metrics, academic info, and video to improve recommendation accuracy.";
+  }
+
+  if (fit === "Strong Fit") {
+    return `Focus your outreach on ${lane} programs while maintaining a balanced list of regional backup options.`;
+  }
+
+  if (fit === "Match") {
+    return `Prioritize realistic ${lane} programs, especially schools with strong regional fit and active roster needs.`;
+  }
+
+  if (fit === "Possible Match") {
+    return `Use ${lane} as a development lane while building metrics, video, and coach communication momentum.`;
+  }
+
+  return `Treat ${lane} as a stretch lane for now and focus on measurable development areas before expanding outreach.`;
+}
+
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
   const f = String(fit || "");
@@ -97,6 +120,111 @@ function getRecommendationExplanation(item: any) {
   }
 
   return `Recommended because this program ${reasons.slice(0, 3).join(", ")}.`;
+}
+
+function getRecruitingConfidence(item: any) {
+  const fit = item?.truthFit || {};
+  const metrics = Array.isArray(fit.metricComparisons)
+    ? fit.metricComparisons
+    : [];
+
+  const reasons = Array.isArray(fit.reasons) ? fit.reasons : [];
+  const gaps = Array.isArray(fit.gaps) ? fit.gaps : [];
+
+  const confidence = String(
+    fit?.benchmarkSource?.metrics?.confidence || ""
+  ).toUpperCase();
+
+  const sourceLabel = String(
+    fit?.benchmarkSource?.metrics?.label || ""
+  ).toUpperCase();
+
+  const hasStrongSource =
+    sourceLabel.includes("SCHOOL") ||
+    sourceLabel.includes("CONFERENCE") ||
+    confidence === "HIGH";
+
+  const hasEnoughMetrics = metrics.length >= 3;
+  const hasSomeMetrics = metrics.length > 0;
+  const hasReasons = reasons.length >= 2;
+  const hasGaps = gaps.length > 0;
+
+  if (hasStrongSource && hasEnoughMetrics && hasReasons) {
+    return {
+      label: "High Confidence",
+      title:
+        "ScoutLine has strong supporting data for this recommendation, including benchmark data and multiple fit signals.",
+    };
+  }
+
+  if ((hasSomeMetrics && hasReasons) || confidence === "MEDIUM") {
+    return {
+      label: "Medium Confidence",
+      title:
+        "ScoutLine has enough supporting data to make a useful recommendation, but more verified player or program data would improve accuracy.",
+    };
+  }
+
+  if (hasGaps || confidence === "LOW") {
+    return {
+      label: "Early Projection",
+      title:
+        "This recommendation is based on limited or developing data. More player metrics and verified program data may change the fit.",
+    };
+  }
+
+  return {
+    label: "Limited Data",
+    title:
+      "ScoutLine has limited data for this recommendation. Treat this as a starting point, not a final recruiting conclusion.",
+  };
+}
+
+function getRankingReasons(item: any) {
+  const fit = item?.truthFit || {};
+  const c = item?.college || {};
+  const baseball = c?.baseballProgram || {};
+  const reasons: string[] = [];
+
+  if (item?.geographyLabel) {
+    reasons.push(item.geographyLabel);
+  }
+
+  if (item?.distance?.label) {
+    reasons.push(item.distance.label);
+  }
+
+  if (fit?.score >= 76) {
+    reasons.push("Strong match score");
+  } else if (fit?.score >= 62) {
+    reasons.push("Solid fit score");
+  }
+
+  if (fit?.reasons?.some((r: string) => r.toLowerCase().includes("roster need"))) {
+    reasons.push("Roster opportunity");
+  }
+
+  if (fit?.reasons?.some((r: string) => r.toLowerCase().includes("gpa"))) {
+    reasons.push("Academic alignment");
+  }
+
+  if (
+    fit?.metricComparisons?.some(
+      (m: any) => m.status === "ABOVE" || m.status === "IN_RANGE"
+    )
+  ) {
+    reasons.push("Metric alignment");
+  }
+
+  if (baseball?.jucoFriendly) {
+    reasons.push("JUCO-friendly program");
+  }
+
+  if (baseball?.transferHeavy) {
+    reasons.push("Transfer-friendly roster");
+  }
+
+  return Array.from(new Set(reasons)).slice(0, 5);
 }
 
 const DIVISION_OPTIONS = ["ALL", "NCAA_D1", "NCAA_D2", "NCAA_D3", "NAIA", "NJCAA_D1", "NJCAA_D2", "NJCAA_D3"];
@@ -485,6 +613,116 @@ body: JSON.stringify({
 
         {truthFitResults.length > 0 ? (
           <section style={{ marginTop: 28 }}>
+            {truthFitSummary ? (
+  <section
+    style={{
+      marginBottom: 18,
+      padding: 16,
+      borderRadius: 16,
+      border: "1px solid #dbeafe",
+      background: "#eff6ff",
+      color: "#0f172a",
+    }}
+  >
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "space-between",
+        gap: 16,
+        flexWrap: "wrap",
+        alignItems: "flex-start",
+      }}
+    >
+      <div>
+        <div
+          style={{
+            fontSize: 12,
+            fontWeight: 950,
+            textTransform: "uppercase",
+            letterSpacing: "0.06em",
+            color: "#1d4ed8",
+            marginBottom: 6,
+          }}
+        >
+          Your Recruiting Lane
+        </div>
+
+        <h2 style={{ margin: 0, fontSize: 22, fontWeight: 950, color: "#0f172a" }}>
+          {truthFitSummary.projectionTier || "Recruiting Projection"}
+        </h2>
+
+        <p style={{ margin: "8px 0 0", color: "#334155", fontSize: 14, lineHeight: 1.55 }}>
+          {truthFitSummary.outlook || "ScoutLine is building your recruiting projection from available profile and program data."}
+        </p>
+      </div>
+
+      <div
+        style={{
+          display: "grid",
+          gap: 8,
+          minWidth: 220,
+        }}
+      >
+        <div style={countPillStyle}>
+          Best Lane: {pretty(truthFitSummary.recommendedLaneDivision || truthFitSummary.dominantDivision || "TBD")}
+        </div>
+
+        <div style={countPillStyle}>
+          Fit Tier: {truthFitSummary.dominantFit || "TBD"}
+        </div>
+      </div>
+    </div>
+
+    <div
+      style={{
+        marginTop: 14,
+        padding: 12,
+        borderRadius: 12,
+        background: "#ffffff",
+        border: "1px solid #bfdbfe",
+        color: "#1e3a8a",
+        fontSize: 13,
+        fontWeight: 800,
+        lineHeight: 1.5,
+      }}
+    >
+      <strong>Recruiting Strategy:</strong> {getRecruitingStrategy(truthFitSummary)}
+    </div>
+
+    {Array.isArray(truthFitSummary.topGaps) && truthFitSummary.topGaps.length > 0 ? (
+      <div
+        style={{
+          marginTop: 10,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 8,
+          alignItems: "center",
+        }}
+      >
+        <span style={{ fontSize: 12, fontWeight: 950, color: "#1e3a8a" }}>
+          Top development priorities:
+        </span>
+
+        {truthFitSummary.topGaps.slice(0, 3).map((gap: string, index: number) => (
+          <span
+            key={index}
+            style={{
+              borderRadius: 999,
+              padding: "5px 9px",
+              background: "#fff",
+              border: "1px solid #bfdbfe",
+              color: "#334155",
+              fontSize: 12,
+              fontWeight: 800,
+            }}
+          >
+            {gap}
+          </span>
+        ))}
+      </div>
+    ) : null}
+  </section>
+) : null}
             {selectedCollegeId ? (
               <div style={selectedCollegeBannerStyle}>
                 Showing the selected school from College Search first, followed by your full Truth Fit recommendations.
@@ -535,7 +773,7 @@ body: JSON.stringify({
                     }}
                   >
 <div style={resultTopRowStyle}>
-  <div>
+  <div style={{ minWidth: 0 }}>
     <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
       <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
         {c.name}
@@ -565,7 +803,153 @@ body: JSON.stringify({
       {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
       {item.distance?.label ? ` · ${item.distance.label}` : ""}
     </div>
+  </div>
 
+  <div
+    style={{
+      display: "flex",
+      gap: 8,
+      alignItems: "center",
+      flexWrap: "wrap",
+      justifyContent: "flex-end",
+      justifySelf: "end",
+    }}
+  >
+    <button
+      type="button"
+      title={savedCollegeIds.includes(c.id) ? "Remove from Target Programs" : "Save to Target Programs"}
+      onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
+      disabled={savingCollegeId === c.id}
+      style={{
+        width: 32,
+        height: 32,
+        borderRadius: 999,
+        border: "2px solid #0ea5e9",
+        background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
+        color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
+        fontWeight: 900,
+        cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
+        opacity: savingCollegeId === c.id ? 0.6 : 1,
+      }}
+    >
+      ★
+    </button>
+
+    {item.geographyLabel ? (
+      <div
+        title="How geographically relevant this school is to the player based on home state and recruiting region."
+        style={{
+          borderRadius: 999,
+          padding: "6px 12px",
+          fontSize: 12,
+          fontWeight: 900,
+          border: "1px solid #bfdbfe",
+          background: "#eff6ff",
+          color: "#1e3a8a",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {item.geographyLabel}
+      </div>
+    ) : null}
+
+    <div
+      title="How strongly ScoutLine recommends targeting this school based on overall Truth Fit, roster opportunity, recruiting lane, and player-to-program alignment."
+      style={{
+        borderRadius: 999,
+        padding: "6px 12px",
+        fontSize: 12,
+        fontWeight: 900,
+        border: "1px solid #facc15",
+        background: "#fffbeb",
+        color: "#92400e",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {getPriorityBadgeText(fit.priority)}
+    </div>
+
+    {item.fitType ? (
+      <div
+        title="Overall player-to-program fit based on academics, athletic metrics, roster needs, division benchmarks, and available recruiting data."
+        style={{
+          borderRadius: 999,
+          padding: "6px 12px",
+          fontSize: 12,
+          fontWeight: 900,
+          border: "1px solid #facc15",
+          background: "#fffbeb",
+          color: "#92400e",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {item.fitType}
+      </div>
+    ) : null}
+  </div>
+
+  <div
+    style={{
+      fontSize: 12,
+      lineHeight: 1.45,
+      color: "#64748b",
+      maxWidth: 680,
+      minWidth: 0,
+    }}
+  >
+    {getRecommendationExplanation(item)}
+  </div>
+
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "flex-end",
+      justifySelf: "end",
+      width: "100%",
+    }}
+  >
+    <div
+      title={getFitTooltip(fit.label, fit.score)}
+      style={{
+        borderRadius: 999,
+        padding: "6px 14px",
+        fontSize: 12,
+        fontWeight: 900,
+        border: "1px solid #86efac",
+        background: "#f0fdf4",
+        color: "#166534",
+        whiteSpace: "nowrap",
+      }}
+    >
+      Match Score {fit.score}/100
+    </div>
+
+    {(() => {
+      const confidence = getRecruitingConfidence(item);
+
+      return (
+        <div
+          title={confidence.title}
+          style={{
+            marginTop: 6,
+            borderRadius: 999,
+            padding: "5px 12px",
+            fontSize: 11,
+            fontWeight: 900,
+            border: "1px solid #cbd5e1",
+            background: "#f8fafc",
+            color: "#334155",
+            whiteSpace: "nowrap",
+            textAlign: "center",
+          }}
+        >
+          {confidence.label}
+        </div>
+      );
+    })()}
+  </div>
+
+  <div style={{ gridColumn: "1 / -1" }}>
     <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
       {getRecommendationPills(item).map((pill) => (
         <span
@@ -588,139 +972,10 @@ body: JSON.stringify({
       ))}
     </div>
 
-        <div
-      style={{
-        marginTop: 8,
-        fontSize: 12,
-        lineHeight: 1.45,
-        color: "#64748b",
-        maxWidth: 680,
-      }}
-    >
-      {getRecommendationExplanation(item)}
-    </div>
-
     <div style={linkRowStyle}>
       {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
       {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
       {baseball?.baseballWebsiteUrl ? <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink> : null}
-    </div>
-  </div>
-
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      gap: 8,
-      alignItems: "flex-end",
-      justifySelf: "end",
-      minWidth: 360,
-    }}
-  >
-    <div
-      style={{
-        display: "flex",
-        gap: 8,
-        alignItems: "center",
-        flexWrap: "wrap",
-        justifyContent: "flex-end",
-      }}
-    >
-      <button
-        type="button"
-        title={savedCollegeIds.includes(c.id) ? "Remove from Target Programs" : "Save to Target Programs"}
-        onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
-        disabled={savingCollegeId === c.id}
-        style={{
-          width: 32,
-          height: 32,
-          borderRadius: 999,
-          border: "2px solid #0ea5e9",
-          background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
-          color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
-          fontWeight: 900,
-          cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
-          opacity: savingCollegeId === c.id ? 0.6 : 1,
-        }}
-      >
-        ★
-      </button>
-
-{item.fitType ? (
-  <div
-    title="Overall player-to-program fit based on academics, athletic metrics, roster needs, division benchmarks, and available recruiting data."
-    style={{
-      borderRadius: 999,
-      padding: "6px 12px",
-      fontSize: 12,
-      fontWeight: 900,
-      border: "1px solid #facc15",
-      background: "#fffbeb",
-      color: "#92400e",
-      whiteSpace: "nowrap",
-    }}
-  >
-    {item.fitType}
-  </div>
-) : null}
-
-{item.geographyLabel ? (
-  <div
-    title="How geographically relevant this school is to the player based on home state and recruiting region."
-    style={{
-      borderRadius: 999,
-      padding: "6px 12px",
-      fontSize: 12,
-      fontWeight: 900,
-      border: "1px solid #bfdbfe",
-      background: "#eff6ff",
-      color: "#1e3a8a",
-      whiteSpace: "nowrap",
-    }}
-  >
-    {item.geographyLabel}
-  </div>
-) : null}
-
-<div
-  title="How strongly ScoutLine recommends targeting this school based on overall Truth Fit, roster opportunity, recruiting lane, and player-to-program alignment."
-  style={{
-    borderRadius: 999,
-    padding: "6px 12px",
-    fontSize: 12,
-    fontWeight: 900,
-    border: "1px solid #facc15",
-    background: "#fffbeb",
-    color: "#92400e",
-    whiteSpace: "nowrap",
-  }}
->
-  {getPriorityBadgeText(fit.priority)}
-</div>
-    </div>
-
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        width: "100%",
-      }}
-    >
-      <div
-        title={getFitTooltip(fit.label, fit.score)}
-        style={{
-          borderRadius: 999,
-          padding: "6px 14px",
-          fontSize: 12,
-          fontWeight: 900,
-          border: "1px solid #86efac",
-          background: "#f0fdf4",
-          color: "#166534",
-          whiteSpace: "nowrap",
-        }}
-      >
-        Match Score {fit.score}/100
-      </div>
     </div>
   </div>
 </div>
@@ -740,6 +995,50 @@ body: JSON.stringify({
     }}
   >
     {item.priorityReason}
+  </div>
+) : null}
+
+{getRankingReasons(item).length > 0 ? (
+  <div
+    style={{
+      marginTop: 10,
+      padding: "10px 12px",
+      borderRadius: 12,
+      border: "1px solid #e5e7eb",
+      background: "#f8fafc",
+    }}
+  >
+    <div
+      style={{
+        fontSize: 11,
+        textTransform: "uppercase",
+        letterSpacing: "0.04em",
+        fontWeight: 950,
+        color: "#334155",
+        marginBottom: 6,
+      }}
+    >
+      Why this school is ranked high
+    </div>
+
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+      {getRankingReasons(item).map((reason) => (
+        <span
+          key={reason}
+          style={{
+            borderRadius: 999,
+            padding: "5px 9px",
+            background: "#ffffff",
+            border: "1px solid #e5e7eb",
+            color: "#334155",
+            fontSize: 12,
+            fontWeight: 800,
+          }}
+        >
+          {reason}
+        </span>
+      ))}
+    </div>
   </div>
 ) : null}
 
@@ -774,88 +1073,50 @@ body: JSON.stringify({
   </div>
 ) : null}
 
-                    <div style={metaGridStyle}>
-                      <Info label="Division" value={pretty(baseball?.division)} />
-                      <Info label="Conference" value={baseball?.conference || "—"} />
-                      <Info label="Nickname" value={baseball?.nickname || "—"} />
-                      <Info label="Type" value={pretty(c.control)} />
-                    </div>
+<div style={metaGridStyle}>
+  <Info label="Division" value={pretty(baseball?.division)} />
+  <Info label="Conference" value={baseball?.conference || "—"} />
+  <Info label="Nickname" value={baseball?.nickname || "—"} />
+  <Info label="Type" value={pretty(c.control)} />
+</div>
 
-                    {fit?.benchmarkSource?.metrics?.label ? (
-                      <div style={benchmarkSourceStyle}>
-                        Metrics Source: {fit.benchmarkSource.metrics.label}
-                        {" "}
-                          <span style={confidenceTextStyle}>
-                            ({fit.benchmarkSource.metrics.confidence || "LOW"} confidence)
-                        </span>
-                      </div>
-                    ) : null}
+<div style={reasonBoxStyle}>
+  <div style={reasonTitleStyle}>Why ScoutLine likes this fit</div>
 
-                    {isAllAmerican && Array.isArray(fit.metricComparisons) && fit.metricComparisons.length > 0 ? (
-                      <div style={comparisonBoxStyle}>
-                        <div style={comparisonTitleStyle}>Key Performance vs Benchmark</div>
+  {Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
+    fit.reasons.slice(0, 4).map((reason: string, index: number) => (
+      <div key={index} style={reasonLineStyle}>
+        ✓ {reason}
+      </div>
+    ))
+  ) : (
+    <div style={reasonLineStyle}>
+      ✓ This school matches available profile, program, and benchmark data.
+    </div>
+  )}
 
-                        <div style={{ display: "grid", gap: 8 }}>
-                          {fit.metricComparisons.slice(0, 4).map((metric: any) => (
-                            <div key={metric.key} style={comparisonRowStyle}>
-                              <div style={{ fontWeight: 900 }}>{metric.label}</div>
+  {item.priorityReason ? (
+    <div style={{ ...reasonLineStyle, marginTop: 6 }}>
+      ✓ {item.priorityReason}
+    </div>
+  ) : null}
+</div>
 
-                              <div style={comparisonValueStyle}>
-                                You: {formatMetricValue(metric.playerValue, metric.unit)}
-                              </div>
-
-                              <div style={comparisonValueStyle}>
-                                Benchmark: {formatMetricValue(metric.benchmarkValue, metric.unit)}
-                              </div>
-
-                              <div
-                                style={{
-                                  ...comparisonStatusStyle,
-                                  background:
-                                    metric.status === "ABOVE"
-                                      ? "#f0fdf4"
-                                      : metric.status === "IN_RANGE"
-                                      ? "#fffbeb"
-                                      : "#fef2f2",
-                                  borderColor:
-                                    metric.status === "ABOVE"
-                                      ? "#bbf7d0"
-                                      : metric.status === "IN_RANGE"
-                                      ? "#fde68a"
-                                      : "#fecaca",
-                                  color:
-                                    metric.status === "ABOVE"
-                                      ? "#15803d"
-                                      : metric.status === "IN_RANGE"
-                                      ? "#b45309"
-                                      : "#b91c1c",
-                                }}
-                              >
-                                {metric.status === "ABOVE"
-                                  ? "Above"
-                                  : metric.status === "IN_RANGE"
-                                  ? "In Range"
-                                  : "Below"}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
-
-                    {Array.isArray(fit.gaps) && fit.gaps.length > 0 ? (
-                      <div style={gapBoxStyle}>
-                        <div style={gapTitleStyle}>Development / fit gaps</div>
-                        {fit.gaps.slice(0, 2).map((gap: string, index: number) => (
-                          <div key={index} style={gapLineStyle}>• {gap}</div>
-                        ))}
-                      </div>
-                    ) : null}
+{Array.isArray(fit.gaps) && fit.gaps.length > 0 ? (
+  <div style={gapBoxStyle}>
+    <div style={gapTitleStyle}>Development areas</div>
+    {fit.gaps.slice(0, 3).map((gap: string, index: number) => (
+      <div key={index} style={gapLineStyle}>
+        • {gap}
+      </div>
+    ))}
+  </div>
+) : null}
 
 {Array.isArray(fit.development) && fit.development.length > 0 ? (
   <div style={developmentBoxStyle}>
     <div style={developmentTitleStyle}>What to do next</div>
-    {fit.development.map((tip: string, index: number) => (
+    {fit.development.slice(0, 3).map((tip: string, index: number) => (
       <div key={index} style={developmentLineStyle}>
         • {tip}
       </div>
@@ -863,17 +1124,68 @@ body: JSON.stringify({
   </div>
 ) : null}
 
-{Array.isArray(fit.reasons) && fit.reasons.length > 0 ? (
-  <div style={reasonBoxStyle}>
-    <div style={reasonTitleStyle}>Why this fit showed up</div>
-    {fit.reasons.slice(0, 3).map((reason: string, index: number) => (
-      <div key={index} style={reasonLineStyle}>
-        • {reason}
-      </div>
-    ))}
+{isAllAmerican && Array.isArray(fit.metricComparisons) && fit.metricComparisons.length > 0 ? (
+  <div style={comparisonBoxStyle}>
+    <div style={comparisonTitleStyle}>Key Performance vs Benchmark</div>
+
+    <div style={{ display: "grid", gap: 8 }}>
+      {fit.metricComparisons.slice(0, 4).map((metric: any) => (
+        <div key={metric.key} style={comparisonRowStyle}>
+          <div style={{ fontWeight: 900 }}>{metric.label}</div>
+
+          <div style={comparisonValueStyle}>
+            You: {formatMetricValue(metric.playerValue, metric.unit)}
+          </div>
+
+          <div style={comparisonValueStyle}>
+            Benchmark: {formatMetricValue(metric.benchmarkValue, metric.unit)}
+          </div>
+
+          <div
+            style={{
+              ...comparisonStatusStyle,
+              background:
+                metric.status === "ABOVE"
+                  ? "#f0fdf4"
+                  : metric.status === "IN_RANGE"
+                  ? "#fffbeb"
+                  : "#fef2f2",
+              borderColor:
+                metric.status === "ABOVE"
+                  ? "#bbf7d0"
+                  : metric.status === "IN_RANGE"
+                  ? "#fde68a"
+                  : "#fecaca",
+              color:
+                metric.status === "ABOVE"
+                  ? "#15803d"
+                  : metric.status === "IN_RANGE"
+                  ? "#b45309"
+                  : "#b91c1c",
+            }}
+          >
+            {metric.status === "ABOVE"
+              ? "Above"
+              : metric.status === "IN_RANGE"
+              ? "In Range"
+              : "Below"}
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 ) : null}
-                  </article>
+
+{fit?.benchmarkSource?.metrics?.label ? (
+  <div style={benchmarkSourceStyle}>
+    Data Source: {fit.benchmarkSource.metrics.label}
+    {" "}
+    <span style={confidenceTextStyle}>
+      ({fit.benchmarkSource.metrics.confidence || "LOW"} confidence)
+    </span>
+  </div>
+) : null}
+</article>
                 );
               })}
             </div>
