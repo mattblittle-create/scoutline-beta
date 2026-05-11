@@ -30,6 +30,43 @@ function getRecruitingStrategy(summary: any) {
   return `Treat ${lane} as a stretch lane for now and focus on measurable development areas before expanding outreach.`;
 }
 
+function getLaneConfidence(laneFit: any) {
+  const confidence = String(laneFit?.benchmarkSource?.confidence || "").toUpperCase();
+  const sourceLabel = String(laneFit?.benchmarkSource?.label || "").toUpperCase();
+  const score = Number(laneFit?.bestScore || 0);
+  const gaps = Array.isArray(laneFit?.topGaps) ? laneFit.topGaps : [];
+
+  if (
+    confidence === "HIGH" ||
+    sourceLabel.includes("SCHOOL") ||
+    sourceLabel.includes("CONFERENCE")
+  ) {
+    return {
+      label: "High Confidence",
+      title: "ScoutLine has strong benchmark data supporting this recruiting lane.",
+    };
+  }
+
+  if (confidence === "MEDIUM" || score >= 70) {
+    return {
+      label: "Medium Confidence",
+      title: "ScoutLine has useful benchmark data for this lane, but more verified player or program data may improve accuracy.",
+    };
+  }
+
+  if (gaps.length > 0 || confidence === "LOW") {
+    return {
+      label: "Early Projection",
+      title: "This lane is based on limited or developing data and may change as more metrics, video, and program data are added.",
+    };
+  }
+
+  return {
+    label: "Limited Data",
+    title: "ScoutLine has limited data for this lane. Treat this as an early recruiting starting point.",
+  };
+}
+
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
   const f = String(fit || "");
@@ -540,12 +577,31 @@ body: JSON.stringify({
         </div>
       </div>
 
-      <div>
-        <div style={laneLabelStyle}>Best Score</div>
-        <div style={laneValueStyle}>
-          {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
-        </div>
-      </div>
+<div>
+  <div style={laneLabelStyle}>Best Score</div>
+  <div style={laneValueStyle}>
+    {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
+  </div>
+
+  {selectedLaneFit ? (
+    <div
+      title={getLaneConfidence(selectedLaneFit).title}
+      style={{
+        display: "inline-flex",
+        marginTop: 8,
+        borderRadius: 999,
+        padding: "5px 9px",
+        background: "#ffffff",
+        border: "1px solid #bfdbfe",
+        color: "#334155",
+        fontSize: 12,
+        fontWeight: 900,
+      }}
+    >
+      {getLaneConfidence(selectedLaneFit).label}
+    </div>
+  ) : null}
+</div>
 
       <div style={{ gridColumn: "1 / -1" }}>
         <div style={laneLabelStyle}>Recruiting Outlook</div>
