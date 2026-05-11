@@ -652,7 +652,7 @@ body: JSON.stringify({
 
       {item.geographyLabel ? (
         <div
-          title="Shows how close this school is to the player's home state or recruiting region."
+          title="Location relevenace of school to player."
           style={{
             borderRadius: 999,
             padding: "6px 12px",
@@ -669,7 +669,7 @@ body: JSON.stringify({
       ) : null}
 
       <div
-        title="ScoutLine priority based on Truth Fit score, roster alignment, and recommendation strength."
+        title="Should I target this school? Based on Truth Fit score: gpa, grad year and roster alignment, player metrics vs division/program benchmark data, and Recruiting Lane."
         style={{
           borderRadius: 999,
           padding: "6px 12px",
@@ -686,7 +686,7 @@ body: JSON.stringify({
 
       {item.fitType ? (
         <div
-          title="Recruiting category based on current fit score and development gap."
+          title="Can I play here? Based on academic fit + athletic fit + roster fit + division fit + data confidence."
           style={{
             borderRadius: 999,
             padding: "6px 12px",
