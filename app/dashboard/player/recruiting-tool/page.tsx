@@ -681,11 +681,12 @@ body: JSON.stringify({
           whiteSpace: "nowrap",
         }}
       >
-          title="Recruiting tip based on current fit score and development gap."
+        {getPriorityBadgeText(fit.priority)}
       </div>
 
       {item.fitType ? (
         <div
+          title="Plain-English recruiting category based on current fit score and development gap."
           style={{
             borderRadius: 999,
             padding: "6px 12px",
