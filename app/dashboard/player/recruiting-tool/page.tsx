@@ -252,45 +252,6 @@ function getMeterMovementTips(laneFit: any) {
   return tips.slice(0, 3);
 }
 
-function getRecruitingProbability(laneFit: any) {
-  const score = Number(laneFit?.bestScore || 0);
-  const fitTier = String(laneFit?.fitTier || "");
-  const confidence = getLaneConfidence(laneFit).label;
-  const gaps = Array.isArray(laneFit?.topGaps) ? laneFit.topGaps : [];
-
-  let probability = Math.round(score * 0.75);
-
-  if (fitTier === "Strong Fit") probability += 14;
-  else if (fitTier === "Match") probability += 8;
-  else if (fitTier === "Possible Match") probability += 2;
-  else probability -= 8;
-
-  if (confidence === "High Confidence") probability += 6;
-  else if (confidence === "Medium Confidence") probability += 2;
-  else if (confidence === "Early Projection") probability -= 4;
-  else probability -= 8;
-
-  probability -= Math.min(gaps.length * 3, 9);
-
-  const value = Math.max(5, Math.min(95, probability));
-
-  const label =
-    value >= 75
-      ? "Strong Opportunity"
-      : value >= 55
-      ? "Good Opportunity"
-      : value >= 35
-      ? "Possible Opportunity"
-      : "Long-Term Opportunity";
-
-  return {
-    value,
-    label,
-    title:
-      "ScoutLine projection based on fit score, division lane, data confidence, and current development gaps. This is not a coach response guarantee.",
-  };
-}
-
 function getLaneHighlights(laneFit: any) {
   const comparisons = Array.isArray(laneFit?.metricComparisons)
     ? laneFit.metricComparisons
@@ -908,61 +869,7 @@ body: JSON.stringify({
 })() : null}
 
 <div style={{ gridColumn: "1 / -1" }}>
-{selectedLaneFit ? (() => {
-  const probability = getRecruitingProbability(selectedLaneFit);
 
-  return (
-    <div
-      style={{
-        gridColumn: "1 / -1",
-        padding: "10px 12px",
-        borderRadius: 14,
-        background: "#ffffff",
-        border: "1px solid #bfdbfe",
-      }}
-      title={probability.title}
-    >
-      <div style={laneLabelStyle}>Recruiting Probability</div>
-
-      <div
-        style={{
-          marginTop: 6,
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 12,
-          alignItems: "center",
-        }}
-      >
-        <div style={{ fontSize: 15, fontWeight: 950, color: "#1e3a8a" }}>
-          {probability.label}
-        </div>
-
-        <div style={{ fontSize: 18, fontWeight: 950, color: "#0f172a" }}>
-          {probability.value}%
-        </div>
-      </div>
-
-      <div
-        style={{
-          marginTop: 8,
-          height: 8,
-          borderRadius: 999,
-          background: "#e2e8f0",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            height: "100%",
-            width: `${probability.value}%`,
-            borderRadius: 999,
-            background: "#2563eb",
-          }}
-        />
-      </div>
-    </div>
-  );
-})() : null}
 {selectedLaneFit && getMeterMovementTips(selectedLaneFit).length > 0 ? (
   <div
     style={{
