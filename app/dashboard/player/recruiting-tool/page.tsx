@@ -857,8 +857,11 @@ body: JSON.stringify({
     </div>
   </div>
 ) : null}
+    </div>
+  </section>
+) : null}
 
-        <section style={filterPanelStyle}>
+<section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
             <div>
               <h2 style={filterTitleStyle}>Filter schools</h2>
