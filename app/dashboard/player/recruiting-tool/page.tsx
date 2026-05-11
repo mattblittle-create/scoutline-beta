@@ -702,35 +702,25 @@ body: JSON.stringify({
   ) : null}
 </div>
 
-{selectedLaneFit ? (
-  <div
-    title={getRecruitabilityTimeline(selectedLaneFit).title}
-style={{
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "fit-content",
-  maxWidth: "100%",
-  marginTop: 8,
-  borderRadius: 999,
-  padding: "5px 10px",
-  background: "#ffffff",
-  border: "1px solid #bfdbfe",
-  color: "#1e3a8a",
-  fontSize: 12,
-  fontWeight: 900,
-  lineHeight: 1.2,
-  whiteSpace: "nowrap",
-}}
-  >
-    {getRecruitabilityTimeline(selectedLaneFit).label}
-  </div>
-) : null}
-
       <div style={{ gridColumn: "1 / -1" }}>
         <div style={laneLabelStyle}>Recruiting Outlook</div>
         <div style={laneValueStyle}>
-          {selectedLaneFit?.outlook || truthFitSummary.outlook}
+<>
+  {selectedLaneFit?.outlook || truthFitSummary.outlook}
+
+  {selectedLaneFit ? (
+    <span
+      title={getRecruitabilityTimeline(selectedLaneFit).title}
+      style={{
+        marginLeft: 8,
+        color: "#1d4ed8",
+        fontWeight: 900,
+      }}
+    >
+      ({getRecruitabilityTimeline(selectedLaneFit).label})
+    </span>
+  ) : null}
+</>
         </div>
       </div>
 
