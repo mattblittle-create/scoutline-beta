@@ -293,11 +293,11 @@ function projectionTierFromLane(division?: string | null, fit?: string | null) {
     (d === "NCAA_D3" || d === "NJCAA_D2" || d === "NJCAA_D3") &&
     (f === "Strong Fit" || f === "Match" || f === "Possible Match")
   ) {
-    return "D3 / JUCO Development Fit";
+    return "D3 / JUCO Fit";
   }
 
   if (f === "Possible Match") {
-    return "Emerging College Prospect";
+    return "Emerging Prospect";
   }
 
   return "Developmental Prospect";
