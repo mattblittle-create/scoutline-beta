@@ -1891,9 +1891,10 @@ const laneTitleStyle: React.CSSProperties = {
 
 const laneGridStyle: React.CSSProperties = {
   display: "grid",
-  gap: 12,
-  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
+  gap: 18,
+  gridTemplateColumns: "1fr 1fr 1fr 1fr",
   alignItems: "start",
+  width: "100%",
 };
 
 const laneLabelStyle: React.CSSProperties = {
@@ -1905,7 +1906,8 @@ const laneLabelStyle: React.CSSProperties = {
 const projectionTierStyle: React.CSSProperties = {
   marginTop: 6,
   display: "inline-flex",
-  width: "fit-content",
+  width: "100%",
+  justifyContent: "center",
   borderRadius: 999,
   padding: "8px 12px",
   background: "#dcfce7",
