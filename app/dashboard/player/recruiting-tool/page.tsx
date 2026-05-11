@@ -654,7 +654,7 @@ body: JSON.stringify({
       setSavingCollegeId("");
     }
   }
-
+     
   return (
     <main style={{ maxWidth: 960, margin: "0 auto", padding: "8px 0 40px" }}>
       <section style={shellStyle}>
