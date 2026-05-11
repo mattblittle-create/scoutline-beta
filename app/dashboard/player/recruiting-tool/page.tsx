@@ -52,12 +52,12 @@ function getRecommendationPills(item: any) {
 
   if (item?.isTopRecommendation) pills.push("TOP RECOMMENDATION");
 
-  if (typeof miles === "number") {
-    if (miles <= 50) pills.push("LOCAL FIT");
-    else if (miles <= 150) pills.push("REGIONAL FIT");
-    else if (miles <= 400) pills.push("DRIVABLE");
-    else pills.push("TRAVEL PROGRAM");
-  }
+if (typeof miles === "number") {
+  if (miles <= 50) pills.push("LOCAL");
+  else if (miles <= 150) pills.push("REGIONAL");
+  else if (miles <= 400) pills.push("DRIVABLE");
+  else pills.push("LONG DISTANCE");
+}
 
   if (baseball?.jucoFriendly) pills.push("JUCO FRIENDLY");
   if (baseball?.transferHeavy) pills.push("TRANSFER FRIENDLY");
