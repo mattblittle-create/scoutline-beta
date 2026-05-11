@@ -547,9 +547,13 @@ model College {
   applicationUrl  String?
   financialAidUrl String?
 
-  city   String?
-  state  String?
-  region CollegeRegion?
+  city    String?
+  state   String?
+  zipCode String?
+  region  CollegeRegion?
+
+  latitude    Float?
+  longitude   Float?
 
   control    CollegeControl?
   schoolType CollegeSchoolType @default(FOUR_YEAR)

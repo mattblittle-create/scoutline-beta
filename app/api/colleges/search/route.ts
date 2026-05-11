@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
 import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
+import { getDistanceResult } from "@/lib/recommendations/distance";
 
 export const dynamic = "force-dynamic";
 
@@ -123,6 +124,9 @@ export async function GET(req: NextRequest) {
     const rawMaxTuition = searchParams.get("maxTuition");
     const maxTuition = rawMaxTuition ? Number(rawMaxTuition) : undefined;
 
+    const userLatitude = asNumber(searchParams.get("userLat"));
+    const userLongitude = asNumber(searchParams.get("userLng"));
+
     const results = await prisma.college.findMany({
       where: {
         AND: [
@@ -170,9 +174,18 @@ export async function GET(req: NextRequest) {
       results.map(async (college) => {
         const baseball = college.baseballProgram;
 
+        const distance =
+          userLatitude != null && userLongitude != null
+            ? getDistanceResult(
+                { latitude: userLatitude, longitude: userLongitude },
+                { latitude: college.latitude, longitude: college.longitude }
+              )
+            : null;
+
         if (!profile || !baseball) {
           return {
             ...college,
+            distance,
             truthFit: null,
           };
         }
@@ -205,6 +218,7 @@ export async function GET(req: NextRequest) {
 
         return {
           ...college,
+          distance,
           truthFit,
         };
       })

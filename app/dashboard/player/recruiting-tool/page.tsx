@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
+import { compareRecommendations } from "@/lib/recommendations/ranking";
 
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
@@ -39,6 +40,67 @@ function getPriorityFromFit(label: string) {
   if (label === "Strong Fit") return "HIGH";
   if (label === "Match") return "MEDIUM";
   return "LOW";
+}
+
+function getRecommendationPills(item: any) {
+  const c = item?.college || {};
+  const fit = item?.truthFit || {};
+  const baseball = c?.baseballProgram || {};
+  const miles = c?.distance?.miles ?? item?.distance?.miles ?? null;
+
+  const pills: string[] = [];
+
+  if (item?.isTopRecommendation) pills.push("TOP RECOMMENDATION");
+
+  if (fit?.label === "Strong Fit") pills.push("STRONG MATCH");
+  else if (fit?.label === "Match") pills.push("MATCH");
+  else if (fit?.label === "Possible Match") pills.push("POSSIBLE MATCH");
+
+  if (typeof miles === "number") {
+    if (miles <= 50) pills.push("LOCAL FIT");
+    else if (miles <= 150) pills.push("REGIONAL FIT");
+    else if (miles <= 400) pills.push("DRIVABLE");
+    else pills.push("TRAVEL PROGRAM");
+  }
+
+  if (baseball?.jucoFriendly) pills.push("JUCO FRIENDLY");
+  if (baseball?.transferHeavy) pills.push("TRANSFER FRIENDLY");
+
+  if (fit?.priority === "HIGH") pills.push("HIGH PRIORITY");
+
+  return Array.from(new Set(pills)).slice(0, 6);
+}
+
+function getRecommendationExplanation(item: any) {
+  const c = item?.college || {};
+  const fit = item?.truthFit || {};
+  const baseball = c?.baseballProgram || {};
+  const miles = c?.distance?.miles ?? item?.distance?.miles ?? null;
+
+  const reasons: string[] = [];
+
+  if (fit?.label === "Strong Fit") {
+    reasons.push("strongly matches your current recruiting profile");
+  } else if (fit?.label === "Match") {
+    reasons.push("matches your current recruiting profile");
+  } else if (fit?.label === "Possible Match") {
+    reasons.push("could be a realistic developmental target");
+  }
+
+  if (typeof miles === "number") {
+    if (miles <= 150) reasons.push("is within a close recruiting radius");
+    else if (miles <= 400) reasons.push("is within a manageable travel range");
+    else reasons.push("may require a broader travel strategy");
+  }
+
+  if (baseball?.jucoFriendly) reasons.push("shows JUCO-friendly program signals");
+  if (baseball?.transferHeavy) reasons.push("has transfer-heavy roster tendencies");
+
+  if (!reasons.length) {
+    return "Recommended based on your profile data and available school/program information.";
+  }
+
+  return `Recommended because this program ${reasons.slice(0, 3).join(", ")}.`;
 }
 
 const DIVISION_OPTIONS = ["ALL", "NCAA_D1", "NCAA_D2", "NCAA_D3", "NAIA", "NJCAA_D1", "NJCAA_D2", "NJCAA_D3"];
@@ -85,9 +147,28 @@ function PlayerRecruitingToolContent() {
   const isRedshirt = planTier === "REDSHIRT";
   const isAllAmerican = planTier === "ALL_AMERICAN";
 
+  const rankedTruthFitResults = React.useMemo(() => {
+    return [...truthFitResults].sort((a, b) =>
+      compareRecommendations(
+        {
+          name: a?.college?.name,
+          recommendedDivisionRank: Number(a?.recommendationRank ?? 0),
+          truthFitScore: Number(a?.truthFit?.score ?? 0),
+          distanceMiles: a?.college?.distance?.miles ?? a?.distance?.miles ?? null,
+        },
+        {
+          name: b?.college?.name,
+          recommendedDivisionRank: Number(b?.recommendationRank ?? 0),
+          truthFitScore: Number(b?.truthFit?.score ?? 0),
+          distanceMiles: b?.college?.distance?.miles ?? b?.distance?.miles ?? null,
+        }
+      )
+    );
+  }, [truthFitResults]);
+
   const visibleTruthFitResults = isRedshirt
-    ? truthFitResults.slice(0, 3)
-    : truthFitResults;
+    ? rankedTruthFitResults.slice(0, 3)
+    : rankedTruthFitResults;
 
   const selectedLaneFit =
     truthFitSummary?.divisionFits?.find(
@@ -486,6 +567,41 @@ body: JSON.stringify({
 
     <div style={locationStyle}>
       {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+      {item.distance?.label ? ` · ${item.distance.label}` : ""}
+    </div>
+
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
+      {getRecommendationPills(item).map((pill) => (
+        <span
+          key={pill}
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            borderRadius: 999,
+            padding: "4px 8px",
+            background: "#f8fafc",
+            border: "1px solid #e5e7eb",
+            color: "#334155",
+            fontSize: 11,
+            fontWeight: 800,
+            letterSpacing: 0.2,
+          }}
+        >
+          {pill}
+        </span>
+      ))}
+    </div>
+
+        <div
+      style={{
+        marginTop: 8,
+        fontSize: 12,
+        lineHeight: 1.45,
+        color: "#64748b",
+        maxWidth: 680,
+      }}
+    >
+      {getRecommendationExplanation(item)}
     </div>
 
     <div style={linkRowStyle}>

@@ -5,6 +5,8 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
 import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
+import { getDistanceResult } from "@/lib/recommendations/distance";
+import { getCoordinatesForZip } from "@/lib/recommendations/zipCoordinates";
 
 export const dynamic = "force-dynamic";
 
@@ -130,6 +132,8 @@ export async function GET(req: NextRequest) {
 
     const searchParams = req.nextUrl.searchParams;
 
+    const playerCoordinates = getCoordinatesForZip(profile.player.homeZip);
+
     const division = cleanFilter(searchParams.get("division"));
     const region = cleanFilter(searchParams.get("region"));
     const state = cleanFilter(searchParams.get("state"))?.toUpperCase() || null;
@@ -194,6 +198,16 @@ baseballProgram: {
             },
           });
 
+          const distance = playerCoordinates
+            ? getDistanceResult(
+                playerCoordinates,
+                {
+                  latitude: college.latitude,
+                  longitude: college.longitude,
+                }
+              )
+            : null;
+
           return {
             college: {
               id: college.id,
@@ -208,6 +222,7 @@ baseballProgram: {
               schoolType: college.schoolType,
               tuitionInState: college.tuitionInState,
               tuitionOutOfState: college.tuitionOutOfState,
+              distance,
               baseballProgram: baseball
                 ? {
                     nickname: baseball.nickname,
@@ -221,6 +236,7 @@ baseballProgram: {
                   }
                 : null,
             },
+            distance,
             truthFit: fit,
           };
         })
