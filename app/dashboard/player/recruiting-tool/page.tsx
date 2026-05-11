@@ -774,65 +774,63 @@ body: JSON.stringify({
 </div>
 
       <div style={{ gridColumn: "1 / -1" }}>
-{selectedLaneFit ? (
-  <div style={{ gridColumn: "1 / -1" }}>
-    <div style={laneLabelStyle}>Recruitability Meter</div>
+{selectedLaneFit ? (() => {
+  const meter = getRecruitabilityMeter(selectedLaneFit);
+  const meterColor = getRecruitabilityMeterColor(meter.label);
 
-    {(() => {
-      const meter = getRecruitabilityMeter(selectedLaneFit);
-      const meterColor = getRecruitabilityMeterColor(meter.label);
+  return (
+    <div style={{ gridColumn: "1 / -1" }}>
+      <div style={laneLabelStyle}>Recruitability Meter</div>
 
-      return (
+      <div
+        title={meter.title}
+        style={{
+          marginTop: 8,
+          padding: 12,
+          borderRadius: 14,
+          background: meterColor.background,
+          border: `1px solid ${meterColor.border}`,
+        }}
+      >
         <div
-          title={meter.title}
           style={{
-            marginTop: 8,
-            padding: 12,
-            borderRadius: 14,
-            background: meterColor.background,
-            border: `1px solid ${meterColor.border}`,
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 12,
+            marginBottom: 8,
+            alignItems: "center",
+          }}
+        >
+          <div style={{ fontSize: 15, fontWeight: 950, color: meterColor.text }}>
+            {meter.label}
+          </div>
+
+          <div style={{ fontSize: 12, fontWeight: 900, color: "#334155" }}>
+            {meter.value}/100
+          </div>
+        </div>
+
+        <div
+          style={{
+            height: 10,
+            borderRadius: 999,
+            background: "#e2e8f0",
+            overflow: "hidden",
           }}
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 12,
-              marginBottom: 8,
-              alignItems: "center",
-            }}
-          >
-            <div style={{ fontSize: 15, fontWeight: 950, color: meterColor.text }}>
-              {meter.label}
-            </div>
-
-            <div style={{ fontSize: 12, fontWeight: 900, color: "#334155" }}>
-              {meter.value}/100
-            </div>
-          </div>
-
-          <div
-            style={{
-              height: 10,
+              height: "100%",
+              width: `${meter.value}%`,
               borderRadius: 999,
-              background: "#e2e8f0",
-              overflow: "hidden",
+              background: meterColor.bar,
             }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width: `${meter.value}%`,
-                borderRadius: 999,
-                background: meterColor.bar,
-              }}
-            />
-          </div>
+          />
         </div>
-      );
-    })()}
-  </div>
-) : null}
+      </div>
+    </div>
+  );
+})() : null}
 
 <div style={{ gridColumn: "1 / -1" }}>
   <div style={laneLabelStyle}>Recruiting Outlook</div>
