@@ -408,8 +408,8 @@ const fitType =
     : fitScore >= 62
     ? "Good Fit"
     : fitScore >= 50
-    ? "Development Fit"
-    : "Long-Term Project";
+    ? "Average Fit"
+    : "Not Currently A Fit";
 
   const fitLabel = fit?.label || "Fit";
   const division = String(baseball?.division || "").replace(/_/g, " ");
