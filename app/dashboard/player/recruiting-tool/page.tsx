@@ -836,6 +836,7 @@ body: JSON.stringify({
 {Array.isArray(selectedLaneFit?.topGaps) && selectedLaneFit.topGaps.length > 0 ? (
   <div style={{ gridColumn: "1 / -1" }}>
     <div style={laneLabelStyle}>Top Development Priorities</div>
+
     <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 8 }}>
       {selectedLaneFit.topGaps.slice(0, 3).map((gap: string, index: number) => (
         <span
