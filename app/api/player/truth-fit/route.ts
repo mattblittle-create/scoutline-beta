@@ -400,16 +400,16 @@ const enrichedResults = results.map((item, index) => {
 
   const fitScore = Number(fit?.score || 0);
 
-  const fitType =
-    fitScore >= 88 && String(fit?.label || "") === "Strong Fit"
-      ? "Strong Fit"
-      : fitScore >= 76
-      ? "Competitive Fit"
-      : fitScore >= 62
-      ? "Developmental Fit"
-      : fitScore >= 50
-      ? "Stretch Fit"
-      : "Reach School";
+const fitType =
+  fitScore >= 88
+    ? "Elite Fit"
+    : fitScore >= 76
+    ? "Strong Fit"
+    : fitScore >= 62
+    ? "Good Fit"
+    : fitScore >= 50
+    ? "Development Fit"
+    : "Long-Term Project";
 
   const fitLabel = fit?.label || "Fit";
   const division = String(baseball?.division || "").replace(/_/g, " ");

@@ -686,7 +686,7 @@ body: JSON.stringify({
 
       {item.fitType ? (
         <div
-          title="Plain-English recruiting category based on current fit score and development gap."
+          title="Recruiting category based on current fit score and development gap."
           style={{
             borderRadius: 999,
             padding: "6px 12px",
@@ -974,9 +974,9 @@ function formatMetricValue(value: number, unit?: string | null) {
 }
 
 function getPriorityBadgeText(priority?: string | null) {
-  if (priority === "HIGH") return "High Priority";
-  if (priority === "MEDIUM") return "Medium Priority";
-  if (priority === "LOW") return "Low Priority";
+  if (priority === "HIGH") return "Priority Target";
+  if (priority === "MEDIUM") return "Worth Pursuing";
+  if (priority === "LOW") return "Development Track";
   return "Priority TBD";
 }
 
