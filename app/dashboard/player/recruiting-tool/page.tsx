@@ -147,35 +147,42 @@ function getRecruitabilityTimeline(laneFit: any) {
 function getRecruitabilityMeter(laneFit: any) {
   const score = Number(laneFit?.bestScore || 0);
   const fitTier = String(laneFit?.fitTier || "");
+  const laneConfidence = getLaneConfidence(laneFit).label;
+
+  let baseValue = 42;
+  let label = "Early Stage Prospect";
+  let title = "Still building toward this recruiting lane based on available data.";
 
   if (score >= 88 && fitTier === "Strong Fit") {
-    return {
-      label: "Highly Recruitable",
-      value: 92,
-      title: "Strong current fit with this recruiting lane based on available benchmark and profile data.",
-    };
+    baseValue = 92;
+    label = "Highly Recruitable";
+    title = "Strong current fit with this recruiting lane based on available benchmark and profile data.";
+  } else if (score >= 76 || fitTier === "Match") {
+    baseValue = 78;
+    label = "Recruitable";
+    title = "Solid current fit with this recruiting lane. Continued development can strengthen opportunity.";
+  } else if (score >= 62 || fitTier === "Possible Match") {
+    baseValue = 62;
+    label = "Developing Recruit";
+    title = "Close to stronger recruiting alignment. Key development areas will matter.";
   }
 
-  if (score >= 76 || fitTier === "Match") {
-    return {
-      label: "Recruitable",
-      value: 78,
-      title: "Solid current fit with this recruiting lane. Continued development can strengthen opportunity.",
-    };
-  }
+  const confidenceAdjustment =
+    laneConfidence === "High Confidence"
+      ? 0
+      : laneConfidence === "Medium Confidence"
+      ? -4
+      : laneConfidence === "Early Projection"
+      ? -8
+      : -12;
 
-  if (score >= 62 || fitTier === "Possible Match") {
-    return {
-      label: "Developing Recruit",
-      value: 62,
-      title: "Close to stronger recruiting alignment. Key development areas will matter.",
-    };
-  }
+  const value = Math.max(25, Math.min(100, baseValue + confidenceAdjustment));
 
   return {
-    label: "Early Stage Prospect",
-    value: 42,
-    title: "Still building toward this recruiting lane based on available data.",
+    label,
+    value,
+    title: `${title} Confidence weighting applied: ${laneConfidence}.`,
+    confidence: laneConfidence,
   };
 }
 
@@ -212,6 +219,75 @@ function getRecruitabilityMeterColor(label: string) {
     text: "#991b1b",
     border: "#fecaca",
     background: "#fef2f2",
+  };
+}
+
+function getMeterMovementTips(laneFit: any) {
+  const tips: string[] = [];
+  const confidence = getLaneConfidence(laneFit).label;
+  const gaps = Array.isArray(laneFit?.topGaps) ? laneFit.topGaps : [];
+  const fitTier = String(laneFit?.fitTier || "");
+  const score = Number(laneFit?.bestScore || 0);
+
+  if (confidence === "Early Projection" || confidence === "Limited Data") {
+    tips.push("Add more verified metrics and video to improve ScoutLine confidence.");
+  }
+
+  if (gaps.length > 0) {
+    tips.push(`Improve ${String(gaps[0]).toLowerCase()} to strengthen this lane.`);
+  }
+
+  if (fitTier === "Possible Match" || score < 70) {
+    tips.push("Closing one key development gap could move this lane closer to Recruitable.");
+  }
+
+  if (score >= 70 && score < 82) {
+    tips.push("Stronger verified metrics could move this from Recruitable to Highly Recruitable.");
+  }
+
+  if (!tips.length) {
+    tips.push("Keep profile data current and continue building verified performance history.");
+  }
+
+  return tips.slice(0, 3);
+}
+
+function getRecruitingProbability(laneFit: any) {
+  const score = Number(laneFit?.bestScore || 0);
+  const fitTier = String(laneFit?.fitTier || "");
+  const confidence = getLaneConfidence(laneFit).label;
+  const gaps = Array.isArray(laneFit?.topGaps) ? laneFit.topGaps : [];
+
+  let probability = Math.round(score * 0.75);
+
+  if (fitTier === "Strong Fit") probability += 14;
+  else if (fitTier === "Match") probability += 8;
+  else if (fitTier === "Possible Match") probability += 2;
+  else probability -= 8;
+
+  if (confidence === "High Confidence") probability += 6;
+  else if (confidence === "Medium Confidence") probability += 2;
+  else if (confidence === "Early Projection") probability -= 4;
+  else probability -= 8;
+
+  probability -= Math.min(gaps.length * 3, 9);
+
+  const value = Math.max(5, Math.min(95, probability));
+
+  const label =
+    value >= 75
+      ? "Strong Opportunity"
+      : value >= 55
+      ? "Good Opportunity"
+      : value >= 35
+      ? "Possible Opportunity"
+      : "Long-Term Opportunity";
+
+  return {
+    value,
+    label,
+    title:
+      "ScoutLine projection based on fit score, division lane, data confidence, and current development gaps. This is not a coach response guarantee.",
   };
 }
 
@@ -832,6 +908,91 @@ body: JSON.stringify({
 })() : null}
 
 <div style={{ gridColumn: "1 / -1" }}>
+{selectedLaneFit ? (() => {
+  const probability = getRecruitingProbability(selectedLaneFit);
+
+  return (
+    <div
+      style={{
+        gridColumn: "1 / -1",
+        padding: "10px 12px",
+        borderRadius: 14,
+        background: "#ffffff",
+        border: "1px solid #bfdbfe",
+      }}
+      title={probability.title}
+    >
+      <div style={laneLabelStyle}>Recruiting Probability</div>
+
+      <div
+        style={{
+          marginTop: 6,
+          display: "flex",
+          justifyContent: "space-between",
+          gap: 12,
+          alignItems: "center",
+        }}
+      >
+        <div style={{ fontSize: 15, fontWeight: 950, color: "#1e3a8a" }}>
+          {probability.label}
+        </div>
+
+        <div style={{ fontSize: 18, fontWeight: 950, color: "#0f172a" }}>
+          {probability.value}%
+        </div>
+      </div>
+
+      <div
+        style={{
+          marginTop: 8,
+          height: 8,
+          borderRadius: 999,
+          background: "#e2e8f0",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${probability.value}%`,
+            borderRadius: 999,
+            background: "#2563eb",
+          }}
+        />
+      </div>
+    </div>
+  );
+})() : null}
+{selectedLaneFit && getMeterMovementTips(selectedLaneFit).length > 0 ? (
+  <div
+    style={{
+      gridColumn: "1 / -1",
+      marginTop: -2,
+      padding: "10px 12px",
+      borderRadius: 14,
+      background: "#ffffff",
+      border: "1px solid #bfdbfe",
+    }}
+  >
+    <div style={laneLabelStyle}>What Moves the Meter?</div>
+
+    <div style={{ display: "grid", gap: 6, marginTop: 8 }}>
+      {getMeterMovementTips(selectedLaneFit).map((tip, index) => (
+        <div
+          key={index}
+          style={{
+            fontSize: 13,
+            fontWeight: 800,
+            color: "#334155",
+            lineHeight: 1.45,
+          }}
+        >
+          ↗ {tip}
+        </div>
+      ))}
+    </div>
+  </div>
+) : null}
   <div style={laneLabelStyle}>Recruiting Outlook</div>
   <div style={laneValueStyle}>
 <>
