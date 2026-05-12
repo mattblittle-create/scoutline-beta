@@ -824,7 +824,7 @@ body: JSON.stringify({
       </div>
 
 <div>
-  <div style={laneLabelStyle}>Best Score</div>
+  <div style={laneLabelStyle}>Division Score</div>
   <div style={laneValueStyle}>
     {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
   </div>

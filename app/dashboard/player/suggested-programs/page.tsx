@@ -72,6 +72,47 @@ function getGeographyRank(item: any) {
   return 9999;
 }
 
+function getSuggestedProgramGroup(item: any, bestLaneDivision?: string | null) {
+  const bestLane = String(bestLaneDivision || "").trim();
+  const division = getCollegeDivision(item);
+  const score = Number(item?.truthFit?.score ?? 0);
+  const label = String(item?.truthFit?.label || "");
+
+  if (bestLane && division === bestLane) {
+    return {
+      key: "BEST_LANE",
+      title: `Best Fit — ${pretty(bestLane)}`,
+      description:
+        "Primary recruiting targets aligned with your current best lane, match score, and available program data.",
+    };
+  }
+
+  if (score >= 70 || label === "Strong Fit" || label === "Match") {
+    return {
+      key: "STRONG_SECONDARY",
+      title: "Strong Secondary Fits",
+      description:
+        "Programs outside your best lane that still show strong profile alignment or meaningful recruiting opportunity.",
+    };
+  }
+
+  if (score >= 55 || label === "Possible Match") {
+    return {
+      key: "DEVELOPMENTAL",
+      title: "Developmental Options",
+      description:
+        "Programs worth monitoring as your metrics, video, academics, or recruiting profile continue to improve.",
+    };
+  }
+
+  return {
+    key: "LONG_TERM",
+    title: "Long-Term / Reach Targets",
+    description:
+      "Programs that may require additional development, stronger verified metrics, or a broader recruiting strategy.",
+  };
+}
+
 function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | null) {
   const bestLane = String(bestLaneDivision || "").trim();
 
@@ -376,6 +417,46 @@ const rankedTruthFitResults = React.useMemo(() => {
 const visibleTruthFitResults = isRedshirt
   ? rankedTruthFitResults.slice(0, 3)
   : rankedTruthFitResults.slice(0, visibleCount);
+
+  const groupedVisibleTruthFitResults = React.useMemo(() => {
+  const bestLaneDivision =
+    selectedLaneFit?.division ||
+    truthFitSummary?.recommendedLaneDivision ||
+    "";
+
+  const groupOrder = ["BEST_LANE", "STRONG_SECONDARY", "DEVELOPMENTAL", "LONG_TERM"];
+
+  const map = new Map<
+    string,
+    {
+      key: string;
+      title: string;
+      description: string;
+      items: any[];
+    }
+  >();
+
+  for (const item of visibleTruthFitResults) {
+    const group = getSuggestedProgramGroup(item, bestLaneDivision);
+
+    if (!map.has(group.key)) {
+      map.set(group.key, {
+        ...group,
+        items: [],
+      });
+    }
+
+    map.get(group.key)?.items.push(item);
+  }
+
+  return Array.from(map.values()).sort(
+    (a, b) => groupOrder.indexOf(a.key) - groupOrder.indexOf(b.key)
+  );
+}, [
+  visibleTruthFitResults,
+  selectedLaneFit?.division,
+  truthFitSummary?.recommendedLaneDivision,
+]);
 
   React.useEffect(() => {
     async function loadPlanTier() {
@@ -716,17 +797,31 @@ setHasLoadedTruthFit(true);
 <div
   style={{
     display: "grid",
-    gap: 12,
+    gap: 18,
   }}
 >
-  {visibleTruthFitResults.map((item) => {
-                const c = item.college;
-                const fit = item.truthFit;
-                const baseball = c.baseballProgram;
+  {groupedVisibleTruthFitResults.map((group) => (
+    <section key={group.key} style={resultGroupStyle}>
+      <div style={resultGroupHeaderStyle}>
+        <div>
+          <div style={resultGroupTitleStyle}>{group.title}</div>
+          <div style={resultGroupDescriptionStyle}>{group.description}</div>
+        </div>
 
-                return (
-                  <article
-                    key={c.id}
+        <div style={resultGroupCountStyle}>
+          {group.items.length} program{group.items.length === 1 ? "" : "s"}
+        </div>
+      </div>
+
+      <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
+        {group.items.map((item) => {
+          const c = item.college;
+          const fit = item.truthFit;
+          const baseball = c.baseballProgram;
+
+          return (
+            <article
+              key={c.id}
                     ref={c.id === selectedCollegeId ? selectedCollegeRef : null}
                     style={{
                       ...resultCardStyle,
@@ -991,10 +1086,13 @@ setHasLoadedTruthFit(true);
                         </span>
                       </div>
                     ) : null}
-                  </article>
-                );
-              })}
-            </div>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  ))}
+</div>
 
             {!isRedshirt &&
             visibleTruthFitResults.length < rankedTruthFitResults.length ? (
@@ -1712,6 +1810,46 @@ const benchmarkSourceStyle: React.CSSProperties = {
 const confidenceTextStyle: React.CSSProperties = {
   color: "#64748b",
   fontWeight: 800,
+};
+
+const resultGroupStyle: React.CSSProperties = {
+  border: "1px solid #e2e8f0",
+  borderRadius: 18,
+  padding: 14,
+  background: "#f8fafc",
+};
+
+const resultGroupHeaderStyle: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "flex-start",
+  gap: 12,
+  flexWrap: "wrap",
+};
+
+const resultGroupTitleStyle: React.CSSProperties = {
+  fontSize: 15,
+  fontWeight: 950,
+  color: "#0f172a",
+};
+
+const resultGroupDescriptionStyle: React.CSSProperties = {
+  marginTop: 4,
+  fontSize: 12,
+  fontWeight: 750,
+  color: "#64748b",
+  lineHeight: 1.45,
+  maxWidth: 680,
+};
+
+const resultGroupCountStyle: React.CSSProperties = {
+  borderRadius: 999,
+  padding: "6px 10px",
+  background: "#ffffff",
+  border: "1px solid #cbd5e1",
+  color: "#334155",
+  fontSize: 12,
+  fontWeight: 900,
 };
 
 const laneBoxStyle: React.CSSProperties = {
