@@ -120,15 +120,26 @@ function getDistanceMiles(item: any) {
 
 function getGeographyRank(item: any) {
   const miles = getDistanceMiles(item);
-  const geo = String(item?.geographyLabel || item?.distance?.label || "").toUpperCase();
 
+  // Best possible source: true lat/lng distance.
   if (typeof miles === "number") return miles;
 
-  if (geo.includes("LOCAL")) return 50;
-  if (geo.includes("REGIONAL")) return 150;
-  if (geo.includes("DRIVABLE")) return 400;
-  if (geo.includes("STATE")) return 500;
-  if (geo.includes("REGION")) return 900;
+  const geo = [
+    item?.geographyLabel,
+    item?.distance?.label,
+    item?.priorityReason,
+    ...(Array.isArray(item?.truthFit?.reasons) ? item.truthFit.reasons : []),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toUpperCase();
+
+  // Fallback hierarchy when exact miles are not available.
+  if (geo.includes("ZIP")) return 25;
+  if (geo.includes("LOCAL") || geo.includes("CITY")) return 50;
+  if (geo.includes("IN-STATE") || geo.includes("IN STATE") || geo.includes("STATE")) return 150;
+  if (geo.includes("NEARBY") || geo.includes("REGIONAL") || geo.includes("REGION")) return 400;
+  if (geo.includes("DRIVABLE")) return 700;
   if (geo.includes("NATIONAL")) return 2000;
 
   return 9999;
@@ -260,6 +271,7 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aIsBestLane = bestLane && aDivision === bestLane ? 1 : 0;
   const bIsBestLane = bestLane && bDivision === bestLane ? 1 : 0;
 
+  // 1. Best Lane Division first when viewing all divisions.
   if (aIsBestLane !== bIsBestLane) {
     return bIsBestLane - aIsBestLane;
   }
@@ -267,6 +279,7 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aScore = Number(a?.truthFit?.score ?? 0);
   const bScore = Number(b?.truthFit?.score ?? 0);
 
+  // 2. Match Score highest to lowest.
   if (aScore !== bScore) {
     return bScore - aScore;
   }
@@ -274,10 +287,27 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aGeo = getGeographyRank(a);
   const bGeo = getGeographyRank(b);
 
+  // 3. Closest geography next.
   if (aGeo !== bGeo) {
     return aGeo - bGeo;
   }
 
+  const aState = String(a?.college?.state || "");
+  const bState = String(b?.college?.state || "");
+
+  // 4. Stable location fallback before name.
+  if (aState !== bState) {
+    return aState.localeCompare(bState);
+  }
+
+  const aCity = String(a?.college?.city || "");
+  const bCity = String(b?.college?.city || "");
+
+  if (aCity !== bCity) {
+    return aCity.localeCompare(bCity);
+  }
+
+  // 5. Only use name as final tiebreaker.
   return String(a?.college?.name || "").localeCompare(String(b?.college?.name || ""));
 }
 
