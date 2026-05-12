@@ -5,7 +5,21 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
+import {
+  PolarAngleAxis,
+  PolarGrid,
+  Radar,
+  RadarChart,
+  ResponsiveContainer,
+} from "recharts";
 import { compareRecommendations } from "@/lib/recommendations/ranking";
+import {
+  buildPlayerArchetype,
+  buildPlayerBenchmarkBars,
+  buildPlayerGrades,
+  buildPlayerScoutingReport,
+  buildRecommendations,
+} from "@/lib/recruiting/recommendationEngine";
 
 function getRecruitingStrategy(summary: any, laneFit?: any) {
   const dominantFit = String(summary?.dominantFit || "");
@@ -543,11 +557,51 @@ function PlayerRecruitingToolContent() {
       (item: any) => item.division === selectedLaneDivision
     ) || truthFitSummary?.divisionFits?.[0] || null;
 
-  const selectedProjectionTier = selectedLaneFit
-    ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
-    : truthFitSummary?.projectionTier || "Developmental Prospect";
+const selectedProjectionTier = selectedLaneFit
+  ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
+  : truthFitSummary?.projectionTier || "Developmental Prospect";
 
-    React.useEffect(() => {
+const meterRecommendations = buildRecommendations({
+  player: truthFitSummary?.playerProfile,
+  summary: truthFitSummary,
+  laneFit: selectedLaneFit,
+  truthFitResults,
+});
+
+const playerGrades = buildPlayerGrades({
+  player: truthFitSummary?.playerProfile,
+  summary: truthFitSummary,
+  laneFit: selectedLaneFit,
+  truthFitResults,
+});
+
+const playerRadarData = playerGrades.map((grade) => ({
+  attribute: grade.label,
+  score: grade.score,
+}));
+
+const playerArchetype = buildPlayerArchetype({
+  player: truthFitSummary?.playerProfile,
+  summary: truthFitSummary,
+  laneFit: selectedLaneFit,
+  truthFitResults,
+});
+
+const playerBenchmarkBars = buildPlayerBenchmarkBars({
+  player: truthFitSummary?.playerProfile,
+  summary: truthFitSummary,
+  laneFit: selectedLaneFit,
+  truthFitResults,
+});
+
+const playerScoutingReport = buildPlayerScoutingReport({
+  player: truthFitSummary?.playerProfile,
+  summary: truthFitSummary,
+  laneFit: selectedLaneFit,
+  truthFitResults,
+});
+
+React.useEffect(() => {
     async function loadPlanTier() {
       try {
         const res = await fetch("/api/auth/me", { cache: "no-store" });
@@ -1057,6 +1111,605 @@ body: JSON.stringify({
     </div>
   </section>
 ) : null}
+
+<section
+  style={{
+    marginTop: 18,
+    border: "1px solid #e5e7eb",
+    borderRadius: 16,
+    background: "#fff",
+    padding: 18,
+  }}
+>
+  <div style={laneLabelStyle}>ScoutLine Player Grades</div>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(135px, 1fr))",
+      gap: 10,
+      marginTop: 12,
+    }}
+  >
+    {playerGrades.map((grade) => (
+      <div
+        key={grade.key}
+        title={grade.description}
+        style={{
+          borderRadius: 14,
+          border: "1px solid #e5e7eb",
+          background: "#f8fafc",
+          padding: 12,
+        }}
+      >
+        <div
+          style={{
+            fontSize: 11,
+            fontWeight: 900,
+            color: "#64748b",
+            textTransform: "uppercase",
+            letterSpacing: "0.04em",
+            marginBottom: 6,
+          }}
+        >
+          {grade.label}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            justifyContent: "space-between",
+            gap: 8,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 24,
+              fontWeight: 950,
+              color: "#0f172a",
+              lineHeight: 1,
+            }}
+          >
+            {grade.grade}
+          </div>
+
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: 900,
+              color: "#475569",
+            }}
+          >
+            {grade.score}/99
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+  <section
+  style={{
+    marginTop: 18,
+    border: "1px solid #e5e7eb",
+    borderRadius: 16,
+    background: "#fff",
+    padding: 18,
+  }}
+>
+  <div style={laneLabelStyle}>ScoutLine Recruitability Snapshot</div>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(0, 1fr) auto",
+      gap: 16,
+      alignItems: "center",
+      marginTop: 12,
+    }}
+  >
+    <div>
+      <div
+        style={{
+          fontSize: 20,
+          fontWeight: 950,
+          color: "#0f172a",
+          marginBottom: 6,
+        }}
+      >
+        {playerArchetype.title}
+      </div>
+
+      <div
+        style={{
+          fontSize: 13,
+          lineHeight: 1.6,
+          color: "#475569",
+        }}
+      >
+        {playerArchetype.summary}
+      </div>
+    </div>
+
+    <div
+      style={{
+        borderRadius: 16,
+        border: "1px solid #dbeafe",
+        background: "#eff6ff",
+        padding: "14px 16px",
+        textAlign: "center",
+        minWidth: 120,
+      }}
+    >
+      <div
+        style={{
+          fontSize: 11,
+          fontWeight: 900,
+          color: "#1d4ed8",
+          textTransform: "uppercase",
+          letterSpacing: "0.04em",
+          marginBottom: 6,
+        }}
+      >
+        Recruitability
+      </div>
+
+      <div
+        style={{
+          fontSize: 32,
+          fontWeight: 950,
+          color: "#0f172a",
+          lineHeight: 1,
+        }}
+      >
+        {playerArchetype.recruitabilityGrade}
+      </div>
+
+      <div
+        style={{
+          marginTop: 5,
+          fontSize: 12,
+          fontWeight: 900,
+          color: "#475569",
+        }}
+      >
+        {playerArchetype.recruitabilityScore}/99
+      </div>
+    </div>
+  </div>
+</section>
+
+<section
+  style={{
+    marginTop: 18,
+    border: "1px solid #e5e7eb",
+    borderRadius: 16,
+    background: "#fff",
+    padding: 18,
+  }}
+>
+  <div style={laneLabelStyle}>ScoutLine Scouting Report</div>
+
+  <div
+    style={{
+      marginTop: 10,
+      fontSize: 18,
+      fontWeight: 950,
+      color: "#0f172a",
+    }}
+  >
+    {playerScoutingReport.headline}
+  </div>
+
+  <div
+    style={{
+      marginTop: 8,
+      fontSize: 13,
+      lineHeight: 1.65,
+      color: "#475569",
+    }}
+  >
+    {playerScoutingReport.summary}
+  </div>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+      gap: 12,
+      marginTop: 14,
+    }}
+  >
+    <div
+      style={{
+        borderRadius: 14,
+        border: "1px solid #bbf7d0",
+        background: "#f0fdf4",
+        padding: 12,
+      }}
+    >
+      <div style={{ fontSize: 12, fontWeight: 950, color: "#166534", marginBottom: 6 }}>
+        Strengths
+      </div>
+
+      {playerScoutingReport.strengths.map((item, index) => (
+        <div key={index} style={{ fontSize: 13, fontWeight: 800, color: "#14532d", lineHeight: 1.5 }}>
+          ✓ {item}
+        </div>
+      ))}
+    </div>
+
+    <div
+      style={{
+        borderRadius: 14,
+        border: "1px solid #fde68a",
+        background: "#fffbeb",
+        padding: 12,
+      }}
+    >
+      <div style={{ fontSize: 12, fontWeight: 950, color: "#92400e", marginBottom: 6 }}>
+        Development Focus
+      </div>
+
+      {playerScoutingReport.developmentAreas.map((item, index) => (
+        <div key={index} style={{ fontSize: 13, fontWeight: 800, color: "#78350f", lineHeight: 1.5 }}>
+          ↗ {item}
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div
+    style={{
+      marginTop: 12,
+      borderRadius: 14,
+      border: "1px solid #dbeafe",
+      background: "#eff6ff",
+      padding: 12,
+      fontSize: 13,
+      fontWeight: 800,
+      color: "#1e3a8a",
+      lineHeight: 1.55,
+    }}
+  >
+    {playerScoutingReport.recruitingProjection}
+  </div>
+</section>
+
+<section
+  style={{
+    marginTop: 18,
+    border: "1px solid #e5e7eb",
+    borderRadius: 16,
+    background: "#fff",
+    padding: 18,
+  }}
+>
+  <div style={laneLabelStyle}>Benchmark Percentile Ladders</div>
+
+  <div
+    style={{
+      display: "grid",
+      gap: 12,
+      marginTop: 12,
+    }}
+  >
+    {playerBenchmarkBars.length > 0 ? (
+      playerBenchmarkBars.map((bar) => (
+        <div key={bar.key}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              alignItems: "center",
+              marginBottom: 6,
+            }}
+          >
+            <div
+              style={{
+                fontSize: 13,
+                fontWeight: 900,
+                color: "#0f172a",
+              }}
+            >
+              {bar.label}
+            </div>
+
+            <div
+              style={{
+                fontSize: 12,
+                fontWeight: 900,
+                color: "#475569",
+              }}
+            >
+              {bar.score}th percentile
+            </div>
+          </div>
+
+          <div
+            style={{
+              height: 10,
+              borderRadius: 999,
+              background: "#e2e8f0",
+              overflow: "hidden",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                width: `${bar.score}%`,
+                borderRadius: 999,
+                background:
+                  bar.score >= 85
+                    ? "#16a34a"
+                    : bar.score >= 70
+                    ? "#2563eb"
+                    : bar.score >= 50
+                    ? "#d97706"
+                    : "#dc2626",
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 6,
+              marginTop: 7,
+            }}
+          >
+            <span
+              style={{
+                borderRadius: 999,
+                padding: "4px 8px",
+                background: "#f0fdf4",
+                border: "1px solid #bbf7d0",
+                color: "#166534",
+                fontSize: 11,
+                fontWeight: 900,
+              }}
+            >
+              {bar.benchmarkTier}
+            </span>
+
+            <span
+              style={{
+                borderRadius: 999,
+                padding: "4px 8px",
+                background: "#f8fafc",
+                border: "1px solid #cbd5e1",
+                color: "#334155",
+                fontSize: 11,
+                fontWeight: 900,
+              }}
+            >
+              {bar.percentileLabel}
+            </span>
+          </div>
+        </div>
+      ))
+    ) : (
+      <div
+        style={{
+          borderRadius: 12,
+          background: "#f8fafc",
+          border: "1px solid #e5e7eb",
+          padding: 12,
+          fontSize: 13,
+          color: "#475569",
+          fontWeight: 800,
+          lineHeight: 1.5,
+        }}
+      >
+        Add verified metrics to unlock benchmark percentile ladders.
+      </div>
+    )}
+  </div>
+</section>
+
+<section
+  style={{
+    marginTop: 18,
+    border: "1px solid #e5e7eb",
+    borderRadius: 16,
+    background: "#fff",
+    padding: 18,
+  }}
+>
+  <div style={laneLabelStyle}>Player Tools Radar</div>
+
+  <div
+    style={{
+      marginTop: 12,
+      height: 320,
+      width: "100%",
+    }}
+  >
+    <ResponsiveContainer width="100%" height="100%">
+      <RadarChart data={playerRadarData}>
+        <PolarGrid />
+        <PolarAngleAxis
+          dataKey="attribute"
+          tick={{
+            fontSize: 11,
+            fontWeight: 800,
+            fill: "#475569",
+          }}
+        />
+        <Radar
+          name="ScoutLine Grade"
+          dataKey="score"
+          stroke="#1d4ed8"
+          fill="#1d4ed8"
+          fillOpacity={0.18}
+        />
+      </RadarChart>
+    </ResponsiveContainer>
+  </div>
+
+  <div
+    style={{
+      marginTop: 8,
+      fontSize: 12,
+      lineHeight: 1.5,
+      color: "#64748b",
+    }}
+  >
+    Visualizes the same ScoutLine grades above on a 1–99 scale to show overall tool balance, strengths, and development areas.
+  </div>
+</section>
+
+<section
+  style={{
+    marginTop: 18,
+    border: "1px solid #dbeafe",
+    borderRadius: 16,
+    background: "#f8fbff",
+    padding: 18,
+  }}
+>
+  <div style={laneLabelStyle}>What Moves the Meter?</div>
+
+  <div
+    style={{
+      display: "grid",
+      gap: 12,
+      marginTop: 12,
+    }}
+  >
+    {meterRecommendations.map((item, index) => (
+      <div
+        key={`${item.title}-${index}`}
+        style={{
+          borderRadius: 12,
+          background: "#fff",
+          border: "1px solid #dbeafe",
+          padding: 14,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            gap: 10,
+            flexWrap: "wrap",
+            marginBottom: 8,
+          }}
+        >
+          <div
+            style={{
+              fontSize: 15,
+              fontWeight: 900,
+              color: "#0f172a",
+            }}
+          >
+            {item.title}
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              gap: 6,
+              flexWrap: "wrap",
+            }}
+          >
+            <span
+              style={{
+                borderRadius: 999,
+                padding: "4px 8px",
+                background:
+                  item.priority === "High"
+                    ? "#fee2e2"
+                    : item.priority === "Medium"
+                    ? "#fef3c7"
+                    : "#dcfce7",
+                color:
+                  item.priority === "High"
+                    ? "#991b1b"
+                    : item.priority === "Medium"
+                    ? "#92400e"
+                    : "#166534",
+                fontSize: 11,
+                fontWeight: 900,
+              }}
+            >
+              {item.priority} Priority
+            </span>
+
+            <span
+              style={{
+                borderRadius: 999,
+                padding: "4px 8px",
+                background: "#eff6ff",
+                color: "#1d4ed8",
+                fontSize: 11,
+                fontWeight: 800,
+              }}
+            >
+              {item.category}
+            </span>
+          </div>
+        </div>
+
+        {(item.benchmarkTier || item.percentileLabel) ? (
+          <div
+            style={{
+              display: "flex",
+              gap: 6,
+              flexWrap: "wrap",
+              marginBottom: 8,
+            }}
+          >
+            {item.benchmarkTier ? (
+              <span
+                style={{
+                  borderRadius: 999,
+                  padding: "4px 8px",
+                  background: "#f0fdf4",
+                  border: "1px solid #bbf7d0",
+                  color: "#166534",
+                  fontSize: 11,
+                  fontWeight: 900,
+                }}
+              >
+                {item.benchmarkTier}
+              </span>
+            ) : null}
+
+            {item.percentileLabel ? (
+              <span
+                style={{
+                  borderRadius: 999,
+                  padding: "4px 8px",
+                  background: "#f8fafc",
+                  border: "1px solid #cbd5e1",
+                  color: "#334155",
+                  fontSize: 11,
+                  fontWeight: 900,
+                }}
+              >
+                {item.percentileLabel}
+              </span>
+            ) : null}
+          </div>
+        ) : null}
+
+        <div
+          style={{
+            fontSize: 13,
+            lineHeight: 1.6,
+            color: "#334155",
+          }}
+        >
+          {item.description}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
 
 <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
