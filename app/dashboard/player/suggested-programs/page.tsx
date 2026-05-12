@@ -1029,41 +1029,9 @@ style={{
                           ) : null}
                         </div>
 
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    flexWrap: "wrap",
-    marginTop: 5,
-  }}
->
-  <div style={locationStyle}>
-    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-    {item.distance?.label ? ` · ${item.distance.label}` : ""}
-  </div>
-
-  <div
-    title={getFitTooltip(fit.label, fit.score)}
-    style={{
-      ...matchScoreStyle,
-      border: `1px solid ${divisionIdentity.border}`,
-      background: divisionIdentity.background,
-      color: divisionIdentity.text,
-    }}
-  >
-    Match Score {fit.score}/100
-  </div>
-
-  {(() => {
-    const confidence = getRecruitingConfidence(item);
-
-    return (
-      <div title={confidence.title} style={confidenceBadgeStyle}>
-        {confidence.label}
-      </div>
-    );
-  })()}
+<div style={locationStyle}>
+  {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+  {item.distance?.label ? ` · ${item.distance.label}` : ""}
 </div>
                       </div>
 
@@ -1113,6 +1081,75 @@ style={{
                           </div>
                         ) : null}
 
+<div
+  style={{
+    display: "flex",
+    gap: 6,
+    flexWrap: "wrap",
+    justifyContent: "flex-end",
+    width: "100%",
+  }}
+>
+  <div
+    title={getFitTooltip(fit.label, fit.score)}
+    style={{
+      ...confidenceBadgeStyle,
+      border: `1px solid ${divisionIdentity.border}`,
+      background: divisionIdentity.background,
+      color: divisionIdentity.text,
+      marginTop: 0,
+    }}
+  >
+    Match Score {fit.score}/100
+  </div>
+
+  {(() => {
+    const confidence = getRecruitingConfidence(item);
+
+    return (
+      <div
+        title={confidence.title}
+        style={{
+          ...confidenceBadgeStyle,
+          marginTop: 0,
+        }}
+      >
+        {confidence.label}
+      </div>
+    );
+  })()}
+</div>
+
+{recruitingAnchors.length > 0 ? (
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+      justifyContent: "flex-end",
+      width: "100%",
+    }}
+  >
+    {recruitingAnchors.map((anchor) => (
+      <div
+        key={anchor}
+        style={{
+          borderRadius: 999,
+          padding: "5px 10px",
+          background: "#caa042",
+          color: "#0f172a",
+          fontSize: 11,
+          fontWeight: 950,
+          letterSpacing: "0.01em",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {anchor}
+      </div>
+    ))}
+  </div>
+) : null}
+
                         <button
   type="button"
   onClick={() => toggleExpandedCollege(c.id)}
@@ -1139,34 +1176,6 @@ style={{
     <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
   ) : null}
 </div>
-
-                      {recruitingAnchors.length > 0 ? (
-  <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 6,
-      marginTop: 8,
-    }}
-  >
-    {recruitingAnchors.map((anchor) => (
-      <div
-        key={anchor}
-        style={{
-          borderRadius: 999,
-          padding: "5px 10px",
-          background: "#caa042",
-          color: "#0f172a",
-          fontSize: 11,
-          fontWeight: 950,
-          letterSpacing: "0.01em",
-        }}
-      >
-        {anchor}
-      </div>
-    ))}
-  </div>
-) : null}
 
 <div style={{ gridColumn: "1 / -1" }}>
   <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
@@ -1748,6 +1757,7 @@ const actionPillRowStyle: React.CSSProperties = {
   flexWrap: "wrap",
   justifyContent: "flex-end",
   justifySelf: "end",
+  maxWidth: 420,
 };
 
 const topRecommendationBadgeStyle: React.CSSProperties = {
