@@ -846,7 +846,7 @@ setHasLoadedTruthFit(true);
         <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
             <div>
-              <h2 style={filterTitleStyle}>Suggested Program Filter</h2>
+              <h2 style={filterTitleStyle}>Program Filters</h2>
               <p style={filterSubtitleStyle}>
                 Narrow your Truth Fit list by division, region, state, and school type.
               </p>
