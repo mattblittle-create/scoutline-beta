@@ -45,6 +45,68 @@ function getCollegeDivision(item: any) {
   return String(item?.college?.baseballProgram?.division || "").trim();
 }
 
+function getDivisionIdentity(division?: string | null) {
+  const d = String(division || "").toUpperCase();
+
+  if (d === "NCAA_D1") {
+    return {
+      label: "NCAA D1",
+      border: "#1e3a8a",
+      background: "#eff6ff",
+      text: "#1e3a8a",
+      accent: "#caa042",
+    };
+  }
+
+  if (d === "NCAA_D2") {
+    return {
+      label: "NCAA D2",
+      border: "#16a34a",
+      background: "#f0fdf4",
+      text: "#166534",
+      accent: "#22c55e",
+    };
+  }
+
+  if (d === "NCAA_D3") {
+    return {
+      label: "NCAA D3",
+      border: "#64748b",
+      background: "#f8fafc",
+      text: "#334155",
+      accent: "#94a3b8",
+    };
+  }
+
+  if (d === "NAIA") {
+    return {
+      label: "NAIA",
+      border: "#7e22ce",
+      background: "#faf5ff",
+      text: "#6b21a8",
+      accent: "#a855f7",
+    };
+  }
+
+  if (d.includes("NJCAA")) {
+    return {
+      label: pretty(d),
+      border: "#ea580c",
+      background: "#fff7ed",
+      text: "#9a3412",
+      accent: "#fb923c",
+    };
+  }
+
+  return {
+    label: pretty(d),
+    border: "#cbd5e1",
+    background: "#f8fafc",
+    text: "#334155",
+    accent: "#94a3b8",
+  };
+}
+
 function getDistanceMiles(item: any) {
   const raw =
     item?.college?.distance?.miles ??
@@ -70,6 +132,82 @@ function getGeographyRank(item: any) {
   if (geo.includes("NATIONAL")) return 2000;
 
   return 9999;
+}
+
+function getRecruitingAnchors(
+  item: any,
+  allItems: any[],
+  bestLaneDivision?: string | null
+) {
+  const anchors: string[] = [];
+
+  const score = Number(item?.truthFit?.score ?? 0);
+
+  const distance =
+    item?.college?.distance?.miles ??
+    item?.distance?.miles ??
+    999999;
+
+  const gpaReason = Array.isArray(item?.truthFit?.reasons)
+    ? item.truthFit.reasons.some((r: string) =>
+        r.toLowerCase().includes("gpa")
+      )
+    : false;
+
+  const metricStrength = Array.isArray(item?.truthFit?.metricComparisons)
+    ? item.truthFit.metricComparisons.filter(
+        (m: any) => m.status === "ABOVE"
+      ).length
+    : 0;
+
+  const bestScore = Math.max(
+    ...allItems.map((i) => Number(i?.truthFit?.score ?? 0))
+  );
+
+  const closestDistance = Math.min(
+    ...allItems.map(
+      (i) =>
+        i?.college?.distance?.miles ??
+        i?.distance?.miles ??
+        999999
+    )
+  );
+
+  const bestMetricStrength = Math.max(
+    ...allItems.map((i) =>
+      Array.isArray(i?.truthFit?.metricComparisons)
+        ? i.truthFit.metricComparisons.filter(
+            (m: any) => m.status === "ABOVE"
+          ).length
+        : 0
+    )
+  );
+
+  if (score === bestScore) {
+    anchors.push("Highest Match Score");
+  }
+
+  if (distance === closestDistance && distance < 999999) {
+    anchors.push("Best Local Match");
+  }
+
+  if (gpaReason) {
+    anchors.push("Best Academic Match");
+  }
+
+  if (metricStrength === bestMetricStrength && metricStrength > 0) {
+    anchors.push("Best Athletic Match");
+  }
+
+  if (
+    bestLaneDivision &&
+    getCollegeDivision(item) === bestLaneDivision &&
+    score >= 75
+  ) {
+    anchors.push("Best Lane Target");
+  }
+
+  return anchors.slice(0, 3);
 }
 
 function getSuggestedProgramGroup(item: any, bestLaneDivision?: string | null) {
@@ -390,6 +528,7 @@ function PlayerSuggestedProgramsContent() {
   const [stateFilter, setStateFilter] = React.useState("ALL");
   const [controlFilter, setControlFilter] = React.useState("ALL");
   const [visibleCount, setVisibleCount] = React.useState(25);
+  const [expandedCollegeIds, setExpandedCollegeIds] = React.useState<string[]>([]);
 
   const isRedshirt = planTier === "REDSHIRT";
   const isAllAmerican = planTier === "ALL_AMERICAN";
@@ -571,6 +710,14 @@ setHasLoadedTruthFit(true);
 
     return () => window.clearTimeout(t);
   }, [selectedCollegeId, loadingTruthFit, truthFitResults.length]);
+
+  function toggleExpandedCollege(collegeId: string) {
+  setExpandedCollegeIds((prev) =>
+    prev.includes(collegeId)
+      ? prev.filter((id) => id !== collegeId)
+      : [...prev, collegeId]
+  );
+}
 
   async function toggleSavedCollege(collegeId: string, fitLabel: string, fitPriority?: string) {
     const isSaved = savedCollegeIds.includes(collegeId);
@@ -815,22 +962,32 @@ setHasLoadedTruthFit(true);
 
       <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
         {group.items.map((item) => {
-          const c = item.college;
-          const fit = item.truthFit;
-          const baseball = c.baseballProgram;
+const c = item.college;
+const fit = item.truthFit;
+const baseball = c.baseballProgram;
+const divisionIdentity = getDivisionIdentity(baseball?.division);
 
-          return (
-            <article
+const recruitingAnchors = getRecruitingAnchors(
+  item,
+  rankedTruthFitResults,
+  selectedLaneFit?.division
+);
+
+const isExpanded = expandedCollegeIds.includes(c.id);
+
+return (
+  <article
               key={c.id}
                     ref={c.id === selectedCollegeId ? selectedCollegeRef : null}
-                    style={{
-                      ...resultCardStyle,
-                      borderColor: c.id === selectedCollegeId ? "#caa042" : "#e5e7eb",
-                      boxShadow:
-                        c.id === selectedCollegeId
-                          ? "0 8px 22px rgba(202,160,66,0.20)"
-                          : "0 1px 2px rgba(0,0,0,0.04)",
-                    }}
+style={{
+  ...resultCardStyle,
+  borderColor: c.id === selectedCollegeId ? "#caa042" : divisionIdentity.border,
+  boxShadow:
+    c.id === selectedCollegeId
+      ? "0 8px 22px rgba(202,160,66,0.20)"
+      : "0 1px 2px rgba(0,0,0,0.04)",
+  borderLeft: `6px solid ${divisionIdentity.accent}`,
+}}
                   >
                     <div style={resultTopRowStyle}>
                       <div style={{ minWidth: 0 }}>
@@ -845,6 +1002,22 @@ setHasLoadedTruthFit(true);
                           <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
                             {c.name}
                           </Link>
+
+                          <span
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    borderRadius: 999,
+    padding: "4px 9px",
+    background: divisionIdentity.background,
+    border: `1px solid ${divisionIdentity.border}`,
+    color: divisionIdentity.text,
+    fontSize: 11,
+    fontWeight: 950,
+  }}
+>
+  {divisionIdentity.label}
+</span>
 
                           {item.isTopRecommendation ? (
                             <span
@@ -907,16 +1080,70 @@ setHasLoadedTruthFit(true);
                             {item.fitType}
                           </div>
                         ) : null}
+
+                        <button
+  type="button"
+  onClick={() => toggleExpandedCollege(c.id)}
+  style={{
+    borderRadius: 999,
+    padding: "6px 12px",
+    fontSize: 12,
+    fontWeight: 900,
+    border: "1px solid #cbd5e1",
+    background: isExpanded ? "#0f172a" : "#ffffff",
+    color: isExpanded ? "#ffffff" : "#334155",
+    cursor: "pointer",
+    whiteSpace: "nowrap",
+  }}
+>
+  {isExpanded ? "Hide Details" : "View Details"}
+</button>
                       </div>
 
                       <div style={recommendationExplanationStyle}>
                         {getRecommendationExplanation(item)}
                       </div>
 
+                      {recruitingAnchors.length > 0 ? (
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+      marginTop: 8,
+    }}
+  >
+    {recruitingAnchors.map((anchor) => (
+      <div
+        key={anchor}
+        style={{
+          borderRadius: 999,
+          padding: "5px 10px",
+          background: "#0f172a",
+          color: "#ffffff",
+          fontSize: 11,
+          fontWeight: 950,
+          letterSpacing: "0.01em",
+        }}
+      >
+        {anchor}
+      </div>
+    ))}
+  </div>
+) : null}
+
                       <div style={matchScoreWrapStyle}>
-                        <div title={getFitTooltip(fit.label, fit.score)} style={matchScoreStyle}>
-                          Match Score {fit.score}/100
-                        </div>
+<div
+  title={getFitTooltip(fit.label, fit.score)}
+  style={{
+    ...matchScoreStyle,
+    border: `1px solid ${divisionIdentity.border}`,
+    background: divisionIdentity.background,
+    color: divisionIdentity.text,
+  }}
+>
+  Match Score {fit.score}/100
+</div>
 
                         {(() => {
                           const confidence = getRecruitingConfidence(item);
@@ -946,11 +1173,13 @@ setHasLoadedTruthFit(true);
                           ) : null}
                         </div>
                       </div>
-                    </div>
+</div>
 
-                    {item.priorityReason ? (
-                      <div style={priorityReasonStyle}>{item.priorityReason}</div>
-                    ) : null}
+{isExpanded ? (
+  <>
+    {item.priorityReason ? (
+      <div style={priorityReasonStyle}>{item.priorityReason}</div>
+    ) : null}
 
                     {getRankingReasons(item).length > 0 ? (
                       <div style={rankingReasonBoxStyle}>
@@ -1078,14 +1307,20 @@ setHasLoadedTruthFit(true);
                       </div>
                     ) : null}
 
-                    {fit?.benchmarkSource?.metrics?.label ? (
-                      <div style={benchmarkSourceStyle}>
-                        Data Source: {fit.benchmarkSource.metrics.label}{" "}
-                        <span style={confidenceTextStyle}>
-                          ({fit.benchmarkSource.metrics.confidence || "LOW"} confidence)
-                        </span>
-                      </div>
-                    ) : null}
+{fit?.benchmarkSource?.metrics?.label ? (
+  <div style={benchmarkSourceStyle}>
+    Data Source: {fit.benchmarkSource.metrics.label}{" "}
+    <span style={confidenceTextStyle}>
+      ({fit.benchmarkSource.metrics.confidence || "LOW"} confidence)
+    </span>
+  </div>
+) : null}
+  </>
+) : (
+  <div style={collapsedHintStyle}>
+    View details to see recruiting reasons, development areas, program metadata, and benchmark comparisons.
+  </div>
+)}
             </article>
           );
         })}
@@ -1810,6 +2045,18 @@ const benchmarkSourceStyle: React.CSSProperties = {
 const confidenceTextStyle: React.CSSProperties = {
   color: "#64748b",
   fontWeight: 800,
+};
+
+const collapsedHintStyle: React.CSSProperties = {
+  marginTop: 12,
+  padding: "10px 12px",
+  borderRadius: 12,
+  background: "#f8fafc",
+  border: "1px dashed #cbd5e1",
+  color: "#64748b",
+  fontSize: 12,
+  fontWeight: 800,
+  lineHeight: 1.45,
 };
 
 const resultGroupStyle: React.CSSProperties = {
