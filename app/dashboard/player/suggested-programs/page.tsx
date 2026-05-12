@@ -5,7 +5,6 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
-import { compareRecommendations } from "@/lib/recommendations/ranking";
 
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
@@ -40,6 +39,67 @@ function getPriorityFromFit(label: string) {
   if (label === "Strong Fit") return "HIGH";
   if (label === "Match") return "MEDIUM";
   return "LOW";
+}
+
+function getCollegeDivision(item: any) {
+  return String(item?.college?.baseballProgram?.division || "").trim();
+}
+
+function getDistanceMiles(item: any) {
+  const raw =
+    item?.college?.distance?.miles ??
+    item?.distance?.miles ??
+    item?.distanceMiles ??
+    null;
+
+  const miles = Number(raw);
+  return Number.isFinite(miles) ? miles : null;
+}
+
+function getGeographyRank(item: any) {
+  const miles = getDistanceMiles(item);
+  const geo = String(item?.geographyLabel || item?.distance?.label || "").toUpperCase();
+
+  if (typeof miles === "number") return miles;
+
+  if (geo.includes("LOCAL")) return 50;
+  if (geo.includes("REGIONAL")) return 150;
+  if (geo.includes("DRIVABLE")) return 400;
+  if (geo.includes("STATE")) return 500;
+  if (geo.includes("REGION")) return 900;
+  if (geo.includes("NATIONAL")) return 2000;
+
+  return 9999;
+}
+
+function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | null) {
+  const bestLane = String(bestLaneDivision || "").trim();
+
+  const aDivision = getCollegeDivision(a);
+  const bDivision = getCollegeDivision(b);
+
+  const aIsBestLane = bestLane && aDivision === bestLane ? 1 : 0;
+  const bIsBestLane = bestLane && bDivision === bestLane ? 1 : 0;
+
+  if (aIsBestLane !== bIsBestLane) {
+    return bIsBestLane - aIsBestLane;
+  }
+
+  const aScore = Number(a?.truthFit?.score ?? 0);
+  const bScore = Number(b?.truthFit?.score ?? 0);
+
+  if (aScore !== bScore) {
+    return bScore - aScore;
+  }
+
+  const aGeo = getGeographyRank(a);
+  const bGeo = getGeographyRank(b);
+
+  if (aGeo !== bGeo) {
+    return aGeo - bGeo;
+  }
+
+  return String(a?.college?.name || "").localeCompare(String(b?.college?.name || ""));
 }
 
 function getRecommendationPills(item: any) {
@@ -288,41 +348,34 @@ function PlayerSuggestedProgramsContent() {
   const [regionFilter, setRegionFilter] = React.useState("ALL");
   const [stateFilter, setStateFilter] = React.useState("ALL");
   const [controlFilter, setControlFilter] = React.useState("ALL");
+  const [visibleCount, setVisibleCount] = React.useState(25);
 
   const isRedshirt = planTier === "REDSHIRT";
   const isAllAmerican = planTier === "ALL_AMERICAN";
 
-  const rankedTruthFitResults = React.useMemo(() => {
-    return [...truthFitResults].sort((a, b) =>
-      compareRecommendations(
-        {
-          name: a?.college?.name,
-          recommendedDivisionRank: Number(a?.recommendationRank ?? 0),
-          truthFitScore: Number(a?.truthFit?.score ?? 0),
-          distanceMiles: a?.college?.distance?.miles ?? a?.distance?.miles ?? null,
-        },
-        {
-          name: b?.college?.name,
-          recommendedDivisionRank: Number(b?.recommendationRank ?? 0),
-          truthFitScore: Number(b?.truthFit?.score ?? 0),
-          distanceMiles: b?.college?.distance?.miles ?? b?.distance?.miles ?? null,
-        }
-      )
-    );
-  }, [truthFitResults]);
+const selectedLaneFit =
+  truthFitSummary?.divisionFits?.find(
+    (item: any) => item.division === selectedLaneDivision
+  ) || truthFitSummary?.divisionFits?.[0] || null;
 
-  const visibleTruthFitResults = isRedshirt
-    ? rankedTruthFitResults.slice(0, 3)
-    : rankedTruthFitResults;
+const selectedProjectionTier = selectedLaneFit
+  ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
+  : truthFitSummary?.projectionTier || "Developmental Prospect";
 
-  const selectedLaneFit =
-    truthFitSummary?.divisionFits?.find(
-      (item: any) => item.division === selectedLaneDivision
-    ) || truthFitSummary?.divisionFits?.[0] || null;
+const rankedTruthFitResults = React.useMemo(() => {
+  const bestLaneDivision =
+    selectedLaneFit?.division ||
+    truthFitSummary?.recommendedLaneDivision ||
+    "";
 
-  const selectedProjectionTier = selectedLaneFit
-    ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
-    : truthFitSummary?.projectionTier || "Developmental Prospect";
+  return [...truthFitResults].sort((a, b) =>
+    compareSuggestedPrograms(a, b, bestLaneDivision)
+  );
+}, [truthFitResults, selectedLaneFit?.division, truthFitSummary?.recommendedLaneDivision]);
+
+const visibleTruthFitResults = isRedshirt
+  ? rankedTruthFitResults.slice(0, 3)
+  : rankedTruthFitResults.slice(0, visibleCount);
 
   React.useEffect(() => {
     async function loadPlanTier() {
@@ -408,6 +461,10 @@ setHasLoadedTruthFit(true);
   React.useEffect(() => {
     loadTruthFit();
   }, [loadTruthFit]);
+
+  React.useEffect(() => {
+  setVisibleCount(25);
+}, [divisionFilter, regionFilter, stateFilter, controlFilter]);
 
   React.useEffect(() => {
   const recommendedDivision =
@@ -523,7 +580,7 @@ setHasLoadedTruthFit(true);
       </div>
 
       <div>
-        <div style={laneLabelStyle}>Best Lane</div>
+        <div style={laneLabelStyle}>Division</div>
         <select
           value={selectedLaneDivision}
           onChange={(e) => setSelectedLaneDivision(e.target.value)}
@@ -640,7 +697,7 @@ setHasLoadedTruthFit(true);
               </div>
 
               <div style={countPillStyle}>
-                Showing {Math.min(25, visibleTruthFitResults.length)} of {truthFitResults.length}
+                Showing {visibleTruthFitResults.length} of {truthFitResults.length}
               </div>
             </div>
 
@@ -656,8 +713,13 @@ setHasLoadedTruthFit(true);
               </div>
             ) : null}
 
-            <div style={{ display: "grid", gap: 12 }}>
-              {visibleTruthFitResults.slice(0, 25).map((item) => {
+<div
+  style={{
+    display: "grid",
+    gap: 12,
+  }}
+>
+  {visibleTruthFitResults.map((item) => {
                 const c = item.college;
                 const fit = item.truthFit;
                 const baseball = c.baseballProgram;
@@ -933,6 +995,35 @@ setHasLoadedTruthFit(true);
                 );
               })}
             </div>
+
+            {!isRedshirt &&
+            visibleTruthFitResults.length < rankedTruthFitResults.length ? (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  marginTop: 18,
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((prev) => prev + 25)}
+                  style={{
+                    borderRadius: 999,
+                    padding: "12px 18px",
+                    border: "1px solid #cbd5e1",
+                    background: "#ffffff",
+                    color: "#0f172a",
+                    fontWeight: 900,
+                    cursor: "pointer",
+                  }}
+                >
+                  Load More Programs
+                  {" "}
+                  ({rankedTruthFitResults.length - visibleTruthFitResults.length} remaining)
+                </button>
+              </div>
+            ) : null}
           </section>
         ) : !loadingTruthFit && !hasLoadedTruthFit ? (
           <div style={infoBannerStyle}>
