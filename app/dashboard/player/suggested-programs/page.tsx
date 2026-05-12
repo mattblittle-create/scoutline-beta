@@ -1003,22 +1003,6 @@ style={{
                             {c.name}
                           </Link>
 
-                          <span
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    borderRadius: 999,
-    padding: "4px 9px",
-    background: divisionIdentity.background,
-    border: `1px solid ${divisionIdentity.border}`,
-    color: divisionIdentity.text,
-    fontSize: 11,
-    fontWeight: 950,
-  }}
->
-  {divisionIdentity.label}
-</span>
-
                           {item.isTopRecommendation ? (
                             <span
                               title="ScoutLine top recommendation based on fit score, program strength, and recruiting relevance."
@@ -1032,6 +1016,14 @@ style={{
 <div style={locationStyle}>
   {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
   {item.distance?.label ? ` · ${item.distance.label}` : ""}
+</div>
+
+<div style={linkRowStyle}>
+  {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
+  {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
+  {baseball?.baseballWebsiteUrl ? (
+    <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
+  ) : null}
 </div>
                       </div>
 
@@ -1168,14 +1160,6 @@ style={{
   {isExpanded ? "Hide Details" : "View Details"}
 </button>
                       </div>
-
-<div style={linkRowStyle}>
-  {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
-  {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
-  {baseball?.baseballWebsiteUrl ? (
-    <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
-  ) : null}
-</div>
 
 <div style={{ gridColumn: "1 / -1" }}>
   <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
@@ -1731,7 +1715,7 @@ const resultCardStyle: React.CSSProperties = {
 
 const resultTopRowStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "minmax(0, 1fr) auto",
+  gridTemplateColumns: "minmax(0, 1fr) minmax(390px, auto)",
   gap: 16,
   alignItems: "start",
 };
@@ -1754,10 +1738,10 @@ const actionPillRowStyle: React.CSSProperties = {
   display: "flex",
   gap: 8,
   alignItems: "center",
-  flexWrap: "wrap",
+  flexWrap: "nowrap",
   justifyContent: "flex-end",
   justifySelf: "end",
-  maxWidth: 420,
+  minWidth: 390,
 };
 
 const topRecommendationBadgeStyle: React.CSSProperties = {
