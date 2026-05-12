@@ -1029,10 +1029,42 @@ style={{
                           ) : null}
                         </div>
 
-                        <div style={locationStyle}>
-                          {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-                          {item.distance?.label ? ` · ${item.distance.label}` : ""}
-                        </div>
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    flexWrap: "wrap",
+    marginTop: 5,
+  }}
+>
+  <div style={locationStyle}>
+    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+    {item.distance?.label ? ` · ${item.distance.label}` : ""}
+  </div>
+
+  <div
+    title={getFitTooltip(fit.label, fit.score)}
+    style={{
+      ...matchScoreStyle,
+      border: `1px solid ${divisionIdentity.border}`,
+      background: divisionIdentity.background,
+      color: divisionIdentity.text,
+    }}
+  >
+    Match Score {fit.score}/100
+  </div>
+
+  {(() => {
+    const confidence = getRecruitingConfidence(item);
+
+    return (
+      <div title={confidence.title} style={confidenceBadgeStyle}>
+        {confidence.label}
+      </div>
+    );
+  })()}
+</div>
                       </div>
 
                       <div style={actionPillRowStyle}>
@@ -1100,9 +1132,13 @@ style={{
 </button>
                       </div>
 
-                      <div style={recommendationExplanationStyle}>
-                        {getRecommendationExplanation(item)}
-                      </div>
+<div style={linkRowStyle}>
+  {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
+  {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
+  {baseball?.baseballWebsiteUrl ? (
+    <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
+  ) : null}
+</div>
 
                       {recruitingAnchors.length > 0 ? (
   <div
@@ -1119,8 +1155,8 @@ style={{
         style={{
           borderRadius: 999,
           padding: "5px 10px",
-          background: "#0f172a",
-          color: "#ffffff",
+          background: "#caa042",
+          color: "#0f172a",
           fontSize: 11,
           fontWeight: 950,
           letterSpacing: "0.01em",
@@ -1132,47 +1168,26 @@ style={{
   </div>
 ) : null}
 
-                      <div style={matchScoreWrapStyle}>
-<div
-  title={getFitTooltip(fit.label, fit.score)}
-  style={{
-    ...matchScoreStyle,
-    border: `1px solid ${divisionIdentity.border}`,
-    background: divisionIdentity.background,
-    color: divisionIdentity.text,
-  }}
->
-  Match Score {fit.score}/100
+<div style={{ gridColumn: "1 / -1" }}>
+  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
+    {getRecommendationPills(item).map((pill) => (
+      <span key={pill} style={smallNeutralPillStyle}>
+        {pill}
+      </span>
+    ))}
+  </div>
+
+  <div style={recommendationExplanationStyle}>
+    {getRecommendationExplanation(item)}
+  </div>
+</div>
 </div>
 
-                        {(() => {
-                          const confidence = getRecruitingConfidence(item);
-
-                          return (
-                            <div title={confidence.title} style={confidenceBadgeStyle}>
-                              {confidence.label}
-                            </div>
-                          );
-                        })()}
-                      </div>
-
-                      <div style={{ gridColumn: "1 / -1" }}>
-                        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
-                          {getRecommendationPills(item).map((pill) => (
-                            <span key={pill} style={smallNeutralPillStyle}>
-                              {pill}
-                            </span>
-                          ))}
-                        </div>
-
-                        <div style={linkRowStyle}>
-                          {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
-                          {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
-                          {baseball?.baseballWebsiteUrl ? (
-                            <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
-                          ) : null}
-                        </div>
-                      </div>
+<div style={metaGridStyle}>
+  <Info label="Division" value={pretty(baseball?.division)} />
+  <Info label="Conference" value={baseball?.conference || "—"} />
+  <Info label="Nickname" value={baseball?.nickname || "—"} />
+  <Info label="Type" value={pretty(c.control)} />
 </div>
 
 {isExpanded ? (
@@ -1201,13 +1216,6 @@ style={{
                         {fit.development[0]}
                       </div>
                     ) : null}
-
-                    <div style={metaGridStyle}>
-                      <Info label="Division" value={pretty(baseball?.division)} />
-                      <Info label="Conference" value={baseball?.conference || "—"} />
-                      <Info label="Nickname" value={baseball?.nickname || "—"} />
-                      <Info label="Type" value={pretty(c.control)} />
-                    </div>
 
                     <div style={reasonBoxStyle}>
                       <div style={reasonTitleStyle}>Why ScoutLine likes this fit</div>
@@ -1318,7 +1326,7 @@ style={{
   </>
 ) : (
   <div style={collapsedHintStyle}>
-    View details to see recruiting reasons, development areas, program metadata, and benchmark comparisons.
+    Click View Details to see recruiting reasons, development areas, and benchmark comparisons.
   </div>
 )}
             </article>
