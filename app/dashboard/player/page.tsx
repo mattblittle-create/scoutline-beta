@@ -1267,11 +1267,6 @@ const unreadChatCount = chatConversations.reduce(
           gap: 16,
         }}
       >
-        <DashboardCard
-          title="Profile Editor"
-          description="Open your player profile editor to update academics, athletics, metrics, stats, video, and references."
-          href="/dashboard/player/profile"
-        />
 
         <DashboardCard
           title="Recruiting Tool"
@@ -1279,23 +1274,29 @@ const unreadChatCount = chatConversations.reduce(
           href="/dashboard/player/recruiting-tool"
         />
 
-<DashboardCard
-  title="College Search"
-  description="Search colleges by region, division, conference, tuition, admissions profile, and baseball fit."
-  href="/dashboard/player/college-search"
-/>
+        <DashboardCard
+          title="College Search"
+          description="Search colleges by region, division, conference, tuition, admissions profile, and baseball fit."
+          href="/dashboard/player/college-search"
+        />
 
-<DashboardCard
-  title="Suggested Programs"
-  description="View ScoutLine-recommended college programs based on your profile, metrics, academics, and recruiting fit."
-  href="/dashboard/player/suggested-programs"
-/>
+        <DashboardCard
+          title="Suggested Programs"
+          description="View ScoutLine-recommended college programs based on your profile, metrics, academics, and recruiting fit."
+          href="/dashboard/player/suggested-programs"
+        />
 
-<DashboardCard
-  title="Target Programs"
-  description="View and manage the college programs you saved from search."
-  href="/dashboard/player/target-programs"
-/>
+        <DashboardCard
+          title="Target Programs"
+          description="View and manage the college programs you saved from search."
+          href="/dashboard/player/target-programs"
+        />
+
+        <DashboardCard
+          title="Profile Editor"
+          description="Open your player profile editor to update academics, athletics, metrics, stats, video, and references."
+          href="/dashboard/player/profile"
+        />
 
         <DashboardCard
           title="Plan Billing"
