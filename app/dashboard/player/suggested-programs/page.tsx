@@ -7,6 +7,35 @@ import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { compareRecommendations } from "@/lib/recommendations/ranking";
 
+function projectionTierFromLane(division?: string | null, fit?: string | null) {
+  const d = String(division || "");
+  const f = String(fit || "");
+
+  if (d === "NCAA_D1" && (f === "Strong Fit" || f === "Match")) {
+    return "D1 Track";
+  }
+
+  if (
+    (d === "NCAA_D2" || d === "NAIA" || d === "NJCAA_D1") &&
+    (f === "Strong Fit" || f === "Match")
+  ) {
+    return "D2 / NAIA / JUCO Fit";
+  }
+
+  if (
+    (d === "NCAA_D3" || d === "NJCAA_D2" || d === "NJCAA_D3") &&
+    (f === "Strong Fit" || f === "Match" || f === "Possible Match")
+  ) {
+    return "D3 / JUCO Fit";
+  }
+
+  if (f === "Possible Match") {
+    return "Emerging Prospect";
+  }
+
+  return "Developmental Prospect";
+}
+
 function getPriorityFromFit(label: string) {
   if (label === "Strong Fit") return "HIGH";
   if (label === "Match") return "MEDIUM";
@@ -247,6 +276,8 @@ function PlayerSuggestedProgramsContent() {
 
   const [planTier, setPlanTier] = React.useState("REDSHIRT");
   const [truthFitResults, setTruthFitResults] = React.useState<any[]>([]);
+  const [truthFitSummary, setTruthFitSummary] = React.useState<any>(null);
+  const [selectedLaneDivision, setSelectedLaneDivision] = React.useState("");
   const [savedCollegeIds, setSavedCollegeIds] = React.useState<string[]>([]);
   const [savingCollegeId, setSavingCollegeId] = React.useState("");
   const [loadingTruthFit, setLoadingTruthFit] = React.useState(false);
@@ -283,6 +314,15 @@ function PlayerSuggestedProgramsContent() {
   const visibleTruthFitResults = isRedshirt
     ? rankedTruthFitResults.slice(0, 3)
     : rankedTruthFitResults;
+
+  const selectedLaneFit =
+    truthFitSummary?.divisionFits?.find(
+      (item: any) => item.division === selectedLaneDivision
+    ) || truthFitSummary?.divisionFits?.[0] || null;
+
+  const selectedProjectionTier = selectedLaneFit
+    ? projectionTierFromLane(selectedLaneFit.division, selectedLaneFit.fitTier)
+    : truthFitSummary?.projectionTier || "Developmental Prospect";
 
   React.useEffect(() => {
     async function loadPlanTier() {
@@ -353,8 +393,9 @@ function PlayerSuggestedProgramsContent() {
           })
         : rawResults;
 
-      setTruthFitResults(sortedResults);
-      setHasLoadedTruthFit(true);
+setTruthFitResults(sortedResults);
+setTruthFitSummary(data.summary || null);
+setHasLoadedTruthFit(true);
     } catch (err) {
       console.error("SUGGESTED_PROGRAMS_LOAD_ERROR", err);
       setTruthFitError("Could not load suggested programs.");
@@ -367,6 +408,18 @@ function PlayerSuggestedProgramsContent() {
   React.useEffect(() => {
     loadTruthFit();
   }, [loadTruthFit]);
+
+  React.useEffect(() => {
+  const recommendedDivision =
+    truthFitSummary?.recommendedLaneDivision ||
+    truthFitSummary?.divisionFits?.find((item: any) => item?.isRecommendedLane)?.division ||
+    truthFitSummary?.divisionFits?.[0]?.division ||
+    "";
+
+  if (recommendedDivision) {
+    setSelectedLaneDivision((prev) => prev || recommendedDivision);
+  }
+}, [truthFitSummary]);
 
   React.useEffect(() => {
     if (!selectedCollegeId || loadingTruthFit || !truthFitResults.length) return;
@@ -453,10 +506,62 @@ function PlayerSuggestedProgramsContent() {
           </div>
         </div>
 
+        {truthFitSummary ? (
+  <section
+    style={{
+      ...laneBoxStyle,
+      border: "1px solid #dbeafe",
+      background: "#eff6ff",
+    }}
+  >
+    <div style={laneTitleStyle}>Your Recruiting Lane</div>
+
+    <div style={laneGridStyle}>
+      <div>
+        <div style={laneLabelStyle}>Player Projection</div>
+        <div style={projectionTierStyle}>{selectedProjectionTier}</div>
+      </div>
+
+      <div>
+        <div style={laneLabelStyle}>Best Lane</div>
+        <select
+          value={selectedLaneDivision}
+          onChange={(e) => setSelectedLaneDivision(e.target.value)}
+          style={laneSelectStyle}
+        >
+          {(truthFitSummary.divisionFits?.length
+            ? truthFitSummary.divisionFits
+            : [{ division: truthFitSummary.dominantDivision || "UNKNOWN" }]
+          ).map((item: any) => (
+            <option key={item.division} value={item.division}>
+              {pretty(item.division)}
+              {item.isRecommendedLane ? " — Best Lane" : ""}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <div style={laneLabelStyle}>Division Fit</div>
+        <div style={laneValueStyle}>
+          {selectedLaneFit?.fitTier || truthFitSummary.dominantFit || "—"}
+        </div>
+      </div>
+
+      <div>
+        <div style={laneLabelStyle}>Division Score</div>
+        <div style={laneValueStyle}>
+          {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
+        </div>
+      </div>
+    </div>
+  </section>
+) : null}
+
         <section style={filterPanelStyle}>
           <div style={filterHeaderStyle}>
             <div>
-              <h2 style={filterTitleStyle}>Filter schools</h2>
+              <h2 style={filterTitleStyle}>Suggested Program Filter</h2>
               <p style={filterSubtitleStyle}>
                 Narrow your Truth Fit list by division, region, state, and school type.
               </p>
@@ -1516,4 +1621,70 @@ const benchmarkSourceStyle: React.CSSProperties = {
 const confidenceTextStyle: React.CSSProperties = {
   color: "#64748b",
   fontWeight: 800,
+};
+
+const laneBoxStyle: React.CSSProperties = {
+  marginBottom: 18,
+  padding: 18,
+  borderRadius: 16,
+  background: "#f0fdf4",
+  border: "1px solid #bbf7d0",
+};
+
+const laneTitleStyle: React.CSSProperties = {
+  fontSize: 16,
+  fontWeight: 900,
+  marginBottom: 10,
+  color: "#14532d",
+};
+
+const laneGridStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 18,
+  gridTemplateColumns: "1fr 1fr 1fr 1fr",
+  alignItems: "start",
+  width: "100%",
+};
+
+const laneLabelStyle: React.CSSProperties = {
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#166534",
+};
+
+const projectionTierStyle: React.CSSProperties = {
+  marginTop: 6,
+  display: "inline-flex",
+  width: "100%",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "8px 12px",
+  background: "#dcfce7",
+  border: "1px solid #86efac",
+  color: "#14532d",
+  fontWeight: 900,
+  fontSize: 14,
+};
+
+const laneSelectStyle: React.CSSProperties = {
+  marginTop: 4,
+  width: "100%",
+  minHeight: 42,
+  height: 42,
+  border: "1px solid #86efac",
+  borderRadius: 10,
+  padding: "8px 10px",
+  background: "#ffffff",
+  color: "#052e16",
+  fontWeight: 900,
+  fontSize: 14,
+  lineHeight: "20px",
+  outline: "none",
+};
+
+const laneValueStyle: React.CSSProperties = {
+  marginTop: 4,
+  fontSize: 14,
+  fontWeight: 900,
+  color: "#052e16",
 };

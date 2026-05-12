@@ -778,21 +778,6 @@ body: JSON.stringify({
           </Link>
         </div>
 
-        <div style={cardGridStyle}>
-          <FeatureCard
-            title="Truth / Fit Analysis"
-            description="Compare player academics, metrics, stats, and position data against college recruiting benchmarks."
-          />
-          <FeatureCard
-            title="Opportunity Matching"
-            description="Identify schools where your current profile best aligns with recruiting needs and roster opportunities."
-          />
-          <FeatureCard
-            title="Development Priorities"
-            description="Highlight the next most impactful areas for improvement to boost recruiting visibility."
-          />
-        </div>
-
 {truthFitSummary ? (
   <section
     style={{
