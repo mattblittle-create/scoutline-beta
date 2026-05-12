@@ -1286,6 +1286,12 @@ const unreadChatCount = chatConversations.reduce(
 />
 
 <DashboardCard
+  title="Suggested Programs"
+  description="View ScoutLine-recommended college programs based on your profile, metrics, academics, and recruiting fit."
+  href="/dashboard/player/suggested-programs"
+/>
+
+<DashboardCard
   title="Target Programs"
   description="View and manage the college programs you saved from search."
   href="/dashboard/player/target-programs"
