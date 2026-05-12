@@ -989,198 +989,125 @@ style={{
   borderLeft: `6px solid ${divisionIdentity.accent}`,
 }}
                   >
-                    <div style={resultTopRowStyle}>
-                      <div style={{ minWidth: 0 }}>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 8,
-                            flexWrap: "wrap",
-                          }}
-                        >
-                          <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
-                            {c.name}
-                          </Link>
-
-                          {item.isTopRecommendation ? (
-                            <span
-                              title="ScoutLine top recommendation based on fit score, program strength, and recruiting relevance."
-                              style={topRecommendationBadgeStyle}
-                            >
-                              ⭐ Top Recommendation
-                            </span>
-                          ) : null}
-                        </div>
-
-<div style={locationStyle}>
-  {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
-  {item.distance?.label ? ` · ${item.distance.label}` : ""}
-</div>
-
-<div style={linkRowStyle}>
-  {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
-  {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
-  {baseball?.baseballWebsiteUrl ? (
-    <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
-  ) : null}
-</div>
-                      </div>
-
-                      <div style={actionPillRowStyle}>
-                        <button
-                          type="button"
-                          title={
-                            savedCollegeIds.includes(c.id)
-                              ? "Remove from Target Programs"
-                              : "Save to Target Programs"
-                          }
-                          onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
-                          disabled={savingCollegeId === c.id}
-                          style={{
-                            width: 32,
-                            height: 32,
-                            borderRadius: 999,
-                            border: "2px solid #0ea5e9",
-                            background: savedCollegeIds.includes(c.id)
-                              ? "#caa042"
-                              : "transparent",
-                            color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
-                            fontWeight: 900,
-                            cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
-                            opacity: savingCollegeId === c.id ? 0.6 : 1,
-                          }}
-                        >
-                          ★
-                        </button>
-
-                        {item.geographyLabel ? (
-                          <div title="Geographic relevance based on home state and recruiting region." style={bluePillStyle}>
-                            {item.geographyLabel}
-                          </div>
-                        ) : null}
-
-                        <div
-                          title="How strongly ScoutLine recommends targeting this school."
-                          style={goldPillStyle}
-                        >
-                          {getPriorityBadgeText(fit.priority)}
-                        </div>
-
-                        {item.fitType ? (
-                          <div title="Overall player-to-program fit." style={goldPillStyle}>
-                            {item.fitType}
-                          </div>
-                        ) : null}
-
-<div
-  style={{
-    display: "flex",
-    gap: 6,
-    flexWrap: "wrap",
-    justifyContent: "flex-end",
-    width: "100%",
-  }}
->
-  <div
-    title={getFitTooltip(fit.label, fit.score)}
-    style={{
-      ...confidenceBadgeStyle,
-      border: `1px solid ${divisionIdentity.border}`,
-      background: divisionIdentity.background,
-      color: divisionIdentity.text,
-      marginTop: 0,
-    }}
-  >
-    Match Score {fit.score}/100
+<div style={resultTopRowStyle}>
+  {/* Line 1 left */}
+  <div style={{ minWidth: 0 }}>
+    <Link href={`/college/${c.slug}`} style={collegeNameStyle}>
+      {c.name}
+    </Link>
   </div>
 
-  {(() => {
-    const confidence = getRecruitingConfidence(item);
+  {/* Line 1 right */}
+  <div style={actionPillRowStyle}>
+    <button
+      type="button"
+      title={savedCollegeIds.includes(c.id) ? "Remove from Target Programs" : "Save to Target Programs"}
+      onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
+      disabled={savingCollegeId === c.id}
+      style={{
+        width: 32,
+        height: 32,
+        borderRadius: 999,
+        border: "2px solid #0ea5e9",
+        background: savedCollegeIds.includes(c.id) ? "#caa042" : "transparent",
+        color: savedCollegeIds.includes(c.id) ? "#0f172a" : "#0ea5e9",
+        fontWeight: 900,
+        cursor: savingCollegeId === c.id ? "not-allowed" : "pointer",
+        opacity: savingCollegeId === c.id ? 0.6 : 1,
+      }}
+    >
+      ★
+    </button>
 
-    return (
-      <div
-        title={confidence.title}
-        style={{
-          ...confidenceBadgeStyle,
-          marginTop: 0,
-        }}
-      >
-        {confidence.label}
-      </div>
-    );
-  })()}
-</div>
+    {item.geographyLabel ? <div style={bluePillStyle}>{item.geographyLabel}</div> : null}
 
-{recruitingAnchors.length > 0 ? (
-  <div
-    style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: 6,
-      justifyContent: "flex-end",
-      width: "100%",
-    }}
-  >
+    <div style={goldPillStyle}>{getPriorityBadgeText(fit.priority)}</div>
+
+    {item.fitType ? <div style={goldPillStyle}>{item.fitType}</div> : null}
+  </div>
+
+  {/* Line 2 left */}
+  <div style={locationStyle}>
+    {[c.city, c.state].filter(Boolean).join(", ") || "Location TBD"}
+    {item.distance?.label ? ` · ${item.distance.label}` : ""}
+  </div>
+
+  {/* Line 2 right */}
+  <div style={rightPillRowStyle}>
+    <div
+      title={getFitTooltip(fit.label, fit.score)}
+      style={{
+        ...confidenceBadgeStyle,
+        border: `1px solid ${divisionIdentity.border}`,
+        background: divisionIdentity.background,
+        color: divisionIdentity.text,
+        marginTop: 0,
+      }}
+    >
+      Match Score {fit.score}/100
+    </div>
+
+    {(() => {
+      const confidence = getRecruitingConfidence(item);
+
+      return (
+        <div title={confidence.title} style={{ ...confidenceBadgeStyle, marginTop: 0 }}>
+          {confidence.label}
+        </div>
+      );
+    })()}
+  </div>
+
+  {/* Line 3 left */}
+  <div style={linkRowStyle}>
+    {c.websiteUrl ? <ExternalLink href={c.websiteUrl}>School Site</ExternalLink> : null}
+    {c.admissionsUrl ? <ExternalLink href={c.admissionsUrl}>Admissions</ExternalLink> : null}
+    {baseball?.baseballWebsiteUrl ? (
+      <ExternalLink href={baseball.baseballWebsiteUrl}>Baseball Site</ExternalLink>
+    ) : null}
+  </div>
+
+  {/* Line 3 right */}
+  <div style={rightPillRowStyle}>
     {recruitingAnchors.map((anchor) => (
-      <div
-        key={anchor}
-        style={{
-          borderRadius: 999,
-          padding: "5px 10px",
-          background: "#caa042",
-          color: "#0f172a",
-          fontSize: 11,
-          fontWeight: 950,
-          letterSpacing: "0.01em",
-          whiteSpace: "nowrap",
-        }}
-      >
+      <div key={anchor} style={anchorPillStyle}>
         {anchor}
       </div>
     ))}
   </div>
-) : null}
 
-                        <button
-  type="button"
-  onClick={() => toggleExpandedCollege(c.id)}
-  style={{
-    borderRadius: 999,
-    padding: "6px 12px",
-    fontSize: 12,
-    fontWeight: 900,
-    border: "1px solid #cbd5e1",
-    background: isExpanded ? "#0f172a" : "#ffffff",
-    color: isExpanded ? "#ffffff" : "#334155",
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-  }}
->
-  {isExpanded ? "Hide Details" : "View Details"}
-</button>
-                      </div>
-
-<div style={{ gridColumn: "1 / -1" }}>
-  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 8 }}>
-    {getRecommendationPills(item).map((pill) => (
-      <span key={pill} style={smallNeutralPillStyle}>
-        {pill}
-      </span>
-    ))}
-  </div>
-
+  {/* Line 4 left */}
   <div style={recommendationExplanationStyle}>
     {getRecommendationExplanation(item)}
   </div>
-</div>
+
+  {/* Line 4 right */}
+  <div style={rightPillRowStyle}>
+    <button
+      type="button"
+      onClick={() => toggleExpandedCollege(c.id)}
+      style={{
+        borderRadius: 999,
+        padding: "6px 12px",
+        fontSize: 12,
+        fontWeight: 900,
+        border: "1px solid #cbd5e1",
+        background: isExpanded ? "#0f172a" : "#ffffff",
+        color: isExpanded ? "#ffffff" : "#334155",
+        cursor: "pointer",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {isExpanded ? "Hide Details" : "View Details"}
+    </button>
+  </div>
 </div>
 
 <div style={metaGridStyle}>
   <Info label="Division" value={pretty(baseball?.division)} />
   <Info label="Conference" value={baseball?.conference || "—"} />
   <Info label="Nickname" value={baseball?.nickname || "—"} />
-  <Info label="Type" value={pretty(c.control)} />
+  <Info label="School Type" value={pretty(c.control)} />
 </div>
 
 {isExpanded ? (
@@ -1716,8 +1643,37 @@ const resultCardStyle: React.CSSProperties = {
 const resultTopRowStyle: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "minmax(0, 1fr) minmax(390px, auto)",
-  gap: 16,
-  alignItems: "start",
+  gap: "6px 16px",
+  alignItems: "center",
+};
+
+const actionPillRowStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 8,
+  alignItems: "center",
+  flexWrap: "nowrap",
+  justifyContent: "flex-end",
+  justifySelf: "end",
+};
+
+const rightPillRowStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 6,
+  alignItems: "center",
+  flexWrap: "wrap",
+  justifyContent: "flex-end",
+  justifySelf: "end",
+};
+
+const anchorPillStyle: React.CSSProperties = {
+  borderRadius: 999,
+  padding: "5px 10px",
+  background: "#caa042",
+  color: "#0f172a",
+  fontSize: 11,
+  fontWeight: 950,
+  letterSpacing: "0.01em",
+  whiteSpace: "nowrap",
 };
 
 const collegeNameStyle: React.CSSProperties = {
@@ -1732,16 +1688,6 @@ const locationStyle: React.CSSProperties = {
   fontSize: 13,
   color: "#64748b",
   fontWeight: 700,
-};
-
-const actionPillRowStyle: React.CSSProperties = {
-  display: "flex",
-  gap: 8,
-  alignItems: "center",
-  flexWrap: "nowrap",
-  justifyContent: "flex-end",
-  justifySelf: "end",
-  minWidth: 390,
 };
 
 const topRecommendationBadgeStyle: React.CSSProperties = {
