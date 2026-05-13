@@ -1102,7 +1102,10 @@ style={{
 
     {item.opportunityScore ? (
       <div
-        title={item.opportunityScore.reasons?.join(" • ") || "Opportunity score based on available program intelligence."}
+        title={getOpportunityTooltip(
+  item.opportunityScore.score,
+  item.opportunityScore.reasons
+)}
         style={{
           ...confidenceBadgeStyle,
           marginTop: 0,
@@ -1111,7 +1114,7 @@ style={{
           color: "#92400e",
         }}
       >
-        Opportunity {item.opportunityScore.score}/100
+        Opportunity Index {item.opportunityScore.score}/100
       </div>
     ) : null}
 
@@ -1473,19 +1476,45 @@ function getPriorityBadgeText(priority?: string | null) {
 }
 
 function getFitTooltip(label: string, score: number) {
+  const base =
+    "Match Score = how well this player fits this program/division based on ability, academics, metrics, and profile data.";
+
   if (label === "Strong Fit") {
-    return `Strong Fit = Your profile is currently tracking very well for this program.\nScore: ${score}/100`;
+    return `${base}\n\nStrong Fit = The player's current profile is tracking very well for this program level.\nScore: ${score}/100`;
   }
 
   if (label === "Match") {
-    return `Match = Your profile aligns well with this program based on available data.\nScore: ${score}/100`;
+    return `${base}\n\nMatch = The player's profile aligns well with this program based on available data.\nScore: ${score}/100`;
   }
 
   if (label === "Possible Match") {
-    return `Possible Match = This school may be worth tracking, especially if some school-side data is still incomplete.\nScore: ${score}/100`;
+    return `${base}\n\nPossible Match = This program may be worth tracking, especially if the player is still developing or some school-side data is incomplete.\nScore: ${score}/100`;
   }
 
-  return `Reach / Not Yet = This school is currently a reach based on your profile and available benchmarks, but it can still be tracked as a longer-term target.\nScore: ${score}/100`;
+  return `${base}\n\nReach / Not Yet = This program is currently a reach based on the player's profile and available benchmarks, but it can still be tracked as a longer-term target.\nScore: ${score}/100`;
+}
+
+function getOpportunityTooltip(score: number, reasons?: string[]) {
+  const base =
+    "Opportunity Index = how realistic of a recruiting opportunity this program may be for this player based on roster needs, grad year, roster turnover, and available program intelligence.";
+
+  const reasonText = reasons?.length
+    ? `\n\nKey signals:\n- ${reasons.join("\n- ")}`
+    : "";
+
+  if (score >= 80) {
+    return `${base}\n\nHigh Opportunity = This program appears to have strong recruiting opportunity signals for this player.\nScore: ${score}/100${reasonText}`;
+  }
+
+  if (score >= 65) {
+    return `${base}\n\nGood Opportunity = This program shows several positive recruiting opportunity signals, but it may still require active outreach and continued development.\nScore: ${score}/100${reasonText}`;
+  }
+
+  if (score >= 45) {
+    return `${base}\n\nModerate Opportunity = This program may be worth monitoring, but the current opportunity signals are mixed or incomplete.\nScore: ${score}/100${reasonText}`;
+  }
+
+  return `${base}\n\nLow Opportunity = This program currently shows limited recruiting opportunity signals for this player, but it may still be useful as a long-term or watch-list target.\nScore: ${score}/100${reasonText}`;
 }
 
 const shellStyle: React.CSSProperties = {
