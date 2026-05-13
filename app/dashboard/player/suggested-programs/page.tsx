@@ -1490,25 +1490,6 @@ function getPriorityBadgeText(priority?: string | null) {
   return "Priority TBD";
 }
 
-function getFitTooltip(label: string, score: number) {
-  const base =
-    "Match Score = how well this player fits this program/division based on ability, academics, intended majors, metrics, and profile data.";
-
-  if (label === "Strong Fit") {
-    return `${base}\n\nStrong Fit = The player's current profile is tracking very well for this program level.\nScore: ${score}/100`;
-  }
-
-  if (label === "Match") {
-    return `${base}\n\nMatch = The player's profile aligns well with this program based on available data.\nScore: ${score}/100`;
-  }
-
-  if (label === "Possible Match") {
-    return `${base}\n\nPossible Match = This program may be worth tracking, especially if the player is still developing or some school-side data is incomplete.\nScore: ${score}/100`;
-  }
-
-  return `${base}\n\nReach / Not Yet = This program is currently a reach based on the player's profile and available benchmarks, but it can still be tracked as a longer-term target.\nScore: ${score}/100`;
-}
-
 function getOpportunityTooltip(score: number, reasons?: string[]) {
   const base =
     "Opportunity Index = how realistic of a recruiting opportunity this program may be for this player based on roster needs, grad year, roster turnover, and available program intelligence.";
@@ -1530,6 +1511,25 @@ function getOpportunityTooltip(score: number, reasons?: string[]) {
   }
 
   return `${base}\n\nLow Opportunity = This program currently shows limited recruiting opportunity signals for this player, but it may still be useful as a long-term or watch-list target.\nScore: ${score}/100${reasonText}`;
+}
+
+function getFitTooltip(label: string, score: number) {
+  const base =
+    "Match Score = how well this player fits this program/division based on ability, academics, intended majors, metrics, and profile data.";
+
+  if (label === "Strong Fit") {
+    return `${base}\n\nStrong Fit = The player's current profile is tracking very well for this program level.\nScore: ${score}/100`;
+  }
+
+  if (label === "Match") {
+    return `${base}\n\nMatch = The player's profile aligns well with this program based on available data.\nScore: ${score}/100`;
+  }
+
+  if (label === "Possible Match") {
+    return `${base}\n\nPossible Match = This program may be worth tracking, especially if the player is still developing or some school-side data is incomplete.\nScore: ${score}/100`;
+  }
+
+  return `${base}\n\nReach / Not Yet = This program is currently a reach based on the player's profile and available benchmarks, but it can still be tracked as a longer-term target.\nScore: ${score}/100`;
 }
 
 const shellStyle: React.CSSProperties = {

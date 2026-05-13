@@ -1212,6 +1212,21 @@ model CollegeBaseballProgram {
   currentRosterSize Int?
   averageGpa        Decimal? @db.Decimal(4, 2)
 
+  // Roster composition / opportunity signals
+  graduatingSeniors        Int?
+  graduatingPitchers       Int?
+  graduatingCatchers       Int?
+  graduatingInfielders     Int?
+  graduatingOutfielders    Int?
+  returningPitchers        Int?
+  returningPositionPlayers Int?
+  rosterFreshmen           Int?
+  rosterSophomores         Int?
+  rosterJuniors            Int?
+  rosterSeniors            Int?
+  portalTransfersIn        Int?
+  portalTransfersOut       Int?
+
   scholarshipNotes   String?
   scholarshipInfoUrl String?
 
