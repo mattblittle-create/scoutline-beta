@@ -552,8 +552,8 @@ model College {
   zipCode String?
   region  CollegeRegion?
 
-  latitude    Float?
-  longitude   Float?
+  latitude  Float?
+  longitude Float?
 
   control    CollegeControl?
   schoolType CollegeSchoolType @default(FOUR_YEAR)
@@ -1217,6 +1217,16 @@ model CollegeBaseballProgram {
 
   transferHeavy Boolean @default(false)
   jucoFriendly  Boolean @default(false)
+
+  // Program intelligence signals used for opportunity scoring.
+  headCoachTenureYears     Int?
+  recentWinPercentage      Decimal? @db.Decimal(5, 2)
+  rosterTurnoverLevel      String?
+  recruitingAggressiveness String?
+  regionalRecruitingBias   String?
+  conferenceStrength       String?
+  draftHistoryNotes        String?
+  playerDevelopmentNotes   String?
 
   dataSourceUrl      String?
   lastVerifiedAt     DateTime?
