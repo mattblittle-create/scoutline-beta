@@ -277,31 +277,24 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
     return bIsBestLane - aIsBestLane;
   }
 
-  const aScore = Number(a?.truthFit?.score ?? 0);
-  const bScore = Number(b?.truthFit?.score ?? 0);
-
-  // 2. Match Score highest to lowest.
-  // If scores are very close, let Opportunity Index help decide the better recruiting target.
-  const matchScoreGap = Math.abs(aScore - bScore);
-
-  if (aScore !== bScore && matchScoreGap > 5) {
-    return bScore - aScore;
-  }
-
   const aOpportunity = Number(a?.opportunityScore?.score ?? 0);
   const bOpportunity = Number(b?.opportunityScore?.score ?? 0);
 
-  // 3. Opportunity Index next for close Match Score decisions.
+  const aScore = Number(a?.truthFit?.score ?? 0);
+  const bScore = Number(b?.truthFit?.score ?? 0);
+
+  const aGeo = getGeographyRank(a);
+  const bGeo = getGeographyRank(b);
+
+  // 2. Opportunity Index first for realistic recruiting priority.
   if (aOpportunity !== bOpportunity) {
     return bOpportunity - aOpportunity;
   }
 
+  // 3. Match Score next.
   if (aScore !== bScore) {
     return bScore - aScore;
   }
-
-  const aGeo = getGeographyRank(a);
-  const bGeo = getGeographyRank(b);
 
   // 4. Closest geography next.
   if (aGeo !== bGeo) {
@@ -722,6 +715,20 @@ const visibleTruthFitResults = isRedshirt
             currentRosterSize: baseball?.currentRosterSize ?? null,
             headCoachTenureYears: baseball?.headCoachTenureYears ?? null,
             recentWinPercentage: baseball?.recentWinPercentage ?? null,
+
+            graduatingSeniors: baseball?.graduatingSeniors ?? null,
+            graduatingPitchers: baseball?.graduatingPitchers ?? null,
+            graduatingCatchers: baseball?.graduatingCatchers ?? null,
+            graduatingInfielders: baseball?.graduatingInfielders ?? null,
+            graduatingOutfielders: baseball?.graduatingOutfielders ?? null,
+            returningPitchers: baseball?.returningPitchers ?? null,
+            returningPositionPlayers: baseball?.returningPositionPlayers ?? null,
+            rosterFreshmen: baseball?.rosterFreshmen ?? null,
+            rosterSophomores: baseball?.rosterSophomores ?? null,
+            rosterJuniors: baseball?.rosterJuniors ?? null,
+            rosterSeniors: baseball?.rosterSeniors ?? null,
+            portalTransfersIn: baseball?.portalTransfersIn ?? null,
+            portalTransfersOut: baseball?.portalTransfersOut ?? null,
           }),
         };
       });
@@ -1102,25 +1109,13 @@ style={{
 
   {/* Line 2 right */}
   <div style={rightPillRowStyle}>
-    <div
-      title={getFitTooltip(fit.label, fit.score)}
-      style={{
-        ...confidenceBadgeStyle,
-        border: `1px solid ${divisionIdentity.border}`,
-        background: divisionIdentity.background,
-        color: divisionIdentity.text,
-        marginTop: 0,
-      }}
-    >
-      Match Score {fit.score}/100
-    </div>
-
     {item.opportunityScore ? (
       <div
         title={getOpportunityTooltip(
-  item.opportunityScore.score,
-  item.opportunityScore.reasons
-)}
+          item.opportunityScore.score,
+          item.opportunityScore.reasons,
+          item.opportunityScore.confidence
+        )}
         style={{
           ...confidenceBadgeStyle,
           marginTop: 0,
@@ -1133,35 +1128,18 @@ style={{
       </div>
     ) : null}
 
-    {item.opportunityScore?.reasons?.length ? (
-      <div
-        style={{
-          marginTop: 8,
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 6,
-        }}
-      >
-        {item.opportunityScore.reasons.map(
-          (reason: string, idx: number) => (
-            <div
-              key={`${reason}-${idx}`}
-              style={{
-                padding: "4px 8px",
-                borderRadius: 999,
-                background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                fontSize: 11,
-                color: "rgba(255,255,255,0.72)",
-                fontWeight: 500,
-              }}
-            >
-              {reason}
-            </div>
-          )
-        )}
-      </div>
-    ) : null}
+    <div
+      title={getFitTooltip(fit.label, fit.score)}
+      style={{
+        ...confidenceBadgeStyle,
+        border: `1px solid ${divisionIdentity.border}`,
+        background: divisionIdentity.background,
+        color: divisionIdentity.text,
+        marginTop: 0,
+      }}
+    >
+      Match Score {fit.score}/100
+    </div>
 
     {(() => {
       const confidence = getRecruitingConfidence(item);
@@ -1490,27 +1468,39 @@ function getPriorityBadgeText(priority?: string | null) {
   return "Priority TBD";
 }
 
-function getOpportunityTooltip(score: number, reasons?: string[]) {
+function getOpportunityTooltip(
+  score: number,
+  reasons?: string[],
+  confidence?: {
+    score: number;
+    label: "High Confidence" | "Moderate Confidence" | "Limited Data";
+    explanation: string;
+  }
+) {
   const base =
     "Opportunity Index = how realistic of a recruiting opportunity this program may be for this player based on roster needs, grad year, roster turnover, and available program intelligence.";
+
+  const confidenceText = confidence
+    ? `\n\nConfidence Level: ${confidence.label} (${confidence.score}/100)\n${confidence.explanation}`
+    : "";
 
   const reasonText = reasons?.length
     ? `\n\nKey signals:\n- ${reasons.join("\n- ")}`
     : "";
 
   if (score >= 80) {
-    return `${base}\n\nHigh Opportunity = This program appears to have strong recruiting opportunity signals for this player.\nScore: ${score}/100${reasonText}`;
+    return `${base}\n\nHigh Opportunity = This program appears to have strong recruiting opportunity signals for this player.\nScore: ${score}/100${confidenceText}${reasonText}`;
   }
 
   if (score >= 65) {
-    return `${base}\n\nGood Opportunity = This program shows several positive recruiting opportunity signals, but it may still require active outreach and continued development.\nScore: ${score}/100${reasonText}`;
+    return `${base}\n\nGood Opportunity = This program shows several positive recruiting opportunity signals, but it may still require active outreach and continued development.\nScore: ${score}/100${confidenceText}${reasonText}`;
   }
 
   if (score >= 45) {
-    return `${base}\n\nModerate Opportunity = This program may be worth monitoring, but the current opportunity signals are mixed or incomplete.\nScore: ${score}/100${reasonText}`;
+    return `${base}\n\nModerate Opportunity = This program may be worth monitoring, but the current opportunity signals are mixed or incomplete.\nScore: ${score}/100${confidenceText}${reasonText}`;
   }
 
-  return `${base}\n\nLow Opportunity = This program currently shows limited recruiting opportunity signals for this player, but it may still be useful as a long-term or watch-list target.\nScore: ${score}/100${reasonText}`;
+  return `${base}\n\nLow Opportunity = This program currently shows limited recruiting opportunity signals for this player, but it may still be useful as a long-term or watch-list target.\nScore: ${score}/100${confidenceText}${reasonText}`;
 }
 
 function getFitTooltip(label: string, score: number) {
@@ -1784,8 +1774,8 @@ const resultCardStyle: React.CSSProperties = {
 
 const resultTopRowStyle: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "minmax(0, 1fr) minmax(390px, auto)",
-  gap: "6px 16px",
+  gridTemplateColumns: "minmax(260px, 1fr) minmax(360px, auto)",
+  gap: "8px 16px",
   alignItems: "center",
 };
 
@@ -1805,6 +1795,7 @@ const rightPillRowStyle: React.CSSProperties = {
   flexWrap: "wrap",
   justifyContent: "flex-end",
   justifySelf: "end",
+  minWidth: 360,
 };
 
 const anchorPillStyle: React.CSSProperties = {
