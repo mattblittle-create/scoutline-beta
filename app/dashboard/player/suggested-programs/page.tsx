@@ -281,6 +281,21 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const bScore = Number(b?.truthFit?.score ?? 0);
 
   // 2. Match Score highest to lowest.
+  // If scores are very close, let Opportunity Index help decide the better recruiting target.
+  const matchScoreGap = Math.abs(aScore - bScore);
+
+  if (aScore !== bScore && matchScoreGap > 5) {
+    return bScore - aScore;
+  }
+
+  const aOpportunity = Number(a?.opportunityScore?.score ?? 0);
+  const bOpportunity = Number(b?.opportunityScore?.score ?? 0);
+
+  // 3. Opportunity Index next for close Match Score decisions.
+  if (aOpportunity !== bOpportunity) {
+    return bOpportunity - aOpportunity;
+  }
+
   if (aScore !== bScore) {
     return bScore - aScore;
   }
@@ -288,7 +303,7 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aGeo = getGeographyRank(a);
   const bGeo = getGeographyRank(b);
 
-  // 3. Closest geography next.
+  // 4. Closest geography next.
   if (aGeo !== bGeo) {
     return aGeo - bGeo;
   }
@@ -296,7 +311,7 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aState = String(a?.college?.state || "");
   const bState = String(b?.college?.state || "");
 
-  // 4. Stable location fallback before name.
+  // 5. Stable location fallback before name.
   if (aState !== bState) {
     return aState.localeCompare(bState);
   }
@@ -308,7 +323,7 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
     return aCity.localeCompare(bCity);
   }
 
-  // 5. Only use name as final tiebreaker.
+  // 6. Only use name as final tiebreaker.
   return String(a?.college?.name || "").localeCompare(String(b?.college?.name || ""));
 }
 
@@ -1477,7 +1492,7 @@ function getPriorityBadgeText(priority?: string | null) {
 
 function getFitTooltip(label: string, score: number) {
   const base =
-    "Match Score = how well this player fits this program/division based on ability, academics, metrics, and profile data.";
+    "Match Score = how well this player fits this program/division based on ability, academics, intended majors, metrics, and profile data.";
 
   if (label === "Strong Fit") {
     return `${base}\n\nStrong Fit = The player's current profile is tracking very well for this program level.\nScore: ${score}/100`;
