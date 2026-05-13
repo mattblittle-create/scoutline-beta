@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
+import { calculateOpportunityScore } from "@/lib/recommendations/opportunityScore";
 
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
@@ -688,17 +689,39 @@ const visibleTruthFitResults = isRedshirt
 
       const rawResults = data.results || [];
 
+      const enrichedResults = rawResults.map((item: any) => {
+        const baseball = item?.college?.baseballProgram || {};
+        const primaryRosterNeed = Array.isArray(baseball?.rosterNeeds)
+          ? baseball.rosterNeeds[0]
+          : null;
+
+        return {
+          ...item,
+          opportunityScore: calculateOpportunityScore({
+            rosterNeedLevel: primaryRosterNeed?.needLevel ?? null,
+            rosterTurnoverLevel: baseball?.rosterTurnoverLevel ?? null,
+            recruitingAggressiveness: baseball?.recruitingAggressiveness ?? null,
+            regionalRecruitingBias: baseball?.regionalRecruitingBias ?? null,
+            transferHeavy: baseball?.transferHeavy ?? false,
+            jucoFriendly: baseball?.jucoFriendly ?? false,
+            currentRosterSize: baseball?.currentRosterSize ?? null,
+            headCoachTenureYears: baseball?.headCoachTenureYears ?? null,
+            recentWinPercentage: baseball?.recentWinPercentage ?? null,
+          }),
+        };
+      });
+
       const sortedResults = selectedCollegeId
-        ? [...rawResults].sort((a: any, b: any) => {
+        ? [...enrichedResults].sort((a: any, b: any) => {
             const aSelected = a?.college?.id === selectedCollegeId ? 1 : 0;
             const bSelected = b?.college?.id === selectedCollegeId ? 1 : 0;
             return bSelected - aSelected;
           })
-        : rawResults;
+        : enrichedResults;
 
-setTruthFitResults(sortedResults);
-setTruthFitSummary(data.summary || null);
-setHasLoadedTruthFit(true);
+      setTruthFitResults(sortedResults);
+      setTruthFitSummary(data.summary || null);
+      setHasLoadedTruthFit(true);
     } catch (err) {
       console.error("SUGGESTED_PROGRAMS_LOAD_ERROR", err);
       setTruthFitError("Could not load suggested programs.");
@@ -1076,6 +1099,51 @@ style={{
     >
       Match Score {fit.score}/100
     </div>
+
+    {item.opportunityScore ? (
+      <div
+        title={item.opportunityScore.reasons?.join(" • ") || "Opportunity score based on available program intelligence."}
+        style={{
+          ...confidenceBadgeStyle,
+          marginTop: 0,
+          border: "1px solid rgba(202,160,66,0.45)",
+          background: "#fffbeb",
+          color: "#92400e",
+        }}
+      >
+        Opportunity {item.opportunityScore.score}/100
+      </div>
+    ) : null}
+
+    {item.opportunityScore?.reasons?.length ? (
+      <div
+        style={{
+          marginTop: 8,
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 6,
+        }}
+      >
+        {item.opportunityScore.reasons.map(
+          (reason: string, idx: number) => (
+            <div
+              key={`${reason}-${idx}`}
+              style={{
+                padding: "4px 8px",
+                borderRadius: 999,
+                background: "rgba(255,255,255,0.06)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                fontSize: 11,
+                color: "rgba(255,255,255,0.72)",
+                fontWeight: 500,
+              }}
+            >
+              {reason}
+            </div>
+          )
+        )}
+      </div>
+    ) : null}
 
     {(() => {
       const confidence = getRecruitingConfidence(item);
