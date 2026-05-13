@@ -1,6 +1,10 @@
 // lib/recommendations/opportunityScore.ts
 
 type OpportunitySignalInput = {
+  playerPrimaryPosition?: string | null;
+  playerSecondaryPositions?: string[] | null;
+  playerGradYear?: number | null;
+
   rosterNeedLevel?: string | null;
   rosterTurnoverLevel?: string | null;
   recruitingAggressiveness?: string | null;
@@ -34,6 +38,13 @@ export type OpportunityScoreResult = {
     | "Good Opportunity"
     | "Moderate Opportunity"
     | "Low Opportunity";
+  archetype:
+    | "Strong Immediate Opportunity"
+    | "Developmental Long-Term Fit"
+    | "Regional Opportunity Match"
+    | "High Competition Program"
+    | "Emerging Recruiting Opportunity"
+    | "Limited Data Opportunity";
   confidence: {
     score: number;
     label: "High Confidence" | "Moderate Confidence" | "Limited Data";
@@ -66,6 +77,12 @@ function decimalToNumber(value: unknown): number | null {
   return null;
 }
 
+function normalizePosition(value?: string | null) {
+  return String(value || "")
+    .trim()
+    .toUpperCase();
+}
+
 function numberOrZero(value?: number | null) {
   return typeof value === "number" && Number.isFinite(value) ? value : 0;
 }
@@ -82,6 +99,25 @@ function clampScore(value: number) {
   return Math.max(0, Math.min(100, Math.round(value)));
 }
 
+function getCurrentRecruitingYear() {
+  return new Date().getFullYear();
+}
+
+function getGradYearWindow(playerGradYear?: number | null) {
+  const gradYear = hasNumber(playerGradYear) ? playerGradYear : null;
+
+  if (gradYear == null) {
+    return "unknown";
+  }
+
+  const yearsOut = gradYear - getCurrentRecruitingYear();
+
+  if (yearsOut <= 0) return "immediate";
+  if (yearsOut === 1) return "near";
+  if (yearsOut === 2) return "next";
+  return "future";
+}
+
 function getOpportunityLabel(score: number): OpportunityScoreResult["label"] {
   if (score >= 80) return "High Opportunity";
   if (score >= 65) return "Good Opportunity";
@@ -95,6 +131,55 @@ function getConfidenceLabel(
   if (score >= 75) return "High Confidence";
   if (score >= 45) return "Moderate Confidence";
   return "Limited Data";
+}
+
+function getOpportunityArchetype(params: {
+  score: number;
+  confidenceLabel: OpportunityScoreResult["confidence"]["label"];
+  gradYearWindow: "immediate" | "near" | "next" | "future" | "unknown";
+  regionalBias: string;
+  currentRosterSize?: number | null;
+  portalTransfersIn: number;
+  returningPitchers: number;
+  returningPositionPlayers: number;
+}): OpportunityScoreResult["archetype"] {
+  if (params.confidenceLabel === "Limited Data") {
+    return "Limited Data Opportunity";
+  }
+
+  if (
+    params.score >= 75 &&
+    (params.gradYearWindow === "immediate" || params.gradYearWindow === "near")
+  ) {
+    return "Strong Immediate Opportunity";
+  }
+
+  if (
+    params.score >= 60 &&
+    (params.gradYearWindow === "next" || params.gradYearWindow === "future")
+  ) {
+    return "Developmental Long-Term Fit";
+  }
+
+  if (
+    params.score >= 60 &&
+    (params.regionalBias === "strong" || params.regionalBias === "regional")
+  ) {
+    return "Regional Opportunity Match";
+  }
+
+  if (
+    params.score < 55 &&
+    ((typeof params.currentRosterSize === "number" &&
+      params.currentRosterSize > 45) ||
+      params.portalTransfersIn >= 3 ||
+      params.returningPitchers >= 18 ||
+      params.returningPositionPlayers >= 24)
+  ) {
+    return "High Competition Program";
+  }
+
+  return "Emerging Recruiting Opportunity";
 }
 
 function calculateDataConfidence(input: OpportunitySignalInput) {
@@ -166,6 +251,33 @@ export function calculateOpportunityScore(
   const portalTransfersIn = numberOrZero(input.portalTransfersIn);
   const portalTransfersOut = numberOrZero(input.portalTransfersOut);
 
+  const gradYearWindow = getGradYearWindow(input.playerGradYear);
+
+  const primaryPosition = normalizePosition(input.playerPrimaryPosition);
+
+  const secondaryPositions = Array.isArray(input.playerSecondaryPositions)
+    ? input.playerSecondaryPositions.map(normalizePosition)
+    : [];
+
+  const isPitcher =
+    primaryPosition === "P" ||
+    primaryPosition === "RHP" ||
+    primaryPosition === "LHP";
+
+  const isCatcher = primaryPosition === "C";
+
+  const isInfielder =
+    ["1B", "2B", "3B", "SS", "IF"].includes(primaryPosition) ||
+    secondaryPositions.some((p) =>
+      ["1B", "2B", "3B", "SS", "IF"].includes(p)
+    );
+
+  const isOutfielder =
+    ["OF", "LF", "CF", "RF"].includes(primaryPosition) ||
+    secondaryPositions.some((p) =>
+      ["OF", "LF", "CF", "RF"].includes(p)
+    );
+
   if (needLevel === "high") {
     score += 22;
     reasons.push("High positional need");
@@ -178,40 +290,81 @@ export function calculateOpportunityScore(
   }
 
   if (graduatingSeniors >= 8) {
-    score += 12;
-    reasons.push("Large senior class leaving");
+    if (gradYearWindow === "immediate" || gradYearWindow === "near") {
+      score += 14;
+      reasons.push("Large senior class aligns with player's recruiting window");
+    } else if (gradYearWindow === "next") {
+      score += 9;
+      reasons.push("Large senior class may shape future roster needs");
+    } else {
+      score += 6;
+      reasons.push("Large senior class leaving");
+    }
   } else if (graduatingSeniors >= 4) {
-    score += 7;
-    reasons.push("Several seniors leaving");
+    if (gradYearWindow === "immediate" || gradYearWindow === "near") {
+      score += 8;
+      reasons.push("Senior class turnover aligns with player's recruiting window");
+    } else {
+      score += 5;
+      reasons.push("Several seniors leaving");
+    }
   }
 
   if (graduatingPitchers >= 4) {
-    score += 8;
-    reasons.push("Pitching staff openings likely");
+    score += isPitcher ? 14 : 8;
+    reasons.push(
+      isPitcher
+        ? "Pitching staff openings strongly align with player position"
+        : "Pitching staff openings likely"
+    );
   } else if (graduatingPitchers >= 2) {
-    score += 4;
-    reasons.push("Some pitching turnover");
+    score += isPitcher ? 8 : 4;
+    reasons.push(
+      isPitcher
+        ? "Some pitching turnover aligns with player position"
+        : "Some pitching turnover"
+    );
   }
 
   if (graduatingCatchers >= 2) {
-    score += 6;
-    reasons.push("Catcher depth may open");
+    score += isCatcher ? 12 : 6;
+    reasons.push(
+      isCatcher
+        ? "Catcher openings strongly align with player position"
+        : "Catcher depth may open"
+    );
   }
 
   if (graduatingInfielders >= 3) {
-    score += 6;
-    reasons.push("Infield roster openings likely");
+    score += isInfielder ? 12 : 6;
+    reasons.push(
+      isInfielder
+        ? "Infield openings strongly align with player position"
+        : "Infield roster openings likely"
+    );
   } else if (graduatingInfielders >= 1) {
-    score += 3;
-    reasons.push("Some infield turnover");
+    score += isInfielder ? 6 : 3;
+    reasons.push(
+      isInfielder
+        ? "Some infield turnover aligns with player position"
+        : "Some infield turnover"
+    );
   }
 
   if (graduatingOutfielders >= 3) {
-    score += 6;
-    reasons.push("Outfield roster openings likely");
+    score += isOutfielder ? 12 : 6;
+    reasons.push(
+      isOutfielder
+        ? "Outfield openings strongly align with player position"
+        : "Outfield roster openings likely"
+    );
   } else if (graduatingOutfielders >= 1) {
-    score += 3;
-    reasons.push("Some outfield turnover");
+    score += isOutfielder ? 6 : 3;
+    reasons.push(
+      isOutfielder
+        ? "Some outfield turnover aligns with player position"
+        : "Some outfield turnover"
+    );
   }
 
   if (portalTransfersOut >= 4) {
@@ -296,8 +449,16 @@ export function calculateOpportunityScore(
   }
 
   if (rosterFreshmen + rosterSophomores >= 24) {
-    score -= 4;
-    reasons.push("Young roster may reduce near-term openings");
+    if (gradYearWindow === "immediate" || gradYearWindow === "near") {
+      score -= 6;
+      reasons.push("Young roster may reduce near-term openings");
+    } else if (gradYearWindow === "future") {
+      score += 2;
+      reasons.push("Young roster may mature near player's future recruiting window");
+    } else {
+      score -= 4;
+      reasons.push("Young roster may reduce near-term openings");
+    }
   }
 
   if (typeof input.headCoachTenureYears === "number") {
@@ -323,11 +484,22 @@ export function calculateOpportunityScore(
   }
 
   const finalScore = clampScore(score);
+  const confidence = calculateDataConfidence(input);
 
   return {
     score: finalScore,
     label: getOpportunityLabel(finalScore),
-    confidence: calculateDataConfidence(input),
+    archetype: getOpportunityArchetype({
+      score: finalScore,
+      confidenceLabel: confidence.label,
+      gradYearWindow,
+      regionalBias,
+      currentRosterSize: input.currentRosterSize,
+      portalTransfersIn,
+      returningPitchers,
+      returningPositionPlayers,
+    }),
+    confidence,
     reasons: reasons.slice(0, 4),
   };
 }

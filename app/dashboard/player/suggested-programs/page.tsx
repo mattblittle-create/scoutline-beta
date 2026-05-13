@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import React, { Suspense } from "react";
 import { calculateOpportunityScore } from "@/lib/recommendations/opportunityScore";
+import { buildOpportunityNarrative } from "@/lib/recommendations/opportunityNarrative";
+import { buildRecruitingStrategy } from "@/lib/recommendations/recruitingStrategy";
 
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
@@ -703,9 +705,36 @@ const visibleTruthFitResults = isRedshirt
           ? baseball.rosterNeeds[0]
           : null;
 
-        return {
-          ...item,
-          opportunityScore: calculateOpportunityScore({
+        const opportunityScore = calculateOpportunityScore({
+            playerPrimaryPosition:
+              item?.player?.primaryPosition ??
+              item?.player?.primaryPos ??
+              item?.profile?.primaryPosition ??
+              item?.profile?.primaryPos ??
+              data?.player?.primaryPosition ??
+              data?.player?.primaryPos ??
+              data?.summary?.player?.primaryPosition ??
+              data?.summary?.player?.primaryPos ??
+              null,
+
+            playerGradYear:
+              item?.player?.gradYear ??
+              item?.profile?.gradYear ??
+              data?.player?.gradYear ??
+              data?.summary?.player?.gradYear ??
+              null,
+
+            playerSecondaryPositions:
+              item?.player?.secondaryPositions ??
+              item?.player?.secondaryPos ??
+              item?.profile?.secondaryPositions ??
+              item?.profile?.secondaryPos ??
+              data?.player?.secondaryPositions ??
+              data?.player?.secondaryPos ??
+              data?.summary?.player?.secondaryPositions ??
+              data?.summary?.player?.secondaryPos ??
+              [],
+
             rosterNeedLevel: primaryRosterNeed?.needLevel ?? null,
             rosterTurnoverLevel: baseball?.rosterTurnoverLevel ?? null,
             recruitingAggressiveness: baseball?.recruitingAggressiveness ?? null,
@@ -729,6 +758,25 @@ const visibleTruthFitResults = isRedshirt
             rosterSeniors: baseball?.rosterSeniors ?? null,
             portalTransfersIn: baseball?.portalTransfersIn ?? null,
             portalTransfersOut: baseball?.portalTransfersOut ?? null,
+          });
+
+        return {
+          ...item,
+          opportunityScore,
+          opportunityNarrative: buildOpportunityNarrative({
+            score: opportunityScore.score,
+            label: opportunityScore.label,
+            archetype: opportunityScore.archetype,
+            confidenceLabel: opportunityScore.confidence?.label,
+            reasons: opportunityScore.reasons,
+            collegeName: item?.college?.name,
+          }),
+
+          recruitingStrategy: buildRecruitingStrategy({
+            matchScore: item?.truthFit?.score,
+            opportunityScore: opportunityScore.score,
+            archetype: opportunityScore.archetype,
+            confidenceLabel: opportunityScore.confidence?.label,
           }),
         };
       });
@@ -794,7 +842,11 @@ const visibleTruthFitResults = isRedshirt
   );
 }
 
-  async function toggleSavedCollege(collegeId: string, fitLabel: string, fitPriority?: string) {
+  async function toggleSavedCollege(item: any, fitLabel: string, fitPriority?: string) {
+    const collegeId = item?.college?.id;
+
+    if (!collegeId) return;
+
     const isSaved = savedCollegeIds.includes(collegeId);
 
     try {
@@ -803,10 +855,39 @@ const visibleTruthFitResults = isRedshirt
       const res = await fetch("/api/player/target-programs", {
         method: isSaved ? "DELETE" : "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          collegeId,
-          priority: fitPriority || getPriorityFromFit(fitLabel),
-        }),
+        body: JSON.stringify(
+          isSaved
+            ? { collegeId }
+            : {
+                collegeId,
+                priority: fitPriority || getPriorityFromFit(fitLabel),
+
+                exportInclude: true,
+                boardGroup:
+                  item?.recruitingStrategy?.category ??
+                  item?.opportunityScore?.archetype ??
+                  null,
+
+                strategyCategory: item?.recruitingStrategy?.category ?? null,
+                strategyExplanation:
+                  item?.recruitingStrategy?.explanation ?? null,
+
+                opportunityScore: item?.opportunityScore?.score ?? null,
+                opportunityLabel: item?.opportunityScore?.label ?? null,
+                opportunityArchetype:
+                  item?.opportunityScore?.archetype ?? null,
+
+                matchScore: item?.truthFit?.score ?? null,
+                matchLabel: item?.truthFit?.label ?? fitLabel ?? null,
+
+                narrativeHeadline:
+                  item?.opportunityNarrative?.headline ?? null,
+                narrativeSummary:
+                  item?.opportunityNarrative?.summary ?? null,
+                narrativeStrategy:
+                  item?.opportunityNarrative?.strategy ?? null,
+              }
+        ),
       });
 
       const data = await res.json().catch(() => null);
@@ -824,7 +905,6 @@ const visibleTruthFitResults = isRedshirt
       setSavingCollegeId("");
     }
   }
-
   return (
     <main style={{ maxWidth: 960, margin: "0 auto", padding: "8px 0 40px" }}>
       <section style={shellStyle}>
@@ -1077,7 +1157,7 @@ style={{
     <button
       type="button"
       title={savedCollegeIds.includes(c.id) ? "Remove from Target Programs" : "Save to Target Programs"}
-      onClick={() => toggleSavedCollege(c.id, fit.label, fit.priority)}
+      onClick={() => toggleSavedCollege(item, fit.label, fit.priority)}
       disabled={savingCollegeId === c.id}
       style={{
         width: 32,
@@ -1111,11 +1191,12 @@ style={{
   <div style={rightPillRowStyle}>
     {item.opportunityScore ? (
       <div
-        title={getOpportunityTooltip(
-          item.opportunityScore.score,
-          item.opportunityScore.reasons,
-          item.opportunityScore.confidence
-        )}
+title={getOpportunityTooltip(
+  item.opportunityScore.score,
+  item.opportunityScore.reasons,
+  item.opportunityScore.confidence,
+  item.opportunityScore.archetype
+)}
         style={{
           ...confidenceBadgeStyle,
           marginTop: 0,
@@ -1124,7 +1205,8 @@ style={{
           color: "#92400e",
         }}
       >
-        Opportunity Index {item.opportunityScore.score}/100
+        {item.opportunityScore.archetype || "Opportunity Index"}{" "}
+        {item.opportunityScore.score}/100
       </div>
     ) : null}
 
@@ -1337,6 +1419,64 @@ style={{
     </span>
   </div>
 ) : null}
+
+{item.recruitingStrategy ? (
+  <div
+    title={item.recruitingStrategy.explanation}
+    style={{
+      marginTop: 10,
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 6,
+      padding: "6px 10px",
+      borderRadius: 999,
+      background: "#eff6ff",
+      border: "1px solid #bfdbfe",
+      color: "#1d4ed8",
+      fontSize: 12,
+      fontWeight: 700,
+    }}
+  >
+    Recruiting Strategy:{" "}
+    {item.recruitingStrategy.category}
+  </div>
+) : null}
+
+{item.opportunityNarrative ? (
+  <details
+    style={{
+      marginTop: 12,
+    }}
+  >
+    <summary
+      style={{
+        cursor: "pointer",
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#92400e",
+        userSelect: "none",
+      }}
+    >
+      Why ScoutLine Likes This Program
+    </summary>
+
+    <div style={narrativeBoxStyle}>
+      <div style={narrativeHeadlineStyle}>
+        {item.opportunityNarrative.headline}
+      </div>
+
+      <div style={narrativeTextStyle}>
+        {item.opportunityNarrative.summary}
+      </div>
+
+      <div style={narrativeStrategyStyle}>
+        <strong>Suggested Strategy:</strong>{" "}
+        {item.opportunityNarrative.strategy}
+      </div>
+    </div>
+  </details>
+) : null}
+
   </>
 ) : (
   <div style={collapsedHintStyle}>
@@ -1475,11 +1615,16 @@ function getOpportunityTooltip(
     score: number;
     label: "High Confidence" | "Moderate Confidence" | "Limited Data";
     explanation: string;
-  }
+  },
+  archetype?: string
 ) {
   const base =
     "Opportunity Index = how realistic of a recruiting opportunity this program may be for this player based on roster needs, grad year, roster turnover, and available program intelligence.";
 
+  const archetypeText = archetype
+    ? `\n\nOpportunity Type: ${archetype}`
+    : "";
+  
   const confidenceText = confidence
     ? `\n\nConfidence Level: ${confidence.label} (${confidence.score}/100)\n${confidence.explanation}`
     : "";
@@ -1489,18 +1634,18 @@ function getOpportunityTooltip(
     : "";
 
   if (score >= 80) {
-    return `${base}\n\nHigh Opportunity = This program appears to have strong recruiting opportunity signals for this player.\nScore: ${score}/100${confidenceText}${reasonText}`;
+    return `${base}\n\nHigh Opportunity = This program appears to have strong recruiting opportunity signals for this player.\nScore: ${score}/100${archetypeText}${confidenceText}${reasonText}`;
   }
 
   if (score >= 65) {
-    return `${base}\n\nGood Opportunity = This program shows several positive recruiting opportunity signals, but it may still require active outreach and continued development.\nScore: ${score}/100${confidenceText}${reasonText}`;
+    return `${base}\n\nGood Opportunity = This program shows several positive recruiting opportunity signals, but it may still require active outreach and continued development.\nScore: ${score}/100${archetypeText}${confidenceText}${reasonText}`;
   }
 
   if (score >= 45) {
-    return `${base}\n\nModerate Opportunity = This program may be worth monitoring, but the current opportunity signals are mixed or incomplete.\nScore: ${score}/100${confidenceText}${reasonText}`;
+    return `${base}\n\nModerate Opportunity = This program may be worth monitoring, but the current opportunity signals are mixed or incomplete.\nScore: ${score}/100${archetypeText}${confidenceText}${reasonText}`;
   }
 
-  return `${base}\n\nLow Opportunity = This program currently shows limited recruiting opportunity signals for this player, but it may still be useful as a long-term or watch-list target.\nScore: ${score}/100${confidenceText}${reasonText}`;
+  return `${base}\n\nLow Opportunity = This program currently shows limited recruiting opportunity signals for this player, but it may still be useful as a long-term or watch-list target.\nScore: ${score}/100${archetypeText}${confidenceText}${reasonText}`;
 }
 
 function getFitTooltip(label: string, score: number) {
@@ -1895,6 +2040,36 @@ const confidenceBadgeStyle: React.CSSProperties = {
   color: "#334155",
   whiteSpace: "nowrap",
   textAlign: "center",
+};
+
+const narrativeBoxStyle: React.CSSProperties = {
+  marginTop: 12,
+  padding: "12px 14px",
+  borderRadius: 12,
+  border: "1px solid rgba(15,23,42,0.08)",
+  background: "#fafaf9",
+  display: "grid",
+  gap: 8,
+};
+
+const narrativeHeadlineStyle: React.CSSProperties = {
+  fontSize: 13,
+  fontWeight: 700,
+  color: "#111827",
+};
+
+const narrativeTextStyle: React.CSSProperties = {
+  fontSize: 13,
+  lineHeight: 1.5,
+  color: "#374151",
+};
+
+const narrativeStrategyStyle: React.CSSProperties = {
+  fontSize: 12,
+  lineHeight: 1.45,
+  color: "#6b7280",
+  paddingTop: 4,
+  borderTop: "1px dashed rgba(15,23,42,0.08)",
 };
 
 const smallNeutralPillStyle: React.CSSProperties = {

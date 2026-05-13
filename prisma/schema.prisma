@@ -1150,6 +1150,20 @@ model CollegeSavedSchool {
   priority String?
   notes    String?
 
+  // Recruiting board / export-share intelligence snapshot.
+  exportInclude        Boolean @default(true)
+  boardGroup           String?
+  strategyCategory     String?
+  strategyExplanation  String?
+  opportunityScore     Int?
+  opportunityLabel     String?
+  opportunityArchetype String?
+  matchScore           Int?
+  matchLabel           String?
+  narrativeHeadline    String?
+  narrativeSummary     String?
+  narrativeStrategy    String?
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -1160,6 +1174,10 @@ model CollegeSavedSchool {
   @@index([playerProfileId])
   @@index([collegeId])
   @@index([listName])
+  @@index([status])
+  @@index([priority])
+  @@index([strategyCategory])
+  @@index([exportInclude])
 }
 
 enum CollegeAthleticDivision {
