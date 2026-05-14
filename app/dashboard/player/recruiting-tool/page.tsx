@@ -284,25 +284,61 @@ function getMeterMovementTips(laneFit: any) {
   return Array.from(new Set(tips)).slice(0, 3);
 }
 
+function formatMetricValue(value: any, unit?: string | null) {
+  const n = Number(value);
+
+  if (!Number.isFinite(n)) return "—";
+
+  const formatted = Number.isInteger(n) ? String(n) : n.toFixed(2).replace(/\.00$/, "");
+
+  return unit ? `${formatted} ${unit}` : formatted;
+}
+
+function getMetricDeltaText(metric: any) {
+  const delta = Number(metric?.delta || 0);
+  const unit = metric?.unit || "";
+  const absDelta = Math.abs(delta);
+  const formattedDelta = Number.isInteger(absDelta)
+    ? String(absDelta)
+    : absDelta.toFixed(2).replace(/\.00$/, "");
+
+  if (!Number.isFinite(delta) || delta === 0) {
+    return "At benchmark";
+  }
+
+  if (metric?.lowerIsBetter) {
+    return delta > 0
+      ? `${formattedDelta}${unit ? ` ${unit}` : ""} faster than benchmark`
+      : `${formattedDelta}${unit ? ` ${unit}` : ""} slower than benchmark`;
+  }
+
+  return delta > 0
+    ? `${formattedDelta}${unit ? ` ${unit}` : ""} above benchmark`
+    : `${formattedDelta}${unit ? ` ${unit}` : ""} below benchmark`;
+}
+
 function getLaneHighlights(laneFit: any) {
   const comparisons = Array.isArray(laneFit?.metricComparisons)
     ? laneFit.metricComparisons
     : [];
 
-  const above = comparisons.filter((m: any) => m.status === "ABOVE");
-  const below = comparisons.filter((m: any) => m.status === "BELOW");
+  const strongestMetrics = Array.isArray(laneFit?.strongestMetrics)
+    ? laneFit.strongestMetrics
+    : comparisons
+        .filter((m: any) => m.status === "ABOVE")
+        .sort((a: any, b: any) => Number(b.percentDelta || 0) - Number(a.percentDelta || 0))
+        .slice(0, 3);
 
-  const strongestMetric =
-    above.sort(
-      (a: any, b: any) =>
-        Number(b.playerValue || 0) - Number(a.playerValue || 0)
-    )[0] || null;
-
-  const biggestGap = below[0] || null;
+  const biggestGaps = Array.isArray(laneFit?.biggestGaps)
+    ? laneFit.biggestGaps
+    : comparisons
+        .filter((m: any) => m.status === "BELOW")
+        .sort((a: any, b: any) => Number(b.percentDelta || 0) - Number(a.percentDelta || 0))
+        .slice(0, 3);
 
   return {
-    strongestMetric,
-    biggestGap,
+    strongestMetrics,
+    biggestGaps,
   };
 }
 
@@ -1009,34 +1045,32 @@ body: JSON.stringify({
           textTransform: "uppercase",
           letterSpacing: "0.04em",
           color: "#166534",
-          marginBottom: 4,
+          marginBottom: 8,
         }}
       >
-        Strongest Metric
+        Strongest Metric(s)
       </div>
 
-      <div
-        style={{
-          fontSize: 15,
-          fontWeight: 900,
-          color: "#14532d",
-        }}
-      >
-        {getLaneHighlights(selectedLaneFit).strongestMetric?.label || "Still Building"}
-      </div>
-
-      <div
-        style={{
-          marginTop: 4,
-          fontSize: 12,
-          color: "#166534",
-          lineHeight: 1.4,
-        }}
-      >
-        {getLaneHighlights(selectedLaneFit).strongestMetric
-          ? "One of the player's best benchmark comparisons in this recruiting lane."
-          : "Add verified metrics to improve ScoutLine analysis confidence."}
-      </div>
+      {getLaneHighlights(selectedLaneFit).strongestMetrics.length > 0 ? (
+        <div style={{ display: "grid", gap: 8 }}>
+          {getLaneHighlights(selectedLaneFit).strongestMetrics.map((metric: any) => (
+            <div key={metric.key}>
+              <div style={{ fontSize: 15, fontWeight: 900, color: "#14532d" }}>
+                {metric.label}
+              </div>
+              <div style={{ marginTop: 2, fontSize: 12, color: "#166534", lineHeight: 1.4 }}>
+                {formatMetricValue(metric.playerValue, metric.unit)} vs{" "}
+                {formatMetricValue(metric.benchmarkValue, metric.unit)} benchmark ·{" "}
+                {getMetricDeltaText(metric)}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{ fontSize: 12, color: "#166534", lineHeight: 1.4 }}>
+          No standout above-benchmark metrics identified for this lane yet.
+        </div>
+      )}
     </div>
 
     <div
@@ -1054,34 +1088,32 @@ body: JSON.stringify({
           textTransform: "uppercase",
           letterSpacing: "0.04em",
           color: "#92400e",
-          marginBottom: 4,
+          marginBottom: 8,
         }}
       >
-        Biggest Development Gap
+        Biggest Development Gap(s)
       </div>
 
-      <div
-        style={{
-          fontSize: 15,
-          fontWeight: 900,
-          color: "#78350f",
-        }}
-      >
-        {getLaneHighlights(selectedLaneFit).biggestGap?.label || "No Major Gap Identified"}
-      </div>
-
-      <div
-        style={{
-          marginTop: 4,
-          fontSize: 12,
-          color: "#92400e",
-          lineHeight: 1.4,
-        }}
-      >
-        {getLaneHighlights(selectedLaneFit).biggestGap
-          ? "Improving this area would most increase recruiting opportunities in this lane."
-          : "Current profile aligns well with available benchmark data."}
-      </div>
+      {getLaneHighlights(selectedLaneFit).biggestGaps.length > 0 ? (
+        <div style={{ display: "grid", gap: 8 }}>
+          {getLaneHighlights(selectedLaneFit).biggestGaps.map((metric: any) => (
+            <div key={metric.key}>
+              <div style={{ fontSize: 15, fontWeight: 900, color: "#78350f" }}>
+                {metric.label}
+              </div>
+              <div style={{ marginTop: 2, fontSize: 12, color: "#92400e", lineHeight: 1.4 }}>
+                {formatMetricValue(metric.playerValue, metric.unit)} vs{" "}
+                {formatMetricValue(metric.benchmarkValue, metric.unit)} benchmark ·{" "}
+                {getMetricDeltaText(metric)}
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{ fontSize: 12, color: "#92400e", lineHeight: 1.4 }}>
+          No major below-benchmark gaps identified for this lane.
+        </div>
+      )}
     </div>
   </div>
 ) : null}
@@ -1791,11 +1823,6 @@ function pretty(value?: string | null) {
       return word.charAt(0) + word.slice(1).toLowerCase();
     })
     .join(" ");
-}
-
-function formatMetricValue(value: number, unit?: string | null) {
-  const rounded = Number.isInteger(value) ? value : Number(value.toFixed(2));
-  return unit ? `${rounded} ${unit}` : String(rounded);
 }
 
 function getPriorityBadgeText(priority?: string | null) {

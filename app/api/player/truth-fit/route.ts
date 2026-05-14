@@ -546,11 +546,31 @@ const divisionFits = await Promise.all(
         ? actualBest.truthFit
         : benchmarkOnlyFit;
 
+    const comparisons = Array.isArray(laneFit.metricComparisons)
+      ? laneFit.metricComparisons
+      : [];
+
+    const strongestMetrics = [...comparisons]
+      .filter((m) => m.status === "ABOVE")
+      .sort((a: any, b: any) => {
+        return (b.percentDelta || 0) - (a.percentDelta || 0);
+      })
+      .slice(0, 3);
+
+    const biggestGaps = [...comparisons]
+      .filter((m) => m.status === "BELOW")
+      .sort((a: any, b: any) => {
+        return (b.percentDelta || 0) - (a.percentDelta || 0);
+      })
+      .slice(0, 3);
+
 return {
   division,
   fitTier: laneFit.label,
   bestScore: laneFit.score,
   count: divisionResults.length,
+  strongestMetrics,
+  biggestGaps,
   outlook: outlookForFit(laneFit.label),
   topGaps: Array.isArray(laneFit.gaps) ? laneFit.gaps.slice(0, 3) : [],
   gaps: Array.isArray(laneFit.gaps) ? laneFit.gaps : [],

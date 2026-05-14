@@ -56,15 +56,17 @@ export type TruthFitResult = {
   reasons: string[];
   gaps: string[];
   development: string[];
-  metricComparisons: Array<{
-    key: string;
-    label: string;
-    playerValue: number;
-    benchmarkValue: number;
-    unit?: string | null;
-    lowerIsBetter: boolean;
-    status: "ABOVE" | "IN_RANGE" | "BELOW";
-  }>;
+metricComparisons: Array<{
+  key: string;
+  label: string;
+  playerValue: number;
+  benchmarkValue: number;
+  unit?: string | null;
+  lowerIsBetter: boolean;
+  delta: number;
+  percentDelta: number;
+  status: "ABOVE" | "IN_RANGE" | "BELOW";
+}>;
   benchmarkSource: {
     metrics: {
       level: TruthFitBenchmarkSourceLevel;
@@ -169,6 +171,7 @@ function metricLabel(key: string) {
   if (key === "popTime") return "Pop Time";
   if (key === "heightIn") return "Height";
   if (key === "weightLb") return "Weight";
+  if (key === "gpa") return "GPA";
   return key;
 }
 
@@ -177,46 +180,65 @@ function positionMetricKeys(positions: string[]) {
 
   const has = (pos: string) => positions.includes(pos);
 
-  // Common offensive / athletic metrics
+  // Universal athletic / recruiting profile metrics
   set.add("exitVelo");
   set.add("sixtyYdDash");
   set.add("homeToFirst");
   set.add("heightIn");
   set.add("weightLb");
 
+  // Strength / explosiveness metrics
+  set.add("benchPress");
+  set.add("squat");
+  set.add("deadlift");
+
+  // Academic profile
+  set.add("gpa");
+
+  // Pitchers
   if (has("P")) {
     set.add("avgFbVelo");
     set.add("avgChVelo");
     set.add("avgBbVelo");
     set.add("heightIn");
     set.add("weightLb");
+    set.add("deadlift");
+    set.add("squat");
   }
 
+  // Catchers
   if (has("C")) {
     set.add("popTime");
     set.add("catcherThrowVelo");
     set.add("exitVelo");
+    set.add("benchPress");
   }
 
+  // Middle infield
   if (has("SS") || has("2B") || has("MIF")) {
     set.add("infieldThrowVelo");
     set.add("sixtyYdDash");
     set.add("homeToFirst");
+    set.add("squat");
   }
 
+  // Corner infield
   if (has("3B") || has("1B") || has("CIF")) {
     set.add("infieldThrowVelo");
     set.add("rawThrowVelo");
     set.add("exitVelo");
     set.add("heightIn");
     set.add("weightLb");
+    set.add("benchPress");
   }
 
+  // Outfield
   if (has("LF") || has("CF") || has("RF") || has("OF")) {
     set.add("outfieldThrowVelo");
     set.add("sixtyYdDash");
     set.add("homeToFirst");
     set.add("exitVelo");
+    set.add("deadlift");
   }
 
   return Array.from(set);
@@ -445,16 +467,28 @@ if (playerGpa == null && collegeGpa == null) {
         ? input.player.heightIn ?? null
         : key === "weightLb"
         ? input.player.weightLb ?? null
+        : key === "gpa"
+        ? input.player.gpa ?? null
         : latestMetricValue(input.player.metrics, key);
 
     if (playerValue == null) continue;
 
-    const benchmark = metricAverages.find((metric) => {
-      const metricKey = String(metric.metricKey || "").trim();
-      const metricPos = normalizePos(metric.position);
+    const benchmark =
+      key === "gpa" && collegeGpa != null
+        ? {
+            position: "",
+            metricKey: "gpa",
+            averageValue: collegeGpa,
+            minValue: null,
+            maxValue: null,
+            unit: "",
+          }
+        : metricAverages.find((metric) => {
+            const metricKey = String(metric.metricKey || "").trim();
+            const metricPos = normalizePos(metric.position);
 
-      return metricKey === key && (!metricPos || positions.includes(metricPos));
-    });
+            return metricKey === key && (!metricPos || positions.includes(metricPos));
+          });
 
     if (!benchmark) continue;
 
@@ -469,9 +503,17 @@ if (playerGpa == null && collegeGpa == null) {
       key === "homeToFirst" ||
       key === "popTime";
 
-    let metricScore = 0;
+let metricScore = 0;
 
-    if (lowerIsBetter) {
+if (key === "gpa") {
+  if (playerValue >= avg) {
+    metricScore = 1;
+  } else if (playerValue >= avg - 0.25) {
+    metricScore = 0.7;
+  } else {
+    metricScore = 0.35;
+  }
+} else if (lowerIsBetter) {
       if (playerValue <= avg) {
         metricScore = 1;
       } else if (max != null && playerValue <= max) {
@@ -494,20 +536,31 @@ if (playerGpa == null && collegeGpa == null) {
       weight: metricWeight(key),
     });
 
-    metricComparisons.push({
-      key,
-      label: metricLabel(key),
-      playerValue,
-      benchmarkValue: avg,
-      unit: benchmark.unit || null,
-      lowerIsBetter,
-      status:
-        metricScore === 1
-          ? "ABOVE"
-          : metricScore === 0.7
-          ? "IN_RANGE"
-          : "BELOW",
-    });
+const delta = lowerIsBetter
+  ? avg - playerValue
+  : playerValue - avg;
+
+const percentDelta =
+  avg !== 0
+    ? Math.abs(delta / avg)
+    : Math.abs(delta);
+
+metricComparisons.push({
+  key,
+  label: metricLabel(key),
+  playerValue,
+  benchmarkValue: avg,
+  unit: benchmark.unit || null,
+  lowerIsBetter,
+  delta,
+  percentDelta,
+  status:
+    metricScore === 1
+      ? "ABOVE"
+      : metricScore === 0.7
+      ? "IN_RANGE"
+      : "BELOW",
+});
 
     if (metricScore === 1 && reasons.length < 5) {
       reasons.push(`${metricLabel(key)} is at or above the benchmark range for this fit.`);
