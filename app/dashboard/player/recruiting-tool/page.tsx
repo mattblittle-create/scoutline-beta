@@ -729,7 +729,14 @@ React.useEffect(() => {
         : rawResults;
 
       setTruthFitResults(sortedResults);
-      setTruthFitSummary(data.summary || null);
+      setTruthFitSummary(
+  data.summary
+    ? {
+        ...data.summary,
+        playerProfile: data.player || null,
+      }
+    : null
+);
       setHasLoadedTruthFit(true);
     } catch (err) {
       console.error("TRUTH_FIT_LOAD_ERROR", err);

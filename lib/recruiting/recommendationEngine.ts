@@ -208,9 +208,11 @@ function formatValue(value: number, unit: string) {
 
 function getPrimaryPosition(player: any) {
   const raw =
+    player?.primaryPos ||
     player?.primaryPosition ||
     player?.position ||
     player?.positions?.[0] ||
+    player?.playerProfile?.primaryPos ||
     player?.playerProfile?.primaryPosition ||
     player?.playerProfile?.position ||
     "";
