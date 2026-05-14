@@ -114,25 +114,49 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
       ? data.isCommitted
       : String(readString(data, "committed")).toLowerCase() === "true";
 
-  const sixty = readString(data, "sixty", "sixtyYard", "sixtyTime");
-  const exitVelo = readString(data, "exitVelo", "exitVelocity");
-  const pitchingVelo = readString(data, "pitchingVelo", "pitchingVelocity");
-  const popTime = readString(data, "popTime");
-  const fb = readString(data, "fastballVelo", "fbVelo");
-  const infVelo = readString(data, "infieldVelo");
-  const ofVelo = readString(data, "outfieldVelo");
-  const catcherVelo = readString(data, "catcherVelo");
+  const sixty = readString(
+    data,
+    "sixty",
+    "sixtyYard",
+    "sixtyTime",
+    "sixtyYardDash",
+    "sixtyYardDashTime"
+  );
 
-  const xUrl = readString(data, "xUrl", "twitterUrl");
-  const instagramUrl = readString(data, "instagramUrl");
-  const youtubeUrl = readString(data, "youtubeUrl");
-  const tiktokUrl = readString(data, "tiktokUrl");
+  const exitVelo = readString(
+    data,
+    "exitVelo",
+    "exitVelocity",
+    "maxExitVelo",
+    "maxExitVelocity"
+  );
+
+  const pitchingVelo = readString(
+    data,
+    "pitchingVelo",
+    "pitchingVelocity",
+    "maxPitchingVelo",
+    "maxPitchingVelocity"
+  );
+
+  const popTime = readString(data, "popTime", "catcherPopTime");
+  const fb = readString(data, "fastballVelo", "fbVelo", "avgFastballVelo");
+  const infVelo = readString(data, "infieldVelo", "infVelo");
+  const ofVelo = readString(data, "outfieldVelo", "ofVelo");
+  const catcherVelo = readString(data, "catcherVelo", "cVelo");
+
+  const xUrl = readString(data, "xUrl", "twitterUrl", "xProfileUrl");
+  const instagramUrl = readString(data, "instagramUrl", "instagram");
+  const youtubeUrl = readString(data, "youtubeUrl", "youtube");
+  const tiktokUrl = readString(data, "tiktokUrl", "tiktok");
 
   const highlightVideo = readString(
     data,
     "highlightVideoUrl",
     "videoUrl",
-    "primaryVideoUrl"
+    "primaryVideoUrl",
+    "primaryVideo",
+    "featuredVideoUrl"
   );
 
   const recruitingBio = readString(data, "bio", "playerBio", "summary");

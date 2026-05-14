@@ -122,15 +122,32 @@ export function asRecord(value: unknown): Record<string, any> {
 }
 
 export function readString(obj: Record<string, any>, ...keys: string[]) {
-  for (const key of keys) {
-    const value = obj?.[key];
+  const containers = [
+    obj,
+    asRecord(obj?.core),
+    asRecord(obj?.academics),
+    asRecord(obj?.athletics),
+    asRecord(obj?.metrics),
+    asRecord(obj?.stats),
+    asRecord(obj?.video),
+    asRecord(obj?.videoSocial),
+    asRecord(obj?.social),
+    asRecord(obj?.socialMedia),
+    asRecord(obj?.recruiting),
+    asRecord(obj?.profile),
+  ];
 
-    if (typeof value === "string" && value.trim()) {
-      return value.trim();
-    }
+  for (const container of containers) {
+    for (const key of keys) {
+      const value = container?.[key];
 
-    if (typeof value === "number" && Number.isFinite(value)) {
-      return String(value);
+      if (typeof value === "string" && value.trim()) {
+        return value.trim();
+      }
+
+      if (typeof value === "number" && Number.isFinite(value)) {
+        return String(value);
+      }
     }
   }
 

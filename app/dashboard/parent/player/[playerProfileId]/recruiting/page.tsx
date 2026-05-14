@@ -2,30 +2,18 @@
 
 import Link from "next/link";
 import React from "react";
-import { notFound, redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import {
+  asRecord,
+  getParentDashboardContext,
+  getPlayerDisplayName,
+  readString,
+} from "@/lib/parent/getParentDashboardContext";
 
 type PageProps = {
   params: {
     playerProfileId: string;
   };
 };
-
-function asRecord(value: unknown): Record<string, any> {
-  return value && typeof value === "object" && !Array.isArray(value)
-    ? (value as Record<string, any>)
-    : {};
-}
-
-function readString(obj: Record<string, any>, ...keys: string[]) {
-  for (const key of keys) {
-    const value = obj?.[key];
-    if (typeof value === "string" && value.trim()) return value.trim();
-    if (typeof value === "number" && Number.isFinite(value)) return String(value);
-  }
-  return "";
-}
 
 function hasValue(value: unknown) {
   return typeof value === "string" ? Boolean(value.trim()) : Boolean(value);
@@ -49,10 +37,40 @@ function getCompletion(data: Record<string, any>) {
     readString(data, "bats"),
     readString(data, "throws", "throwingHand"),
     readString(data, "bio", "playerBio", "summary"),
-    readString(data, "highlightVideoUrl", "videoUrl", "primaryVideoUrl"),
-    readString(data, "sixty", "sixtyYard", "sixtyTime"),
-    readString(data, "exitVelo", "exitVelocity"),
-    readString(data, "infieldVelo", "outfieldVelo", "pitchingVelo", "fastballVelo"),
+    readString(
+      data,
+      "highlightVideoUrl",
+      "videoUrl",
+      "primaryVideoUrl",
+      "primaryVideo",
+      "featuredVideoUrl"
+    ),
+    readString(
+      data,
+      "sixty",
+      "sixtyYard",
+      "sixtyTime",
+      "sixtyYardDash",
+      "sixtyYardDashTime"
+    ),
+    readString(
+      data,
+      "exitVelo",
+      "exitVelocity",
+      "maxExitVelo",
+      "maxExitVelocity"
+    ),
+    readString(
+      data,
+      "infieldVelo",
+      "infVelo",
+      "outfieldVelo",
+      "ofVelo",
+      "pitchingVelo",
+      "pitchingVelocity",
+      "fastballVelo",
+      "fbVelo"
+    ),
   ];
 
   const completed = checks.filter(hasValue).length;
@@ -67,79 +85,99 @@ function getReadinessLabel(score: number) {
 }
 
 function getDivisionLane(data: Record<string, any>) {
-  const exitVelo = Number(readString(data, "exitVelo", "exitVelocity") || 0);
-  const sixty = Number(readString(data, "sixty", "sixtyYard", "sixtyTime") || 0);
+  const exitVelo = Number(
+    readString(
+      data,
+      "exitVelo",
+      "exitVelocity",
+      "maxExitVelo",
+      "maxExitVelocity"
+    ) || 0
+  );
+
+  const sixty = Number(
+    readString(
+      data,
+      "sixty",
+      "sixtyYard",
+      "sixtyTime",
+      "sixtyYardDash",
+      "sixtyYardDashTime"
+    ) || 0
+  );
+
   const gpa = Number(readString(data, "gpa", "GPA") || 0);
 
-  if (exitVelo >= 92 || (sixty > 0 && sixty <= 6.9)) return "NCAA D1 / High D2 Watch";
-  if (exitVelo >= 86 || (sixty > 0 && sixty <= 7.2)) return "NCAA D2 / Strong D3 / NAIA Lane";
-  if (gpa >= 3.4) return "Academic D3 / NAIA / JUCO Fit Lane";
+  if (exitVelo >= 92 || (sixty > 0 && sixty <= 6.9)) {
+    return "NCAA D1 / High D2 Watch";
+  }
+
+  if (exitVelo >= 86 || (sixty > 0 && sixty <= 7.2)) {
+    return "NCAA D2 / Strong D3 / NAIA Lane";
+  }
+
+  if (gpa >= 3.4) {
+    return "Academic D3 / NAIA / JUCO Fit Lane";
+  }
+
   return "Development + Exposure Lane";
 }
 
-export default async function ParentRecruitingSnapshotPage({ params }: PageProps) {
-  const user = await getCurrentUser();
-
-  if (!user?.id) {
-    redirect("/login?role=parent");
-  }
-
+export default async function ParentRecruitingSnapshotPage({
+  params,
+}: PageProps) {
   const playerProfileId = String(params?.playerProfileId || "").trim();
-  if (!playerProfileId) notFound();
 
-  const parentProfile = await prisma.parentProfile.findUnique({
-    where: { userId: user.id },
-    select: { id: true },
+  const { activePlayerProfile } = await getParentDashboardContext({
+    playerProfileId,
+    requireLinkedPlayer: true,
   });
 
-  if (!parentProfile?.id) notFound();
-
-  const link = await prisma.parentPlayerLink.findUnique({
-    where: {
-      parentProfileId_playerProfileId: {
-        parentProfileId: parentProfile.id,
-        playerProfileId,
-      },
-    },
-    select: {
-      relationship: true,
-      isPrimary: true,
-      playerProfile: {
-        select: {
-          id: true,
-          email: true,
-          data: true,
-          updatedAt: true,
-          user: {
-            select: {
-              name: true,
-              slug: true,
-            },
-          },
-        },
-      },
-    },
-  });
-
-  if (!link?.playerProfile) notFound();
-
-  const profile = link.playerProfile;
+  const profile = activePlayerProfile!;
   const data = asRecord(profile.data);
 
-  const firstName = readString(data, "firstName", "playerFirstName", "nameFirst");
-  const lastName = readString(data, "lastName", "playerLastName", "nameLast");
-  const fullName =
-    [firstName, lastName].filter(Boolean).join(" ").trim() ||
-    profile.user?.name?.trim() ||
-    profile.email.split("@")[0];
+  const fullName = getPlayerDisplayName({
+    data,
+    fallbackName: profile.user?.name,
+    fallbackEmail: profile.email,
+  });
 
   const gradYear = readString(data, "gradYear", "graduationYear", "classYear");
-  const primaryPosition = readString(data, "primaryPosition", "primaryPos", "position");
+  const primaryPosition = readString(
+    data,
+    "primaryPosition",
+    "primaryPos",
+    "position"
+  );
   const school = readString(data, "school", "highSchool", "hsName");
   const gpa = readString(data, "gpa", "GPA");
-  const exitVelo = readString(data, "exitVelo", "exitVelocity");
-  const sixty = readString(data, "sixty", "sixtyYard", "sixtyTime");
-  const highlightVideo = readString(data, "highlightVideoUrl", "videoUrl", "primaryVideoUrl");
+
+  const exitVelo = readString(
+    data,
+    "exitVelo",
+    "exitVelocity",
+    "maxExitVelo",
+    "maxExitVelocity"
+  );
+
+  const sixty = readString(
+    data,
+    "sixty",
+    "sixtyYard",
+    "sixtyTime",
+    "sixtyYardDash",
+    "sixtyYardDashTime"
+  );
+
+  const highlightVideo = readString(
+    data,
+    "highlightVideoUrl",
+    "videoUrl",
+    "primaryVideoUrl",
+    "primaryVideo",
+    "featuredVideoUrl"
+  );
+
   const bio = readString(data, "bio", "playerBio", "summary");
 
   const completion = getCompletion(data);
@@ -181,9 +219,9 @@ export default async function ParentRecruitingSnapshotPage({ params }: PageProps
         <div style={eyebrow}>Parent Recruiting Snapshot</div>
         <h1 style={h1}>{fullName}</h1>
         <p style={heroText}>
-          A parent-friendly view of recruiting readiness, profile completion, and
-          next steps. This page is read-only and does not allow parents to manage
-          coach conversations or manipulate Truth Fit calculations.
+          A parent-friendly view of recruiting readiness, profile completion,
+          and next steps. This page is read-only and does not allow parents to
+          manage coach conversations or manipulate Truth Fit calculations.
         </p>
 
         <div style={actionRow}>
@@ -217,8 +255,8 @@ export default async function ParentRecruitingSnapshotPage({ params }: PageProps
           <div style={cardTitle}>Suggested Recruiting Lane</div>
           <div style={laneText}>{lane}</div>
           <div style={bodyText}>
-            This is a directional parent snapshot based on available profile data.
-            The full player recruiting tool remains player-facing.
+            This is a directional parent snapshot based on available profile
+            data. The full player recruiting tool remains player-facing.
           </div>
         </div>
       </section>
@@ -263,15 +301,18 @@ export default async function ParentRecruitingSnapshotPage({ params }: PageProps
       <section style={card}>
         <div style={cardTitle}>Parent Accountability View</div>
         <div style={bodyText}>
-          Future notifications can alert parents when coach activity happens —
-          such as profile views, saves, or unread messages — without exposing
-          private message contents or allowing parent interaction.
+          Notifications can alert parents when coach activity happens — such as
+          profile views, saves, or unread messages — without exposing private
+          message contents or allowing parent interaction.
         </div>
 
         <div style={infoGrid}>
-          <InfoItem label="Coach Activity" value="Coming soon" />
-          <InfoItem label="Unread Messages" value="Badge-only view planned" />
-          <InfoItem label="Profile Updated" value={new Date(profile.updatedAt).toLocaleString()} />
+          <InfoItem label="Coach Activity" value="Parent-safe alerts enabled" />
+          <InfoItem label="Unread Messages" value="Badge-only oversight" />
+          <InfoItem
+            label="Profile Updated"
+            value={new Date(profile.updatedAt).toLocaleString()}
+          />
         </div>
       </section>
     </div>

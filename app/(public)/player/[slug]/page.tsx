@@ -185,20 +185,55 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   void showCoachPrompt;
   void setShowCoachPrompt;
 
-  // ---------------- Coach viewer detection ----------------
+  // ---------------- Viewer / coach tools detection ----------------
   const [isCoachViewer, setIsCoachViewer] = React.useState(false);
+  const [viewerRole, setViewerRole] = React.useState<string | null>(null);
   const [playerUserId, setPlayerUserId] = React.useState<string | null>(null);
   const [messageRecruitSending, setMessageRecruitSending] = React.useState(false);
+
+  const canMessageRecruit = React.useMemo(() => {
+    const role = String(viewerRole || "").trim().toUpperCase();
+
+    return (
+      role === "COACH" ||
+      role === "COLLEGE_COACH" ||
+      role === "TEAM_ADMIN" ||
+      role === "TEAM"
+    );
+  }, [viewerRole]);
 
   React.useEffect(() => {
     let cancelled = false;
 
     (async () => {
       try {
-        const res = await fetch("/api/coach/dashboard", { method: "GET", cache: "no-store" });
-        if (!cancelled) setIsCoachViewer(res.ok);
+        const meRes = await fetch("/api/auth/me", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const meJson = await meRes.json().catch(() => null);
+        const role = String(meJson?.user?.role || meJson?.role || "")
+          .trim()
+          .toUpperCase();
+
+        if (!cancelled) {
+          setViewerRole(role || null);
+        }
+
+        const coachRes = await fetch("/api/coach/dashboard", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        if (!cancelled) {
+          setIsCoachViewer(coachRes.ok);
+        }
       } catch {
-        if (!cancelled) setIsCoachViewer(false);
+        if (!cancelled) {
+          setViewerRole(null);
+          setIsCoachViewer(false);
+        }
       }
     })();
 
@@ -998,7 +1033,7 @@ const coachesData: CoachesData = {
                 chatUrl={showChat ? connectChatUrl : null}
               />
 
-              {isCoachViewer ? (
+              {canMessageRecruit ? (
                 <button
                   type="button"
                   onClick={handleMessageRecruit}
