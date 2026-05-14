@@ -218,18 +218,48 @@ function getPrimaryPosition(player: any) {
   return normalizePosition(raw);
 }
 
-function getMetricValue(player: any, key: string): number | null {
-  const possibleValues = [
-    player?.[key],
-    player?.metrics?.[key],
-    player?.playerMetrics?.[key],
-    player?.playerProfile?.[key],
-    player?.playerProfile?.metrics?.[key],
-  ];
+function latestMetricEntryValue(value: any): number | null {
+  if (Array.isArray(value)) {
+    const last = value[value.length - 1];
+    const numeric = Number(last?.value ?? last);
+    return Number.isFinite(numeric) && numeric > 0 ? numeric : null;
+  }
 
-  for (const value of possibleValues) {
-    const numeric = Number(value);
-    if (Number.isFinite(numeric) && numeric > 0) return numeric;
+  const numeric = Number(value?.value ?? value);
+  return Number.isFinite(numeric) && numeric > 0 ? numeric : null;
+}
+
+function getMetricAliases(key: string) {
+  const aliases: Record<string, string[]> = {
+    sixty: ["sixty", "sixtyYdDash", "sixtyYardDash", "sixtyTime"],
+    homeToFirst: ["homeToFirst", "homeToFirstTime"],
+    exitVelo: ["exitVelo", "exitVelocity"],
+    infieldVelo: ["infieldVelo", "infieldThrowVelo", "ifVelo"],
+    outfieldVelo: ["outfieldVelo", "outfieldThrowVelo", "ofVelo"],
+    catcherVelo: ["catcherVelo", "catcherThrowVelo"],
+    popTime: ["popTime"],
+    fbVelo: ["fbVelo", "avgFbVelo", "fastballVelo", "averageFastballVelocity"],
+  };
+
+  return aliases[key] || [key];
+}
+
+function getMetricValue(player: any, key: string): number | null {
+  const aliases = getMetricAliases(key);
+
+  for (const alias of aliases) {
+    const possibleValues = [
+      player?.[alias],
+      player?.metrics?.[alias],
+      player?.playerMetrics?.[alias],
+      player?.playerProfile?.[alias],
+      player?.playerProfile?.metrics?.[alias],
+    ];
+
+    for (const value of possibleValues) {
+      const numeric = latestMetricEntryValue(value);
+      if (numeric != null) return numeric;
+    }
   }
 
   return null;
@@ -308,7 +338,7 @@ function getNextDivisionTarget(metric: MetricDefinition, currentValue: number) {
 }
 
 function clampPercent(value: number) {
-  return Math.max(1, Math.min(99, Math.round(value)));
+  return Math.max(1, Math.min(100, Math.round(value)));
 }
 
 function getEstimatedPercentile(metric: MetricDefinition, currentValue: number) {
@@ -413,7 +443,7 @@ function buildGrade(params: {
   score: number;
   description: string;
 }): PlayerGrade {
-  const roundedScore = Math.max(1, Math.min(99, Math.round(params.score)));
+  const roundedScore = Math.max(1, Math.min(100, Math.round(params.score)));
 
   return {
     key: params.key,
