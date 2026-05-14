@@ -595,15 +595,32 @@ const divisionPrestigeRank: Record<string, number> = {
 
 const recommendedLaneDivision =
   [...divisionFits]
-    .filter((item) =>
-      ["Strong Fit", "Match", "Possible Match"].includes(item.fitTier)
-    )
+    .filter((item) => {
+      const score = Number(item.bestScore || 0);
+
+      // Do not recommend a lane unless the score is meaningfully recruitable.
+      if (score < 70) return false;
+
+      // Strong Fit and Match are eligible.
+      if (item.fitTier === "Strong Fit" || item.fitTier === "Match") return true;
+
+      // Possible Match only becomes the recommended lane at 78+.
+      // This prevents over-promoting a player into a prestige division too early.
+      if (item.fitTier === "Possible Match" && score >= 78) return true;
+
+      return false;
+    })
     .sort((a, b) => {
+      const aScore = Number(a.bestScore || 0);
+      const bScore = Number(b.bestScore || 0);
+
+      // Score first. Accuracy over prestige.
+      if (bScore !== aScore) return bScore - aScore;
+
       const aRank = divisionPrestigeRank[a.division] || 0;
       const bRank = divisionPrestigeRank[b.division] || 0;
 
-      if (bRank !== aRank) return bRank - aRank;
-      return b.bestScore - a.bestScore;
+      return bRank - aRank;
     })[0]?.division ||
   rankedDivisionFits[0]?.division ||
   null;
