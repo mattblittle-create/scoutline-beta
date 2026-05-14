@@ -834,7 +834,15 @@ return (
     <section style={shellStyle}>
       <div style={headerStyle}>
         <div>
-          <h1 style={titleStyle}>Recruiting Tool</h1>
+          <h1 style={titleStyle}>
+            {[
+              truthFitSummary?.playerProfile?.firstName,
+              truthFitSummary?.playerProfile?.lastName,
+            ]
+              .filter(Boolean)
+              .join(" ") || "Player"}{" "}
+            - Recruiting Tool
+          </h1>
 
           <p style={subtitleStyle}>
             ScoutLine’s Recruiting Tool helps players better understand college fit,
