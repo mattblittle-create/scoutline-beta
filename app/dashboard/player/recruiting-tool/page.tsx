@@ -1167,7 +1167,7 @@ body: JSON.stringify({
   <div
     style={{
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
+      gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
       gap: 10,
       marginTop: 12,
     }}

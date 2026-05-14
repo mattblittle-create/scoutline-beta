@@ -506,7 +506,7 @@ export function buildPlayerGrades(input: RecommendationInput): PlayerGrade[] {
   return [
     buildGrade({
       key: "hit",
-      label: "Hit",
+      label: "Offense",
       score: hitScore,
       description: "Based primarily on offensive impact indicators available in the current profile.",
     }),
@@ -523,10 +523,10 @@ export function buildPlayerGrades(input: RecommendationInput): PlayerGrade[] {
       description: "Based on available run-speed metrics such as 60 yard dash and home-to-first.",
     }),
     buildGrade({
-      key: "arm",
-      label: "Arm",
-      score: armScore,
-      description: "Weighted by position using the most relevant throwing or pitching velocity metric.",
+      key: "projection",
+      label: "Projection",
+      score: projectionScore,
+      description: "Blends recruiting lane, athleticism, and physical tools to estimate future upside.",
     }),
     buildGrade({
       key: "defense",
@@ -535,10 +535,10 @@ export function buildPlayerGrades(input: RecommendationInput): PlayerGrade[] {
       description: "Position-adjusted defensive grade using speed, arm strength, and position-specific metrics.",
     }),
     buildGrade({
-      key: "projection",
-      label: "Projection",
-      score: projectionScore,
-      description: "Blends recruiting lane, athleticism, and physical tools to estimate future upside.",
+      key: "arm",
+      label: "Arm",
+      score: armScore,
+      description: "Weighted by position using the most relevant throwing or pitching velocity metric.",
     }),
     buildGrade({
       key: "athleticism",
