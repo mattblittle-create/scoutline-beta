@@ -1,12 +1,15 @@
 // lib/recruiting/recommendationEngine.ts
 
 export type RecommendationCategory =
+  | "Profile"
   | "Metrics"
   | "Athleticism"
   | "Position Fit"
   | "Development"
   | "Academics"
-  | "Exposure";
+  | "Exposure"
+  | "Recruiting"
+  | "Timeline";
 
 export type RecommendationPriority = "High" | "Medium" | "Low";
 
@@ -898,67 +901,365 @@ function dedupeRecommendations(recommendations: Recommendation[]) {
   });
 }
 
+function getPlayerFirstName(player: any) {
+  const rawName =
+    player?.firstName ||
+    player?.name ||
+    player?.fullName ||
+    player?.playerName ||
+    "";
+
+  return String(rawName).trim().split(" ")[0] || "The player";
+}
+
+function hasAnyMetric(player: any, keys: string[]) {
+  return keys.some((key) => getMetricValue(player, key) != null);
+}
+
+function hasAnyVideo(player: any) {
+  const externalVideos = Array.isArray(player?.externalVideos)
+    ? player.externalVideos
+    : [];
+
+  const localVideos = Array.isArray(player?.localVideos)
+    ? player.localVideos
+    : [];
+
+  const videoSocial = player?.videoSocial || {};
+
+  const nestedExternal = Array.isArray(videoSocial?.externalVideos)
+    ? videoSocial.externalVideos
+    : [];
+
+  const nestedLocal = Array.isArray(videoSocial?.localVideos)
+    ? videoSocial.localVideos
+    : [];
+
+  return (
+    externalVideos.length > 0 ||
+    localVideos.length > 0 ||
+    nestedExternal.length > 0 ||
+    nestedLocal.length > 0 ||
+    Boolean(player?.primary?.url || videoSocial?.primary?.url)
+  );
+}
+
+function getGradYear(player: any): number | null {
+  const n = Number(player?.gradYear || player?.graduationYear || player?.playerProfile?.gradYear);
+  return Number.isFinite(n) ? n : null;
+}
+
+function getRecruitingTimelineLabel(gradYear: number | null) {
+  if (!gradYear) return "Timeline";
+
+  const currentYear = new Date().getFullYear();
+  const yearsUntilGrad = gradYear - currentYear;
+
+  if (yearsUntilGrad >= 3) return "Foundation Phase";
+  if (yearsUntilGrad === 2) return "Build & Exposure Phase";
+  if (yearsUntilGrad === 1) return "Active Outreach Phase";
+  if (yearsUntilGrad <= 0) return "Urgent Opportunity Phase";
+
+  return "Timeline";
+}
+
+function priorityFromScore(score: number): RecommendationPriority {
+  if (score >= 80) return "High";
+  if (score >= 55) return "Medium";
+  return "Low";
+}
+
+function pushRecommendation(
+  recommendations: Recommendation[],
+  rec: Omit<Recommendation, "priority"> & { priority?: RecommendationPriority }
+) {
+  recommendations.push({
+    ...rec,
+    priority: rec.priority || priorityFromScore(rec.priorityScore),
+  });
+}
+
 export function buildRecommendations(input: RecommendationInput): Recommendation[] {
   const player = input.player || {};
   const summary = input.summary || {};
   const laneFit = input.laneFit || {};
+  const truthFitResults = Array.isArray(input.truthFitResults)
+    ? input.truthFitResults
+    : [];
 
+  const playerFirstName = getPlayerFirstName(player);
   const position = getPrimaryPosition(player);
   const bestLane = getBestLane(summary, laneFit);
+  const gradYear = getGradYear(player);
+  const timelineLabel = getRecruitingTimelineLabel(gradYear);
 
-  const priorityKeys =
-    POSITION_PRIORITY[position] ||
-    POSITION_PRIORITY[normalizePosition(position)] ||
-    FALLBACK_PRIORITY;
+  const laneScore = Number(laneFit?.bestScore || summary?.dominantScore || 0);
+  const fitTier = String(laneFit?.fitTier || summary?.dominantFit || "");
+  const gaps = Array.isArray(laneFit?.biggestGaps)
+    ? laneFit.biggestGaps
+    : Array.isArray(laneFit?.metricComparisons)
+    ? laneFit.metricComparisons.filter((m: any) => m?.status === "BELOW")
+    : [];
 
   const recommendations: Recommendation[] = [];
 
-  for (const metricKey of priorityKeys) {
+  // 1) Profile Completion
+  const missingProfileItems: string[] = [];
+
+  if (!player?.gpa) missingProfileItems.push("GPA");
+  if (!hasAnyVideo(player)) missingProfileItems.push("video");
+  if (!hasAnyMetric(player, ["exitVelo"])) missingProfileItems.push("exit velocity");
+  if (!hasAnyMetric(player, ["sixty", "homeToFirst"])) missingProfileItems.push("speed metrics");
+
+  const isPitcher =
+    position === "P" ||
+    ["yes", "true", "1"].includes(String(player?.isPitcher || "").trim().toLowerCase()) ||
+    ["RHP", "LHP"].includes(String(player?.pitcherHand || "").trim().toUpperCase());
+
+  const secondary = normalizePosition(
+    player?.secondaryPos ||
+      player?.secondaryPosition ||
+      player?.playerProfile?.secondaryPos ||
+      ""
+  );
+
+  const isCatcher = position === "C" || secondary === "C";
+
+  if (isPitcher && !hasAnyMetric(player, ["avgFbVelo"])) {
+    missingProfileItems.push("fastball velocity");
+  }
+
+  if (isCatcher && !hasAnyMetric(player, ["popTime", "catcherVelo"])) {
+    missingProfileItems.push("catcher metrics");
+  }
+
+  if (missingProfileItems.length > 0) {
+    pushRecommendation(recommendations, {
+      category: "Profile",
+      title: "Complete Key Profile Data",
+      description: `${playerFirstName} should add ${missingProfileItems
+        .slice(0, 4)
+        .join(", ")} to improve ScoutLine recommendation accuracy, benchmark confidence, and recruiting readiness.`,
+      priorityScore: missingProfileItems.length >= 3 ? 92 : 74,
+    });
+  }
+
+  // 2) Metric Development from biggest lane gaps
+  for (const gap of gaps.slice(0, 3)) {
+    const metricKey = String(gap?.key || "");
     const metric = METRICS[metricKey];
     if (!metric) continue;
 
-    const currentValue = getMetricValue(player, metricKey);
-    const targetValue = getApproxTarget(metricKey, bestLane);
+    const currentValue = Number(gap?.playerValue || getMetricValue(player, metricKey));
+    const targetValue = Number(gap?.benchmarkValue || getApproxTarget(metricKey, bestLane));
 
-    if (!currentValue || !targetValue) continue;
+    if (!Number.isFinite(currentValue) || !Number.isFinite(targetValue)) continue;
 
     const severity = getGapSeverity(metric, currentValue, targetValue);
-    if (severity.score <= 0) continue;
 
-    recommendations.push(
-      buildMetricRecommendation({
-        metric,
-        currentValue,
-        targetValue,
-        priority: severity.priority,
-        priorityScore: severity.score,
-        position,
-        bestLane,
-      })
-    );
+    pushRecommendation(recommendations, {
+      category: "Metrics",
+      title: `Improve ${metric.label}`,
+      description: `${playerFirstName}'s ${metric.label.toLowerCase()} is one of the clearest measurable gaps for the ${prettyDivision(
+        bestLane
+      ) || "target"} lane. Improving this benchmark can directly strengthen fit score and coach-facing profile confidence.`,
+      priorityScore: Math.max(70, severity.score + 8),
+      metricKey: metric.key,
+      currentValue,
+      targetValue,
+      unit: metric.unit,
+      benchmarkTier: gap?.label || metric.label,
+      percentileLabel: "Development priority",
+    });
   }
 
+  // 3) Position-specific action
+  if (position === "C") {
+    pushRecommendation(recommendations, {
+      category: "Position Fit",
+      title: "Build Catcher-Specific Proof",
+      description:
+        "Add recent pop time, catcher throwing velocity, blocking, receiving, and game throwdown clips. Catchers need position-specific proof beyond general athletic metrics.",
+      priorityScore: 78,
+    });
+  } else if (position === "P" || isPitcher) {
+    pushRecommendation(recommendations, {
+      category: "Position Fit",
+      title: "Strengthen Pitching Evaluation Data",
+      description:
+        "Add recent fastball, changeup, breaking ball velocity, strike percentage, and bullpen or game video. Pitching profiles become much stronger when velocity, command, and pitch mix are visible together.",
+      priorityScore: 82,
+    });
+  } else if (["SS", "2B", "MIF"].includes(position)) {
+    pushRecommendation(recommendations, {
+      category: "Position Fit",
+      title: "Prove Up-the-Middle Defensive Value",
+      description:
+        "For middle infield profiles, prioritize lateral range, quick exchange, arm accuracy, footwork, and game-speed defensive video. Coaches need to see athletic actions, not just raw metrics.",
+      priorityScore: 76,
+    });
+  } else if (["3B", "1B", "CIF"].includes(position)) {
+    pushRecommendation(recommendations, {
+      category: "Position Fit",
+      title: "Strengthen Corner Profile Impact",
+      description:
+        "Corner infield profiles should show offensive impact, arm strength, reliable glove work, and physical projection. Prioritize exit velocity, infield velocity, and quality game swings.",
+      priorityScore: 76,
+    });
+  } else if (["LF", "CF", "RF", "OF"].includes(position)) {
+    pushRecommendation(recommendations, {
+      category: "Position Fit",
+      title: "Show Outfield Range and Arm Carry",
+      description:
+        "Outfield profiles benefit from route-running, first-step reads, arm carry, throwing accuracy, and offensive impact. Add video that shows game-speed outfield actions.",
+      priorityScore: 74,
+    });
+  }
+
+  // 4) Physical development action
+  const hasStrengthData = hasAnyMetric(player, ["benchPress", "squat", "deadLift"]);
+  const weight = Number(player?.weightLb || player?.weight || 0);
+
+  if (!hasStrengthData) {
+    pushRecommendation(recommendations, {
+      category: "Athleticism",
+      title: "Add Strength Benchmarks",
+      description:
+        "Add bench press, squat, and dead lift metrics so ScoutLine can better evaluate physical development, projection, and strength gains over time.",
+      priorityScore: 66,
+    });
+  } else if (weight > 0 && weight < 170 && ["3B", "1B", "CIF", "P"].includes(position)) {
+    pushRecommendation(recommendations, {
+      category: "Athleticism",
+      title: "Build Functional Strength and Mass",
+      description:
+        "For this position profile, adding functional strength and lean mass can support exit velocity, throwing velocity, durability, and projection.",
+      priorityScore: 70,
+    });
+  }
+
+  // 5) Academic action
+  const gpa = Number(player?.gpa || 0);
+
+  if (!gpa) {
+    pushRecommendation(recommendations, {
+      category: "Academics",
+      title: "Add Academic Profile Data",
+      description:
+        "Add GPA, test scores if available, intended majors, and academic documents. Academic fit can expand recruiting options, especially for D3, high-academic D2, NAIA, and selective programs.",
+      priorityScore: 80,
+    });
+  } else if (gpa < 3.0) {
+    pushRecommendation(recommendations, {
+      category: "Academics",
+      title: "Improve Academic Recruiting Flexibility",
+      description:
+        "Raising GPA can expand the number of realistic college options and improve academic-fit confidence in ScoutLine recommendations.",
+      priorityScore: 72,
+    });
+  }
+
+  // 6) Recruiting strategy action
+  const strongRegionalFits = truthFitResults.filter((item: any) => {
+    const score = Number(item?.truthFit?.score || 0);
+    const geo = String(item?.geographyLabel || "");
+    return score >= 55 && ["In-State Fit", "Nearby Regional Fit", "Regional Fit"].includes(geo);
+  });
+
+  if (strongRegionalFits.length >= 5) {
+    pushRecommendation(recommendations, {
+      category: "Recruiting",
+      title: "Build a Focused Regional Target List",
+      description: `${playerFirstName} has enough regional fit signals to build a focused target list. Start with nearby programs that match the current recruiting lane, then expand outward as metrics improve.`,
+      priorityScore: 84,
+    });
+  } else {
+    pushRecommendation(recommendations, {
+      category: "Recruiting",
+      title: "Expand Target Program Research",
+      description:
+        "Use the college search and target programs tools to build a realistic list across division, region, academic fit, and roster opportunity. A broader list creates more paths to the right fit.",
+      priorityScore: 68,
+    });
+  }
+
+  // 7) Exposure action
+  if (!hasAnyVideo(player)) {
+    pushRecommendation(recommendations, {
+      category: "Exposure",
+      title: "Add Coach-Ready Video",
+      description:
+        "Upload short, recent video clips that show position actions, game swings, pitching looks, or measurable skills. Coaches need quick visual proof before investing deeper time.",
+      priorityScore: 86,
+    });
+  } else if (laneScore >= 55) {
+    pushRecommendation(recommendations, {
+      category: "Exposure",
+      title: "Start Targeted Coach Outreach",
+      description:
+        "Use the profile, player card, and target school list to begin targeted outreach. Prioritize programs where the player has realistic fit signals and clear reasons to connect.",
+      priorityScore: 76,
+    });
+  }
+
+  // 8) Timeline action
+  if (timelineLabel === "Foundation Phase") {
+    pushRecommendation(recommendations, {
+      category: "Timeline",
+      title: "Build the Foundation Early",
+      description:
+        "Focus on profile completeness, verified metrics, video habits, academic strength, and steady development. Early recruiting value comes from building a clean, trackable profile.",
+      priorityScore: 62,
+    });
+  } else if (timelineLabel === "Build & Exposure Phase") {
+    pushRecommendation(recommendations, {
+      category: "Timeline",
+      title: "Move From Development to Exposure",
+      description:
+        "This is the time to pair development with visibility. Keep metrics current, add fresh video, build a target list, and begin light outreach to realistic programs.",
+      priorityScore: 74,
+    });
+  } else if (timelineLabel === "Active Outreach Phase") {
+    pushRecommendation(recommendations, {
+      category: "Timeline",
+      title: "Begin Consistent Recruiting Outreach",
+      description:
+        "Prioritize targeted weekly outreach, follow-ups, updated video, and realistic program fit. This phase should be organized, consistent, and measurable.",
+      priorityScore: 88,
+    });
+  } else if (timelineLabel === "Urgent Opportunity Phase") {
+    pushRecommendation(recommendations, {
+      category: "Timeline",
+      title: "Prioritize Immediate Fit Opportunities",
+      description:
+        "Focus on programs with realistic fit, roster need, and quick communication paths. Keep outreach direct, current, and targeted.",
+      priorityScore: 94,
+    });
+  }
+
+  // Conservative fallback
   if (recommendations.length === 0) {
-    recommendations.push({
+    pushRecommendation(recommendations, {
       category: "Development",
       title: "Keep Building Verified Data",
       description:
-        "The next best step is to continue adding verified metrics, updated video, academic information, and game performance data so ScoutLine can produce stronger recruiting guidance.",
-      priority: "Medium",
+        "Continue adding verified metrics, updated video, academic information, and game performance data so ScoutLine can produce stronger recruiting guidance.",
       priorityScore: 60,
     });
   }
 
-  recommendations.push({
-    category: "Exposure",
-    title: "Strengthen Recruiting Visibility",
-    description:
-      "Keep the player profile current with recent video, verified metrics, academic details, and target schools. A complete profile gives coaches more confidence and improves recommendation quality.",
-    priority: "Medium",
-    priorityScore: 55,
-  });
+  // Tie recommendations to lane quality
+  if (laneScore >= 70 || fitTier === "Match" || fitTier === "Strong Fit") {
+    pushRecommendation(recommendations, {
+      category: "Recruiting",
+      title: "Convert Fit Into Action",
+      description:
+        "The current lane shows enough alignment to turn analysis into outreach. Save target programs, prepare a short coach message, and track follow-up activity.",
+      priorityScore: 82,
+    });
+  }
 
   return dedupeRecommendations(recommendations)
     .sort((a, b) => b.priorityScore - a.priorityScore)
-    .slice(0, 5);
+    .slice(0, 6);
 }

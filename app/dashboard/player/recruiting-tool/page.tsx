@@ -1616,7 +1616,7 @@ body: JSON.stringify({
       color: "#64748b",
     }}
   >
-    Visualizes the same ScoutLine grades above on a 1–100 scale to show overall tool balance, strengths, and development areas.
+    The Player Tools Radar visualizes the ScoutLine Player Grades above to show overall tool balance, strengths, and development areas.
   </div>
 </section>
 
@@ -1629,7 +1629,7 @@ body: JSON.stringify({
     padding: 18,
   }}
 >
-  <div style={laneLabelStyle}>What Moves the Meter?</div>
+  <div style={laneLabelStyle}>Recruiting Action Plan</div>
 
   <div
     style={{
