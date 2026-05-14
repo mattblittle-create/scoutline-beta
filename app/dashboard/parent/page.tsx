@@ -1,79 +1,57 @@
 // app/dashboard/parent/page.tsx
+
 import Link from "next/link";
-import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import {
+  asRecord,
+  getParentDashboardContext,
+  getPlayerDisplayName,
+  getPossessiveName,
+  readString,
+} from "@/lib/parent/getParentDashboardContext";
 
 export default async function ParentDashboardPage() {
-  const user = await getCurrentUser();
+  const { user, activePlayerProfile } = await getParentDashboardContext();
 
-  if (!user?.id) {
-    redirect("/login?role=parent");
-  }
+  const playerProfile = activePlayerProfile;
+  const playerData = asRecord(playerProfile?.data);
 
-  const parentProfile = await prisma.parentProfile.findUnique({
-    where: { userId: user.id },
-    select: {
-      id: true,
-      playerLinks: {
-        orderBy: [{ isPrimary: "desc" }, { createdAt: "asc" }],
-        take: 1,
-        select: {
-          id: true,
-          isPrimary: true,
-          relationship: true,
-          playerProfile: {
-            select: {
-              id: true,
-              email: true,
-              userId: true,
-              data: true,
-            },
-          },
-        },
-      },
-    },
-  });
+  const firstName = readString(
+    playerData,
+    "firstName",
+    "playerFirstName",
+    "nameFirst"
+  );
 
-  const link = parentProfile?.playerLinks?.[0] ?? null;
-  const playerProfile = link?.playerProfile ?? null;
+  const displayName = playerProfile
+    ? getPlayerDisplayName({
+        data: playerData,
+        fallbackName: playerProfile.user?.name,
+        fallbackEmail: playerProfile.email,
+      })
+    : "Your Player";
 
-  const playerData =
-    playerProfile?.data && typeof playerProfile.data === "object"
-      ? (playerProfile.data as Record<string, any>)
-      : {};
+  const possessiveFirstName = getPossessiveName(firstName);
 
-  const firstName = String(
-    playerData?.firstName ||
-      playerData?.playerFirstName ||
-      playerData?.nameFirst ||
-      ""
-  ).trim();
-
-  const lastName = String(
-    playerData?.lastName ||
-      playerData?.playerLastName ||
-      playerData?.nameLast ||
-      ""
-  ).trim();
-
-  const fullName = [firstName, lastName].filter(Boolean).join(" ").trim();
-
-  const displayName =
-    fullName ||
-    (playerProfile?.email ? playerProfile.email.split("@")[0] : "Your Player");
-
-  const possessiveFirstName = firstName
-    ? `${firstName}${firstName.endsWith("s") ? "'" : "'s"}`
-    : "your player's";
-
-  const playerProfileHref = playerProfile?.id
+  const playerOverviewHref = playerProfile?.id
     ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}`
-    : "/dashboard/player/profile";
+    : "/dashboard/parent";
+
+  const publicProfileHref =
+    playerProfile?.user?.slug
+      ? `/player/${encodeURIComponent(playerProfile.user.slug)}`
+      : null;
+
+  const recruitingHref = playerProfile?.id
+    ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/recruiting`
+    : "/dashboard/parent";
+
+  const collegeSearchHref = playerProfile?.id
+    ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/college-search`
+    : "/dashboard/parent";
 
   const billingHref = playerProfile?.id
     ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/billing`
-    : "/dashboard/player/profile/billing";
+    : "/dashboard/parent";
 
   return (
     <div style={{ display: "grid", gap: 18 }}>
@@ -115,14 +93,14 @@ export default async function ParentDashboardPage() {
           style={{
             margin: "10px 0 0",
             color: "#475569",
-            maxWidth: 760,
+            maxWidth: 780,
             lineHeight: 1.55,
             fontWeight: 600,
           }}
         >
           Signed in as <strong>{user?.email || "—"}</strong>. Use this dashboard
-          to review and update {possessiveFirstName} profile details and manage
-          billing.
+          to support {possessiveFirstName} recruiting journey, review profile
+          progress, research colleges, and manage billing.
         </p>
       </section>
 
@@ -140,7 +118,7 @@ export default async function ParentDashboardPage() {
         >
           No player is linked to this parent account yet. Once the parent-player
           link is created, this dashboard will route directly to the correct
-          player profile and billing pages.
+          player profile, recruiting snapshot, college search, and billing pages.
         </section>
       ) : null}
 
@@ -152,10 +130,35 @@ export default async function ParentDashboardPage() {
         }}
       >
         <Card
-          title="View / Edit Player Profile"
-          body={`Open ${possessiveFirstName} ScoutLine profile to update recruiting info, academics, athletics, stats, and media.`}
-          href={playerProfileHref}
+          title="Player Profile"
+          body={`Review and update ${possessiveFirstName} profile basics, academics, athletics, stats, video, and social links.`}
+          href={playerOverviewHref}
           cta="Open Player Profile"
+          disabled={!playerProfile}
+        />
+
+        <Card
+          title="Public Profile"
+          body={`See what college coaches and evaluators can view on ${possessiveFirstName} public ScoutLine profile.`}
+          href={publicProfileHref || playerOverviewHref}
+          cta="View Public Profile"
+          disabled={!publicProfileHref}
+        />
+
+        <Card
+          title="Recruiting Snapshot"
+          body={`View ${possessiveFirstName} recruiting readiness, profile completion, suggested lane, and parent-friendly next steps.`}
+          href={recruitingHref}
+          cta="Open Snapshot"
+          disabled={!playerProfile}
+        />
+
+        <Card
+          title="College Search"
+          body="Research colleges from a family planning perspective including division, region, conference, and tuition."
+          href={collegeSearchHref}
+          cta="Search Colleges"
+          disabled={!playerProfile}
         />
 
         <Card
@@ -163,6 +166,15 @@ export default async function ParentDashboardPage() {
           body={`View and manage billing for ${possessiveFirstName} ScoutLine account including plan details and invoices.`}
           href={billingHref}
           cta="Open Billing"
+          disabled={!playerProfile}
+        />
+
+        <Card
+          title="Account / Support"
+          body="Review linked player access, parent account status, and future support options from the parent portal."
+          href="/dashboard/parent"
+          cta="Coming Soon"
+          disabled
         />
       </section>
     </div>
@@ -174,11 +186,13 @@ function Card({
   body,
   href,
   cta,
+  disabled,
 }: {
   title: string;
   body: string;
   href: string;
   cta: string;
+  disabled?: boolean;
 }) {
   return (
     <div
@@ -190,6 +204,7 @@ function Card({
         boxShadow: "0 10px 24px rgba(15,23,42,0.05)",
         display: "grid",
         gap: 12,
+        opacity: disabled ? 0.62 : 1,
       }}
     >
       <div>
@@ -215,22 +230,39 @@ function Card({
       </div>
 
       <div>
-        <Link
-          href={href}
-          style={{
-            display: "inline-block",
-            padding: "11px 15px",
-            borderRadius: 12,
-            textDecoration: "none",
-            fontWeight: 900,
-            border: "1px solid #caa042",
-            background: "#caa042",
-            color: "#0f172a",
-            boxShadow: "0 8px 18px rgba(202,160,66,0.22)",
-          }}
-        >
-          {cta}
-        </Link>
+        {disabled ? (
+          <span
+            style={{
+              display: "inline-block",
+              padding: "11px 15px",
+              borderRadius: 12,
+              textDecoration: "none",
+              fontWeight: 900,
+              border: "1px solid #e5e7eb",
+              background: "#f8fafc",
+              color: "#64748b",
+            }}
+          >
+            {cta}
+          </span>
+        ) : (
+          <Link
+            href={href}
+            style={{
+              display: "inline-block",
+              padding: "11px 15px",
+              borderRadius: 12,
+              textDecoration: "none",
+              fontWeight: 900,
+              border: "1px solid #caa042",
+              background: "#caa042",
+              color: "#0f172a",
+              boxShadow: "0 8px 18px rgba(202,160,66,0.22)",
+            }}
+          >
+            {cta}
+          </Link>
+        )}
       </div>
     </div>
   );

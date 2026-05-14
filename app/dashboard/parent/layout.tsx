@@ -1,8 +1,11 @@
 // app/dashboard/parent/layout.tsx
+
 import { redirect } from "next/navigation";
 import React from "react";
+import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import ParentHeader from "./ParentHeader";
+import { getParentDashboardContext } from "@/lib/parent/getParentDashboardContext";
 
 export default async function ParentDashboardLayout({
   children,
@@ -17,12 +20,29 @@ export default async function ParentDashboardLayout({
 
   const userRole = String(user.role || "").trim().toUpperCase();
 
-  // allow parent users + admins (useful for support/impersonation)
   const canAccess = userRole === "PARENT" || userRole === "ADMIN";
 
   if (!canAccess) {
     redirect("/login?next=%2Fdashboard%2Fparent");
   }
+
+  const parentProfile = await prisma.parentProfile.findUnique({
+    where: { userId: user.id },
+    select: {
+      playerLinks: {
+        orderBy: [{ isPrimary: "desc" }, { createdAt: "asc" }],
+        take: 1,
+        select: {
+          playerProfileId: true,
+        },
+      },
+    },
+  });
+
+  const linkedPlayerProfileId =
+    parentProfile?.playerLinks?.[0]?.playerProfileId || null;
+
+  const context = await getParentDashboardContext();
 
   return (
     <main
@@ -52,11 +72,15 @@ export default async function ParentDashboardLayout({
             fontWeight: 600,
           }}
         >
-          Manage your player’s ScoutLine profile and billing from one place.
+          Support your player’s ScoutLine journey, review profile progress, and
+          manage account billing from one place.
         </p>
       </div>
 
-      <ParentHeader />
+      <ParentHeader
+        linkedPlayerProfileId={context.activePlayerProfileId}
+        notificationCount={context.notificationCount}
+      />
 
       {children}
     </main>

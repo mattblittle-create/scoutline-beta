@@ -558,10 +558,26 @@ model College {
   control    CollegeControl?
   schoolType CollegeSchoolType @default(FOUR_YEAR)
 
+  /**
+   * Canonical tuition fields (stored in cents)
+   * Examples:
+   * - $24,500 => 2450000
+   * - $52,999 => 5299900
+   */
+  tuitionInStateCents       Int?
+  tuitionOutOfStateCents    Int?
+  tuitionInternationalCents Int?
+
+  /**
+   * Legacy tuition fields
+   * Keep temporarily for backward compatibility/migration.
+   * Can be removed later once all imports/UI/API use cents fields.
+   */
   tuitionInState       Int?
   tuitionOutOfState    Int?
   tuitionInternational Int?
-  tuitionYear          Int?
+
+  tuitionYear Int?
 
   enrollmentTotal     Int?
   enrollmentUndergrad Int?

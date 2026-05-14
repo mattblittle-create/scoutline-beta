@@ -1,8 +1,13 @@
 // app/dashboard/parent/player/[playerProfileId]/page.tsx
+
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
-import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import React from "react";
+import {
+  asRecord,
+  getParentDashboardContext,
+  getPlayerDisplayName,
+  readString,
+} from "@/lib/parent/getParentDashboardContext";
 
 type PageProps = {
   params: {
@@ -10,42 +15,19 @@ type PageProps = {
   };
 };
 
-function asRecord(value: unknown): Record<string, any> {
-  return value && typeof value === "object" && !Array.isArray(value)
-    ? (value as Record<string, any>)
-    : {};
-}
-
-function readString(obj: Record<string, any>, ...keys: string[]) {
-  for (const key of keys) {
-    const value = obj?.[key];
-    if (typeof value === "string" && value.trim()) return value.trim();
-  }
-  return "";
-}
-
-function readNumber(obj: Record<string, any>, ...keys: string[]) {
-  for (const key of keys) {
-    const value = obj?.[key];
-    if (typeof value === "number" && Number.isFinite(value)) return value;
-    if (typeof value === "string" && value.trim()) {
-      const n = Number(value);
-      if (Number.isFinite(n)) return n;
-    }
-  }
-  return null;
-}
-
 function readStringArray(obj: Record<string, any>, ...keys: string[]) {
   for (const key of keys) {
     const value = obj?.[key];
+
     if (Array.isArray(value)) {
       const cleaned = value
         .map((v) => (typeof v === "string" ? v.trim() : ""))
         .filter(Boolean);
+
       if (cleaned.length) return cleaned;
     }
   }
+
   return [] as string[];
 }
 
@@ -62,6 +44,7 @@ function sectionCard(
   return (
     <section style={card}>
       <div style={cardTitle}>{title}</div>
+
       {items.length ? (
         <div style={infoGrid}>
           {items.map((item) => (
@@ -79,93 +62,25 @@ function sectionCard(
 }
 
 export default async function ParentPlayerProfilePage({ params }: PageProps) {
-  const user = await getCurrentUser();
-
-  if (!user?.id) {
-    redirect("/login?role=parent");
-  }
-
   const playerProfileId = String(params?.playerProfileId || "").trim();
-  if (!playerProfileId) notFound();
 
-  const parentProfile = await prisma.parentProfile.findUnique({
-    where: { userId: user.id },
-    select: {
-      id: true,
-    },
+  const { activeLink, activePlayerProfile } = await getParentDashboardContext({
+    playerProfileId,
+    requireLinkedPlayer: true,
   });
 
-  if (!parentProfile?.id) {
-    return (
-      <div style={{ display: "grid", gap: 18 }}>
-        <section style={hero}>
-          <div style={eyebrow}>Parent Portal</div>
-          <h1 style={h1}>Player Profile</h1>
-          <p style={heroText}>
-            This parent account is not linked to a player yet.
-          </p>
-        </section>
-
-        <section style={warningCard}>
-          No parent-player link was found for this account. Complete the parent
-          invite flow again or backfill the link in admin/dev tools.
-        </section>
-
-        <div>
-          <Link href="/dashboard/parent" style={goldBtn}>
-            Back to Parent Dashboard
-          </Link>
-        </div>
-      </div>
-    );
-  }
-
-  const link = await prisma.parentPlayerLink.findUnique({
-    where: {
-      parentProfileId_playerProfileId: {
-        parentProfileId: parentProfile.id,
-        playerProfileId,
-      },
-    },
-    select: {
-      id: true,
-      relationship: true,
-      isPrimary: true,
-      playerProfile: {
-        select: {
-          id: true,
-          email: true,
-          userId: true,
-          playerPlanTier: true,
-          playerBillingCadence: true,
-          playerBillingStatus: true,
-          updatedAt: true,
-          createdAt: true,
-          data: true,
-          user: {
-            select: {
-              slug: true,
-              name: true,
-            },
-          },
-        },
-      },
-    },
-  });
-
-  if (!link?.playerProfile) {
-    notFound();
-  }
-
-  const profile = link.playerProfile;
+  const link = activeLink!;
+  const profile = activePlayerProfile!;
   const data = asRecord(profile.data);
 
   const firstName = readString(data, "firstName", "playerFirstName", "nameFirst");
   const lastName = readString(data, "lastName", "playerLastName", "nameLast");
-  const fullName =
-    [firstName, lastName].filter(Boolean).join(" ").trim() ||
-    profile.user?.name?.trim() ||
-    profile.email.split("@")[0];
+
+  const fullName = getPlayerDisplayName({
+    data,
+    fallbackName: profile.user?.name,
+    fallbackEmail: profile.email,
+  });
 
   const gradYear = readString(data, "gradYear", "graduationYear", "classYear");
   const school = readString(data, "school", "highSchool", "hsName");
@@ -176,12 +91,9 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
     "primaryPositions",
     "positionGroups"
   );
+
   const primaryPosition = readString(data, "primaryPosition", "primaryPos", "position");
-  const secondaryPosition = readString(
-    data,
-    "secondaryPosition",
-    "secondaryPos"
-  );
+  const secondaryPosition = readString(data, "secondaryPosition", "secondaryPos");
   const bats = readString(data, "bats");
   const throwsHand = readString(data, "throws", "throwingHand");
   const height = readString(data, "height", "heightDisplay");
@@ -189,12 +101,14 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
   const hometown = readString(data, "hometown", "city");
   const state = readString(data, "state");
   const travelTeam = readString(data, "travelTeam", "teamName");
+
   const committedCollege = readString(
     data,
     "committedCollege",
     "committedSchool",
     "committedProgram"
   );
+
   const commitmentStatus =
     typeof data?.isCommitted === "boolean"
       ? data.isCommitted
@@ -213,12 +127,14 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
   const instagramUrl = readString(data, "instagramUrl");
   const youtubeUrl = readString(data, "youtubeUrl");
   const tiktokUrl = readString(data, "tiktokUrl");
+
   const highlightVideo = readString(
     data,
     "highlightVideoUrl",
     "videoUrl",
     "primaryVideoUrl"
   );
+
   const recruitingBio = readString(data, "bio", "playerBio", "summary");
   const slug = profile.user?.slug?.trim() || "";
 
@@ -239,9 +155,8 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
   const athletics = [
     labelValue(
       "Positions",
-      [primaryPosition, secondaryPosition]
-        .filter(Boolean)
-        .join(" / ") || positions.join(", ")
+      [primaryPosition, secondaryPosition].filter(Boolean).join(" / ") ||
+        positions.join(", ")
     ),
     labelValue("Bats", bats),
     labelValue("Throws", throwsHand),
@@ -249,9 +164,7 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
     labelValue("Weight", weight),
     labelValue(
       "Commitment",
-      commitmentStatus
-        ? committedCollege || "Committed"
-        : "Not committed"
+      commitmentStatus ? committedCollege || "Committed" : "Not committed"
     ),
   ].filter(Boolean) as Array<{ label: string; value: string }>;
 
@@ -274,7 +187,18 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
   ].filter(Boolean) as Array<{ label: string; value: string }>;
 
   const publicProfileHref = slug ? `/player/${encodeURIComponent(slug)}` : null;
-  const billingHref = `/dashboard/parent/player/${encodeURIComponent(profile.id)}/billing`;
+
+  const billingHref = `/dashboard/parent/player/${encodeURIComponent(
+    profile.id
+  )}/billing`;
+
+  const recruitingHref = `/dashboard/parent/player/${encodeURIComponent(
+    profile.id
+  )}/recruiting`;
+
+  const collegeSearchHref = `/dashboard/parent/player/${encodeURIComponent(
+    profile.id
+  )}/college-search`;
 
   return (
     <div style={{ display: "grid", gap: 18 }}>
@@ -285,25 +209,33 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
 
         <p style={heroText}>
           Review {firstName ? `${firstName}'s` : "your player's"} ScoutLine
-          profile details, academics, athletics, metrics, and billing access
-          from one place.
+          profile details, academics, athletics, metrics, recruiting snapshot,
+          college search, and billing access from one place.
         </p>
 
         <div style={actionRow}>
           <Link href="/dashboard/parent" style={ghostBtn}>
-            Back to Parent Dashboard
+            Parent Dashboard
           </Link>
 
-          <Link href={billingHref} style={goldBtn}>
-            Open Billing
+          <Link href={recruitingHref} style={goldBtn}>
+            Recruiting Snapshot
+          </Link>
+
+          <Link href={collegeSearchHref} style={ghostBtn}>
+            College Search
+          </Link>
+
+          <Link href={billingHref} style={ghostBtn}>
+            Billing
           </Link>
 
           <Link
-  href={`/dashboard/parent/player/${encodeURIComponent(profile.id)}/edit`}
-  style={goldBtn}
->
-  Edit Profile
-</Link>
+            href={`/dashboard/parent/player/${encodeURIComponent(profile.id)}/edit`}
+            style={goldBtn}
+          >
+            Edit Profile
+          </Link>
 
           {publicProfileHref ? (
             <Link href={publicProfileHref} style={ghostBtn}>
@@ -357,17 +289,21 @@ export default async function ParentPlayerProfilePage({ params }: PageProps) {
 
 function formatPlan(value?: string | null) {
   const v = String(value || "").trim().toUpperCase();
+
   if (v === "REDSHIRT") return "Redshirt";
   if (v === "WALK_ON") return "Walk-On";
   if (v === "ALL_AMERICAN") return "All-American";
   if (v === "TEAM") return "Team";
+
   return value || "—";
 }
 
 function formatCadence(value?: string | null) {
   const v = String(value || "").trim().toLowerCase();
+
   if (v === "monthly") return "Monthly";
   if (v === "annual" || v === "yearly") return "Annual";
+
   return value || "—";
 }
 
@@ -399,7 +335,7 @@ const h1: React.CSSProperties = {
 const heroText: React.CSSProperties = {
   margin: "10px 0 0",
   color: "#475569",
-  maxWidth: 820,
+  maxWidth: 840,
   lineHeight: 1.55,
   fontWeight: 600,
 };
@@ -492,14 +428,4 @@ const ghostBtn: React.CSSProperties = {
   border: "1px solid #e5e7eb",
   background: "#fff",
   color: "#0f172a",
-};
-
-const warningCard: React.CSSProperties = {
-  border: "1px solid #fde68a",
-  background: "#fffbeb",
-  color: "#78350f",
-  borderRadius: 16,
-  padding: 16,
-  fontWeight: 700,
-  lineHeight: 1.5,
 };
