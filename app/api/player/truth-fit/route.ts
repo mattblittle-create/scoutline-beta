@@ -546,15 +546,23 @@ const divisionFits = await Promise.all(
         ? actualBest.truthFit
         : benchmarkOnlyFit;
 
-    return {
-      division,
-      fitTier: laneFit.label,
-      bestScore: laneFit.score,
-      count: divisionResults.length,
-      outlook: outlookForFit(laneFit.label),
-      topGaps: Array.isArray(laneFit.gaps) ? laneFit.gaps.slice(0, 2) : [],
-      benchmarkSource: laneFit.benchmarkSource?.metrics || null,
-    };
+return {
+  division,
+  fitTier: laneFit.label,
+  bestScore: laneFit.score,
+  count: divisionResults.length,
+  outlook: outlookForFit(laneFit.label),
+  topGaps: Array.isArray(laneFit.gaps) ? laneFit.gaps.slice(0, 3) : [],
+  gaps: Array.isArray(laneFit.gaps) ? laneFit.gaps : [],
+  development: Array.isArray(laneFit.development) ? laneFit.development : [],
+  metricComparisons: Array.isArray(laneFit.metricComparisons)
+    ? laneFit.metricComparisons
+    : [],
+  reasons: Array.isArray(laneFit.reasons) ? laneFit.reasons : [],
+  projectionTag: laneFit.projectionTag,
+  projectionSummary: laneFit.projectionSummary,
+  benchmarkSource: laneFit.benchmarkSource?.metrics || null,
+};
   })
 );
 

@@ -825,28 +825,27 @@ body: JSON.stringify({
 
 <div>
   <div style={laneLabelStyle}>Division Score</div>
-  <div style={laneValueStyle}>
-    {selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}
-  </div>
 
-  {selectedLaneFit ? (
-    <div
-      title={getLaneConfidence(selectedLaneFit).title}
-      style={{
-        display: "inline-flex",
-        marginTop: 8,
-        borderRadius: 999,
-        padding: "5px 9px",
-        background: "#ffffff",
-        border: "1px solid #bfdbfe",
-        color: "#334155",
-        fontSize: 12,
-        fontWeight: 900,
-      }}
-    >
-      {getLaneConfidence(selectedLaneFit).label}
-    </div>
-  ) : null}
+  <div
+    style={{
+      ...laneValueStyle,
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      flexWrap: "nowrap",
+    }}
+  >
+    <span>{selectedLaneFit?.bestScore ? `${selectedLaneFit.bestScore}/100` : "—"}</span>
+
+    {selectedLaneFit ? (
+      <span
+        title={getLaneConfidence(selectedLaneFit).title}
+        style={scoreConfidenceBadgeStyle}
+      >
+        {getLaneConfidence(selectedLaneFit).label}
+      </span>
+    ) : null}
+  </div>
 </div>
 
 {selectedLaneFit ? (() => {
@@ -2061,6 +2060,20 @@ const recommendedLaneBadgeStyle: React.CSSProperties = {
   color: "#14532d",
   fontSize: 11,
   fontWeight: 900,
+};
+
+const scoreConfidenceBadgeStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  whiteSpace: "nowrap",
+  borderRadius: 999,
+  padding: "3px 7px",
+  background: "#ffffff",
+  border: "1px solid #86efac",
+  color: "#14532d",
+  fontSize: 10,
+  fontWeight: 900,
+  lineHeight: 1,
 };
 
 const laneValueStyle: React.CSSProperties = {
