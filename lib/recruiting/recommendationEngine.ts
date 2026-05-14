@@ -748,9 +748,18 @@ export function buildPlayerArchetype(input: RecommendationInput): PlayerArchetyp
     }
   }
 
-  const summary = second
-    ? `${title}. Current ScoutLine profile is led by ${strongest.label.toLowerCase()} (${strongest.grade}) with ${second.label.toLowerCase()} also standing out (${second.grade}).`
-    : `${title}. Current ScoutLine profile shows a developing recruiting foundation with room to keep building verified data.`;
+const scoreContext =
+  recruitability.score >= 85
+    ? "This profile is showing strong current recruiting readiness."
+    : recruitability.score >= 72
+    ? "This profile is currently recruitable with clear upside."
+    : recruitability.score >= 60
+    ? "This profile is developing toward stronger recruiting alignment."
+    : "This profile is still early in the recruiting evaluation process.";
+
+const summary = second
+  ? `${title}. ${scoreContext} Current ScoutLine profile is led by ${strongest.label.toLowerCase()} (${strongest.grade}) with ${second.label.toLowerCase()} also standing out (${second.grade}).`
+  : `${title}. ${scoreContext} Continue building verified metrics, video, and game performance data to strengthen the projection.`;
 
   return {
     title,

@@ -1317,7 +1317,7 @@ body: JSON.stringify({
           color: "#475569",
         }}
       >
-        {playerArchetype.recruitabilityScore}/99
+        {playerArchetype.recruitabilityScore}/100
       </div>
     </div>
   </div>
