@@ -238,32 +238,50 @@ function getRecruitabilityMeterColor(label: string) {
 
 function getMeterMovementTips(laneFit: any) {
   const tips: string[] = [];
-  const confidence = getLaneConfidence(laneFit).label;
   const gaps = Array.isArray(laneFit?.topGaps) ? laneFit.topGaps : [];
+  const development = Array.isArray(laneFit?.development) ? laneFit.development : [];
+  const comparisons = Array.isArray(laneFit?.metricComparisons)
+    ? laneFit.metricComparisons
+    : [];
+
   const fitTier = String(laneFit?.fitTier || "");
   const score = Number(laneFit?.bestScore || 0);
+  const hasMetricComparisons = comparisons.length > 0;
 
-  if (confidence === "Early Projection" || confidence === "Limited Data") {
-    tips.push("Add more verified metrics and video to improve ScoutLine confidence.");
+  if (!hasMetricComparisons) {
+    tips.push("Add verified metrics to unlock stronger benchmark comparisons for this lane.");
   }
 
   if (gaps.length > 0) {
     tips.push(`Improve ${String(gaps[0]).toLowerCase()} to strengthen this lane.`);
   }
 
-  if (fitTier === "Possible Match" || score < 70) {
+  const bestDevelopmentTip = development.find((item: string) => {
+    const text = String(item || "").toLowerCase();
+    return (
+      text &&
+      !text.includes("next best action") &&
+      !text.includes("add verified metrics")
+    );
+  });
+
+  if (bestDevelopmentTip) {
+    tips.push(bestDevelopmentTip);
+  }
+
+  if ((fitTier === "Possible Match" || score < 70) && gaps.length > 0) {
     tips.push("Closing one key development gap could move this lane closer to Recruitable.");
   }
 
   if (score >= 70 && score < 82) {
-    tips.push("Stronger verified metrics could move this from Recruitable to Highly Recruitable.");
+    tips.push("Raising one priority metric could move this from Recruitable to Highly Recruitable.");
   }
 
   if (!tips.length) {
     tips.push("Keep profile data current and continue building verified performance history.");
   }
 
-  return tips.slice(0, 3);
+  return Array.from(new Set(tips)).slice(0, 3);
 }
 
 function getLaneHighlights(laneFit: any) {
