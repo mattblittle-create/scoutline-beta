@@ -593,37 +593,36 @@ const divisionPrestigeRank: Record<string, number> = {
   NJCAA_D3: 1,
 };
 
-const recommendedLaneDivision =
-  [...divisionFits]
-    .filter((item) => {
-      const score = Number(item.bestScore || 0);
+const recommendedLaneDivision = (() => {
+  const scoredFits = [...divisionFits]
+    .map((item) => ({
+      ...item,
+      score: Number(item.bestScore || 0),
+      prestige: divisionPrestigeRank[item.division] || 0,
+    }))
+    .filter((item) => item.score > 0);
 
-      // Do not recommend a lane unless the score is meaningfully recruitable.
-      if (score < 70) return false;
+  if (!scoredFits.length) {
+    return rankedDivisionFits[0]?.division || null;
+  }
 
-      // Strong Fit and Match are eligible.
-      if (item.fitTier === "Strong Fit" || item.fitTier === "Match") return true;
+  const highestScore = Math.max(...scoredFits.map((item) => item.score));
 
-      // Possible Match only becomes the recommended lane at 78+.
-      // This prevents over-promoting a player into a prestige division too early.
-      if (item.fitTier === "Possible Match" && score >= 78) return true;
+  // Treat scores within 3 points as the same recruiting lane band.
+  // This prevents NJCAA D3 from winning by tiny score differences.
+  const laneBand = scoredFits.filter(
+    (item) => highestScore - item.score <= 3
+  );
 
-      return false;
-    })
-    .sort((a, b) => {
-      const aScore = Number(a.bestScore || 0);
-      const bScore = Number(b.bestScore || 0);
-
-      // Score first. Accuracy over prestige.
-      if (bScore !== aScore) return bScore - aScore;
-
-      const aRank = divisionPrestigeRank[a.division] || 0;
-      const bRank = divisionPrestigeRank[b.division] || 0;
-
-      return bRank - aRank;
+  return (
+    laneBand.sort((a, b) => {
+      if (b.prestige !== a.prestige) return b.prestige - a.prestige;
+      return b.score - a.score;
     })[0]?.division ||
-  rankedDivisionFits[0]?.division ||
-  null;
+    rankedDivisionFits[0]?.division ||
+    null
+  );
+})();
 
 const orderedDivisionFits = ALL_DIVISIONS.map((division) => {
   const fit = divisionFits.find((item) => item.division === division);
