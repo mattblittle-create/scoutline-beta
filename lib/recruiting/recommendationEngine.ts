@@ -367,6 +367,19 @@ function getEstimatedPercentile(metric: MetricDefinition, currentValue: number) 
   return clampPercent(base + bonus);
 }
 
+function formatBenchmarkTier(value?: string | null) {
+  const raw = String(value || "").trim();
+
+  return raw
+    .replace(/\bncaa d1\b/gi, "NCAA D1")
+    .replace(/\bncaa d2\b/gi, "NCAA D2")
+    .replace(/\bncaa d3\b/gi, "NCAA D3")
+    .replace(/\bnaia\b/gi, "NAIA")
+    .replace(/\bnjcaa d1\b/gi, "NJCAA D1")
+    .replace(/\bnjcaa d2\b/gi, "NJCAA D2")
+    .replace(/\bnjcaa d3\b/gi, "NJCAA D3");
+}
+
 function getBenchmarkInfo(metric: MetricDefinition, currentValue: number) {
   const currentLevel = getCurrentDivisionLevel(metric, currentValue);
   const percentile = getEstimatedPercentile(metric, currentValue);
@@ -637,9 +650,11 @@ export function buildPlayerScoutingReport(input: RecommendationInput): PlayerSco
 
   const headline = `${archetype.title} · Recruitability ${archetype.recruitabilityGrade}`;
 
-  const summary = bestBenchmark
-    ? `${archetype.summary} The strongest current benchmark signal is ${bestBenchmark.label.toLowerCase()}, where the player is tracking in the ${bestBenchmark.percentileLabel.toLowerCase()} and compares closest to ${bestBenchmark.benchmarkTier.toLowerCase()}.`
-    : `${archetype.summary} Add more verified metrics to strengthen ScoutLine's evaluation confidence and unlock deeper benchmark analysis.`;
+const bestBenchmarkTier = formatBenchmarkTier(bestBenchmark?.benchmarkTier);
+
+const summary = bestBenchmark
+  ? `${archetype.summary} The strongest current benchmark signal is ${bestBenchmark.label.toLowerCase()}, where ${playerFirstName} is tracking in the ${bestBenchmark.percentileLabel.toLowerCase()} and compares closest to ${bestBenchmarkTier}.`
+  : `${archetype.summary} Add more verified metrics to strengthen ScoutLine's evaluation confidence and unlock deeper benchmark analysis.`;
 
   const recruitingProjection =
   archetype.recruitabilityScore >= 85

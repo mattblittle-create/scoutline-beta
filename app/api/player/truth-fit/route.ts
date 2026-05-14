@@ -84,10 +84,16 @@ async function getCurrentPlayerProfile() {
   return {
     id: profile.id,
     email: profile.email || user.email,
-    player: {
-      gpa:
-        asNumber(user.Player?.gpa) ??
-        asNumber(normalized?.gpa),
+player: {
+  firstName: asString(normalized?.firstName),
+  lastName: asString(normalized?.lastName),
+  fullName: [asString(normalized?.firstName), asString(normalized?.lastName)]
+    .filter(Boolean)
+    .join(" ") || null,
+
+  gpa:
+    asNumber(user.Player?.gpa) ??
+    asNumber(normalized?.gpa),
       gradYear:
         asNumber(user.Player?.gradYear) ??
         asNumber(normalized?.gradYear),
