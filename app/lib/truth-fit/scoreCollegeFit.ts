@@ -332,11 +332,18 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   // GPA fit: 35 points
   possible += 35;
 
-  if (playerGpa == null || collegeGpa == null) {
-    earned += 14;
-    reasons.push("Academic fit is estimated because player GPA or program GPA data is incomplete.");
-    development.push("Adding or updating GPA will make Truth Fit more accurate.");
-  } else if (playerGpa >= collegeGpa) {
+if (playerGpa == null && collegeGpa == null) {
+  earned += 14;
+  reasons.push("Academic fit is estimated because player GPA and program GPA benchmark data are incomplete.");
+  development.push("Adding your GPA will make Truth Fit more accurate.");
+} else if (playerGpa == null) {
+  earned += 14;
+  reasons.push("Academic fit is estimated because player GPA is incomplete.");
+  development.push("Adding your GPA will make Truth Fit more accurate.");
+} else if (collegeGpa == null) {
+  earned += 18;
+  reasons.push("Academic fit is estimated because this program does not have GPA benchmark data yet.");
+} else if (playerGpa >= collegeGpa) {
     earned += 35;
     reasons.push(
       `Your GPA (${formatGpa(playerGpa)}) meets or exceeds this program's average GPA (${formatGpa(collegeGpa)}).`
