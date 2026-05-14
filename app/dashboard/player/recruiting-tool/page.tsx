@@ -807,19 +807,52 @@ body: JSON.stringify({
     }
   }
      
-  return (
-    <main style={{ maxWidth: 960, margin: "0 auto", padding: "8px 0 40px" }}>
-      <section style={shellStyle}>
-        <div style={headerStyle}>
-          <div>
-            <h1 style={titleStyle}>Recruiting Tool</h1>
+return (
+  <main style={{ maxWidth: 960, margin: "0 auto", padding: "8px 0 40px" }}>
+    <style jsx global>{`
+      @media print {
+        .no-print {
+          display: none !important;
+        }
 
-            <p style={subtitleStyle}>
-              ScoutLine’s Recruiting Tool helps players better understand college fit,
-              recruiting opportunities, skill gaps, division-level benchmarks, and
-              where their profile best matches current college recruiting needs.
-            </p>
+        body {
+          background: #ffffff !important;
+        }
 
+        main {
+          max-width: none !important;
+          padding: 0 !important;
+        }
+
+        section {
+          break-inside: avoid;
+          page-break-inside: avoid;
+        }
+      }
+    `}</style>
+
+    <section style={shellStyle}>
+      <div style={headerStyle}>
+        <div>
+          <h1 style={titleStyle}>Recruiting Tool</h1>
+
+          <p style={subtitleStyle}>
+            ScoutLine’s Recruiting Tool helps players better understand college fit,
+            recruiting opportunities, skill gaps, division-level benchmarks, and
+            where their profile best matches current college recruiting needs.
+          </p>
+
+          <div
+            className="no-print"
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: 12,
+              marginTop: 14,
+              flexWrap: "wrap",
+            }}
+          >
             <button
               type="button"
               onClick={loadTruthFit}
@@ -832,12 +865,24 @@ body: JSON.stringify({
             >
               {loadingTruthFit ? "Generating Truth Fit..." : "Refresh Truth Fit"}
             </button>
-          </div>
 
-          <Link href="/dashboard/player" style={backToDashboardStyle}>
-            Back to Dashboard
-          </Link>
+            <button
+              type="button"
+              onClick={() => window.print()}
+              style={{
+                ...secondaryButtonStyle,
+                whiteSpace: "nowrap",
+              }}
+            >
+              Print / Save as PDF
+            </button>
+          </div>
         </div>
+
+        <Link href="/dashboard/player" style={backToDashboardStyle}>
+          Back to Dashboard
+        </Link>
+      </div>
 
 {truthFitSummary ? (
   <section
