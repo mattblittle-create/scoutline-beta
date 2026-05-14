@@ -57,6 +57,8 @@ export type PlayerBenchmarkBar = {
   score: number;
   percentileLabel: string;
   benchmarkTier: string;
+  hasValue: boolean;
+  missingMessage?: string;
 };
 
 export type PlayerScoutingReport = {
@@ -89,14 +91,23 @@ type DivisionTarget = {
 };
 
 const METRICS: Record<string, MetricDefinition> = {
+  heightIn: { key: "heightIn", label: "Height", unit: "in", higherIsBetter: true },
+  weightLb: { key: "weightLb", label: "Weight", unit: "lbs", higherIsBetter: true },
+  gpa: { key: "gpa", label: "GPA", unit: "", higherIsBetter: true },
+  benchPress: { key: "benchPress", label: "Bench Press", unit: "lbs", higherIsBetter: true },
+  squat: { key: "squat", label: "Squat", unit: "lbs", higherIsBetter: true },
+  deadLift: { key: "deadLift", label: "Dead Lift", unit: "lbs", higherIsBetter: true },
   sixty: { key: "sixty", label: "60 Yard Dash", unit: "sec", higherIsBetter: false },
   homeToFirst: { key: "homeToFirst", label: "Home to First", unit: "sec", higherIsBetter: false },
   exitVelo: { key: "exitVelo", label: "Exit Velocity", unit: "mph", higherIsBetter: true },
   infieldVelo: { key: "infieldVelo", label: "Infield Velocity", unit: "mph", higherIsBetter: true },
   outfieldVelo: { key: "outfieldVelo", label: "Outfield Velocity", unit: "mph", higherIsBetter: true },
+  rawThrowVelo: { key: "rawThrowVelo", label: "Raw Throwing Velocity", unit: "mph", higherIsBetter: true },
   catcherVelo: { key: "catcherVelo", label: "Catcher Throwing Velocity", unit: "mph", higherIsBetter: true },
   popTime: { key: "popTime", label: "Pop Time", unit: "sec", higherIsBetter: false },
-  fbVelo: { key: "fbVelo", label: "Fastball Velocity", unit: "mph", higherIsBetter: true },
+  avgFbVelo: { key: "avgFbVelo", label: "Fastball Velocity", unit: "mph", higherIsBetter: true },
+  avgChVelo: { key: "avgChVelo", label: "Changeup Velocity", unit: "mph", higherIsBetter: true },
+  avgBbVelo: { key: "avgBbVelo", label: "Breaking Ball Velocity", unit: "mph", higherIsBetter: true },
 };
 
 const POSITION_PRIORITY: Record<string, string[]> = {
@@ -674,36 +685,101 @@ const summary = bestBenchmark
   };
 }
 
-export function buildPlayerBenchmarkBars(input: RecommendationInput): PlayerBenchmarkBar[] {
-  const player = input.player || {};
+function getBenchmarkMetricKeysForPlayer(player: any): string[] {
   const position = getPrimaryPosition(player);
+  const secondary = normalizePosition(
+    player?.secondaryPos ||
+      player?.secondaryPosition ||
+      player?.playerProfile?.secondaryPos ||
+      ""
+  );
 
-  const keys =
-    POSITION_PRIORITY[position] ||
-    POSITION_PRIORITY[normalizePosition(position)] ||
-    FALLBACK_PRIORITY;
+  const isPitcher =
+    position === "P" ||
+    secondary === "P" ||
+    String(player?.isPitcher || "").toLowerCase() === "yes";
 
-  const bars: PlayerBenchmarkBar[] = [];
+  const isCatcher = position === "C" || secondary === "C";
+  const isInfielder = ["1B", "2B", "SS", "3B", "MIF", "CIF"].includes(position);
+  const isOutfielder = ["LF", "CF", "RF", "OF"].includes(position);
+  const isUtility = position === "UTILITY" || secondary === "UTILITY";
 
-  for (const metricKey of keys) {
-    const metric = METRICS[metricKey];
-    if (!metric) continue;
+  const keys: string[] = [
+    "heightIn",
+    "weightLb",
+    "gpa",
+    "exitVelo",
+    "sixty",
+    "homeToFirst",
+    "benchPress",
+    "squat",
+    "deadLift",
+  ];
 
-    const currentValue = getMetricValue(player, metricKey);
-    if (!currentValue) continue;
+  if (isInfielder) keys.push("infieldVelo");
+  if (isOutfielder) keys.push("outfieldVelo");
+  if (isUtility) keys.push("rawThrowVelo");
 
-    const benchmarkInfo = getBenchmarkInfo(metric, currentValue);
-
-    bars.push({
-      key: metric.key,
-      label: metric.label,
-      score: getEstimatedPercentile(metric, currentValue),
-      percentileLabel: benchmarkInfo.percentileLabel,
-      benchmarkTier: benchmarkInfo.benchmarkTier,
-    });
+  if (isCatcher) {
+    keys.push("popTime");
+    keys.push("catcherVelo");
   }
 
-  return bars.slice(0, 5);
+  if (isPitcher) {
+    keys.push("avgFbVelo");
+    keys.push("avgBbVelo");
+    keys.push("avgChVelo");
+  }
+
+  return Array.from(new Set(keys));
+}
+
+export function buildPlayerBenchmarkBars(input: RecommendationInput): PlayerBenchmarkBar[] {
+  const player = input.player || {};
+
+  const rawName =
+    player?.firstName ||
+    player?.name ||
+    player?.fullName ||
+    player?.playerName ||
+    "";
+
+  const playerFirstName =
+    String(rawName).trim().split(" ")[0] || "This player";
+
+  const keys = getBenchmarkMetricKeysForPlayer(player);
+
+  return keys
+    .map((metricKey) => {
+      const metric = METRICS[metricKey];
+      if (!metric) return null;
+
+      const currentValue = getMetricValue(player, metricKey);
+
+      if (!currentValue) {
+        return {
+          key: metric.key,
+          label: metric.label,
+          score: 0,
+          percentileLabel: "Data needed",
+          benchmarkTier: "Profile data missing",
+          hasValue: false,
+          missingMessage: `${playerFirstName} has not input data for this benchmark yet. Adding this data to the player profile will improve recruitability score and benchmark accuracy.`,
+        };
+      }
+
+      const benchmarkInfo = getBenchmarkInfo(metric, currentValue);
+
+      return {
+        key: metric.key,
+        label: metric.label,
+        score: getEstimatedPercentile(metric, currentValue),
+        percentileLabel: benchmarkInfo.percentileLabel,
+        benchmarkTier: benchmarkInfo.benchmarkTier,
+        hasValue: true,
+      };
+    })
+    .filter(Boolean) as PlayerBenchmarkBar[];
 }
 
 export function buildPlayerArchetype(input: RecommendationInput): PlayerArchetype {

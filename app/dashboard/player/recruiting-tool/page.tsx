@@ -1429,128 +1429,143 @@ body: JSON.stringify({
     padding: 18,
   }}
 >
-  <div style={laneLabelStyle}>Benchmark Percentile Ladders</div>
+<div style={laneLabelStyle}>Benchmark Percentile Ladders</div>
 
-  <div
-    style={{
-      display: "grid",
-      gap: 12,
-      marginTop: 12,
-    }}
-  >
-    {playerBenchmarkBars.length > 0 ? (
-      playerBenchmarkBars.map((bar) => (
-        <div key={bar.key}>
+<div
+  style={{
+    display: "grid",
+    gap: 12,
+    marginTop: 12,
+  }}
+>
+  {playerBenchmarkBars.length > 0 ? (
+    playerBenchmarkBars.map((bar) => (
+      <div key={bar.key}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 12,
+            alignItems: "center",
+            marginBottom: 6,
+          }}
+        >
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              gap: 12,
-              alignItems: "center",
-              marginBottom: 6,
+              fontSize: 13,
+              fontWeight: 900,
+              color: "#0f172a",
             }}
           >
-            <div
-              style={{
-                fontSize: 13,
-                fontWeight: 900,
-                color: "#0f172a",
-              }}
-            >
-              {bar.label}
-            </div>
-
-            <div
-              style={{
-                fontSize: 12,
-                fontWeight: 900,
-                color: "#475569",
-              }}
-            >
-              {bar.score}th percentile
-            </div>
+            {bar.label}
           </div>
 
           <div
             style={{
-              height: 10,
-              borderRadius: 999,
-              background: "#e2e8f0",
-              overflow: "hidden",
+              fontSize: 12,
+              fontWeight: 900,
+              color: bar.hasValue ? "#475569" : "#94a3b8",
             }}
           >
-            <div
-              style={{
-                height: "100%",
-                width: `${bar.score}%`,
-                borderRadius: 999,
-                background:
-                  bar.score >= 85
-                    ? "#16a34a"
-                    : bar.score >= 70
-                    ? "#2563eb"
-                    : bar.score >= 50
-                    ? "#d97706"
-                    : "#dc2626",
-              }}
-            />
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 6,
-              marginTop: 7,
-            }}
-          >
-            <span
-              style={{
-                borderRadius: 999,
-                padding: "4px 8px",
-                background: "#f0fdf4",
-                border: "1px solid #bbf7d0",
-                color: "#166534",
-                fontSize: 11,
-                fontWeight: 900,
-              }}
-            >
-              {bar.benchmarkTier}
-            </span>
-
-            <span
-              style={{
-                borderRadius: 999,
-                padding: "4px 8px",
-                background: "#f8fafc",
-                border: "1px solid #cbd5e1",
-                color: "#334155",
-                fontSize: 11,
-                fontWeight: 900,
-              }}
-            >
-              {bar.percentileLabel}
-            </span>
+            {bar.hasValue ? `${bar.score}th percentile` : "Data needed"}
           </div>
         </div>
-      ))
-    ) : (
-      <div
-        style={{
-          borderRadius: 12,
-          background: "#f8fafc",
-          border: "1px solid #e5e7eb",
-          padding: 12,
-          fontSize: 13,
-          color: "#475569",
-          fontWeight: 800,
-          lineHeight: 1.5,
-        }}
-      >
-        Add verified metrics to unlock benchmark percentile ladders.
+
+        <div
+          style={{
+            height: 10,
+            borderRadius: 999,
+            background: "#e2e8f0",
+            overflow: "hidden",
+          }}
+        >
+          <div
+            style={{
+              height: "100%",
+              width: `${bar.hasValue ? bar.score : 0}%`,
+              borderRadius: 999,
+              background: bar.hasValue
+                ? bar.score >= 85
+                  ? "#16a34a"
+                  : bar.score >= 70
+                  ? "#2563eb"
+                  : bar.score >= 50
+                  ? "#d97706"
+                  : "#dc2626"
+                : "#cbd5e1",
+            }}
+          />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 6,
+            marginTop: 7,
+          }}
+        >
+          <span
+            style={{
+              borderRadius: 999,
+              padding: "4px 8px",
+              background: bar.hasValue ? "#f0fdf4" : "#f8fafc",
+              border: bar.hasValue ? "1px solid #bbf7d0" : "1px solid #cbd5e1",
+              color: bar.hasValue ? "#166534" : "#64748b",
+              fontSize: 11,
+              fontWeight: 900,
+            }}
+          >
+            {bar.benchmarkTier}
+          </span>
+
+          <span
+            style={{
+              borderRadius: 999,
+              padding: "4px 8px",
+              background: "#f8fafc",
+              border: "1px solid #cbd5e1",
+              color: "#334155",
+              fontSize: 11,
+              fontWeight: 900,
+            }}
+          >
+            {bar.percentileLabel}
+          </span>
+        </div>
+
+        {!bar.hasValue && bar.missingMessage ? (
+          <div
+            style={{
+              marginTop: 7,
+              fontSize: 12,
+              fontWeight: 800,
+              color: "#64748b",
+              lineHeight: 1.45,
+            }}
+          >
+            {bar.missingMessage}
+          </div>
+        ) : null}
       </div>
-    )}
-  </div>
+    ))
+  ) : (
+    <div
+      style={{
+        borderRadius: 12,
+        background: "#f8fafc",
+        border: "1px solid #e5e7eb",
+        padding: 12,
+        fontSize: 13,
+        color: "#475569",
+        fontWeight: 800,
+        lineHeight: 1.5,
+      }}
+    >
+      Add verified metrics to unlock benchmark percentile ladders.
+    </div>
+  )}
+</div>
 </section>
 
 <section
@@ -1601,7 +1616,7 @@ body: JSON.stringify({
       color: "#64748b",
     }}
   >
-    Visualizes the same ScoutLine grades above on a 1–99 scale to show overall tool balance, strengths, and development areas.
+    Visualizes the same ScoutLine grades above on a 1–100 scale to show overall tool balance, strengths, and development areas.
   </div>
 </section>
 
