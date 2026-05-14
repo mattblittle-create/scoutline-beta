@@ -593,6 +593,18 @@ function buildMetricRecommendation(params: {
 }
 
 export function buildPlayerScoutingReport(input: RecommendationInput): PlayerScoutingReport {
+  const player = input.player || {};
+
+  const rawName =
+    player?.firstName ||
+    player?.name ||
+    player?.fullName ||
+    player?.playerName ||
+    "";
+
+  const playerFirstName =
+    String(rawName).trim().split(" ")[0] || "This player";
+
   const grades = buildPlayerGrades(input);
   const archetype = buildPlayerArchetype(input);
   const recommendations = buildRecommendations(input);
@@ -630,13 +642,13 @@ export function buildPlayerScoutingReport(input: RecommendationInput): PlayerSco
     : `${archetype.summary} Add more verified metrics to strengthen ScoutLine's evaluation confidence and unlock deeper benchmark analysis.`;
 
   const recruitingProjection =
-    archetype.recruitabilityScore >= 85
-      ? "This profile is showing strong recruiting readiness. Continued outreach, verified video, and targeted school communication should be prioritized."
-      : archetype.recruitabilityScore >= 72
-      ? "This profile is recruitable with clear upside. The next step is closing one or two measurable development gaps while continuing targeted outreach."
-      : archetype.recruitabilityScore >= 60
-      ? "This profile is developing toward stronger recruiting alignment. Verified metrics, updated video, and focused development should be the near-term priority."
-      : "This profile is still early in the recruiting evaluation process. More verified player data is needed before ScoutLine can assign a stronger projection.";
+  archetype.recruitabilityScore >= 85
+    ? `${playerFirstName} is showing strong recruiting readiness. Continued outreach, verified video, and targeted school communication should be prioritized.`
+    : archetype.recruitabilityScore >= 72
+    ? `${playerFirstName} is recruitable with clear upside. The next step is closing one or two measurable development gaps while continuing targeted outreach.`
+    : archetype.recruitabilityScore >= 60
+    ? `${playerFirstName} is developing toward stronger recruiting alignment. Verified metrics, updated video, and focused development should be the near-term priority.`
+    : `${playerFirstName} is still early in the recruiting evaluation process. More verified player data is needed before ScoutLine can assign a stronger projection.`;
 
   return {
     headline,
@@ -680,8 +692,19 @@ export function buildPlayerBenchmarkBars(input: RecommendationInput): PlayerBenc
 }
 
 export function buildPlayerArchetype(input: RecommendationInput): PlayerArchetype {
-  const grades = buildPlayerGrades(input);
   const player = input.player || {};
+
+  const rawName =
+    player?.firstName ||
+    player?.name ||
+    player?.fullName ||
+    player?.playerName ||
+    "";
+
+  const playerFirstName =
+    String(rawName).trim().split(" ")[0] || "This player";
+
+  const grades = buildPlayerGrades(input);
   const position = getPrimaryPosition(player);
 
   const recruitability =
@@ -748,18 +771,18 @@ export function buildPlayerArchetype(input: RecommendationInput): PlayerArchetyp
     }
   }
 
-const scoreContext =
-  recruitability.score >= 85
-    ? "This profile is showing strong current recruiting readiness."
-    : recruitability.score >= 72
-    ? "This profile is currently recruitable with clear upside."
-    : recruitability.score >= 60
-    ? "This profile is developing toward stronger recruiting alignment."
-    : "This profile is still early in the recruiting evaluation process.";
+  const scoreContext =
+    recruitability.score >= 85
+      ? `${playerFirstName} is showing strong current recruiting readiness.`
+      : recruitability.score >= 72
+      ? `${playerFirstName} is currently recruitable with clear upside.`
+      : recruitability.score >= 60
+      ? `${playerFirstName} is developing toward stronger recruiting alignment.`
+      : `${playerFirstName} is still early in the recruiting evaluation process.`;
 
-const summary = second
-  ? `${title}. ${scoreContext} Current ScoutLine profile is led by ${strongest.label.toLowerCase()} (${strongest.grade}) with ${second.label.toLowerCase()} also standing out (${second.grade}).`
-  : `${title}. ${scoreContext} Continue building verified metrics, video, and game performance data to strengthen the projection.`;
+  const summary = second
+    ? `${title}. ${scoreContext} Current ScoutLine profile is led by ${strongest.label.toLowerCase()} (${strongest.grade}) with ${second.label.toLowerCase()} also standing out (${second.grade}).`
+    : `${title}. ${scoreContext} Continue building verified metrics, video, and game performance data to strengthen the projection.`;
 
   return {
     title,
