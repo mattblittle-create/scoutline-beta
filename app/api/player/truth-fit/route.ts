@@ -36,16 +36,17 @@ async function getCurrentPlayerProfile() {
     where: { id: userId },
     select: {
       email: true,
-      Player: {
-        select: {
-          gpa: true,
-          gradYear: true,
-          primaryPos: true,
-          secondaryPos: true,
-          heightIn: true,
-          weightLb: true,
-        },
-      },
+Player: {
+  select: {
+    gpa: true,
+    gradYear: true,
+    primaryPos: true,
+    secondaryPos: true,
+    pitcherHand: true,
+    heightIn: true,
+    weightLb: true,
+  },
+},
       PlayerProfile: {
         select: {
           id: true,
@@ -97,13 +98,18 @@ player: {
       gradYear:
         asNumber(user.Player?.gradYear) ??
         asNumber(normalized?.gradYear),
-      primaryPos:
-        asString(user.Player?.primaryPos) ??
-        asString(normalized?.primaryPos),
-      secondaryPos:
-        asString(user.Player?.secondaryPos) ??
-        asString(normalized?.secondaryPos),
-      homeState:
+primaryPos:
+  asString(user.Player?.primaryPos) ??
+  asString(normalized?.primaryPos),
+secondaryPos:
+  asString(user.Player?.secondaryPos) ??
+  asString(normalized?.secondaryPos),
+isPitcher:
+  asString(normalized?.isPitcher),
+pitcherHand:
+  asString(user.Player?.pitcherHand) ??
+  asString(normalized?.pitcherHand),
+homeState:
         asString(normalized?.homeState) ??
         asString(normalized?.state) ??
         asString(normalized?.playerState) ??

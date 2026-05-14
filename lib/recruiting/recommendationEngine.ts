@@ -694,12 +694,15 @@ function getBenchmarkMetricKeysForPlayer(player: any): string[] {
       ""
   );
 
-  const isPitcher =
-    position === "P" ||
-    secondary === "P" ||
-    String(player?.isPitcher || "").toLowerCase() === "yes";
+const isPitcher =
+  position === "P" ||
+  secondary === "P" ||
+  ["yes", "true", "1"].includes(String(player?.isPitcher || "").trim().toLowerCase()) ||
+  ["RHP", "LHP"].includes(String(player?.pitcherHand || "").trim().toUpperCase());
 
-  const isCatcher = position === "C" || secondary === "C";
+const isCatcher =
+  ["C", "CATCHER"].includes(String(position || "").toUpperCase()) ||
+  ["C", "CATCHER"].includes(String(secondary || "").toUpperCase());
   const isInfielder = ["1B", "2B", "SS", "3B", "MIF", "CIF"].includes(position);
   const isOutfielder = ["LF", "CF", "RF", "OF"].includes(position);
   const isUtility = position === "UTILITY" || secondary === "UTILITY";
