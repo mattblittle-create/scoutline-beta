@@ -841,47 +841,56 @@ return (
             recruiting opportunities, skill gaps, division-level benchmarks, and
             where their profile best matches current college recruiting needs.
           </p>
-
-          <div
-            className="no-print"
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: 12,
-              marginTop: 14,
-              flexWrap: "wrap",
-            }}
-          >
-            <button
-              type="button"
-              onClick={loadTruthFit}
-              disabled={loadingTruthFit}
-              style={{
-                ...primaryButtonStyle,
-                opacity: loadingTruthFit ? 0.7 : 1,
-                cursor: loadingTruthFit ? "not-allowed" : "pointer",
-              }}
-            >
-              {loadingTruthFit ? "Generating Truth Fit..." : "Refresh Truth Fit"}
-            </button>
-
-            <button
-              type="button"
-              onClick={() => window.print()}
-              style={{
-                ...secondaryButtonStyle,
-                whiteSpace: "nowrap",
-              }}
-            >
-              Print / Save as PDF
-            </button>
-          </div>
         </div>
 
         <Link href="/dashboard/player" style={backToDashboardStyle}>
           Back to Dashboard
         </Link>
+      </div>
+
+      <div
+        className="no-print"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 12,
+          marginTop: 16,
+          marginBottom: 24,
+          width: "100%",
+        }}
+      >
+        <button
+          type="button"
+          onClick={loadTruthFit}
+          disabled={loadingTruthFit}
+          style={{
+            ...primaryButtonStyle,
+            marginTop: 0,
+            opacity: loadingTruthFit ? 0.7 : 1,
+            cursor: loadingTruthFit ? "not-allowed" : "pointer",
+          }}
+        >
+          {loadingTruthFit ? "Generating Truth Fit..." : "Refresh Truth Fit"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => window.print()}
+          style={{
+            ...secondaryButtonStyle,
+            marginTop: 0,
+            background: "#caa042",
+            border: "1px solid #caa042",
+            color: "#334155",
+            padding: "10px 14px",
+            borderRadius: 10,
+            fontWeight: 900,
+            whiteSpace: "nowrap",
+          }}
+        >
+          Print / Save as PDF
+        </button>
       </div>
 
 {truthFitSummary ? (
