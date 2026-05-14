@@ -384,17 +384,10 @@ function getDevelopmentJumpText(metric: MetricDefinition, currentValue: number) 
 }
 
 function scoreToLetterGrade(score: number) {
-  if (score >= 97) return "A+";
-  if (score >= 93) return "A";
-  if (score >= 90) return "A-";
-  if (score >= 87) return "B+";
-  if (score >= 83) return "B";
-  if (score >= 80) return "B-";
-  if (score >= 77) return "C+";
-  if (score >= 73) return "C";
-  if (score >= 70) return "C-";
-  if (score >= 67) return "D+";
-  if (score >= 63) return "D";
+  if (score >= 90) return "Elite";
+  if (score >= 80) return "High-Level";
+  if (score >= 70) return "Recruitable";
+  if (score >= 60) return "Emerging";
   return "Developmental";
 }
 
@@ -586,7 +579,7 @@ export function buildPlayerScoutingReport(input: RecommendationInput): PlayerSco
   const strengths =
     topGrades.length > 0
       ? topGrades.map(
-          (grade) => `${grade.label}: ${grade.grade} (${grade.score}/99)`
+          (grade) => `${grade.label}: ${grade.grade} (${grade.score}/100)`
         )
       : ["Profile strength will improve as more verified metrics are added."];
 

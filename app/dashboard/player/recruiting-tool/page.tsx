@@ -1048,7 +1048,7 @@ body: JSON.stringify({
           marginBottom: 8,
         }}
       >
-        Strongest Metric(s)
+        Strongest Metrics
       </div>
 
       {getLaneHighlights(selectedLaneFit).strongestMetrics.length > 0 ? (
@@ -1091,7 +1091,7 @@ body: JSON.stringify({
           marginBottom: 8,
         }}
       >
-        Biggest Development Gap(s)
+        Biggest Development Gaps
       </div>
 
       {getLaneHighlights(selectedLaneFit).biggestGaps.length > 0 ? (
@@ -1160,7 +1160,7 @@ body: JSON.stringify({
   <div
     style={{
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(135px, 1fr))",
+      gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
       gap: 10,
       marginTop: 12,
     }}
@@ -1189,35 +1189,38 @@ body: JSON.stringify({
           {grade.label}
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            alignItems: "baseline",
-            justifyContent: "space-between",
-            gap: 8,
-          }}
-        >
-          <div
-            style={{
-              fontSize: 24,
-              fontWeight: 950,
-              color: "#0f172a",
-              lineHeight: 1,
-            }}
-          >
-            {grade.grade}
-          </div>
+<div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    gap: 6,
+    minHeight: 72,
+  }}
+>
+  <div
+    style={{
+      fontSize: 18,
+      fontWeight: 950,
+      color: "#0f172a",
+      lineHeight: 1.1,
+      wordBreak: "break-word",
+    }}
+  >
+    {grade.grade}
+  </div>
 
-          <div
-            style={{
-              fontSize: 12,
-              fontWeight: 900,
-              color: "#475569",
-            }}
-          >
-            {grade.score}/99
-          </div>
-        </div>
+  <div
+    style={{
+      fontSize: 13,
+      fontWeight: 900,
+      color: "#475569",
+      marginTop: "auto",
+    }}
+  >
+    {grade.score}/100
+  </div>
+</div>
       </div>
     ))}
   </div>
