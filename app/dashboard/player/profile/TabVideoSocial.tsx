@@ -1088,7 +1088,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                       : "Select videos"
                   }
                 >
-                  Select Videos
+                  Upload Videos
                 </button>
               </div>
 
