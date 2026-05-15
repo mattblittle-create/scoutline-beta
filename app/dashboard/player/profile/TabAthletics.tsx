@@ -1318,26 +1318,27 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
         </section>
       )}
 
-{playerBioReadOnly && (
-  <div
-    style={{
-      marginBottom: 12,
-      padding: "10px 12px",
-      borderRadius: 10,
-      background: "#f8fafc",
-      border: "1px solid #e2e8f0",
-      color: "#475569",
-      fontSize: 13,
-      fontWeight: 600,
-    }}
-  >
-    Player Bio is a player-controlled field and cannot be edited from the
-    parent account.
-  </div>
-)}
-
       {/* Player Bio */}
       <hr style={hrStyle} />
+
+      {playerBioReadOnly && (
+        <div
+          style={{
+            marginBottom: 12,
+            padding: "10px 12px",
+            borderRadius: 10,
+            background: "#f8fafc",
+            border: "1px solid #e2e8f0",
+            color: "#475569",
+            fontSize: 13,
+            fontWeight: 600,
+          }}
+        >
+          Player Bio is a player-controlled field and cannot be edited from the
+          parent account.
+        </div>
+      )}
+
       <section>
         <div
           style={{
@@ -1349,23 +1350,30 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
         >
           <h3 style={{ ...labelText, margin: 0 }}>Player Bio</h3>
         </div>
+
         <p style={{ color: "#475569", marginTop: 4, marginBottom: 6 }}>
           Share athletic accolades, training/workout habits, nutrition, leadership, and
           anything else that helps coaches get to know you. (max {MAX_BIO_CHARS}{" "}
           characters)
         </p>
+
         <div>
           <textarea
-          disabled={playerBioReadOnly}
+            disabled={playerBioReadOnly}
             value={playerBio}
             onChange={(e) => {
               const v = e.target.value;
-              setPlayerBio(v.length <= MAX_BIO_CHARS ? v : v.slice(0, MAX_BIO_CHARS));
+              setPlayerBio(
+                v.length <= MAX_BIO_CHARS
+                  ? v
+                  : v.slice(0, MAX_BIO_CHARS)
+              );
             }}
             placeholder="Tell coaches about your athletic journey…"
             style={{ ...textareaStyle, width: "100%" }}
             maxLength={MAX_BIO_CHARS}
           />
+
           <div
             style={{
               marginTop: 4,
