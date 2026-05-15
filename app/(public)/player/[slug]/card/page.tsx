@@ -95,12 +95,47 @@ export default function PlayerCardPage() {
 
   const [toast, setToast] = React.useState<string | null>(null);
   const [shareMode, setShareMode] = React.useState<"intro" | "followup">("intro");
+  const [viewerRole, setViewerRole] = React.useState<string | null>(null);
+
+  const isParentViewer =
+    String(viewerRole || "").trim().toUpperCase() === "PARENT";
 
   React.useEffect(() => {
     if (!toast) return;
     const t = window.setTimeout(() => setToast(null), 2200);
     return () => window.clearTimeout(t);
   }, [toast]);
+
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadViewerRole() {
+      try {
+        const res = await fetch("/api/auth/me", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const json = await res.json().catch(() => null);
+
+        if (cancelled) return;
+
+        const role = String(json?.user?.role || json?.role || "")
+          .trim()
+          .toUpperCase();
+
+        setViewerRole(role || null);
+      } catch {
+        if (!cancelled) setViewerRole(null);
+      }
+    }
+
+    loadViewerRole();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -733,72 +768,74 @@ ${name}
           ← Back to full profile
         </a>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "nowrap",
-            gap: 8,
-            justifyContent: "flex-end",
-            alignItems: "center",
-            overflowX: "auto",
-            whiteSpace: "nowrap",
-          }}
-        >
-          <div style={modeToggleWrap}>
+        {!isParentViewer ? (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "nowrap",
+              gap: 8,
+              justifyContent: "flex-end",
+              alignItems: "center",
+              overflowX: "auto",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <div style={modeToggleWrap}>
+              <button
+                type="button"
+                onClick={() => setShareMode("intro")}
+                style={{
+                  ...modeToggleBtn,
+                  minWidth: 120,
+                  justifyContent: "center",
+                  ...(shareMode === "intro" ? modeToggleBtnActive : {}),
+                }}
+              >
+                Introduction
+              </button>
+              <button
+                type="button"
+                onClick={() => setShareMode("followup")}
+                style={{
+                  ...modeToggleBtn,
+                  minWidth: 170,
+                  justifyContent: "center",
+                  ...(shareMode === "followup" ? modeToggleBtnActive : {}),
+                }}
+              >
+                Follow Up / Updated
+              </button>
+            </div>
+
             <button
               type="button"
-              onClick={() => setShareMode("intro")}
-              style={{
-                ...modeToggleBtn,
-                minWidth: 120,
-                justifyContent: "center",
-                ...(shareMode === "intro" ? modeToggleBtnActive : {}),
-              }}
+              onClick={handleSend}
+              style={{ ...primaryButton, minWidth: 135, whiteSpace: "nowrap" }}
             >
-              Introduction
+              {shareMode === "followup" ? "Send Follow Up" : "Send Intro"}
             </button>
+
+            <button type="button" onClick={handleOpenDraft} style={secondaryButton}>
+              Open Email Draft
+            </button>
+
+            <button type="button" onClick={handleCopySubjectOnly} style={secondaryButton}>
+              Copy Subject Only
+            </button>
+
+            <button type="button" onClick={handleCopyFullEmail} style={secondaryButton}>
+              Copy Full Email
+            </button>
+
             <button
               type="button"
-              onClick={() => setShareMode("followup")}
-              style={{
-                ...modeToggleBtn,
-                minWidth: 170,
-                justifyContent: "center",
-                ...(shareMode === "followup" ? modeToggleBtnActive : {}),
-              }}
+              onClick={handlePrint}
+              style={{ ...secondaryButton, minWidth: 135, whiteSpace: "nowrap" }}
             >
-              Follow Up / Updated
+              Print Player Card
             </button>
           </div>
-
-          <button
-            type="button"
-            onClick={handleSend}
-            style={{ ...primaryButton, minWidth: 135, whiteSpace: "nowrap" }}
-          >
-            {shareMode === "followup" ? "Send Follow Up" : "Send Intro"}
-          </button>
-
-          <button type="button" onClick={handleOpenDraft} style={secondaryButton}>
-            Open Email Draft
-          </button>
-
-          <button type="button" onClick={handleCopySubjectOnly} style={secondaryButton}>
-            Copy Subject Only
-          </button>
-
-          <button type="button" onClick={handleCopyFullEmail} style={secondaryButton}>
-            Copy Full Email
-          </button>
-
-          <button
-            type="button"
-            onClick={handlePrint}
-            style={{ ...secondaryButton, minWidth: 135, whiteSpace: "nowrap" }}
-          >
-            Print Player Card
-          </button>
-        </div>
+        ) : null}
       </header>
 
       <section style={card} className="print-area">
