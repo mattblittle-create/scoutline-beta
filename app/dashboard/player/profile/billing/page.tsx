@@ -9,6 +9,7 @@ import PlayerBillingAdminTools from "./PlayerBillingAdminTools";
 import BillingDiscountCodeRedeem from "../../../team/billing/BillingDiscountCodeRedeem";
 import PlayerBillingInvoices from "./PlayerBillingInvoices";
 import PlayerBillingPaymentMethod from "./PlayerBillingPaymentMethod";
+import { getTeamSponsoredBillingInfo } from "@/lib/billing/getTeamSponsoredBillingInfo";
 
 function formatUSD(cents: number) {
   const dollars = cents / 100;
@@ -253,6 +254,10 @@ export default async function PlayerBillingPage(props: {
 
   const derivedStatus = computeDerivedStatusFromInvoices(invoices);
 
+  const teamSponsoredInfo = profileIdStr
+  ? await getTeamSponsoredBillingInfo(profileIdStr)
+  : null;
+
 return (
   <div style={{ padding: 16 }}>
     <DevPlayerSelector />
@@ -321,7 +326,13 @@ return (
             </div>
           ) : (
             <>
-              {/* Summary */}
+              {teamSponsoredInfo ? (
+                <TeamSponsoredBillingCard
+                  playerFirstName="Your player"
+                  teamSponsoredInfo={teamSponsoredInfo}
+                />
+              ) : (
+                <>
               <div
                 style={{
                   marginTop: 14,
@@ -403,11 +414,63 @@ return (
               <div style={{ marginTop: 14 }}>
                 <PlayerBillingPaymentMethod playerProfileId={profileIdStr ?? ""} summary={billingProfile} />
               </div>
+                </>
+              )}
             </>
           )}
         </>
       ) : null}
     </div>
+  );
+}
+
+function TeamSponsoredBillingCard({
+  playerFirstName,
+  teamSponsoredInfo,
+}: {
+  playerFirstName: string;
+  teamSponsoredInfo: {
+    teamName: string;
+    adminName: string;
+    adminEmail: string;
+    adminPhone: string;
+  };
+}) {
+  return (
+    <section
+      style={{
+        marginTop: 14,
+        border: "1px solid #dbeafe",
+        borderRadius: 14,
+        padding: 16,
+        background: "#eff6ff",
+        color: "#0f172a",
+      }}
+    >
+      <div style={{ fontSize: 18, fontWeight: 950, marginBottom: 8 }}>
+        Billing Managed by Team
+      </div>
+
+      <div style={{ color: "#334155", fontWeight: 700, lineHeight: 1.55 }}>
+        {playerFirstName}&apos;s ScoutLine billing is currently managed by{" "}
+        <strong>{teamSponsoredInfo.teamName}</strong>. Questions or concerns
+        should be directed to{" "}
+        <strong>{teamSponsoredInfo.adminName}</strong>
+        {teamSponsoredInfo.adminEmail ? ` at ${teamSponsoredInfo.adminEmail}` : ""}
+        {teamSponsoredInfo.adminPhone ? ` or ${teamSponsoredInfo.adminPhone}` : ""}.
+      </div>
+
+      <div style={{ marginTop: 14 }}>
+        <Link href="/pricing" style={selfPlanButtonStyle}>
+          Start My Own Plan
+        </Link>
+      </div>
+
+      <div style={{ marginTop: 10, color: "#64748b", fontWeight: 700, lineHeight: 1.45 }}>
+        Starting your own plan will preserve your profile, metrics, videos,
+        recruiting data, and login. It only changes billing ownership.
+      </div>
+    </section>
   );
 }
 
@@ -422,4 +485,17 @@ const backToDashboardStyle: React.CSSProperties = {
   textDecoration: "none",
   fontWeight: 900,
   border: "1px solid #0ea5e9",
+};
+
+const selfPlanButtonStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "10px 14px",
+  background: "#caa042",
+  color: "#0f172a",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #caa042",
 };

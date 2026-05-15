@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import ParentBillingActions from "./ParentBillingActions";
+import { getTeamSponsoredBillingInfo } from "@/lib/billing/getTeamSponsoredBillingInfo";
 
 type PageProps = {
   params: {
@@ -217,6 +218,8 @@ export default async function ParentPlayerBillingPage({ params }: PageProps) {
   const billingProfile = profile.playerBillingProfile;
   const invoices = profile.playerInvoices ?? [];
 
+const teamSponsoredInfo = await getTeamSponsoredBillingInfo(profile.id);
+
   const latestInvoice = invoices[0] ?? null;
   const activePaymentLabel = billingProfile
     ? [
@@ -251,53 +254,60 @@ export default async function ParentPlayerBillingPage({ params }: PageProps) {
         </div>
       </section>
 
-      <ParentBillingActions
-        playerProfileId={profile.id}
-        cancelRequested={Boolean(profile.playerCancelRequestedAt)}
-        cancelEffectiveAt={
-          profile.playerCancelEffectiveAt
-            ? profile.playerCancelEffectiveAt.toISOString()
-            : null
-        }
-      />
+      {teamSponsoredInfo ? (
+        <TeamSponsoredBillingCard
+          playerFirstName={firstName || "Player"}
+          teamSponsoredInfo={teamSponsoredInfo}
+        />
+      ) : (
+        <>
+          <ParentBillingActions
+            playerProfileId={profile.id}
+            cancelRequested={Boolean(profile.playerCancelRequestedAt)}
+            cancelEffectiveAt={
+              profile.playerCancelEffectiveAt
+                ? profile.playerCancelEffectiveAt.toISOString()
+                : null
+            }
+          />
 
-      <section style={grid2}>
-        <div style={card}>
-          <div style={cardTitle}>Billing Summary</div>
+          <section style={grid2}>
+            <div style={card}>
+              <div style={cardTitle}>Billing Summary</div>
 
-          <div style={infoGrid}>
-            <InfoItem label="Plan" value={formatPlan(profile.playerPlanTier)} />
-            <InfoItem
-              label="Cadence"
-              value={formatCadence(profile.playerBillingCadence)}
-            />
-            <InfoItem
-              label="Status"
-              value={profile.playerBillingStatus || "—"}
-              tone={statusTone(profile.playerBillingStatus)}
-            />
-            <InfoItem
-              label="Latest Invoice"
-              value={
-                latestInvoice
-                  ? formatMoneyFromCents(latestInvoice.amountCents)
-                  : "No invoices yet"
-              }
-            />
-            <InfoItem
-              label="Latest Due Date"
-              value={latestInvoice ? formatDate(latestInvoice.dueDate) : "—"}
-            />
-            <InfoItem
-              label="Paid Amount"
-              value={
-                latestInvoice
-                  ? formatMoneyFromCents(latestInvoice.amountPaidCents)
-                  : "—"
-              }
-            />
-          </div>
-        </div>
+              <div style={infoGrid}>
+                <InfoItem label="Plan" value={formatPlan(profile.playerPlanTier)} />
+                <InfoItem
+                  label="Cadence"
+                  value={formatCadence(profile.playerBillingCadence)}
+                />
+                <InfoItem
+                  label="Status"
+                  value={profile.playerBillingStatus || "—"}
+                  tone={statusTone(profile.playerBillingStatus)}
+                />
+                <InfoItem
+                  label="Latest Invoice"
+                  value={
+                    latestInvoice
+                      ? formatMoneyFromCents(latestInvoice.amountCents)
+                      : "No invoices yet"
+                  }
+                />
+                <InfoItem
+                  label="Latest Due Date"
+                  value={latestInvoice ? formatDate(latestInvoice.dueDate) : "—"}
+                />
+                <InfoItem
+                  label="Paid Amount"
+                  value={
+                    latestInvoice
+                      ? formatMoneyFromCents(latestInvoice.amountPaidCents)
+                      : "—"
+                  }
+                />
+              </div>
+            </div>
 
         <div style={card}>
           <div style={cardTitle}>Payment Method</div>
@@ -424,7 +434,48 @@ export default async function ParentPlayerBillingPage({ params }: PageProps) {
           </div>
         )}
       </section>
+        </>
+      )}
     </div>
+  );
+}
+
+function TeamSponsoredBillingCard({
+  playerFirstName,
+  teamSponsoredInfo,
+}: {
+  playerFirstName: string;
+  teamSponsoredInfo: {
+    teamName: string;
+    adminName: string;
+    adminEmail: string;
+    adminPhone: string;
+  };
+}) {
+  return (
+    <section style={card}>
+      <div style={cardTitle}>Billing Managed by Team</div>
+
+      <div style={bodyText}>
+        {playerFirstName}&apos;s ScoutLine billing is currently managed by{" "}
+        <strong>{teamSponsoredInfo.teamName}</strong>. Questions or concerns
+        should be directed to <strong>{teamSponsoredInfo.adminName}</strong>
+        {teamSponsoredInfo.adminEmail ? ` at ${teamSponsoredInfo.adminEmail}` : ""}
+        {teamSponsoredInfo.adminPhone ? ` or ${teamSponsoredInfo.adminPhone}` : ""}.
+      </div>
+
+      <div>
+        <Link href="/pricing" style={selfPlanButtonStyle}>
+          Start Individual Plan
+        </Link>
+      </div>
+
+      <div style={bodyText}>
+        Starting an individual plan will preserve the player&apos;s profile,
+        metrics, video, recruiting data, public profile, and login. It only
+        changes billing ownership from team-sponsored to player-owned.
+      </div>
+    </section>
   );
 }
 
@@ -459,6 +510,25 @@ function InfoItem({
     </div>
   );
 }
+
+const bodyText: React.CSSProperties = {
+  color: "#475569",
+  lineHeight: 1.6,
+  fontWeight: 700,
+};
+
+const selfPlanButtonStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: 999,
+  padding: "10px 14px",
+  background: "#caa042",
+  color: "#0f172a",
+  textDecoration: "none",
+  fontWeight: 900,
+  border: "1px solid #caa042",
+};
 
 const hero: React.CSSProperties = {
   border: "1px solid #e5e7eb",
