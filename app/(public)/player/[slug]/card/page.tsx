@@ -97,8 +97,14 @@ export default function PlayerCardPage() {
   const [shareMode, setShareMode] = React.useState<"intro" | "followup">("intro");
   const [viewerRole, setViewerRole] = React.useState<string | null>(null);
 
-  const isParentViewer =
-    String(viewerRole || "").trim().toUpperCase() === "PARENT";
+  const normalizedViewerRole = String(viewerRole || "")
+    .trim()
+    .toUpperCase();
+
+  const canUseCardTools =
+    normalizedViewerRole === "PLAYER" ||
+    normalizedViewerRole === "TEAM_ADMIN" ||
+    normalizedViewerRole === "TEAM";
 
   React.useEffect(() => {
     if (!toast) return;
@@ -768,7 +774,7 @@ ${name}
           ← Back to full profile
         </a>
 
-        {!isParentViewer ? (
+        {canUseCardTools ? (
           <div
             style={{
               display: "flex",
