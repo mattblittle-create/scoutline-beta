@@ -734,7 +734,19 @@ React.useEffect(() => {
       if (controlFilter !== "ALL") params.set("control", controlFilter);
 
       const qs = params.toString();
-      const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
+
+      const url =
+        mode === "parent" && playerProfileId
+          ? qs
+            ? `/api/parent/player/${encodeURIComponent(
+                playerProfileId
+              )}/truth-fit?${qs}`
+            : `/api/parent/player/${encodeURIComponent(
+                playerProfileId
+              )}/truth-fit`
+          : qs
+          ? `/api/player/truth-fit?${qs}`
+          : "/api/player/truth-fit";
 
       const res = await fetch(url, { cache: "no-store" });
       const data = await res.json().catch(() => null);
