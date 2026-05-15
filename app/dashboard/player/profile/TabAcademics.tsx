@@ -806,6 +806,8 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
             }}
           >
             Intended Majors is a player-controlled field and cannot be edited from the parent account.
+            </div>
+            ) : null}
             
         <h3 style={{ ...labelText, margin: 0 }}>Intended Major(s)</h3>
         <p
@@ -819,8 +821,6 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <em>Business, Biology, Sports Medicine, etc.</em>). It's ok if you do not
           know yet. Just leave this area blank. Max {MAX_STUDY_CHARS} characters.
         </p>
-          </div>
-        ) : null}
 
         <input
           value={areasInput}
