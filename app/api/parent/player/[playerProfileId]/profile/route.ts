@@ -84,13 +84,22 @@ export async function PATCH(req: NextRequest, { params }: RouteProps) {
      * Parents cannot change commitment status/program. Those fields remain
      * player/admin controlled.
      */
-    const protectedCommitmentFields = {
+    const protectedPlayerVoiceFields = {
+      // Commitment: player/admin controlled
       isCommitted: existing.isCommitted ?? false,
       committedProgram: existing.committedProgram ?? null,
       committedProgramId: existing.committedProgramId ?? null,
       committedCollege: existing.committedCollege ?? null,
       committedSchool: existing.committedSchool ?? null,
       committedProgramName: existing.committedProgramName ?? null,
+
+      // Player voice: player-only editable
+      academicBio: existing.academicBio ?? null,
+      academicBioPrivate: existing.academicBioPrivate ?? false,
+      areasOfStudyInput: existing.areasOfStudyInput ?? null,
+      areasOfStudy: existing.areasOfStudy ?? [],
+      playerBio: existing.playerBio ?? null,
+      playerBioPrivate: existing.playerBioPrivate ?? false,
     };
 
     const nextData = {
@@ -100,8 +109,8 @@ export async function PATCH(req: NextRequest, { params }: RouteProps) {
       // Always preserve canonical identity.
       email: link.playerProfile.email,
 
-      // Preserve player/admin-controlled commitment fields.
-      ...protectedCommitmentFields,
+      // Preserve player-only / player-admin-controlled fields.
+      ...protectedPlayerVoiceFields,
 
       // Helpful audit-style metadata inside JSON payload.
       lastEditedByRole: "PARENT",
@@ -130,7 +139,7 @@ export async function PATCH(req: NextRequest, { params }: RouteProps) {
         changeSummary: "Parent updated player profile.",
         diff: {
           source: "parent-profile-editor",
-          protectedFields: Object.keys(protectedCommitmentFields),
+          protectedFields: Object.keys(protectedPlayerVoiceFields),
         },
       },
     }).catch(() => null);

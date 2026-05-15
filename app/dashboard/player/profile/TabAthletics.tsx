@@ -97,6 +97,7 @@ type Props = {
   fieldErr: Record<string, string>;
   showPitcherHand: boolean;
   commitmentReadOnly?: boolean;
+  playerBioReadOnly?: boolean;
 
   // handlers
   setEligibilityRegistered: (v: boolean) => void;
@@ -205,6 +206,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
     fieldErr,
     showPitcherHand,
     commitmentReadOnly = false,
+    playerBioReadOnly = false,
 
     // handlers
     setEligibilityRegistered,
@@ -1316,6 +1318,24 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
         </section>
       )}
 
+{playerBioReadOnly && (
+  <div
+    style={{
+      marginBottom: 12,
+      padding: "10px 12px",
+      borderRadius: 10,
+      background: "#f8fafc",
+      border: "1px solid #e2e8f0",
+      color: "#475569",
+      fontSize: 13,
+      fontWeight: 600,
+    }}
+  >
+    Player Bio is a player-controlled field and cannot be edited from the
+    parent account.
+  </div>
+)}
+
       {/* Player Bio */}
       <hr style={hrStyle} />
       <section>
@@ -1336,6 +1356,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
         </p>
         <div>
           <textarea
+          disabled={playerBioReadOnly}
             value={playerBio}
             onChange={(e) => {
               const v = e.target.value;

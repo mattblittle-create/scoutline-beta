@@ -2466,6 +2466,8 @@ return (
 
             // errors
             fieldErr={fieldErr}
+            bioReadOnly={isParentMode}
+            intendedMajorsReadOnly={isParentMode}
 
             // handlers
             setGradYear={setGradYear}
@@ -2545,6 +2547,7 @@ return (
 
             // NEW: parent permission layer
             commitmentReadOnly={isParentMode}
+            playerBioReadOnly={isParentMode}
 
             // handlers
             setEligibilityRegistered={setEligibilityRegistered}

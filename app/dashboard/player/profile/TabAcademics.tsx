@@ -63,6 +63,8 @@ type Props = {
 
   // errors
   fieldErr: Record<string, string>;
+  bioReadOnly?: boolean;
+  intendedMajorsReadOnly?: boolean;
 
   // handlers (legacy)
   setGradYear: (v: string) => void;
@@ -146,6 +148,8 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
     // errors
     fieldErr,
+    bioReadOnly = false,
+    intendedMajorsReadOnly = false,
 
     // handlers
     setGradYear,
@@ -721,6 +725,24 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       {/* Divider */}
       <hr style={hrStyle} />
 
+{bioReadOnly && (
+  <div
+    style={{
+      marginBottom: 12,
+      padding: "10px 12px",
+      borderRadius: 10,
+      background: "#f8fafc",
+      border: "1px solid #e2e8f0",
+      color: "#475569",
+      fontSize: 13,
+      fontWeight: 600,
+    }}
+  >
+    Academic Bio and Intended Majors are player-controlled fields and cannot
+    be edited from the parent account.
+  </div>
+)}
+
       {/* Academic Bio */}
       <section>
         <div
@@ -745,6 +767,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         </p>
         <div>
           <textarea
+          disabled={bioReadOnly}
             value={academicBio}
             onChange={(e) => {
               const v = e.target.value;
@@ -781,18 +804,47 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <em>Business, Biology, Sports Medicine, etc.</em>). It's ok if you do not
           know yet. Just leave this area blank. Max {MAX_STUDY_CHARS} characters.
         </p>
+
+        {intendedMajorsReadOnly ? (
+          <div
+            style={{
+              marginBottom: 8,
+              padding: "10px 12px",
+              borderRadius: 10,
+              background: "#f8fafc",
+              border: "1px solid #e2e8f0",
+              color: "#475569",
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            Intended Majors are player-controlled and cannot be edited from the
+            parent account.
+          </div>
+        ) : null}
+
         <input
           value={areasInput}
+          disabled={intendedMajorsReadOnly}
           onChange={(e) => {
+            if (intendedMajorsReadOnly) return;
+
             const v = e.target.value;
             const clipped =
               v.length <= MAX_STUDY_CHARS ? v : v.slice(0, MAX_STUDY_CHARS);
             writeAreas(clipped);
           }}
           placeholder="Business, Biology, Sports Medicine, etc."
-          style={{ ...inputStyle, width: "100%" }}
+          style={{
+            ...inputStyle,
+            width: "100%",
+            background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
+            color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
+            cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
+          }}
           maxLength={MAX_STUDY_CHARS}
         />
+
         <div
           style={{
             marginTop: 6,
@@ -820,30 +872,33 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                 title={chip}
               >
                 {chip}
-                <button
-                  type="button"
-                  onClick={() => removeChip(idx)}
-                  title={`Remove ${chip}`}
-                  aria-label={`Remove ${chip}`}
-                  style={{
-                    marginLeft: 4,
-                    width: 18,
-                    height: 18,
-                    lineHeight: "16px",
-                    borderRadius: 9,
-                    border: "1px solid #cbd5e1",
-                    background: "#ffffff",
-                    color: "#64748b",
-                    fontWeight: 800,
-                    cursor: "pointer",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 0,
-                  }}
-                >
-                  ×
-                </button>
+
+                {!intendedMajorsReadOnly ? (
+                  <button
+                    type="button"
+                    onClick={() => removeChip(idx)}
+                    title={`Remove ${chip}`}
+                    aria-label={`Remove ${chip}`}
+                    style={{
+                      marginLeft: 4,
+                      width: 18,
+                      height: 18,
+                      lineHeight: "16px",
+                      borderRadius: 9,
+                      border: "1px solid #cbd5e1",
+                      background: "#ffffff",
+                      color: "#64748b",
+                      fontWeight: 800,
+                      cursor: "pointer",
+                      display: "inline-flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: 0,
+                    }}
+                  >
+                    ×
+                  </button>
+                ) : null}
               </span>
             ))
           ) : (
@@ -858,6 +913,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
             </span>
           )}
         </div>
+
         <div
           style={{
             marginTop: 4,
