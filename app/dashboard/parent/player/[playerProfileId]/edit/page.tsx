@@ -1,9 +1,14 @@
 // app/dashboard/parent/player/[playerProfileId]/edit/page.tsx
+
 import Link from "next/link";
-import { notFound, redirect } from "next/navigation";
-import { getCurrentUser } from "@/lib/auth/getCurrentUser";
-import { getLinkedParentPlayer } from "@/lib/parent/getLinkedParentPlayer";
-import ParentPlayerEditForm from "./ParentPlayerEditForm";
+import React, { Suspense } from "react";
+import { notFound } from "next/navigation";
+import { PlayerProfileEditor } from "@/app/dashboard/player/profile/PlayerProfileEditor";
+import {
+  asRecord,
+  getParentDashboardContext,
+  getPlayerDisplayName,
+} from "@/lib/parent/getParentDashboardContext";
 
 type PageProps = {
   params: {
@@ -11,48 +16,36 @@ type PageProps = {
   };
 };
 
-function asRecord(value: unknown): Record<string, any> {
-  return value && typeof value === "object" && !Array.isArray(value)
-    ? (value as Record<string, any>)
-    : {};
-}
-
-function readString(obj: Record<string, any>, ...keys: string[]) {
-  for (const key of keys) {
-    const value = obj?.[key];
-    if (typeof value === "string" && value.trim()) return value.trim();
-  }
-  return "";
-}
-
 export default async function ParentPlayerEditPage({ params }: PageProps) {
-  const user = await getCurrentUser();
-
-  if (!user?.id) {
-    redirect("/login?role=parent");
-  }
-
   const playerProfileId = String(params?.playerProfileId || "").trim();
+
   if (!playerProfileId) notFound();
 
-  const linked = await getLinkedParentPlayer({
-    userId: user.id,
+  const { activePlayerProfile } = await getParentDashboardContext({
     playerProfileId,
+    requireLinkedPlayer: true,
   });
 
-  if (!linked?.playerProfile) {
-    notFound();
-  }
-
-  const playerProfile = linked.playerProfile;
+  const playerProfile = activePlayerProfile!;
   const data = asRecord(playerProfile.data);
 
-  const firstName = readString(data, "firstName", "playerFirstName", "nameFirst");
-  const lastName = readString(data, "lastName", "playerLastName", "nameLast");
-  const fullName =
-    [firstName, lastName].filter(Boolean).join(" ").trim() ||
-    playerProfile.user?.name?.trim() ||
-    playerProfile.email.split("@")[0];
+  const fullName = getPlayerDisplayName({
+    data,
+    fallbackName: playerProfile.user?.name,
+    fallbackEmail: playerProfile.email,
+  });
+
+  const parentOverviewHref = `/dashboard/parent/player/${encodeURIComponent(
+    playerProfile.id
+  )}`;
+
+  const parentBillingHref = `/dashboard/parent/player/${encodeURIComponent(
+    playerProfile.id
+  )}/billing`;
+
+  const parentSaveEndpoint = `/api/parent/player/${encodeURIComponent(
+    playerProfile.id
+  )}/profile`;
 
   return (
     <div style={{ display: "grid", gap: 18 }}>
@@ -94,20 +87,25 @@ export default async function ParentPlayerEditPage({ params }: PageProps) {
           style={{
             margin: "10px 0 0",
             color: "#475569",
-            maxWidth: 820,
+            maxWidth: 860,
             lineHeight: 1.55,
             fontWeight: 600,
           }}
         >
-          This parent-safe edit flow only allows updates for a player linked to
-          your parent account.
+          Parents can help maintain the full player profile, including core
+          info, academics, athletics, metrics, stats, video/social links, and
+          references. Commitment status remains player/admin controlled.
         </p>
 
-        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 16 }}>
-          <Link
-            href={`/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}`}
-            style={ghostBtn}
-          >
+        <div
+          style={{
+            display: "flex",
+            gap: 12,
+            flexWrap: "wrap",
+            marginTop: 16,
+          }}
+        >
+          <Link href={parentOverviewHref} style={ghostBtn}>
             Back to Player Overview
           </Link>
 
@@ -117,11 +115,19 @@ export default async function ParentPlayerEditPage({ params }: PageProps) {
         </div>
       </section>
 
-      <ParentPlayerEditForm
-        playerProfileId={playerProfile.id}
-        initialData={data}
-        playerEmail={playerProfile.email}
-      />
+      <Suspense fallback={null}>
+        <PlayerProfileEditor
+          mode="parent"
+          profileEmailOverride={playerProfile.email}
+          saveEndpoint={parentSaveEndpoint}
+          saveMethod="PATCH"
+          backHref={parentOverviewHref}
+          backLabel="Back to Player Overview"
+          billingHref={parentBillingHref}
+          heading={`Player Profile — ${fullName}`}
+          intro="Use this full profile editor to help keep your player’s ScoutLine profile accurate and current. Updates made here are saved through parent-authorized access for this linked player account."
+        />
+      </Suspense>
     </div>
   );
 }

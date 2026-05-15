@@ -96,6 +96,7 @@ type Props = {
   // UI / validation
   fieldErr: Record<string, string>;
   showPitcherHand: boolean;
+  commitmentReadOnly?: boolean;
 
   // handlers
   setEligibilityRegistered: (v: boolean) => void;
@@ -203,6 +204,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
     // UI / validation
     fieldErr,
     showPitcherHand,
+    commitmentReadOnly = false,
 
     // handlers
     setEligibilityRegistered,
@@ -438,14 +440,34 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
       <div></div>
 
       {/* College commitment */}
+      {commitmentReadOnly && (
+        <div
+          style={{
+            marginBottom: 12,
+            padding: "10px 12px",
+            borderRadius: 10,
+            background: "#f8fafc",
+            border: "1px solid #e2e8f0",
+            color: "#475569",
+            fontSize: 13,
+            fontWeight: 600,
+          }}
+        >
+          Commitment status can only be updated by the player account owner.
+        </div>
+      )}
       <section style={{ margin: "8px 0 0 0" }}>
         <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <input
             type="checkbox"
             checked={isCommitted}
+            disabled={commitmentReadOnly}
             onChange={(e) => {
+              if (commitmentReadOnly) return;
+
               const checked = e.target.checked;
               setIsCommitted(checked);
+
               if (!checked) {
                 setCommittedProgram("");
                 setCommittedProgramId(null);
@@ -466,9 +488,10 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
               {/* Free-text input + optional suggestion menu */}
               <div style={{ position: "relative" }}>
                 <input
+                  disabled={commitmentReadOnly}
                   value={committedProgram}
                   onChange={(e) => {
-                    // Always allow free typing; clear prior selected ID until user picks again
+                    if (commitmentReadOnly) return;
                     setCommittedProgram(e.target.value);
                     setCommittedProgramId(null);
                   }}
@@ -502,17 +525,20 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                       </div>
                     )}
 
-                    {!collegeSearching &&
-                      (collegeOptions || []).map((opt) => (
-                        <button
-                          key={opt.id}
-                          type="button"
-                          role="option"
-                          aria-selected={false}
-                          onClick={() => {
-                            setCommittedProgram(opt.name);
-                            setCommittedProgramId(opt.id);
-                          }}
+                      {!collegeSearching &&
+                        (collegeOptions || []).map((opt) => (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            role="option"
+                            aria-selected={false}
+                            disabled={commitmentReadOnly}
+                            onClick={() => {
+                              if (commitmentReadOnly) return;
+
+                              setCommittedProgram(opt.name);
+                              setCommittedProgramId(opt.id);
+                            }}
                           style={{
                             display: "block",
                             width: "100%",

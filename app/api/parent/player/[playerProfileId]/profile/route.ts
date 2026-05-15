@@ -1,10 +1,10 @@
 // app/api/parent/player/[playerProfileId]/profile/route.ts
-import { NextResponse } from "next/server";
-import { getCurrentUser } from "@/lib/auth/getCurrentUser";
-import { prisma } from "@/lib/prisma";
-import { getLinkedParentPlayer } from "@/lib/parent/getLinkedParentPlayer";
 
-type RouteCtx = {
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+
+type RouteProps = {
   params: {
     playerProfileId: string;
   };
@@ -16,29 +16,10 @@ function asRecord(value: unknown): Record<string, any> {
     : {};
 }
 
-function normalizeString(v: unknown) {
-  return String(v ?? "").trim();
-}
-
-function normalizeNullableString(v: unknown) {
-  const s = String(v ?? "").trim();
-  return s ? s : null;
-}
-
-function normalizeEmail(v: unknown) {
-  return String(v ?? "").trim().toLowerCase();
-}
-
-function normalizeNumberString(v: unknown) {
-  const s = String(v ?? "").trim();
-  if (!s) return null;
-  const n = Number(s);
-  return Number.isFinite(n) ? String(n) : s;
-}
-
-export async function GET(_req: Request, ctx: RouteCtx) {
+export async function PATCH(req: NextRequest, { params }: RouteProps) {
   try {
     const user = await getCurrentUser();
+
     if (!user?.id) {
       return NextResponse.json(
         { ok: false, error: "Unauthorized." },
@@ -46,7 +27,8 @@ export async function GET(_req: Request, ctx: RouteCtx) {
       );
     }
 
-    const playerProfileId = String(ctx?.params?.playerProfileId || "").trim();
+    const playerProfileId = String(params?.playerProfileId || "").trim();
+
     if (!playerProfileId) {
       return NextResponse.json(
         { ok: false, error: "Missing player profile id." },
@@ -54,122 +36,118 @@ export async function GET(_req: Request, ctx: RouteCtx) {
       );
     }
 
-    const linked = await getLinkedParentPlayer({
-      userId: user.id,
-      playerProfileId,
+    const parentProfile = await prisma.parentProfile.findUnique({
+      where: { userId: user.id },
+      select: { id: true },
     });
 
-    if (!linked?.playerProfile) {
+    if (!parentProfile?.id) {
       return NextResponse.json(
-        { ok: false, error: "Parent access not allowed for this player." },
-        { status: 403 }
+        { ok: false, error: "Parent profile not found." },
+        { status: 404 }
       );
     }
 
-    return NextResponse.json({
-      ok: true,
-      data: {
-        playerProfile: linked.playerProfile,
-        relationship: linked.relationship || "Parent",
-        isPrimary: Boolean(linked.isPrimary),
+    const link = await prisma.parentPlayerLink.findUnique({
+      where: {
+        parentProfileId_playerProfileId: {
+          parentProfileId: parentProfile.id,
+          playerProfileId,
+        },
+      },
+      select: {
+        playerProfile: {
+          select: {
+            id: true,
+            email: true,
+            data: true,
+          },
+        },
       },
     });
-  } catch (err: any) {
-    console.error("[parent profile GET] error", err);
-    return NextResponse.json(
-      { ok: false, error: err?.message || "Failed to load profile." },
-      { status: 500 }
-    );
-  }
-}
 
-export async function PATCH(req: Request, ctx: RouteCtx) {
-  try {
-    const user = await getCurrentUser();
-    if (!user?.id) {
+    if (!link?.playerProfile) {
       return NextResponse.json(
-        { ok: false, error: "Unauthorized." },
-        { status: 401 }
+        { ok: false, error: "Linked player profile not found." },
+        { status: 404 }
       );
     }
 
-    const playerProfileId = String(ctx?.params?.playerProfileId || "").trim();
-    if (!playerProfileId) {
-      return NextResponse.json(
-        { ok: false, error: "Missing player profile id." },
-        { status: 400 }
-      );
-    }
+    const incoming = asRecord(await req.json().catch(() => ({})));
+    const existing = asRecord(link.playerProfile.data);
 
-    const linked = await getLinkedParentPlayer({
-      userId: user.id,
-      playerProfileId,
-    });
-
-    if (!linked?.playerProfile) {
-      return NextResponse.json(
-        { ok: false, error: "Parent access not allowed for this player." },
-        { status: 403 }
-      );
-    }
-
-    const body = await req.json().catch(() => ({}));
-    const existing = asRecord(linked.playerProfile.data);
+    /**
+     * Parent permission boundary:
+     * Parents can maintain profile information, metrics, stats, video/social,
+     * references, academics, athletics, and billing support details.
+     *
+     * Parents cannot change commitment status/program. Those fields remain
+     * player/admin controlled.
+     */
+    const protectedCommitmentFields = {
+      isCommitted: existing.isCommitted ?? false,
+      committedProgram: existing.committedProgram ?? null,
+      committedProgramId: existing.committedProgramId ?? null,
+      committedCollege: existing.committedCollege ?? null,
+      committedSchool: existing.committedSchool ?? null,
+      committedProgramName: existing.committedProgramName ?? null,
+    };
 
     const nextData = {
       ...existing,
+      ...incoming,
 
-      firstName: normalizeString(body?.firstName),
-      lastName: normalizeString(body?.lastName),
-      gradYear: normalizeNullableString(body?.gradYear),
-      school: normalizeNullableString(body?.school),
-      travelTeam: normalizeNullableString(body?.travelTeam),
-      hometown: normalizeNullableString(body?.hometown),
-      state: normalizeNullableString(body?.state),
-      gpa: normalizeNullableString(body?.gpa),
+      // Always preserve canonical identity.
+      email: link.playerProfile.email,
 
-      primaryPosition: normalizeNullableString(body?.primaryPosition),
-      secondaryPosition: normalizeNullableString(body?.secondaryPosition),
-      bats: normalizeNullableString(body?.bats),
-      throws: normalizeNullableString(body?.throws),
-      height: normalizeNullableString(body?.height),
-      weight: normalizeNullableString(body?.weight),
+      // Preserve player/admin-controlled commitment fields.
+      ...protectedCommitmentFields,
 
-      bio: normalizeNullableString(body?.bio),
-
-      instagramUrl: normalizeNullableString(body?.instagramUrl),
-      xUrl: normalizeNullableString(body?.xUrl),
-      youtubeUrl: normalizeNullableString(body?.youtubeUrl),
-      tiktokUrl: normalizeNullableString(body?.tiktokUrl),
-      highlightVideoUrl: normalizeNullableString(body?.highlightVideoUrl),
-
-      parentEmail: user.email ? normalizeEmail(user.email) : existing.parentEmail ?? null,
+      // Helpful audit-style metadata inside JSON payload.
+      lastEditedByRole: "PARENT",
+      lastEditedByUserId: user.id,
+      lastEditedAt: new Date().toISOString(),
     };
 
     const updated = await prisma.playerProfile.update({
-      where: { id: playerProfileId },
+      where: { id: link.playerProfile.id },
       data: {
         data: nextData,
-        updatedAt: new Date(),
       },
       select: {
         id: true,
         email: true,
-        updatedAt: true,
         data: true,
+        updatedAt: true,
       },
     });
 
+    await prisma.profileChangeLog.create({
+      data: {
+        playerProfileId: updated.id,
+        actorUserId: user.id,
+        actorRole: "PARENT",
+        changeSummary: "Parent updated player profile.",
+        diff: {
+          source: "parent-profile-editor",
+          protectedFields: Object.keys(protectedCommitmentFields),
+        },
+      },
+    }).catch(() => null);
+
     return NextResponse.json({
       ok: true,
-      data: {
-        playerProfile: updated,
-      },
+      playerProfile: updated,
+      normalized: updated.data,
     });
   } catch (err: any) {
-    console.error("[parent profile PATCH] error", err);
+    console.error("Parent profile update failed:", err);
+
     return NextResponse.json(
-      { ok: false, error: err?.message || "Failed to save profile." },
+      {
+        ok: false,
+        error: err?.message || "Failed to update player profile.",
+      },
       { status: 500 }
     );
   }
