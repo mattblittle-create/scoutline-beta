@@ -1,133 +1,125 @@
 // app/dashboard/parent/notifications/page.tsx
 
 import Link from "next/link";
-import React from "react";
+import { redirect } from "next/navigation";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import { prisma } from "@/lib/prisma";
-import { getParentDashboardContext } from "@/lib/parent/getParentDashboardContext";
 import { sanitizeParentNotification } from "@/lib/parent/sanitizeParentNotification";
-
-function formatDateTime(value: string) {
-  const d = new Date(value);
-  if (Number.isNaN(d.getTime())) return "—";
-  return d.toLocaleString();
-}
 
 function tone(severity: string) {
   if (severity === "success") {
-    return {
-      bg: "#f0fdf4",
-      border: "#bbf7d0",
-      text: "#166534",
-    };
+    return { bg: "#f0fdf4", border: "#bbf7d0", text: "#166534" };
   }
 
   if (severity === "warning") {
-    return {
-      bg: "#fffbeb",
-      border: "#fde68a",
-      text: "#78350f",
-    };
+    return { bg: "#fff7ed", border: "#fed7aa", text: "#9a3412" };
   }
 
-  return {
-    bg: "#eff6ff",
-    border: "#bfdbfe",
-    text: "#1d4ed8",
-  };
+  return { bg: "#eff6ff", border: "#bfdbfe", text: "#1d4ed8" };
+}
+
+function fmt(value: string) {
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return "";
+  return d.toLocaleString();
 }
 
 export default async function ParentNotificationsPage() {
-  const { activePlayerProfile } = await getParentDashboardContext({
-    requireLinkedPlayer: true,
+  const user = await getCurrentUser();
+
+  if (!user?.id) {
+    redirect("/login?role=parent");
+  }
+
+  const notifications = await prisma.notification.findMany({
+    where: { userId: user.id },
+    orderBy: { createdAt: "desc" },
+    take: 75,
+    select: {
+      id: true,
+      type: true,
+      message: true,
+      data: true,
+      readAt: true,
+      createdAt: true,
+    },
   });
 
-  const notifications = activePlayerProfile?.userId
-    ? await prisma.notification.findMany({
-        where: {
-          userId: activePlayerProfile.userId,
-        },
-        orderBy: [{ createdAt: "desc" }],
-        take: 25,
-      })
-    : [];
+  const items = notifications.map((n) => ({
+    ...sanitizeParentNotification(n),
+    read: Boolean(n.readAt),
+  }));
 
-  const safeNotifications = notifications.map(sanitizeParentNotification);
+  const unreadCount = items.filter((item) => !item.read).length;
 
   return (
     <div style={{ display: "grid", gap: 18 }}>
       <section style={hero}>
-        <div style={eyebrow}>Parent Notifications</div>
-
-        <h1 style={h1}>Activity Oversight</h1>
-
+        <div style={eyebrow}>Parent Portal</div>
+        <h1 style={h1}>Notifications</h1>
         <p style={heroText}>
-          See parent-safe activity alerts for your linked player. This view is
-          read-only and does not expose private message contents, allow replies,
-          or let parents clear player notifications.
+          Parent-safe activity alerts for recruiting, profile updates, messaging badges,
+          and billing items. Message contents and coach-only details stay private.
         </p>
 
         <div style={actionRow}>
           <Link href="/dashboard/parent" style={ghostBtn}>
             Parent Dashboard
           </Link>
+
+          <span style={badge}>{unreadCount} unread</span>
         </div>
       </section>
 
       <section style={card}>
-        <div style={cardHeaderRow}>
-          <div style={cardTitle}>Recent Activity</div>
-          <div style={smallMuted}>
-            Showing {safeNotifications.length} alert
-            {safeNotifications.length === 1 ? "" : "s"}
+        <div style={cardHeader}>
+          <div>
+            <div style={cardTitle}>Activity Center</div>
+            <div style={muted}>
+              Showing {items.length} recent notification{items.length === 1 ? "" : "s"}.
+            </div>
           </div>
         </div>
 
-        {safeNotifications.length === 0 ? (
-          <div style={emptyState}>
-            No parent-visible notifications yet. When coach activity, profile
-            reminders, or billing alerts are available, they will appear here.
-          </div>
+        {items.length === 0 ? (
+          <div style={emptyState}>No parent notifications yet.</div>
         ) : (
           <div style={{ display: "grid", gap: 12 }}>
-            {safeNotifications.map((notification) => {
-              const t = tone(notification.severity);
+            {items.map((item) => {
+              const t = tone(item.severity);
 
               return (
                 <article
-                  key={notification.id}
+                  key={item.id}
                   style={{
                     ...notificationCard,
-                    borderColor: t.border,
-                    background: t.bg,
-                    color: t.text,
+                    borderColor: item.read ? "#e5e7eb" : t.border,
+                    background: item.read ? "#fff" : t.bg,
                   }}
                 >
                   <div style={notificationTopRow}>
-                    <span style={categoryPill}>{notification.category}</span>
-                    <span style={dateText}>
-                      {formatDateTime(notification.createdAt)}
+                    <span
+                      style={{
+                        ...pill,
+                        background: t.bg,
+                        borderColor: t.border,
+                        color: t.text,
+                      }}
+                    >
+                      {item.category}
                     </span>
+
+                    {!item.read ? <span style={unreadPill}>New</span> : null}
                   </div>
 
-                  <div style={notificationTitle}>{notification.title}</div>
-                  <div style={notificationSummary}>
-                    {notification.summary}
-                  </div>
+                  <div style={notificationTitle}>{item.title}</div>
+                  <div style={notificationSummary}>{item.summary}</div>
+                  <div style={notificationDate}>{fmt(item.createdAt)}</div>
                 </article>
               );
             })}
           </div>
         )}
-      </section>
-
-      <section style={card}>
-        <div style={cardTitle}>Privacy Boundary</div>
-
-        <div style={bodyText}>
-          Parents can see that activity happened, but cannot read protected
-          message content, respond as the player, remove alerts, or manage coach
-          interactions from this page.
-        </div>
       </section>
     </div>
   );
@@ -161,7 +153,7 @@ const h1: React.CSSProperties = {
 const heroText: React.CSSProperties = {
   margin: "10px 0 0",
   color: "#475569",
-  maxWidth: 860,
+  maxWidth: 850,
   lineHeight: 1.55,
   fontWeight: 600,
 };
@@ -170,6 +162,7 @@ const actionRow: React.CSSProperties = {
   display: "flex",
   flexWrap: "wrap",
   gap: 12,
+  alignItems: "center",
   marginTop: 16,
 };
 
@@ -183,7 +176,7 @@ const card: React.CSSProperties = {
   gap: 14,
 };
 
-const cardHeaderRow: React.CSSProperties = {
+const cardHeader: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   gap: 12,
@@ -197,16 +190,11 @@ const cardTitle: React.CSSProperties = {
   color: "#0f172a",
 };
 
-const smallMuted: React.CSSProperties = {
+const muted: React.CSSProperties = {
   color: "#64748b",
   fontWeight: 700,
-  fontSize: 12,
-};
-
-const emptyState: React.CSSProperties = {
-  color: "#64748b",
-  fontWeight: 700,
-  lineHeight: 1.5,
+  fontSize: 13,
+  marginTop: 4,
 };
 
 const notificationCard: React.CSSProperties = {
@@ -220,41 +208,57 @@ const notificationCard: React.CSSProperties = {
 const notificationTopRow: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
+  gap: 10,
   alignItems: "center",
-  gap: 12,
   flexWrap: "wrap",
 };
 
-const categoryPill: React.CSSProperties = {
-  display: "inline-block",
-  padding: "5px 9px",
-  borderRadius: 999,
-  background: "rgba(255,255,255,0.72)",
-  border: "1px solid rgba(15,23,42,0.08)",
-  fontSize: 12,
-  fontWeight: 900,
-};
-
-const dateText: React.CSSProperties = {
-  fontSize: 12,
-  fontWeight: 800,
-  opacity: 0.78,
-};
-
 const notificationTitle: React.CSSProperties = {
-  fontSize: "1rem",
+  color: "#0f172a",
   fontWeight: 950,
+  fontSize: 16,
 };
 
 const notificationSummary: React.CSSProperties = {
-  fontWeight: 700,
-  lineHeight: 1.45,
+  color: "#475569",
+  fontWeight: 650,
+  lineHeight: 1.5,
 };
 
-const bodyText: React.CSSProperties = {
-  color: "#475569",
-  lineHeight: 1.6,
-  fontWeight: 600,
+const notificationDate: React.CSSProperties = {
+  color: "#94a3b8",
+  fontSize: 12,
+  fontWeight: 800,
+};
+
+const pill: React.CSSProperties = {
+  display: "inline-block",
+  padding: "5px 10px",
+  borderRadius: 999,
+  border: "1px solid #e5e7eb",
+  fontWeight: 900,
+  fontSize: 12,
+  whiteSpace: "nowrap",
+};
+
+const unreadPill: React.CSSProperties = {
+  ...pill,
+  background: "#caa042",
+  borderColor: "#caa042",
+  color: "#0f172a",
+};
+
+const badge: React.CSSProperties = {
+  ...pill,
+  background: "#0f172a",
+  borderColor: "#0f172a",
+  color: "#fff",
+};
+
+const emptyState: React.CSSProperties = {
+  color: "#64748b",
+  fontWeight: 700,
+  lineHeight: 1.5,
 };
 
 const ghostBtn: React.CSSProperties = {
