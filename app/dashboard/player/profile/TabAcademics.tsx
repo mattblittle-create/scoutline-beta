@@ -733,13 +733,12 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       borderRadius: 10,
       background: "#f8fafc",
       border: "1px solid #e2e8f0",
-      color: "#475569",
+      color: "#FF0000",
       fontSize: 13,
       fontWeight: 600,
     }}
   >
-    Academic Bio and Intended Majors are player-controlled fields and cannot
-    be edited from the parent account.
+    Academic Bio is a player-controlled field and cannot be edited from the parent account.
   </div>
 )}
 
@@ -792,6 +791,22 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
       {/* Intended Major(s) */}
       <section style={{ marginTop: 12 }}>
+        
+        {intendedMajorsReadOnly ? (
+          <div
+            style={{
+              marginBottom: 8,
+              padding: "10px 12px",
+              borderRadius: 10,
+              background: "#f8fafc",
+              border: "1px solid #e2e8f0",
+              color: "#FF0000",
+              fontSize: 13,
+              fontWeight: 600,
+            }}
+          >
+            Intended Majors is a player-controlled field and cannot be edited from the parent account.
+            
         <h3 style={{ ...labelText, margin: 0 }}>Intended Major(s)</h3>
         <p
           style={{
@@ -804,22 +819,6 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <em>Business, Biology, Sports Medicine, etc.</em>). It's ok if you do not
           know yet. Just leave this area blank. Max {MAX_STUDY_CHARS} characters.
         </p>
-
-        {intendedMajorsReadOnly ? (
-          <div
-            style={{
-              marginBottom: 8,
-              padding: "10px 12px",
-              borderRadius: 10,
-              background: "#f8fafc",
-              border: "1px solid #e2e8f0",
-              color: "#475569",
-              fontSize: 13,
-              fontWeight: 600,
-            }}
-          >
-            Intended Majors are player-controlled and cannot be edited from the
-            parent account.
           </div>
         ) : null}
 

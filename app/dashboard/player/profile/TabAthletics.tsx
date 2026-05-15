@@ -450,12 +450,12 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
             borderRadius: 10,
             background: "#f8fafc",
             border: "1px solid #e2e8f0",
-            color: "#475569",
+            color: "#FF0000",
             fontSize: 13,
             fontWeight: 600,
           }}
         >
-          Commitment status can only be updated by the player account owner.
+          Commitment status is a player-controlled field and cannot be edited from the parent account.
         </div>
       )}
       <section style={{ margin: "8px 0 0 0" }}>
@@ -1329,13 +1329,12 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
             borderRadius: 10,
             background: "#f8fafc",
             border: "1px solid #e2e8f0",
-            color: "#475569",
+            color: "#FF0000",
             fontSize: 13,
             fontWeight: 600,
           }}
         >
-          Player Bio is a player-controlled field and cannot be edited from the
-          parent account.
+          Player Bio is a player-controlled field and cannot be edited from the parent account.
         </div>
       )}
 
