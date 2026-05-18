@@ -69,60 +69,20 @@ export async function GET(req: NextRequest) {
       searchParams.get("transaction_status") ||
       "";
 
-const mode = searchParams.get("mode") || "";
 const returnTo = searchParams.get("returnTo") || "";
 const playerProfileId = searchParams.get("playerProfileId") || "";
 
-function getFinalRedirectPath() {
-  if (mode === "payment-method" && returnTo === "player-dashboard") {
-    return "/dashboard/player/profile";
-  }
+const redirectPath =
+  returnTo === "player-dashboard"
+    ? "/dashboard/player/profile"
+    : "/onboarding/player/billing";
 
-  return "/onboarding/player/billing";
-}
-
-const redirect = new URL(getFinalRedirectPath(), baseUrl);
+const redirect = new URL(redirectPath, baseUrl);
 
 if (ref) redirect.searchParams.set("ref", ref);
 if (plan) redirect.searchParams.set("plan", plan);
 if (cadence) redirect.searchParams.set("cadence", cadence);
 if (playerProfileId) redirect.searchParams.set("playerProfileId", playerProfileId);
-
-// Payment-method verification flow.
-// These use pm_ references and do not have PlayerInvoice records.
-if (mode === "payment-method") {
-  if (!playerProfileId) {
-    redirect.searchParams.set("payment", "error");
-    redirect.searchParams.set(
-      "message",
-      "Missing player profile reference for payment method update."
-    );
-    return NextResponse.redirect(redirect, { status: 302 });
-  }
-
-  if (ref) {
-    await prisma.playerBillingProfile.upsert({
-      where: { playerProfileId },
-      update: {
-        provider: "VALOR",
-        providerPaymentRef: ref,
-      },
-      create: {
-        playerProfileId,
-        provider: "VALOR",
-        providerPaymentRef: ref,
-      },
-    });
-  }
-
-  redirect.searchParams.set("payment", "method-updated");
-  redirect.searchParams.set(
-    "message",
-    "Payment method verification completed."
-  );
-
-  return NextResponse.redirect(redirect, { status: 302 });
-}
 
 // Missing reference = we can't match anything reliably.
     if (!ref) {
