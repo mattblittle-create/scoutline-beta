@@ -23,7 +23,10 @@ export default function BillingPaymentMethod(props: {
       const res = await fetch("/api/team/billing/payment-portal", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ teamId: props.teamId }),
+        body: JSON.stringify({
+          teamId: props.teamId,
+          returnTo: "team-dashboard",
+        }),
       });
 
       const json = await res.json();

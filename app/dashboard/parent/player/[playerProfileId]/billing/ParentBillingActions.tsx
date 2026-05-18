@@ -38,10 +38,13 @@ export default function ParentBillingActions({
               playerProfileId
             )}/billing/payment-portal`;
 
-      const res = await fetch(path, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
+const res = await fetch(path, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    returnTo: "parent-dashboard",
+  }),
+});
 
       const json = await res.json().catch(() => ({}));
 

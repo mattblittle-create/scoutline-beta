@@ -30,7 +30,10 @@ export default function PlayerBillingPaymentMethod(props: {
       const res = await fetch("/api/player/billing/payment-portal", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ playerProfileId: props.playerProfileId }),
+        body: JSON.stringify({
+          playerProfileId: props.playerProfileId,
+          returnTo: "player-dashboard",
+        }),
       });
 
       const json = await res.json();
