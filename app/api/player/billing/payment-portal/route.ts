@@ -93,9 +93,39 @@ export async function POST(req: NextRequest) {
     });
 
     const joiner = baseHpp.includes("?") ? "&" : "?";
-    const url = `${baseHpp}${joiner}${params.toString()}`;
+const setupUrl = `${baseHpp}${joiner}${params.toString()}`;
 
-    return NextResponse.json({ ok: true, url });
+const valorRes = await fetch(setupUrl, {
+  method: "GET",
+  cache: "no-store",
+});
+
+const valorJson = await valorRes.json().catch(() => null);
+
+if (!valorRes.ok || !valorJson?.url) {
+  console.error("VALOR_PAYMENT_METHOD_SETUP_ERROR", {
+    status: valorRes.status,
+    response: valorJson,
+  });
+
+  return NextResponse.json(
+    {
+      ok: false,
+      error:
+        valorJson?.desc ||
+        valorJson?.msg ||
+        valorJson?.mesg ||
+        "Valor did not return a hosted payment URL.",
+    },
+    { status: 502 }
+  );
+}
+
+return NextResponse.json({
+  ok: true,
+  url: String(valorJson.url),
+  uid: valorJson?.uid ? String(valorJson.uid) : null,
+});
   } catch (err) {
     console.error("PLAYER_PAYMENT_PORTAL_ERROR", err);
 
