@@ -407,14 +407,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Valor webhook validation ping.
-    // Their portal sends: {"test":"TEST"}
-    if (payload?.test === "TEST") {
-      return NextResponse.json({
-        ok: true,
-        received: true,
-      });
-    }
+// Valor webhook validation ping.
+// Their portal sends: {"event":"test","data":"Test Data","text":"Test"}
+if (
+  String(payload?.event || "").toLowerCase() === "test" ||
+  String(payload?.test || "").toUpperCase() === "TEST"
+) {
+  return NextResponse.json({
+    ok: true,
+    received: true,
+  });
+}
 
     const signature = req.headers.get("Valor-Signature") || "";
     const timestamp = req.headers.get("Valor-Timestamp") || "";
