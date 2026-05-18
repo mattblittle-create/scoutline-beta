@@ -81,6 +81,8 @@ export async function POST(req: NextRequest) {
 
       invoicenumber: reference,
       orderdescription: "ScoutLine payment method verification",
+      merchant_email: "support@myscoutline.com",
+      website: "https://www.myscoutline.com",
       tax: "0.00",
       surcharge: "0.00",
       ignore_surcharge_calc: "0",

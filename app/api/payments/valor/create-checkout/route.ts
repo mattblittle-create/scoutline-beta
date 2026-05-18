@@ -157,6 +157,8 @@ const invoice = await prisma.playerInvoice.create({
       amount,
       invoicenumber: reference,
       orderdescription: `ScoutLine ${plan} ${cadence}`,
+      merchant_email: "support@myscoutline.com",
+      website: "https://www.myscoutline.com",
       surcharge,
       tax: "0.00",
       ignore_surcharge_calc: "0",
