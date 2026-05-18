@@ -27,6 +27,7 @@ cardFeeCents?: number | null;
 amountPaidCents: number;
     paidAt: string | Date | null;
     hostedUrl: string | null;
+    processorReceiptUrl?: string | null;
   }>;
 }) {
   const invoices = props.invoices || [];
@@ -81,17 +82,17 @@ amountPaidCents: number;
     {formatUSD(inv.amountCents)}
   </td>
 
-  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800 }}>
-    {inv.cardFeeCents ? formatUSD(inv.cardFeeCents) : "—"}
-  </td>
+<td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800 }}>
+  {inv.cardFeeCents && inv.cardFeeCents > 0 ? formatUSD(inv.cardFeeCents) : "—"}
+</td>
 
   <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
     {fmtDate(inv.dueDate)}
   </td>
 
-  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
-    {formatUSD(inv.amountPaidCents)}
-  </td>
+<td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
+  {formatUSD(inv.amountPaidCents)}
+</td>
 
   <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
     {fmtDate(inv.paidAt)}

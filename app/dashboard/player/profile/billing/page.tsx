@@ -250,6 +250,7 @@ select: {
   amountPaidCents: true,
   paidAt: true,
   hostedUrl: true,
+  processorReceiptUrl: true,
 },
         })
       : [];
@@ -375,6 +376,7 @@ return (
 <div style={{ padding: 12, border: "1px solid #e5e7eb", borderRadius: 12, gridColumn: "1 / span 2" }}>
   <div style={{ color: "#64748b", fontSize: 12, fontWeight: 800 }}>Total Due</div>
   <div style={{ fontSize: 18, fontWeight: 950 }}>{formatUSD(totalCents)}</div>
+
   <div style={{ marginTop: 8, color: "#64748b", fontSize: 12, fontWeight: 700, lineHeight: 1.45 }}>
     Debit and credit card transactions are subject to a 3% processing fee in accordance with applicable card network regulations and ScoutLine Terms &amp; Conditions. Bank account (ACH / eCheck) payments are available as a fee-free alternative.
   </div>
