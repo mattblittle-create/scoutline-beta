@@ -444,14 +444,29 @@ if (signature && timestamp) {
   }
 }
 
-    const normalized = normalizeValorWebhook(payload);
+// Valor webhook validation ping.
+// Their portal sends: {"test":"TEST"}
+if (payload?.test === "TEST") {
+  return NextResponse.json({
+    ok: true,
+    received: true,
+    test: "TEST",
+  });
+}
 
-    if (!normalized.reference) {
-      return NextResponse.json(
-        { error: "Missing transaction reference." },
-        { status: 400 }
-      );
-    }
+const normalized = normalizeValorWebhook(payload);
+
+if (!normalized.reference) {
+  console.log("VALOR_WEBHOOK_MISSING_REFERENCE", {
+    payload,
+    headers: Object.fromEntries(req.headers.entries()),
+  });
+
+  return NextResponse.json(
+    { error: "Missing transaction reference." },
+    { status: 400 }
+  );
+}
 
     if (normalized.approved) {
       const result = await applySuccessfulPayment(normalized);
