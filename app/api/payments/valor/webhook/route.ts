@@ -370,6 +370,23 @@ export async function HEAD() {
   return new NextResponse(null, { status: 200 });
 }
 
+export async function GET() {
+  return new NextResponse("OK", { status: 200 });
+}
+
+export async function HEAD() {
+  return new NextResponse(null, { status: 200 });
+}
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      Allow: "GET,HEAD,POST,OPTIONS",
+    },
+  });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const webhookSecret = process.env.VALOR_WEBHOOK_SECRET;
@@ -382,6 +399,15 @@ export async function POST(req: NextRequest) {
     }
 
     const rawBody = await req.text();
+    console.log("VALOR_WEBHOOK_VALIDATION_HIT", {
+      method: req.method,
+      headers: Object.fromEntries(req.headers.entries()),
+      rawBody,
+    });
+
+    if (!rawBody.trim()) {
+      return new NextResponse("OK", { status: 200 });
+    }
 
     let payload: any;
     try {
