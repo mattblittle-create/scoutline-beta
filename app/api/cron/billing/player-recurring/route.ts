@@ -25,7 +25,11 @@ function endOfToday() {
 
 export async function GET(req: NextRequest) {
   const secret = process.env.CRON_SECRET;
-  const provided = req.headers.get("x-cron-secret") || req.nextUrl.searchParams.get("secret");
+  const authHeader = req.headers.get("authorization") || "";
+  const provided =
+    authHeader.startsWith("Bearer ")
+      ? authHeader.slice("Bearer ".length)
+      : req.headers.get("x-cron-secret") || req.nextUrl.searchParams.get("secret");
 
   if (!secret || provided !== secret) {
     return unauthorized();
