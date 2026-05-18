@@ -16,6 +16,8 @@ type NormalizedWebhook = {
   approved: boolean;
   reference: string;
   transactionId: string;
+  providerPaymentRef: string;
+  receiptUrl: string | null;
   amount: number | null;
   surcharge: number | null;
   paymentType: string | null;
@@ -122,11 +124,17 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
     data?.txn_status,
     data?.result,
     data?.response,
+    data?.response_code === "00" ? "APPROVED" : "",
+    data?.reference_descriptive_data?.processor_response_code === "00"
+      ? "APPROVED"
+      : "",
     payload?.status
   );
 
   const reference = firstString(
+    data?.invoice_no,
     data?.invoicenumber,
+    data?.reference_descriptive_data?.invoicenumber,
     data?.invoiceNumber,
     data?.invoice,
     data?.order_id,
@@ -142,9 +150,28 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
     data?.transactionId,
     data?.txn_id,
     data?.txnId,
+    data?.txn_id != null ? String(data.txn_id) : "",
+    data?.rrn,
     data?.id,
     payload?.id
   );
+
+  const providerPaymentRef = firstString(
+    data?.vault_tokenization?.vtToken,
+    data?.vault_tokenization?.vault_id,
+    data?.token,
+    data?.payment_token,
+    transactionId,
+    reference
+  );
+
+  const receiptUrl =
+    firstString(
+      data?.receipt_url,
+      data?.receiptUrl,
+      data?.receipt,
+      data?.hostedUrl
+    ) || null;
 
   const amount =
     toNumberOrNull(
@@ -156,6 +183,8 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
 
   const surcharge =
     toNumberOrNull(
+      data?.custom_fee_amount,
+      data?.surcharge_fee_amount,
       data?.surcharge,
       data?.fee,
       data?.processing_fee,
@@ -167,6 +196,7 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
       data?.payment_type,
       data?.paymentType,
       data?.card_type,
+      data?.card_metadata?.card_type,
       data?.tender_type
     ) || null;
 
@@ -174,14 +204,18 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
     firstString(
       data?.brand,
       data?.card_brand,
+      data?.card_scheme,
       data?.cardType
     ) || null;
+
+  const maskedCard = firstString(data?.masked_card_no);
 
   const last4 =
     firstString(
       data?.last4,
       data?.card_last4,
-      data?.acctlast4
+      data?.acctlast4,
+      maskedCard ? maskedCard.slice(-4) : ""
     ) || null;
 
   const approved =
@@ -198,6 +232,7 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
     [
       "APPROVED",
       "TRANSACTION",
+      "TRANSACTIONS",
       "RECURRING BILLING SUCCESS",
     ].includes(event);
 
@@ -208,6 +243,8 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
     approved,
     reference,
     transactionId,
+    providerPaymentRef,
+    receiptUrl,
     amount,
     surcharge,
     paymentType,
@@ -255,14 +292,15 @@ async function applySuccessfulPayment(normalized: NormalizedWebhook) {
     const invoiceAmountCents =
       rawAmountCents && rawAmountCents > 0 ? rawAmountCents : invoice.amountCents;
 
-    await tx.playerInvoice.update({
-      where: { id: invoice.id },
-      data: {
-        status: InvoiceStatus.PAID,
-        amountPaidCents: invoiceAmountCents,
-        paidAt,
-      },
-    });
+await tx.playerInvoice.update({
+  where: { id: invoice.id },
+  data: {
+    status: InvoiceStatus.PAID,
+    amountPaidCents: invoiceAmountCents,
+    paidAt,
+    hostedUrl: normalized.receiptUrl || invoice.hostedUrl,
+  },
+});
 
     await tx.playerProfile.update({
       where: { id: invoice.playerProfileId },
@@ -291,7 +329,10 @@ async function applySuccessfulPayment(normalized: NormalizedWebhook) {
       where: { playerProfileId: invoice.playerProfileId },
       update: {
         provider: "VALOR",
-        providerPaymentRef: normalized.transactionId || normalized.reference,
+        providerPaymentRef:
+          normalized.providerPaymentRef ||
+          normalized.transactionId ||
+          normalized.reference,
         paymentType: normalized.paymentType || undefined,
         last4: normalized.last4 || undefined,
         brand: normalized.brand || undefined,
@@ -299,7 +340,10 @@ async function applySuccessfulPayment(normalized: NormalizedWebhook) {
       create: {
         playerProfileId: invoice.playerProfileId,
         provider: "VALOR",
-        providerPaymentRef: normalized.transactionId || normalized.reference,
+        providerPaymentRef:
+          normalized.providerPaymentRef ||
+          normalized.transactionId ||
+          normalized.reference,
         paymentType: normalized.paymentType || undefined,
         last4: normalized.last4 || undefined,
         brand: normalized.brand || undefined,
