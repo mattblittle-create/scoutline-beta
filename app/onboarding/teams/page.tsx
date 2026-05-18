@@ -410,35 +410,68 @@ onChange={(e) => {
             </Field>
 
 {logoPreviewSrc ? (
-              <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-                <div style={{ fontWeight: 900, color: "#64748b", fontSize: 12 }}>Preview:</div>
-                <img
-                  src={logoPreviewSrc}
-                  alt="Team logo preview"
-                  style={{
-                    height: 44,
-                    width: 44,
-                    objectFit: "contain",
-                    borderRadius: 10,
-                    border: "1px solid #e5e7eb",
-                    background: "#fff",
-                    padding: 6,
-                  }}
-                />
-                <button
-                  type="button"
-                  style={btnGhost}
-onClick={() => {
-  setLogoFileDataUrl("");
-  setLogoUrlInput("");
-}}
-                  title="Clear logo"
-                >
-                  Remove
-                </button>
-              </div>
-            ) : null}
-          </div>
+  <div
+    style={{
+      marginTop: 2,
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      flexWrap: "wrap",
+    }}
+  >
+    <div style={{ fontWeight: 900, color: "#64748b", fontSize: 12 }}>
+      Preview:
+    </div>
+
+    <div style={{ position: "relative", display: "inline-flex" }}>
+      <button
+        type="button"
+        aria-label="Remove logo"
+        onClick={() => {
+          setLogoFileDataUrl("");
+          setLogoUrlInput("");
+        }}
+        title="Clear logo"
+        style={{
+          position: "absolute",
+          top: -8,
+          right: -8,
+          width: 26,
+          height: 26,
+          borderRadius: "999px",
+          border: "none",
+          background: "#dc2626",
+          color: "#fff",
+          fontSize: 18,
+          fontWeight: 900,
+          lineHeight: 1,
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 10px rgba(15, 23, 42, 0.22)",
+          zIndex: 2,
+        }}
+      >
+        ×
+      </button>
+
+      <img
+        src={logoPreviewSrc}
+        alt="Team logo preview"
+        style={{
+          height: 88,
+          width: 88,
+          objectFit: "contain",
+          borderRadius: 14,
+          border: "1px solid #e5e7eb",
+          background: "#fff",
+          padding: 8,
+        }}
+      />
+    </div>
+  </div>
+) : null}
 
           <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap" }}>
             <button
