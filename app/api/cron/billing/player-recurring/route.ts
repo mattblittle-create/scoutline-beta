@@ -2,6 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { chargeValorStoredToken} from "@/lib/billing/valorRecurringCharge";
 
 export const dynamic = "force-dynamic";
 
@@ -103,15 +104,42 @@ export async function GET(req: NextRequest) {
     },
   }));
 
-  return NextResponse.json({
-    ok: true,
-    dryRun,
-    checkedAt: now.toISOString(),
-    dueThrough: todayEnd.toISOString(),
-    count: candidates.length,
-    candidates,
-    message: dryRun
-      ? "Dry run only. No charges were attempted."
-      : "Live recurring charge mode is not enabled yet.",
-  });
+const chargeResults = [];
+
+if (!dryRun) {
+  for (const invoice of invoices) {
+    const billing = invoice.playerProfile.playerBillingProfile;
+    const token = billing?.providerPaymentRef || "";
+
+    const result = await chargeValorStoredToken({
+      token,
+      invoiceNumber: invoice.externalId || invoice.id,
+      amountCents: invoice.amountCents,
+      description: `ScoutLine ${String(invoice.playerProfile.playerPlanTier)} ${String(
+        invoice.playerProfile.playerBillingCadence || "monthly"
+      )} recurring billing`,
+      customerName: invoice.playerProfile.email,
+      email: invoice.playerProfile.email,
+    });
+
+    chargeResults.push({
+      invoiceId: invoice.id,
+      invoiceNumber: invoice.externalId,
+      result,
+    });
+  }
+}
+
+return NextResponse.json({
+  ok: true,
+  dryRun,
+  checkedAt: now.toISOString(),
+  dueThrough: todayEnd.toISOString(),
+  count: candidates.length,
+  candidates,
+  chargeResults,
+  message: dryRun
+    ? "Dry run only. No charges were attempted."
+    : "Recurring charge adapter was called. Live charges remain disabled unless VALOR_RECURRING_CHARGES_ENABLED=true.",
+});
 }
