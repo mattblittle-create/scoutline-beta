@@ -187,11 +187,10 @@ export async function POST(req: NextRequest) {
       `&ref=${encodeURIComponent(reference)}` +
       `&playerProfileId=${encodeURIComponent(playerProfileId)}`;
 
-    const failureUrl =
-      `${baseUrl}/api/payments/valor/return?returnTo=${encodeURIComponent(returnTo)}` +
-      `&failure=failed` +
-      `&ref=${encodeURIComponent(reference)}` +
-      `&playerProfileId=${encodeURIComponent(playerProfileId)}`;
+const failureUrl =
+  `${baseUrl}/api/payments/valor/return?returnTo=${encodeURIComponent(returnTo)}` +
+  `&ref=${encodeURIComponent(reference)}` +
+  `&playerProfileId=${encodeURIComponent(playerProfileId)}`;
 
     const params = new URLSearchParams({
       appid: process.env.VALOR_APP_ID || "",
