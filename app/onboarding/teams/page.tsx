@@ -81,12 +81,21 @@ function TeamsOnboardingPageInner() {
 
 const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>("");
 const [logoUrlInput, setLogoUrlInput] = React.useState<string>("");
+const logoFileInputRef = React.useRef<HTMLInputElement | null>(null);
 
 const logoPreviewSrc = React.useMemo(() => {
   if (logoFileDataUrl) return logoFileDataUrl;
 
   const normalized = normalizeLogoUrl(logoUrlInput);
-  return normalized || "";
+  if (!normalized) return "";
+
+  // For remote previews, cache-bust without changing the stored logo URL.
+  if (/^https?:\/\//i.test(normalized)) {
+    const separator = normalized.includes("?") ? "&" : "?";
+    return `${normalized}${separator}scoutlinePreview=${Date.now()}`;
+  }
+
+  return normalized;
 }, [logoFileDataUrl, logoUrlInput]);
 
   const [submitting, setSubmitting] = React.useState(false);
@@ -364,6 +373,7 @@ const logoPreviewSrc = React.useMemo(() => {
           <div style={{ display: "grid", gap: 10 }}>
             <Field label="Logo Upload (optional)">
               <input
+                ref={logoFileInputRef}
                 style={input}
                 type="file"
                 accept=".png,.jpg,.jpeg,.svg,.webp"
@@ -428,6 +438,10 @@ onChange={(e) => {
         onClick={() => {
           setLogoFileDataUrl("");
           setLogoUrlInput("");
+
+          if (logoFileInputRef.current) {
+            logoFileInputRef.current.value = "";
+          }
         }}
         title="Clear logo"
         style={{
@@ -454,9 +468,10 @@ onChange={(e) => {
         ×
       </button>
 
-      <img
-        src={logoPreviewSrc}
-        alt="Team logo preview"
+        <img
+          src={logoPreviewSrc}
+          alt="Team logo preview"
+          referrerPolicy="no-referrer"
         style={{
           height: 88,
           width: 88,
