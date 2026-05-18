@@ -87,15 +87,7 @@ const logoPreviewSrc = React.useMemo(() => {
   if (logoFileDataUrl) return logoFileDataUrl;
 
   const normalized = normalizeLogoUrl(logoUrlInput);
-  if (!normalized) return "";
-
-  // For remote previews, cache-bust without changing the stored logo URL.
-  if (/^https?:\/\//i.test(normalized)) {
-    const separator = normalized.includes("?") ? "&" : "?";
-    return `${normalized}${separator}scoutlinePreview=${Date.now()}`;
-  }
-
-  return normalized;
+  return normalized || "";
 }, [logoFileDataUrl, logoUrlInput]);
 
   const [submitting, setSubmitting] = React.useState(false);
