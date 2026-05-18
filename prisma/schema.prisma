@@ -509,6 +509,10 @@ model PlayerInvoice {
   processorTransactionId   String?
   processorResponseCode    String?
   processorReceiptUrl      String?
+  failedAttemptCount       Int               @default(0)
+  lastFailedAt             DateTime?
+  nextRetryAt              DateTime?
+  failureReason            String?
   paidAt                   DateTime?
   createdAt        DateTime          @default(now())
   commissionEvents CommissionEvent[]
