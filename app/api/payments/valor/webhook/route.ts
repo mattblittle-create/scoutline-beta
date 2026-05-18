@@ -358,6 +358,18 @@ async function applyFailedPayment(normalized: NormalizedWebhook) {
   });
 }
 
+export async function GET() {
+  return NextResponse.json({
+    ok: true,
+    service: "ScoutLine Valor webhook",
+    status: "ready",
+  });
+}
+
+export async function HEAD() {
+  return new NextResponse(null, { status: 200 });
+}
+
 export async function POST(req: NextRequest) {
   try {
     const webhookSecret = process.env.VALOR_WEBHOOK_SECRET;
@@ -384,26 +396,39 @@ export async function POST(req: NextRequest) {
     const signature = req.headers.get("Valor-Signature") || "";
     const timestamp = req.headers.get("Valor-Timestamp") || "";
 
-    if (!signature || !timestamp) {
-      return NextResponse.json(
-        { error: "Missing Valor authentication headers." },
-        { status: 401 }
-      );
-    }
+if (!signature || !timestamp) {
+  console.log("VALOR_WEBHOOK_MISSING_AUTH_HEADERS", {
+    headers: Object.fromEntries(req.headers.entries()),
+    rawBody,
+  });
 
-    const valid = verifyValorSignature({
-      rawBody,
-      timestamp,
-      signature,
-      secret: webhookSecret,
-    });
+  // Temporary while confirming Valor webhook validation/payload behavior.
+  // Once Valor auth headers are confirmed, restore this to 401.
+  if (process.env.VALOR_WEBHOOK_ALLOW_UNSIGNED === "true") {
+    console.warn("VALOR_WEBHOOK_UNSIGNED_ALLOWED_TEMPORARILY");
+  } else {
+    return NextResponse.json(
+      { error: "Missing Valor authentication headers." },
+      { status: 401 }
+    );
+  }
+}
 
-    if (!valid) {
-      return NextResponse.json(
-        { error: "Invalid webhook signature." },
-        { status: 401 }
-      );
-    }
+if (signature && timestamp) {
+  const valid = verifyValorSignature({
+    rawBody,
+    timestamp,
+    signature,
+    secret: webhookSecret,
+  });
+
+  if (!valid) {
+    return NextResponse.json(
+      { error: "Invalid webhook signature." },
+      { status: 401 }
+    );
+  }
+}
 
     const normalized = normalizeValorWebhook(payload);
 
