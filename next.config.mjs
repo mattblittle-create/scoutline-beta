@@ -54,7 +54,7 @@ const nextConfig = {
       "frame-ancestors 'none'",
 
       // Allow images from your storage, thumbnails, and local dev, plus data:/blob: for previews
-      "img-src 'self' data: blob: https://*.public.blob.vercel-storage.com https://i.ytimg.com https://i.vimeocdn.com http://localhost:3000 http://127.0.0.1:3000",
+      "img-src 'self' data: blob: https: http://localhost:3000 http://127.0.0.1:3000",
 
       // Allow iframes for YouTube/Vimeo embeds
       "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com",
