@@ -59,15 +59,19 @@ export async function POST(req: NextRequest) {
     const reference = `pm_${Date.now()}`;
     const returnPath = getReturnPath(returnTo);
 
-    const successUrl =
-      `${baseUrl}${returnPath}?payment=method-updated` +
-      `&playerProfileId=${encodeURIComponent(playerProfileId)}` +
-      `&ref=${encodeURIComponent(reference)}`;
+const successUrl =
+  `${baseUrl}/api/payments/valor/return?mode=payment-method` +
+  `&payment=method-updated` +
+  `&returnTo=${encodeURIComponent(returnTo)}` +
+  `&playerProfileId=${encodeURIComponent(playerProfileId)}` +
+  `&ref=${encodeURIComponent(reference)}`;
 
-    const failureUrl =
-      `${baseUrl}${returnPath}?payment=method-failed` +
-      `&playerProfileId=${encodeURIComponent(playerProfileId)}` +
-      `&ref=${encodeURIComponent(reference)}`;
+const failureUrl =
+  `${baseUrl}/api/payments/valor/return?mode=payment-method` +
+  `&payment=method-failed` +
+  `&returnTo=${encodeURIComponent(returnTo)}` +
+  `&playerProfileId=${encodeURIComponent(playerProfileId)}` +
+  `&ref=${encodeURIComponent(reference)}`;
 
     const params = new URLSearchParams({
       appid: process.env.VALOR_APP_ID || "",
