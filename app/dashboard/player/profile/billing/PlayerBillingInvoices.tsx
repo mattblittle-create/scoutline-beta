@@ -62,21 +62,15 @@ export default function PlayerBillingInvoices(props: {
             <tbody>
               {invoices.map((inv) => (
                 <tr key={inv.id}>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a", whiteSpace: "nowrap" }}>
-                    {inv.hostedUrl ? (
-                      <a
-                        href={inv.hostedUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#0ea5e9", fontWeight: 900, textDecoration: "underline" }}
-                        title={inv.status === "PAID" ? "View receipt" : "View or pay invoice"}
-                        >
-                        {inv.externalId || "View Invoice"}
-                      </a>
-                    ) : (
-                        inv.externalId || "—"
-                    )}
-                  </td>
+<td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a", whiteSpace: "nowrap" }}>
+  <a
+    href={`/dashboard/player/profile/billing/invoices/${encodeURIComponent(inv.id)}`}
+    style={{ color: "#0ea5e9", fontWeight: 900, textDecoration: "underline" }}
+    title={inv.status === "PAID" ? "View receipt" : "View invoice"}
+  >
+    {inv.externalId || "View Invoice"}
+  </a>
+</td>
                 <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
                   {fmtDate(inv.invoiceDate)}
                 </td>
