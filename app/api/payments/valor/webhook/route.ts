@@ -407,6 +407,15 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Valor webhook validation ping.
+    // Their portal sends: {"test":"TEST"}
+    if (payload?.test === "TEST") {
+      return NextResponse.json({
+        ok: true,
+        received: true,
+      });
+    }
+
     const signature = req.headers.get("Valor-Signature") || "";
     const timestamp = req.headers.get("Valor-Timestamp") || "";
 
@@ -442,16 +451,6 @@ if (signature && timestamp) {
       { status: 401 }
     );
   }
-}
-
-// Valor webhook validation ping.
-// Their portal sends: {"test":"TEST"}
-if (payload?.test === "TEST") {
-  return NextResponse.json({
-    ok: true,
-    received: true,
-    test: "TEST",
-  });
 }
 
 const normalized = normalizeValorWebhook(payload);
