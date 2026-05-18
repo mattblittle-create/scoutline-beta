@@ -3,23 +3,48 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-function endOfCurrentMonth(now: Date) {
-  const nextMonthStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-  return new Date(nextMonthStart.getTime() - 1);
+function addMonths(date: Date, months: number) {
+  const next = new Date(date);
+  next.setMonth(next.getMonth() + months);
+  return next;
 }
 
-function endOfMonth12MonthsFromNow(now: Date) {
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-  const nextYearSameMonthStart = new Date(startOfMonth.getFullYear(), startOfMonth.getMonth() + 12, 1);
-  return new Date(nextYearSameMonthStart.getTime() - 1);
+function addYears(date: Date, years: number) {
+  const next = new Date(date);
+  next.setFullYear(next.getFullYear() + years);
+  return next;
+}
+
+async function resolveCancellationEffectiveAt(playerProfileId: string, cadence: "monthly" | "annual") {
+  const now = new Date();
+
+  const latestPaidInvoice = await prisma.playerInvoice.findFirst({
+    where: {
+      playerProfileId,
+      status: "PAID",
+      periodEnd: { gt: now },
+    },
+    orderBy: { periodEnd: "desc" },
+    select: { periodEnd: true },
+  });
+
+  if (latestPaidInvoice?.periodEnd) {
+    return latestPaidInvoice.periodEnd;
+  }
+
+  return cadence === "annual" ? addYears(now, 1) : addMonths(now, 1);
 }
 
 export async function POST(req: Request) {
   try {
     const body = await req.json().catch(() => ({}));
     const playerProfileId = String(body?.playerProfileId || "").trim();
+
     if (!playerProfileId) {
-      return NextResponse.json({ ok: false, error: "Missing playerProfileId" }, { status: 400 });
+      return NextResponse.json(
+        { ok: false, error: "Missing playerProfileId" },
+        { status: 400 }
+      );
     }
 
     const profile = await prisma.playerProfile.findUnique({
@@ -34,28 +59,30 @@ export async function POST(req: Request) {
     });
 
     if (!profile) {
-      return NextResponse.json({ ok: false, error: "Player profile not found" }, { status: 404 });
+      return NextResponse.json(
+        { ok: false, error: "Player profile not found" },
+        { status: 404 }
+      );
     }
 
     const now = new Date();
-    const cadence = String((profile as any).playerBillingCadence || "monthly") as "monthly" | "annual";
+    const cadence =
+      String((profile as any).playerBillingCadence || "monthly").toLowerCase() === "annual"
+        ? "annual"
+        : "monthly";
 
-    // Compute effective end-of-period
-    const effectiveAt = cadence === "annual" ? endOfMonth12MonthsFromNow(now) : endOfCurrentMonth(now);
-
-    // If cancellation already scheduled in the future, keep it (idempotent)
     const existingEffective = (profile as any).playerCancelEffectiveAt as Date | null;
+
     if (existingEffective && existingEffective.getTime() > now.getTime()) {
       return NextResponse.json({
         ok: true,
         effectiveAt: existingEffective,
-        message: "Cancellation is already scheduled.",
+        message:
+          "Cancellation is already scheduled. Future renewals are stopped and access remains active through the current paid billing period.",
       });
     }
 
-    // ✅ IMPORTANT DEV NORMALIZATION:
-    // If playerBillingStatus was previously set to "Canceled" during earlier dev iterations,
-    // we convert it back to "Active" so the account remains accessible until effectiveAt.
+    const effectiveAt = await resolveCancellationEffectiveAt(playerProfileId, cadence);
     const wasHardCanceled = (profile as any).playerBillingStatus === "Canceled";
 
     await prisma.playerProfile.update({
@@ -63,8 +90,6 @@ export async function POST(req: Request) {
       data: {
         playerCancelRequestedAt: now,
         playerCancelEffectiveAt: effectiveAt,
-
-        // keep access until effectiveAt (status should stay Active until cutoff)
         ...(wasHardCanceled ? ({ playerBillingStatus: "Active" } as any) : {}),
       } as any,
     });
@@ -72,9 +97,13 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: true,
       effectiveAt,
-      message: "Cancellation scheduled. Account will remain active until the end of the current billing period.",
+      message:
+        "Cancellation scheduled. Future renewals are stopped and access remains active through the current paid billing period. ScoutLine does not issue prorated refunds for partial billing periods.",
     });
   } catch (err: any) {
-    return NextResponse.json({ ok: false, error: err?.message || "Failed" }, { status: 500 });
+    return NextResponse.json(
+      { ok: false, error: err?.message || "Failed" },
+      { status: 500 }
+    );
   }
 }
