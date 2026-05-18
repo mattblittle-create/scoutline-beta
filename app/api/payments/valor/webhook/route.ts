@@ -359,18 +359,6 @@ async function applyFailedPayment(normalized: NormalizedWebhook) {
 }
 
 export async function GET() {
-  return NextResponse.json({
-    ok: true,
-    service: "ScoutLine Valor webhook",
-    status: "ready",
-  });
-}
-
-export async function HEAD() {
-  return new NextResponse(null, { status: 200 });
-}
-
-export async function GET() {
   return new NextResponse("OK", { status: 200 });
 }
 
