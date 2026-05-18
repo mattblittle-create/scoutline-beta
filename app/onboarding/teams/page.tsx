@@ -377,7 +377,6 @@ onChange={async (e) => {
 
   try {
     const dataUrl = await fileToDataUrl(file);
-
     setLogoFileDataUrl(dataUrl);
     setLogoUrlInput("");
   } catch (err: any) {
@@ -395,7 +394,6 @@ onChange={async (e) => {
                 value={logoUrlInput}
 onChange={(e) => {
   const v = e.target.value;
-
   setLogoUrlInput(v);
 
   if (v.trim()) {
@@ -472,6 +470,7 @@ onChange={(e) => {
     </div>
   </div>
 ) : null}
+          </div>
 
           <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap" }}>
             <button
@@ -573,18 +572,6 @@ const btnGold: React.CSSProperties = {
   background: "#caa042",
   color: "#0f172a",
   fontWeight: 900,
-};
-
-const btnGhost: React.CSSProperties = {
-  display: "inline-block",
-  padding: "10px 14px",
-  borderRadius: 10,
-  border: "1px solid #e5e7eb",
-  background: "#fff",
-  color: "#0f172a",
-  fontWeight: 900,
-  cursor: "pointer",
-  textDecoration: "none",
 };
 
 const errorBox: React.CSSProperties = {
