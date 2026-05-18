@@ -239,17 +239,18 @@ export default async function PlayerBillingPage(props: {
           where: { playerProfileId: profileIdStr },
           orderBy: { invoiceDate: "desc" },
           take: 12,
-          select: {
-            id: true,
-            externalId: true,
-            status: true,
-            invoiceDate: true,
-            dueDate: true,
-            amountCents: true,
-            amountPaidCents: true,
-            paidAt: true,
-            hostedUrl: true,
-          },
+select: {
+  id: true,
+  externalId: true,
+  status: true,
+  invoiceDate: true,
+  dueDate: true,
+  amountCents: true,
+  cardFeeCents: true,
+  amountPaidCents: true,
+  paidAt: true,
+  hostedUrl: true,
+},
         })
       : [];
 

@@ -82,11 +82,6 @@ function toNumberOrNull(...values: unknown[]): number | null {
   return null;
 }
 
-function dollarsToCents(value: number | null): number | null {
-  if (value == null) return null;
-  return Math.round(value * 100);
-}
-
 function normalizePlan(value: string): Plan {
   const v = value.trim().toUpperCase();
   if (v === "WALK_ON") return Plan.WALK_ON;
@@ -288,19 +283,33 @@ async function applySuccessfulPayment(normalized: NormalizedWebhook) {
     const nextPeriodEnd =
       cadence === "annual" ? addYears(paidAt, 1) : addMonths(paidAt, 1);
 
-    const rawAmountCents = dollarsToCents(normalized.amount);
-    const invoiceAmountCents =
-      rawAmountCents && rawAmountCents > 0 ? rawAmountCents : invoice.amountCents;
+    const paidSubtotalCents =
+      normalized.amount && normalized.amount > 0
+        ? Math.round(normalized.amount)
+        : invoice.amountCents;
 
-await tx.playerInvoice.update({
-  where: { id: invoice.id },
-  data: {
-    status: InvoiceStatus.PAID,
-    amountPaidCents: invoiceAmountCents,
-    paidAt,
-    hostedUrl: normalized.receiptUrl || invoice.hostedUrl,
-  },
-});
+    const cardFeeCents =
+      normalized.surcharge && normalized.surcharge > 0
+        ? Math.round(normalized.surcharge)
+        : 0;
+
+    const totalPaidCents = paidSubtotalCents + cardFeeCents;
+
+    await tx.playerInvoice.update({
+      where: { id: invoice.id },
+      data: {
+        status: InvoiceStatus.PAID,
+        amountPaidCents: totalPaidCents,
+        cardFeeCents,
+        paidAt,
+        hostedUrl: normalized.receiptUrl || invoice.hostedUrl,
+        processorReceiptUrl: normalized.receiptUrl || invoice.processorReceiptUrl,
+        processorTransactionId:
+          normalized.transactionId || invoice.processorTransactionId,
+        processorResponseCode:
+          normalized.status || invoice.processorResponseCode,
+      },
+    });
 
     await tx.playerProfile.update({
       where: { id: invoice.playerProfileId },
@@ -368,7 +377,7 @@ await tx.playerInvoice.update({
           periodStart: paidAt,
           periodEnd: nextPeriodEnd,
           invoiceDate: paidAt,
-          dueDate: paidAt,
+          dueDate: nextPeriodEnd,
           amountCents: invoice.amountCents,
           amountPaidCents: 0,
         },

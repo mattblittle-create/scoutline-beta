@@ -501,11 +501,15 @@ model PlayerInvoice {
   periodEnd        DateTime
   invoiceDate      DateTime
   dueDate          DateTime
-  amountCents      Int
-  amountPaidCents  Int               @default(0)
-  externalId       String?
-  hostedUrl        String?
-  paidAt           DateTime?
+  amountCents              Int
+  cardFeeCents             Int               @default(0)
+  amountPaidCents          Int               @default(0)
+  externalId               String?
+  hostedUrl                String?
+  processorTransactionId   String?
+  processorResponseCode    String?
+  processorReceiptUrl      String?
+  paidAt                   DateTime?
   createdAt        DateTime          @default(now())
   commissionEvents CommissionEvent[]
   playerProfile    PlayerProfile     @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
