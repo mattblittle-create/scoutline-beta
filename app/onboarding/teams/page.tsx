@@ -79,9 +79,15 @@ function TeamsOnboardingPageInner() {
 
   const [website, setWebsite] = React.useState("");
 
-  const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>("");
-  const [logoUrlInput, setLogoUrlInput] = React.useState<string>("");
-  const [logoPreviewUrl, setLogoPreviewUrl] = React.useState<string | null>(null);
+const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>("");
+const [logoUrlInput, setLogoUrlInput] = React.useState<string>("");
+
+const logoPreviewSrc = React.useMemo(() => {
+  if (logoFileDataUrl) return logoFileDataUrl;
+
+  const normalized = normalizeLogoUrl(logoUrlInput);
+  return normalized || "";
+}, [logoFileDataUrl, logoUrlInput]);
 
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
@@ -360,27 +366,25 @@ function TeamsOnboardingPageInner() {
               <input
                 style={input}
                 type="file"
-                accept="image/*"
-                onChange={async (e) => {
-                  const file = e.target.files?.[0];
-                  if (!file) {
-                    setLogoPreviewUrl(null);
-                    setLogoFileDataUrl("");
-                    return;
-                  }
+                accept=".png,.jpg,.jpeg,.svg,.webp"
+onChange={async (e) => {
+  const file = e.target.files?.[0];
 
-                  try {
-                    const dataUrl = await fileToDataUrl(file);
-                    setLogoFileDataUrl(dataUrl);
-                    setLogoUrlInput("");
-                    const blobUrl = URL.createObjectURL(file);
-                    setLogoPreviewUrl(blobUrl);
-                  } catch (err: any) {
-                    setError(err?.message || "Failed to read logo file.");
-                    setLogoPreviewUrl(null);
-                    setLogoFileDataUrl("");
-                  }
-                }}
+  if (!file) {
+    setLogoFileDataUrl("");
+    return;
+  }
+
+  try {
+    const dataUrl = await fileToDataUrl(file);
+
+    setLogoFileDataUrl(dataUrl);
+    setLogoUrlInput("");
+  } catch (err: any) {
+    setError(err?.message || "Failed to read logo file.");
+    setLogoFileDataUrl("");
+  }
+}}
               />
               <div style={hint}>Upload a PNG/JPG/SVG. This will carry into your Team Profile + header.</div>
             </Field>
@@ -389,16 +393,15 @@ function TeamsOnboardingPageInner() {
               <input
                 style={input}
                 value={logoUrlInput}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  setLogoUrlInput(v);
-                  if (v.trim()) {
-                    setLogoFileDataUrl("");
-                    setLogoPreviewUrl(normalizeLogoUrl(v.trim()));
-                  } else {
-                    setLogoPreviewUrl(null);
-                  }
-                }}
+onChange={(e) => {
+  const v = e.target.value;
+
+  setLogoUrlInput(v);
+
+  if (v.trim()) {
+    setLogoFileDataUrl("");
+  }
+}}
                 placeholder="https://example.com/logo.png"
                 inputMode="url"
                 autoComplete="off"
@@ -406,11 +409,11 @@ function TeamsOnboardingPageInner() {
               <div style={hint}>If you paste a URL, we’ll store it as your team logo.</div>
             </Field>
 
-            {logoPreviewUrl ? (
+{logoPreviewSrc ? (
               <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
                 <div style={{ fontWeight: 900, color: "#64748b", fontSize: 12 }}>Preview:</div>
                 <img
-                  src={logoPreviewUrl}
+                  src={logoPreviewSrc}
                   alt="Team logo preview"
                   style={{
                     height: 44,
@@ -425,11 +428,10 @@ function TeamsOnboardingPageInner() {
                 <button
                   type="button"
                   style={btnGhost}
-                  onClick={() => {
-                    setLogoPreviewUrl(null);
-                    setLogoFileDataUrl("");
-                    setLogoUrlInput("");
-                  }}
+onClick={() => {
+  setLogoFileDataUrl("");
+  setLogoUrlInput("");
+}}
                   title="Clear logo"
                 >
                   Remove
