@@ -2,7 +2,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { chargeValorStoredToken} from "@/lib/billing/valorRecurringCharge";
+import { chargeValorStoredToken } from "@/lib/billing/valorRecurringCharge";
+import { markPlayerInvoicePaymentFailed } from "@/lib/billing/playerDunning";
 
 export const dynamic = "force-dynamic";
 
@@ -41,11 +42,17 @@ export async function GET(req: NextRequest) {
   const todayEnd = endOfToday();
 
   const invoices = await prisma.playerInvoice.findMany({
-    where: {
-      status: "UPCOMING",
-      dueDate: {
-        lte: todayEnd,
-      },
+where: {
+  status: {
+    in: ["UPCOMING", "PAST_DUE"],
+  },
+  dueDate: {
+    lte: todayEnd,
+  },
+  OR: [
+    { nextRetryAt: null },
+    { nextRetryAt: { lte: now } },
+  ],
       playerProfile: {
         hasActivePlayerBilling: true,
         playerBillingStatus: "Active",
@@ -126,11 +133,22 @@ if (!dryRun) {
       email: invoice.playerProfile.email,
     });
 
-    chargeResults.push({
-      invoiceId: invoice.id,
-      invoiceNumber: invoice.externalId,
-      result,
-    });
+let dunningResult = null;
+
+if (!result.ok && !result.skipped) {
+  dunningResult = await markPlayerInvoicePaymentFailed({
+    invoiceId: invoice.id,
+    reason:
+      "Recurring payment attempt failed or was declined by the payment processor.",
+  });
+}
+
+chargeResults.push({
+  invoiceId: invoice.id,
+  invoiceNumber: invoice.externalId,
+  result,
+  dunningResult,
+});
   }
 }
 
