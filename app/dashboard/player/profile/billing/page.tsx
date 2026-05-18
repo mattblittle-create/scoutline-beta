@@ -241,6 +241,7 @@ export default async function PlayerBillingPage(props: {
           take: 12,
           select: {
             id: true,
+            externalId: true,
             status: true,
             invoiceDate: true,
             dueDate: true,

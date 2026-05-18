@@ -18,6 +18,7 @@ function fmtDate(d: string | Date | null | undefined) {
 export default function PlayerBillingInvoices(props: {
   invoices: Array<{
     id: string;
+    externalId: string | null;
     status: string;
     invoiceDate: string | Date;
     dueDate: string | Date;
@@ -40,7 +41,7 @@ export default function PlayerBillingInvoices(props: {
           <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: 0 }}>
             <thead>
               <tr>
-                {["Invoice Date", "Amount Due", "Payment Due Date", "Amount Paid", "Paid Date", "Status", ""].map((h) => (
+                {["Invoice #", "Invoice Date", "Amount Due", "Payment Due Date", "Amount Paid", "Paid Date", "Status", ""].map((h) => (
                   <th
                     key={h}
                     style={{
@@ -61,9 +62,12 @@ export default function PlayerBillingInvoices(props: {
             <tbody>
               {invoices.map((inv) => (
                 <tr key={inv.id}>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
-                    {fmtDate(inv.invoiceDate)}
-                  </td>
+                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a", whiteSpace: "nowrap" }}>
+                  {inv.externalId || "—"}
+                </td>
+                <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
+                  {fmtDate(inv.invoiceDate)}
+                </td>
                   <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800 }}>
                     {formatUSD(inv.amountCents)}
                   </td>
