@@ -4,6 +4,8 @@ import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
+type TeamChoice = "SWITCH_TO_INVITED_TEAM" | "KEEP_CURRENT_TEAM";
+
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ ok: false, error: message }, { status });
 }
@@ -54,6 +56,15 @@ async function findInviteByRawToken(rawToken: string) {
   });
 }
 
+async function invitedPlayerAccountExists(email: string) {
+  const user = await prisma.user.findUnique({
+    where: { email },
+    select: { id: true },
+  });
+
+  return Boolean(user?.id);
+}
+
 function inviteIsExpired(invite: { expiresAt?: Date | null }) {
   return Boolean(invite.expiresAt && invite.expiresAt.getTime() < Date.now());
 }
@@ -63,14 +74,10 @@ export async function GET(req: Request) {
     const url = new URL(req.url);
     const rawToken = normalizeText(url.searchParams.get("token"));
 
-    if (!rawToken) {
-      return jsonError("Missing invite token.", 400);
-    }
+    if (!rawToken) return jsonError("Missing invite token.", 400);
 
     const invite = await findInviteByRawToken(rawToken);
-    if (!invite) {
-      return jsonError("Invite not found.", 404);
-    }
+    if (!invite) return jsonError("Invite not found.", 404);
 
     const expired = inviteIsExpired(invite);
     const currentUser = await getCurrentUser().catch(() => null);
@@ -78,6 +85,43 @@ export async function GET(req: Request) {
 
     const invitedEmail = normalizeEmail(invite.invitedEmail);
     const parentEmail = normalizeEmail(invite.parentEmail);
+    const accountExists = await invitedPlayerAccountExists(invitedEmail);
+
+    let currentPrimaryTeam: any = null;
+
+    if (currentUserEmail && currentUserEmail === invitedEmail) {
+      const playerProfile = await prisma.playerProfile.findUnique({
+        where: { email: invitedEmail },
+        select: { id: true },
+      });
+
+      if (playerProfile?.id) {
+        const existingPrimary = await prisma.teamMembership.findFirst({
+          where: {
+            playerProfileId: playerProfile.id,
+            role: "PLAYER" as any,
+            isActive: true,
+            isPrimaryForProfile: true,
+            teamId: { not: invite.teamId },
+          },
+          select: {
+            id: true,
+            team: {
+              select: {
+                id: true,
+                name: true,
+                slug: true,
+                city: true,
+                state: true,
+                logoUrl: true,
+              },
+            },
+          },
+        });
+
+        currentPrimaryTeam = existingPrimary?.team || null;
+      }
+    }
 
     return NextResponse.json({
       ok: true,
@@ -107,7 +151,13 @@ export async function GET(req: Request) {
             Boolean(currentUserEmail) && currentUserEmail === invitedEmail,
           matchesParent:
             Boolean(currentUserEmail) && currentUserEmail === parentEmail,
+          invitedPlayerAccountExists: accountExists,
         },
+        currentPrimaryTeam,
+        requiresTeamChoice:
+          Boolean(currentPrimaryTeam?.id) &&
+          invite.status === "PENDING" &&
+          !expired,
       },
     });
   } catch (err: any) {
@@ -125,15 +175,19 @@ export async function POST(req: Request) {
 
   try {
     stage = "parse-body";
-    const body = (await req.json().catch(() => ({}))) as { token?: string | null };
-    const rawToken = normalizeText(body?.token);
+    const body = (await req.json().catch(() => ({}))) as {
+      token?: string | null;
+      teamChoice?: TeamChoice | null;
+    };
 
-    if (!rawToken) {
-      return jsonError("Missing invite token.", 400);
-    }
+    const rawToken = normalizeText(body?.token);
+    const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
+
+    if (!rawToken) return jsonError("Missing invite token.", 400);
 
     stage = "get-current-user";
     const currentUser = await getCurrentUser().catch(() => null);
+
     if (!currentUser?.id || !currentUser?.email) {
       return jsonError("You must be logged in to accept this invite.", 401);
     }
@@ -142,9 +196,7 @@ export async function POST(req: Request) {
 
     stage = "find-invite";
     const invite = await findInviteByRawToken(rawToken);
-    if (!invite) {
-      return jsonError("Invite not found.", 404);
-    }
+    if (!invite) return jsonError("Invite not found.", 404);
 
     if (invite.status === "CANCELLED") {
       return jsonError("This invite has been cancelled.", 410);
@@ -157,6 +209,7 @@ export async function POST(req: Request) {
           alreadyAccepted: true,
           inviteId: invite.id,
           team: invite.team,
+          redirectTo: "/dashboard/player/profile",
         },
       });
     }
@@ -170,6 +223,7 @@ export async function POST(req: Request) {
     }
 
     const invitedEmail = normalizeEmail(invite.invitedEmail);
+
     if (currentUserEmail !== invitedEmail) {
       return jsonError(
         "This invite must be accepted by the invited player email address.",
@@ -178,6 +232,7 @@ export async function POST(req: Request) {
     }
 
     stage = "accept-transaction";
+
     const result = await prisma.$transaction(async (tx) => {
       let playerProfile = await tx.playerProfile.findUnique({
         where: { email: invitedEmail },
@@ -185,7 +240,6 @@ export async function POST(req: Request) {
           id: true,
           userId: true,
           ownerTeamId: true,
-          data: true,
         },
       });
 
@@ -202,7 +256,7 @@ export async function POST(req: Request) {
             billingConflictFlag: false,
             playerPlanTier: "TEAM" as any,
             playerBillingCadence: "monthly",
-            playerBillingStatus: "Active",
+            playerBillingStatus: "Team Covered",
             schemaVersion: 1,
             data: {},
           },
@@ -210,20 +264,108 @@ export async function POST(req: Request) {
             id: true,
             userId: true,
             ownerTeamId: true,
-            data: true,
-          },
-        });
-      } else {
-        await tx.playerProfile.update({
-          where: { id: playerProfile.id },
-          data: {
-            userId: currentUser.id,
-            hasActiveTeamBilling: true,
-            ...(playerProfile.ownerTeamId ? {} : { ownerTeamId: invite.teamId }),
-            updatedAt: new Date(),
           },
         });
       }
+
+      const currentPrimaryMembership = await tx.teamMembership.findFirst({
+        where: {
+          playerProfileId: playerProfile.id,
+          role: "PLAYER" as any,
+          isActive: true,
+          isPrimaryForProfile: true,
+          teamId: { not: invite.teamId },
+        },
+        select: {
+          id: true,
+          teamId: true,
+          team: {
+            select: {
+              id: true,
+              name: true,
+              slug: true,
+              city: true,
+              state: true,
+              logoUrl: true,
+            },
+          },
+        },
+      });
+
+      if (currentPrimaryMembership?.id && !teamChoice) {
+        return {
+          requiresTeamChoice: true,
+          currentTeam: currentPrimaryMembership.team,
+          invitedTeam: invite.team,
+          playerProfileId: playerProfile.id,
+        };
+      }
+
+      if (
+        currentPrimaryMembership?.id &&
+        teamChoice === "KEEP_CURRENT_TEAM"
+      ) {
+        await tx.teamInvite.update({
+          where: { id: invite.id },
+          data: {
+            status: "CANCELLED" as any,
+            updatedAt: new Date(),
+          },
+        });
+
+        return {
+          keptCurrentTeam: true,
+          currentTeam: currentPrimaryMembership.team,
+          invitedTeam: invite.team,
+          playerProfileId: playerProfile.id,
+        };
+      }
+
+      if (
+        currentPrimaryMembership?.id &&
+        teamChoice !== "SWITCH_TO_INVITED_TEAM"
+      ) {
+        return {
+          requiresTeamChoice: true,
+          currentTeam: currentPrimaryMembership.team,
+          invitedTeam: invite.team,
+          playerProfileId: playerProfile.id,
+        };
+      }
+
+      await tx.teamMembership.updateMany({
+        where: {
+          playerProfileId: playerProfile.id,
+          role: "PLAYER" as any,
+          isPrimaryForProfile: true,
+        },
+        data: {
+          isPrimaryForProfile: false,
+          isActive: false,
+        },
+      });
+
+      await tx.playerProfile.update({
+        where: { id: playerProfile.id },
+        data: {
+          userId: currentUser.id,
+
+          profileState: "TEAM_OWNED_ACTIVE" as any,
+          ownershipMode: "TEAM_PRIMARY" as any,
+
+          ownerTeamId: invite.teamId,
+
+          hasActiveTeamBilling: true,
+          hasActivePlayerBilling: false,
+          billingConflictFlag: false,
+
+          playerPlanTier: "TEAM" as any,
+          playerBillingCadence: "monthly",
+          playerBillingStatus: "Team Covered",
+
+          updatedAt: new Date(),
+        },
+      });
 
       const existingMembership = await tx.teamMembership.findFirst({
         where: {
@@ -231,9 +373,7 @@ export async function POST(req: Request) {
           userId: currentUser.id,
           role: "PLAYER" as any,
         },
-        select: {
-          id: true,
-        },
+        select: { id: true },
       });
 
       if (existingMembership?.id) {
@@ -242,6 +382,7 @@ export async function POST(req: Request) {
           data: {
             playerProfileId: playerProfile.id,
             isActive: true,
+            isPrimaryForProfile: true,
           },
         });
       } else {
@@ -273,19 +414,49 @@ export async function POST(req: Request) {
       });
 
       return {
+        accepted: true,
         invite: acceptedInvite,
         playerProfileId: playerProfile.id,
+        switchedFromTeam: currentPrimaryMembership?.team || null,
+        team: invite.team,
       };
     });
+
+    if ((result as any)?.requiresTeamChoice) {
+      return NextResponse.json({
+        ok: true,
+        data: {
+          requiresTeamChoice: true,
+          currentTeam: (result as any).currentTeam,
+          invitedTeam: (result as any).invitedTeam,
+          playerProfileId: (result as any).playerProfileId,
+        },
+      });
+    }
+
+    if ((result as any)?.keptCurrentTeam) {
+      return NextResponse.json({
+        ok: true,
+        data: {
+          accepted: false,
+          keptCurrentTeam: true,
+          currentTeam: (result as any).currentTeam,
+          invitedTeam: (result as any).invitedTeam,
+          playerProfileId: (result as any).playerProfileId,
+          redirectTo: "/dashboard/player/profile",
+        },
+      });
+    }
 
     return NextResponse.json({
       ok: true,
       data: {
         accepted: true,
-        inviteId: result.invite.id,
-        acceptedAt: result.invite.acceptedAt,
-        playerProfileId: result.playerProfileId,
+        inviteId: (result as any).invite.id,
+        acceptedAt: (result as any).invite.acceptedAt,
+        playerProfileId: (result as any).playerProfileId,
         team: invite.team,
+        switchedFromTeam: (result as any).switchedFromTeam || null,
         redirectTo: "/dashboard/player/profile",
       },
     });
@@ -301,7 +472,9 @@ export async function POST(req: Request) {
     });
 
     return jsonError(
-      `Failed to accept invite at stage: ${stage}. ${err?.message || "Unknown error"}`,
+      `Failed to accept invite at stage: ${stage}. ${
+        err?.message || "Unknown error"
+      }`,
       500
     );
   }

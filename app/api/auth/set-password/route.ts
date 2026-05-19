@@ -81,7 +81,12 @@ export async function POST(req: Request) {
       purpose: "SET_PASSWORD",
     });
 
-    const redirectTo = await getPostLoginRedirect(user.id);
+    const requestedNext = normalizeText(body.next);
+
+const redirectTo =
+  requestedNext && requestedNext.startsWith("/")
+    ? requestedNext
+    : await getPostLoginRedirect(user.id);
 
     const res = NextResponse.json({
       ok: true,

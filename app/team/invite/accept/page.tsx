@@ -19,6 +19,7 @@ type AcceptData = {
     expiresAt?: string | null;
     expired?: boolean;
   };
+
   team: {
     id: string;
     name: string;
@@ -27,16 +28,30 @@ type AcceptData = {
     state?: string | null;
     logoUrl?: string | null;
   };
+
   createdBy?: {
     name?: string | null;
     email?: string | null;
   } | null;
+
   viewer: {
     isLoggedIn: boolean;
     email?: string | null;
     matchesInvitedPlayer: boolean;
     matchesParent: boolean;
+    invitedPlayerAccountExists: boolean;
   };
+
+  currentPrimaryTeam?: {
+    id: string;
+    name: string;
+    slug: string;
+    city?: string | null;
+    state?: string | null;
+    logoUrl?: string | null;
+  } | null;
+
+  requiresTeamChoice?: boolean;
 };
 
 function fmtDate(iso?: string | null) {
@@ -97,36 +112,79 @@ function TeamInviteAcceptPageInner() {
     };
   }, [token]);
 
-  async function acceptInvite() {
-    if (!token || submitting) return;
+async function acceptInvite(
+  teamChoice?: "SWITCH_TO_INVITED_TEAM" | "KEEP_CURRENT_TEAM"
+) {
+  if (!token || submitting) return;
 
-    setSubmitting(true);
-    setError(null);
-    setSuccess(null);
+  setSubmitting(true);
+  setError(null);
+  setSuccess(null);
 
-    try {
-      const res = await fetch("/api/team/invites/accept", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ token }),
-      });
+  try {
+    const res = await fetch("/api/team/invites/accept", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        token,
+        ...(teamChoice ? { teamChoice } : {}),
+      }),
+    });
 
-      const json = await res.json().catch(() => ({}));
+    const json = await res.json().catch(() => ({}));
 
-      if (!res.ok || !json?.ok) {
-        throw new Error(json?.error || "Failed to accept invite.");
-      }
-
-      setSuccess("Invite accepted. Redirecting to your player profile...");
-      window.setTimeout(() => {
-        router.push(String(json?.data?.redirectTo || "/dashboard/player/profile"));
-      }, 800);
-    } catch (err: any) {
-      setError(err?.message || "Failed to accept invite.");
-    } finally {
-      setSubmitting(false);
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to accept invite.");
     }
+
+    if (json?.data?.requiresTeamChoice) {
+      setData((prev) =>
+        prev
+          ? {
+              ...prev,
+              requiresTeamChoice: true,
+              currentPrimaryTeam: json.data.currentTeam || null,
+            }
+          : prev
+      );
+
+      setSubmitting(false);
+      return;
+    }
+
+    if (json?.data?.keptCurrentTeam) {
+      setSuccess(
+        `You kept your current team relationship with ${json?.data?.currentTeam?.name || "your existing team"}.`
+      );
+
+      window.setTimeout(() => {
+        router.push(
+          String(json?.data?.redirectTo || "/dashboard/player/profile")
+        );
+      }, 1200);
+
+      return;
+    }
+
+    if (json?.data?.switchedFromTeam?.name) {
+      setSuccess(
+        `Team relationship switched from ${json.data.switchedFromTeam.name} to ${json.data.team?.name || "new team"}. Redirecting...`
+      );
+    } else {
+      setSuccess("Invite accepted. Redirecting to your player profile...");
+    }
+
+    window.setTimeout(() => {
+      router.push(
+        String(json?.data?.redirectTo || "/dashboard/player/profile")
+      );
+    }, 1200);
+  } catch (err: any) {
+    setError(err?.message || "Failed to accept invite.");
+  } finally {
+    setSubmitting(false);
   }
+}
 
   const loginHref = token
     ? `/login?role=player&next=${encodeURIComponent(`/team/invite/accept?token=${token}`)}`
@@ -201,20 +259,47 @@ function TeamInviteAcceptPageInner() {
           {success ? <div style={boxSuccess}>{success}</div> : null}
           {error ? <div style={boxError}>{error}</div> : null}
 
-          {!data.viewer.isLoggedIn ? (
-            <section style={card}>
-              <div style={sectionTitle}>Log in to accept</div>
-              <p style={muted}>
-                You need to log in as <strong>{data.invite.invitedEmail}</strong> to accept this team invite.
-              </p>
+{!data.viewer.isLoggedIn ? (
+  <section style={card}>
+    <div style={sectionTitle}>
+      {data.viewer.invitedPlayerAccountExists
+        ? "Log in to accept"
+        : "Create your player login"}
+    </div>
 
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 10 }}>
-                <Link href={loginHref} style={btnGold}>
-                  Log In as Player
-                </Link>
-              </div>
-            </section>
-          ) : !data.viewer.matchesInvitedPlayer ? (
+    <p style={muted}>
+      {data.viewer.invitedPlayerAccountExists ? (
+        <>
+          You already have a ScoutLine account. Log in as{" "}
+          <strong>{data.invite.invitedEmail}</strong> to accept this team invite.
+        </>
+      ) : (
+        <>
+          This invite is for <strong>{data.invite.invitedEmail}</strong>. Finish
+          setting up your ScoutLine login, then you’ll be brought back here to
+          accept the team invite.
+        </>
+      )}
+    </p>
+
+    <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 10 }}>
+      {data.viewer.invitedPlayerAccountExists ? (
+        <Link href={loginHref} style={btnGold}>
+          Log In as Player
+        </Link>
+      ) : (
+        <Link
+          href={`/set-password?next=${encodeURIComponent(
+            `/team/invite/accept?token=${token}`
+          )}`}
+          style={btnGold}
+        >
+          Set Up Password
+        </Link>
+      )}
+    </div>
+  </section>
+) : !data.viewer.matchesInvitedPlayer ? (
             <section style={card}>
               <div style={sectionTitle}>Wrong account signed in</div>
               <p style={muted}>
@@ -255,31 +340,134 @@ function TeamInviteAcceptPageInner() {
               </p>
             </section>
           ) : (
-            <section style={card}>
-              <div style={sectionTitle}>Accept team invite</div>
-              <p style={muted}>
-                Signed in as <strong>{data.viewer.email || "—"}</strong>. Accepting will connect your player account to <strong>{data.team.name}</strong>.
-              </p>
+<section style={card}>
+  <div style={sectionTitle}>
+    {data.requiresTeamChoice
+      ? "Choose Your Active Team"
+      : "Accept team invite"}
+  </div>
 
-              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 10 }}>
-                <button
-                  type="button"
-                  onClick={acceptInvite}
-                  disabled={submitting}
-                  style={{
-                    ...btnGoldButton,
-                    opacity: submitting ? 0.6 : 1,
-                    cursor: submitting ? "not-allowed" : "pointer",
-                  }}
-                >
-                  {submitting ? "Accepting…" : "Accept Invite"}
-                </button>
+  {!data.requiresTeamChoice ? (
+    <>
+      <p style={muted}>
+        Signed in as <strong>{data.viewer.email || "—"}</strong>.
+        Accepting will connect your player account to{" "}
+        <strong>{data.team.name}</strong>.
+      </p>
 
-                <Link href="/dashboard/player/profile" style={btnGhost}>
-                  Not Now
-                </Link>
-              </div>
-            </section>
+      <div
+        style={{
+          display: "flex",
+          gap: 12,
+          flexWrap: "wrap",
+          marginTop: 10,
+        }}
+      >
+        <button
+          type="button"
+          onClick={() => acceptInvite()}
+          disabled={submitting}
+          style={{
+            ...btnGoldButton,
+            opacity: submitting ? 0.6 : 1,
+            cursor: submitting ? "not-allowed" : "pointer",
+          }}
+        >
+          {submitting ? "Accepting…" : "Accept Invite"}
+        </button>
+
+        <Link href="/dashboard/player/profile" style={btnGhost}>
+          Not Now
+        </Link>
+      </div>
+    </>
+  ) : (
+    <>
+      <p style={muted}>
+        You are already connected to{" "}
+        <strong>{data.currentPrimaryTeam?.name || "another team"}</strong>.
+      </p>
+
+      <p style={{ ...muted, marginTop: 10 }}>
+        ScoutLine only allows one active billing/team relationship at a
+        time.
+      </p>
+
+      <div
+        style={{
+          marginTop: 14,
+          padding: 14,
+          border: "1px solid #e5e7eb",
+          borderRadius: 12,
+          background: "#f8fafc",
+        }}
+      >
+        <div style={{ fontWeight: 900, marginBottom: 8 }}>
+          Current Active Team
+        </div>
+
+        <div style={muted}>
+          {data.currentPrimaryTeam?.name}
+        </div>
+      </div>
+
+      <div
+        style={{
+          marginTop: 14,
+          padding: 14,
+          border: "1px solid #caa042",
+          borderRadius: 12,
+          background: "#fffaf0",
+        }}
+      >
+        <div style={{ fontWeight: 900, marginBottom: 8 }}>
+          Inviting Team
+        </div>
+
+        <div style={muted}>
+          {data.team.name}
+        </div>
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          gap: 12,
+          flexWrap: "wrap",
+          marginTop: 18,
+        }}
+      >
+        <button
+          type="button"
+          disabled={submitting}
+          onClick={() =>
+            acceptInvite("KEEP_CURRENT_TEAM")
+          }
+          style={{
+            ...btnGhostButton,
+            opacity: submitting ? 0.6 : 1,
+          }}
+        >
+          Keep Current Team
+        </button>
+
+        <button
+          type="button"
+          disabled={submitting}
+          onClick={() =>
+            acceptInvite("SWITCH_TO_INVITED_TEAM")
+          }
+          style={{
+            ...btnGoldButton,
+            opacity: submitting ? 0.6 : 1,
+          }}
+        >
+          Switch to {data.team.name}
+        </button>
+      </div>
+    </>
+  )}
+</section>
           )}
         </>
       ) : (
@@ -360,6 +548,15 @@ const btnGoldButton: React.CSSProperties = {
   borderRadius: 10,
   border: "1px solid #caa042",
   background: "#caa042",
+  color: "#0f172a",
+  fontWeight: 900,
+};
+
+const btnGhostButton: React.CSSProperties = {
+  padding: "10px 14px",
+  borderRadius: 10,
+  border: "1px solid #e5e7eb",
+  background: "#fff",
   color: "#0f172a",
   fontWeight: 900,
 };
