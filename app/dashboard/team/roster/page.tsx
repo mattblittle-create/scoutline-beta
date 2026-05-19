@@ -625,37 +625,36 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
                         <div style={rightActions}>
                           {isSelected ? (
                             <>
-{/* ✅ Edit Profile (disabled when inactive) */}
-{canActions ? (
-  <Link
-    href={`/dashboard/team/roster/player/${encodeURIComponent(
-      r.playerProfileId
-    )}/edit`}
-    style={btnGhostSmall}
-  >
-    Edit Player Profile
-  </Link>
-) : (
-  <span
-    style={btnGhostSmallDisabled}
-    title="Player must be Active to edit profile."
-  >
-    Edit Player Profile
-  </span>
-)}
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, minmax(145px, 1fr))",
+    gap: 8,
+    alignItems: "stretch",
+    width: "100%",
+    maxWidth: 650,
+  }}
+>
+  {/* Top row: Edit, Recruiting, Teaser */}
+  {canActions ? (
+    <Link
+      href={`/dashboard/team/roster/player/${encodeURIComponent(
+        r.playerProfileId
+      )}/edit`}
+      style={btnGhostSmall}
+    >
+      Edit Player Profile
+    </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to edit profile."
+    >
+      Edit Player Profile
+    </span>
+  )}
 
-{/* ✅ View Public Profile + Player Tools (disabled when inactive) */}
-{canActions ? (
-  <>
-    {r.publicSlug ? (
-      <Link
-        href={`/player/${encodeURIComponent(r.publicSlug)}`}
-        style={btnGhostSmall}
-      >
-        View Player Profile
-      </Link>
-    ) : null}
-
+  {canActions ? (
     <Link
       href={`/dashboard/player/recruiting-tool?playerProfileId=${encodeURIComponent(
         r.playerProfileId
@@ -664,7 +663,39 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
     >
       Recruiting Tool
     </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to use recruiting tools."
+    >
+      Recruiting Tool
+    </span>
+  )}
 
+  {canActions && r.publicSlug ? (
+<Link
+  href={`/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={btnGoldSmall}
+>
+  Send Teaser Card
+</Link>
+  ) : (
+    <span
+      style={btnGoldSmallDisabled}
+      title={
+        !r.publicSlug
+          ? "Player needs a public profile before sending a teaser card."
+          : "Player must be Active to send teaser card."
+      }
+    >
+      Send Teaser Card
+    </span>
+  )}
+
+  {/* Bottom row: College Search, Suggested, Target */}
+  {canActions ? (
     <Link
       href={`/dashboard/player/college-search?playerProfileId=${encodeURIComponent(
         r.playerProfileId
@@ -673,7 +704,16 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
     >
       College Search
     </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to use college search."
+    >
+      College Search
+    </span>
+  )}
 
+  {canActions ? (
     <Link
       href={`/dashboard/player/suggested-programs?playerProfileId=${encodeURIComponent(
         r.playerProfileId
@@ -682,7 +722,16 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
     >
       Suggested Programs
     </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to view suggested programs."
+    >
+      Suggested Programs
+    </span>
+  )}
 
+  {canActions ? (
     <Link
       href={`/dashboard/player/target-programs?playerProfileId=${encodeURIComponent(
         r.playerProfileId
@@ -691,71 +740,15 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
     >
       Target Programs
     </Link>
-  </>
-) : (
-  <>
-    <span
-      style={btnGhostSmallDisabled}
-      title="Player must be Active to view profile from roster."
-    >
-      View Player Profile
-    </span>
-
-    <span
-      style={btnGhostSmallDisabled}
-      title="Player must be Active to use recruiting tools."
-    >
-      Recruiting Tool
-    </span>
-
-    <span
-      style={btnGhostSmallDisabled}
-      title="Player must be Active to use college search."
-    >
-      College Search
-    </span>
-
-    <span
-      style={btnGhostSmallDisabled}
-      title="Player must be Active to view suggested programs."
-    >
-      Suggested Programs
-    </span>
-
+  ) : (
     <span
       style={btnGhostSmallDisabled}
       title="Player must be Active to view target programs."
     >
       Target Programs
     </span>
-  </>
-)}
-
-{/* ✅ Send Teaser Card (disabled when inactive OR missing slug) */}
-                              {r.publicSlug ? (
-                                <a
-                                  href={canTeaser ? `/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser` : undefined}
-                                  target={canTeaser ? "_blank" : undefined}
-                                  rel={canTeaser ? "noopener noreferrer" : undefined}
-                                  style={{
-                                    ...btnGoldSmall,
-                                    cursor: canTeaser ? "pointer" : "not-allowed",
-                                    opacity: canTeaser ? 1 : 0.6,
-                                    pointerEvents: canTeaser ? "auto" : "none",
-                                  }}
-                                  title={
-                                    canTeaser
-                                      ? "Open teaser card to send to coaches"
-                                      : "Player must be Active to send teaser card."
-                                  }
-                                >
-                                  Send Teaser Card
-                                </a>
-                              ) : (
-                                <button type="button" style={btnGoldSmall} disabled title="Missing public slug for this player.">
-                                  Send Teaser Card
-                                </button>
-                              )}
+  )}
+</div>
                             </>
                           ) : null}
                         </div>
@@ -972,15 +965,29 @@ const errorBox: React.CSSProperties = {
 };
 
 const btnGoldSmall: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  minHeight: 34,
   padding: "8px 10px",
   borderRadius: 10,
   border: "1px solid #caa042",
   background: "#caa042",
   color: "#0f172a",
-  fontWeight: 900,
   fontSize: 12,
-  whiteSpace: "nowrap",
+  fontWeight: 900,
   textDecoration: "none",
+  whiteSpace: "nowrap",
+};
+
+const btnGoldSmallDisabled: React.CSSProperties = {
+  ...btnGoldSmall,
+  background: "#f8fafc",
+  border: "1px solid #e5e7eb",
+  color: "#94a3b8",
+  cursor: "not-allowed",
+  opacity: 0.7,
+  userSelect: "none",
 };
 
 const btnGhost: React.CSSProperties = {
