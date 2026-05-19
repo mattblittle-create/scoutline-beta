@@ -80,7 +80,7 @@ export default function BillingPaymentMethod(props: {
               cursor: busy ? "not-allowed" : "pointer",
             }}
           >
-            {busy ? "Opening…" : "Add / Update Payment Info"}
+            {busy ? "Opening…" : "Submit Payment"}
           </button>
 
           {msg ? <span style={{ color: "#b91c1c", fontWeight: 700 }}>{msg}</span> : null}
