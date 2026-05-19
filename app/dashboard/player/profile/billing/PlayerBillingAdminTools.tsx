@@ -17,8 +17,8 @@ type Props = {
 
 const PLAN_OPTIONS = [
   { value: "REDSHIRT", label: "Redshirt — FREE" },
-  { value: "WALK_ON", label: "Walk-On — $24.95/mo ($265/yr)" },
-  { value: "ALL_AMERICAN", label: "All-American — $49.95/mo ($510/yr)" },
+  { value: "WALK_ON", label: "Walk-On — $24.95/mo" },
+  { value: "ALL_AMERICAN", label: "All-American — $49.95/mo" },
 ] as const;
 
 const CADENCE_OPTIONS = [

@@ -50,7 +50,7 @@ export default async function ParentDashboardPage() {
     : "/dashboard/parent";
 
   const targetProgramsHref = playerProfile?.id
-    ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/target-programs`
+    ? `/dashboard/player/target-programs?playerProfileId=${encodeURIComponent(playerProfile.id)}`
     : "/dashboard/parent";
 
   const billingHref = playerProfile?.id

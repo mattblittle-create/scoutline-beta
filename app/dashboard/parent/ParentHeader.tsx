@@ -5,6 +5,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import SupportButton from "@/app/components/SupportButton";
 
 type Props = {
   linkedPlayerProfileId?: string | null;
@@ -80,12 +81,6 @@ export default function ParentHeader({
       disabled: !linkedPlayerProfileId,
       badge: notificationCount > 0 ? notificationCount : null,
     },
-    {
-      label: "Account Support",
-      href: "/dashboard/parent",
-      match: "/dashboard/parent/support",
-      disabled: false,
-    },
   ];
 
   function isActive(item: NavItem) {
@@ -147,6 +142,13 @@ export default function ParentHeader({
             </Link>
           );
         })}
+
+        {linkedPlayerProfileId ? (
+          <SupportButton
+            subjectPrefix="Account Support Request"
+            targetId={linkedPlayerProfileId}
+          />
+        ) : null}
       </div>
 
       {!linkedPlayerProfileId ? (
