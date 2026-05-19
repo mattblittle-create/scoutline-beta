@@ -146,11 +146,24 @@ function UpdateMethodContent() {
     try {
       setError("");
 
-      passageRef.current = new window.PassageJS({
-        clientToken,
-        epi,
-        container: "payment-form",
-        submitText: "Update Payment Info",
+passageRef.current = new window.PassageJS({
+  clientToken,
+  epi,
+  formAction: "/api/player/billing/payment-method-token/save",
+  formMethod: "POST",
+  variant: "inline",
+  formFieldId: "payment-form",
+  submitText: "Update Payment Info",
+  defaultPaymentMethod: "credit-card",
+  enableACH: false,
+  showLogo: false,
+  showCardholderName: true,
+  showEmail: false,
+  showPhone: false,
+  showBillingAddress: false,
+  customData: {
+    playerProfileId,
+  },
 
         onTokenReceived: async (token: any, method: any) => {
           try {
@@ -255,9 +268,13 @@ function UpdateMethodContent() {
           minHeight: 220,
         }}
       >
-        {loading || !scriptReady || !clientToken
-          ? "Loading secure payment form..."
-          : null}
+{loading || !scriptReady || !clientToken ? (
+  "Loading secure payment form..."
+) : (
+  <div style={{ color: "#64748b", fontWeight: 700 }}>
+    Secure payment form initializing...
+  </div>
+)}
       </div>
 
       {saving ? (
