@@ -1,7 +1,9 @@
 // app/dashboard/parent/player/[playerProfileId]/billing/ParentBillingActions.tsx
+
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 type Props = {
@@ -10,7 +12,7 @@ type Props = {
   cancelEffectiveAt?: string | null;
 };
 
-type BusyAction = "update" | "portal" | "cancel" | null;
+type BusyAction = "cancel" | null;
 
 export default function ParentBillingActions({
   playerProfileId,
@@ -23,67 +25,11 @@ export default function ParentBillingActions({
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState<string | null>(null);
 
-  async function runPortal(kind: "update" | "portal") {
-    setBusy(kind);
-    setError(null);
-    setSuccess(null);
-
-    try {
-      const path =
-        kind === "update"
-          ? `/api/parent/player/${encodeURIComponent(
-              playerProfileId
-            )}/billing/update-method`
-          : `/api/parent/player/${encodeURIComponent(
-              playerProfileId
-            )}/billing/payment-portal`;
-
-const res = await fetch(path, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    returnTo: "parent-dashboard",
-  }),
-});
-
-      const json = await res.json().catch(() => ({}));
-
-      if (!res.ok || !json?.ok) {
-        throw new Error(
-          json?.error ||
-            (kind === "update"
-              ? "Unable to open payment method flow."
-              : "Unable to open billing portal.")
-        );
-      }
-
-      if (json?.url) {
-        window.location.href = String(json.url);
-        return;
-      }
-
-      if (json?.message) {
-        setSuccess(String(json.message));
-      } else {
-        setSuccess(
-          kind === "update"
-            ? "Payment method flow opened."
-            : "Billing portal opened."
-        );
-      }
-
-      router.refresh();
-    } catch (err: any) {
-      setError(err?.message || "Something went wrong.");
-    } finally {
-      setBusy(null);
-    }
-  }
-
   async function requestCancellation() {
     const confirmed = window.confirm(
       "Submit a cancellation request for this player account?"
     );
+
     if (!confirmed) return;
 
     setBusy("cancel");
@@ -97,7 +43,9 @@ const res = await fetch(path, {
         )}/billing/cancel`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
@@ -154,9 +102,9 @@ const res = await fetch(path, {
           fontWeight: 600,
         }}
       >
-        Manage billing access for this player account. Payment-method and hosted
-        portal actions are wired from the parent side and will use your billing
-        provider when available.
+        Manage this player&apos;s billing using the main ScoutLine billing page.
+        Payment submission, payment method updates, invoices, and billing status
+        stay in one shared flow.
       </div>
 
       {cancelRequested ? (
@@ -186,26 +134,17 @@ const res = await fetch(path, {
           gap: 12,
         }}
       >
-<a
-  href={`/dashboard/player/profile/billing/update-method?playerProfileId=${encodeURIComponent(
-    playerProfileId
-  )}`}
-  style={{
-    ...goldBtn,
-    textDecoration: "none",
-  }}
->
-  Update Payment Info
-</a>
-
-        <button
-          type="button"
-          onClick={() => runPortal("portal")}
-          disabled={busy !== null}
-          style={ghostBtn}
+        <Link
+          href={`/dashboard/player/profile/billing?playerProfileId=${encodeURIComponent(
+            playerProfileId
+          )}`}
+          style={{
+            ...goldBtn,
+            textDecoration: "none",
+          }}
         >
-          {busy === "portal" ? "Opening…" : "Submit Payment"}
-        </button>
+          Manage Billing
+        </Link>
 
         <button
           type="button"
@@ -264,16 +203,6 @@ const goldBtn: React.CSSProperties = {
   color: "#0f172a",
   fontWeight: 900,
   boxShadow: "0 8px 18px rgba(202,160,66,0.22)",
-};
-
-const ghostBtn: React.CSSProperties = {
-  display: "inline-block",
-  padding: "11px 15px",
-  borderRadius: 12,
-  border: "1px solid #e5e7eb",
-  background: "#fff",
-  color: "#0f172a",
-  fontWeight: 900,
 };
 
 const dangerBtn: React.CSSProperties = {
