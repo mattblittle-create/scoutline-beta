@@ -7,6 +7,7 @@ import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
 import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
 import { getDistanceResult } from "@/lib/recommendations/distance";
 import { getCoordinatesForZip } from "@/lib/recommendations/zipCoordinates";
+import { getTeamAdminPlayerAccess } from "@/lib/team/getTeamAdminPlayerAccess";
 
 export const dynamic = "force-dynamic";
 
@@ -27,7 +28,89 @@ function cleanFilter(value: string | null) {
   return s;
 }
 
-async function getCurrentPlayerProfile() {
+async function getCurrentPlayerProfile(
+  req?: NextRequest
+) {
+  const requestedPlayerProfileId = String(
+    req?.nextUrl.searchParams.get("playerProfileId") || ""
+  ).trim();
+
+  // TEAM ADMIN CONTEXT
+  if (requestedPlayerProfileId) {
+    const access = await getTeamAdminPlayerAccess(
+      requestedPlayerProfileId
+    );
+
+    if (!access.ok || !access.playerProfile) {
+      return null;
+    }
+
+    const profile = access.playerProfile;
+
+    const data = (profile.data || {}) as any;
+    const normalized = data?.normalized || data;
+
+    const heightFt = asNumber(normalized?.heightFt);
+    const heightInOnly = asNumber(normalized?.heightIn);
+
+    const totalHeightIn =
+      heightFt != null && heightInOnly != null
+        ? heightFt * 12 + heightInOnly
+        : heightInOnly;
+
+    return {
+      id: profile.id,
+      email: profile.email,
+
+      player: {
+        firstName: asString(normalized?.firstName),
+        lastName: asString(normalized?.lastName),
+
+        fullName: [
+          asString(normalized?.firstName),
+          asString(normalized?.lastName),
+        ]
+          .filter(Boolean)
+          .join(" ") || null,
+
+        gpa: asNumber(normalized?.gpa),
+
+        gradYear: asNumber(normalized?.gradYear),
+
+        primaryPos: asString(normalized?.primaryPos),
+
+        secondaryPos: asString(normalized?.secondaryPos),
+
+        isPitcher: asString(normalized?.isPitcher),
+
+        pitcherHand: asString(normalized?.pitcherHand),
+
+        homeState:
+          asString(normalized?.homeState) ??
+          asString(normalized?.state) ??
+          asString(normalized?.playerState) ??
+          asString(normalized?.addressState),
+
+        homeZip:
+          asString(normalized?.homeZip) ??
+          asString(normalized?.zip) ??
+          asString(normalized?.zipcode) ??
+          asString(normalized?.postalCode),
+
+        heightIn: totalHeightIn,
+
+        weightLb: asNumber(normalized?.weightLb),
+
+        metrics:
+          normalized?.metrics &&
+          typeof normalized.metrics === "object"
+            ? normalized.metrics
+            : {},
+      },
+    };
+  }
+
+  // NORMAL PLAYER CONTEXT
   const userId = cookies().get("scoutline_uid")?.value || "";
 
   if (!userId) return null;
@@ -36,17 +119,19 @@ async function getCurrentPlayerProfile() {
     where: { id: userId },
     select: {
       email: true,
-Player: {
-  select: {
-    gpa: true,
-    gradYear: true,
-    primaryPos: true,
-    secondaryPos: true,
-    pitcherHand: true,
-    heightIn: true,
-    weightLb: true,
-  },
-},
+
+      Player: {
+        select: {
+          gpa: true,
+          gradYear: true,
+          primaryPos: true,
+          secondaryPos: true,
+          pitcherHand: true,
+          heightIn: true,
+          weightLb: true,
+        },
+      },
+
       PlayerProfile: {
         select: {
           id: true,
@@ -77,6 +162,7 @@ Player: {
 
   const heightFt = asNumber(normalized?.heightFt);
   const heightInOnly = asNumber(normalized?.heightIn);
+
   const totalHeightIn =
     heightFt != null && heightInOnly != null
       ? heightFt * 12 + heightInOnly
@@ -85,46 +171,62 @@ Player: {
   return {
     id: profile.id,
     email: profile.email || user.email,
-player: {
-  firstName: asString(normalized?.firstName),
-  lastName: asString(normalized?.lastName),
-  fullName: [asString(normalized?.firstName), asString(normalized?.lastName)]
-    .filter(Boolean)
-    .join(" ") || null,
 
-  gpa:
-    asNumber(user.Player?.gpa) ??
-    asNumber(normalized?.gpa),
+    player: {
+      firstName: asString(normalized?.firstName),
+      lastName: asString(normalized?.lastName),
+
+      fullName: [
+        asString(normalized?.firstName),
+        asString(normalized?.lastName),
+      ]
+        .filter(Boolean)
+        .join(" ") || null,
+
+      gpa:
+        asNumber(user.Player?.gpa) ??
+        asNumber(normalized?.gpa),
+
       gradYear:
         asNumber(user.Player?.gradYear) ??
         asNumber(normalized?.gradYear),
-primaryPos:
-  asString(user.Player?.primaryPos) ??
-  asString(normalized?.primaryPos),
-secondaryPos:
-  asString(user.Player?.secondaryPos) ??
-  asString(normalized?.secondaryPos),
-isPitcher:
-  asString(normalized?.isPitcher),
-pitcherHand:
-  asString(user.Player?.pitcherHand) ??
-  asString(normalized?.pitcherHand),
-homeState:
+
+      primaryPos:
+        asString(user.Player?.primaryPos) ??
+        asString(normalized?.primaryPos),
+
+      secondaryPos:
+        asString(user.Player?.secondaryPos) ??
+        asString(normalized?.secondaryPos),
+
+      isPitcher:
+        asString(normalized?.isPitcher),
+
+      pitcherHand:
+        asString(user.Player?.pitcherHand) ??
+        asString(normalized?.pitcherHand),
+
+      homeState:
         asString(normalized?.homeState) ??
         asString(normalized?.state) ??
         asString(normalized?.playerState) ??
         asString(normalized?.addressState),
+
       homeZip:
         asString(normalized?.homeZip) ??
         asString(normalized?.zip) ??
         asString(normalized?.zipcode) ??
         asString(normalized?.postalCode),
+
       heightIn: totalHeightIn,
+
       weightLb:
         asNumber(user.Player?.weightLb) ??
         asNumber(normalized?.weightLb),
+
       metrics:
-        normalized?.metrics && typeof normalized.metrics === "object"
+        normalized?.metrics &&
+        typeof normalized.metrics === "object"
           ? normalized.metrics
           : {},
     },
@@ -133,7 +235,7 @@ homeState:
 
 export async function GET(req: NextRequest) {
   try {
-    const profile = await getCurrentPlayerProfile();
+    const profile = await getCurrentPlayerProfile(req);
 
     if (!profile) {
       return NextResponse.json(
