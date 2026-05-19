@@ -25,15 +25,26 @@ export default function SupportButton({
     window.location.href =
       `mailto:support@myscoutline.com?subject=${encodeURIComponent(subject)}`;
 
-    window.setTimeout(() => {
-      const goFaq = window.confirm(
-        "Thank you for reaching out to ScoutLine Support. Expect a response within 48 hours.\n\nYou can also check out the FAQ here. Open FAQ now?"
-      );
+let shown = false;
 
-      if (goFaq) {
-        window.location.href = "https://www.myscoutline.com/faq";
-      }
-    }, 5000);
+function showSupportConfirm() {
+  if (shown) return;
+  shown = true;
+
+  const goFaq = window.confirm(
+    "Thank you for reaching out to ScoutLine Support. Expect a response within 48 hours.\n\nYou can also check out the FAQ. Open FAQ now?"
+  );
+
+  if (goFaq) {
+    window.location.href = "https://www.myscoutline.com/faq";
+  }
+}
+
+window.addEventListener("focus", showSupportConfirm, { once: true });
+
+window.setTimeout(() => {
+  showSupportConfirm();
+}, 15000);
   }
 
   return (
