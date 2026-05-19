@@ -5,6 +5,7 @@
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
+import SupportButton from "@/app/components/SupportButton";
 
 type DashboardCardProps = {
   title: string;
@@ -165,6 +166,7 @@ function DashboardCard({
 export default function PlayerDashboardPage() {
   const router = useRouter();
 
+  const [playerProfileId, setPlayerProfileId] = React.useState<string>("");
   const [playerName, setPlayerName] = React.useState<string>("");
   const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
   const [profileCompletion, setProfileCompletion] = React.useState<number>(0);
@@ -266,6 +268,15 @@ export default function PlayerDashboardPage() {
         const first = String(norm?.firstName ?? "").trim();
         const last = String(norm?.lastName ?? "").trim();
         const fullName = [first, last].filter(Boolean).join(" ").trim();
+
+        const resolvedPlayerProfileId = String(
+          profileJson?.playerProfile?.id ||
+          profileJson?.profile?.id ||
+          profileJson?.id ||
+          ""
+        ).trim();
+
+        if (resolvedPlayerProfileId) setPlayerProfileId(resolvedPlayerProfileId);
 
         if (fullName) setPlayerName(fullName);
 
@@ -1034,40 +1045,55 @@ const unreadChatCount = chatConversations.reduce(
           <div style={{ fontSize: 13, color: "#64748b", fontWeight: 700 }}>
             Quick Access
           </div>
-          <div style={{ marginTop: 10, display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <button
-              type="button"
-              onClick={() => router.push("/dashboard/player/profile")}
-              style={{
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: "1px solid #0ea5e9",
-                background: "#38bdf8",
-                color: "#083344",
-                fontWeight: 800,
-                cursor: "pointer",
-              }}
-            >
-              Edit Profile
-            </button>
+<div
+  style={{
+    marginTop: 10,
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 8,
+  }}
+>
+  <button
+    type="button"
+    onClick={() => router.push("/dashboard/player/profile")}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 10,
+      border: "1px solid #0ea5e9",
+      background: "#38bdf8",
+      color: "#083344",
+      fontWeight: 800,
+      cursor: "pointer",
+    }}
+  >
+    Edit Profile
+  </button>
 
-            <button
-              type="button"
-              onClick={() => router.push("/dashboard/player/profile/billing")}
-              style={{
-                padding: "8px 12px",
-                borderRadius: 10,
-                border: "1px solid #e5e7eb",
-                background: "#ffffff",
-                color: "#0f172a",
-                fontWeight: 800,
-                cursor: "pointer",
-              }}
-            >
-              Plan Billing
-            </button>
-          </div>
-        </div>
+  <button
+    type="button"
+    onClick={() => router.push("/dashboard/player/profile/billing")}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 10,
+      border: "1px solid #e5e7eb",
+      background: "#ffffff",
+      color: "#0f172a",
+      fontWeight: 800,
+      cursor: "pointer",
+    }}
+  >
+    Plan Billing
+  </button>
+
+  <div style={{ gridColumn: "1 / span 2" }}>
+    <SupportButton
+      subjectPrefix="Account Support Request"
+      playerName={playerName}
+      targetId={playerProfileId}
+    />
+  </div>
+</div>
+</div>
       </section>
 
       {/* Main dashboard cards */}
