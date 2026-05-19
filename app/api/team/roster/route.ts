@@ -131,23 +131,31 @@ function extractRosterFields(profileData: any) {
     (!!primaryPos && primaryPos.toUpperCase() === "P") ||
     (!!secondaryPos && secondaryPos.toUpperCase() === "P");
 
+  const publicSlug =
+  normText(safeGet(profileData, ["publicSlug"])) ||
+  normText(safeGet(profileData, ["slug"])) ||
+  normText(safeGet(profileData, ["core", "publicSlug"])) ||
+  normText(safeGet(profileData, ["player", "publicSlug"])) ||
+  "";
+
   const fullName = [firstName, lastName].filter(Boolean).join(" ").trim();
 
-  return {
-    firstName,
-    lastName,
-    fullName,
-    photoUrl,
-    gradYear,
-    gpa,
-    isCommitted,
-    primaryPos,
-    secondaryPos,
-    pitcherHand,
-    bats,
-    throws,
-    isPitcher,
-  };
+return {
+  firstName,
+  lastName,
+  fullName,
+  publicSlug,
+  photoUrl,
+  gradYear,
+  gpa,
+  isCommitted,
+  primaryPos,
+  secondaryPos,
+  pitcherHand,
+  bats,
+  throws,
+  isPitcher,
+};
 }
 
 async function getAdminTeamFromRequest(req: Request) {
@@ -256,6 +264,8 @@ export async function GET(req: Request) {
           playerProfileId: pp?.id ?? null,
           playerEmail: pp?.email ?? m.user?.email ?? null,
           userId: pp?.userId ?? m.user?.id ?? null,
+
+          publicSlug: f.publicSlug || null,
 
           firstName: f.firstName,
           lastName: f.lastName,

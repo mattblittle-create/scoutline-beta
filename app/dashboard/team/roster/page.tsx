@@ -585,18 +585,33 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
 
                           <div style={{ display: "grid", gap: 2, minWidth: 0 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                              <div style={{ fontWeight: 900 }}>
-                                {fullName(r)} {r.committed ? <span style={committedPill}>COMMITTED</span> : null}
-                              </div>
+<div style={{ fontWeight: 900 }}>
+  {r.publicSlug ? (
+    <Link
+      href={`/player/${encodeURIComponent(r.publicSlug)}`}
+      style={{ color: "#0f172a", textDecoration: "none" }}
+      title="View public player profile"
+    >
+      {fullName(r) || "Player"}
+    </Link>
+  ) : (
+    <span>{fullName(r) || "Player"}</span>
+  )}{" "}
+  {r.committed ? <span style={committedPill}>COMMITTED</span> : null}
+</div>
 
-                              <button
-                                type="button"
-                                onClick={() => toggleRosterActive(r.playerProfileId)}
-                                style={r.isActive ? activePillSmall : inactivePillSmall}
-                                title={fallbackEmail ? "Toggle roster status" : "Demo mode (no API) — toggles UI only"}
-                              >
-                                {r.isActive ? "Active" : "Inactive"}
-                              </button>
+<button
+  type="button"
+  onClick={() => toggleRosterActive(r.playerProfileId)}
+  style={r.isActive ? activePillSmall : inactivePillSmall}
+  title={
+    fallbackEmail
+      ? "Toggle roster status"
+      : "Active players appear on the team roster and count toward team billing. Inactive players are removed from the active roster and lose team-managed profile access until reactivated."
+  }
+>
+  {r.isActive ? "Active" : "Inactive"}
+</button>
                             </div>
 
                             <div style={mutedLine}>
