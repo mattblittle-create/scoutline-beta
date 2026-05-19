@@ -57,18 +57,18 @@ const nextConfig = {
       "img-src 'self' data: blob: https: http://localhost:3000 http://127.0.0.1:3000",
 
       // Allow iframes for YouTube/Vimeo embeds
-      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com",
+      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com https://js.valorpaytech.com",
 
       // If you ever stream MP4s or HLS/DASH segments directly
       "media-src 'self' data: blob: https:",
 
       // Dev needs inline/eval for HMR
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.valorpaytech.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com",
       "style-src 'self' 'unsafe-inline'",
       "font-src 'self' data:",
 
       // Allow API/fetch/websocket connections (adjust as needed)
-      "connect-src 'self' https: http: ws: wss:",
+      "connect-src 'self' https: http: ws: wss: https://js.valorpaytech.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com",
     ].join("; ");
 
     const securityHeaders = [
