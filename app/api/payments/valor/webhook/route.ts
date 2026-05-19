@@ -212,23 +212,26 @@ const providerPaymentRef = firstString(
       maskedCard ? maskedCard.slice(-4) : ""
     ) || null;
 
-  const approved =
-    [
-      "APPROVED",
-      "SUCCESS",
-      "SUCCEEDED",
-      "PAID",
-      "AUTHCAPTURE",
-      "CAPTURED",
-      "SETTLED",
-      "COMPLETED",
-    ].includes(status) ||
-    [
-      "APPROVED",
-      "TRANSACTION",
-      "TRANSACTIONS",
-      "RECURRING BILLING SUCCESS",
-    ].includes(event);
+const responseCode = firstString(
+  data?.response_code,
+  data?.reference_descriptive_data?.processor_response_code,
+  data?.processor_response_code,
+  data?.error_code,
+  data?.error_no
+);
+
+const approved =
+  [
+    "APPROVED",
+    "SUCCESS",
+    "SUCCEEDED",
+    "PAID",
+    "AUTHCAPTURE",
+    "CAPTURED",
+    "SETTLED",
+    "COMPLETED",
+  ].includes(status) ||
+  ["00", "S00"].includes(responseCode);
 
   return {
     event,
