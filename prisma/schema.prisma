@@ -523,6 +523,24 @@ model PlayerInvoice {
   @@index([playerProfileId, periodStart])
 }
 
+model BillingAuditLog {
+  id          String   @id @default(cuid())
+  actorType   String   @default("SYSTEM")
+  actorId     String?
+  targetType  String
+  targetId    String
+  eventType   String
+  message     String
+  metadata    Json?
+  ipAddress   String?
+  userAgent   String?
+  createdAt   DateTime @default(now())
+
+  @@index([targetType, targetId])
+  @@index([eventType])
+  @@index([createdAt])
+}
+
 model CoachBillingProfile {
   id                 String       @id @default(cuid())
   coachProfileId     String       @unique

@@ -3,6 +3,7 @@
 import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient, InvoiceStatus, Plan } from "@prisma/client";
+import { createBillingAuditLog } from "@/lib/billing/billingAudit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -359,6 +360,37 @@ async function applySuccessfulPayment(normalized: NormalizedWebhook) {
       },
     });
 
+    await createBillingAuditLog({
+  actorType: "SYSTEM",
+
+  targetType: "PLAYER_PROFILE",
+  targetId: invoice.playerProfileId,
+
+  eventType:
+    normalized.rawEvent?.toUpperCase?.().includes("RECURRING")
+      ? "RECURRING_PAYMENT_SUCCESS"
+      : "PAYMENT_APPROVED",
+
+  message: `Payment approved for invoice ${normalized.reference}.`,
+
+  metadata: {
+    invoiceId: invoice.id,
+    externalId: normalized.reference,
+
+    amount: normalized.amount,
+    surcharge: normalized.surcharge,
+
+    paymentType: normalized.paymentType,
+    brand: normalized.brand,
+    last4: normalized.last4,
+
+    transactionId: normalized.transactionId,
+    receiptUrl: normalized.receiptUrl,
+
+    providerPaymentRef: normalized.providerPaymentRef,
+  },
+});
+
     // Optional: create the next upcoming invoice immediately
     const existingUpcoming = await tx.playerInvoice.findFirst({
       where: {
@@ -409,6 +441,34 @@ async function applyFailedPayment(normalized: NormalizedWebhook) {
       playerBillingStatus: "Past Due",
     },
   });
+  await createBillingAuditLog({
+  actorType: "SYSTEM",
+
+  targetType: "PLAYER_PROFILE",
+  targetId: invoice.playerProfileId,
+
+  eventType:
+    normalized.rawEvent?.toUpperCase?.().includes("RECURRING")
+      ? "RECURRING_PAYMENT_FAILED"
+      : "PAYMENT_FAILED",
+
+  message: `Payment failed for invoice ${normalized.reference}.`,
+
+  metadata: {
+    invoiceId: invoice.id,
+    externalId: normalized.reference,
+
+    amount: normalized.amount,
+    surcharge: normalized.surcharge,
+
+    paymentType: normalized.paymentType,
+    brand: normalized.brand,
+    last4: normalized.last4,
+
+    transactionId: normalized.transactionId,
+    responseStatus: normalized.status,
+  },
+});
 }
 
 export async function GET() {
@@ -517,6 +577,21 @@ if (!normalized.reference) {
     headers: Object.fromEntries(req.headers.entries()),
   });
 
+await createBillingAuditLog({
+  actorType: "SYSTEM",
+
+  targetType: "WEBHOOK",
+  targetId: "VALOR",
+
+  eventType: "WEBHOOK_REFERENCE_MISSING",
+
+  message: "Valor webhook received without transaction reference.",
+
+  metadata: {
+    payload,
+  },
+});
+
   return NextResponse.json(
     { error: "Missing transaction reference." },
     { status: 400 }
@@ -547,6 +622,27 @@ if (!normalized.reference) {
     });
   } catch (error) {
     console.error("VALOR_WEBHOOK_ERROR", error);
+
+    await createBillingAuditLog({
+  actorType: "SYSTEM",
+
+  targetType: "WEBHOOK",
+  targetId: "VALOR",
+
+  eventType: "WEBHOOK_ERROR",
+
+  message: "Unhandled Valor webhook error.",
+
+  metadata: {
+    error:
+      error instanceof Error
+        ? {
+            message: error.message,
+            stack: error.stack,
+          }
+        : String(error),
+  },
+});
 
     return NextResponse.json(
       { error: "Webhook handler failed." },

@@ -167,25 +167,32 @@ export default async function ParentPlayerBillingPage({ params }: PageProps) {
               updatedAt: true,
             },
           },
-          playerInvoices: {
-            orderBy: [{ invoiceDate: "desc" }, { createdAt: "desc" }],
-            take: 12,
-            select: {
-              id: true,
-              status: true,
-              cadence: true,
-              invoiceDate: true,
-              dueDate: true,
-              periodStart: true,
-              periodEnd: true,
-              amountCents: true,
-              amountPaidCents: true,
-              paidAt: true,
-              hostedUrl: true,
-              externalId: true,
-              createdAt: true,
-            },
-          },
+playerInvoices: {
+  orderBy: { invoiceDate: "desc" },
+  take: 12,
+  select: {
+    id: true,
+    status: true,
+    cadence: true,
+    invoiceDate: true,
+    dueDate: true,
+    periodStart: true,
+    periodEnd: true,
+    amountCents: true,
+    cardFeeCents: true,
+    amountPaidCents: true,
+    paidAt: true,
+    hostedUrl: true,
+    externalId: true,
+    createdAt: true,
+    processorTransactionId: true,
+    processorResponseCode: true,
+    processorReceiptUrl: true,
+    failureReason: true,
+    failedAttemptCount: true,
+    nextRetryAt: true,
+  },
+},
         },
       },
     },
@@ -221,6 +228,17 @@ export default async function ParentPlayerBillingPage({ params }: PageProps) {
 const teamSponsoredInfo = await getTeamSponsoredBillingInfo(profile.id);
 
   const latestInvoice = invoices[0] ?? null;
+
+  const totalDueCents =
+  Number(latestInvoice?.amountCents || 0) +
+  Number(latestInvoice?.cardFeeCents || 0);
+
+const totalPaidCents =
+  Number(latestInvoice?.amountPaidCents || 0);
+
+const paymentDraftDate =
+  latestInvoice?.dueDate || latestInvoice?.periodEnd || null;
+
   const activePaymentLabel = billingProfile
     ? [
         billingProfile.brand || billingProfile.paymentType || "Payment Method",
@@ -274,6 +292,32 @@ const teamSponsoredInfo = await getTeamSponsoredBillingInfo(profile.id);
           <section style={grid2}>
             <div style={card}>
               <div style={cardTitle}>Billing Summary</div>
+
+              <div style={{ marginTop: 12 }}>
+  <InfoItem
+    label="Current Amount Due"
+    value={formatMoneyFromCents(totalDueCents)}
+  />
+
+  <InfoItem
+    label="Payment Draft Date"
+    value={formatDate(paymentDraftDate)}
+  />
+
+  <div
+    style={{
+      marginTop: 10,
+      fontSize: 12,
+      lineHeight: 1.5,
+      color: "#64748b",
+    }}
+  >
+    Debit and credit card transactions are subject to a 3% processing
+    fee in accordance with applicable card network regulations and
+    ScoutLine Terms &amp; Conditions. ACH / eCheck payments are available
+    as a fee-free alternative.
+  </div>
+</div>
 
               <div style={infoGrid}>
                 <InfoItem label="Plan" value={formatPlan(profile.playerPlanTier)} />
@@ -374,14 +418,14 @@ const teamSponsoredInfo = await getTeamSponsoredBillingInfo(profile.id);
             <table style={table}>
               <thead>
                 <tr>
-                  <th style={th}>Invoice Date</th>
-                  <th style={th}>Period</th>
-                  <th style={th}>Amount</th>
-                  <th style={th}>Paid</th>
-                  <th style={th}>Status</th>
-                  <th style={th}>Due</th>
-                  <th style={th}>Paid At</th>
-                  <th style={th}>Link</th>
+<th>Invoice#</th>
+<th>Invoice Date</th>
+<th>Amount Due</th>
+<th>Card Processing Fee</th>
+<th>Payment Draft Date</th>
+<th>Amount Paid</th>
+<th>Paid Date</th>
+<th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -390,42 +434,37 @@ const teamSponsoredInfo = await getTeamSponsoredBillingInfo(profile.id);
 
                   return (
                     <tr key={invoice.id}>
-                      <td style={td}>{formatDate(invoice.invoiceDate)}</td>
-                      <td style={td}>
-                        {formatDate(invoice.periodStart)} – {formatDate(invoice.periodEnd)}
-                      </td>
-                      <td style={td}>{formatMoneyFromCents(invoice.amountCents)}</td>
-                      <td style={td}>
-                        {formatMoneyFromCents(invoice.amountPaidCents)}
-                      </td>
-                      <td style={td}>
-                        <span
-                          style={{
-                            ...pill,
-                            background: tone.bg,
-                            borderColor: tone.border,
-                            color: tone.text,
-                          }}
-                        >
-                          {invoice.status}
-                        </span>
-                      </td>
-                      <td style={td}>{formatDate(invoice.dueDate)}</td>
-                      <td style={td}>{formatDate(invoice.paidAt)}</td>
-                      <td style={td}>
-                        {invoice.hostedUrl ? (
-                          <a
-                            href={invoice.hostedUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            style={tableLink}
-                          >
-                            Open
-                          </a>
-                        ) : (
-                          <span style={{ color: "#94a3b8" }}>—</span>
-                        )}
-                      </td>
+<td>{invoice.externalId || "—"}</td>
+
+<td>{formatDate(invoice.invoiceDate)}</td>
+
+<td>{formatMoneyFromCents(invoice.amountCents)}</td>
+
+<td>
+  {invoice.cardFeeCents > 0
+    ? formatMoneyFromCents(invoice.cardFeeCents)
+    : "—"}
+</td>
+
+<td>{formatDate(invoice.dueDate)}</td>
+
+<td>{formatMoneyFromCents(invoice.amountPaidCents)}</td>
+
+<td>{formatDate(invoice.paidAt)}</td>
+
+<td>
+  <span
+    style={{
+      padding: "4px 8px",
+      borderRadius: 999,
+      fontSize: 12,
+      fontWeight: 700,
+      ...statusTone(invoice.status),
+    }}
+  >
+    {invoice.status}
+  </span>
+</td>
                     </tr>
                   );
                 })}

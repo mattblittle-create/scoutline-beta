@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { chargeValorStoredToken } from "@/lib/billing/valorRecurringCharge";
 import { markPlayerInvoicePaymentFailed } from "@/lib/billing/playerDunning";
+import { maybeAutoSuspendPlayerForDunning } from "@/lib/billing/playerAutoSuspension";
 
 export const dynamic = "force-dynamic";
 
@@ -135,11 +136,17 @@ if (!dryRun) {
 
 let dunningResult = null;
 
+let autoSuspensionResult = null;
+
 if (!result.ok && !result.skipped) {
   dunningResult = await markPlayerInvoicePaymentFailed({
     invoiceId: invoice.id,
     reason:
       "Recurring payment attempt failed or was declined by the payment processor.",
+  });
+
+  autoSuspensionResult = await maybeAutoSuspendPlayerForDunning({
+    invoiceId: invoice.id,
   });
 }
 
@@ -148,6 +155,7 @@ chargeResults.push({
   invoiceNumber: invoice.externalId,
   result,
   dunningResult,
+  autoSuspensionResult,
 });
   }
 }
