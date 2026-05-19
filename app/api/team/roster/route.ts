@@ -176,7 +176,7 @@ async function getAdminTeamFromRequest(req: Request) {
   const adminMembership = await prisma.teamMembership.findFirst({
     where: {
       userId,
-      role: { in: ["TEAM_ADMIN", "OWNER", "ADMIN"] as any },
+      role: "TEAM_ADMIN" as any,
       isActive: true,
     },
     include: { team: true },
