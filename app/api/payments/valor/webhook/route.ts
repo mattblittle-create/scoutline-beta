@@ -152,14 +152,12 @@ function normalizeValorWebhook(payload: any): NormalizedWebhook {
     payload?.id
   );
 
-  const providerPaymentRef = firstString(
-    data?.vault_tokenization?.vtToken,
-    data?.vault_tokenization?.vault_id,
-    data?.token,
-    data?.payment_token,
-    transactionId,
-    reference
-  );
+const providerPaymentRef = firstString(
+  data?.vault_tokenization?.vtToken,
+  data?.vault_tokenization?.vault_id,
+  data?.token,
+  data?.payment_token
+);
 
   const receiptUrl =
     firstString(
