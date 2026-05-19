@@ -38,9 +38,19 @@ function getDevPlayerProfileIdFromCookie(): string | null {
   }
 }
 
-function computeDerivedStatusFromInvoices(invoices: Array<{ status: string }>) {
-  const hasPastDue = invoices.some((i) => i.status === "PAST_DUE" || i.status === "OPEN");
-  return hasPastDue ? "PastDue" : "Active";
+function computeDerivedStatusFromInvoices(
+  invoices: Array<{ status: string }>,
+  hasBillingProfile: boolean
+) {
+  const hasPastDue = invoices.some(
+    (i) => i.status === "PAST_DUE" || i.status === "OPEN"
+  );
+
+  if (hasPastDue) return "PastDue";
+
+  if (!hasBillingProfile) return "Pending";
+
+  return "Active";
 }
 
 function fmtDate(d?: Date | null) {
@@ -255,7 +265,10 @@ select: {
         })
       : [];
 
-  const derivedStatus = computeDerivedStatusFromInvoices(invoices);
+const derivedStatus = computeDerivedStatusFromInvoices(
+  invoices,
+  !!billingProfile
+);
 
   const teamSponsoredInfo = profileIdStr
   ? await getTeamSponsoredBillingInfo(profileIdStr)
