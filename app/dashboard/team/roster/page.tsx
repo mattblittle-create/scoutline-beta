@@ -155,40 +155,6 @@ function matchesFilters(r: RosterRow, f: Filters) {
   return true;
 }
 
-// TEMP seed data so the UI works before APIs are wired.
-const DEMO_ROWS: RosterRow[] = [
-  {
-    playerProfileId: "demo_pp_1",
-    publicSlug: "braden-little",
-    firstName: "Braden",
-    lastName: "Little",
-    gradYear: 2028,
-    gpa: "4.1",
-    committed: false,
-    primaryPos: "3B",
-    secondaryPos: "RF",
-    pitcher: true,
-    throws: "R",
-    bats: "R",
-    isActive: true,
-  },
-  {
-    playerProfileId: "demo_pp_2",
-    publicSlug: "jaxson-little",
-    firstName: "Jaxson",
-    lastName: "Little",
-    gradYear: 2030,
-    gpa: "3.8",
-    committed: false,
-    primaryPos: "SS",
-    secondaryPos: "2B",
-    pitcher: false,
-    throws: "R",
-    bats: "R",
-    isActive: false,
-  },
-];
-
 export default function TeamRosterPage() {
   const search = useSearchParams();
   const fallbackEmail = normText(search.get("email") || search.get("username")).toLowerCase();
@@ -221,42 +187,41 @@ export default function TeamRosterPage() {
 
   const selectedActiveRows = React.useMemo(() => selectedRows.filter((r) => r.isActive && !!r.publicSlug), [selectedRows]);
 
-  async function load() {
-    setLoading(true);
-    setError(null);
+async function load() {
+  setLoading(true);
+  setError(null);
+
+  try {
+    const url = fallbackEmail
+      ? `/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`
+      : "/api/team/roster";
+
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
+
+    const text = await res.text();
+    let json: any = null;
 
     try {
-      // Prefer real API if email is present in dev-mode URL
-      if (fallbackEmail) {
-        const res = await fetch(`/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`, {
-          cache: "no-store",
-        });
-
-        const text = await res.text();
-        let json: any = null;
-        try {
-          json = JSON.parse(text);
-        } catch {
-          throw new Error("Roster API returned non-JSON response.");
-        }
-
-        if (!res.ok || !json?.ok) {
-          throw new Error(json?.error || "Failed to load roster.");
-        }
-
-        const apiRows = (json?.data?.roster || []) as RosterRow[];
-        setRows(Array.isArray(apiRows) ? apiRows : []);
-      } else {
-        // No email -> use demo rows
-        setRows(DEMO_ROWS);
-      }
-    } catch (e: any) {
-      setRows([]);
-      setError(e?.message || "Failed to load roster.");
-    } finally {
-      setLoading(false);
+      json = JSON.parse(text);
+    } catch {
+      throw new Error("Roster API returned non-JSON response.");
     }
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to load roster.");
+    }
+
+    const apiRows = (json?.data?.roster || []) as RosterRow[];
+    setRows(Array.isArray(apiRows) ? apiRows : []);
+  } catch (e: any) {
+    setRows([]);
+    setError(e?.message || "Failed to load roster.");
+  } finally {
+    setLoading(false);
   }
+}
 
   React.useEffect(() => {
     load();
@@ -277,28 +242,30 @@ export default function TeamRosterPage() {
     setSelected({});
   }
 
-  async function persistRosterActive(membershipId: string, isActive: boolean) {
-    // Only persists when we have a dev email (API requires it right now)
-    if (!fallbackEmail) return;
+async function persistRosterActive(membershipId: string, isActive: boolean) {
+  const url = fallbackEmail
+    ? `/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`
+    : "/api/team/roster";
 
-    const res = await fetch(`/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ membershipId, isActive }),
-    });
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ membershipId, isActive }),
+  });
 
-    const text = await res.text();
-    let json: any = null;
-    try {
-      json = JSON.parse(text);
-    } catch {
-      throw new Error("Roster update returned non-JSON response.");
-    }
+  const text = await res.text();
+  let json: any = null;
 
-    if (!res.ok || !json?.ok) {
-      throw new Error(json?.error || "Failed to update roster status.");
-    }
+  try {
+    json = JSON.parse(text);
+  } catch {
+    throw new Error("Roster update returned non-JSON response.");
   }
+
+  if (!res.ok || !json?.ok) {
+    throw new Error(json?.error || "Failed to update roster status.");
+  }
+}
 
   async function toggleRosterActive(playerProfileId: string) {
     const current = rows.find((r) => r.playerProfileId === playerProfileId);
@@ -547,11 +514,9 @@ export default function TeamRosterPage() {
             Refresh
           </button>
 
-          {!fallbackEmail ? (
-            <span style={miniHint}>Showing demo roster (add ?email=you@domain.com to load real roster)</span>
-          ) : (
-            <span style={miniHint}>Loaded from roster API</span>
-          )}
+<span style={miniHint}>
+  Loaded from roster API
+</span>
         </div>
       </section>
 
