@@ -1,53 +1,219 @@
 // app/api/team/player-profile/route.ts
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import { getByEmail, getBySlug } from "@/lib/devStore";
 
+function jsonError(error: string, status = 400) {
+  return NextResponse.json({ ok: false, error }, { status });
+}
+
+function isObj(v: any) {
+  return !!v && typeof v === "object" && !Array.isArray(v);
+}
+
+function normText(v: unknown) {
+  return String(v ?? "").trim();
+}
+
+async function assertTeamAdminCanAccessPlayer(playerProfileId: string) {
+  const currentUser = await getCurrentUser().catch(() => null);
+
+  if (!currentUser?.id) {
+    return {
+      ok: false as const,
+      status: 401,
+      error: "You must be logged in.",
+      playerProfile: null,
+      team: null,
+    };
+  }
+
+  const adminMembership = await prisma.teamMembership.findFirst({
+    where: {
+      userId: currentUser.id,
+      role: "TEAM_ADMIN" as any,
+      isActive: true,
+    },
+    include: {
+      team: {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+        },
+      },
+    },
+  });
+
+  if (!adminMembership?.teamId) {
+    return {
+      ok: false as const,
+      status: 403,
+      error: "No active Team Admin membership found.",
+      playerProfile: null,
+      team: null,
+    };
+  }
+
+  const playerMembership = await prisma.teamMembership.findFirst({
+    where: {
+      teamId: adminMembership.teamId,
+      playerProfileId,
+      role: "PLAYER" as any,
+      isActive: true,
+    },
+    include: {
+      playerProfile: {
+        select: {
+          id: true,
+          email: true,
+          userId: true,
+          data: true,
+        },
+      },
+    },
+  });
+
+  if (!playerMembership?.playerProfile) {
+    return {
+      ok: false as const,
+      status: 404,
+      error: "Player is not active on this team roster.",
+      playerProfile: null,
+      team: adminMembership.team,
+    };
+  }
+
+return {
+  ok: true as const,
+  status: 200,
+  error: null,
+  user: currentUser,
+  playerProfile: playerMembership.playerProfile,
+  team: adminMembership.team,
+};
+}
+
 /**
- * GET /api/team/player-profile?playerProfileId=...
- * POST /api/team/player-profile?playerProfileId=...
+ * Team Admin may update ONLY:
+ * - Core: heightFt, heightIn, weightLb
+ * - Athletics: primaryPos, secondaryPos, isPitcher, pitcherHand, throws, bats
+ * - Metrics: metrics
+ * - Stats: statsSeasons
+ * - Video/Social: videoSocial, externalVideos, localVideos, social
+ * - References: coaches, references, coachesReferences
  *
- * GET Returns:
- * {
- *   ok: true,
- *   data: {
- *     playerProfileId,
- *     email,
- *     slug,
- *     photoUrl,
- *     atomic
- *   }
- * }
- *
- * POST Body:
- * { atomic: any }
- *
- * POST Behavior:
- * - Team Admin may ONLY update: metrics, statsSeasons, videoSocial (and legacy externalVideos/localVideos/social),
- *   coaches (and legacy references/coachesReferences if present)
- * - Core/Academics/Athletics (and everything else) are preserved from DB.
+ * Everything else remains preserved from DB.
  */
+function buildAllowedTeamAdminPatch(incomingAtomic: any) {
+  const patch: any = {};
+
+  // Core allowed fields only
+  for (const key of ["heightFt", "heightIn", "weightLb"]) {
+    if (Object.prototype.hasOwnProperty.call(incomingAtomic, key)) {
+      patch[key] = incomingAtomic[key];
+    }
+  }
+
+  // Athletics allowed fields only
+  for (const key of [
+    "primaryPos",
+    "secondaryPos",
+    "isPitcher",
+    "pitcherHand",
+    "throws",
+    "bats",
+  ]) {
+    if (Object.prototype.hasOwnProperty.call(incomingAtomic, key)) {
+      patch[key] = incomingAtomic[key];
+    }
+  }
+
+  // Metrics
+  if (isObj(incomingAtomic?.metrics)) {
+    patch.metrics = incomingAtomic.metrics;
+  }
+
+  // Stats
+  if (Array.isArray(incomingAtomic?.statsSeasons)) {
+    patch.statsSeasons = incomingAtomic.statsSeasons;
+  }
+
+  // Video/Social
+  if (isObj(incomingAtomic?.videoSocial)) {
+    patch.videoSocial = incomingAtomic.videoSocial;
+  }
+
+  if (Array.isArray(incomingAtomic?.externalVideos)) {
+    patch.externalVideos = incomingAtomic.externalVideos;
+  }
+
+  if (Array.isArray(incomingAtomic?.localVideos)) {
+    patch.localVideos = incomingAtomic.localVideos;
+  }
+
+  if (isObj(incomingAtomic?.social)) {
+    patch.social = incomingAtomic.social;
+  }
+
+  // References
+  if (Array.isArray(incomingAtomic?.coaches)) {
+    patch.coaches = incomingAtomic.coaches;
+  }
+
+  if (Array.isArray(incomingAtomic?.references)) {
+    patch.references = incomingAtomic.references;
+  }
+
+  if (Array.isArray(incomingAtomic?.coachesReferences)) {
+    patch.coachesReferences = incomingAtomic.coachesReferences;
+  }
+
+  // If editor stores normalized data, apply the same whitelist inside normalized.
+  if (isObj(incomingAtomic?.normalized)) {
+    const normalizedPatch = buildAllowedTeamAdminPatch(incomingAtomic.normalized);
+
+    if (Object.keys(normalizedPatch).length > 0) {
+      patch.normalized = normalizedPatch;
+    }
+  }
+
+  return patch;
+}
+
+function deepMergeAllowed(existing: any, patch: any) {
+  const merged = {
+    ...(isObj(existing) ? existing : {}),
+    ...patch,
+  };
+
+  if (isObj(existing?.normalized) || isObj(patch?.normalized)) {
+    merged.normalized = {
+      ...(isObj(existing?.normalized) ? existing.normalized : {}),
+      ...(isObj(patch?.normalized) ? patch.normalized : {}),
+    };
+  }
+
+  return merged;
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
-    const playerProfileId = String(searchParams.get("playerProfileId") || "").trim();
+    const playerProfileId = normText(searchParams.get("playerProfileId"));
 
     if (!playerProfileId) {
-      return NextResponse.json({ ok: false, error: "Missing playerProfileId" }, { status: 400 });
+      return jsonError("Missing playerProfileId", 400);
     }
 
-    // -----------------------------
-    // 1) Primary: DB lookup by PlayerProfile.id
-    // -----------------------------
-    const row = await prisma.playerProfile.findUnique({
-      where: { id: playerProfileId },
-      select: { id: true, email: true, userId: true, data: true },
-    });
+    const access = await assertTeamAdminCanAccessPlayer(playerProfileId);
 
-    if (row) {
+    if (access.ok && access.playerProfile) {
+      const row = access.playerProfile;
       const email = row.email ? String(row.email).trim().toLowerCase() : null;
 
-      // Prefer resolving public slug/photo via userId (most reliable)
       let user: { slug: string | null; photoUrl: string | null } | null = null;
 
       if (row.userId) {
@@ -70,20 +236,19 @@ export async function GET(req: Request) {
           slug: user?.slug ?? null,
           photoUrl: user?.photoUrl ?? null,
           atomic: (row.data as any) ?? {},
+          team: access.team,
         },
         source: "db",
       });
     }
 
-    // -----------------------------
-    // 2) Dev fallbacks
-    // -----------------------------
-
-    // If caller passes an email as the "playerProfileId", allow it in dev mode
+    // Dev fallbacks remain read-only-ish for local convenience.
     const looksLikeEmail = playerProfileId.includes("@");
+
     if (looksLikeEmail) {
       const email = playerProfileId.trim().toLowerCase();
       const dev = await getByEmail(email);
+
       if (dev) {
         return NextResponse.json({
           ok: true,
@@ -99,148 +264,128 @@ export async function GET(req: Request) {
       }
     }
 
-// demo_pp_* mapping (temporary but super useful)
-if (/^demo_pp_/i.test(playerProfileId)) {
-  const demoMap: Record<string, string> = {
-    demo_pp_1: "braden-little",
-    demo_pp_2: "jaxson-little",
-  };
+    if (/^demo_pp_/i.test(playerProfileId)) {
+      const demoMap: Record<string, string> = {
+        demo_pp_1: "braden-little",
+        demo_pp_2: "jaxson-little",
+      };
 
-  const mappedSlug = demoMap[playerProfileId.toLowerCase()];
+      const mappedSlug = demoMap[playerProfileId.toLowerCase()];
 
-  if (mappedSlug) {
-    // 1) Resolve user by slug
-    const u = await prisma.user.findFirst({
-      where: { slug: mappedSlug },
-      select: { id: true, email: true, slug: true, photoUrl: true },
-    });
-
-    if (u) {
-      // 2) Resolve player profile by userId (preferred)
-      const pp =
-        (await prisma.playerProfile.findFirst({
-          where: { userId: u.id },
-          select: { id: true, email: true, data: true },
-        })) ||
-        // fallback by email
-        (u.email
-          ? await prisma.playerProfile.findFirst({
-              where: { email: { equals: u.email, mode: "insensitive" } },
-              select: { id: true, email: true, data: true },
-            })
-          : null);
-
-      if (pp) {
-        return NextResponse.json({
-          ok: true,
-          data: {
-            playerProfileId: pp.id, // ✅ real DB id
-            email: (pp.email || u.email || "").toLowerCase(),
-            slug: u.slug ?? mappedSlug,
-            photoUrl: u.photoUrl ?? null,
-            atomic: (pp.data as any) ?? {},
-          },
-          source: "demo->slug->db",
+      if (mappedSlug) {
+        const u = await prisma.user.findFirst({
+          where: { slug: mappedSlug },
+          select: { id: true, email: true, slug: true, photoUrl: true },
         });
+
+        if (u) {
+          const pp =
+            (await prisma.playerProfile.findFirst({
+              where: { userId: u.id },
+              select: { id: true, email: true, data: true },
+            })) ||
+            (u.email
+              ? await prisma.playerProfile.findFirst({
+                  where: { email: { equals: u.email, mode: "insensitive" } },
+                  select: { id: true, email: true, data: true },
+                })
+              : null);
+
+          if (pp) {
+            return NextResponse.json({
+              ok: true,
+              data: {
+                playerProfileId: pp.id,
+                email: (pp.email || u.email || "").toLowerCase(),
+                slug: u.slug ?? mappedSlug,
+                photoUrl: u.photoUrl ?? null,
+                atomic: (pp.data as any) ?? {},
+              },
+              source: "demo->slug->db",
+            });
+          }
+        }
       }
+
+      return jsonError(
+        "Demo playerProfileId does not exist in DB. Load roster from /api/team/roster using real IDs.",
+        404
+      );
     }
-  }
 
-  // If we can’t resolve demo id to a real DB player, give a clearer error:
-  return NextResponse.json(
-    {
-      ok: false,
-      error:
-        "Demo playerProfileId does not exist in DB. Either load roster from /api/team/roster (real IDs) or create a user+player profile for this demo slug.",
-    },
-    { status: 404 }
-  );
-}
-
-    return NextResponse.json({ ok: false, error: "Player profile not found" }, { status: 404 });
+    return jsonError(access.error || "Player profile not found", access.status || 404);
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: e?.message || "Server error" }, { status: 500 });
+    return jsonError(e?.message || "Server error", 500);
   }
 }
 
-function isObj(v: any) {
-  return !!v && typeof v === "object" && !Array.isArray(v);
-}
-
-/**
- * Only allow Team Admin to modify these namespaces.
- * Everything else must remain as-is from DB.
- */
-function buildAllowedTeamAdminPatch(incomingAtomic: any) {
-  const patch: any = {};
-
-  // Metrics
-  if (isObj(incomingAtomic?.metrics)) patch.metrics = incomingAtomic.metrics;
-
-  // Stats seasons
-  if (Array.isArray(incomingAtomic?.statsSeasons)) patch.statsSeasons = incomingAtomic.statsSeasons;
-
-  // Video/Social (preferred namespace)
-  if (isObj(incomingAtomic?.videoSocial)) patch.videoSocial = incomingAtomic.videoSocial;
-
-  // Legacy video shapes that you may still store at top-level in dev
-  if (Array.isArray(incomingAtomic?.externalVideos)) patch.externalVideos = incomingAtomic.externalVideos;
-  if (Array.isArray(incomingAtomic?.localVideos)) patch.localVideos = incomingAtomic.localVideos;
-  if (isObj(incomingAtomic?.social)) patch.social = incomingAtomic.social;
-
-  // Coaches / References (preferred key in this page is "coaches")
-  if (Array.isArray(incomingAtomic?.coaches)) patch.coaches = incomingAtomic.coaches;
-
-  // Also allow these legacy keys if they exist in your system
-  if (Array.isArray(incomingAtomic?.references)) patch.references = incomingAtomic.references;
-  if (Array.isArray(incomingAtomic?.coachesReferences)) patch.coachesReferences = incomingAtomic.coachesReferences;
-
-  return patch;
-}
-
-export async function POST(req: Request) {
+async function saveTeamAdminProfile(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
-    const playerProfileId = String(searchParams.get("playerProfileId") || "").trim();
+    const playerProfileId = normText(searchParams.get("playerProfileId"));
 
     if (!playerProfileId) {
-      return NextResponse.json({ ok: false, error: "Missing playerProfileId" }, { status: 400 });
+      return jsonError("Missing playerProfileId", 400);
+    }
+
+    const access = await assertTeamAdminCanAccessPlayer(playerProfileId);
+
+    if (!access.ok || !access.playerProfile) {
+      return jsonError(access.error || "Unauthorized", access.status || 403);
     }
 
     const body = await req.json().catch(() => ({}));
     const incomingAtomic = body?.atomic;
 
-    if (!incomingAtomic || (typeof incomingAtomic !== "object" && typeof incomingAtomic !== "function")) {
-      return NextResponse.json({ ok: false, error: "Missing atomic payload" }, { status: 400 });
+    if (!isObj(incomingAtomic)) {
+      return jsonError("Missing atomic payload", 400);
     }
 
-    // Must be a real DB profile to persist (devStore can remain read-only for now)
-    const row = await prisma.playerProfile.findUnique({
-      where: { id: playerProfileId },
-      select: { id: true, data: true, email: true, userId: true },
-    });
-
-    if (!row) {
-      return NextResponse.json(
-        { ok: false, error: "Player profile not found (cannot save in devStore mode)." },
-        { status: 404 }
-      );
-    }
-
-    const existing = (row.data as any) ?? {};
+    const existing = (access.playerProfile.data as any) ?? {};
     const patch = buildAllowedTeamAdminPatch(incomingAtomic);
+    const merged = deepMergeAllowed(existing, patch);
 
-    // Preserve everything else; only overwrite allowed keys
-    const merged = {
-      ...existing,
-      ...patch,
-    };
+const updated = await prisma.playerProfile.update({
+  where: { id: access.playerProfile.id },
+  data: {
+    data: merged as any,
+    updatedAt: new Date(),
+  },
+  select: {
+    id: true,
+    data: true,
+  },
+});
 
-    const updated = await prisma.playerProfile.update({
-      where: { id: playerProfileId },
-      data: { data: merged as any },
-      select: { id: true, data: true },
-    });
+const ip =
+  req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+  req.headers.get("x-real-ip") ||
+  null;
+
+const userAgent = req.headers.get("user-agent") || null;
+
+await prisma.adminAuditLog
+  .create({
+    data: {
+      actingUserId: access.user?.id || null,
+      action: "TEAM_ADMIN_PLAYER_PROFILE_UPDATE",
+      entityType: "PlayerProfile",
+      entityId: access.playerProfile.id,
+      ip,
+      userAgent,
+      beforeJson: {
+        teamId: access.team?.id || null,
+        teamName: access.team?.name || null,
+        previousAllowedKeys: Object.keys(patch),
+      } as any,
+      afterJson: {
+        teamId: access.team?.id || null,
+        teamName: access.team?.name || null,
+        updatedAllowedKeys: Object.keys(patch),
+      } as any,
+    },
+  })
+  .catch(() => null);
 
     return NextResponse.json({
       ok: true,
@@ -250,6 +395,14 @@ export async function POST(req: Request) {
       },
     });
   } catch (e: any) {
-    return NextResponse.json({ ok: false, error: e?.message || "Server error" }, { status: 500 });
+    return jsonError(e?.message || "Server error", 500);
   }
+}
+
+export async function PATCH(req: Request) {
+  return saveTeamAdminProfile(req);
+}
+
+export async function POST(req: Request) {
+  return saveTeamAdminProfile(req);
 }

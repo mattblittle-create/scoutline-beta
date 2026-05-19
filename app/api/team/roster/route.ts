@@ -324,17 +324,47 @@ export async function GET(req: Request) {
         return fa.localeCompare(fb);
       });
 
-    return NextResponse.json({
-      ok: true,
-      data: {
-        team: {
-          id: teamId,
-          name: found.team.name,
-          slug: found.team.slug,
-          teamType: found.team.teamType,
-        },
-        count: roster.length,
-        roster,
+const analytics = {
+  totalPlayers: rows.length,
+  activePlayers: rows.filter((m) => m.isActive).length,
+  inactivePlayers: rows.filter((m) => !m.isActive).length,
+  committedPlayers: roster.filter((r) => !!r.committed).length,
+  pitchers: roster.filter((r) => !!r.pitcher).length,
+  avgGpa:
+    roster.filter((r) => r.gpa != null).length > 0
+      ? Number(
+          (
+            roster
+              .filter((r) => r.gpa != null)
+              .reduce((sum, r) => sum + Number(r.gpa || 0), 0) /
+            roster.filter((r) => r.gpa != null).length
+          ).toFixed(2)
+        )
+      : null,
+  gradYears: roster.reduce<Record<string, number>>((acc, r) => {
+    const key = r.gradYear ? String(r.gradYear) : "Unknown";
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {}),
+  primaryPositions: roster.reduce<Record<string, number>>((acc, r) => {
+    const key = r.primaryPos || "Unknown";
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {}),
+};
+
+return NextResponse.json({
+  ok: true,
+  data: {
+    team: {
+      id: teamId,
+      name: found.team.name,
+      slug: found.team.slug,
+      teamType: found.team.teamType,
+    },
+    count: roster.length,
+    analytics,
+    roster,
         filtersEcho: {
           q: q || null,
           gradYear,

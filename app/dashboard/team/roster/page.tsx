@@ -163,6 +163,7 @@ export default function TeamRosterPage() {
   const [error, setError] = React.useState<string | null>(null);
 
   const [rows, setRows] = React.useState<RosterRow[]>([]);
+  const [analytics, setAnalytics] = React.useState<any>(null);
   const [filters, setFilters] = React.useState<Filters>({
     q: "",
     gradYear: "",
@@ -176,6 +177,12 @@ export default function TeamRosterPage() {
   });
 
   const [selected, setSelected] = React.useState<Record<string, boolean>>({});
+
+  const [teaserModalOpen, setTeaserModalOpen] = React.useState(false);
+  const [teaserCoachEmail, setTeaserCoachEmail] = React.useState("");
+  const [teaserCoachName, setTeaserCoachName] = React.useState("");
+  const [teaserNote, setTeaserNote] = React.useState("");
+  const [teaserSuccess, setTeaserSuccess] = React.useState<string | null>(null);
 
   const filtered = React.useMemo(() => rows.filter((r) => matchesFilters(r, filters)), [rows, filters]);
   const selectedIds = React.useMemo(() => Object.keys(selected).filter((k) => selected[k]), [selected]);
@@ -213,8 +220,10 @@ async function load() {
       throw new Error(json?.error || "Failed to load roster.");
     }
 
-    const apiRows = (json?.data?.roster || []) as RosterRow[];
-    setRows(Array.isArray(apiRows) ? apiRows : []);
+const apiRows = (json?.data?.roster || []) as RosterRow[];
+
+setRows(Array.isArray(apiRows) ? apiRows : []);
+setAnalytics(json?.data?.analytics || null);
   } catch (e: any) {
     setRows([]);
     setError(e?.message || "Failed to load roster.");
@@ -287,21 +296,64 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
     }
   }
 
-  function openTeaserTabs(rowsToOpen: RosterRow[]) {
-    const activeWithSlug = rowsToOpen.filter((r) => r.isActive && !!r.publicSlug);
-    if (!activeWithSlug.length) {
-      setError("Select at least one ACTIVE player with a public profile slug to send a teaser card.");
-      return;
-    }
+function openTeaserTabs(rowsToOpen: RosterRow[]) {
+  const activeWithSlug = rowsToOpen.filter((r) => r.isActive && !!r.publicSlug);
 
-    // Open teaser card in new tabs
-    for (const r of activeWithSlug) {
-      const url = `/player/${encodeURIComponent(r.publicSlug as string)}/card?from=teaser`;
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
+  if (!activeWithSlug.length) {
+    setError(
+      "Select at least one ACTIVE player with a public profile slug to send a teaser card."
+    );
+    return;
   }
 
-  return (
+  for (const r of activeWithSlug) {
+    const url = `/player/${encodeURIComponent(
+      r.publicSlug as string
+    )}/card?from=teaser`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
+async function sendTeaserCards() {
+  setError(null);
+
+  const playerProfileIds = selectedActiveRows
+    .map((r) => r.playerProfileId)
+    .filter(Boolean);
+
+  try {
+    const res = await fetch("/api/team/teaser-cards/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        coachEmail: teaserCoachEmail,
+        coachName: teaserCoachName,
+        note: teaserNote,
+        playerProfileIds,
+      }),
+    });
+
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to send teaser cards.");
+    }
+
+    setTeaserModalOpen(false);
+    setTeaserCoachEmail("");
+    setTeaserCoachName("");
+    setTeaserNote("");
+
+setTeaserSuccess(
+  `Teaser cards sent to ${teaserCoachEmail.trim()}.`
+);
+  } catch (e: any) {
+    setError(e?.message || "Failed to send teaser cards.");
+  }
+}
+
+return (
     <main style={{ display: "grid", gap: 12 }}>
       {/* Top controls */}
       <section style={topBar}>
@@ -503,10 +555,29 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
                 ? `Open teaser cards for ${selectedActiveRows.length} active player(s)`
                 : "Select at least one ACTIVE player to send teaser cards."
             }
-            onClick={() => openTeaserTabs(selectedRows)}
+            onClick={() => {
+  setTeaserSuccess(null);
+  setTeaserModalOpen(true);
+}}
           >
             Send Teaser Cards
           </button>
+          
+          {teaserSuccess ? (
+  <div
+    style={{
+      border: "1px solid #bbf7d0",
+      borderRadius: 12,
+      background: "#f0fdf4",
+      color: "#166534",
+      padding: "8px 12px",
+      fontWeight: 900,
+      fontSize: 12,
+    }}
+  >
+    {teaserSuccess}
+  </div>
+) : null}
         </div>
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
@@ -519,6 +590,94 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
 </span>
         </div>
       </section>
+
+      {analytics ? (
+  <section
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Total Players</div>
+      <div style={analyticsValue}>
+        {analytics.totalPlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Active Billing Seats</div>
+      <div style={analyticsValue}>
+        {analytics.activePlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+  <div style={analyticsLabel}>Inactive Players</div>
+  <div style={analyticsValue}>
+    {analytics.inactivePlayers ?? 0}
+  </div>
+</div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Committed</div>
+      <div style={analyticsValue}>
+        {analytics.committedPlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Pitchers</div>
+      <div style={analyticsValue}>
+        {analytics.pitchers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Average GPA</div>
+      <div style={analyticsValue}>
+        {analytics.avgGpa ?? "—"}
+      </div>
+    </div>
+  </section>
+) : null}
+
+{analytics ? (
+  <section
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Grad Year Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.gradYears || {}).map(([label, count]) => (
+          <div key={label} style={breakdownRow}>
+            <span>{label}</span>
+            <strong>{String(count)}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Primary Position Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.primaryPositions || {}).map(
+          ([label, count]) => (
+            <div key={label} style={breakdownRow}>
+              <span>{label}</span>
+              <strong>{String(count)}</strong>
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  </section>
+) : null}
 
       {/* List */}
       <section style={card}>
@@ -761,6 +920,201 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
           </>
         )}
       </section>
+      {teaserModalOpen ? (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(15,23,42,0.45)",
+      zIndex: 50,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 16,
+    }}
+  >
+    <section
+      style={{
+        width: "100%",
+        maxWidth: 720,
+        borderRadius: 18,
+        background: "#fff",
+        border: "1px solid #e5e7eb",
+        boxShadow: "0 20px 60px rgba(15,23,42,0.25)",
+        padding: 18,
+        display: "grid",
+        gap: 14,
+      }}
+    >
+      <div>
+        <h2
+          style={{
+            margin: 0,
+            fontSize: "1.25rem",
+            fontWeight: 950,
+            color: "#0f172a",
+          }}
+        >
+          Send Teaser Cards
+        </h2>
+
+        <p
+          style={{
+            margin: "6px 0 0",
+            color: "#64748b",
+            fontWeight: 700,
+            lineHeight: 1.45,
+          }}
+        >
+          Selected active players with public teaser cards:{" "}
+          <strong>{selectedActiveRows.length}</strong>
+        </p>
+      </div>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 10,
+  }}
+>
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: 900, fontSize: 12, color: "#0f172a" }}>
+      Coach Email
+    </span>
+    <input
+      style={input}
+      value={teaserCoachEmail}
+      onChange={(e) => setTeaserCoachEmail(e.target.value)}
+      placeholder="coach@college.edu"
+      type="email"
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: 900, fontSize: 12, color: "#0f172a" }}>
+      Coach Name Optional
+    </span>
+    <input
+      style={input}
+      value={teaserCoachName}
+      onChange={(e) => setTeaserCoachName(e.target.value)}
+      placeholder="Coach Smith"
+    />
+  </label>
+</div>
+
+<label style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontWeight: 900, fontSize: 12, color: "#0f172a" }}>
+    Personal Note Required
+  </span>
+  <textarea
+    style={{
+      ...input,
+      minHeight: 110,
+      resize: "vertical",
+      lineHeight: 1.45,
+    }}
+    value={teaserNote}
+    onChange={(e) => setTeaserNote(e.target.value)}
+    placeholder="Coach, I wanted to send you a few players from our roster who may fit what you're looking for..."
+  />
+</label>
+
+      <div
+        style={{
+          border: "1px solid #e5e7eb",
+          borderRadius: 14,
+          background: "#f8fafc",
+          padding: 12,
+          display: "grid",
+          gap: 8,
+        }}
+      >
+        {selectedActiveRows.length ? (
+          selectedActiveRows.map((r) => (
+            <div
+              key={r.playerProfileId}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 10,
+                alignItems: "center",
+                color: "#0f172a",
+                fontWeight: 850,
+              }}
+            >
+              <span>{fullName(r) || r.playerProfileId}</span>
+
+              {r.publicSlug ? (
+                <Link
+                  href={`/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#8a6a21",
+                    fontWeight: 900,
+                    textDecoration: "none",
+                  }}
+                >
+                  Preview
+                </Link>
+              ) : null}
+            </div>
+          ))
+        ) : (
+          <div style={{ color: "#7f1d1d", fontWeight: 900 }}>
+            Select at least one active player with a public profile.
+          </div>
+        )}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: 10,
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          type="button"
+          style={btnGhost}
+          onClick={() => setTeaserModalOpen(false)}
+        >
+          Close
+        </button>
+
+        <button
+          type="button"
+          style={{
+            ...btnGoldSmall,
+            padding: "10px 14px",
+opacity:
+  selectedActiveRows.length &&
+  teaserCoachEmail.trim() &&
+  teaserNote.trim().length >= 20
+    ? 1
+    : 0.6,
+cursor:
+  selectedActiveRows.length &&
+  teaserCoachEmail.trim() &&
+  teaserNote.trim().length >= 20
+    ? "pointer"
+    : "not-allowed",
+          }}
+          disabled={
+  !selectedActiveRows.length ||
+  !teaserCoachEmail.trim() ||
+  teaserNote.trim().length < 20
+}
+          onClick={sendTeaserCards}
+        >
+          Send Teaser Cards
+        </button>
+      </div>
+    </section>
+  </div>
+) : null}
     </main>
   );
 }
@@ -953,6 +1307,49 @@ const miniHint: React.CSSProperties = {
   fontWeight: 700,
   fontSize: 12,
   lineHeight: 1.35,
+};
+
+const analyticsCard: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 14,
+  background: "#fff",
+  padding: 14,
+  boxShadow: "0 4px 12px rgba(15,23,42,0.05)",
+  display: "grid",
+  gap: 6,
+};
+
+const analyticsLabel: React.CSSProperties = {
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#64748b",
+  textTransform: "uppercase",
+  letterSpacing: ".04em",
+};
+
+const analyticsValue: React.CSSProperties = {
+  fontSize: 28,
+  fontWeight: 900,
+  color: "#0f172a",
+  lineHeight: 1,
+};
+
+const breakdownList: React.CSSProperties = {
+  display: "grid",
+  gap: 8,
+  marginTop: 4,
+};
+
+const breakdownRow: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 12,
+  alignItems: "center",
+  padding: "8px 10px",
+  borderRadius: 10,
+  background: "#f8fafc",
+  color: "#0f172a",
+  fontWeight: 800,
 };
 
 const errorBox: React.CSSProperties = {
