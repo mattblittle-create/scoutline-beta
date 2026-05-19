@@ -80,6 +80,12 @@ export default function ParentHeader({
       disabled: !linkedPlayerProfileId,
       badge: notificationCount > 0 ? notificationCount : null,
     },
+    {
+      label: "Account Support",
+      href: "/dashboard/parent",
+      match: "/dashboard/parent/support",
+      disabled: false,
+    },
   ];
 
   function isActive(item: NavItem) {

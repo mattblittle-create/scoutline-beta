@@ -49,6 +49,10 @@ export default async function ParentDashboardPage() {
     ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/college-search`
     : "/dashboard/parent";
 
+  const targetProgramsHref = playerProfile?.id
+    ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/target-programs`
+    : "/dashboard/parent";
+
   const billingHref = playerProfile?.id
     ? `/dashboard/parent/player/${encodeURIComponent(playerProfile.id)}/billing`
     : "/dashboard/parent";
@@ -129,53 +133,53 @@ export default async function ParentDashboardPage() {
           gap: 16,
         }}
       >
-        <Card
-          title="Player Profile"
-          body={`Review and update ${possessiveFirstName} profile basics, academics, athletics, stats, video, and social links.`}
-          href={playerOverviewHref}
-          cta="Open Player Profile"
-          disabled={!playerProfile}
-        />
+<Card
+  title="Player Profile"
+  body={`Review and update ${possessiveFirstName} profile basics, academics, athletics, stats, video, and social links.`}
+  href={playerOverviewHref}
+  cta="Open Player Profile"
+  disabled={!playerProfile}
+/>
 
-        <Card
-          title="Public Profile"
-          body={`See what college coaches and evaluators can view on ${possessiveFirstName} public ScoutLine profile.`}
-          href={publicProfileHref || playerOverviewHref}
-          cta="View Public Profile"
-          disabled={!publicProfileHref}
-        />
+<Card
+  title="Public Profile"
+  body={`See what college coaches and evaluators can view on ${possessiveFirstName} public ScoutLine profile.`}
+  href={publicProfileHref || playerOverviewHref}
+  cta="View Public Profile"
+  disabled={!publicProfileHref}
+/>
 
-        <Card
-          title="Recruiting Snapshot"
-          body={`View ${possessiveFirstName} recruiting readiness, profile completion, suggested lane, and parent-friendly next steps.`}
-          href={recruitingHref}
-          cta="Open Snapshot"
-          disabled={!playerProfile}
-        />
+<Card
+  title="College Search"
+  body="Research colleges from a family planning perspective including division, region, conference, and tuition."
+  href={collegeSearchHref}
+  cta="Search Colleges"
+  disabled={!playerProfile}
+/>
 
-        <Card
-          title="College Search"
-          body="Research colleges from a family planning perspective including division, region, conference, and tuition."
-          href={collegeSearchHref}
-          cta="Search Colleges"
-          disabled={!playerProfile}
-        />
+<Card
+  title="Recruiting Snapshot"
+  body={`View ${possessiveFirstName} recruiting readiness, profile completion, suggested lane, and parent-friendly next steps.`}
+  href={recruitingHref}
+  cta="Open Snapshot"
+  disabled={!playerProfile}
+/>
 
-        <Card
-          title="Billing"
-          body={`View and manage billing for ${possessiveFirstName} ScoutLine account including plan details and invoices.`}
-          href={billingHref}
-          cta="Open Billing"
-          disabled={!playerProfile}
-        />
+<Card
+  title="Target Programs"
+  body={`Review ${possessiveFirstName} saved target schools, recruiting priorities, and program list.`}
+  href={targetProgramsHref}
+  cta="Open Target Programs"
+  disabled={!playerProfile}
+/>
 
-        <Card
-          title="Account / Support"
-          body="Review linked player access, parent account status, and future support options from the parent portal."
-          href="/dashboard/parent"
-          cta="Coming Soon"
-          disabled
-        />
+<Card
+  title="Billing"
+  body={`View and manage billing for ${possessiveFirstName} ScoutLine account including plan details and invoices.`}
+  href={billingHref}
+  cta="Open Billing"
+  disabled={!playerProfile}
+/>
       </section>
     </div>
   );
