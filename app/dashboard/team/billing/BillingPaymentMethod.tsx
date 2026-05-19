@@ -3,6 +3,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
 import BillingDisclosure from "@/app/components/billing/BillingDisclosure";
 import CancelAccountControl from "@/app/components/billing/CancelAccountControl";
 
@@ -82,6 +83,22 @@ export default function BillingPaymentMethod(props: {
           >
             {busy ? "Opening…" : "Submit Payment"}
           </button>
+          <Link
+  href={`/dashboard/team/billing/update-method?teamId=${encodeURIComponent(
+    props.teamId
+  )}`}
+  style={{
+    padding: "10px 12px",
+    borderRadius: 10,
+    border: `1px solid ${GOLD}`,
+    background: "#fff",
+    color: NAVY,
+    fontWeight: 900,
+    textDecoration: "none",
+  }}
+>
+  Update Payment Info
+</Link>
 
           {msg ? <span style={{ color: "#b91c1c", fontWeight: 700 }}>{msg}</span> : null}
         </div>
