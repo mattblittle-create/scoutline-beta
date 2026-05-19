@@ -625,34 +625,113 @@ async function persistRosterActive(membershipId: string, isActive: boolean) {
                         <div style={rightActions}>
                           {isSelected ? (
                             <>
-                              {/* ✅ Edit Profile (disabled when inactive) */}
-                              {canActions ? (
-                                <Link
-                                  href={`/dashboard/team/roster/player/${encodeURIComponent(r.playerProfileId)}`}
-                                  style={btnGhostSmall}
-                                >
-                                  Edit Player Profile
-                                </Link>
-                              ) : (
-                                <span style={btnGhostSmallDisabled} title="Player must be Active to edit profile.">
-                                  Edit Player Profile
-                                </span>
-                              )}
+{/* ✅ Edit Profile (disabled when inactive) */}
+{canActions ? (
+  <Link
+    href={`/dashboard/team/roster/player/${encodeURIComponent(
+      r.playerProfileId
+    )}/edit`}
+    style={btnGhostSmall}
+  >
+    Edit Player Profile
+  </Link>
+) : (
+  <span
+    style={btnGhostSmallDisabled}
+    title="Player must be Active to edit profile."
+  >
+    Edit Player Profile
+  </span>
+)}
 
-                              {/* ✅ View Profile (disabled when inactive) */}
-                              {r.publicSlug ? (
-                                canActions ? (
-                                  <Link href={`/player/${encodeURIComponent(r.publicSlug)}`} style={btnGhostSmall}>
-                                    View Player Profile
-                                  </Link>
-                                ) : (
-                                  <span style={btnGhostSmallDisabled} title="Player must be Active to view profile from roster.">
-                                    View Player Profile
-                                  </span>
-                                )
-                              ) : null}
+{/* ✅ View Public Profile + Player Tools (disabled when inactive) */}
+{canActions ? (
+  <>
+    {r.publicSlug ? (
+      <Link
+        href={`/player/${encodeURIComponent(r.publicSlug)}`}
+        style={btnGhostSmall}
+      >
+        View Player Profile
+      </Link>
+    ) : null}
 
-                              {/* ✅ Send Teaser Card (disabled when inactive OR missing slug) */}
+    <Link
+      href={`/dashboard/player/recruiting-tool?playerProfileId=${encodeURIComponent(
+        r.playerProfileId
+      )}&from=team-roster`}
+      style={btnGhostSmall}
+    >
+      Recruiting Tool
+    </Link>
+
+    <Link
+      href={`/dashboard/player/college-search?playerProfileId=${encodeURIComponent(
+        r.playerProfileId
+      )}&from=team-roster`}
+      style={btnGhostSmall}
+    >
+      College Search
+    </Link>
+
+    <Link
+      href={`/dashboard/player/suggested-programs?playerProfileId=${encodeURIComponent(
+        r.playerProfileId
+      )}&from=team-roster`}
+      style={btnGhostSmall}
+    >
+      Suggested Programs
+    </Link>
+
+    <Link
+      href={`/dashboard/player/target-programs?playerProfileId=${encodeURIComponent(
+        r.playerProfileId
+      )}&from=team-roster`}
+      style={btnGhostSmall}
+    >
+      Target Programs
+    </Link>
+  </>
+) : (
+  <>
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to view profile from roster."
+    >
+      View Player Profile
+    </span>
+
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to use recruiting tools."
+    >
+      Recruiting Tool
+    </span>
+
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to use college search."
+    >
+      College Search
+    </span>
+
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to view suggested programs."
+    >
+      Suggested Programs
+    </span>
+
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to view target programs."
+    >
+      Target Programs
+    </span>
+  </>
+)}
+
+{/* ✅ Send Teaser Card (disabled when inactive OR missing slug) */}
                               {r.publicSlug ? (
                                 <a
                                   href={canTeaser ? `/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser` : undefined}
