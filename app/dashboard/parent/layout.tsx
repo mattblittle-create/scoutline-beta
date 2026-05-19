@@ -44,6 +44,8 @@ export default async function ParentDashboardLayout({
 
   const context = await getParentDashboardContext();
 
+  const ctx: any = context;
+
   return (
     <main
       style={{
@@ -77,10 +79,17 @@ export default async function ParentDashboardLayout({
         </p>
       </div>
 
-      <ParentHeader
-        linkedPlayerProfileId={context.activePlayerProfileId}
-        notificationCount={context.notificationCount}
-      />
+<ParentHeader
+  linkedPlayerProfileId={linkedPlayerProfileId}
+  linkedPlayerName={
+    ctx?.playerName ||
+    ctx?.player?.fullName ||
+    ctx?.playerProfile?.fullName ||
+    ctx?.linkedPlayer?.fullName ||
+    null
+  }
+  notificationCount={ctx?.unreadNotificationCount || ctx?.notificationCount || 0}
+/>
 
       {children}
     </main>

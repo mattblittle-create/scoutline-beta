@@ -33,7 +33,7 @@ export default function SupportButton({
       if (goFaq) {
         window.location.href = "https://www.myscoutline.com/faq";
       }
-    }, 500);
+    }, 5000);
   }
 
   return (

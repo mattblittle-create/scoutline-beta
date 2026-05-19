@@ -9,6 +9,7 @@ import SupportButton from "@/app/components/SupportButton";
 
 type Props = {
   linkedPlayerProfileId?: string | null;
+  linkedPlayerName?: string | null;
   notificationCount?: number;
 };
 
@@ -22,6 +23,7 @@ type NavItem = {
 
 export default function ParentHeader({
   linkedPlayerProfileId,
+  linkedPlayerName,
   notificationCount = 0,
 }: Props) {
   const pathname = usePathname();
@@ -144,10 +146,11 @@ export default function ParentHeader({
         })}
 
         {linkedPlayerProfileId ? (
-          <SupportButton
-            subjectPrefix="Account Support Request"
-            targetId={linkedPlayerProfileId}
-          />
+<SupportButton
+  subjectPrefix="Account Support Request"
+  playerName={linkedPlayerName}
+  targetId={linkedPlayerProfileId}
+/>
         ) : null}
       </div>
 
