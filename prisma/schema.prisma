@@ -515,12 +515,49 @@ model PlayerInvoice {
   failureReason            String?
   paidAt                   DateTime?
   createdAt        DateTime          @default(now())
-  commissionEvents CommissionEvent[]
-  playerProfile    PlayerProfile     @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+commissionEvents     CommissionEvent[]
+billingTransactions  BillingTransaction[]
+playerProfile        PlayerProfile     @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
 
   @@index([playerProfileId, invoiceDate])
   @@index([playerProfileId, status])
   @@index([playerProfileId, periodStart])
+}
+
+model BillingTransaction {
+  id                    String   @id @default(cuid())
+
+  invoiceId             String?
+  playerProfileId       String?
+
+  provider              String   @default("VALOR")
+
+  transactionType       String
+  transactionStatus     String
+
+  providerTransactionId String?
+  providerReference     String?
+
+  amountCents           Int
+  cardFeeCents          Int      @default(0)
+
+  approvalCode          String?
+  responseCode          String?
+  responseMessage       String?
+  receiptUrl            String?
+
+  rawPayload            Json?
+
+  createdAt             DateTime @default(now())
+
+  playerInvoice         PlayerInvoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+
+  @@index([invoiceId])
+  @@index([playerProfileId])
+  @@index([providerTransactionId])
+  @@index([providerReference])
+  @@index([transactionType])
+  @@index([transactionStatus])
 }
 
 model BillingAuditLog {
