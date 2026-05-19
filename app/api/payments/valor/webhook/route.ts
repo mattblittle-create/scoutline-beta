@@ -156,7 +156,9 @@ const providerPaymentRef = firstString(
   data?.vault_tokenization?.vtToken,
   data?.vault_tokenization?.vault_id,
   data?.token,
-  data?.payment_token
+  data?.payment_token,
+  data?.cardToken,
+  data?.card_token
 );
 
   const receiptUrl =
@@ -230,8 +232,7 @@ const approved =
     "CAPTURED",
     "SETTLED",
     "COMPLETED",
-  ].includes(status) ||
-  ["00", "S00"].includes(responseCode);
+  ].includes(status) || ["00", "S00"].includes(responseCode);
 
   return {
     event,
@@ -336,30 +337,38 @@ async function applySuccessfulPayment(normalized: NormalizedWebhook) {
       });
     }
 
-    await tx.playerBillingProfile.upsert({
-      where: { playerProfileId: invoice.playerProfileId },
-      update: {
-        provider: "VALOR",
-        providerPaymentRef:
-          normalized.providerPaymentRef ||
-          normalized.transactionId ||
-          normalized.reference,
-        paymentType: normalized.paymentType || undefined,
-        last4: normalized.last4 || undefined,
-        brand: normalized.brand || undefined,
-      },
-      create: {
-        playerProfileId: invoice.playerProfileId,
-        provider: "VALOR",
-        providerPaymentRef:
-          normalized.providerPaymentRef ||
-          normalized.transactionId ||
-          normalized.reference,
-        paymentType: normalized.paymentType || undefined,
-        last4: normalized.last4 || undefined,
-        brand: normalized.brand || undefined,
-      },
-    });
+await tx.playerBillingProfile.upsert({
+  where: {
+    playerProfileId: invoice.playerProfileId,
+  },
+  update: {
+    provider: "VALOR",
+
+    // Only update the stored payment token when Valor actually sends a reusable token.
+    // Never fall back to transactionId/reference here.
+    ...(normalized.providerPaymentRef
+      ? {
+          providerPaymentRef: normalized.providerPaymentRef,
+        }
+      : {}),
+
+    paymentType: normalized.paymentType || undefined,
+    last4: normalized.last4 || undefined,
+    brand: normalized.brand || undefined,
+  },
+  create: {
+    playerProfileId: invoice.playerProfileId,
+    provider: "VALOR",
+
+    // On create, this may be null if Valor approved the payment but did not return a reusable token.
+    // That is okay — recurring should not run unless providerPaymentRef is later populated.
+    providerPaymentRef: normalized.providerPaymentRef || null,
+
+    paymentType: normalized.paymentType || undefined,
+    last4: normalized.last4 || undefined,
+    brand: normalized.brand || undefined,
+  },
+});
 
     await createBillingAuditLog({
   actorType: "SYSTEM",

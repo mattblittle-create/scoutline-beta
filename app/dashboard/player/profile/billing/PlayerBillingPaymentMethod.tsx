@@ -5,6 +5,7 @@
 import React, { useState } from "react";
 import BillingDisclosure from "@/app/components/billing/BillingDisclosure";
 import CancelAccountControl from "@/app/components/billing/CancelAccountControl";
+import Link from "next/link";
 
 const GOLD = "#caa042";
 const NAVY = "#0f172a";
@@ -67,22 +68,39 @@ export default function PlayerBillingPaymentMethod(props: {
         }}
       >
         <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
-          <button
-            type="button"
-            onClick={onGoToValor}
-            disabled={busy}
-            style={{
-              padding: "10px 12px",
-              borderRadius: 10,
-              border: `1px solid ${GOLD}`,
-              background: busy ? `${GOLD}80` : GOLD,
-              color: NAVY,
-              fontWeight: 900,
-              cursor: busy ? "not-allowed" : "pointer",
-            }}
-          >
-            {busy ? "Opening…" : "Submit Payment"}
-          </button>
+<button
+  type="button"
+  onClick={onGoToValor}
+  disabled={busy}
+  style={{
+    padding: "10px 12px",
+    borderRadius: 10,
+    border: `1px solid ${GOLD}`,
+    background: busy ? `${GOLD}80` : GOLD,
+    color: NAVY,
+    fontWeight: 900,
+    cursor: busy ? "not-allowed" : "pointer",
+  }}
+>
+  {busy ? "Opening…" : "Submit Payment"}
+</button>
+
+<Link
+  href={`/dashboard/player/profile/billing/update-method?playerProfileId=${encodeURIComponent(
+    props.playerProfileId
+  )}`}
+  style={{
+    padding: "10px 12px",
+    borderRadius: 10,
+    border: `1px solid ${GOLD}`,
+    background: "#fff",
+    color: NAVY,
+    fontWeight: 900,
+    textDecoration: "none",
+  }}
+>
+  Update Payment Info
+</Link>
 
           {msg ? <span style={{ color: "#b91c1c", fontWeight: 700 }}>{msg}</span> : null}
         </div>
