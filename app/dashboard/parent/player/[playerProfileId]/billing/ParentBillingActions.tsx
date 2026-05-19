@@ -186,14 +186,17 @@ const res = await fetch(path, {
           gap: 12,
         }}
       >
-        <button
-          type="button"
-          onClick={() => runPortal("update")}
-          disabled={busy !== null}
-          style={goldBtn}
-        >
-          {busy === "update" ? "Opening…" : "Update Payment Method"}
-        </button>
+<a
+  href={`/dashboard/player/profile/billing/update-method?playerProfileId=${encodeURIComponent(
+    playerProfileId
+  )}`}
+  style={{
+    ...goldBtn,
+    textDecoration: "none",
+  }}
+>
+  Update Payment Info
+</a>
 
         <button
           type="button"
@@ -201,7 +204,7 @@ const res = await fetch(path, {
           disabled={busy !== null}
           style={ghostBtn}
         >
-          {busy === "portal" ? "Opening…" : "Open Billing Portal"}
+          {busy === "portal" ? "Opening…" : "Submit Payment"}
         </button>
 
         <button
