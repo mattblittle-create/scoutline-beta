@@ -2701,7 +2701,8 @@ return (
         {/* ========= TAB 6: VIDEO / SOCIAL ========= */}
 <div style={{ display: activeTab === "Video / Social Media" ? "block" : "none" }}>
   <TabVideoSocial
-    ref={videoSocialRef}
+      ref={videoSocialRef}
+      readOnlyTeamAdmin={isTeamAdminMode}
     email={profileEmail}
     planTier="All-American"
   />

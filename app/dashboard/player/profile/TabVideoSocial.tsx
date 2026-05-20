@@ -418,10 +418,14 @@ function saveState(email: string | null | undefined, state: VideoSocialState) {
 }
 
 // ---------- Component ----------
-const TabVideoSocial = React.forwardRef<VideoSocialHandle, { email?: string | null; planTier?: PlanTier }>(
+const TabVideoSocial = React.forwardRef<
+  VideoSocialHandle,
+  { email?: string | null; planTier?: PlanTier; readOnlyTeamAdmin?: boolean }
+>(
   function TabVideoSocial(props, ref) {
     const planTier: PlanTier = props.planTier ?? "All-American";
     const PLAN = PLAN_RULES[planTier];
+    const isTeamAdminMode = !!props.readOnlyTeamAdmin;
 
     // ---- Stable storage key ----
     const storageEmail = (props.email ?? "").trim().toLowerCase() || "anon";
@@ -1186,9 +1190,13 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                             <button
                               type="button"
                               onClick={() => moveLocal(v.id, -1)}
-                              disabled={atTop}
-                              aria-disabled={atTop}
-                              style={{ ...smallGhostButtonStyle, opacity: atTop ? 0.4 : 1 }}
+disabled={isTeamAdminMode || atTop}
+aria-disabled={isTeamAdminMode || atTop}
+style={{
+  ...smallGhostButtonStyle,
+  opacity: isTeamAdminMode || atTop ? 0.4 : 1,
+  cursor: isTeamAdminMode || atTop ? "not-allowed" : "pointer",
+}}
                               title="Move up"
                               aria-label={`Move up: ${titleText}`}
                             >
@@ -1197,9 +1205,13 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                             <button
                               type="button"
                               onClick={() => moveLocal(v.id, +1)}
-                              disabled={atBottom}
-                              aria-disabled={atBottom}
-                              style={{ ...smallGhostButtonStyle, opacity: atBottom ? 0.4 : 1 }}
+disabled={isTeamAdminMode || atBottom}
+aria-disabled={isTeamAdminMode || atBottom}
+style={{
+  ...smallGhostButtonStyle,
+  opacity: isTeamAdminMode || atBottom ? 0.4 : 1,
+  cursor: isTeamAdminMode || atBottom ? "not-allowed" : "pointer",
+}}
                               title="Move down"
                               aria-label={`Move down: ${titleText}`}
                             >
@@ -1208,8 +1220,16 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                             {!_isPrimary ? (
                               <button
                                 type="button"
-                                onClick={() => setPrimary("local", v.id)}
-                                style={smallPrimaryButtonStyle}
+onClick={() => {
+  if (isTeamAdminMode) return;
+  setPrimary("local", v.id);
+}}
+disabled={isTeamAdminMode}
+style={{
+  ...smallPrimaryButtonStyle,
+  opacity: isTeamAdminMode ? 0.5 : 1,
+  cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+}}
                                 aria-label={`Set ${titleText} as primary highlight`}
                               >
                                 Set as Primary
@@ -1219,8 +1239,16 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
 
                           <button
                             type="button"
-                            onClick={() => removeLocal(v.id)}
-                            style={removeButtonStyle}
+onClick={() => {
+  if (isTeamAdminMode) return;
+  removeLocal(v.id);
+}}
+disabled={isTeamAdminMode}
+style={{
+  ...removeButtonStyle,
+  opacity: isTeamAdminMode ? 0.5 : 1,
+  cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+}}
                             aria-label={`Remove video ${titleText}`}
                           >
                             Remove
@@ -1289,21 +1317,25 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                   value={extTitle}
                   onChange={(e) => setExtTitle(e.target.value)}
                   style={inputStyle}
-                  disabled={!PLAN.canExternal}
+                  disabled={isTeamAdminMode || !PLAN.canExternal}
                 />
                 <input
                   placeholder="https://youtu.be/… or https://vimeo.com/… or https://…/clip.mp4"
                   value={extUrl}
                   onChange={(e) => setExtUrl(e.target.value)}
                   style={inputStyle}
-                  disabled={!PLAN.canExternal}
+                  disabled={isTeamAdminMode || !PLAN.canExternal}
                 />
                 <button
                   type="button"
                   onClick={addExternalVideo}
-                  disabled={!PLAN.canExternal}
-                  aria-disabled={!PLAN.canExternal}
-                  style={{ ...buttonStyle, opacity: PLAN.canExternal ? 1 : 0.5, cursor: PLAN.canExternal ? "pointer" : "not-allowed" }}
+disabled={isTeamAdminMode || !PLAN.canExternal}
+aria-disabled={isTeamAdminMode || !PLAN.canExternal}
+style={{
+  ...buttonStyle,
+  opacity: !isTeamAdminMode && PLAN.canExternal ? 1 : 0.5,
+  cursor: !isTeamAdminMode && PLAN.canExternal ? "pointer" : "not-allowed",
+}}
                 >
                   Add
                 </button>
@@ -1349,9 +1381,13 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           <button
                             type="button"
                             onClick={() => moveExternal(v.id, -1)}
-                            disabled={atTop}
-                            aria-disabled={atTop}
-                            style={{ ...smallGhostButtonStyle, opacity: atTop ? 0.4 : 1 }}
+disabled={isTeamAdminMode || atTop}
+aria-disabled={isTeamAdminMode || atTop}
+style={{
+  ...smallGhostButtonStyle,
+  opacity: isTeamAdminMode || atTop ? 0.4 : 1,
+  cursor: isTeamAdminMode || atTop ? "not-allowed" : "pointer",
+}}
                             title="Move up"
                             aria-label={`Move up: ${titleText}`}
                           >
@@ -1360,9 +1396,13 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           <button
                             type="button"
                             onClick={() => moveExternal(v.id, +1)}
-                            disabled={atBottom}
-                            aria-disabled={atBottom}
-                            style={{ ...smallGhostButtonStyle, opacity: atBottom ? 0.4 : 1 }}
+disabled={isTeamAdminMode || atBottom}
+aria-disabled={isTeamAdminMode || atBottom}
+style={{
+  ...smallGhostButtonStyle,
+  opacity: isTeamAdminMode || atBottom ? 0.4 : 1,
+  cursor: isTeamAdminMode || atBottom ? "not-allowed" : "pointer",
+}}
                             title="Move down"
                             aria-label={`Move down: ${titleText}`}
                           >
@@ -1371,8 +1411,16 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           {!_isPrimary ? (
                             <button
                               type="button"
-                              onClick={() => setPrimary("external", v.id)}
-                              style={smallPrimaryButtonStyle}
+onClick={() => {
+  if (isTeamAdminMode) return;
+  setPrimary("external", v.id);
+}}
+disabled={isTeamAdminMode}
+style={{
+  ...smallPrimaryButtonStyle,
+  opacity: isTeamAdminMode ? 0.5 : 1,
+  cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+}}
                               aria-label={`Set ${titleText} as primary highlight`}
                             >
                               Set as Primary
@@ -1384,8 +1432,16 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           <span style={badgeMuted}>{v.source.toUpperCase()}</span>
                           <button
                             type="button"
-                            onClick={() => removeExternal(v.id)}
-                            style={removeButtonStyle}
+onClick={() => {
+  if (isTeamAdminMode) return;
+  removeExternal(v.id);
+}}
+disabled={isTeamAdminMode}
+style={{
+  ...removeButtonStyle,
+  opacity: isTeamAdminMode ? 0.5 : 1,
+  cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+}}
                             aria-label={`Remove external video ${titleText}`}
                           >
                             Remove
@@ -1419,7 +1475,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                     value={xHandle}
                     onChange={(e) => onXChange(e.target.value)}
                     style={inputStyle}
-                    disabled={!PLAN.canSocial}
+                    disabled={isTeamAdminMode || !PLAN.canSocial}
                   />
                 </div>
                 <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
@@ -1429,7 +1485,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                     value={igHandle}
                     onChange={(e) => onIgChange(e.target.value)}
                     style={inputStyle}
-                    disabled={!PLAN.canSocial}
+                    disabled={isTeamAdminMode || !PLAN.canSocial}
                   />
                 </div>
                 <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
@@ -1439,7 +1495,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                     value={ytUrl}
                     onChange={(e) => onYtChange(e.target.value)}
                     style={inputStyle}
-                    disabled={!PLAN.canSocial}
+                    disabled={isTeamAdminMode || !PLAN.canSocial}
                   />
                 </div>
 
@@ -1450,7 +1506,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     value={gameChangerUrl}
     onChange={(e) => onGameChangerChange(e.target.value)}
     style={inputStyle}
-    disabled={!PLAN.canSocial}
+    disabled={isTeamAdminMode || !PLAN.canSocial}
   />
 </div>
 
@@ -1461,7 +1517,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     value={maxPrepsUrl}
     onChange={(e) => onMaxPrepsChange(e.target.value)}
     style={inputStyle}
-    disabled={!PLAN.canSocial}
+    disabled={isTeamAdminMode || !PLAN.canSocial}
   />
 </div>
 
@@ -1472,7 +1528,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     value={rapsodoUrl}
     onChange={(e) => onRapsodoChange(e.target.value)}
     style={inputStyle}
-    disabled={!PLAN.canSocial}
+    disabled={isTeamAdminMode || !PLAN.canSocial}
   />
 </div>
 
@@ -1483,7 +1539,7 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     value={trackmanUrl}
     onChange={(e) => onTrackmanChange(e.target.value)}
     style={inputStyle}
-    disabled={!PLAN.canSocial}
+    disabled={isTeamAdminMode || !PLAN.canSocial}
   />
 </div>
 
@@ -1494,17 +1550,24 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     value={pocketRadarUrl}
     onChange={(e) => onPocketRadarChange(e.target.value)}
     style={inputStyle}
-    disabled={!PLAN.canSocial}
+    disabled={isTeamAdminMode || !PLAN.canSocial}
   />
 </div>
 
 <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
   <button
     type="button"
-    onClick={saveSocial}
-    disabled={!PLAN.canSocial}
-    aria-disabled={!PLAN.canSocial}
-    style={{ ...buttonStyle, opacity: PLAN.canSocial ? 1 : 0.5, cursor: PLAN.canSocial ? "pointer" : "not-allowed" }}
+onClick={() => {
+  if (isTeamAdminMode) return;
+  saveSocial();
+}}
+disabled={isTeamAdminMode || !PLAN.canSocial}
+aria-disabled={isTeamAdminMode || !PLAN.canSocial}
+style={{
+  ...buttonStyle,
+  opacity: !isTeamAdminMode && PLAN.canSocial ? 1 : 0.5,
+  cursor: !isTeamAdminMode && PLAN.canSocial ? "pointer" : "not-allowed",
+}}
   >
     Save Social
   </button>
@@ -1520,15 +1583,23 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
       >
         Follow on X
       </a>
-      <button
-        type="button"
-        onClick={clearX}
-        aria-label="Remove X handle"
-        title="Remove X handle"
-        style={closeXButtonStyle}
-      >
-        ×
-      </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearX();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove X handle"
+  title={isTeamAdminMode ? "Team Admin cannot remove social profiles." : "Remove X handle"}
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
     </span>
   ) : null}
 
@@ -1543,15 +1614,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
       >
         Follow on Instagram
       </a>
-      <button
-        type="button"
-        onClick={clearIg}
-        aria-label="Remove Instagram handle"
-        title="Remove Instagram handle"
-        style={closeXButtonStyle}
-      >
-        ×
-      </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearIg();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove Instagram handle"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove Instagram profiles."
+      : "Remove Instagram handle"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
     </span>
   ) : null}
 
@@ -1566,15 +1649,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
       >
         YouTube Channel
       </a>
-      <button
-        type="button"
-        onClick={clearYt}
-        aria-label="Remove YouTube channel"
-        title="Remove YouTube channel"
-        style={closeXButtonStyle}
-      >
-        ×
-      </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearYt();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove YouTube channel"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove YouTube channels."
+      : "Remove YouTube channel"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
     </span>
   ) : null}
 
@@ -1588,15 +1683,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     >
       GameChanger Profile
     </a>
-    <button
-      type="button"
-      onClick={clearGameChanger}
-      aria-label="Remove GameChanger URL"
-      title="Remove GameChanger URL"
-      style={closeXButtonStyle}
-    >
-      ×
-    </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearGameChanger();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove GameChanger profile"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove GameChanger profiles."
+      : "Remove GameChanger profile"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
   </span>
 ) : null}
 
@@ -1610,15 +1717,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     >
       MaxPreps Profile
     </a>
-    <button
-      type="button"
-      onClick={clearMaxPreps}
-      aria-label="Remove MaxPreps URL"
-      title="Remove MaxPreps URL"
-      style={closeXButtonStyle}
-    >
-      ×
-    </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearMaxPreps();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove MaxPreps profile"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove MaxPreps profiles."
+      : "Remove MaxPreps profile"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
   </span>
 ) : null}
 
@@ -1632,15 +1751,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     >
       Rapsodo Profile
     </a>
-    <button
-      type="button"
-      onClick={clearRapsodo}
-      aria-label="Remove Rapsodo URL"
-      title="Remove Rapsodo URL"
-      style={closeXButtonStyle}
-    >
-      ×
-    </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearRapsodo();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove Rapsodo profile"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove Rapsodo profiles."
+      : "Remove Rapsodo profile"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
   </span>
 ) : null}
 
@@ -1654,15 +1785,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     >
       TrackMan Profile
     </a>
-    <button
-      type="button"
-      onClick={clearTrackman}
-      aria-label="Remove TrackMan URL"
-      title="Remove TrackMan URL"
-      style={closeXButtonStyle}
-    >
-      ×
-    </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearTrackman();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove TrackMan profile"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove TrackMan profiles."
+      : "Remove TrackMan profile"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
   </span>
 ) : null}
 
@@ -1676,15 +1819,27 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
     >
       Pocket Radar Profile
     </a>
-    <button
-      type="button"
-      onClick={clearPocketRadar}
-      aria-label="Remove Pocket Radar URL"
-      title="Remove Pocket Radar URL"
-      style={closeXButtonStyle}
-    >
-      ×
-    </button>
+<button
+  type="button"
+  onClick={() => {
+    if (isTeamAdminMode) return;
+    clearPocketRadar();
+  }}
+  disabled={isTeamAdminMode}
+  aria-label="Remove Pocket Radar profile"
+  title={
+    isTeamAdminMode
+      ? "Team Admin cannot remove Pocket Radar profiles."
+      : "Remove Pocket Radar profile"
+  }
+  style={{
+    ...closeXButtonStyle,
+    opacity: isTeamAdminMode ? 0.5 : 1,
+    cursor: isTeamAdminMode ? "not-allowed" : "pointer",
+  }}
+>
+  ×
+</button>
   </span>
 ) : null}
 </div>
