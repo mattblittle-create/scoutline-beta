@@ -2368,6 +2368,7 @@ return (
 {activeTab === "Core" && (
   <TabCore
     userSlug={uploadSlug}
+    readOnlyTeamAdmin={isTeamAdminMode}
 
     // values
     firstName={firstName}
