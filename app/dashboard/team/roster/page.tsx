@@ -753,10 +753,10 @@ return (
             type="button"
             style={{
               ...btnGoldSmall,
-              cursor: selectedActiveRows.length ? "pointer" : "not-allowed",
-              opacity: selectedActiveRows.length ? 1 : 0.65,
+cursor: loading ? "not-allowed" : "pointer",
+opacity: loading ? 0.65 : 1,
             }}
-            disabled={loading || selectedActiveRows.length === 0}
+            disabled={loading}
             title={
               selectedActiveRows.length
                 ? `Open teaser cards for ${selectedActiveRows.length} active player(s)`
@@ -972,15 +972,21 @@ onClick={() => {
     </span>
   )}
 
-{canActions && r.publicSlug ? (
+{canActions ? (
   <button
     type="button"
     style={btnGoldSmall}
-    onClick={() => {
-      setSelected({ [r.playerProfileId]: true });
-      setTeaserSuccess(null);
-      setTeaserModalOpen(true);
-    }}
+onClick={() => {
+  if (!r.publicSlug) {
+    setError("This player needs a public profile slug before sending a teaser card.");
+    return;
+  }
+
+  setSelected({ [r.playerProfileId]: true });
+  setTeaserSuccess(null);
+  setError(null);
+  setTeaserModalOpen(true);
+}}
   >
     Send Teaser Card
   </button>
