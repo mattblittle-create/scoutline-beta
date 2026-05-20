@@ -762,8 +762,18 @@ return (
                 ? `Open teaser cards for ${selectedActiveRows.length} active player(s)`
                 : "Select at least one ACTIVE player to send teaser cards."
             }
-            onClick={() => {
+onClick={() => {
+  const activeWithSlug = selectedActiveRows.filter((r) => !!r.publicSlug);
+
+  if (!activeWithSlug.length) {
+    setError(
+      "Select at least one ACTIVE player with a public profile slug to send a teaser card."
+    );
+    return;
+  }
+
   setTeaserSuccess(null);
+  setError(null);
   setTeaserModalOpen(true);
 }}
           >
@@ -962,27 +972,30 @@ return (
     </span>
   )}
 
-  {canActions && r.publicSlug ? (
-<Link
-  href={`/player/${encodeURIComponent(r.publicSlug as string)}/card?from=teaser`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={btnGoldSmall}
->
-  Send Teaser Card
-</Link>
-  ) : (
-    <span
-      style={btnGoldSmallDisabled}
-      title={
-        !r.publicSlug
-          ? "Player needs a public profile before sending a teaser card."
-          : "Player must be Active to send teaser card."
-      }
-    >
-      Send Teaser Card
-    </span>
-  )}
+{canActions && r.publicSlug ? (
+  <button
+    type="button"
+    style={btnGoldSmall}
+    onClick={() => {
+      setSelected({ [r.playerProfileId]: true });
+      setTeaserSuccess(null);
+      setTeaserModalOpen(true);
+    }}
+  >
+    Send Teaser Card
+  </button>
+) : (
+  <span
+    style={btnGoldSmallDisabled}
+    title={
+      !r.publicSlug
+        ? "Player needs a public profile before sending a teaser card."
+        : "Player must be Active to send teaser card."
+    }
+  >
+    Send Teaser Card
+  </span>
+)}
 
   {/* Bottom row: College Search, Suggested, Target */}
   {canActions ? (
