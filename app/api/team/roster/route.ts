@@ -342,24 +342,37 @@ const analytics = {
         )
       : null,
   gradYears: roster.reduce<Record<string, number>>((acc, r) => {
-    const key = r.gradYear ? String(r.gradYear) : "Unknown";
+    if (!r.gradYear) return acc;
+
+    const key = String(r.gradYear);
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {}),
   primaryPositions: roster.reduce<Record<string, number>>((acc, r) => {
-    const key = r.primaryPos || "Unknown";
+    const key = String(r.primaryPos || "").trim();
+
+    if (!key) return acc;
+
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {}),
   pitcherHands: roster.reduce<Record<string, number>>((acc, r) => {
-  if (!r.pitcher) return acc;
+    const rawHand = String(r.hand || "").trim().toUpperCase();
 
-  const hand = String(r.hand || "").toUpperCase();
-  const key = hand === "LHP" || hand === "L" ? "LHP" : "RHP";
+    if (!rawHand) return acc;
 
-  acc[key] = (acc[key] || 0) + 1;
-  return acc;
-}, {}),
+    const key =
+      rawHand === "LHP" || rawHand === "L"
+        ? "LHP"
+        : rawHand === "RHP" || rawHand === "R"
+        ? "RHP"
+        : "";
+
+    if (!key) return acc;
+
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {}),
 };
 
 return NextResponse.json({
