@@ -8,6 +8,7 @@ import {
   invalidateExistingTokens,
 } from "@/lib/auth/tokens";
 import { getBaseUrl } from "@/lib/email/senders";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import crypto from "crypto";
 
 function jsonError(message: string, status = 400) {
@@ -35,20 +36,45 @@ function pickEmailFromRequest(req: Request): string {
   return "";
 }
 
-async function getAdminTeamByEmail(adminEmail: string) {
-  const user = await prisma.user.findUnique({
-    where: { email: adminEmail },
-    select: { id: true, email: true },
-  });
-  if (!user) return null;
+async function getAdminTeamFromRequest(req: Request) {
+  const currentUser = await getCurrentUser().catch(() => null);
+
+  let userId = currentUser?.id || null;
+  let email = normalizeEmail(currentUser?.email);
+
+  // Keep manual/dev fallback support only if no session exists.
+  if (!userId) {
+    const fallbackEmail = pickEmailFromRequest(req);
+    if (!fallbackEmail) return null;
+    if (!isEmail(fallbackEmail)) throw new Error("Invalid email.");
+
+    const fallbackUser = await prisma.user.findUnique({
+      where: { email: fallbackEmail },
+      select: { id: true, email: true },
+    });
+
+    if (!fallbackUser?.id) return null;
+
+    userId = fallbackUser.id;
+    email = normalizeEmail(fallbackUser.email);
+  }
 
   const adminMembership = await prisma.teamMembership.findFirst({
-    where: { userId: user.id, role: "TEAM_ADMIN" },
+    where: {
+      userId,
+      role: "TEAM_ADMIN" as any,
+      isActive: true,
+    },
     include: { team: true },
   });
 
   if (!adminMembership?.team) return null;
-  return { user, membership: adminMembership, team: adminMembership.team };
+
+  return {
+    user: { id: userId, email },
+    membership: adminMembership,
+    team: adminMembership.team,
+  };
 }
 
 function sha256Hex(input: string) {
@@ -67,19 +93,13 @@ type UpdateInvitePayload = {
 };
 
 export async function GET(req: Request) {
-  const email = pickEmailFromRequest(req);
+const found = await getAdminTeamFromRequest(req);
 
-  if (!email)
-    return jsonError(
-      "Unauthorized: missing email (dev) and no session email found.",
-      401
-    );
-  if (!isEmail(email)) return jsonError("Invalid email.", 400);
+if (!found) {
+  return jsonError("No active TEAM_ADMIN membership found for this user.", 403);
+}
 
   try {
-    const found = await getAdminTeamByEmail(email);
-    if (!found)
-      return jsonError("No TEAM_ADMIN membership found for this user.", 403);
 
     const invites = await prisma.teamInvite.findMany({
       where: { teamId: found.team.id },
@@ -109,14 +129,11 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  const email = pickEmailFromRequest(req);
+const found = await getAdminTeamFromRequest(req);
 
-  if (!email)
-    return jsonError(
-      "Unauthorized: missing email (dev) and no session email found.",
-      401
-    );
-  if (!isEmail(email)) return jsonError("Invalid email.", 400);
+if (!found) {
+  return jsonError("No active TEAM_ADMIN membership found for this user.", 403);
+}
 
   let body: any;
   try {
@@ -126,9 +143,6 @@ export async function POST(req: Request) {
   }
 
   try {
-    const found = await getAdminTeamByEmail(email);
-    if (!found)
-      return jsonError("No TEAM_ADMIN membership found for this user.", 403);
 
     // --- UPDATE (cancel) ---
     if (body?.action) {

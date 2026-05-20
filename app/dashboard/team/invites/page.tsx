@@ -48,15 +48,8 @@ function statusTone(s: InviteStatus) {
   }
 }
 
-const DEV_EMAIL_KEY = "scoutline_dev_team_admin_email";
-
 export default function TeamInvitesPage() {
   const router = useRouter();
-  const search = useSearchParams();
-
-  const urlEmail = normText(search.get("email") || search.get("username")).toLowerCase();
-
-  const [devEmail, setDevEmail] = React.useState<string>("");
 
   const [loading, setLoading] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
@@ -74,40 +67,13 @@ export default function TeamInvitesPage() {
 
   const [rows, setRows] = React.useState<InviteRow[]>([]);
 
-  // Hydrate dev email from localStorage
-  React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const saved = normText(window.localStorage.getItem(DEV_EMAIL_KEY)).toLowerCase();
-    if (saved && isEmail(saved)) setDevEmail(saved);
-  }, []);
+async function load() {
+  setLoading(true);
+  setError(null);
 
-  const effectiveEmail = urlEmail || devEmail;
+  try {
+    const url = "/api/team/invites";
 
-  // If we have a saved dev email but URL is missing, auto-apply it once
-  React.useEffect(() => {
-    if (!effectiveEmail) return;
-    if (urlEmail) return;
-
-    // Add ?email= to URL so the whole app behaves consistently in dev
-    router.replace(`/dashboard/team/invites?email=${encodeURIComponent(effectiveEmail)}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [effectiveEmail, urlEmail]);
-
-  async function load(emailToUse?: string) {
-    const em = (emailToUse || effectiveEmail || "").trim().toLowerCase();
-
-    setLoading(true);
-    setError(null);
-
-    try {
-      if (!em) {
-        // No email yet -> don't call API, just sit idle
-        setRows([]);
-        setLoading(false);
-        return;
-      }
-
-      const url = `/api/team/invites?email=${encodeURIComponent(em)}`;
       const res = await fetch(url, { cache: "no-store" });
       const json = await res.json().catch(() => ({}));
 
@@ -139,7 +105,7 @@ export default function TeamInvitesPage() {
   React.useEffect(() => {
     load();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [effectiveEmail]);
+  }, []);
 
   // ✅ OR search logic:
   // - If ONLY status is set -> status filter
@@ -162,33 +128,8 @@ export default function TeamInvitesPage() {
     });
   }, [rows, q, status]);
 
-  function applyDevEmail() {
-    const em = devEmail.trim().toLowerCase();
-    if (!em) {
-      setError("Enter an email to use for dev mode.");
-      return;
-    }
-    if (!isEmail(em)) {
-      setError("Dev email must be a valid email address.");
-      return;
-    }
-
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(DEV_EMAIL_KEY, em);
-    }
-
-    setError(null);
-    router.replace(`/dashboard/team/invites?email=${encodeURIComponent(em)}`);
-  }
-
   async function sendInvite(e: React.FormEvent) {
     e.preventDefault();
-    const em = effectiveEmail;
-
-    if (!em) {
-      setError("Missing email for dev mode.");
-      return;
-    }
 
     setError(null);
 
@@ -201,7 +142,7 @@ export default function TeamInvitesPage() {
 
     setSubmitting(true);
     try {
-      const url = `/api/team/invites?email=${encodeURIComponent(em)}`;
+      const url = "/api/team/invites";
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -216,7 +157,7 @@ export default function TeamInvitesPage() {
 
       setInviteEmail("");
       setParentEmail("");
-      await load(em);
+      await load();
     } catch (e: any) {
       setError(e?.message || "Failed to send invite.");
     } finally {
@@ -225,8 +166,6 @@ export default function TeamInvitesPage() {
   }
 
   async function cancelInvite(id: string) {
-    const em = effectiveEmail;
-    if (!em) return;
 
     setError(null);
 
@@ -234,7 +173,7 @@ export default function TeamInvitesPage() {
     if (!ok) return;
 
     try {
-      const url = `/api/team/invites?email=${encodeURIComponent(em)}`;
+      const url = "/api/team/invites";
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -272,47 +211,9 @@ export default function TeamInvitesPage() {
         <div style={{ minWidth: 260, flex: 1 }}>
           <div style={pageTitle}>Invites</div>
           <div style={muted}>Send invites via email to players for profile set up and manage existing invites.</div>
-          {effectiveEmail ? (
-            <div style={miniHint}>Dev mode: using email: {effectiveEmail}</div>
-          ) : (
-            <div style={miniHint}>Dev mode: set a Team Admin email to load invites.</div>
-          )}
+<div style={miniHint}>Loaded from your active Team Admin session.</div>
         </div>
       </section>
-
-      {/* Dev Email Gate (only when missing) */}
-      {!effectiveEmail ? (
-        <section style={topBar}>
-          <div style={{ display: "grid", gap: 6 }}>
-            <div style={sectionTitle}>Dev Mode Setup</div>
-            <div style={miniHint}>
-              Enter a <b>Team Admin</b> user email so the API can find your TEAM_ADMIN membership.
-            </div>
-          </div>
-
-          <div style={filtersRow}>
-            <div style={filterField}>
-              <div style={filterLabel}>Team Admin Email</div>
-              <input
-                style={input}
-                value={devEmail}
-                onChange={(e) => setDevEmail(e.target.value)}
-                placeholder="admin@email.com"
-                inputMode="email"
-                autoComplete="email"
-              />
-            </div>
-
-            <div style={submitBtnWrap}>
-              <button type="button" style={btnGoldSearch} onClick={applyDevEmail}>
-                Use Email
-              </button>
-            </div>
-          </div>
-
-          {error ? <div style={errorBox}>{error}</div> : null}
-        </section>
-      ) : null}
 
       {/* Send Invite */}
       <section style={topBar}>
@@ -331,7 +232,6 @@ export default function TeamInvitesPage() {
               placeholder="player@email.com"
               inputMode="email"
               autoComplete="email"
-              disabled={!effectiveEmail}
             />
           </div>
 
@@ -344,12 +244,11 @@ export default function TeamInvitesPage() {
               placeholder="parent@email.com"
               inputMode="email"
               autoComplete="email"
-              disabled={!effectiveEmail}
             />
           </div>
 
           <div style={sendBtnWrap}>
-            <button type="submit" style={btnGold} disabled={submitting || loading || !effectiveEmail}>
+            <button type="submit" style={btnGold} disabled={submitting || loading}>
               {submitting ? "Sending…" : "Send Invite"}
             </button>
           </div>
@@ -371,7 +270,6 @@ export default function TeamInvitesPage() {
               value={qDraft}
               onChange={(e) => setQDraft(e.target.value)}
               placeholder="Player or Parent email"
-              disabled={!effectiveEmail}
             />
           </div>
 
@@ -381,7 +279,6 @@ export default function TeamInvitesPage() {
               style={input}
               value={statusDraft}
               onChange={(e) => setStatusDraft(e.target.value as any)}
-              disabled={!effectiveEmail}
             >
               <option value="ANY">Any</option>
               <option value="PENDING">Pending</option>
@@ -392,7 +289,7 @@ export default function TeamInvitesPage() {
           </div>
 
           <div style={submitBtnWrap}>
-            <button type="submit" style={btnGoldSearch} disabled={loading || !effectiveEmail}>
+            <button type="submit" style={btnGoldSearch} disabled={loading}>
               Search Invites
             </button>
           </div>
@@ -405,12 +302,12 @@ export default function TeamInvitesPage() {
 
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
             {hasActiveSearch ? (
-              <button type="button" style={btnGhostSolid} onClick={clearSearch} disabled={loading || !effectiveEmail}>
+              <button type="button" style={btnGhostSolid} onClick={clearSearch} disabled={loading}>
                 Clear Search
               </button>
             ) : null}
 
-            <button type="button" style={btnGhost} onClick={() => load()} disabled={loading || !effectiveEmail}>
+            <button type="button" style={btnGhost} onClick={() => load()} disabled={loading}>
               {loading ? "Refreshing…" : "Refresh List"}
             </button>
           </div>
@@ -418,11 +315,7 @@ export default function TeamInvitesPage() {
 
         {error ? <div style={errorBox}>{error}</div> : null}
 
-        {!effectiveEmail ? (
-          <div style={{ padding: 10, color: "#64748b", fontWeight: 800 }}>
-            Set a dev email above to load invites.
-          </div>
-        ) : loading ? (
+{loading ? (
           <div style={{ padding: 10, color: "#475569", fontWeight: 800 }}>Loading…</div>
         ) : filtered.length === 0 ? (
           <div style={{ padding: 10, color: "#64748b", fontWeight: 800 }}>No invites match your filters.</div>
