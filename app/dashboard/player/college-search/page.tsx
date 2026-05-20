@@ -1,9 +1,29 @@
 // app/dashboard/player/college-search/page.tsx
 
+"use client";
+
 import Link from "next/link";
+import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import CollegeSearchPage from "@/app/search/page";
 
-export default async function PlayerCollegeSearchPage() {
+function PlayerCollegeSearchPageInner() {
+  const search = useSearchParams();
+
+  const from = search.get("from") || "";
+  const returnTo = search.get("returnTo") || "";
+  const playerProfileId = search.get("playerProfileId") || "";
+
+  const isFromTeamRoster = from === "team-roster";
+
+  const teamRosterQuery = playerProfileId
+    ? `?playerProfileId=${encodeURIComponent(
+        playerProfileId
+      )}&from=team-roster&returnTo=${encodeURIComponent(
+        returnTo || "/dashboard/team/roster"
+      )}`
+    : "";
+
   return (
     <>
       <div style={headerShellStyle}>
@@ -15,16 +35,37 @@ export default async function PlayerCollegeSearchPage() {
         </div>
 
         <div style={buttonRowStyle}>
-          <Link href="/dashboard/player/recruiting-tool" style={primaryButtonStyle}>
+          <Link
+            href={
+              isFromTeamRoster
+                ? `/dashboard/player/recruiting-tool${teamRosterQuery}`
+                : "/dashboard/player/recruiting-tool"
+            }
+            style={primaryButtonStyle}
+          >
             Recruiting Tool
           </Link>
 
-          <Link href="/dashboard/player/target-programs" style={secondaryButtonStyle}>
+          <Link
+            href={
+              isFromTeamRoster
+                ? `/dashboard/player/target-programs${teamRosterQuery}`
+                : "/dashboard/player/target-programs"
+            }
+            style={secondaryButtonStyle}
+          >
             Target Programs
           </Link>
 
-          <Link href="/dashboard/player" style={backToDashboardStyle}>
-            Back to Dashboard
+          <Link
+            href={
+              isFromTeamRoster
+                ? returnTo || "/dashboard/team/roster"
+                : "/dashboard/player"
+            }
+            style={backToDashboardStyle}
+          >
+            {isFromTeamRoster ? "Back to Team Roster" : "Back to Dashboard"}
           </Link>
         </div>
       </div>
@@ -33,6 +74,14 @@ export default async function PlayerCollegeSearchPage() {
         <CollegeSearchPage />
       </div>
     </>
+  );
+}
+
+export default function PlayerCollegeSearchPage() {
+  return (
+    <Suspense fallback={null}>
+      <PlayerCollegeSearchPageInner />
+    </Suspense>
   );
 }
 
