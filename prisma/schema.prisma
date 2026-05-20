@@ -345,6 +345,7 @@ model Team {
   invites           TeamInvite[]
   invoices          TeamInvoice[]
   memberships       TeamMembership[]
+  joinLinks         TeamJoinLink[]
   snapshots         TeamProfileSnapshot[]
 }
 
@@ -370,6 +371,19 @@ model TeamMembership {
   @@index([userId, role])
   @@index([playerProfileId, role])
   @@index([teamId, isActive])
+}
+
+model TeamJoinLink {
+  id        String   @id @default(cuid())
+  teamId    String
+  code      String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  team Team @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  @@index([teamId])
 }
 
 model TeamInvite {

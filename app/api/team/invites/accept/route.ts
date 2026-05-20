@@ -22,6 +22,27 @@ function sha256Hex(input: string) {
   return crypto.createHash("sha256").update(input).digest("hex");
 }
 
+async function findJoinLinkByCode(code: string) {
+  return prisma.teamJoinLink.findFirst({
+    where: {
+      code,
+      isActive: true,
+    },
+    include: {
+      team: {
+        select: {
+          id: true,
+          name: true,
+          slug: true,
+          city: true,
+          state: true,
+          logoUrl: true,
+        },
+      },
+    },
+  });
+}
+
 async function findInviteByRawToken(rawToken: string) {
   const tokenHash = sha256Hex(rawToken);
 
@@ -72,9 +93,40 @@ function inviteIsExpired(invite: { expiresAt?: Date | null }) {
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
-    const rawToken = normalizeText(url.searchParams.get("token"));
+const rawToken = normalizeText(url.searchParams.get("token"));
+const code = normalizeText(url.searchParams.get("code"));
 
-    if (!rawToken) return jsonError("Missing invite token.", 400);
+if (code && !rawToken) {
+  const joinLink = await findJoinLinkByCode(code);
+
+  if (!joinLink?.team) {
+    return jsonError("Team join link not found or inactive.", 404);
+  }
+
+  const currentUser = await getCurrentUser().catch(() => null);
+
+  return NextResponse.json({
+    ok: true,
+    data: {
+      mode: "TEAM_JOIN_LINK",
+      code,
+      invite: null,
+      team: joinLink.team,
+      createdBy: null,
+      viewer: {
+        isLoggedIn: Boolean(currentUser?.id),
+        email: currentUser?.email || null,
+        matchesInvitedPlayer: false,
+        matchesParent: false,
+        invitedPlayerAccountExists: false,
+      },
+      currentPrimaryTeam: null,
+      requiresTeamChoice: false,
+    },
+  });
+}
+
+if (!rawToken) return jsonError("Missing invite token.", 400);
 
     const invite = await findInviteByRawToken(rawToken);
     if (!invite) return jsonError("Invite not found.", 404);
@@ -175,15 +227,73 @@ export async function POST(req: Request) {
 
   try {
     stage = "parse-body";
-    const body = (await req.json().catch(() => ({}))) as {
-      token?: string | null;
-      teamChoice?: TeamChoice | null;
-    };
+const body = (await req.json().catch(() => ({}))) as {
+  token?: string | null;
+  code?: string | null;
+  playerEmail?: string | null;
+  parentEmail?: string | null;
+  teamChoice?: TeamChoice | null;
+};
 
-    const rawToken = normalizeText(body?.token);
-    const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
+const rawToken = normalizeText(body?.token);
+const code = normalizeText(body?.code);
+const playerEmail = normalizeEmail(body?.playerEmail);
+const parentEmail = normalizeEmail(body?.parentEmail);
+const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
 
-    if (!rawToken) return jsonError("Missing invite token.", 400);
+    if (code && !rawToken) {
+  if (!playerEmail) {
+    return jsonError("Player email is required.", 400);
+  }
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(playerEmail)) {
+    return jsonError("Player email must be valid.", 400);
+  }
+
+  if (parentEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parentEmail)) {
+    return jsonError("Parent email must be valid.", 400);
+  }
+
+  const joinLink = await findJoinLinkByCode(code);
+
+  if (!joinLink?.teamId) {
+    return jsonError("Team join link not found or inactive.", 404);
+  }
+
+  const rawInviteToken = crypto.randomBytes(32).toString("hex");
+  const tokenHash = sha256Hex(rawInviteToken);
+  const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+
+  const invite = await prisma.teamInvite.create({
+    data: {
+      teamId: joinLink.teamId,
+      invitedEmail: playerEmail,
+      parentEmail: parentEmail || null,
+      tokenHash,
+      status: "PENDING" as any,
+      expiresAt,
+    },
+    select: {
+      id: true,
+      invitedEmail: true,
+      parentEmail: true,
+      status: true,
+      expiresAt: true,
+    },
+  });
+
+  return NextResponse.json({
+    ok: true,
+    data: {
+      mode: "TEAM_JOIN_LINK_CREATED_INVITE",
+      invite,
+      team: joinLink.team,
+      redirectTo: `/team/invite/accept?token=${encodeURIComponent(rawInviteToken)}`,
+    },
+  });
+}
+
+if (!rawToken) return jsonError("Missing invite token.", 400);
 
     stage = "get-current-user";
     const currentUser = await getCurrentUser().catch(() => null);

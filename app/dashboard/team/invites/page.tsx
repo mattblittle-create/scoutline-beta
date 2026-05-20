@@ -66,10 +66,14 @@ export default function TeamInvitesPage() {
   const [loading, setLoading] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
   const [busyInviteId, setBusyInviteId] = React.useState("");
-  const [error, setError] = React.useState<string | null>(null);
+const [error, setError] = React.useState<string | null>(null);
 
-  const [inviteEmail, setInviteEmail] = React.useState("");
-  const [parentEmail, setParentEmail] = React.useState("");
+const [joinLink, setJoinLink] = React.useState<string>("");
+const [joinLinkBusy, setJoinLinkBusy] = React.useState(false);
+const [joinLinkMsg, setJoinLinkMsg] = React.useState<string | null>(null);
+
+const [inviteEmail, setInviteEmail] = React.useState("");
+const [parentEmail, setParentEmail] = React.useState("");
 
   const [qDraft, setQDraft] = React.useState("");
   const [q, setQ] = React.useState("");
@@ -83,6 +87,87 @@ export default function TeamInvitesPage() {
   );
   const [editInvitedEmail, setEditInvitedEmail] = React.useState("");
   const [editParentEmail, setEditParentEmail] = React.useState("");
+
+async function loadJoinLink() {
+  setJoinLinkBusy(true);
+  setJoinLinkMsg(null);
+
+  try {
+    const res = await fetch("/api/team/join-link", {
+      cache: "no-store",
+    });
+
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to load team join link.");
+    }
+
+    setJoinLink(json?.data?.joinUrl || "");
+  } catch (err: any) {
+    setJoinLinkMsg(err?.message || "Failed to load team join link.");
+  } finally {
+    setJoinLinkBusy(false);
+  }
+}
+
+async function regenerateJoinLink() {
+  if (!confirm("Regenerate this team join link? The old link will stop working.")) {
+    return;
+  }
+
+  setJoinLinkBusy(true);
+  setJoinLinkMsg(null);
+
+  try {
+    const res = await fetch("/api/team/join-link", {
+      method: "POST",
+    });
+
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to regenerate team join link.");
+    }
+
+    setJoinLink(json?.data?.joinUrl || "");
+    setJoinLinkMsg("Team join link regenerated.");
+  } catch (err: any) {
+    setJoinLinkMsg(err?.message || "Failed to regenerate team join link.");
+  } finally {
+    setJoinLinkBusy(false);
+  }
+}
+
+const joinQrUrl = joinLink
+  ? `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${encodeURIComponent(joinLink)}`
+  : "";
+
+const joinShareText = joinLink
+  ? `Join our team on ScoutLine: ${joinLink}`
+  : "";
+
+async function copyJoinLink() {
+  if (!joinLink) return;
+
+  try {
+    await navigator.clipboard.writeText(joinLink);
+    setJoinLinkMsg("Team join link copied.");
+  } catch {
+    setJoinLinkMsg("Could not copy automatically. Highlight and copy the link manually.");
+  }
+}
+
+async function copyJoinShareText() {
+  if (!joinShareText) return;
+
+  try {
+    await navigator.clipboard.writeText(joinShareText);
+    setJoinLinkMsg("Team message copied.");
+  } catch {
+    setJoinLinkMsg("Could not copy automatically. Highlight and copy manually.");
+  }
+}
 
   async function load() {
     setLoading(true);
@@ -118,9 +203,11 @@ export default function TeamInvitesPage() {
     }
   }
 
-  React.useEffect(() => {
-    load();
-  }, []);
+React.useEffect(() => {
+  load();
+  loadJoinLink();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, []);
 
   const stats = React.useMemo(() => {
     const total = rows.length;
@@ -344,6 +431,156 @@ export default function TeamInvitesPage() {
           <div style={miniHint}>Loaded from your active Team Admin session.</div>
         </div>
       </section>
+
+<section style={topBar}>
+  <div style={{ display: "grid", gap: 6 }}>
+    <div style={sectionTitle}>Team Join Link / QR Code</div>
+    <div style={miniHint}>
+      Use this reusable link for TeamSnap, TeamReach, group text, mass email, or a printed QR code at the facility.
+    </div>
+  </div>
+
+  <div
+    style={{
+      display: "grid",
+      gridTemplateColumns: "minmax(0, 1fr) 180px",
+      gap: 16,
+      alignItems: "start",
+    }}
+  >
+    <div style={{ display: "grid", gap: 10 }}>
+      <input
+        style={input}
+        value={joinLinkBusy ? "Loading team join link..." : joinLink}
+        readOnly
+        placeholder="Team join link will appear here"
+        onFocus={(e) => e.currentTarget.select()}
+      />
+
+      <textarea
+        style={{
+          ...input,
+          minHeight: 74,
+          resize: "vertical",
+          lineHeight: 1.45,
+        }}
+        value={joinShareText}
+        readOnly
+        placeholder="Team share message will appear here"
+        onFocus={(e) => e.currentTarget.select()}
+      />
+
+      <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <button
+          type="button"
+          style={btnGold}
+          onClick={copyJoinLink}
+          disabled={!joinLink || joinLinkBusy}
+        >
+          Copy Link
+        </button>
+
+        <button
+          type="button"
+          style={btnGhost}
+          onClick={copyJoinShareText}
+          disabled={!joinShareText || joinLinkBusy}
+        >
+          Copy Message
+        </button>
+
+        <a
+          href={joinLink || "#"}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...btnGhost,
+            opacity: joinLink ? 1 : 0.6,
+            pointerEvents: joinLink ? "auto" : "none",
+            textDecoration: "none",
+          }}
+        >
+          Open Invite Page
+        </a>
+
+        <a
+          href={joinQrUrl || "#"}
+          download="scoutline-team-join-qr.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            ...btnGhost,
+            opacity: joinQrUrl ? 1 : 0.6,
+            pointerEvents: joinQrUrl ? "auto" : "none",
+            textDecoration: "none",
+          }}
+        >
+          Download QR Code
+        </a>
+
+        <button
+          type="button"
+          style={btnGhost}
+          onClick={regenerateJoinLink}
+          disabled={joinLinkBusy}
+        >
+          Regenerate Link
+        </button>
+      </div>
+
+      {joinLinkMsg ? (
+        <div
+          style={
+            joinLinkMsg.includes("Failed") || joinLinkMsg.includes("Could not")
+              ? errorBox
+              : miniHint
+          }
+        >
+          {joinLinkMsg}
+        </div>
+      ) : null}
+    </div>
+
+    <div
+      style={{
+        border: "1px solid #e5e7eb",
+        borderRadius: 16,
+        background: "#ffffff",
+        padding: 12,
+        display: "grid",
+        gap: 8,
+        justifyItems: "center",
+      }}
+    >
+      {joinQrUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={joinQrUrl}
+          alt="Team join QR code"
+          style={{
+            width: 150,
+            height: 150,
+            objectFit: "contain",
+          }}
+        />
+      ) : (
+        <div style={miniHint}>QR loading…</div>
+      )}
+
+      <div
+        style={{
+          fontSize: 11,
+          fontWeight: 900,
+          color: "#64748b",
+          textAlign: "center",
+          lineHeight: 1.35,
+        }}
+      >
+        Scan to join team
+      </div>
+    </div>
+  </div>
+</section>
 
       <section style={topBar}>
         <div style={{ display: "grid", gap: 6 }}>
