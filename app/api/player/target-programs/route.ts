@@ -72,8 +72,54 @@ function buildSnapshotData(body: any) {
   };
 }
 
-async function getCurrentPlayerProfile() {
-  const userId = cookies().get("scoutline_uid")?.value || "";
+async function getCurrentPlayerProfile(
+  req?: NextRequest
+) {
+  const requestedPlayerProfileId =
+  req?.nextUrl?.searchParams?.get("playerProfileId") || "";
+
+if (requestedPlayerProfileId) {
+  const profile = await prisma.playerProfile.findUnique({
+    where: { id: requestedPlayerProfileId },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+
+  if (!profile) return null;
+
+  const data = (profile.data || {}) as any;
+  const normalized = data?.normalized || data;
+
+  const heightFt = asNumber(normalized?.heightFt);
+  const heightInOnly = asNumber(normalized?.heightIn);
+
+  const totalHeightIn =
+    heightFt != null && heightInOnly != null
+      ? heightFt * 12 + heightInOnly
+      : heightInOnly;
+
+  return {
+    id: profile.id,
+    player: {
+      gpa: asNumber(normalized?.gpa),
+      gradYear: asNumber(normalized?.gradYear),
+      primaryPos: asString(normalized?.primaryPos),
+      secondaryPos: asString(normalized?.secondaryPos),
+      heightIn: totalHeightIn,
+      weightLb: asNumber(normalized?.weightLb),
+      metrics:
+        normalized?.metrics &&
+        typeof normalized.metrics === "object"
+          ? normalized.metrics
+          : {},
+    },
+  };
+}
+
+const userId = cookies().get("scoutline_uid")?.value || "";
 
   if (!userId) return null;
 
@@ -151,9 +197,9 @@ async function getCurrentPlayerProfile() {
 /**
  * GET - Load saved target programs
  */
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    const profile = await getCurrentPlayerProfile();
+    const profile = await getCurrentPlayerProfile(req);
 
     if (!profile) {
       return NextResponse.json(
