@@ -557,8 +557,12 @@ const fromTeamRoster = searchParams.get("from") === "team-roster";
 
 const backHref = fromTeamRoster ? "/dashboard/team/roster" : "/dashboard/player";
 const backLabel = fromTeamRoster ? "Back to Team Roster" : "Back to Dashboard";
+const returnTo = searchParams.get("returnTo") || "/dashboard/team/roster";
+
 const toolQuery = playerProfileId
-  ? `?playerProfileId=${encodeURIComponent(playerProfileId)}&from=team-roster`
+  ? `?playerProfileId=${encodeURIComponent(
+      playerProfileId
+    )}&from=team-roster&returnTo=${encodeURIComponent(returnTo)}`
   : "";
   const selectedCollegeRef = React.useRef<HTMLElement | null>(null);
 
@@ -579,8 +583,11 @@ const toolQuery = playerProfileId
   const [visibleCount, setVisibleCount] = React.useState(25);
   const [expandedCollegeIds, setExpandedCollegeIds] = React.useState<string[]>([]);
 
-  const isRedshirt = planTier === "REDSHIRT";
-  const isAllAmerican = planTier === "ALL_AMERICAN";
+const effectivePlanTier = fromTeamRoster ? "ALL_AMERICAN" : planTier;
+
+const isRedshirt = effectivePlanTier === "REDSHIRT";
+const isAllAmerican =
+  effectivePlanTier === "ALL_AMERICAN" || effectivePlanTier === "TEAM";
 
 const selectedLaneFit =
   truthFitSummary?.divisionFits?.find(
