@@ -836,7 +836,7 @@ function toggleSeasonExpanded(id: string) {
           transientSaved?.();
         };
 
-const expanded = expandedSeasons[s.id] ?? true;
+const expanded = expandedSeasons[s.id] ?? false;
 
 return (
   <section
