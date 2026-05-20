@@ -1046,6 +1046,7 @@ opacity: athleticsLocked ? 0.6 : 1,
           <input
             type="url"
             value={travelWebsiteSafe}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamWebsiteUrl(e.target.value)}
             placeholder="https://example.com/travel-team"
             style={inputStyle}
@@ -1306,6 +1307,7 @@ opacity: athleticsLocked ? 0.6 : 1,
                     <input
                       type="url"
                       value={websiteSafe}
+                      disabled={athleticsLocked}
                       onChange={(e) =>
                         updateOtherTeam(team.id, { websiteUrl: e.target.value })
                       }
@@ -1384,8 +1386,6 @@ opacity: athleticsLocked ? 0.6 : 1,
       {/* Player Bio */}
       <hr style={hrStyle} />
 
-      disabled={athleticsLocked || playerBioReadOnly}
-
       {playerBioReadOnly && (
         <div
           style={{
@@ -1423,7 +1423,7 @@ opacity: athleticsLocked ? 0.6 : 1,
 
         <div>
           <textarea
-            disabled={playerBioReadOnly}
+            disabled={athleticsLocked || playerBioReadOnly}
             value={playerBio}
             onChange={(e) => {
               const v = e.target.value;
