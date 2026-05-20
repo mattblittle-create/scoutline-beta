@@ -1,4 +1,4 @@
-// app/dashboard/player/profile/page.tsx
+// app/dashboard/player/profile/PlayerProfileEditor.tsx
 "use client";
 
 import React, { Suspense, useMemo, useState, useEffect, useRef } from "react";
@@ -112,7 +112,7 @@ type OtherTeam = {
   websiteUrl: string; // NEW: team website link
 };
 
-type PlayerProfileEditorMode = "player" | "parent";
+type PlayerProfileEditorMode = "player" | "parent" | "team-admin";
 
 type PlayerProfileEditorProps = {
   mode?: PlayerProfileEditorMode;
@@ -618,6 +618,7 @@ const uploadSlug = React.useMemo(() => {
   const showRawThrowVelo = hasUtilityPos;
 
   const isParentMode = mode === "parent";
+  const isTeamAdminMode = mode === "team-admin";
   const safe = (v: string) => (v.trim() ? v.trim() : null);
   const numOrNull = (v: string) => {
     const t = v.trim();
@@ -2324,29 +2325,30 @@ return (
           );
         })}
 
-        {/* NEW: Plan Billing button (inline with tabs) */}
-        <a href={billingHref} style={{ textDecoration: "none" }}>
-          <button
-            type="button"
-            style={{
-              height: 36,
-              padding: "0 12px",
-              borderRadius: 8,
-              border: "1px solid #caa042",
-              background: "#caa042",
-              color: "#0f172a",
-              fontWeight: 900,
-              cursor: "pointer",
-              whiteSpace: "nowrap",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: -1,
-            }}
-          >
-            Plan Billing
-          </button>
-        </a>
+{!isTeamAdminMode ? (
+  <a href={billingHref} style={{ textDecoration: "none" }}>
+    <button
+      type="button"
+      style={{
+        height: 36,
+        padding: "0 12px",
+        borderRadius: 8,
+        border: "1px solid #caa042",
+        background: "#caa042",
+        color: "#0f172a",
+        fontWeight: 900,
+        cursor: "pointer",
+        whiteSpace: "nowrap",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        marginBottom: -1,
+      }}
+    >
+      Plan Billing
+    </button>
+  </a>
+) : null}
       </div>
 
       <form
@@ -2751,85 +2753,108 @@ return (
           </div>
 
 {/* Optional: link to public profile */}
-{(() => {
-  if (linkSlug) {
+{!isTeamAdminMode ? (
+  (() => {
+    if (linkSlug) {
+      return (
+        <div style={{ marginTop: 10 }}>
+          <a
+            href={`/player/${encodeURIComponent(linkSlug)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: "#0ea5e9",
+              fontWeight: 700,
+              textDecoration: "underline",
+            }}
+            title="Open your public profile"
+          >
+            View Public Profile →
+          </a>
+        </div>
+      );
+    }
+
     return (
-      <div style={{ marginTop: 10 }}>
-        <a
-          href={`/player/${encodeURIComponent(linkSlug)}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "#0ea5e9", fontWeight: 700, textDecoration: "underline" }}
-          title="Open your public profile"
-        >
-          View Public Profile →
-        </a>
+      <div style={{ marginTop: 10, color: "#64748b" }}>
+        Save your profile to generate a public URL.
       </div>
     );
-  }
+  })()
+) : null}
 
-  return (
-    <div style={{ marginTop: 10, color: "#64748b" }}>
-      Save your profile to generate a public URL.
-    </div>
-  );
-})()}
+{/* --- Manage Plan (bottom-right of the form panel) --- */}
+{!isTeamAdminMode ? (
+  (() => {
+    const raw =
+      (typeof (globalThis as any)?.currentPlan !== "undefined" &&
+        (globalThis as any).currentPlan) ||
+      (typeof (globalThis as any)?.plan !== "undefined" &&
+        (globalThis as any).plan) ||
+      (typeof (globalThis as any)?.planTier !== "undefined" &&
+        (globalThis as any).planTier) ||
+      (typeof (globalThis as any)?.user?.plan !== "undefined" &&
+        (globalThis as any).user.plan) ||
+      (typeof (globalThis as any)?.player?.plan !== "undefined" &&
+        (globalThis as any).player.plan) ||
+      null;
 
-          {/* --- Manage Plan (bottom-right of the form panel) --- */}
-          {(() => {
-            // Try to derive a friendly label from any plan value you might already have in scope.
-            const raw =
-              (typeof (globalThis as any)?.currentPlan !== "undefined" && (globalThis as any).currentPlan) ||
-              (typeof (globalThis as any)?.plan !== "undefined" && (globalThis as any).plan) ||
-              (typeof (globalThis as any)?.planTier !== "undefined" && (globalThis as any).planTier) ||
-              (typeof (globalThis as any)?.user?.plan !== "undefined" && (globalThis as any).user.plan) ||
-              (typeof (globalThis as any)?.player?.plan !== "undefined" && (globalThis as any).player.plan) ||
-              null;
+    const planLabel = raw
+      ? String(raw)
+          .replace(/_/g, " ")
+          .replace(/\b\w/g, (c) => c.toUpperCase())
+          .replace("Walk On", "Walk-On")
+          .replace("All American", "All-American")
+          .replace("Team", "Teams")
+      : "Manage Plan";
 
-            const planLabel = raw
-              ? String(raw)
-                  .replace(/_/g, " ")
-                  .replace(/\b\w/g, (c) => c.toUpperCase())
-                  .replace("Walk On", "Walk-On")
-                  .replace("All American", "All-American")
-                  .replace("Team", "Teams")
-              : "Manage Plan";
+    return (
+      <div
+        style={{
+          position: "absolute",
+          right: 16,
+          bottom: 88,
+          textAlign: "right",
+          pointerEvents: "auto",
+        }}
+      >
+        <a
+          href={billingHref}
+          title="Manage your plan"
+          style={{ textDecoration: "none" }}
+        >
+          <button
+            type="button"
+            style={{
+              fontSize: 13,
+              fontWeight: 800,
+              padding: "10px 14px",
+              borderRadius: 8,
+              border: "1px solid #0ea5e9",
+              background: "#38bdf8",
+              color: "#083344",
+              boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
+              cursor: "pointer",
+            }}
+          >
+            {planLabel}
+          </button>
+        </a>
 
-            return (
-              <div
-                style={{
-                  position: "absolute",
-                  right: 16,
-                  bottom: 88,
-                  textAlign: "right",
-                  pointerEvents: "auto",
-                }}
-              >
-                <a href={billingHref} title="Manage your plan" style={{ textDecoration: "none" }}>
-                  <button
-                    type="button"
-                    style={{
-                      fontSize: 13,
-                      fontWeight: 800,
-                      padding: "10px 14px",
-                      borderRadius: 8,
-                      border: "1px solid #0ea5e9",
-                      background: "#38bdf8",
-                      color: "#083344",
-                      boxShadow: "0 1px 2px rgba(0,0,0,0.06)",
-                      cursor: "pointer",
-                    }}
-                  >
-                    {planLabel}
-                  </button>
-                </a>
-
-                <div style={{ marginTop: 10, fontSize: 15, color: "#64748b", maxWidth: 360 }}>
-                  Manage your plan and update billing/payment info.
-                </div>
-              </div>
-            );
-          })()}
+        <div
+          style={{
+            marginTop: 10,
+            fontSize: 15,
+            color: "#64748b",
+            maxWidth: 360,
+          }}
+        >
+          Manage your plan and update billing/payment info.
+        </div>
+      </div>
+    );
+  })()
+) : null}
 
         </div>
       </form>

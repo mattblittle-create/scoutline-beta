@@ -176,7 +176,7 @@ export default async function TeamRosterPlayerEditPage({ params }: PageProps) {
         </section>
 
 <PlayerProfileEditor
-  mode="parent"
+  mode="team-admin"
   profileEmailOverride={playerMembership.playerProfile.email}
   saveEndpoint={`/api/team/player-profile?playerProfileId=${encodeURIComponent(
     playerMembership.playerProfile.id
