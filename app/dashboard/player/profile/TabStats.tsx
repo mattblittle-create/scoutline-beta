@@ -459,7 +459,16 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
   },
   ref
 ) {
-  /** Expose atomic payload to parent Save button */
+  const [expandedSeasons, setExpandedSeasons] = useState<
+  Record<string, boolean>
+>({});
+
+function toggleSeasonExpanded(id: string) {
+  setExpandedSeasons((prev) => ({
+    ...prev,
+    [id]: !prev[id],
+  }));
+}
   useImperativeHandle(
     ref,
     (): StatsHandle => ({
@@ -827,17 +836,59 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
           transientSaved?.();
         };
 
-        return (
-          <section
-            key={s.id}
-            style={{
-              marginTop: 12,
-              border: "1px solid #e5e7eb",
-              borderRadius: 12,
-              padding: 12,
-              background: "#ffffff",
-            }}
-          >
+const expanded = expandedSeasons[s.id] ?? true;
+
+return (
+  <section
+    key={s.id}
+    style={{
+      marginTop: 12,
+      border: "1px solid #e5e7eb",
+      borderRadius: 12,
+      background: "#ffffff",
+      overflow: "hidden",
+    }}
+  >
+    <button
+      type="button"
+      onClick={() => toggleSeasonExpanded(s.id)}
+      style={{
+        width: "100%",
+        border: "none",
+        background: "#f8fafc",
+        padding: "14px 16px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        cursor: "pointer",
+      }}
+    >
+      <div
+        style={{
+          fontWeight: 900,
+          color: "#0f172a",
+          fontSize: 15,
+          textAlign: "left",
+        }}
+      >
+        {[s.seasonTerm, s.seasonYear, s.team]
+          .filter(Boolean)
+          .join(" ")}
+      </div>
+
+      <div
+        style={{
+          fontSize: 18,
+          fontWeight: 900,
+          color: "#64748b",
+        }}
+      >
+        {expanded ? "−" : "+"}
+      </div>
+    </button>
+
+    {expanded ? (
+      <div style={{ padding: 12 }}>
             {/* Top bar: Season + Year on the left, Remove on the right */}
             <div
               style={{
@@ -2095,8 +2146,10 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
                 </section>
               )}
             </div>
-          </section>
-        );
+</div>
+    ) : null}
+  </section>
+);
       })}
     </>
   );
