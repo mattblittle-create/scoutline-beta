@@ -418,8 +418,8 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                     lineHeight: 1,
                     fontWeight: 800,
                     color: "#b91c1c",
-                    cursor: removeDisabled ? "not-allowed" : "pointer",
-                    opacity: removeDisabled ? 0.6 : 1,
+                    cursor: coreLocked || removeDisabled ? "not-allowed" : "pointer",
+                    opacity: coreLocked || removeDisabled ? 0.6 : 1,
                   }}
                 >
                   ×
@@ -450,7 +450,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                 background: "#e0f2fe",
                 color: "#083344",
                 fontWeight: 800,
-                cursor: uploadDisabled ? "not-allowed" : "pointer",
+                cursor: coreLocked || uploadDisabled ? "not-allowed" : "pointer",
               }}
             >
               {uploadBusy ? "Uploading…" : "Upload Photo"}
@@ -468,7 +468,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                 background: "#ffffff",
                 color: "#b91c1c",
                 fontWeight: 800,
-                cursor: removeDisabled ? "not-allowed" : "pointer",
+                cursor: coreLocked || removeDisabled ? "not-allowed" : "pointer",
               }}
             >
               Remove Photo
@@ -584,7 +584,11 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
               <input
                 type="checkbox"
                 checked={!!dobPrivate}
-                onChange={(e) => setDobPrivate(e.target.checked)}
+                disabled={coreLocked}
+                onChange={(e) => {
+                  if (coreLocked) return;
+                setDobPrivate(e.target.checked);
+                }}
               />{" "}
               Private <span style={qMark}>?</span>
             </label>
