@@ -54,6 +54,8 @@ export type AthleticsHandle = { getPayload: () => AthleticsPayload };
 
 /** ---------- Props ---------- */
 type Props = {
+  readOnlyTeamAdmin?: boolean;
+
   // values
   eligibilityRegistered: boolean;
 
@@ -207,6 +209,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
     showPitcherHand,
     commitmentReadOnly = false,
     playerBioReadOnly = false,
+    readOnlyTeamAdmin = false,
 
     // handlers
     setEligibilityRegistered,
@@ -260,6 +263,15 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
     errText,
     qMark,
   } = props;
+
+  const editableByTeamAdminFields = {
+  primaryPosition: true,
+  secondaryPosition: true,
+  pitcher: true,
+  pitcherHandedness: true,
+  throws: true,
+  bats: true,
+};
 
   // Expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
@@ -356,6 +368,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
 
   const hsWebsiteSafe = hsWebsiteUrl ?? "";
   const travelWebsiteSafe = travelTeamWebsiteUrl ?? "";
+  const athleticsLocked = readOnlyTeamAdmin;
 
   return (
     <>
@@ -792,11 +805,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove schedule link"
-                  onClick={() => setHsScheduleUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setHsScheduleUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -860,11 +878,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove HS website link"
-                  onClick={() => setHsWebsiteUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setHsWebsiteUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -980,11 +1003,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove travel team schedule link"
-                  onClick={() => setTravelTeamScheduleUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setTravelTeamScheduleUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -1048,11 +1076,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove travel team website link"
-                  onClick={() => setTravelTeamWebsiteUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setTravelTeamWebsiteUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -1223,11 +1256,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                           <button
                             type="button"
                             aria-label="Remove other team schedule link"
-                            onClick={() => updateOtherTeam(team.id, { scheduleUrl: "" })}
+                            disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  updateOtherTeam(team.id, { scheduleUrl: "" });
+}}
                             style={{
                               border: "none",
                               background: "transparent",
-                              cursor: "pointer",
+                              cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                               color: "#64748b",
                               fontWeight: 700,
                               lineHeight: 1,
@@ -1294,11 +1332,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                           <button
                             type="button"
                             aria-label="Remove other team website link"
-                            onClick={() => updateOtherTeam(team.id, { websiteUrl: "" })}
+                            disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  updateOtherTeam(team.id, { websiteUrl: "" });
+}}
                             style={{
                               border: "none",
                               background: "transparent",
-                              cursor: "pointer",
+                              cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                               color: "#64748b",
                               fontWeight: 700,
                               lineHeight: 1,

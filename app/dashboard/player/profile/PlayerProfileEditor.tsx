@@ -2509,6 +2509,7 @@ return (
         {/* ---- Tab: Athletics ---- */}
         {activeTab === "Athletics" && (
           <TabAthletics
+          readOnlyTeamAdmin={isTeamAdminMode}
             // values
             eligibilityRegistered={eligibilityRegistered}
             ncaaId={ncaaId}
