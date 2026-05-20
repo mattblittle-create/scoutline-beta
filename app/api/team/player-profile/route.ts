@@ -102,7 +102,7 @@ return {
  * - Athletics: primaryPos, secondaryPos, isPitcher, pitcherHand, throws, bats
  * - Metrics: metrics
  * - Stats: statsSeasons
- * - Video/Social: videoSocial, externalVideos, localVideos, social
+ * - Video/Social: localVideos only; videoSocial.localVideos only
  * - References: coaches, references, coachesReferences
  *
  * Everything else remains preserved from DB.
@@ -136,15 +136,32 @@ function buildAllowedTeamAdminPatch(
     }
   }
 
-  // Metrics
-  if (isObj(incomingAtomic?.metrics)) {
-    patch.metrics = incomingAtomic.metrics;
-  }
+// Metrics
+if (isObj(incomingAtomic?.metrics)) {
+  patch.metrics = protectAndTagMetricsByKey(
+    incomingAtomic.metrics,
+    existingAtomic?.metrics || {},
+    actor,
+    team
+  );
+}
 
-  // Stats
-  if (Array.isArray(incomingAtomic?.statsSeasons)) {
-    patch.statsSeasons = incomingAtomic.statsSeasons;
-  }
+// Stats
+if (Array.isArray(incomingAtomic?.statsSeasons)) {
+  const safeStatsSeasons = preserveProtectedRemovedItems(
+    incomingAtomic.statsSeasons,
+    existingAtomic?.statsSeasons || [],
+    actor,
+    team
+  );
+
+  patch.statsSeasons = tagTeamAdminOwnedItems(
+    safeStatsSeasons,
+    actor,
+    team,
+    existingAtomic?.statsSeasons || []
+  );
+}
 
 // Video/Social
 // Team Admin may only update uploaded/local videos.
@@ -347,6 +364,44 @@ function preserveProtectedRemovedItems(
   });
 
   return [...incoming, ...protectedRemoved];
+}
+
+function protectAndTagMetricsByKey(
+  incomingMetrics: any,
+  existingMetrics: any,
+  actor: any,
+  team: any
+) {
+  const incoming = isObj(incomingMetrics) ? incomingMetrics : {};
+  const existing = isObj(existingMetrics) ? existingMetrics : {};
+
+  const metricKeys = new Set<string>([
+    ...Object.keys(existing),
+    ...Object.keys(incoming),
+  ]);
+
+  const next: any = {};
+
+  for (const key of metricKeys) {
+    const incomingItems = Array.isArray(incoming[key]) ? incoming[key] : [];
+    const existingItems = Array.isArray(existing[key]) ? existing[key] : [];
+
+    const safeItems = preserveProtectedRemovedItems(
+      incomingItems,
+      existingItems,
+      actor,
+      team
+    );
+
+    next[key] = tagTeamAdminOwnedItems(
+      safeItems,
+      actor,
+      team,
+      existingItems
+    );
+  }
+
+  return next;
 }
 
 function tagTeamAdminOwnedReferences(
