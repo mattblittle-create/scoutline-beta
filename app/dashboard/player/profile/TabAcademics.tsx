@@ -587,35 +587,38 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                     "Open file"}
                 </a>
 
-                <button
-                  type="button"
-                  // cancel label behavior specifically on the button too
-                  onMouseDown={stopLabelActivation}
-                  onClick={(e) => {
-                    stopLabelActivation(e);
-                    setReportCardUrl("");
-                    setSingleDocLabel("");
-                    setTranscriptUrl?.("");
-                  }}
-                  aria-label="Remove file"
-                  title="Remove file"
-                  style={{
-                    position: "absolute",
-                    top: 4,
-                    right: 4,
-                    width: 20,
-                    height: 20,
-                    borderRadius: 999,
-                    border: "1px solid #0ea5e9",
-                    background: "#ffffff",
-                    color: "#b91c1c",
-                    fontWeight: 800,
-                    lineHeight: "16px",
-                    cursor: "pointer",
-                  }}
-                >
-                  ×
-                </button>
+<button
+  type="button"
+  onMouseDown={stopLabelActivation}
+  onClick={(e) => {
+    stopLabelActivation(e);
+    if (academicsLocked) return;
+
+    setReportCardUrl("");
+    setSingleDocLabel("");
+    setTranscriptUrl?.("");
+  }}
+  aria-label="Remove file"
+  title={academicsLocked ? "Team Admin cannot remove academic files." : "Remove file"}
+  disabled={academicsLocked}
+  style={{
+    position: "absolute",
+    top: 4,
+    right: 4,
+    width: 20,
+    height: 20,
+    borderRadius: 999,
+    border: "1px solid #0ea5e9",
+    background: "#ffffff",
+    color: "#b91c1c",
+    fontWeight: 800,
+    lineHeight: "16px",
+    cursor: academicsLocked ? "not-allowed" : "pointer",
+    opacity: academicsLocked ? 0.6 : 1,
+  }}
+>
+  ×
+</button>
               </div>
             ) : (
               <div
@@ -889,31 +892,39 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                 {chip}
 
                 {!intendedMajorsReadOnly ? (
-                  <button
-                    type="button"
-                    onClick={() => removeChip(idx)}
-                    disabled={academicsLocked}
-                    title={`Remove ${chip}`}
-                    aria-label={`Remove ${chip}`}
-                    style={{
-                      marginLeft: 4,
-                      width: 18,
-                      height: 18,
-                      lineHeight: "16px",
-                      borderRadius: 9,
-                      border: "1px solid #cbd5e1",
-                      background: "#ffffff",
-                      color: "#64748b",
-                      fontWeight: 800,
-                      cursor: "pointer",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      padding: 0,
-                    }}
-                  >
-                    ×
-                  </button>
+<button
+  type="button"
+  onClick={() => {
+    if (academicsLocked || intendedMajorsReadOnly) return;
+    removeChip(idx);
+  }}
+  disabled={academicsLocked || intendedMajorsReadOnly}
+  title={
+    academicsLocked || intendedMajorsReadOnly
+      ? "Team Admin cannot remove intended majors."
+      : `Remove ${chip}`
+  }
+  aria-label={`Remove ${chip}`}
+  style={{
+    marginLeft: 4,
+    width: 18,
+    height: 18,
+    lineHeight: "16px",
+    borderRadius: 9,
+    border: "1px solid #cbd5e1",
+    background: "#ffffff",
+    color: "#64748b",
+    fontWeight: 800,
+    cursor: academicsLocked || intendedMajorsReadOnly ? "not-allowed" : "pointer",
+    opacity: academicsLocked || intendedMajorsReadOnly ? 0.6 : 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 0,
+  }}
+>
+  ×
+</button>
                 ) : null}
               </span>
             ))
