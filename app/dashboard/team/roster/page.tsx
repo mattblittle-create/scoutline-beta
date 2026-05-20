@@ -353,7 +353,9 @@ setTeaserSuccess(
   }
 }
 
-{analytics ? (
+return (
+    <main style={{ display: "grid", gap: 12 }}>
+      {analytics ? (
   <section
     style={{
       display: "grid",
@@ -427,8 +429,6 @@ setTeaserSuccess(
   </section>
 ) : null}
 
-return (
-    <main style={{ display: "grid", gap: 12 }}>
       {/* Top controls */}
       <section style={topBar}>
         <div style={{ display: "grid", gap: 6, minWidth: 260 }}>
