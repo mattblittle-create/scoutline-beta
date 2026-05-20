@@ -86,6 +86,7 @@ type Filters = {
   secondaryPositions: string[];
 
   pitcher: "" | "yes" | "no";
+  pitcherHand: "ANY" | "RHP" | "LHP";
 
   // dropdown hands
   throws: "ANY" | "R" | "L";
@@ -144,6 +145,19 @@ function matchesFilters(r: RosterRow, f: Filters) {
     if (!!r.pitcher !== want) return false;
   }
 
+  if (f.pitcherHand !== "ANY") {
+    const hand = normalizePos((r as any).hand);
+
+    const normalizedHand =
+      hand === "L" || hand === "LHP"
+        ? "LHP"
+        : hand === "R" || hand === "RHP"
+        ? "RHP"
+        : "";
+
+    if (normalizedHand !== f.pitcherHand) return false;
+  }
+
   if (f.bats !== "ANY") {
     if (normalizePos(r.bats) !== f.bats) return false;
   }
@@ -172,6 +186,7 @@ export default function TeamRosterPage() {
     primaryPositions: [],
     secondaryPositions: [],
     pitcher: "",
+    pitcherHand: "ANY",
     bats: "ANY",
     throws: "ANY",
   });
@@ -251,6 +266,21 @@ setAnalytics(json?.data?.analytics || null);
     setSelected({});
   }
 
+  function resetFilters() {
+    setFilters({
+      q: "",
+      gradYear: "",
+      gpaMin: "",
+      committed: "",
+      primaryPositions: [],
+      secondaryPositions: [],
+      pitcher: "",
+      pitcherHand: "ANY",
+      bats: "ANY",
+      throws: "ANY",
+    });
+  }
+
   function applyGradYearQuickFilter(year: string) {
   setFilters((prev) => ({
     ...prev,
@@ -269,6 +299,7 @@ function applyPitcherHandQuickFilter(hand: string) {
   setFilters((prev) => ({
     ...prev,
     pitcher: "yes",
+    pitcherHand: hand === "LHP" ? "LHP" : "RHP",
     throws: hand === "LHP" ? "L" : "R",
   }));
 }
@@ -483,14 +514,28 @@ return (
 
       {/* Top controls */}
       <section style={topBar}>
-        <div style={{ display: "grid", gap: 6, minWidth: 260 }}>
+        <div style={{ display: "grid", gap: 6 }}>
           <div style={searchTitle}>Search</div>
-          <input
-            style={input}
-            value={filters.q}
-            onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
-            placeholder="Search by player name"
-          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr auto",
+              gap: 10,
+              alignItems: "end",
+            }}
+          >
+            <input
+              style={input}
+              value={filters.q}
+              onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
+              placeholder="Search by player name"
+            />
+
+            <button type="button" style={btnGhost} onClick={resetFilters}>
+              Reset Filters
+            </button>
+          </div>
           {fallbackEmail ? (
             <div style={miniHint}>Dev mode: email detected in URL: {fallbackEmail}</div>
           ) : (
@@ -533,22 +578,16 @@ return (
           </Filter>
         </div>
 
-        {/* Row 2: Pitcher, Bats, Throws */}
-        <div style={filtersRow3}>
-          <Filter label="Pitcher">
+        {/* Row 2: Bats, Throws, Pitcher, Pitcher Handedness */}
+        <div style={filtersRow4}>
+          <Filter label="Bats">
             <select
               style={input}
-              value={filters.pitcher}
-              onChange={(e) => setFilters((f) => ({ ...f, pitcher: e.target.value as any }))}
+              value={filters.bats}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, bats: e.target.value as any }))
+              }
             >
-              <option value="">Any</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </Filter>
-
-          <Filter label="Bats">
-            <select style={input} value={filters.bats} onChange={(e) => setFilters((f) => ({ ...f, bats: e.target.value as any }))}>
               <option value="ANY">Any</option>
               <option value="R">R</option>
               <option value="L">L</option>
@@ -560,11 +599,41 @@ return (
             <select
               style={input}
               value={filters.throws}
-              onChange={(e) => setFilters((f) => ({ ...f, throws: e.target.value as any }))}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, throws: e.target.value as any }))
+              }
             >
               <option value="ANY">Any</option>
               <option value="R">R</option>
               <option value="L">L</option>
+            </select>
+          </Filter>
+
+          <Filter label="Pitcher">
+            <select
+              style={input}
+              value={filters.pitcher}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, pitcher: e.target.value as any }))
+              }
+            >
+              <option value="">Any</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </Filter>
+
+          <Filter label="Pitcher Handedness">
+            <select
+              style={input}
+              value={filters.pitcherHand}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, pitcherHand: e.target.value as any }))
+              }
+            >
+              <option value="ANY">Any</option>
+              <option value="RHP">RHP</option>
+              <option value="LHP">LHP</option>
             </select>
           </Filter>
         </div>
@@ -1187,6 +1256,13 @@ const searchTitle: React.CSSProperties = {
 const filtersRow3: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+  gap: 10,
+  alignItems: "end",
+};
+
+const filtersRow4: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
   gap: 10,
   alignItems: "end",
 };
