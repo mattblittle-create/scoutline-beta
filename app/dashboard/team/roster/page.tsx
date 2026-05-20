@@ -956,9 +956,9 @@ onClick={() => {
 
   {canActions ? (
     <Link
-      href={`/dashboard/player/recruiting-tool?playerProfileId=${encodeURIComponent(
-        r.playerProfileId
-      )}&from=team-roster`}
+href={`/dashboard/player/recruiting-tool?playerProfileId=${encodeURIComponent(
+  r.playerProfileId
+)}&from=team-roster&returnTo=${encodeURIComponent("/dashboard/team/roster")}`}
       style={btnGhostSmall}
     >
       Recruiting Tool
@@ -1006,9 +1006,9 @@ onClick={() => {
   {/* Bottom row: College Search, Suggested, Target */}
   {canActions ? (
     <Link
-      href={`/dashboard/player/college-search?playerProfileId=${encodeURIComponent(
-        r.playerProfileId
-      )}&from=team-roster`}
+href={`/dashboard/player/college-search?playerProfileId=${encodeURIComponent(
+  r.playerProfileId
+)}&from=team-roster&returnTo=${encodeURIComponent("/dashboard/team/roster")}`}
       style={btnGhostSmall}
     >
       College Search
