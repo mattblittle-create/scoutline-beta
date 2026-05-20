@@ -31,6 +31,8 @@ export type AcademicsHandle = {
 
 /** ---------- Props ---------- */
 type Props = {
+  readOnlyTeamAdmin?: boolean;
+
   // values
   gradYear: string;
   hsName: string;
@@ -186,7 +188,10 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     // upload helpers
     userSlug,
     uploadEndpoint,
-  } = props;
+        readOnlyTeamAdmin = false,
+      } = props;
+
+  const academicsLocked = readOnlyTeamAdmin;
 
   // Use the endpoint passed by the parent; fall back to the cloud/non-local route
   const effectiveEndpoint = uploadEndpoint || "/api/upload/academic";
@@ -387,6 +392,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>Grad Year</span>
           <input
             ref={gradYearRef}
+            disabled={academicsLocked}
             inputMode="numeric"
             pattern="\d*"
             value={gradYear === "0" ? "" : gradYear}
@@ -405,6 +411,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>High School Name</span>
           <input
             value={hsName}
+            disabled={academicsLocked}
             onChange={(e) => setHsName(e.target.value)}
             placeholder="Jefferson High School"
             style={inputStyle}
@@ -415,6 +422,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>City</span>
           <input
             value={hsCity}
+            disabled={academicsLocked}
             onChange={(e) => setHsCity(e.target.value)}
             placeholder="Nashville"
             style={inputStyle}
@@ -426,6 +434,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             list="state-abbrs"
             value={hsState}
+            disabled={academicsLocked}
             onChange={(e) => setHsState(e.target.value.toUpperCase().slice(0, 2))}
             placeholder="State"
             style={inputStyle}
@@ -451,6 +460,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             inputMode="decimal"
             value={gpa}
+            disabled={academicsLocked}
             onChange={(e) => setGpa(e.target.value)}
             placeholder="4.0"
             style={inputStyle}
@@ -461,6 +471,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>Out of…</span>
           <select
             value={gpaScale}
+            disabled={academicsLocked}
             onChange={(e) => setGpaScale(e.target.value as any)}
             style={inputStyle}
           >
@@ -476,6 +487,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             inputMode="numeric"
             value={sat}
+            disabled={academicsLocked}
             onChange={(e) => setSat(e.target.value)}
             placeholder="1300"
             style={inputStyle}
@@ -487,6 +499,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             inputMode="numeric"
             value={act}
+            disabled={academicsLocked}
             onChange={(e) => setAct(e.target.value)}
             placeholder="28"
             style={inputStyle}
@@ -520,6 +533,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           >
             <input
               type="file"
+              disabled={academicsLocked}
               accept={docAccept}
               onChange={(e) => {
                 const files = e.currentTarget.files;
@@ -634,6 +648,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             type="url"
             value={hsGeneralWebsiteUrl}
+            disabled={academicsLocked}
             onChange={(e) => setHsGeneralWebsiteUrl(e.target.value)}
             placeholder="https://www.yourschool.edu"
             style={inputStyle}
@@ -704,6 +719,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                   type="button"
                   aria-label={`Remove ${f.name}`}
                   onClick={() => removeAcademicDoc(i)}
+                  disabled={academicsLocked}
                   style={{
                     border: "none",
                     background: "transparent",
@@ -766,7 +782,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         </p>
         <div>
           <textarea
-          disabled={bioReadOnly}
+          disabled={academicsLocked || bioReadOnly}
             value={academicBio}
             onChange={(e) => {
               const v = e.target.value;
@@ -824,7 +840,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
         <input
           value={areasInput}
-          disabled={intendedMajorsReadOnly}
+          disabled={academicsLocked || intendedMajorsReadOnly}
           onChange={(e) => {
             if (intendedMajorsReadOnly) return;
 
@@ -876,6 +892,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                   <button
                     type="button"
                     onClick={() => removeChip(idx)}
+                    disabled={academicsLocked}
                     title={`Remove ${chip}`}
                     aria-label={`Remove ${chip}`}
                     style={{

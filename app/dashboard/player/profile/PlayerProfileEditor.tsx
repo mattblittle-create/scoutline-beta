@@ -2441,6 +2441,7 @@ return (
         {/* ========= TAB 2: ACADEMICS ========= */}
         {activeTab === "Academics" && (
           <TabAcademics
+          readOnlyTeamAdmin={isTeamAdminMode}
           userSlug={uploadSlug}                 // ✅ NEW: gives uploads a stable per-user folder
           uploadEndpoint="/api/upload/academic"
             // values
