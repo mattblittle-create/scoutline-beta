@@ -378,6 +378,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             type="checkbox"
             checked={eligibilityRegistered}
+            disabled={athleticsLocked}
             onChange={(e) => setEligibilityRegistered(e.target.checked)}
           />
           <span style={{ color: "#0f172a", fontWeight: 700 }}>
@@ -419,6 +420,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                   inputMode="numeric"
                   pattern="\d*"
                   value={ncaaIdSafe}
+                  disabled={athleticsLocked}
                   onChange={(e) => {
                     const digits = onlyDigits(e.target.value).slice(0, 10);
                     setNcaaId(digits);
@@ -442,6 +444,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <span style={labelText}>NAIA ECID#</span>
                 <input
                   value={naiaEcidSafe}
+                  disabled={athleticsLocked}
                   onChange={(e) => setNaiaEcid(e.target.value)}
                   placeholder="Input NAIA Eligibility Center ID"
                   style={inputStyle}
@@ -476,7 +479,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             type="checkbox"
             checked={isCommitted}
-            disabled={commitmentReadOnly}
+            disabled={athleticsLocked || commitmentReadOnly}
             onChange={(e) => {
               if (commitmentReadOnly) return;
 
@@ -503,7 +506,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
               {/* Free-text input + optional suggestion menu */}
               <div style={{ position: "relative" }}>
                 <input
-                  disabled={commitmentReadOnly}
+                  disabled={athleticsLocked || commitmentReadOnly}
                   value={committedProgram}
                   onChange={(e) => {
                     if (commitmentReadOnly) return;
@@ -719,6 +722,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <span style={labelText}>High School Team Name</span>
           <input
             value={hsName}
+            disabled={athleticsLocked}
             onChange={(e) => setHsName(e.target.value)}
             placeholder="Jefferson High School"
             style={inputStyle}
@@ -729,6 +733,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <span style={labelText}>City</span>
           <input
             value={hsCity}
+            disabled={athleticsLocked}
             onChange={(e) => setHsCity(e.target.value)}
             placeholder="Nashville"
             style={inputStyle}
@@ -740,6 +745,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             list="state-abbrs-ath-hs"
             value={hsState}
+            disabled={athleticsLocked}
             onChange={(e) => setHsState(e.target.value.toUpperCase().slice(0, 2))}
             placeholder="State"
             style={inputStyle}
@@ -760,6 +766,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
             <input
               type="url"
               value={hsScheduleUrl}
+              disabled={athleticsLocked}
               onChange={(e) => setHsScheduleUrl(e.target.value)}
               placeholder="https://example.com/your-team/schedule"
               style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -836,6 +843,7 @@ opacity: athleticsLocked ? 0.6 : 1,
           <input
             type="url"
             value={hsWebsiteSafe}
+            disabled={athleticsLocked}
             onChange={(e) => setHsWebsiteUrl(e.target.value)}
             placeholder="https://example.com/your-team"
             style={inputStyle}
@@ -917,6 +925,7 @@ opacity: athleticsLocked ? 0.6 : 1,
           <span style={labelText}>Travel Team Name</span>
           <input
             value={travelTeamName}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamName(e.target.value)}
             placeholder="Example Baseball Club 17U"
             style={inputStyle}
@@ -927,6 +936,7 @@ opacity: athleticsLocked ? 0.6 : 1,
           <span style={labelText}>City</span>
           <input
             value={travelTeamCity}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamCity(e.target.value)}
             placeholder="Nashville"
             style={inputStyle}
@@ -938,6 +948,7 @@ opacity: athleticsLocked ? 0.6 : 1,
           <input
             list="state-abbrs-ath"
             value={travelTeamState}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamState(e.target.value.toUpperCase().slice(0, 2))}
             placeholder="State"
             style={inputStyle}
@@ -958,6 +969,7 @@ opacity: athleticsLocked ? 0.6 : 1,
             <input
               type="url"
               value={travelTeamScheduleUrl}
+              disabled={athleticsLocked}
               onChange={(e) => setTravelTeamScheduleUrl(e.target.value)}
               placeholder="https://example.com/travel-team/schedule"
               style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -1106,7 +1118,11 @@ opacity: athleticsLocked ? 0.6 : 1,
       <div style={{ marginTop: 12 }}>
         <button
           type="button"
-          onClick={addOtherTeam}
+          disabled={athleticsLocked}
+          onClick={() => {
+  if (athleticsLocked) return;
+  addOtherTeam();
+}}
           style={{
             padding: "10px 14px",
             borderRadius: 8,
@@ -1168,6 +1184,7 @@ opacity: athleticsLocked ? 0.6 : 1,
                     <span style={labelText}>Other Team Name</span>
                     <input
                       value={team.name}
+                      disabled={athleticsLocked}
                       onChange={(e) => updateOtherTeam(team.id, { name: e.target.value })}
                       placeholder="Another Organization 17U"
                       style={inputStyle}
@@ -1178,6 +1195,7 @@ opacity: athleticsLocked ? 0.6 : 1,
                     <span style={labelText}>City</span>
                     <input
                       value={team.city}
+                      disabled={athleticsLocked}
                       onChange={(e) => updateOtherTeam(team.id, { city: e.target.value })}
                       placeholder="Memphis"
                       style={inputStyle}
@@ -1189,6 +1207,7 @@ opacity: athleticsLocked ? 0.6 : 1,
                     <input
                       list="state-abbrs-ath-other"
                       value={team.state}
+                      disabled={athleticsLocked}
                       onChange={(e) =>
                         updateOtherTeam(team.id, {
                           state: e.target.value.toUpperCase().slice(0, 2),
@@ -1211,6 +1230,7 @@ opacity: athleticsLocked ? 0.6 : 1,
                     <input
                       type="url"
                       value={team.scheduleUrl}
+                      disabled={athleticsLocked}
                       onChange={(e) => updateOtherTeam(team.id, { scheduleUrl: e.target.value })}
                       placeholder="https://example.com/other-team/schedule"
                       style={inputStyle}
@@ -1363,6 +1383,8 @@ opacity: athleticsLocked ? 0.6 : 1,
 
       {/* Player Bio */}
       <hr style={hrStyle} />
+
+      disabled={athleticsLocked || playerBioReadOnly}
 
       {playerBioReadOnly && (
         <div
