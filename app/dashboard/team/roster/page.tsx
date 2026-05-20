@@ -865,13 +865,19 @@ return (
                             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
 <div style={{ fontWeight: 900 }}>
   {r.publicSlug ? (
-    <Link
-      href={`/player/${encodeURIComponent(r.publicSlug)}`}
-      style={{ color: "#0f172a", textDecoration: "none" }}
-      title="View public player profile"
-    >
-      {fullName(r) || "Player"}
-    </Link>
+<a
+  href={`/player/${encodeURIComponent(r.publicSlug)}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{
+    color: "#0f172a",
+    textDecoration: "underline",
+    textUnderlineOffset: 3,
+  }}
+  title="View public player profile"
+>
+  {fullName(r) || "Player"}
+</a>
   ) : (
     <span>{fullName(r) || "Player"}</span>
   )}{" "}
@@ -953,7 +959,7 @@ return (
 
   {canActions && r.publicSlug ? (
 <Link
-  href={`/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser`}
+  href={`/player/${encodeURIComponent(r.publicSlug as string)}/card?from=teaser`}
   target="_blank"
   rel="noopener noreferrer"
   style={btnGoldSmall}
@@ -1167,7 +1173,7 @@ return (
 
               {r.publicSlug ? (
                 <Link
-                  href={`/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser`}
+                  href={`/player/${encodeURIComponent(r.publicSlug as string)}/card?from=teaser`}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
