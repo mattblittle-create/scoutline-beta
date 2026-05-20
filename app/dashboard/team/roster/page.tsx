@@ -353,6 +353,80 @@ setTeaserSuccess(
   }
 }
 
+{analytics ? (
+  <section
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Active Players</div>
+      <div style={analyticsValue}>
+        {analytics.activePlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+  <div style={analyticsLabel}>Inactive Players</div>
+  <div style={analyticsValue}>
+    {analytics.inactivePlayers ?? 0}
+  </div>
+</div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Committed</div>
+      <div style={analyticsValue}>
+        {analytics.committedPlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Average GPA</div>
+      <div style={analyticsValue}>
+        {analytics.avgGpa ?? "—"}
+      </div>
+    </div>
+  </section>
+) : null}
+
+{analytics ? (
+  <section
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Grad Year Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.gradYears || {}).map(([label, count]) => (
+          <div key={label} style={breakdownRow}>
+            <span>{label}</span>
+            <strong>{String(count)}</strong>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Primary Position Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.primaryPositions || {}).map(
+          ([label, count]) => (
+            <div key={label} style={breakdownRow}>
+              <span>{label}</span>
+              <strong>{String(count)}</strong>
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  </section>
+) : null}
+
 return (
     <main style={{ display: "grid", gap: 12 }}>
       {/* Top controls */}
@@ -590,94 +664,6 @@ return (
 </span>
         </div>
       </section>
-
-      {analytics ? (
-  <section
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-      gap: 12,
-    }}
-  >
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Total Players</div>
-      <div style={analyticsValue}>
-        {analytics.totalPlayers ?? 0}
-      </div>
-    </div>
-
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Active Billing Seats</div>
-      <div style={analyticsValue}>
-        {analytics.activePlayers ?? 0}
-      </div>
-    </div>
-
-    <div style={analyticsCard}>
-  <div style={analyticsLabel}>Inactive Players</div>
-  <div style={analyticsValue}>
-    {analytics.inactivePlayers ?? 0}
-  </div>
-</div>
-
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Committed</div>
-      <div style={analyticsValue}>
-        {analytics.committedPlayers ?? 0}
-      </div>
-    </div>
-
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Pitchers</div>
-      <div style={analyticsValue}>
-        {analytics.pitchers ?? 0}
-      </div>
-    </div>
-
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Average GPA</div>
-      <div style={analyticsValue}>
-        {analytics.avgGpa ?? "—"}
-      </div>
-    </div>
-  </section>
-) : null}
-
-{analytics ? (
-  <section
-    style={{
-      display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-      gap: 12,
-    }}
-  >
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Grad Year Breakdown</div>
-      <div style={breakdownList}>
-        {Object.entries(analytics.gradYears || {}).map(([label, count]) => (
-          <div key={label} style={breakdownRow}>
-            <span>{label}</span>
-            <strong>{String(count)}</strong>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <div style={analyticsCard}>
-      <div style={analyticsLabel}>Primary Position Breakdown</div>
-      <div style={breakdownList}>
-        {Object.entries(analytics.primaryPositions || {}).map(
-          ([label, count]) => (
-            <div key={label} style={breakdownRow}>
-              <span>{label}</span>
-              <strong>{String(count)}</strong>
-            </div>
-          )
-        )}
-      </div>
-    </div>
-  </section>
-) : null}
 
       {/* List */}
       <section style={card}>
