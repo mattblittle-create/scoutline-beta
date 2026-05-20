@@ -425,7 +425,7 @@ React.useEffect(() => {
         <div style={{ minWidth: 260, flex: 1 }}>
           <div style={pageTitle}>Invites</div>
           <div style={muted}>
-            Send invites via email to players for profile set up and manage
+            Send invites to players in your organization for profile set up and manage
             existing invites.
           </div>
           <div style={miniHint}>Loaded from your active Team Admin session.</div>
@@ -436,7 +436,7 @@ React.useEffect(() => {
   <div style={{ display: "grid", gap: 6 }}>
     <div style={sectionTitle}>Team Join Link / QR Code</div>
     <div style={miniHint}>
-      Use this reusable link for TeamSnap, TeamReach, group text, mass email, or a printed QR code at the facility.
+      Use this reusable link or the printed QR code for mass group invites.
     </div>
   </div>
 
