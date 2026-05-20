@@ -241,7 +241,7 @@ export async function GET(req: Request) {
             updatedAt: true,
           },
         },
-        user: { select: { id: true, email: true, photoUrl: true } },
+        user: { select: { id: true, email: true, photoUrl: true, slug: true } },
       },
     });
 
@@ -265,7 +265,7 @@ export async function GET(req: Request) {
           playerEmail: pp?.email ?? m.user?.email ?? null,
           userId: pp?.userId ?? m.user?.id ?? null,
 
-          publicSlug: f.publicSlug || null,
+          publicSlug: f.publicSlug || m.user?.slug || null,
 
           firstName: f.firstName,
           lastName: f.lastName,

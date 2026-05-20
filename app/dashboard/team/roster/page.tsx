@@ -1540,6 +1540,7 @@ const btnGoldSmall: React.CSSProperties = {
   fontWeight: 900,
   textDecoration: "none",
   whiteSpace: "nowrap",
+  cursor: "pointer",
 };
 
 const btnGoldSmallDisabled: React.CSSProperties = {
