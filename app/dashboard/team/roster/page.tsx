@@ -142,7 +142,18 @@ function matchesFilters(r: RosterRow, f: Filters) {
 
   if (f.pitcher) {
     const want = f.pitcher === "yes";
-    if (!!r.pitcher !== want) return false;
+
+    const hand = normalizePos((r as any).hand);
+    const isPitcherByHand =
+      hand === "RHP" || hand === "LHP" || hand === "R" || hand === "L";
+
+    const isPitcherByPosition =
+      normalizePos(r.primaryPos) === "P" ||
+      normalizePos(r.secondaryPos) === "P";
+
+    const isPitcher = !!r.pitcher || isPitcherByHand || isPitcherByPosition;
+
+    if (isPitcher !== want) return false;
   }
 
   if (f.pitcherHand !== "ANY") {
