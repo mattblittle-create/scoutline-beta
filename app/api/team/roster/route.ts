@@ -351,6 +351,15 @@ const analytics = {
     acc[key] = (acc[key] || 0) + 1;
     return acc;
   }, {}),
+  pitcherHands: roster.reduce<Record<string, number>>((acc, r) => {
+  if (!r.pitcher) return acc;
+
+  const hand = String(r.hand || "").toUpperCase();
+  const key = hand === "LHP" || hand === "L" ? "LHP" : "RHP";
+
+  acc[key] = (acc[key] || 0) + 1;
+  return acc;
+}, {}),
 };
 
 return NextResponse.json({

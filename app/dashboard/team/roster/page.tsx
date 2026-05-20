@@ -397,7 +397,7 @@ return (
   <section
     style={{
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
       gap: 12,
     }}
   >
@@ -424,6 +424,18 @@ return (
             </div>
           )
         )}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Pitcher Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.pitcherHands || {}).map(([label, count]) => (
+          <div key={label} style={breakdownRow}>
+            <span>{label}</span>
+            <strong>{String(count)}</strong>
+          </div>
+        ))}
       </div>
     </div>
   </section>
