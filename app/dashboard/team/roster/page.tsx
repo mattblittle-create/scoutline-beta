@@ -251,6 +251,28 @@ setAnalytics(json?.data?.analytics || null);
     setSelected({});
   }
 
+  function applyGradYearQuickFilter(year: string) {
+  setFilters((prev) => ({
+    ...prev,
+    gradYear: year,
+  }));
+}
+
+function applyPrimaryPositionQuickFilter(position: string) {
+  setFilters((prev) => ({
+    ...prev,
+    primaryPositions: [position],
+  }));
+}
+
+function applyPitcherHandQuickFilter(hand: string) {
+  setFilters((prev) => ({
+    ...prev,
+    pitcher: "yes",
+    throws: hand === "LHP" ? "L" : "R",
+  }));
+}
+
 async function persistRosterActive(membershipId: string, isActive: boolean) {
   const url = fallbackEmail
     ? `/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`
@@ -405,10 +427,16 @@ return (
       <div style={analyticsLabel}>Grad Year Breakdown</div>
       <div style={breakdownList}>
         {Object.entries(analytics.gradYears || {}).map(([label, count]) => (
-          <div key={label} style={breakdownRow}>
+          <button
+            key={label}
+            type="button"
+            style={breakdownButtonRow}
+            onClick={() => applyGradYearQuickFilter(label)}
+            title={`Filter roster to grad year ${label}`}
+          >
             <span>{label}</span>
             <strong>{String(count)}</strong>
-          </div>
+          </button>
         ))}
       </div>
     </div>
@@ -418,10 +446,16 @@ return (
       <div style={breakdownList}>
         {Object.entries(analytics.primaryPositions || {}).map(
           ([label, count]) => (
-            <div key={label} style={breakdownRow}>
+            <button
+              key={label}
+              type="button"
+              style={breakdownButtonRow}
+              onClick={() => applyPrimaryPositionQuickFilter(label)}
+              title={`Filter roster to primary position ${label}`}
+            >
               <span>{label}</span>
               <strong>{String(count)}</strong>
-            </div>
+            </button>
           )
         )}
       </div>
@@ -431,10 +465,16 @@ return (
       <div style={analyticsLabel}>Pitcher Breakdown</div>
       <div style={breakdownList}>
         {Object.entries(analytics.pitcherHands || {}).map(([label, count]) => (
-          <div key={label} style={breakdownRow}>
+          <button
+            key={label}
+            type="button"
+            style={breakdownButtonRow}
+            onClick={() => applyPitcherHandQuickFilter(label)}
+            title={`Filter roster to ${label}`}
+          >
             <span>{label}</span>
             <strong>{String(count)}</strong>
-          </div>
+          </button>
         ))}
       </div>
     </div>
@@ -1348,6 +1388,14 @@ const breakdownRow: React.CSSProperties = {
   background: "#f8fafc",
   color: "#0f172a",
   fontWeight: 800,
+};
+
+const breakdownButtonRow: React.CSSProperties = {
+  ...breakdownRow,
+  width: "100%",
+  border: "0",
+  cursor: "pointer",
+  textAlign: "left",
 };
 
 const errorBox: React.CSSProperties = {
