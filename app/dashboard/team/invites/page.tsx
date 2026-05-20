@@ -349,7 +349,7 @@ export default function TeamInvitesPage() {
         <div style={{ display: "grid", gap: 6 }}>
           <div style={sectionTitle}>Send Invites</div>
           <div style={miniHint}>
-            Enter the player (required) and parent (optioanl) email to send an invite.
+            Enter the player and parent email to send an invite.
           </div>
         </div>
 
