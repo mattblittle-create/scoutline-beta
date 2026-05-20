@@ -68,6 +68,7 @@ type RosterRow = {
   primaryPos?: string | null;
   secondaryPos?: string | null;
   pitcher?: boolean | null;
+  hand?: string | null; // "RHP" | "LHP"
   throws?: string | null; // "R" | "L"
   bats?: string | null; // "R" | "L" | "S"
 
@@ -893,7 +894,8 @@ return (
 
                             <div style={mutedLine}>
                               Grad {r.gradYear ?? "—"} • GPA {r.gpa ?? "—"} • {r.primaryPos ?? "—"}
-                              {r.secondaryPos ? ` / ${r.secondaryPos}` : ""} • Throws {r.throws ?? "—"} • Bats{" "}
+                              {r.secondaryPos ? ` / ${r.secondaryPos}` : ""}
+                              {r.hand ? ` / ${r.hand}` : ""} • Throws {r.throws ?? "—"} • Bats{" "}
                               {r.bats ?? "—"}
                             </div>
                           </div>
