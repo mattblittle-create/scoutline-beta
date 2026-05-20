@@ -241,7 +241,7 @@ export async function GET(req: Request) {
             updatedAt: true,
           },
         },
-        user: { select: { id: true, email: true } },
+        user: { select: { id: true, email: true, photoUrl: true } },
       },
     });
 
@@ -270,7 +270,7 @@ export async function GET(req: Request) {
           firstName: f.firstName,
           lastName: f.lastName,
           fullName: f.fullName || pp?.email || m.user?.email || "Player",
-          photoUrl: f.photoUrl,
+          photoUrl: f.photoUrl || m.user?.photoUrl || null,
           gradYear: f.gradYear,
           gpa: f.gpa,
           committed: f.isCommitted,

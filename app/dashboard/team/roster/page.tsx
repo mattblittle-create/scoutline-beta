@@ -865,19 +865,24 @@ return (
                             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
 <div style={{ fontWeight: 900 }}>
   {r.publicSlug ? (
-<a
-  href={`/player/${encodeURIComponent(r.publicSlug)}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{
-    color: "#0f172a",
-    textDecoration: "underline",
-    textUnderlineOffset: 3,
-  }}
-  title="View public player profile"
->
-  {fullName(r) || "Player"}
-</a>
+    <a
+      href={`/player/${encodeURIComponent(r.publicSlug)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        position: "relative",
+        zIndex: 20,
+        color: "#0f172a",
+        textDecoration: "underline",
+        textUnderlineOffset: 3,
+        cursor: "pointer",
+        pointerEvents: "auto",
+      }}
+      title="View public player profile"
+    >
+      {fullName(r) || "Player"}
+    </a>
   ) : (
     <span>{fullName(r) || "Player"}</span>
   )}{" "}
