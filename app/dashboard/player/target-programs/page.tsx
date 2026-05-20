@@ -3,7 +3,8 @@
 "use client";
 
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 const TARGET_STATUS_OPTIONS = [
   ["SAVED", "Saved"],
@@ -250,7 +251,28 @@ function SummaryCard({ label, value }: { label: string; value: number }) {
   );
 }
 
-export default function TargetProgramsPage() {
+function TargetProgramsPageInner() {
+    const searchParams = useSearchParams();
+
+  const playerProfileId =
+    searchParams.get("playerProfileId") || "";
+
+  const fromTeamRoster =
+    searchParams.get("from") === "team-roster";
+
+  const backHref = fromTeamRoster
+    ? "/dashboard/team/roster"
+    : "/dashboard/player";
+
+  const backLabel = fromTeamRoster
+    ? "Back to Team Roster"
+    : "Back to Dashboard";
+
+  const toolQuery = playerProfileId
+    ? `?playerProfileId=${encodeURIComponent(
+        playerProfileId
+      )}&from=team-roster`
+    : "";
   const [saved, setSaved] = useState<SavedProgram[]>([]);
 
   const [expandedProgramIds, setExpandedProgramIds] = useState<string[]>([]);
@@ -320,7 +342,13 @@ function getStatusRank(status?: string) {
       setLoading(true);
       setError("");
 
-      const res = await fetch("/api/player/target-programs", {
+      const apiUrl = playerProfileId
+  ? `/api/player/target-programs?playerProfileId=${encodeURIComponent(
+      playerProfileId
+    )}`
+  : "/api/player/target-programs";
+
+const res = await fetch(apiUrl, {
         cache: "no-store",
       });
 
@@ -340,16 +368,22 @@ function getStatusRank(status?: string) {
     }
   }
 
-  useEffect(() => {
-    loadSavedPrograms();
-  }, []);
+useEffect(() => {
+  loadSavedPrograms();
+}, [playerProfileId]);
 
   async function updateProgramStatus(collegeId: string, status: string) {
   try {
     setUpdatingCollegeId(collegeId);
     setError("");
 
-    const res = await fetch("/api/player/target-programs", {
+    const apiUrl = playerProfileId
+  ? `/api/player/target-programs?playerProfileId=${encodeURIComponent(
+      playerProfileId
+    )}`
+  : "/api/player/target-programs";
+
+const res = await fetch(apiUrl, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -381,7 +415,13 @@ async function updateProgramPriority(collegeId: string, priority: string) {
     setUpdatingCollegeId(collegeId);
     setError("");
 
-    const res = await fetch("/api/player/target-programs", {
+    const apiUrl = playerProfileId
+  ? `/api/player/target-programs?playerProfileId=${encodeURIComponent(
+      playerProfileId
+    )}`
+  : "/api/player/target-programs";
+
+const res = await fetch(apiUrl, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -413,7 +453,13 @@ async function updateProgramNotes(collegeId: string, notes: string) {
     setSavingNotesCollegeId(collegeId);
     setError("");
 
-    const res = await fetch("/api/player/target-programs", {
+    const apiUrl = playerProfileId
+  ? `/api/player/target-programs?playerProfileId=${encodeURIComponent(
+      playerProfileId
+    )}`
+  : "/api/player/target-programs";
+
+const res = await fetch(apiUrl, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -445,7 +491,13 @@ async function updateProgramNotes(collegeId: string, notes: string) {
       setRemovingCollegeId(collegeId);
       setError("");
 
-      const res = await fetch("/api/player/target-programs", {
+      const apiUrl = playerProfileId
+  ? `/api/player/target-programs?playerProfileId=${encodeURIComponent(
+      playerProfileId
+    )}`
+  : "/api/player/target-programs";
+
+const res = await fetch(apiUrl, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -588,17 +640,30 @@ const stateMatch =
             </p>
           </div>
 
-<div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
-  <Link href="/dashboard/player/recruiting-tool" style={primaryButtonStyle}>
+<div
+  style={{
+    display: "flex",
+    gap: 10,
+    alignItems: "center",
+    flexWrap: "wrap",
+  }}
+>
+  <Link
+    href={`/dashboard/player/recruiting-tool${toolQuery}`}
+    style={primaryButtonStyle}
+  >
     Recruiting Tool
   </Link>
 
-  <Link href="/dashboard/player/college-search" style={secondaryButtonStyle}>
+  <Link
+    href={`/dashboard/player/college-search${toolQuery}`}
+    style={secondaryButtonStyle}
+  >
     Search Colleges
   </Link>
 
-  <Link href="/dashboard/player" style={backToDashboardStyle}>
-    Back to Dashboard
+  <Link href={backHref} style={backToDashboardStyle}>
+    {backLabel}
   </Link>
 </div>
         </div>
@@ -1514,3 +1579,11 @@ const summaryLabelStyle: React.CSSProperties = {
   textTransform: "uppercase",
   letterSpacing: "0.04em",
 };
+
+export default function TargetProgramsPage() {
+  return (
+    <Suspense fallback={<div style={{ padding: 24 }}>Loading Target Programs...</div>}>
+      <TargetProgramsPageInner />
+    </Suspense>
+  );
+}

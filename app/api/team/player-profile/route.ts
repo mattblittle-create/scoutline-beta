@@ -335,11 +335,15 @@ async function saveTeamAdminProfile(req: Request) {
     }
 
     const body = await req.json().catch(() => ({}));
-    const incomingAtomic = body?.atomic;
+    const incomingAtomic =
+  body?.atomic ||
+  body?.data ||
+  body?.profile ||
+  body;
 
-    if (!isObj(incomingAtomic)) {
-      return jsonError("Missing atomic payload", 400);
-    }
+if (!isObj(incomingAtomic)) {
+  return jsonError("Missing profile payload", 400);
+}
 
     const existing = (access.playerProfile.data as any) ?? {};
     const patch = buildAllowedTeamAdminPatch(incomingAtomic);

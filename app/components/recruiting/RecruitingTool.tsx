@@ -733,20 +733,20 @@ React.useEffect(() => {
       if (stateFilter !== "ALL") params.set("state", stateFilter);
       if (controlFilter !== "ALL") params.set("control", controlFilter);
 
-      const qs = params.toString();
+const qs = params.toString();
 
-      const url =
-        mode === "parent" && playerProfileId
-          ? qs
-            ? `/api/parent/player/${encodeURIComponent(
-                playerProfileId
-              )}/truth-fit?${qs}`
-            : `/api/parent/player/${encodeURIComponent(
-                playerProfileId
-              )}/truth-fit`
-          : qs
-          ? `/api/player/truth-fit?${qs}`
-          : "/api/player/truth-fit";
+const url =
+  mode === "parent" && playerProfileId
+    ? qs
+      ? `/api/parent/player/${encodeURIComponent(playerProfileId)}/truth-fit?${qs}`
+      : `/api/parent/player/${encodeURIComponent(playerProfileId)}/truth-fit`
+    : playerProfileId
+    ? qs
+      ? `/api/player/truth-fit?playerProfileId=${encodeURIComponent(playerProfileId)}&${qs}`
+      : `/api/player/truth-fit?playerProfileId=${encodeURIComponent(playerProfileId)}`
+    : qs
+    ? `/api/player/truth-fit?${qs}`
+    : "/api/player/truth-fit";
 
       const res = await fetch(url, { cache: "no-store" });
       const data = await res.json().catch(() => null);
@@ -782,7 +782,15 @@ React.useEffect(() => {
     } finally {
       setLoadingTruthFit(false);
     }
-  }, [divisionFilter, regionFilter, stateFilter, controlFilter, selectedCollegeId]);
+}, [
+  divisionFilter,
+  regionFilter,
+  stateFilter,
+  controlFilter,
+  selectedCollegeId,
+  mode,
+  playerProfileId,
+]);
 
   React.useEffect(() => {
     loadTruthFit();

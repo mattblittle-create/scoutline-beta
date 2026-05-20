@@ -550,8 +550,16 @@ export default function PlayerSuggestedProgramsPage() {
 }
 
 function PlayerSuggestedProgramsContent() {
-  const searchParams = useSearchParams();
-  const selectedCollegeId = searchParams.get("collegeId") || "";
+const searchParams = useSearchParams();
+const selectedCollegeId = searchParams.get("collegeId") || "";
+const playerProfileId = searchParams.get("playerProfileId") || "";
+const fromTeamRoster = searchParams.get("from") === "team-roster";
+
+const backHref = fromTeamRoster ? "/dashboard/team/roster" : "/dashboard/player";
+const backLabel = fromTeamRoster ? "Back to Team Roster" : "Back to Dashboard";
+const toolQuery = playerProfileId
+  ? `?playerProfileId=${encodeURIComponent(playerProfileId)}&from=team-roster`
+  : "";
   const selectedCollegeRef = React.useRef<HTMLElement | null>(null);
 
   const [planTier, setPlanTier] = React.useState("REDSHIRT");
@@ -687,8 +695,12 @@ const visibleTruthFitResults = isRedshirt
       if (stateFilter !== "ALL") params.set("state", stateFilter);
       if (controlFilter !== "ALL") params.set("control", controlFilter);
 
-      const qs = params.toString();
-      const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
+if (playerProfileId) {
+  params.set("playerProfileId", playerProfileId);
+}
+
+const qs = params.toString();
+const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
 
       const res = await fetch(url, { cache: "no-store" });
       const data = await res.json().catch(() => null);
@@ -799,7 +811,14 @@ const visibleTruthFitResults = isRedshirt
     } finally {
       setLoadingTruthFit(false);
     }
-  }, [divisionFilter, regionFilter, stateFilter, controlFilter, selectedCollegeId]);
+}, [
+  divisionFilter,
+  regionFilter,
+  stateFilter,
+  controlFilter,
+  selectedCollegeId,
+  playerProfileId,
+]);
 
   React.useEffect(() => {
     loadTruthFit();
@@ -932,17 +951,23 @@ const visibleTruthFitResults = isRedshirt
           </div>
 
           <div style={buttonRowStyle}>
-            <Link href="/dashboard/player/recruiting-tool" style={secondaryLinkButtonStyle}>
-              Recruiting Tool
-            </Link>
+<Link
+  href={`/dashboard/player/recruiting-tool${toolQuery}`}
+  style={secondaryLinkButtonStyle}
+>
+  Recruiting Tool
+</Link>
 
-            <Link href="/dashboard/player/college-search" style={secondaryLinkButtonStyle}>
-              College Search
-            </Link>
+<Link
+  href={`/dashboard/player/college-search${toolQuery}`}
+  style={secondaryLinkButtonStyle}
+>
+  College Search
+</Link>
 
-            <Link href="/dashboard/player" style={backToDashboardStyle}>
-              Back to Dashboard
-            </Link>
+<Link href={backHref} style={backToDashboardStyle}>
+  {backLabel}
+</Link>
           </div>
         </div>
 
