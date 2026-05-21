@@ -155,7 +155,7 @@ function JumpToSectionNav({ sections }: { sections: { id: string; label: string 
   );
 }
 
-const SECTION_SCROLL_MARGIN = 235;
+const SECTION_SCROLL_MARGIN = 300;
 function SectionWrapper({ id, children }: { id: string; children: React.ReactNode }) {
   return (
     <section id={id} style={{ scrollMarginTop: SECTION_SCROLL_MARGIN }}>
@@ -934,7 +934,7 @@ const coachesData: CoachesData = {
           <CoachViewerTools
             isCoachViewer={isCoachViewer}
             playerProfileId={playerProfileId}
-            sectionScrollMargin={180}
+            sectionScrollMargin={340}
           />
         ) : null}
 
