@@ -74,6 +74,9 @@ function TeamInviteAcceptPageInner() {
   const [success, setSuccess] = React.useState<string | null>(null);
   const [data, setData] = React.useState<AcceptData | null>(null);
 
+  const [joinPlayerEmail, setJoinPlayerEmail] = React.useState("");
+  const [joinParentEmail, setJoinParentEmail] = React.useState("");
+
   React.useEffect(() => {
     let active = true;
 
@@ -115,6 +118,44 @@ const res = await fetch(
       active = false;
     };
   }, [token, code, isJoinLinkMode]);
+
+async function submitJoinLink() {
+  if (!code || submitting) return;
+
+  setSubmitting(true);
+  setError(null);
+  setSuccess(null);
+
+  try {
+    const res = await fetch("/api/team/invites/accept", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        code,
+        playerEmail: joinPlayerEmail,
+        parentEmail: joinParentEmail,
+      }),
+    });
+
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to start team invite.");
+    }
+
+    const redirectTo = String(json?.data?.redirectTo || "");
+
+    if (!redirectTo) {
+      throw new Error("Missing invite redirect.");
+    }
+
+    router.push(redirectTo);
+  } catch (err: any) {
+    setError(err?.message || "Failed to start team invite.");
+  } finally {
+    setSubmitting(false);
+  }
+}
 
 async function acceptInvite(
   teamChoice?: "SWITCH_TO_INVITED_TEAM" | "KEEP_CURRENT_TEAM"
@@ -222,7 +263,65 @@ async function acceptInvite(
             </Link>
           </div>
         </>
-      ) : data ? (
+) : data && isJoinLinkMode ? (
+  <>
+    <section style={card}>
+      <div style={{ display: "grid", gap: 8 }}>
+        <div style={sectionTitle}>Join {data.team.name}</div>
+
+        <p style={muted}>
+          Enter the player email to create a ScoutLine team invite and connect this player to the team roster.
+        </p>
+
+        <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
+          <span style={{ fontWeight: 900 }}>Player Email</span>
+          <input
+            value={joinPlayerEmail}
+            onChange={(e) => setJoinPlayerEmail(e.target.value)}
+            placeholder="player@example.com"
+            type="email"
+            style={inputStyle}
+          />
+        </label>
+
+        <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
+          <span style={{ fontWeight: 900 }}>Parent Email optional</span>
+          <input
+            value={joinParentEmail}
+            onChange={(e) => setJoinParentEmail(e.target.value)}
+            placeholder="parent@example.com"
+            type="email"
+            style={inputStyle}
+          />
+        </label>
+
+        <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 14 }}>
+          <button
+            type="button"
+            onClick={submitJoinLink}
+            disabled={submitting || !joinPlayerEmail.trim()}
+            style={{
+              ...btnGoldButton,
+              opacity: submitting || !joinPlayerEmail.trim() ? 0.6 : 1,
+              cursor:
+                submitting || !joinPlayerEmail.trim()
+                  ? "not-allowed"
+                  : "pointer",
+            }}
+          >
+            {submitting ? "Creating Invite…" : "Continue"}
+          </button>
+
+          <Link href="/login?role=player" style={btnGhost}>
+            Already have an account?
+          </Link>
+        </div>
+      </div>
+    </section>
+
+    {error ? <div style={boxError}>{error}</div> : null}
+  </>
+) : data ? (
         <>
           <section style={card}>
             <div style={{ display: "grid", gap: 8 }}>
@@ -574,6 +673,17 @@ const btnGhost: React.CSSProperties = {
   color: "#0f172a",
   fontWeight: 900,
   textDecoration: "none",
+};
+
+const inputStyle: React.CSSProperties = {
+  width: "100%",
+  height: 42,
+  borderRadius: 10,
+  border: "1px solid #cbd5e1",
+  padding: "0 12px",
+  fontWeight: 800,
+  color: "#0f172a",
+  background: "#ffffff",
 };
 
 export default function TeamInviteAcceptPage() {

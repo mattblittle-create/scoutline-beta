@@ -260,37 +260,70 @@ const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
     return jsonError("Team join link not found or inactive.", 404);
   }
 
-  const rawInviteToken = crypto.randomBytes(32).toString("hex");
-  const tokenHash = sha256Hex(rawInviteToken);
-  const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+const existingPendingInvite = await prisma.teamInvite.findFirst({
+  where: {
+    teamId: joinLink.teamId,
+    invitedEmail: playerEmail,
+    status: "PENDING" as any,
+  },
+  orderBy: {
+    createdAt: "desc",
+  },
+  select: {
+    id: true,
+    invitedEmail: true,
+    parentEmail: true,
+    status: true,
+    expiresAt: true,
+  },
+});
 
-  const invite = await prisma.teamInvite.create({
-    data: {
-      teamId: joinLink.teamId,
-      invitedEmail: playerEmail,
-      parentEmail: parentEmail || null,
-      tokenHash,
-      status: "PENDING" as any,
-      expiresAt,
-    },
-    select: {
-      id: true,
-      invitedEmail: true,
-      parentEmail: true,
-      status: true,
-      expiresAt: true,
-    },
-  });
-
+if (existingPendingInvite?.id) {
   return NextResponse.json({
     ok: true,
     data: {
-      mode: "TEAM_JOIN_LINK_CREATED_INVITE",
-      invite,
+      mode: "TEAM_JOIN_LINK_EXISTING_PENDING_INVITE",
+      invite: existingPendingInvite,
       team: joinLink.team,
-      redirectTo: `/team/invite/accept?token=${encodeURIComponent(rawInviteToken)}`,
+      requiresNewToken: true,
+      message:
+        "A pending invite already exists for this player. Please ask the team admin to resend the invite from the Invites dashboard.",
+      redirectTo: `/team/invite/accept?code=${encodeURIComponent(code)}`,
     },
   });
+}
+
+const rawInviteToken = crypto.randomBytes(32).toString("hex");
+const tokenHash = sha256Hex(rawInviteToken);
+const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+
+const invite = await prisma.teamInvite.create({
+  data: {
+    teamId: joinLink.teamId,
+    invitedEmail: playerEmail,
+    parentEmail: parentEmail || null,
+    tokenHash,
+    status: "PENDING" as any,
+    expiresAt,
+  },
+  select: {
+    id: true,
+    invitedEmail: true,
+    parentEmail: true,
+    status: true,
+    expiresAt: true,
+  },
+});
+
+return NextResponse.json({
+  ok: true,
+  data: {
+    mode: "TEAM_JOIN_LINK_CREATED_INVITE",
+    invite,
+    team: joinLink.team,
+    redirectTo: `/team/invite/accept?token=${encodeURIComponent(rawInviteToken)}`,
+  },
+});
 }
 
 if (!rawToken) return jsonError("Missing invite token.", 400);
