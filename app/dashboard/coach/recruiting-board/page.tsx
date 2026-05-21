@@ -1321,12 +1321,14 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
 <tr key={r.playerProfileId}>
   <td style={td}>
     {r.slug ? (
-      <a
-        href={`/player/${encodeURIComponent(r.slug)}?source=recruiting-board`}
-        style={linkSky}
-      >
-        {name}
-      </a>
+<a
+  href={`/player/${encodeURIComponent(r.slug)}?source=recruiting-board`}
+  target="_blank"
+  rel="noopener noreferrer"
+  style={linkSky}
+>
+  {name}
+</a>
     ) : (
       <span style={mutedSmall}>No public profile</span>
     )}
