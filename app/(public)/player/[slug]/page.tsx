@@ -934,7 +934,7 @@ const coachesData: CoachesData = {
           <CoachViewerTools
             isCoachViewer={isCoachViewer}
             playerProfileId={playerProfileId}
-            sectionScrollMargin={230}
+            sectionScrollMargin={180}
           />
         ) : null}
 
