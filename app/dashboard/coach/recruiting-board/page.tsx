@@ -1077,7 +1077,7 @@ return (
     <input value={popMin} onChange={(e) => setPopMin(e.target.value)} style={inputXs} placeholder="1.9" />
   </Field>
 
-  <Field label="Fastball Velo (minimum)" onClear={() => setFbMin("")}>
+  <Field label="FB Velo (minimum)" onClear={() => setFbMin("")}>
   <input
     value={fbMin}
     onChange={(e) => setFbMin(e.target.value)}
@@ -1086,7 +1086,7 @@ return (
   />
 </Field>
 
-<Field label="Change Velo (minimum)" onClear={() => setChMin("")}>
+<Field label="CH Velo (minimum)" onClear={() => setChMin("")}>
   <input
     value={chMin}
     onChange={(e) => setChMin(e.target.value)}
@@ -1095,7 +1095,7 @@ return (
   />
 </Field>
 
-<Field label="Breaking Velo (minimum)" onClear={() => setBbMin("")}>
+<Field label="BB Velo (minimum)" onClear={() => setBbMin("")}>
   <input
     value={bbMin}
     onChange={(e) => setBbMin(e.target.value)}
