@@ -37,6 +37,13 @@ function toNum(v: any): number | null {
   const n = Number(s);
   return Number.isFinite(n) ? n : null;
 }
+function firstString(...values: any[]): string | null {
+  for (const v of values) {
+    const s = String(v ?? "").trim();
+    if (s) return s;
+  }
+  return null;
+}
 function toBool(v: any): boolean | null {
   const s = String(v ?? "").trim().toLowerCase();
   if (!s) return null;
@@ -269,7 +276,8 @@ export async function GET(req: Request) {
   if (state) playerWhere.state = state;
   if (hometown) playerWhere.hometown = { contains: hometown, mode: "insensitive" };
   if (hsName) playerWhere.hsName = { contains: hsName, mode: "insensitive" };
-  if (travelTeam) playerWhere.travelTeam = { contains: travelTeam, mode: "insensitive" };
+  // Travel team can live in Player.travelTeam OR PlayerProfile.data depending on profile version.
+  // We filter it after fetching so both legacy/current profile shapes work.
 
   // ✅ GPA MIN: gpa >= gpaMin
   if (gpaMin != null) {
@@ -400,9 +408,39 @@ export async function GET(req: Request) {
         latest[k] = getLatestMetricValue(metricsObj, k, now);
       }
 
-      return { p, latest };
+      const profileData: any = (p as any).data || {};
+      const normalized: any = profileData?.normalized || {};
+      const core: any = normalized?.core || {};
+      const athletics: any = normalized?.athletics || {};
+      const player: any = normalized?.player || {};
+
+      const resolvedTravelTeam = firstString(
+        p.user?.Player?.travelTeam,
+        profileData?.travelTeam,
+        profileData?.travelTeamName,
+        profileData?.teamName,
+        normalized?.travelTeam,
+        normalized?.travelTeamName,
+        normalized?.teamName,
+        core?.travelTeam,
+        core?.travelTeamName,
+        core?.teamName,
+        athletics?.travelTeam,
+        athletics?.travelTeamName,
+        athletics?.teamName,
+        player?.travelTeam,
+        player?.travelTeamName,
+        player?.teamName
+      );
+
+      return { p, latest, resolvedTravelTeam };
     })
-    .filter(({ latest }) => {
+    .filter(({ latest, resolvedTravelTeam }) => {
+      if (travelTeam) {
+        const haystack = String(resolvedTravelTeam || "").toLowerCase();
+        if (!haystack.includes(travelTeam.toLowerCase())) return false;
+      }
+
       if (!hasMetricFilters) return true;
 
       // ✅ MIN filters behave like GPA min: keep rows where actual >= min
@@ -461,7 +499,7 @@ export async function GET(req: Request) {
     }
   }
 
-  const results = filtered.map(({ p, latest }) => ({
+  const results = filtered.map(({ p, latest, resolvedTravelTeam }) => ({
     playerProfileId: p.id,
     lists: listsByProfileId.get(p.id) ?? [],
 
@@ -489,11 +527,7 @@ export async function GET(req: Request) {
     state: p.user?.Player?.state ?? null,
     hometown: p.user?.Player?.hometown ?? null,
     hsName: p.user?.Player?.hsName ?? null,
-    travelTeam:
-      p.user?.Player?.travelTeam ??
-      (p as any)?.data?.travelTeam ??
-      (p as any)?.data?.normalized?.travelTeam ??
-      null,
+    travelTeam: resolvedTravelTeam,
 
     gpa: p.user?.Player?.gpa ?? null,
 
