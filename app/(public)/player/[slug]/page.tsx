@@ -915,7 +915,7 @@ const coachesData: CoachesData = {
       <section
         style={{
           position: "sticky",
-          top: 74,
+          top: 110,
           zIndex: 20,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
           marginBottom: 8,
