@@ -911,19 +911,11 @@ const coachesData: CoachesData = {
   /** ---------- Render ---------- */
   return (
     <main style={wrap}>
-      {/* Coach-only jacket tools */}
-      {isCoachViewer && playerProfileId ? (
-        <CoachViewerTools
-          isCoachViewer={isCoachViewer}
-          playerProfileId={playerProfileId}
-        />
-      ) : null}
-
       {/* Sticky block */}
       <section
         style={{
           position: "sticky",
-          top: isCoachViewer ? 148 : 74,
+          top: 74,
           zIndex: 20,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
           marginBottom: 8,
@@ -937,6 +929,15 @@ const coachesData: CoachesData = {
             boxShadow: "0 8px 20px rgba(15,23,42,0.08)",
           }}
         >
+      {/* Coach-only jacket tools */}
+        {isCoachViewer && playerProfileId ? (
+          <CoachViewerTools
+            isCoachViewer={isCoachViewer}
+            playerProfileId={playerProfileId}
+            sectionScrollMargin={260}
+          />
+        ) : null}
+
           {/* Row A */}
           <div
             style={{
