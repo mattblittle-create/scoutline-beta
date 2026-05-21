@@ -386,7 +386,7 @@ export default function CoachInvitesPage() {
       <section style={topBar}>
         <div style={{ display: "grid", gap: 6 }}>
           <div style={sectionTitle}>Invite a Coach</div>
-          <div style={miniHint}>Create a fresh invite link, copy it, open it, or scan the QR code.</div>
+          <div style={miniHint}>Email an invite to a staff coach in your program.</div>
         </div>
 
         <form onSubmit={sendInvite} style={sendGrid}>
