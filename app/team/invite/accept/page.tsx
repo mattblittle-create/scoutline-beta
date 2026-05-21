@@ -270,7 +270,7 @@ async function acceptInvite(
         <div style={sectionTitle}>Join {data.team.name}</div>
 
         <p style={muted}>
-          Enter the player email to create a ScoutLine team invite and connect this player to the team roster.
+          Enter the player and parent email to create a ScoutLine team invite and connect this player to the team roster.
         </p>
 
         <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
@@ -285,7 +285,7 @@ async function acceptInvite(
         </label>
 
         <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
-          <span style={{ fontWeight: 900 }}>Parent Email optional</span>
+          <span style={{ fontWeight: 900 }}>Parent Email</span>
           <input
             value={joinParentEmail}
             onChange={(e) => setJoinParentEmail(e.target.value)}
@@ -299,12 +299,23 @@ async function acceptInvite(
           <button
             type="button"
             onClick={submitJoinLink}
-            disabled={submitting || !joinPlayerEmail.trim()}
+            disabled={
+  submitting ||
+  !joinPlayerEmail.trim() ||
+  !joinParentEmail.trim()
+}
             style={{
               ...btnGoldButton,
-              opacity: submitting || !joinPlayerEmail.trim() ? 0.6 : 1,
+              opacity:
+  submitting ||
+  !joinPlayerEmail.trim() ||
+  !joinParentEmail.trim()
+    ? 0.6
+    : 1,
               cursor:
-                submitting || !joinPlayerEmail.trim()
+                submitting ||
+!joinPlayerEmail.trim() ||
+!joinParentEmail.trim()
                   ? "not-allowed"
                   : "pointer",
             }}
