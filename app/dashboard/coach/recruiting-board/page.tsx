@@ -1365,8 +1365,8 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("pos")}>Pos</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("state")}>State</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("city")}>City</th>
-          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("hsName")}>HS Team</th>
-          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("travelTeam")}>TRV Team</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("hsName")}>High School</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("travelTeam")}>Travel Team</th>
 
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("exitVelo")}>Exit Velo</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("sixtyYdDash")}>60 Yrd</th>

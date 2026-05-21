@@ -489,7 +489,11 @@ export async function GET(req: Request) {
     state: p.user?.Player?.state ?? null,
     hometown: p.user?.Player?.hometown ?? null,
     hsName: p.user?.Player?.hsName ?? null,
-    travelTeam: p.user?.Player?.travelTeam ?? null,
+    travelTeam:
+      p.user?.Player?.travelTeam ??
+      (p as any)?.data?.travelTeam ??
+      (p as any)?.data?.normalized?.travelTeam ??
+      null,
 
     gpa: p.user?.Player?.gpa ?? null,
 
