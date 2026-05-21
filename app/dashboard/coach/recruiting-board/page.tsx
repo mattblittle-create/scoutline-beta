@@ -993,7 +993,7 @@ return (
                 <input value={hsName} onChange={(e) => setHsName(e.target.value)} style={inputWideSm} placeholder="High School Name" />
               </Field>
 
-              <Field label="GPA (minimum)" onClear={() => setGpaMin("")}>
+              <Field label="GPA (min)" onClear={() => setGpaMin("")}>
                 <input value={gpaMin} onChange={(e) => setGpaMin(e.target.value)} style={inputXs} placeholder="3.0" />
               </Field>
 
@@ -1045,15 +1045,15 @@ return (
 
 {/* Metrics row 1 */}
 <div style={{ ...formRow, marginTop: 10 }}>
-  <Field label="Exit Velo (minimum)" onClear={() => setExitMin("")}>
+  <Field label="Exit Velo (min)" onClear={() => setExitMin("")}>
     <input value={exitMin} onChange={(e) => setExitMin(e.target.value)} style={inputXs} placeholder="90" />
   </Field>
 
-  <Field label="60 Yrd (minimum)" onClear={() => setSixtyMin("")}>
+  <Field label="60 Yrd (min)" onClear={() => setSixtyMin("")}>
     <input value={sixtyMin} onChange={(e) => setSixtyMin(e.target.value)} style={inputXs} placeholder="6.8" />
   </Field>
 
-  <Field label="H→1st (minimum)" onClear={() => setHtfMin("")}>
+  <Field label="H→1st (min)" onClear={() => setHtfMin("")}>
     <input value={htfMin} onChange={(e) => setHtfMin(e.target.value)} style={inputXs} placeholder="3.9" />
   </Field>
 </div>
@@ -1069,15 +1069,15 @@ return (
     </select>
   </Field>
 
-  <Field label="Throw Velo (minimum)" onClear={() => setThrowMin("")}>
+  <Field label="Throw Velo (min)" onClear={() => setThrowMin("")}>
     <input value={throwMin} onChange={(e) => setThrowMin(e.target.value)} style={inputXs} placeholder="75" />
   </Field>
   
-  <Field label="C Pop (minimum)" onClear={() => setPopMin("")}>
+  <Field label="C Pop (min)" onClear={() => setPopMin("")}>
     <input value={popMin} onChange={(e) => setPopMin(e.target.value)} style={inputXs} placeholder="1.9" />
   </Field>
 
-  <Field label="FB Velo (minimum)" onClear={() => setFbMin("")}>
+  <Field label="FB Velo (min)" onClear={() => setFbMin("")}>
   <input
     value={fbMin}
     onChange={(e) => setFbMin(e.target.value)}
@@ -1086,7 +1086,7 @@ return (
   />
 </Field>
 
-<Field label="CH Velo (minimum)" onClear={() => setChMin("")}>
+<Field label="CH Velo (min)" onClear={() => setChMin("")}>
   <input
     value={chMin}
     onChange={(e) => setChMin(e.target.value)}
@@ -1095,7 +1095,7 @@ return (
   />
 </Field>
 
-<Field label="BB Velo (minimum)" onClear={() => setBbMin("")}>
+<Field label="BB Velo (min)" onClear={() => setBbMin("")}>
   <input
     value={bbMin}
     onChange={(e) => setBbMin(e.target.value)}
