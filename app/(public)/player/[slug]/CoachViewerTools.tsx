@@ -728,58 +728,60 @@ export default function CoachViewerTools(props: {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px, 0.8fr) minmax(300px, 1.2fr) auto",
+              gridTemplateColumns: "minmax(240px, 0.9fr) minmax(280px, 1.2fr) minmax(200px, auto)",
               gap: 12,
               alignItems: "start",
             }}
           >
-            <select
-              value={shareRecipientMode}
-              onChange={(e) => setShareRecipientMode(e.target.value === "all" ? "all" : "selected")}
-              style={coachInput}
-            >
-              <option value="selected">Select staff member(s)</option>
-              <option value="all">All staff</option>
-            </select>
+            <div style={{ display: "grid", gap: 8 }}>
+              <select
+                value={shareRecipientMode}
+                onChange={(e) => setShareRecipientMode(e.target.value === "all" ? "all" : "selected")}
+                style={coachInput}
+              >
+                <option value="selected">Select staff member(s)</option>
+                <option value="all">All staff</option>
+              </select>
 
-            {shareRecipientMode === "selected" ? (
-              <div style={{ display: "grid", gap: 8, maxHeight: 140, overflowY: "auto" }}>
-                {staffMembers.length === 0 && !staffLoading ? (
-                  <div style={coachTinyMuted}>No other staff members found.</div>
-                ) : null}
+              {shareRecipientMode === "selected" ? (
+                <div style={{ display: "grid", gap: 8, maxHeight: 90, overflowY: "auto" }}>
+                  {staffMembers.length === 0 && !staffLoading ? (
+                    <div style={coachTinyMuted}>No other staff members found.</div>
+                  ) : null}
 
-                {staffMembers.map((s: any) => {
-                  const id = String(s?.id || "");
-                  const checked = selectedStaffIds.has(id);
+                  {staffMembers.map((s: any) => {
+                    const id = String(s?.id || "");
+                    const checked = selectedStaffIds.has(id);
 
-                  return (
-                    <label
-                      key={id}
-                      style={{
-                        display: "flex",
-                        gap: 8,
-                        alignItems: "center",
-                        fontSize: 12,
-                        fontWeight: 800,
-                        color: "#0f172a",
-                      }}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={checked}
-                        onChange={() => toggleSelectedStaff(id)}
-                      />
-                      <span>
-                        {s?.name || s?.email || "Coach"}
-                        {s?.staffTitle ? <span style={{ color: "#64748b" }}> — {s.staffTitle}</span> : null}
-                      </span>
-                    </label>
-                  );
-                })}
-              </div>
-            ) : (
-              <div style={coachTinyMuted}>This will email all other staff members linked to your program.</div>
-            )}
+                    return (
+                      <label
+                        key={id}
+                        style={{
+                          display: "flex",
+                          gap: 8,
+                          alignItems: "center",
+                          fontSize: 12,
+                          fontWeight: 800,
+                          color: "#0f172a",
+                        }}
+                      >
+                        <input
+                          type="checkbox"
+                          checked={checked}
+                          onChange={() => toggleSelectedStaff(id)}
+                        />
+                        <span>
+                          {s?.name || s?.email || "Coach"}
+                          {s?.staffTitle ? <span style={{ color: "#64748b" }}> — {s.staffTitle}</span> : null}
+                        </span>
+                      </label>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div style={coachTinyMuted}>This will email all other staff members linked to your program.</div>
+              )}
+            </div>
 
             <textarea
               value={shareMessage}
@@ -799,9 +801,9 @@ export default function CoachViewerTools(props: {
               }
               style={{
                 ...coachBtnGold,
-                minWidth: 220,
+                minWidth: 200,
                 height: 44,
-                alignSelf: "center",
+                alignSelf: "start",
                 opacity:
                   shareSending ||
                   staffLoading ||
