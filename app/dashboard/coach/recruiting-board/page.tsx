@@ -109,6 +109,7 @@ type SortKey =
   | "sixtyYdDash"
   | "homeToFirst"
   | "throwVelo"
+  | "fastballVelo"
   | "popTime"
   | "committed"
   | "updatedAt";
@@ -163,6 +164,9 @@ const [targets, setTargets] = useState<RecruitingTarget[]>([]);
   const [htfMin, setHtfMin] = useState("");
   const [throwMin, setThrowMin] = useState("");
   const [popMin, setPopMin] = useState("");
+  const [fbMin, setFbMin] = useState("");
+  const [chMin, setChMin] = useState("");
+  const [bbMin, setBbMin] = useState("");
 
   // Search results
   const [loading, setLoading] = useState(false);
@@ -411,7 +415,19 @@ function onHeaderDoubleClick(nextKey: SortKey) {
   }
 
   function metricVal(r: SearchRow, key: string): string {
-    const v = r.metricsLatest?.[key];
+    const metrics = r.metricsLatest || {};
+
+    const v =
+      key === "throwVelo"
+        ? metrics.catcherThrowVelo ??
+          metrics.infieldThrowVelo ??
+          metrics.outfieldThrowVelo ??
+          metrics.rawThrowVelo ??
+          null
+        : key === "fastballVelo"
+        ? metrics.avgFbVelo ?? null
+        : metrics[key];
+
     if (v == null || Number.isNaN(Number(v))) return "—";
     if (key === "sixtyYdDash" || key === "homeToFirst" || key === "popTime") return Number(v).toFixed(2);
     return String(Math.round(Number(v)));
@@ -610,6 +626,9 @@ if (sixtyMin.trim()) params.set("m_sixtyYdDashMin", sixtyMin.trim());
 if (htfMin.trim()) params.set("m_homeToFirstMin", htfMin.trim());
 if (throwMin.trim()) params.set(`m_${throwMetricKey}Min`, throwMin.trim());
 if (popMin.trim()) params.set("m_popTimeMin", popMin.trim());
+if (fbMin.trim()) params.set("m_avgFbVeloMin", fbMin.trim());
+if (chMin.trim()) params.set("m_avgChVeloMin", chMin.trim());
+if (bbMin.trim()) params.set("m_avgBbVeloMin", bbMin.trim());
 
 // If no criteria at all, fetch ALL active profiles (server caps safely)
 const hasAnyCriteria =
@@ -1058,6 +1077,33 @@ return (
     <input value={popMin} onChange={(e) => setPopMin(e.target.value)} style={inputXs} placeholder="1.9" />
   </Field>
 
+  <Field label="Fastball Velo (minimum)" onClear={() => setFbMin("")}>
+  <input
+    value={fbMin}
+    onChange={(e) => setFbMin(e.target.value)}
+    style={inputXs}
+    placeholder="85"
+  />
+</Field>
+
+<Field label="Change Velo (minimum)" onClear={() => setChMin("")}>
+  <input
+    value={chMin}
+    onChange={(e) => setChMin(e.target.value)}
+    style={inputXs}
+    placeholder="75"
+  />
+</Field>
+
+<Field label="Breaking Velo (minimum)" onClear={() => setBbMin("")}>
+  <input
+    value={bbMin}
+    onChange={(e) => setBbMin(e.target.value)}
+    style={inputXs}
+    placeholder="70"
+  />
+</Field>
+
   {/* Push button to far right on the SAME row */}
   <button
     type="button"
@@ -1301,6 +1347,7 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("sixtyYdDash")}>60 Yrd</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("homeToFirst")}>H→1st</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("throwVelo")}>Throw Velo</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("fastballVelo")}>FB Velo</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("popTime")}>C Pop</th>
 
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("committed")}>Committed</th>
@@ -1397,7 +1444,8 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
                 <td style={td}>{metricVal(r, "exitVelo")}</td>
                 <td style={td}>{metricVal(r, "sixtyYdDash")}</td>
                 <td style={td}>{metricVal(r, "homeToFirst")}</td>
-                <td style={td}>{metricVal(r, throwMetricKey)}</td>
+                <td style={td}>{metricVal(r, "throwVelo")}</td>
+                <td style={td}>{metricVal(r, "fastballVelo")}</td>
                 <td style={td}>{metricVal(r, "popTime")}</td>
 
                 <td style={td}>
