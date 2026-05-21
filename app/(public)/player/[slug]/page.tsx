@@ -918,7 +918,7 @@ const coachesData: CoachesData = {
           top: 110,
           zIndex: 20,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
-          marginBottom: 8,
+          marginBottom: 15,
         }}
       >
         <div
