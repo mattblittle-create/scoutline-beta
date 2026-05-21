@@ -65,6 +65,8 @@ function TeamInviteAcceptPageInner() {
   const router = useRouter();
   const search = useSearchParams();
   const token = String(search.get("token") || "").trim();
+  const code = String(search.get("code") || "").trim();
+  const isJoinLinkMode = !!code && !token;
 
   const [loading, setLoading] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
@@ -76,17 +78,19 @@ function TeamInviteAcceptPageInner() {
     let active = true;
 
     async function load() {
-      if (!token) {
-        setError("Missing invite token.");
-        setLoading(false);
-        return;
-      }
+if (!token && !code) {
+  setError("Missing invite token or team join code.");
+  setLoading(false);
+  return;
+}
 
       try {
-        const res = await fetch(
-          `/api/team/invites/accept?token=${encodeURIComponent(token)}`,
-          { cache: "no-store" }
-        );
+const res = await fetch(
+  isJoinLinkMode
+    ? `/api/team/invites/accept?code=${encodeURIComponent(code)}`
+    : `/api/team/invites/accept?token=${encodeURIComponent(token)}`,
+  { cache: "no-store" }
+);
 
         const json = await res.json().catch(() => ({}));
 
@@ -110,7 +114,7 @@ function TeamInviteAcceptPageInner() {
     return () => {
       active = false;
     };
-  }, [token]);
+  }, [token, code, isJoinLinkMode]);
 
 async function acceptInvite(
   teamChoice?: "SWITCH_TO_INVITED_TEAM" | "KEEP_CURRENT_TEAM"
