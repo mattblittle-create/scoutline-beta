@@ -631,6 +631,7 @@ if (chMin.trim()) params.set("m_avgChVeloMin", chMin.trim());
 if (bbMin.trim()) params.set("m_avgBbVeloMin", bbMin.trim());
 
 // If no criteria at all, fetch ALL active profiles (server caps safely)
+// If no criteria at all, fetch ALL active profiles (server caps safely)
 const hasAnyCriteria =
   !!q.trim() ||
   !!gradYear.trim() ||
@@ -648,29 +649,35 @@ const hasAnyCriteria =
   !!sixtyMin.trim() ||
   !!htfMin.trim() ||
   !!throwMin.trim() ||
-  !!popMin.trim();
+  !!popMin.trim() ||
+  !!fbMin.trim() ||
+  !!chMin.trim() ||
+  !!bbMin.trim();
 
 params.set("take", hasAnyCriteria ? "25" : String(TAKE_IF_NO_FILTERS));
 
-      const res = await fetch(`/api/coach/player/search?${params.toString()}`, { cache: "no-store" });
-      const json = await res.json();
+const res = await fetch(`/api/coach/player/search?${params.toString()}`, {
+  cache: "no-store",
+});
 
-      if (!res.ok || !json?.ok) {
-        setErr(json?.error || `Search failed (${res.status})`);
-        setResults([]);
-        return;
-      }
+const json = await res.json();
 
-      const nextResults = Array.isArray(json.results) ? json.results : [];
-      setResults(nextResults);
+if (!res.ok || !json?.ok) {
+  setErr(json?.error || `Search failed (${res.status})`);
+  setResults([]);
+  return;
+}
 
-    } catch (e: any) {
-      setErr(e?.message || "Search failed.");
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  }
+const nextResults = Array.isArray(json.results) ? json.results : [];
+setResults(nextResults);
+
+} catch (e: any) {
+  setErr(e?.message || "Search failed.");
+  setResults([]);
+} finally {
+  setLoading(false);
+}
+}
 
   async function refreshListsKeepSelection() {
     const res = await fetch("/api/coach/recruiting-lists", { method: "GET", cache: "no-store" });
