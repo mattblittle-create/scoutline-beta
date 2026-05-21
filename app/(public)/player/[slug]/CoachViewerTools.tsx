@@ -35,6 +35,10 @@ export default function CoachViewerTools(props: {
   const [coachListSaving, setCoachListSaving] = React.useState(false);
   const [coachListActionError, setCoachListActionError] = React.useState<string | null>(null);
 
+  const [activePanel, setActivePanel] = React.useState<
+    "notes" | "lists" | "share" | null
+  >(null);
+
   const [staffLoading, setStaffLoading] = React.useState(false);
   const [staffError, setStaffError] = React.useState<string | null>(null);
   const [staffMembers, setStaffMembers] = React.useState<any[]>([]);
@@ -496,37 +500,99 @@ export default function CoachViewerTools(props: {
           alignItems: "center",
           justifyContent: "space-between",
           marginTop: 12,
+          padding: "10px 12px",
+          border: "1px solid #e5e7eb",
+          borderRadius: 12,
+          background: "#ffffff",
         }}
       >
-        <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: 10,
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <div style={coachLabel}>Internal Program Rating</div>
 
           {coachRatingLoading ? (
-            <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>Loading…</div>
-          ) : (
-            <RatingPickerInline value={coachRating} disabled={coachRatingSaving} onChange={(n) => saveCoachRating(n)} />
-          )}
-
-          {coachRatingSaving ? <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>Saving…</div> : null}
-          {savedListCount > 0 ? (
             <div
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 6,
-                padding: "6px 10px",
-                borderRadius: 999,
-                background: "#ecfdf5",
-                border: "1px solid #bbf7d0",
-                color: "#166534",
-                fontSize: 11,
-                fontWeight: 900,
-                whiteSpace: "nowrap",
+                fontSize: 12,
+                color: "#64748b",
+                fontWeight: 800,
               }}
             >
-              Saved in {savedListCount} list{savedListCount === 1 ? "" : "s"}
+              Loading…
+            </div>
+          ) : (
+            <RatingPickerInline
+              value={coachRating}
+              disabled={coachRatingSaving}
+              onChange={(n) => saveCoachRating(n)}
+            />
+          )}
+
+          {coachRatingSaving ? (
+            <div
+              style={{
+                fontSize: 12,
+                color: "#64748b",
+                fontWeight: 800,
+              }}
+            >
+              Saving…
             </div>
           ) : null}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            gap: 8,
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() =>
+              setActivePanel((p) => (p === "notes" ? null : "notes"))
+            }
+            style={{
+              ...coachTabBtn,
+              background: activePanel === "notes" ? "#dbeafe" : "#fff",
+            }}
+          >
+            Notes ({coachNotes.length})
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              setActivePanel((p) => (p === "lists" ? null : "lists"))
+            }
+            style={{
+              ...coachTabBtn,
+              background: activePanel === "lists" ? "#dcfce7" : "#fff",
+            }}
+          >
+            Lists ({savedListCount})
+          </button>
+
+          <button
+            type="button"
+            onClick={() =>
+              setActivePanel((p) => (p === "share" ? null : "share"))
+            }
+            style={{
+              ...coachTabBtn,
+              background: activePanel === "share" ? "#fef3c7" : "#fff",
+            }}
+          >
+            Share
+          </button>
         </div>
       </div>
 
@@ -543,14 +609,15 @@ export default function CoachViewerTools(props: {
     alignItems: "start",
   }}
 >
-        {/* Notes */}
+
+      {activePanel === "notes" ? (
         <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff", minWidth: 0 }}>
           <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, color: "#0f172a" }}>Coach Notes</div>
 
           <textarea
             value={newCoachNoteText}
             onChange={(e) => setNewCoachNoteText(e.target.value)}
-            rows={3}
+            rows={2}
             placeholder="Add a note about this player (e.g. makeup, follow-up items)..."
             style={coachTextarea}
           />
@@ -574,7 +641,7 @@ export default function CoachViewerTools(props: {
           ) : null}
 
           {!coachNotesLoading && !coachNotesError && coachNotes.length > 0 ? (
-            <div style={{ display: "grid", gap: 10, maxHeight: 220, overflowY: "auto", paddingTop: 6 }}>
+            <div style={{ display: "grid", gap: 10, maxHeight: 150, overflowY: "auto", paddingTop: 6 }}>
               {coachNotes.map((n: any) => (
                 <div
                   key={n.id}
@@ -608,8 +675,9 @@ export default function CoachViewerTools(props: {
             </div>
           ) : null}
         </div>
+      ) : null}
 
-        {/* Lists */}
+      {activePanel === "lists" ? (
         <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff", minWidth: 0 }}>
           <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, color: "#0f172a" }}>Recruiting Target Lists</div>
 
@@ -704,8 +772,9 @@ export default function CoachViewerTools(props: {
             )}
           </div>
         </div>
+      ) : null}
 
-        {/* Share */}
+      {activePanel === "share" ? (
         <div
           style={{
             gridColumn: "1 / -1",
@@ -816,6 +885,7 @@ export default function CoachViewerTools(props: {
             </button>
           </div>
         </div>
+      ) : null}
       </div>
     </>
   );
@@ -871,6 +941,16 @@ const coachBtnDangerOutline: React.CSSProperties = {
 };
 
 const coachTinyMuted: React.CSSProperties = { fontSize: 11, color: "#64748b", fontWeight: 700 };
+const coachTabBtn: React.CSSProperties = {
+  border: "1px solid #cbd5e1",
+  background: "#fff",
+  borderRadius: 999,
+  padding: "8px 12px",
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#0f172a",
+  cursor: "pointer",
+};
 const coachTinyError: React.CSSProperties = { fontSize: 11, color: "#b91c1c", fontWeight: 900, marginTop: 6 };
 
 function RatingPickerInline(props: { value: number; disabled?: boolean; onChange: (n: number) => void }) {
