@@ -3,7 +3,13 @@
 
 import * as React from "react";
 
-type InviteStatus = "PENDING" | "ACCEPTED" | "EXPIRED" | "REVOKED";
+type InviteStatus =
+  | "PENDING"
+  | "ACCEPTED"
+  | "DECLINED"
+  | "EXPIRED"
+  | "REVOKED"
+  | "CANCELLED";
 
 const ROLE_PRESETS = [
   "Head Coach",
@@ -24,6 +30,7 @@ type InviteRow = {
   id: string;
   invitedEmail: string;
   status: InviteStatus;
+  inviteToken?: string | null;
 
   canEditLists: boolean;
 
@@ -53,6 +60,27 @@ function fmtDate(iso?: string | null) {
   return d.toLocaleString();
 }
 
+function buildInviteUrl(baseUrl: string, token: string) {
+  return `${baseUrl}/coach/invite/${encodeURIComponent(token)}`;
+}
+
+function buildInviteQr(url: string) {
+  return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}`;
+}
+
+function getDisplayStatus(invite: InviteRow): InviteStatus {
+  if (invite.status !== "PENDING") return invite.status;
+
+  if (!invite.expiresAt) return invite.status;
+
+  const exp = new Date(invite.expiresAt);
+  if (!Number.isNaN(exp.getTime()) && exp.getTime() < Date.now()) {
+    return "EXPIRED";
+  }
+
+  return "PENDING";
+}
+
 function statusTone(s: InviteStatus) {
   switch (s) {
     case "PENDING":
@@ -78,6 +106,7 @@ export default function CoachInvitesPage() {
   const [loading, setLoading] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [baseUrl, setBaseUrl] = React.useState("");
 
   // ----- Send Invite form -----
   const [inviteEmail, setInviteEmail] = React.useState("");
@@ -140,6 +169,12 @@ export default function CoachInvitesPage() {
   React.useEffect(() => {
     load();
   }, []);
+
+  React.useEffect(() => {
+  if (typeof window !== "undefined") {
+    setBaseUrl(window.location.origin);
+  }
+}, []);
 
   // OR search logic
   const filtered = React.useMemo(() => {
