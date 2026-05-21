@@ -3,6 +3,10 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import {
+  createVerificationToken,
+  invalidateExistingTokens,
+} from "@/lib/auth/tokens";
 
 type TeamChoice = "SWITCH_TO_INVITED_TEAM" | "KEEP_CURRENT_TEAM";
 
@@ -260,6 +264,54 @@ const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
     return jsonError("Team join link not found or inactive.", 404);
   }
 
+let playerUser = await prisma.user.findUnique({
+  where: { email: playerEmail },
+  select: {
+    id: true,
+    email: true,
+    passwordHash: true,
+  },
+});
+
+if (!playerUser?.id) {
+  playerUser = await prisma.user.create({
+    data: {
+      email: playerEmail,
+      role: "PLAYER" as any,
+    },
+    select: {
+      id: true,
+      email: true,
+      passwordHash: true,
+    },
+  });
+}
+
+const playerHasPassword = Boolean(playerUser.passwordHash);
+
+await prisma.playerProfile.upsert({
+  where: { email: playerEmail },
+  create: {
+    email: playerEmail,
+    userId: playerUser.id,
+    profileState: "TEAM_INVITED" as any,
+    ownershipMode: "TEAM_PENDING" as any,
+    ownerTeamId: joinLink.teamId,
+    hasActiveTeamBilling: false,
+    hasActivePlayerBilling: false,
+    billingConflictFlag: false,
+    playerPlanTier: "TEAM" as any,
+    playerBillingCadence: "monthly",
+    playerBillingStatus: "Team Invite Pending",
+    schemaVersion: 1,
+    data: {},
+  },
+  update: {
+    userId: playerUser.id,
+    updatedAt: new Date(),
+  },
+});
+
 const existingPendingInvite = await prisma.teamInvite.findFirst({
   where: {
     teamId: joinLink.teamId,
@@ -315,13 +367,35 @@ const invite = await prisma.teamInvite.create({
   },
 });
 
+let setPasswordRawToken = "";
+
+if (!playerHasPassword) {
+  await invalidateExistingTokens({
+    email: playerEmail,
+    purpose: "SET_PASSWORD",
+  });
+
+  const createdSetPasswordToken = await createVerificationToken({
+    email: playerEmail,
+    purpose: "SET_PASSWORD",
+  });
+
+  setPasswordRawToken = createdSetPasswordToken.rawToken;
+}
+
 return NextResponse.json({
   ok: true,
   data: {
     mode: "TEAM_JOIN_LINK_CREATED_INVITE",
     invite,
     team: joinLink.team,
-    redirectTo: `/team/invite/accept?token=${encodeURIComponent(rawInviteToken)}`,
+    redirectTo: playerHasPassword
+  ? `/team/invite/accept?token=${encodeURIComponent(rawInviteToken)}`
+  : `/set-password?token=${encodeURIComponent(
+      setPasswordRawToken
+    )}&next=${encodeURIComponent(
+      `/team/invite/accept?token=${rawInviteToken}`
+    )}`,
   },
 });
 }
