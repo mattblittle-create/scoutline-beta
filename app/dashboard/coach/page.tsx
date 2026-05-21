@@ -91,6 +91,27 @@ export default function CoachDashboardHome() {
             </>
           }
         />
+
+                <Card
+          title="Support"
+          subtitle="Need help or have a question?"
+          body={
+            <>
+              <p style={p}>
+                Contact ScoutLine support for coach profile, recruiting board, player search, notes, lists, staff access, or chat help.
+              </p>
+
+              <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <a
+                  href="mailto:matt.b.little@gmail.com?subject=ScoutLine%20Coach%20Dashboard%20Support"
+                  style={btnGold}
+                >
+                  Email Support
+                </a>
+              </div>
+            </>
+          }
+        />
       </section>
     </main>
   );
