@@ -913,10 +913,18 @@ const coachesData: CoachesData = {
     <main style={wrap}>
       {/* Coach-only jacket tools */}
       {isCoachViewer && playerProfileId ? (
-        <CoachViewerTools
-          isCoachViewer={isCoachViewer}
-          playerProfileId={playerProfileId}
-        />
+        <div
+          style={{
+            position: "sticky",
+            top: 74,
+            zIndex: 45,
+          }}
+        >
+          <CoachViewerTools
+            isCoachViewer={isCoachViewer}
+            playerProfileId={playerProfileId}
+          />
+        </div>
       ) : null}
 
       {/* Sticky block */}
