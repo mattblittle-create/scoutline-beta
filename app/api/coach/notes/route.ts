@@ -99,6 +99,80 @@ export async function GET(req: Request) {
   }
 }
 
+async function notifyStaffOfSharedCoachNote(params: {
+  collegeId: string;
+  actorUserId: string;
+  playerProfileId: string;
+  noteId: string;
+}) {
+  const actor = await prisma.user.findUnique({
+    where: { id: params.actorUserId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  const playerProfile = await prisma.playerProfile.findUnique({
+    where: { id: params.playerProfileId },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+
+  const data = (playerProfile?.data || {}) as any;
+  const normalized = data?.normalized || data;
+
+  const actorName = actor?.name || actor?.email || "A staff member";
+  const playerName =
+    [normalized?.firstName, normalized?.lastName].filter(Boolean).join(" ") ||
+    normalized?.name ||
+    playerProfile?.email ||
+    "a player";
+
+  const staff = await prisma.user.findMany({
+    where: {
+      collegeId: params.collegeId,
+      id: { not: params.actorUserId },
+      coachProfile: {
+        isNot: null,
+      },
+    },
+    select: {
+      id: true,
+      notificationPreference: {
+        select: {
+          instantStaffActivity: true,
+        },
+      },
+    },
+  });
+
+  const staffIds = staff
+    .filter((member) => member.notificationPreference?.instantStaffActivity !== false)
+    .map((member) => member.id);
+
+  if (!staffIds.length) return;
+
+  await prisma.notification.createMany({
+    data: staffIds.map((userId) => ({
+      userId,
+      type: "COACH_SHARED_NOTE_ACTIVITY",
+      message: `${actorName} added a shared note on ${playerName}.`,
+      data: {
+        collegeId: params.collegeId,
+        actorUserId: params.actorUserId,
+        playerProfileId: params.playerProfileId,
+        noteId: params.noteId,
+        event: "COACH_SHARED_NOTE_CREATED",
+      },
+    })),
+  });
+}
+
 export async function POST(req: Request) {
   const actingUser = await requireActingUser();
   if (!actingUser) {
@@ -137,6 +211,15 @@ export async function POST(req: Request) {
         coachUser: true,
       },
     });
+
+    if (sharedWithOrg && collegeId) {
+  await notifyStaffOfSharedCoachNote({
+    collegeId,
+    actorUserId: actingUser.id,
+    playerProfileId,
+    noteId: created.id,
+  });
+}
 
     return NextResponse.json<CreateNoteResponse>({
       ok: true,

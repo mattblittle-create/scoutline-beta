@@ -11,49 +11,52 @@ datasource db {
 }
 
 model User {
-  id                           String                        @id @default(cuid())
-  email                        String                        @unique
-  passwordHash                 String?
-  name                         String?
-  role                         String?
-  workPhone                    String?
-  phonePrivate                 Boolean                       @default(true)
-  program                      String?
-  photoUrl                     String?
-  slug                         String?                       @unique
-  createdAt                    DateTime                      @default(now())
-  updatedAt                    DateTime                      @updatedAt
-  emailPrivate                 Boolean                       @default(true)
-  collegeId                    String?
-  workPhoneExt                 String?
-  adminAuditLogsActing         AdminAuditLog[]               @relation("AdminAuditActingUser")
-  adminProfile                 AdminUser?
-  chatConversationParticipants ChatConversationParticipant[]
-  chatMessagesSent             ChatMessage[]                 @relation("ChatMessageSender")
-  coachInvitesAccepted         CoachInvite[]                 @relation("CoachInviteAcceptedBy")
-  coachInvitesCreated          CoachInvite[]                 @relation("CoachInviteCreatedBy")
-  coachJoinRequestsDecided     CoachJoinRequest[]            @relation("CoachJoinRequestDecidedBy")
-  coachJoinRequestsCreated     CoachJoinRequest[]            @relation("CoachJoinRequestCreatedBy")
-  coachNotesAuthored           CoachNote[]
-  coachPlayerRatings           CoachPlayerRating[]
-  coachProfile                 CoachProfile?
-  programProfileEdits          College[]                     @relation("CollegeProgramProfileUpdatedBy")
-  notifications                Notification[]
-  parentProfile                ParentProfile?
-  payoutsReceived              Payout[]                      @relation("PayoutPayeeUser")
-  Player                       Player?
-  PlayerProfile                PlayerProfile?
-  profileChangeLogsActed       ProfileChangeLog[]
-  profileViewEvents            ProfileViewEvent[]
-  publicProfileCaches          PublicProfileCache[]
-  recruitingBoardAdded         RecruitingBoardEntry[]
-  recruitingListsCreated       RecruitingList[]              @relation("RecruitingListsCreated")
-  recruitingListAccess         RecruitingListAccess[]
-  referralsMade                Referral[]                    @relation("ReferralReferrerUser")
-  teamInvitesAccepted          TeamInvite[]                  @relation("TeamInviteAcceptedBy")
-  teamInvitesCreated           TeamInvite[]                  @relation("TeamInviteCreatedBy")
-  teamMemberships              TeamMembership[]
-  college                      College?                      @relation(fields: [collegeId], references: [id])
+  id                             String                                 @id @default(cuid())
+  email                          String                                 @unique
+  passwordHash                   String?
+  name                           String?
+  role                           String?
+  workPhone                      String?
+  phonePrivate                   Boolean                                @default(true)
+  program                        String?
+  photoUrl                       String?
+  slug                           String?                                @unique
+  createdAt                      DateTime                               @default(now())
+  updatedAt                      DateTime                               @updatedAt
+  emailPrivate                   Boolean                                @default(true)
+  collegeId                      String?
+  workPhoneExt                   String?
+  adminAuditLogsActing           AdminAuditLog[]                        @relation("AdminAuditActingUser")
+  adminProfile                   AdminUser?
+  chatConversationParticipants   ChatConversationParticipant[]
+  chatMessagesSent               ChatMessage[]                          @relation("ChatMessageSender")
+  coachInvitesAccepted           CoachInvite[]                          @relation("CoachInviteAcceptedBy")
+  coachInvitesCreated            CoachInvite[]                          @relation("CoachInviteCreatedBy")
+  coachJoinRequestsDecided       CoachJoinRequest[]                     @relation("CoachJoinRequestDecidedBy")
+  coachJoinRequestsCreated       CoachJoinRequest[]                     @relation("CoachJoinRequestCreatedBy")
+  coachNotesAuthored             CoachNote[]
+  coachPlayerRatings             CoachPlayerRating[]
+  coachProfile                   CoachProfile?
+  programProfileEdits            College[]                              @relation("CollegeProgramProfileUpdatedBy")
+  notifications                  Notification[]
+  parentProfile                  ParentProfile?
+  payoutsReceived                Payout[]                               @relation("PayoutPayeeUser")
+  Player                         Player?
+  PlayerProfile                  PlayerProfile?
+  notificationPreference         NotificationPreference?
+  programVerificationSubmissions CollegeProgramVerificationSubmission[] @relation("ProgramVerificationSubmittedBy")
+  programVerificationReviews     CollegeProgramVerificationSubmission[] @relation("ProgramVerificationReviewedBy")
+  profileChangeLogsActed         ProfileChangeLog[]
+  profileViewEvents              ProfileViewEvent[]
+  publicProfileCaches            PublicProfileCache[]
+  recruitingBoardAdded           RecruitingBoardEntry[]
+  recruitingListsCreated         RecruitingList[]                       @relation("RecruitingListsCreated")
+  recruitingListAccess           RecruitingListAccess[]
+  referralsMade                  Referral[]                             @relation("ReferralReferrerUser")
+  teamInvitesAccepted            TeamInvite[]                           @relation("TeamInviteAcceptedBy")
+  teamInvitesCreated             TeamInvite[]                           @relation("TeamInviteCreatedBy")
+  teamMemberships                TeamMembership[]
+  college                        College?                               @relation(fields: [collegeId], references: [id])
 }
 
 model VerificationToken {
@@ -520,31 +523,31 @@ model PlayerBillingProfile {
 }
 
 model PlayerInvoice {
-  id               String            @id @default(cuid())
-  playerProfileId  String
-  status           InvoiceStatus     @default(UPCOMING)
-  cadence          String            @default("monthly")
-  periodStart      DateTime
-  periodEnd        DateTime
-  invoiceDate      DateTime
-  dueDate          DateTime
-  amountCents              Int
-  cardFeeCents             Int               @default(0)
-  amountPaidCents          Int               @default(0)
-  externalId               String?
-  hostedUrl                String?
-  processorTransactionId   String?
-  processorResponseCode    String?
-  processorReceiptUrl      String?
-  failedAttemptCount       Int               @default(0)
-  lastFailedAt             DateTime?
-  nextRetryAt              DateTime?
-  failureReason            String?
-  paidAt                   DateTime?
-  createdAt        DateTime          @default(now())
-commissionEvents     CommissionEvent[]
-billingTransactions  BillingTransaction[]
-playerProfile        PlayerProfile     @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  id                     String               @id @default(cuid())
+  playerProfileId        String
+  status                 InvoiceStatus        @default(UPCOMING)
+  cadence                String               @default("monthly")
+  periodStart            DateTime
+  periodEnd              DateTime
+  invoiceDate            DateTime
+  dueDate                DateTime
+  amountCents            Int
+  cardFeeCents           Int                  @default(0)
+  amountPaidCents        Int                  @default(0)
+  externalId             String?
+  hostedUrl              String?
+  processorTransactionId String?
+  processorResponseCode  String?
+  processorReceiptUrl    String?
+  failedAttemptCount     Int                  @default(0)
+  lastFailedAt           DateTime?
+  nextRetryAt            DateTime?
+  failureReason          String?
+  paidAt                 DateTime?
+  createdAt              DateTime             @default(now())
+  commissionEvents       CommissionEvent[]
+  billingTransactions    BillingTransaction[]
+  playerProfile          PlayerProfile        @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
 
   @@index([playerProfileId, invoiceDate])
   @@index([playerProfileId, status])
@@ -552,32 +555,32 @@ playerProfile        PlayerProfile     @relation(fields: [playerProfileId], refe
 }
 
 model BillingTransaction {
-  id                    String   @id @default(cuid())
+  id String @id @default(cuid())
 
-  invoiceId             String?
-  playerProfileId       String?
+  invoiceId       String?
+  playerProfileId String?
 
-  provider              String   @default("VALOR")
+  provider String @default("VALOR")
 
-  transactionType       String
-  transactionStatus     String
+  transactionType   String
+  transactionStatus String
 
   providerTransactionId String?
   providerReference     String?
 
-  amountCents           Int
-  cardFeeCents          Int      @default(0)
+  amountCents  Int
+  cardFeeCents Int @default(0)
 
-  approvalCode          String?
-  responseCode          String?
-  responseMessage       String?
-  receiptUrl            String?
+  approvalCode    String?
+  responseCode    String?
+  responseMessage String?
+  receiptUrl      String?
 
-  rawPayload            Json?
+  rawPayload Json?
 
-  createdAt             DateTime @default(now())
+  createdAt DateTime @default(now())
 
-  playerInvoice         PlayerInvoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
+  playerInvoice PlayerInvoice? @relation(fields: [invoiceId], references: [id], onDelete: SetNull)
 
   @@index([invoiceId])
   @@index([playerProfileId])
@@ -588,17 +591,17 @@ model BillingTransaction {
 }
 
 model BillingAuditLog {
-  id          String   @id @default(cuid())
-  actorType   String   @default("SYSTEM")
-  actorId     String?
-  targetType  String
-  targetId    String
-  eventType   String
-  message     String
-  metadata    Json?
-  ipAddress   String?
-  userAgent   String?
-  createdAt   DateTime @default(now())
+  id         String   @id @default(cuid())
+  actorType  String   @default("SYSTEM")
+  actorId    String?
+  targetType String
+  targetId   String
+  eventType  String
+  message    String
+  metadata   Json?
+  ipAddress  String?
+  userAgent  String?
+  createdAt  DateTime @default(now())
 
   @@index([targetType, targetId])
   @@index([eventType])
@@ -692,19 +695,20 @@ model College {
   recruitingQuestionnaireUrl    String?
 
   // Relations
-  academicAreas               CollegeAcademicArea[]
-  baseballProgram             CollegeBaseballProgram?
-  coachInvites                CoachInvite[]
-  coachJoinRequests           CoachJoinRequest[]
-  joinLinks                   CoachJoinLink[]
-  coachNotes                  CoachNote[]
-  coachPlayerRatings          CoachPlayerRating[]
-  programProfileUpdatedByUser User?                   @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
-  profileViewEvents           ProfileViewEvent[]
-  recruitingBoardEntries      RecruitingBoardEntry[]
-  recruitingLists             RecruitingList[]
-  savedByPlayers              CollegeSavedSchool[]
-  coaches                     User[]
+  academicAreas                  CollegeAcademicArea[]
+  baseballProgram                CollegeBaseballProgram?
+  coachInvites                   CoachInvite[]
+  coachJoinRequests              CoachJoinRequest[]
+  joinLinks                      CoachJoinLink[]
+  coachNotes                     CoachNote[]
+  coachPlayerRatings             CoachPlayerRating[]
+  programProfileUpdatedByUser    User?                                  @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])
+  programVerificationSubmissions CollegeProgramVerificationSubmission[]
+  profileViewEvents              ProfileViewEvent[]
+  recruitingBoardEntries         RecruitingBoardEntry[]
+  recruitingLists                RecruitingList[]
+  savedByPlayers                 CollegeSavedSchool[]
+  coaches                        User[]
 
   @@index([name])
   @@index([state])
@@ -712,6 +716,13 @@ model College {
   @@index([control])
   @@index([schoolType])
   @@index([programProfileUpdatedByUserId])
+}
+
+enum VerificationSubmissionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  PARTIALLY_APPROVED
 }
 
 model TeamProfileSnapshot {
@@ -833,6 +844,28 @@ model Notification {
 
   @@index([userId, createdAt])
   @@index([userId, readAt])
+}
+
+model NotificationPreference {
+  id     String @id @default(cuid())
+  userId String @unique
+
+  instantChatMessages Boolean @default(true)
+  digestChatMessages  Boolean @default(false)
+
+  instantProgramSaves Boolean @default(true)
+  instantNewMatches   Boolean @default(true)
+
+  instantStaffActivity Boolean @default(true)
+
+  weeklyDigest Boolean @default(true)
+
+  verificationReminders Boolean @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model ChatConversation {
@@ -1096,6 +1129,17 @@ enum NotificationType {
   PLAYER_REMOVED_FROM_TEAM
   PLAYER_OWNERSHIP_CHANGED
   COACH_MESSAGE
+  COACH_NEW_MATCH
+  COACH_PROGRAM_SAVED
+  COACH_STAFF_INVITE_ACCEPTED
+  COACH_JOIN_REQUEST_SUBMITTED
+  COACH_PLAYER_LIST_ACTIVITY
+  COACH_SHARED_NOTE_ACTIVITY
+  COACH_PLAYER_RATING_ACTIVITY
+  COACH_WEEKLY_DIGEST
+  COACH_PROGRAM_VERIFICATION_REMINDER
+  PROGRAM_UPDATE_APPROVED
+  PROGRAM_UPDATE_REJECTED
 
   // Parent accountability / digest-safe notifications
   PARENT_COACH_ACTIVITY
@@ -1398,6 +1442,33 @@ model CollegeBaseballProgram {
   @@index([conference])
   @@index([transferHeavy])
   @@index([jucoFriendly])
+}
+
+model CollegeProgramVerificationSubmission {
+  id String @id @default(cuid())
+
+  collegeId         String
+  submittedByUserId String
+  reviewedByUserId  String?
+
+  status VerificationSubmissionStatus @default(PENDING)
+
+  submittedData Json
+  adminNotes    String?
+
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  reviewedAt DateTime?
+
+  college         College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  submittedByUser User    @relation("ProgramVerificationSubmittedBy", fields: [submittedByUserId], references: [id], onDelete: Cascade)
+  reviewedByUser  User?   @relation("ProgramVerificationReviewedBy", fields: [reviewedByUserId], references: [id])
+
+  @@index([collegeId])
+  @@index([submittedByUserId])
+  @@index([reviewedByUserId])
+  @@index([status])
+  @@index([createdAt])
 }
 
 model CollegeBaseballCoach {

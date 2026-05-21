@@ -280,6 +280,69 @@ export async function GET(req: NextRequest) {
   }
 }
 
+async function notifyCollegeCoachesOfProgramSave(params: {
+  collegeId: string;
+  playerProfileId: string;
+}) {
+  const college = await prisma.college.findUnique({
+    where: { id: params.collegeId },
+    select: {
+      id: true,
+      name: true,
+      coaches: {
+        select: {
+          id: true,
+          notificationPreference: {
+            select: {
+              instantProgramSaves: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!college?.coaches?.length) return;
+
+  const playerProfile = await prisma.playerProfile.findUnique({
+    where: { id: params.playerProfileId },
+    select: {
+      id: true,
+      data: true,
+      email: true,
+    },
+  });
+
+  const data = (playerProfile?.data || {}) as any;
+  const normalized = data?.normalized || data;
+
+  const playerName =
+    [normalized?.firstName, normalized?.lastName].filter(Boolean).join(" ") ||
+    normalized?.name ||
+    playerProfile?.email ||
+    "A player";
+
+  const coachIds = college.coaches
+    .filter((coach) => coach.notificationPreference?.instantProgramSaves !== false)
+    .map((coach) => coach.id);
+
+  if (!coachIds.length) return;
+
+  await prisma.notification.createMany({
+    data: coachIds.map((userId) => ({
+      userId,
+      type: "COACH_PROGRAM_SAVED",
+      message: `${playerName} saved ${college.name} to their Target Programs.`,
+      data: {
+        collegeId: college.id,
+        collegeName: college.name,
+        playerProfileId: params.playerProfileId,
+        event: "PLAYER_SAVED_PROGRAM",
+      },
+    })),
+  });
+}
+
 /**
  * POST - Save a college (default status: SAVED)
  */
@@ -312,6 +375,16 @@ export async function POST(req: NextRequest) {
 
     const snapshotData = buildSnapshotData(body);
 
+  const existingSaved = await prisma.collegeSavedSchool.findUnique({
+    where: {
+      playerProfileId_collegeId: {
+        playerProfileId: profile.id,
+        collegeId,
+      },
+    },
+    select: { id: true },
+  });
+
     const saved = await prisma.collegeSavedSchool.upsert({
       where: {
         playerProfileId_collegeId: {
@@ -332,6 +405,13 @@ export async function POST(req: NextRequest) {
         ...snapshotData,
       },
     });
+
+    if (!existingSaved) {
+    await notifyCollegeCoachesOfProgramSave({
+      collegeId,
+      playerProfileId: profile.id,
+    });
+  }
 
     return NextResponse.json({ ok: true, saved });
   } catch (err) {

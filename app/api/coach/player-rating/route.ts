@@ -29,6 +29,80 @@ function requireCollegeCoach(user: any) {
   return { ok: true as const, userId: user.id as string, collegeId: user.collegeId as string };
 }
 
+async function notifyStaffOfPlayerRatingActivity(params: {
+  collegeId: string;
+  actorUserId: string;
+  playerProfileId: string;
+  rating: number;
+}) {
+  const actor = await prisma.user.findUnique({
+    where: { id: params.actorUserId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  const playerProfile = await prisma.playerProfile.findUnique({
+    where: { id: params.playerProfileId },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+
+  const data = (playerProfile?.data || {}) as any;
+  const normalized = data?.normalized || data;
+
+  const actorName = actor?.name || actor?.email || "A staff member";
+  const playerName =
+    [normalized?.firstName, normalized?.lastName].filter(Boolean).join(" ") ||
+    normalized?.name ||
+    playerProfile?.email ||
+    "a player";
+
+  const staff = await prisma.user.findMany({
+    where: {
+      collegeId: params.collegeId,
+      id: { not: params.actorUserId },
+      coachProfile: {
+        isNot: null,
+      },
+    },
+    select: {
+      id: true,
+      notificationPreference: {
+        select: {
+          instantStaffActivity: true,
+        },
+      },
+    },
+  });
+
+  const staffIds = staff
+    .filter((member) => member.notificationPreference?.instantStaffActivity !== false)
+    .map((member) => member.id);
+
+  if (!staffIds.length) return;
+
+  await prisma.notification.createMany({
+    data: staffIds.map((userId) => ({
+      userId,
+      type: "COACH_PLAYER_RATING_ACTIVITY",
+      message: `${actorName} rated ${playerName} ${params.rating}/5.`,
+      data: {
+        collegeId: params.collegeId,
+        actorUserId: params.actorUserId,
+        playerProfileId: params.playerProfileId,
+        rating: params.rating,
+        event: "COACH_PLAYER_RATING_CREATED",
+      },
+    })),
+  });
+}
+
 export async function GET(req: Request) {
   try {
     const user = await getCurrentUser();
@@ -91,6 +165,17 @@ export async function POST(req: Request) {
     });
     if (!exists) return NextResponse.json<Err>({ ok: false, error: "Player profile not found." }, { status: 404 });
 
+    const existingRating = await prisma.coachPlayerRating.findUnique({
+  where: {
+    collegeId_coachUserId_playerProfileId: {
+      collegeId: gate.collegeId,
+      coachUserId: gate.userId,
+      playerProfileId,
+    },
+  },
+  select: { id: true },
+});
+
     const saved = await prisma.coachPlayerRating.upsert({
       where: {
         collegeId_coachUserId_playerProfileId: {
@@ -110,6 +195,15 @@ export async function POST(req: Request) {
       },
       select: { rating: true },
     });
+
+    if (!existingRating && rating > 0) {
+  await notifyStaffOfPlayerRatingActivity({
+    collegeId: gate.collegeId,
+    actorUserId: gate.userId,
+    playerProfileId,
+    rating,
+  });
+}
 
     return NextResponse.json({
       ok: true,

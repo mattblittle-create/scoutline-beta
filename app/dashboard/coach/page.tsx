@@ -92,6 +92,29 @@ export default function CoachDashboardHome() {
           }
         />
 
+        <Card
+  title="Program Verification"
+  subtitle="Review and submit baseball program updates"
+  body={
+    <>
+      <p style={p}>
+        Confirm recruiting links, roster needs, contact information, roster size,
+        GPA expectations, recruiting preferences, and other baseball-specific
+        program intelligence for ScoutLine.
+      </p>
+
+      <div style={actions}>
+        <Link
+          href="/dashboard/coach/program-verification"
+          style={btnGold}
+        >
+          Open Program Verification
+        </Link>
+      </div>
+    </>
+  }
+/>
+
                 <Card
           title="Support"
           subtitle="Need help or have a question?"
@@ -183,4 +206,11 @@ const btnGold: CSSProperties = {
   color: "#0f182a",
   fontWeight: 900,
   textDecoration: "none",
+};
+
+const actions: CSSProperties = {
+  marginTop: 10,
+  display: "flex",
+  gap: 10,
+  flexWrap: "wrap",
 };

@@ -194,31 +194,57 @@ const created = await prisma.$transaction(async (tx) => {
     },
   });
 
-  const recipientParticipants = participant.conversation.participants.filter(
-    (p) => p.userId !== user.id
-  );
+const recipientParticipants = participant.conversation.participants.filter(
+  (p) => p.userId !== user.id && !p.muted && !p.archivedAt
+);
 
-  const senderLabel =
-    msg.senderUser.name?.trim() ||
-    msg.senderUser.email?.trim() ||
-    "ScoutLine user";
+const recipientUserIds = recipientParticipants.map((p) => p.userId);
 
-  if (recipientParticipants.length > 0) {
-    await tx.notification.createMany({
-      data: recipientParticipants.map((p) => ({
-        userId: p.userId,
-        type: "COACH_MESSAGE",
-        message: `New message from ${senderLabel}`,
-        data: {
-          conversationId,
-          senderUserId: user.id,
-          senderName: msg.senderUser.name ?? null,
-          senderEmail: msg.senderUser.email ?? "",
-          messageId: msg.id,
+const recipientPrefs = recipientUserIds.length
+  ? await tx.notificationPreference.findMany({
+      where: {
+        userId: {
+          in: recipientUserIds,
         },
-      })),
-    });
-  }
+      },
+      select: {
+        userId: true,
+        instantChatMessages: true,
+      },
+    })
+  : [];
+
+const prefsByUserId = new Map(
+  recipientPrefs.map((pref) => [pref.userId, pref])
+);
+
+const notifiableRecipientUserIds = recipientUserIds.filter((userId) => {
+  const pref = prefsByUserId.get(userId);
+  return pref?.instantChatMessages !== false;
+});
+
+const senderLabel =
+  msg.senderUser.name?.trim() ||
+  msg.senderUser.email?.trim() ||
+  "ScoutLine user";
+
+if (notifiableRecipientUserIds.length > 0) {
+  await tx.notification.createMany({
+    data: notifiableRecipientUserIds.map((userId) => ({
+      userId,
+      type: "COACH_MESSAGE",
+      message: `New message from ${senderLabel}`,
+      data: {
+        conversationId,
+        senderUserId: user.id,
+        senderName: msg.senderUser.name ?? null,
+        senderEmail: msg.senderUser.email ?? "",
+        messageId: msg.id,
+        event: "CHAT_MESSAGE_CREATED",
+      },
+    })),
+  });
+}
 
   return msg;
 });
