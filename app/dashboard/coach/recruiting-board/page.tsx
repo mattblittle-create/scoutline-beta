@@ -168,6 +168,7 @@ const [targets, setTargets] = useState<RecruitingTarget[]>([]);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [results, setResults] = useState<SearchRow[]>([]);
+  const [lastViewedPlayerProfileId, setLastViewedPlayerProfileId] = useState<string>("");
 
   // ---------------- Rating (display-only stars) ----------------
   function StarIcon(props: { filled: boolean }) {
@@ -224,6 +225,13 @@ const [targets, setTargets] = useState<RecruitingTarget[]>([]);
   const [addingToListId, setAddingToListId] = useState<string | null>(null);
   const [removingFromListId, setRemovingFromListId] = useState<string | null>(null);
   const [memberActionError, setMemberActionError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("scoutline:lastViewedRecruit");
+      if (saved) setLastViewedPlayerProfileId(saved);
+    } catch {}
+  }, []);
 
   // Load lists on mount
   useEffect(() => {
@@ -1318,23 +1326,59 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
             const alreadyInList = selectedMemberIds.has(r.playerProfileId);
 
             return (
-<tr key={r.playerProfileId}>
-  <td style={td}>
-    {r.slug ? (
-<a
-  href={`/player/${encodeURIComponent(r.slug)}?source=recruiting-board`}
-  target="_blank"
-  rel="noopener noreferrer"
-  style={linkSky}
->
-  {name}
-</a>
-    ) : (
-      <span style={mutedSmall}>No public profile</span>
-    )}
+              <tr
+                key={r.playerProfileId}
+                style={{
+                  background:
+                    r.playerProfileId === lastViewedPlayerProfileId
+                      ? "rgba(14,165,233,0.08)"
+                      : undefined,
+                }}
+              >
+                <td style={td}>
+                  {r.slug ? (
+                    <a
+                      href={`/player/${encodeURIComponent(r.slug)}?source=recruiting-board`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={linkSky}
+                      onClick={() => {
+                        try {
+                          window.localStorage.setItem("scoutline:lastViewedRecruit", r.playerProfileId);
+                        } catch {}
 
-    <div style={mutedSmall}>{r.email || r.profileEmail}</div>
-  </td>
+                        setLastViewedPlayerProfileId(r.playerProfileId);
+                      }}
+                    >
+                      {name}
+
+                      {r.playerProfileId === lastViewedPlayerProfileId ? (
+                        <div
+                          style={{
+                            marginTop: 4,
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: "2px 8px",
+                            borderRadius: 999,
+                            background: "#e0f2fe",
+                            border: "1px solid #7dd3fc",
+                            color: "#075985",
+                            fontSize: 10,
+                            fontWeight: 900,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.04em",
+                          }}
+                        >
+                          Recently Viewed
+                        </div>
+                      ) : null}
+                    </a>
+                  ) : (
+                    <span style={mutedSmall}>No public profile</span>
+                  )}
+
+                  <div style={mutedSmall}>{r.email || r.profileEmail}</div>
+                </td>
 
                 <td style={td}>
                   <RatingStars rating={Number(r.rating ?? 0)} />

@@ -35,6 +35,16 @@ export default function CoachViewerTools(props: {
   const [coachListSaving, setCoachListSaving] = React.useState(false);
   const [coachListActionError, setCoachListActionError] = React.useState<string | null>(null);
 
+  const [staffLoading, setStaffLoading] = React.useState(false);
+  const [staffError, setStaffError] = React.useState<string | null>(null);
+  const [staffMembers, setStaffMembers] = React.useState<any[]>([]);
+  const [shareRecipientMode, setShareRecipientMode] = React.useState<"selected" | "all">("selected");
+  const [selectedStaffIds, setSelectedStaffIds] = React.useState<Set<string>>(new Set());
+  const [shareMessage, setShareMessage] = React.useState("");
+  const [shareSending, setShareSending] = React.useState(false);
+  const [shareStatus, setShareStatus] = React.useState<string | null>(null);
+  const [shareError, setShareError] = React.useState<string | null>(null);
+
   // Rating
   React.useEffect(() => {
     if (!isActiveCoachViewer || !playerProfileId) return;
@@ -168,6 +178,49 @@ export default function CoachViewerTools(props: {
     loadCoachSelectedListDetail(coachSelectedListId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coachSelectedListId]);
+
+  React.useEffect(() => {
+    if (!isActiveCoachViewer || !playerProfileId) return;
+
+    let cancelled = false;
+
+    (async () => {
+      try {
+        setStaffLoading(true);
+        setStaffError(null);
+
+        const res = await fetch("/api/coach/staff", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const json = await res.json().catch(() => ({}));
+        if (cancelled) return;
+
+        if (!res.ok || json?.ok === false) {
+          setStaffError(json?.error || `Failed to load staff (${res.status})`);
+          setStaffMembers([]);
+          return;
+        }
+
+        const arr = Array.isArray(json?.data?.staff) ? json.data.staff : [];
+        const currentUserId = String(json?.data?.currentUserId || "");
+
+        setStaffMembers(arr.filter((s: any) => String(s?.id || "") !== currentUserId));
+      } catch (e: any) {
+        if (!cancelled) {
+          setStaffError(e?.message || "Failed to load staff.");
+          setStaffMembers([]);
+        }
+      } finally {
+        if (!cancelled) setStaffLoading(false);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isActiveCoachViewer, playerProfileId]);
 
   async function saveCoachRating(nextRating: number) {
     const clamped = Math.max(0, Math.min(5, Math.round(nextRating)));
@@ -377,6 +430,58 @@ export default function CoachViewerTools(props: {
     }
   }
 
+  function toggleSelectedStaff(userId: string) {
+    setSelectedStaffIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(userId)) next.delete(userId);
+      else next.add(userId);
+      return next;
+    });
+  }
+
+  async function sharePlayerCardWithStaff() {
+    try {
+      setShareSending(true);
+      setShareError(null);
+      setShareStatus(null);
+
+      const ids = Array.from(selectedStaffIds);
+
+      if (shareRecipientMode === "selected" && ids.length === 0) {
+        throw new Error("Select at least one staff member or choose All Staff.");
+      }
+
+      const res = await fetch("/api/coach/share-player-card", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        cache: "no-store",
+        body: JSON.stringify({
+          playerProfileId,
+          recipientMode: shareRecipientMode,
+          recipientUserIds: ids,
+          message: shareMessage.trim(),
+        }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json?.ok === false) {
+        throw new Error(json?.error || `Failed to share player card (${res.status})`);
+      }
+
+      const sentTo = Array.isArray(json?.data?.sentTo) ? json.data.sentTo.length : 0;
+      setShareStatus(`Player card shared with ${sentTo} staff member${sentTo === 1 ? "" : "s"}.`);
+      setShareMessage("");
+    } catch (e: any) {
+      setShareError(e?.message || "Failed to share player card.");
+    } finally {
+      setShareSending(false);
+    }
+  }
+
+  const listsContainingPlayer = coachLists.filter((l: any) => !!l?.containsPlayer);
+
+  const savedListCount = listsContainingPlayer.length;
+
   if (!isActiveCoachViewer || !playerProfileId) return null;
 
   return (
@@ -403,6 +508,25 @@ export default function CoachViewerTools(props: {
           )}
 
           {coachRatingSaving ? <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>Saving…</div> : null}
+          {savedListCount > 0 ? (
+            <div
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "6px 10px",
+                borderRadius: 999,
+                background: "#ecfdf5",
+                border: "1px solid #bbf7d0",
+                color: "#166534",
+                fontSize: 11,
+                fontWeight: 900,
+                whiteSpace: "nowrap",
+              }}
+            >
+              Saved in {savedListCount} list{savedListCount === 1 ? "" : "s"}
+            </div>
+          ) : null}
         </div>
       </div>
 
@@ -513,6 +637,32 @@ export default function CoachViewerTools(props: {
             </div>
 
             <div style={{ height: 1, background: "#eef2f7" }} />
+            {listsContainingPlayer.length > 0 ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 8,
+                }}
+              >
+                {listsContainingPlayer.map((l: any) => (
+                  <div
+                    key={l.id}
+                    style={{
+                      padding: "6px 10px",
+                      borderRadius: 999,
+                      background: "#eff6ff",
+                      border: "1px solid #bfdbfe",
+                      color: "#1d4ed8",
+                      fontSize: 11,
+                      fontWeight: 900,
+                    }}
+                  >
+                    {l.name}
+                  </div>
+                ))}
+              </div>
+            ) : null}
 
             <div style={coachTinyMuted}>Add to an existing list</div>
 
@@ -551,6 +701,97 @@ export default function CoachViewerTools(props: {
                 {coachListSaving ? "Adding…" : "Add Player to List"}
               </button>
             )}
+          </div>
+        </div>
+
+        {/* Share */}
+        <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff", minWidth: 0 }}>
+          <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, color: "#0f172a" }}>
+            Share Player Card with Staff
+          </div>
+
+          {staffLoading ? <div style={coachTinyMuted}>Loading staff…</div> : null}
+          {staffError ? <div style={coachTinyError}>{staffError}</div> : null}
+          {shareError ? <div style={coachTinyError}>{shareError}</div> : null}
+          {shareStatus ? <div style={{ ...coachTinyMuted, color: "#166534", fontWeight: 900 }}>{shareStatus}</div> : null}
+
+          <div style={{ display: "grid", gap: 10 }}>
+            <select
+              value={shareRecipientMode}
+              onChange={(e) => setShareRecipientMode(e.target.value === "all" ? "all" : "selected")}
+              style={coachInput}
+            >
+              <option value="selected">Select staff member(s)</option>
+              <option value="all">All staff</option>
+            </select>
+
+            {shareRecipientMode === "selected" ? (
+              <div style={{ display: "grid", gap: 8, maxHeight: 140, overflowY: "auto" }}>
+                {staffMembers.length === 0 && !staffLoading ? (
+                  <div style={coachTinyMuted}>No other staff members found.</div>
+                ) : null}
+
+                {staffMembers.map((s: any) => {
+                  const id = String(s?.id || "");
+                  const checked = selectedStaffIds.has(id);
+
+                  return (
+                    <label
+                      key={id}
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        alignItems: "center",
+                        fontSize: 12,
+                        fontWeight: 800,
+                        color: "#0f172a",
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => toggleSelectedStaff(id)}
+                      />
+                      <span>
+                        {s?.name || s?.email || "Coach"}
+                        {s?.staffTitle ? <span style={{ color: "#64748b" }}> — {s.staffTitle}</span> : null}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            ) : (
+              <div style={coachTinyMuted}>This will email all other staff members linked to your program.</div>
+            )}
+
+            <textarea
+              value={shareMessage}
+              onChange={(e) => setShareMessage(e.target.value)}
+              rows={3}
+              placeholder="Optional note for your staff..."
+              style={coachTextarea}
+            />
+
+            <button
+              type="button"
+              onClick={sharePlayerCardWithStaff}
+              disabled={
+                shareSending ||
+                staffLoading ||
+                (shareRecipientMode === "selected" && selectedStaffIds.size === 0)
+              }
+              style={{
+                ...coachBtnGold,
+                opacity:
+                  shareSending ||
+                  staffLoading ||
+                  (shareRecipientMode === "selected" && selectedStaffIds.size === 0)
+                    ? 0.6
+                    : 1,
+              }}
+            >
+              {shareSending ? "Sharing…" : "Share Player Card"}
+            </button>
           </div>
         </div>
       </div>
