@@ -31,17 +31,12 @@ type InviteRow = {
   invitedEmail: string;
   status: InviteStatus;
   inviteToken?: string | null;
-
   canEditLists: boolean;
-
-  // ✅ NEW: title string (matches ROLE_PRESETS)
   staffTitle: StaffTitle;
-
   createdAt?: string | null;
   updatedAt?: string | null;
   acceptedAt?: string | null;
   expiresAt?: string | null;
-
   createdBy?: { name: string | null; email: string } | null;
   acceptedUser?: { name: string | null; email: string } | null;
 };
@@ -60,8 +55,11 @@ function fmtDate(iso?: string | null) {
   return d.toLocaleString();
 }
 
-function buildInviteUrl(baseUrl: string, token: string) {
-  return `${baseUrl}/coach/invite/${encodeURIComponent(token)}`;
+function buildInviteUrl(baseUrl: string, token: string, email?: string) {
+  const params = new URLSearchParams();
+  params.set("token", token);
+  if (email) params.set("email", email);
+  return `${baseUrl}/coach/invite/accept?${params.toString()}`;
 }
 
 function buildInviteQr(url: string) {
@@ -70,13 +68,10 @@ function buildInviteQr(url: string) {
 
 function getDisplayStatus(invite: InviteRow): InviteStatus {
   if (invite.status !== "PENDING") return invite.status;
-
   if (!invite.expiresAt) return invite.status;
 
   const exp = new Date(invite.expiresAt);
-  if (!Number.isNaN(exp.getTime()) && exp.getTime() < Date.now()) {
-    return "EXPIRED";
-  }
+  if (!Number.isNaN(exp.getTime()) && exp.getTime() < Date.now()) return "EXPIRED";
 
   return "PENDING";
 }
@@ -87,9 +82,12 @@ function statusTone(s: InviteStatus) {
       return { bg: "#fffbeb", border: "#fde68a", text: "#78350f" };
     case "ACCEPTED":
       return { bg: "#f0fdf4", border: "#bbf7d0", text: "#14532d" };
+    case "DECLINED":
+      return { bg: "#fff7ed", border: "#fed7aa", text: "#7c2d12" };
     case "EXPIRED":
       return { bg: "#f1f5f9", border: "#e2e8f0", text: "#0f172a" };
     case "REVOKED":
+    case "CANCELLED":
       return { bg: "#fff1f2", border: "#fecaca", text: "#7f1d1d" };
     default:
       return { bg: "#fff", border: "#e5e7eb", text: "#0f172a" };
@@ -108,12 +106,10 @@ export default function CoachInvitesPage() {
   const [error, setError] = React.useState<string | null>(null);
   const [baseUrl, setBaseUrl] = React.useState("");
 
-  // ----- Send Invite form -----
   const [inviteEmail, setInviteEmail] = React.useState("");
   const [staffTitle, setStaffTitle] = React.useState<StaffTitle>("Assistant Coach");
   const [canEditLists, setCanEditLists] = React.useState(true);
 
-  // ----- Search form -----
   const [qDraft, setQDraft] = React.useState("");
   const [q, setQ] = React.useState("");
   const [statusDraft, setStatusDraft] = React.useState<"ANY" | InviteStatus>("ANY");
@@ -121,9 +117,19 @@ export default function CoachInvitesPage() {
 
   const [rows, setRows] = React.useState<InviteRow[]>([]);
   const [actionBusyId, setActionBusyId] = React.useState<string | null>(null);
-
   const [lastInviteLink, setLastInviteLink] = React.useState<string | null>(null);
   const [toast, setToast] = React.useState<string | null>(null);
+
+  async function copyText(text: string, msg = "Copied!") {
+    try {
+      await navigator.clipboard.writeText(text);
+      setToast(msg);
+      window.setTimeout(() => setToast(null), 1500);
+    } catch {
+      setToast("Copy failed. Select and copy the link manually.");
+      window.setTimeout(() => setToast(null), 2200);
+    }
+  }
 
   async function load() {
     setLoading(true);
@@ -133,26 +139,19 @@ export default function CoachInvitesPage() {
       const res = await fetch("/api/coach/invites", { cache: "no-store" });
       const json: ListOk | ApiErr = await res.json().catch(() => ({ ok: false, error: "Bad response" } as any));
 
-      if (!res.ok || !json.ok) {
-        throw new Error((!json.ok && json.error) || "Failed to load invites.");
-      }
+      if (!res.ok || !json.ok) throw new Error((!json.ok && json.error) || "Failed to load invites.");
 
-      const invites = (json.data.invites || []) as any[];
-
-      const mapped: InviteRow[] = invites.map((r) => ({
+      const mapped: InviteRow[] = (json.data.invites || []).map((r: any) => ({
         id: String(r.id),
         invitedEmail: String(r.invitedEmail || ""),
         status: r.status as InviteStatus,
-
+        inviteToken: r.inviteToken ?? null,
         canEditLists: !!r.canEditLists,
-
         staffTitle: normalizeTitle(r.staffTitle),
-
         createdAt: r.createdAt ?? null,
         updatedAt: r.updatedAt ?? null,
         acceptedAt: r.acceptedAt ?? null,
         expiresAt: r.expiresAt ?? null,
-
         createdBy: r.createdBy ?? null,
         acceptedUser: r.acceptedUser ?? null,
       }));
@@ -171,21 +170,19 @@ export default function CoachInvitesPage() {
   }, []);
 
   React.useEffect(() => {
-  if (typeof window !== "undefined") {
-    setBaseUrl(window.location.origin);
-  }
-}, []);
+    if (typeof window !== "undefined") setBaseUrl(window.location.origin);
+  }, []);
 
-  // OR search logic
   const filtered = React.useMemo(() => {
     const qq = q.trim().toLowerCase();
     const hasQ = !!qq;
     const hasStatus = status !== "ANY";
 
     return rows.filter((r) => {
+      const displayStatus = getDisplayStatus(r);
       const emailHay = `${r.invitedEmail} ${r.createdBy?.email ?? ""} ${r.acceptedUser?.email ?? ""}`.toLowerCase();
       const matchQ = hasQ ? emailHay.includes(qq) : false;
-      const matchStatus = hasStatus ? r.status === status : false;
+      const matchStatus = hasStatus ? displayStatus === status : false;
 
       if (hasQ && hasStatus) return matchQ || matchStatus;
       if (hasQ) return matchQ;
@@ -214,20 +211,12 @@ export default function CoachInvitesPage() {
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to create invite.");
 
-      const rawToken = String(json?.data?.rawToken || "");
+      const rawToken = String(json?.data?.rawToken || json?.data?.invite?.inviteToken || "");
       if (!rawToken) throw new Error("Invite created but no token returned.");
 
-      const link = `${window.location.origin}/coach/invite/accept?token=${encodeURIComponent(rawToken)}&email=${encodeURIComponent(
-        toEmail
-      )}`;
-
+      const link = buildInviteUrl(window.location.origin, rawToken, toEmail);
       setLastInviteLink(link);
-
-      try {
-        await navigator.clipboard.writeText(link);
-        setToast("Invite link copied!");
-        window.setTimeout(() => setToast(null), 1500);
-      } catch {}
+      await copyText(link, "Invite link copied!");
 
       setInviteEmail("");
       await load();
@@ -243,32 +232,21 @@ export default function CoachInvitesPage() {
     setActionBusyId(id);
 
     try {
-      const res = await fetch(`/api/coach/invites/${encodeURIComponent(id)}/resend`, {
-        method: "POST",
-      });
-
+      const res = await fetch(`/api/coach/invites/${encodeURIComponent(id)}/resend`, { method: "POST" });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to resend invite.");
+      if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to regenerate invite.");
 
-      const rawToken = String(json?.data?.rawToken || "");
+      const rawToken = String(json?.data?.rawToken || json?.data?.inviteToken || "");
       const email = String(json?.data?.invitedEmail || invitedEmail || "").trim().toLowerCase();
-      if (!rawToken || !email) throw new Error("Resent invite but missing token/email.");
+      if (!rawToken || !email) throw new Error("Regenerated invite but missing token/email.");
 
-      const link = `${window.location.origin}/coach/invite/accept?token=${encodeURIComponent(rawToken)}&email=${encodeURIComponent(
-        email
-      )}`;
-
+      const link = buildInviteUrl(window.location.origin, rawToken, email);
       setLastInviteLink(link);
-
-      try {
-        await navigator.clipboard.writeText(link);
-        setToast("New invite link copied!");
-        window.setTimeout(() => setToast(null), 1500);
-      } catch {}
+      await copyText(link, "New invite link copied!");
 
       await load();
     } catch (e: any) {
-      setError(e?.message || "Failed to resend invite.");
+      setError(e?.message || "Failed to regenerate invite.");
     } finally {
       setActionBusyId(null);
     }
@@ -282,9 +260,7 @@ export default function CoachInvitesPage() {
 
     setActionBusyId(id);
     try {
-      const res = await fetch(`/api/coach/invites/${encodeURIComponent(id)}/revoke`, {
-        method: "POST",
-      });
+      const res = await fetch(`/api/coach/invites/${encodeURIComponent(id)}/revoke`, { method: "POST" });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || json?.ok === false) throw new Error(json?.error || "Failed to revoke invite.");
 
@@ -323,7 +299,7 @@ export default function CoachInvitesPage() {
       <section style={topBar}>
         <div style={{ display: "grid", gap: 6 }}>
           <div style={sectionTitle}>Invite a Coach</div>
-          <div style={miniHint}>Enter a staff email address to generate an invite link.</div>
+          <div style={miniHint}>Create a fresh invite link, copy it, open it, or scan the QR code.</div>
         </div>
 
         <form onSubmit={sendInvite} style={sendGrid}>
@@ -341,7 +317,7 @@ export default function CoachInvitesPage() {
 
           <div style={filterField}>
             <div style={filterLabel}>Role</div>
-            <select style={input} value={staffTitle} onChange={(e) => setStaffTitle(e.target.value as any)}>
+            <select style={input} value={staffTitle} onChange={(e) => setStaffTitle(e.target.value as StaffTitle)}>
               {ROLE_PRESETS.map((r) => (
                 <option key={r} value={r}>
                   {r}
@@ -368,28 +344,11 @@ export default function CoachInvitesPage() {
         {toast ? <div style={{ ...miniHint, color: "#047857", fontWeight: 900 }}>{toast}</div> : null}
 
         {lastInviteLink ? (
-          <div style={linkBox}>
-            <div style={{ fontWeight: 900 }}>Invite Link</div>
-            <div style={{ marginTop: 6, wordBreak: "break-word", color: "#334155" }}>{lastInviteLink}</div>
-            <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <button
-                type="button"
-                style={btnGhost}
-                onClick={async () => {
-                  try {
-                    await navigator.clipboard.writeText(lastInviteLink);
-                    setToast("Invite link copied!");
-                    window.setTimeout(() => setToast(null), 1500);
-                  } catch {}
-                }}
-              >
-                Copy Link
-              </button>
-              <button type="button" style={btnGhostSolid} onClick={() => setLastInviteLink(null)}>
-                Dismiss
-              </button>
-            </div>
-          </div>
+          <InviteLinkPanel
+            inviteUrl={lastInviteLink}
+            onCopy={() => copyText(lastInviteLink, "Invite link copied!")}
+            onDismiss={() => setLastInviteLink(null)}
+          />
         ) : null}
       </section>
 
@@ -411,8 +370,10 @@ export default function CoachInvitesPage() {
               <option value="ANY">Any</option>
               <option value="PENDING">Pending</option>
               <option value="ACCEPTED">Accepted</option>
+              <option value="DECLINED">Declined</option>
               <option value="EXPIRED">Expired</option>
               <option value="REVOKED">Revoked</option>
+              <option value="CANCELLED">Cancelled</option>
             </select>
           </div>
 
@@ -451,17 +412,23 @@ export default function CoachInvitesPage() {
           <div style={resultsScrollArea}>
             <div style={{ display: "grid", gap: 10 }}>
               {filtered.map((r) => {
-                const tone = statusTone(r.status);
+                const displayStatus = getDisplayStatus(r);
+                const tone = statusTone(displayStatus);
+                const canRegenerate = displayStatus === "PENDING" || displayStatus === "EXPIRED";
+                const isBusy = actionBusyId === r.id;
+
+                const rowInviteUrl =
+                  r.inviteToken && baseUrl
+                    ? buildInviteUrl(baseUrl, r.inviteToken, r.invitedEmail)
+                    : "";
+
                 return (
                   <div key={r.id} style={rowCard}>
-                    <div style={{ display: "grid", gap: 4, minWidth: 0 }}>
+                    <div style={{ display: "grid", gap: 8, minWidth: 0, flex: 1 }}>
                       <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
                         <div style={{ fontWeight: 900, overflow: "hidden", textOverflow: "ellipsis" }}>{r.invitedEmail}</div>
-
-                        <div style={{ ...statusPill, background: tone.bg, borderColor: tone.border, color: tone.text }}>{r.status}</div>
-
-                        <div style={{ ...rolePill }}>{r.staffTitle}</div>
-
+                        <div style={{ ...statusPill, background: tone.bg, borderColor: tone.border, color: tone.text }}>{displayStatus}</div>
+                        <div style={rolePill}>{r.staffTitle}</div>
                         <div style={{ ...miniHint, margin: 0 }}>{r.canEditLists ? "Can edit lists" : "View only"}</div>
                       </div>
 
@@ -474,24 +441,34 @@ export default function CoachInvitesPage() {
                           Accepted: {fmtDate(r.acceptedAt)} {r.acceptedUser?.email ? `• ${r.acceptedUser.email}` : ""}
                         </div>
                       ) : null}
+
+                      {rowInviteUrl ? (
+                        <InviteLinkPanel
+                          inviteUrl={rowInviteUrl}
+                          compact
+                          onCopy={() => copyText(rowInviteUrl, "Invite link copied!")}
+                        />
+                      ) : (
+                        <div style={miniHint}>Generate a fresh link to show copy/open/QR options for this invite.</div>
+                      )}
                     </div>
 
                     <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
                       <button
                         type="button"
                         style={btnGhost}
-                        disabled={r.status !== "PENDING" || actionBusyId === r.id}
-                        title={r.status !== "PENDING" ? "Only pending invites can be resent." : "Resend invite (copies a fresh link)"}
+                        disabled={!canRegenerate || isBusy}
+                        title={!canRegenerate ? "Only pending or expired invites can be regenerated." : "Generate a fresh invite link"}
                         onClick={() => resendInvite(r.id, r.invitedEmail)}
                       >
-                        {actionBusyId === r.id ? "Working…" : "Resend"}
+                        {isBusy ? "Working…" : displayStatus === "EXPIRED" ? "Regenerate" : "Regenerate Link"}
                       </button>
 
                       <button
                         type="button"
                         style={dangerBtn}
-                        disabled={r.status !== "PENDING" || actionBusyId === r.id}
-                        title={r.status !== "PENDING" ? "Only pending invites can be revoked." : "Revoke invite"}
+                        disabled={displayStatus !== "PENDING" || isBusy}
+                        title={displayStatus !== "PENDING" ? "Only pending invites can be revoked." : "Revoke invite"}
                         onClick={() => revokeInvite(r.id)}
                       >
                         Revoke
@@ -505,6 +482,54 @@ export default function CoachInvitesPage() {
         )}
       </section>
     </main>
+  );
+}
+
+function InviteLinkPanel(props: {
+  inviteUrl: string;
+  compact?: boolean;
+  onCopy: () => void;
+  onDismiss?: () => void;
+}) {
+  const qrUrl = buildInviteQr(props.inviteUrl);
+
+  return (
+    <div style={props.compact ? compactLinkBox : linkBox}>
+      <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap" }}>
+        <img
+          src={qrUrl}
+          alt="Invite QR code"
+          width={props.compact ? 72 : 104}
+          height={props.compact ? 72 : 104}
+          style={{
+            borderRadius: 10,
+            border: "1px solid #cbd5e1",
+            background: "#fff",
+          }}
+        />
+
+        <div style={{ flex: 1, minWidth: 220 }}>
+          <div style={{ fontWeight: 900 }}>{props.compact ? "Fresh Invite Link" : "Invite Link / QR Code"}</div>
+          <div style={{ marginTop: 6, wordBreak: "break-word", color: "#334155", fontSize: 12 }}>{props.inviteUrl}</div>
+
+          <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
+            <button type="button" style={btnGhost} onClick={props.onCopy}>
+              Copy Link
+            </button>
+
+            <a href={props.inviteUrl} target="_blank" rel="noopener noreferrer" style={btnGoldLink}>
+              Open Invite
+            </a>
+
+            {props.onDismiss ? (
+              <button type="button" style={btnGhostSolid} onClick={props.onDismiss}>
+                Dismiss
+              </button>
+            ) : null}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -609,7 +634,7 @@ const searchHeaderRow: React.CSSProperties = {
 };
 
 const resultsScrollArea: React.CSSProperties = {
-  maxHeight: 520,
+  maxHeight: 620,
   overflowY: "auto",
   paddingRight: 6,
 };
@@ -621,7 +646,7 @@ const rowCard: React.CSSProperties = {
   display: "flex",
   justifyContent: "space-between",
   gap: 12,
-  alignItems: "center",
+  alignItems: "flex-start",
   background: "#fff",
 };
 
@@ -715,6 +740,19 @@ const btnGoldSearch: React.CSSProperties = {
   cursor: "pointer",
 };
 
+const btnGoldLink: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: "10px 14px",
+  borderRadius: 10,
+  border: "1px solid #caa042",
+  background: "#caa042",
+  color: "#0f172a",
+  fontWeight: 900,
+  textDecoration: "none",
+};
+
 const dangerBtn: React.CSSProperties = {
   padding: "10px 14px",
   borderRadius: 10,
@@ -730,6 +768,14 @@ const linkBox: React.CSSProperties = {
   borderRadius: 14,
   background: "#f8fafc",
   padding: 12,
+};
+
+const compactLinkBox: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 14,
+  background: "#f8fafc",
+  padding: 10,
+  marginTop: 4,
 };
 
 const checkRow: React.CSSProperties = {
