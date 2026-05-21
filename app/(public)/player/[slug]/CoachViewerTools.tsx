@@ -10,10 +10,8 @@ export default function CoachViewerTools(props: {
 }) {
   const SECTION_SCROLL_MARGIN = props.sectionScrollMargin ?? 235;
 
-  // ✅ Hard guard BEFORE hooks fire network requests
-  if (!props.isCoachViewer || !props.playerProfileId) return null;
-
-  const playerProfileId = props.playerProfileId;
+  const isActiveCoachViewer = !!props.isCoachViewer && !!props.playerProfileId;
+  const playerProfileId = props.playerProfileId ?? "";
 
   const [coachRatingLoading, setCoachRatingLoading] = React.useState(false);
   const [coachRatingSaving, setCoachRatingSaving] = React.useState(false);
@@ -39,6 +37,8 @@ export default function CoachViewerTools(props: {
 
   // Rating
   React.useEffect(() => {
+    if (!isActiveCoachViewer || !playerProfileId) return;
+
     let cancelled = false;
 
     (async () => {
@@ -67,10 +67,12 @@ export default function CoachViewerTools(props: {
     return () => {
       cancelled = true;
     };
-  }, [playerProfileId]);
+  }, [isActiveCoachViewer, playerProfileId]);
 
   // Notes
   React.useEffect(() => {
+    if (!isActiveCoachViewer || !playerProfileId) return;
+
     let cancelled = false;
 
     (async () => {
@@ -110,10 +112,12 @@ export default function CoachViewerTools(props: {
     return () => {
       cancelled = true;
     };
-  }, [playerProfileId]);
+  }, [isActiveCoachViewer, playerProfileId]);
 
   // Lists
   React.useEffect(() => {
+    if (!isActiveCoachViewer || !playerProfileId) return;
+
     let cancelled = false;
 
     (async () => {
@@ -157,7 +161,7 @@ export default function CoachViewerTools(props: {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [isActiveCoachViewer, playerProfileId]);
 
   React.useEffect(() => {
     if (!coachSelectedListId) return;
@@ -373,6 +377,8 @@ export default function CoachViewerTools(props: {
     }
   }
 
+  if (!isActiveCoachViewer || !playerProfileId) return null;
+
   return (
     <>
       <div
@@ -463,7 +469,13 @@ export default function CoachViewerTools(props: {
                       By {n?.coach?.name || (n?.coach?.email ? String(n.coach.email).split("@")[0] : "Coach")}
                     </div>
                     <div style={{ fontSize: 10, color: "#94a3b8", fontWeight: 800 }}>
-                      {new Date(n.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}
+                      {new Date(n.createdAt).toLocaleString(undefined, {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  hour: "numeric",
+  minute: "2-digit",
+})}
                     </div>
                   </div>
                 </div>
