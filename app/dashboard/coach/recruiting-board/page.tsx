@@ -948,17 +948,6 @@ return (
     ))}
   </datalist>
 </Field>
-
-<div style={{ display: "flex", justifyContent: "flex-end", marginTop: 6 }}>
-  <button
-    type="button"
-    onClick={clearAllFilters}
-    style={presetClearBtn}
-  >
-    Clear All
-  </button>
-</div>
-
             </div>
 
             {/* Row 2 (requested fields) */}
@@ -1104,11 +1093,28 @@ return (
   />
 </Field>
 
-  {/* Push button to far right on the SAME row */}
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 12,
+    marginTop: 6,
+    flexWrap: "wrap",
+  }}
+>
+  <button
+    type="button"
+    onClick={clearAllFilters}
+    style={presetClearBtn}
+  >
+    Clear All
+  </button>
+
   <button
     type="button"
     onClick={runSearch}
-    style={{ ...btnGold, opacity: loading ? 0.7 : 1, marginLeft: "auto" }}
+    style={{ ...btnGold, opacity: loading ? 0.7 : 1 }}
   >
     {loading ? "Searching…" : "Search"}
   </button>
