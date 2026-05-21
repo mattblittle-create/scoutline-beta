@@ -916,7 +916,7 @@ const coachesData: CoachesData = {
         style={{
           position: "sticky",
           top: 110,
-          zIndex: 30,
+          zIndex: 20,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
           marginBottom: 8,
         }}
@@ -934,7 +934,7 @@ const coachesData: CoachesData = {
           <CoachViewerTools
             isCoachViewer={isCoachViewer}
             playerProfileId={playerProfileId}
-            sectionScrollMargin={260}
+            sectionScrollMargin={230}
           />
         ) : null}
 
