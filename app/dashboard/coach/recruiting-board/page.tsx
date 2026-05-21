@@ -1099,6 +1099,7 @@ return (
     placeholder="70"
   />
 </Field>
+</div>
 
 <div
   style={{
