@@ -39,7 +39,7 @@ export default function CoachHeaderActions() {
   const router = useRouter();
 
   const isCoachRoot = pathname === "/dashboard/coach";
-  const show = !isCoachRoot && pathname.startsWith("/dashboard/coach");
+  const show = pathname.startsWith("/dashboard/coach");
 
   const [notifications, setNotifications] = React.useState<DashboardNotification[]>([]);
   const [notificationsLoading, setNotificationsLoading] = React.useState(false);
@@ -219,9 +219,11 @@ export default function CoachHeaderActions() {
   return (
     <div style={actionsShell}>
       <div style={actionsLeft}>
-        <Link href="/dashboard/coach" style={btnBlue}>
-          Back to Dashboard
-        </Link>
+        {!isCoachRoot ? (
+          <Link href="/dashboard/coach" style={btnBlue}>
+            Back to Dashboard
+          </Link>
+        ) : null}
 
         <Link
           href="/dashboard/coach/profile"
