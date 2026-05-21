@@ -101,10 +101,10 @@ export default function PlayerCardPage() {
     .trim()
     .toUpperCase();
 
-  const canUseCardTools =
-    normalizedViewerRole === "PLAYER" ||
-    normalizedViewerRole === "TEAM_ADMIN" ||
-    normalizedViewerRole === "TEAM";
+const canUseCardTools =
+  normalizedViewerRole === "PLAYER" ||
+  normalizedViewerRole === "TEAM_ADMIN" ||
+  normalizedViewerRole === "TEAM";
 
   React.useEffect(() => {
     if (!toast) return;

@@ -912,6 +912,12 @@ const coachesData: CoachesData = {
   return (
     <main style={wrap}>
       {/* Coach-only jacket tools */}
+      {isCoachViewer && playerProfileId ? (
+        <CoachViewerTools
+          isCoachViewer={isCoachViewer}
+          playerProfileId={playerProfileId}
+        />
+      ) : null}
 
       {/* Sticky block */}
       <section
@@ -1066,28 +1072,6 @@ const coachesData: CoachesData = {
                 </button>
               ) : null}
             </div>
-
-            {searchParams.get("source") === "recruiting-board" ? (
-              <a
-                href="/dashboard/coach/recruiting-board"
-                style={{
-                  display: "inline-block",
-                  padding: "8px 16px",
-                  borderRadius: 999,
-                  border: "1px solid #0ea5e9",
-                  background: "#0ea5e9",
-                  color: "#ffffff",
-                  fontSize: 13,
-                  fontWeight: 800,
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                Back to Recruiting Board
-              </a>
-            ) : (
-              <div style={{ width: 1, height: 1 }} />
-            )}
           </div>
         </div>
       </section>
