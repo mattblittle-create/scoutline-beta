@@ -386,6 +386,19 @@ model TeamJoinLink {
   @@index([teamId])
 }
 
+model CoachJoinLink {
+  id        String   @id @default(cuid())
+  collegeId String
+  code      String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  college College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId])
+}
+
 model TeamInvite {
   id              String       @id @default(cuid())
   teamId          String
@@ -683,6 +696,7 @@ model College {
   baseballProgram             CollegeBaseballProgram?
   coachInvites                CoachInvite[]
   coachJoinRequests           CoachJoinRequest[]
+  joinLinks                   CoachJoinLink[]
   coachNotes                  CoachNote[]
   coachPlayerRatings          CoachPlayerRating[]
   programProfileUpdatedByUser User?                   @relation("CollegeProgramProfileUpdatedBy", fields: [programProfileUpdatedByUserId], references: [id])

@@ -44,6 +44,19 @@ type InviteRow = {
 type ListOk = { ok: true; data: { invites: InviteRow[] } };
 type ApiErr = { ok: false; error: string };
 
+type CoachJoinLinkRow = {
+  id: string;
+  code: string;
+  isActive: boolean;
+  createdAt: string;
+  updatedAt: string;
+};
+
+type JoinLinkOk = {
+  ok: true;
+  data: { link: CoachJoinLinkRow };
+};
+
 function isEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
 }
@@ -64,6 +77,10 @@ function buildInviteUrl(baseUrl: string, token: string, email?: string) {
 
 function buildInviteQr(url: string) {
   return `https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}`;
+}
+
+function buildCoachJoinUrl(baseUrl: string, code: string) {
+  return `${baseUrl}/coach/join?code=${encodeURIComponent(code)}`;
 }
 
 function getDisplayStatus(invite: InviteRow): InviteStatus {
@@ -120,6 +137,10 @@ export default function CoachInvitesPage() {
   const [lastInviteLink, setLastInviteLink] = React.useState<string | null>(null);
   const [toast, setToast] = React.useState<string | null>(null);
 
+  const [joinLinkLoading, setJoinLinkLoading] = React.useState(false);
+  const [joinLinkBusy, setJoinLinkBusy] = React.useState(false);
+  const [joinLink, setJoinLink] = React.useState<CoachJoinLinkRow | null>(null);
+
   async function copyText(text: string, msg = "Copied!") {
     try {
       await navigator.clipboard.writeText(text);
@@ -128,6 +149,47 @@ export default function CoachInvitesPage() {
     } catch {
       setToast("Copy failed. Select and copy the link manually.");
       window.setTimeout(() => setToast(null), 2200);
+    }
+  }
+
+  async function loadJoinLink() {
+    setJoinLinkLoading(true);
+
+    try {
+      const res = await fetch("/api/coach/join-link", { method: "GET", cache: "no-store" });
+      const json: JoinLinkOk | ApiErr = await res.json().catch(() => ({ ok: false, error: "Bad response" } as any));
+
+      if (!res.ok || !json.ok) throw new Error((!json.ok && json.error) || "Failed to load coach join link.");
+
+      setJoinLink(json.data.link);
+    } catch (e: any) {
+      setError(e?.message || "Failed to load coach join link.");
+      setJoinLink(null);
+    } finally {
+      setJoinLinkLoading(false);
+    }
+  }
+
+  async function regenerateJoinLink() {
+    const ok = window.confirm("Regenerate this coach join link? The old QR/link will stop working.");
+    if (!ok) return;
+
+    setJoinLinkBusy(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/coach/join-link", { method: "POST", cache: "no-store" });
+      const json: JoinLinkOk | ApiErr = await res.json().catch(() => ({ ok: false, error: "Bad response" } as any));
+
+      if (!res.ok || !json.ok) throw new Error((!json.ok && json.error) || "Failed to regenerate coach join link.");
+
+      setJoinLink(json.data.link);
+      setToast("Coach join link regenerated.");
+      window.setTimeout(() => setToast(null), 1500);
+    } catch (e: any) {
+      setError(e?.message || "Failed to regenerate coach join link.");
+    } finally {
+      setJoinLinkBusy(false);
     }
   }
 
@@ -167,6 +229,7 @@ export default function CoachInvitesPage() {
 
   React.useEffect(() => {
     load();
+    loadJoinLink();
   }, []);
 
   React.useEffect(() => {
@@ -294,6 +357,30 @@ export default function CoachInvitesPage() {
           <div style={pageTitle}>Invites</div>
           <div style={muted}>Invite other coaches in your program to join ScoutLine and collaborate on recruiting lists.</div>
         </div>
+      </section>
+
+      <section style={topBar}>
+        <div style={{ display: "grid", gap: 6 }}>
+          <div style={sectionTitle}>Program Coach Join Link</div>
+          <div style={miniHint}>
+            Share this reusable link or QR code with staff coaches connected to your program.
+          </div>
+        </div>
+
+        {joinLinkLoading ? (
+          <div style={{ padding: 10, color: "#475569", fontWeight: 800 }}>Loading join link…</div>
+        ) : joinLink && baseUrl ? (
+          <CoachJoinLinkPanel
+            joinUrl={buildCoachJoinUrl(baseUrl, joinLink.code)}
+            code={joinLink.code}
+            updatedAt={joinLink.updatedAt}
+            busy={joinLinkBusy}
+            onCopy={() => copyText(buildCoachJoinUrl(baseUrl, joinLink.code), "Coach join link copied!")}
+            onRegenerate={regenerateJoinLink}
+          />
+        ) : (
+          <div style={miniHint}>No active coach join link found.</div>
+        )}
       </section>
 
       <section style={topBar}>
@@ -482,6 +569,65 @@ export default function CoachInvitesPage() {
         )}
       </section>
     </main>
+  );
+}
+
+function CoachJoinLinkPanel(props: {
+  joinUrl: string;
+  code: string;
+  updatedAt?: string | null;
+  busy?: boolean;
+  onCopy: () => void;
+  onRegenerate: () => void;
+}) {
+  const qrUrl = buildInviteQr(props.joinUrl);
+
+  return (
+    <div style={linkBox}>
+      <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap" }}>
+        <img
+          src={qrUrl}
+          alt="Coach join QR code"
+          width={112}
+          height={112}
+          style={{
+            borderRadius: 12,
+            border: "1px solid #cbd5e1",
+            background: "#fff",
+          }}
+        />
+
+        <div style={{ flex: 1, minWidth: 240 }}>
+          <div style={{ fontWeight: 900 }}>Reusable Coach Join Link</div>
+          <div style={{ marginTop: 4, color: "#64748b", fontWeight: 800, fontSize: 12 }}>
+            Code: {props.code} • Updated: {fmtDate(props.updatedAt)}
+          </div>
+
+          <div style={{ marginTop: 8, wordBreak: "break-word", color: "#334155", fontSize: 12 }}>
+            {props.joinUrl}
+          </div>
+
+          <div style={{ marginTop: 12, display: "flex", gap: 10, flexWrap: "wrap" }}>
+            <button type="button" style={btnGhost} onClick={props.onCopy}>
+              Copy Link
+            </button>
+
+            <a href={props.joinUrl} target="_blank" rel="noopener noreferrer" style={btnGoldLink}>
+              Open Link
+            </a>
+
+            <button
+              type="button"
+              style={dangerBtn}
+              disabled={!!props.busy}
+              onClick={props.onRegenerate}
+            >
+              {props.busy ? "Regenerating…" : "Regenerate Link"}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
