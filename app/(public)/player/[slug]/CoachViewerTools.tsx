@@ -534,14 +534,15 @@ export default function CoachViewerTools(props: {
         <div style={{ marginTop: 8, color: "#b91c1c", fontWeight: 800, fontSize: 12 }}>{coachRatingError}</div>
       ) : null}
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "minmax(0, 1.5fr) minmax(0, 1fr)",
-          gap: 14,
-          marginTop: 12,
-        }}
-      >
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1.2fr) minmax(320px, 0.8fr)",
+    gap: 14,
+    marginTop: 12,
+    alignItems: "start",
+  }}
+>
         {/* Notes */}
         <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff", minWidth: 0 }}>
           <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, color: "#0f172a" }}>Coach Notes</div>
@@ -705,7 +706,16 @@ export default function CoachViewerTools(props: {
         </div>
 
         {/* Share */}
-        <div style={{ border: "1px solid #e5e7eb", borderRadius: 12, padding: 12, background: "#fff", minWidth: 0 }}>
+        <div
+          style={{
+            gridColumn: "1 / -1",
+            border: "1px solid #e5e7eb",
+            borderRadius: 12,
+            padding: 12,
+            background: "#fff",
+            minWidth: 0,
+          }}
+        >
           <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, color: "#0f172a" }}>
             Share Player Card with Staff
           </div>
@@ -715,7 +725,14 @@ export default function CoachViewerTools(props: {
           {shareError ? <div style={coachTinyError}>{shareError}</div> : null}
           {shareStatus ? <div style={{ ...coachTinyMuted, color: "#166534", fontWeight: 900 }}>{shareStatus}</div> : null}
 
-          <div style={{ display: "grid", gap: 10 }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(220px, 0.8fr) minmax(300px, 1.2fr) auto",
+              gap: 12,
+              alignItems: "start",
+            }}
+          >
             <select
               value={shareRecipientMode}
               onChange={(e) => setShareRecipientMode(e.target.value === "all" ? "all" : "selected")}
@@ -782,6 +799,9 @@ export default function CoachViewerTools(props: {
               }
               style={{
                 ...coachBtnGold,
+                minWidth: 220,
+                height: 44,
+                alignSelf: "center",
                 opacity:
                   shareSending ||
                   staffLoading ||
