@@ -274,7 +274,7 @@ async function acceptInvite(
         </p>
 
         <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
-          <span style={{ fontWeight: 900 }}>Player Email</span>
+          <span style={{ fontWeight: 900 }}>Player Email (required)</span>
           <input
             value={joinPlayerEmail}
             onChange={(e) => setJoinPlayerEmail(e.target.value)}
@@ -285,7 +285,7 @@ async function acceptInvite(
         </label>
 
         <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
-          <span style={{ fontWeight: 900 }}>Parent Email</span>
+          <span style={{ fontWeight: 900 }}>Parent Email (required)</span>
           <input
             value={joinParentEmail}
             onChange={(e) => setJoinParentEmail(e.target.value)}
