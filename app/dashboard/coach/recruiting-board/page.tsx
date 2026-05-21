@@ -105,6 +105,7 @@ type SortKey =
   | "state"
   | "city"
   | "hsName"
+  | "travelTeam"
   | "exitVelo"
   | "sixtyYdDash"
   | "homeToFirst"
@@ -549,6 +550,11 @@ const sortedMembers = useMemo(() => {
           return cmpStr(aCity, bCity) * dir;
         case "hsName":
           return cmpStr(aHs, bHs) * dir;
+        case "travelTeam":
+          return cmpStr(
+            String(a.travelTeam || "").toLowerCase(),
+            String(b.travelTeam || "").toLowerCase()
+          ) * dir;
         case "exitVelo":
           return cmpNumNullLast(aExit, bExit) * dir;
         case "sixtyYdDash":
@@ -595,6 +601,10 @@ const sortedMembers = useMemo(() => {
   setThrowMin("");
   setPopMin("");
 
+  setFbMin("");
+  setChMin("");
+  setBbMin("");
+
   setErr(null);
 }
 
@@ -622,10 +632,10 @@ if (gpaMin.trim()) params.set("gpaMin", gpaMin.trim());
 
 // metrics (MIN only)
 if (exitMin.trim()) params.set("m_exitVeloMin", exitMin.trim());
-if (sixtyMin.trim()) params.set("m_sixtyYdDashMin", sixtyMin.trim());
-if (htfMin.trim()) params.set("m_homeToFirstMin", htfMin.trim());
+if (sixtyMin.trim()) params.set("m_sixtyYdDashMax", sixtyMin.trim());
+if (htfMin.trim()) params.set("m_homeToFirstMax", htfMin.trim());
 if (throwMin.trim()) params.set(`m_${throwMetricKey}Min`, throwMin.trim());
-if (popMin.trim()) params.set("m_popTimeMin", popMin.trim());
+if (popMin.trim()) params.set("m_popTimeMax", popMin.trim());
 if (fbMin.trim()) params.set("m_avgFbVeloMin", fbMin.trim());
 if (chMin.trim()) params.set("m_avgChVeloMin", chMin.trim());
 if (bbMin.trim()) params.set("m_avgBbVeloMin", bbMin.trim());
@@ -985,12 +995,12 @@ return (
                 <input value={city} onChange={(e) => setCity(e.target.value)} style={inputWideSm} placeholder="City" />
               </Field>
 
-              <Field label="High School" onClear={() => setHsName("")}>
-                <input value={hsName} onChange={(e) => setHsName(e.target.value)} style={inputWideSm} placeholder="High School Name" />
-              </Field>
-
               <Field label="GPA (min)" onClear={() => setGpaMin("")}>
                 <input value={gpaMin} onChange={(e) => setGpaMin(e.target.value)} style={inputXs} placeholder="3.0" />
+              </Field>
+
+              <Field label="High School" onClear={() => setHsName("")}>
+                <input value={hsName} onChange={(e) => setHsName(e.target.value)} style={inputWideSm} placeholder="High School Name" />
               </Field>
 
               <Field label="Travel Team" onClear={() => setTravelTeam("")}>
@@ -1045,11 +1055,11 @@ return (
     <input value={exitMin} onChange={(e) => setExitMin(e.target.value)} style={inputXs} placeholder="90" />
   </Field>
 
-  <Field label="60 Yrd (min)" onClear={() => setSixtyMin("")}>
+  <Field label="60 Yrd (max)" onClear={() => setSixtyMin("")}>
     <input value={sixtyMin} onChange={(e) => setSixtyMin(e.target.value)} style={inputXs} placeholder="6.8" />
   </Field>
 
-  <Field label="H→1st (min)" onClear={() => setHtfMin("")}>
+  <Field label="H to 1st (max)" onClear={() => setHtfMin("")}>
     <input value={htfMin} onChange={(e) => setHtfMin(e.target.value)} style={inputXs} placeholder="3.9" />
   </Field>
 </div>
@@ -1069,7 +1079,7 @@ return (
     <input value={throwMin} onChange={(e) => setThrowMin(e.target.value)} style={inputXs} placeholder="75" />
   </Field>
   
-  <Field label="C Pop (min)" onClear={() => setPopMin("")}>
+  <Field label="C Pop (max)" onClear={() => setPopMin("")}>
     <input value={popMin} onChange={(e) => setPopMin(e.target.value)} style={inputXs} placeholder="1.9" />
   </Field>
 
@@ -1355,7 +1365,8 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("pos")}>Pos</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("state")}>State</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("city")}>City</th>
-          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("hsName")}>High School</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("hsName")}>HS Team</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("travelTeam")}>TRV Team</th>
 
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("exitVelo")}>Exit Velo</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("sixtyYdDash")}>60 Yrd</th>
@@ -1454,6 +1465,7 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
                 <td style={td}>{r.state || "—"}</td>
                 <td style={td}>{r.hometown || "—"}</td>
                 <td style={td}>{r.hsName || "—"}</td>
+                <td style={td}>{r.travelTeam || "—"}</td>
 
                 <td style={td}>{metricVal(r, "exitVelo")}</td>
                 <td style={td}>{metricVal(r, "sixtyYdDash")}</td>
