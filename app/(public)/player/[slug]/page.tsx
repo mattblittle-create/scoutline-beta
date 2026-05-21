@@ -916,9 +916,9 @@ const coachesData: CoachesData = {
         style={{
           position: "sticky",
           top: 110,
-          zIndex: 20,
+          zIndex: 30,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
-          marginBottom: 15,
+          marginBottom: 8,
         }}
       >
         <div
