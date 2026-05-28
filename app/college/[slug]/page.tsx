@@ -603,16 +603,6 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       )}
 
 <div style={{ flex: 1, minWidth: 0 }}>
-<div style={{ marginBottom: 4 }}>
-  {(() => {
-    const badge = getCoachContactBadge(coach);
-    return (
-  <span style={badge.style} title={badge.title}>
-    Coach Contact: {badge.label}
-  </span>
-);
-  })()}
-</div>
 
 <div style={coachTopRowStyle}>
   <div style={{ fontWeight: 950 }}>{coach.name}</div>
@@ -654,6 +644,17 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     ) : null}
 
     {coach.email ? <CopyCoachEmailButton email={coach.email} style={buttonStyle} /> : null}
+  </div>
+
+  <div style={{ marginTop: 8 }}>
+    {(() => {
+      const badge = getCoachContactBadge(coach);
+      return (
+        <span style={badge.style} title={badge.title}>
+          Coach Contact: {badge.label}
+        </span>
+      );
+    })()}
   </div>
                       </div>
                     </div>
