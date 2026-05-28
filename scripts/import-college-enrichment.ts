@@ -456,6 +456,7 @@ console.log(`Processing slug: "${slug}"`);
         phone: emptyToNull(row.phone),
         bioUrl: emptyToNull(row.bioUrl),
         contactUrl: emptyToNull(row.contactUrl),
+        headshotUrl: emptyToNull(row.headshotUrl),
         isHeadCoach: parseBool(row.isHeadCoach),
       },
     });

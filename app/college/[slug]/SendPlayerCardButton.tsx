@@ -43,7 +43,7 @@ export default function SendPlayerCardButton(props: {
           url.searchParams.set("coachEmail", props.coachEmail);
         }
 
-        window.location.href = url.toString();
+        window.open(url.toString(), "_blank", "noopener,noreferrer");
       }}
     >
       Send Player Card
