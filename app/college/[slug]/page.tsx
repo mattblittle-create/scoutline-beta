@@ -283,6 +283,28 @@ async function getCollege(slug: string): Promise<CollegeDetail | null> {
   return data.college;
 }
 
+function coachSortRank(coach: {
+  title?: string | null;
+  isHeadCoach?: boolean;
+}) {
+  const title = String(coach.title || "").toLowerCase();
+
+  if (coach.isHeadCoach || title === "head coach") return 1;
+  if (title.includes("associate head coach")) return 2;
+  if (title.includes("assistant head coach")) return 2;
+  if (title.includes("assistant coach")) return 3;
+  if (title.includes("associate coach")) return 3;
+  if (title.includes("pitching")) return 3;
+  if (title.includes("hitting")) return 3;
+  if (title.includes("infield")) return 3;
+  if (title.includes("outfield")) return 3;
+  if (title.includes("catching")) return 3;
+  if (title.includes("general manager")) return 4;
+  if (title.includes("recruiting coordinator")) return 5;
+
+  return 9;
+}
+
 export default async function CollegeDetailPage({ params }: PageProps) {
   const college = await getCollege(params.slug);
 
@@ -297,7 +319,11 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
   const baseball = college.baseballProgram;
   const truthFit = college.truthFit;
-  const coaches = baseball?.coaches || [];
+  const coaches = [...(baseball?.coaches || [])].sort((a, b) => {
+    const rankDiff = coachSortRank(a) - coachSortRank(b);
+    if (rankDiff !== 0) return rankDiff;
+    return String(a.name || "").localeCompare(String(b.name || ""));
+  });
   const coachesSectionUrl =
     coaches.find((coach) => coach.contactUrl)?.contactUrl ||
     baseball?.generalContactUrl ||
@@ -636,7 +662,7 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             )}
 
             {coaches.length ? (
-              <div style={{ display: "grid", gap: 10 }}>
+              <div style={coachListScrollStyle}>
                 {coaches.map((coach) => (
                   <div key={coach.id} style={miniCardStyle}>
                     <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
@@ -1566,4 +1592,12 @@ const verificationLabelStyle: React.CSSProperties = {
   color: "#334155",
   fontSize: 13,
   fontWeight: 900,
+};
+
+const coachListScrollStyle: React.CSSProperties = {
+  display: "grid",
+  gap: 10,
+  maxHeight: 185,
+  overflowY: "auto",
+  paddingRight: 4,
 };
