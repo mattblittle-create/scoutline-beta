@@ -529,7 +529,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
           </section>
 
           <section style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Baseball Program</h2>
+            <div style={sectionTitleRowStyle}>
+  <h2 style={sectionTitleStyle}>Baseball Program</h2>
+  {(() => {
+    const badge = getVerificationBadge(baseball?.verificationStatus);
+    return <span style={badge.style}>{badge.label}</span>;
+  })()}
+</div>
 
             <Info label="Nickname" value={baseball?.nickname || "—"} />
             <Info label="Division" value={pretty(baseball?.division)} />
@@ -593,6 +599,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       )}
 
 <div style={{ flex: 1, minWidth: 0 }}>
+<div style={{ marginBottom: 4 }}>
+  {(() => {
+    const badge = getCoachContactBadge(coach);
+    return <span style={badge.style}>Coach Contact: {badge.label}</span>;
+  })()}
+</div>
+
 <div style={coachTopRowStyle}>
   <div style={{ fontWeight: 950 }}>{coach.name}</div>
 
@@ -897,6 +910,36 @@ function TruthList({
       )}
     </div>
   );
+}
+
+function getVerificationBadge(status?: string | null) {
+  const normalized = String(status || "").trim().toUpperCase();
+
+  if (normalized === "VERIFIED") {
+    return { label: "Verified", style: verifiedBadgeStyle };
+  }
+
+  if (normalized === "NEEDS_REVIEW") {
+    return { label: "Needs Review", style: needsReviewBadgeStyle };
+  }
+
+  if (normalized === "UNVERIFIED") {
+    return { label: "Unverified", style: unverifiedBadgeStyle };
+  }
+
+  return { label: "Unverified", style: unverifiedBadgeStyle };
+}
+
+function getCoachContactBadge(coach: {
+  email?: string | null;
+  bioUrl?: string | null;
+  contactUrl?: string | null;
+}) {
+  if (coach.email || coach.bioUrl || coach.contactUrl) {
+    return { label: "Official Site", style: officialSiteBadgeStyle };
+  }
+
+  return { label: "Needs Review", style: needsReviewBadgeStyle };
 }
 
 function CoachSocialLink({
@@ -1260,4 +1303,49 @@ const coachTopRowStyle: React.CSSProperties = {
   alignItems: "center",
   gap: 10,
   flexWrap: "wrap",
+};
+
+const sectionTitleRowStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  gap: 10,
+  flexWrap: "wrap",
+};
+
+const baseTrustBadgeStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "4px 8px",
+  fontSize: 11,
+  fontWeight: 950,
+  border: "1px solid transparent",
+};
+
+const verifiedBadgeStyle: React.CSSProperties = {
+  ...baseTrustBadgeStyle,
+  background: "#ecfdf5",
+  color: "#047857",
+  borderColor: "#a7f3d0",
+};
+
+const needsReviewBadgeStyle: React.CSSProperties = {
+  ...baseTrustBadgeStyle,
+  background: "#fffbeb",
+  color: "#92400e",
+  borderColor: "#fde68a",
+};
+
+const unverifiedBadgeStyle: React.CSSProperties = {
+  ...baseTrustBadgeStyle,
+  background: "#f8fafc",
+  color: "#475569",
+  borderColor: "#e2e8f0",
+};
+
+const officialSiteBadgeStyle: React.CSSProperties = {
+  ...baseTrustBadgeStyle,
+  background: "#eff6ff",
+  color: "#1d4ed8",
+  borderColor: "#bfdbfe",
 };
