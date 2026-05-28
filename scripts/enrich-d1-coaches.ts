@@ -128,7 +128,7 @@ async function main() {
 
   for (const program of programs) {
     const slug = program.college.slug;
-    const urls = candidateStaffUrls(program.baseballWebsiteUrl);
+    const urls = candidateStaffUrls(program.baseballWebsiteUrl ?? "");
 
     console.log(`\n${program.college.name}`);
     console.log(`  slug: ${slug}`);
