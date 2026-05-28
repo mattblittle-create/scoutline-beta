@@ -92,6 +92,12 @@ export default function PlayerCardPage() {
   const prefillCoachEmail = searchParams.get("coachEmail") || "";
   const prefillCoachName = searchParams.get("coachName") || "";
 
+  const prefillCoachLastName = prefillCoachName
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(-1)[0] || "";
+
   const [data, setData] = React.useState<PublicPayload | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [notFound, setNotFound] = React.useState(false);
@@ -207,8 +213,21 @@ const canUseCardTools =
 
   const getCardShareUrl = React.useCallback(() => {
     if (typeof window === "undefined") return "";
+
     const u = new URL(window.location.href);
-    if (fromTeaserCard) u.searchParams.set("from", "teaser");
+
+    u.searchParams.delete("shareMode");
+    u.searchParams.delete("college");
+    u.searchParams.delete("coachId");
+    u.searchParams.delete("coachName");
+    u.searchParams.delete("coachEmail");
+
+    if (fromTeaserCard) {
+      u.searchParams.set("from", "teaser");
+    } else {
+      u.searchParams.delete("from");
+    }
+
     return u.toString();
   }, [fromTeaserCard]);
 
@@ -611,7 +630,7 @@ const canUseCardTools =
     let followUpBody = "";
 
     if (fromTeaserCard) {
-      introBody = `Coach,
+      introBody = `Coach${prefillCoachLastName ? ` ${prefillCoachLastName}` : ""},
 
 I wanted to share one of our players with you:
 
@@ -643,7 +662,7 @@ Would love your feedback.
 Thanks,
 `;
     } else {
-      introBody = `Coach,
+      introBody = `Coach${prefillCoachLastName ? ` ${prefillCoachLastName}` : ""},
 
 My name is ${name}, and I’m a ${grad} ${posString}.
 
@@ -790,7 +809,7 @@ ${name}
           <div style={{ display: "grid", gap: 8 }}>
             {prefillCoachName || prefillCoachEmail ? (
               <div style={prefillBannerStyle}>
-                Sending intro to{" "}
+                Sending email to{" "}
                 <strong>
                   {prefillCoachName || "selected coach"}
                   {prefillCoachEmail ? ` • ${prefillCoachEmail}` : ""}

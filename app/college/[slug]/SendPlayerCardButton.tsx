@@ -14,7 +14,10 @@ export default function SendPlayerCardButton(props: {
   return (
     <button
       type="button"
-      style={props.style}
+      style={{
+  ...props.style,
+  cursor: "pointer",
+}}
       onClick={async () => {
         const res = await fetch("/api/player/current-card-route", {
           cache: "no-store",
