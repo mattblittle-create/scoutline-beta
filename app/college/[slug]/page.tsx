@@ -1182,9 +1182,10 @@ const coachHeadshotStyle: React.CSSProperties = {
   width: 58,
   height: 58,
   borderRadius: 16,
-  objectFit: "cover",
+  objectFit: "contain",
+  objectPosition: "center top",
   border: "1px solid #e5e7eb",
-  background: "#f8fafc",
+  background: "#ffffff",
   flexShrink: 0,
 };
 
