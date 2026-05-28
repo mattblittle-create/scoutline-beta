@@ -532,7 +532,10 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             <div style={sectionTitleRowStyle}>
   <h2 style={sectionTitleStyle}>Baseball Program</h2>
   {(() => {
-    const badge = getVerificationBadge(baseball?.verificationStatus);
+    const badge = getVerificationBadge(
+  baseball?.verificationStatus,
+  baseball?.dataSourceUrl || baseball?.baseballWebsiteUrl
+);
     return (
   <span style={badge.style} title={badge.title}>
     {badge.label}
