@@ -547,6 +547,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
             <div style={buttonRowStyle}>
               {baseball?.baseballWebsiteUrl ? <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton> : null}
+              {baseball?.questionnaireUrl ? (
+  <ExternalButton href={baseball.questionnaireUrl}>Recruiting Questionnaire</ExternalButton>
+) : null}
               {baseball?.rosterUrl ? <ExternalButton href={baseball.rosterUrl}>Roster</ExternalButton> : null}
               {baseball?.scheduleUrl ? <ExternalButton href={baseball.scheduleUrl}>Schedule</ExternalButton> : null}
               {baseball?.questionnaireUrl ? <ExternalButton href={baseball.questionnaireUrl}>Recruiting Questionnaire</ExternalButton> : null}
@@ -590,12 +593,14 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       )}
 
                       <div style={{ flex: 1, minWidth: 0 }}>
-<div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-  <div style={{ fontWeight: 950 }}>{coach.name}</div>
+<div style={coachTopRowStyle}>
+  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+    <div style={{ fontWeight: 950 }}>{coach.name}</div>
 
-  {coach.xUrl ? <CoachSocialLink href={coach.xUrl}>X</CoachSocialLink> : null}
-  {coach.instagramUrl ? <CoachSocialLink href={coach.instagramUrl}>IG</CoachSocialLink> : null}
-  {coach.linkedinUrl ? <CoachSocialLink href={coach.linkedinUrl}>LinkedIn</CoachSocialLink> : null}
+    {coach.xUrl ? <CoachSocialLink href={coach.xUrl}>X</CoachSocialLink> : null}
+    {coach.instagramUrl ? <CoachSocialLink href={coach.instagramUrl}>IG</CoachSocialLink> : null}
+    {coach.linkedinUrl ? <CoachSocialLink href={coach.linkedinUrl}>LinkedIn</CoachSocialLink> : null}
+  </div>
 </div>
 
                         <div style={{ color: "#64748b", fontSize: 13, fontWeight: 800 }}>
@@ -1239,4 +1244,12 @@ const coachSocialLinkStyle: React.CSSProperties = {
   fontSize: 11,
   fontWeight: 950,
   textDecoration: "none",
+};
+
+const coachTopRowStyle: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  gap: 10,
+  flexWrap: "wrap",
 };
