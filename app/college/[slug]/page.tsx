@@ -563,10 +563,6 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
             <div style={buttonRowStyle}>
 <div style={buttonRowStyle}>
-  {baseball?.baseballWebsiteUrl ? (
-    <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton>
-  ) : null}
-
 {college.programXUrl ? (
   <a
     href={college.programXUrl}
@@ -598,6 +594,10 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     />
   </a>
 ) : null}
+
+  {baseball?.baseballWebsiteUrl ? (
+    <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton>
+  ) : null}
 
   {(baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl) ? (
     <ExternalButton href={baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl || ""}>
