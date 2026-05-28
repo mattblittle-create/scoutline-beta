@@ -592,40 +592,40 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                         </div>
                       )}
 
-                      <div style={{ flex: 1, minWidth: 0 }}>
-<div style={coachTopRowStyle}>
-  <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-    <div style={{ fontWeight: 950 }}>{coach.name}</div>
+<div style={{ flex: 1, minWidth: 0 }}>
+  <div style={coachTopRowStyle}>
+    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+      <div style={{ fontWeight: 950 }}>{coach.name}</div>
 
-    {coach.xUrl ? <CoachSocialLink href={coach.xUrl}>X</CoachSocialLink> : null}
-    {coach.instagramUrl ? <CoachSocialLink href={coach.instagramUrl}>IG</CoachSocialLink> : null}
-    {coach.linkedinUrl ? <CoachSocialLink href={coach.linkedinUrl}>LinkedIn</CoachSocialLink> : null}
+      {coach.xUrl ? <CoachSocialLink href={coach.xUrl}>X</CoachSocialLink> : null}
+      {coach.instagramUrl ? <CoachSocialLink href={coach.instagramUrl}>IG</CoachSocialLink> : null}
+      {coach.linkedinUrl ? <CoachSocialLink href={coach.linkedinUrl}>LinkedIn</CoachSocialLink> : null}
+    </div>
+
+    <SendPlayerCardButton
+      collegeSlug={college.slug}
+      coachId={coach.id}
+      coachName={coach.name || ""}
+      coachEmail={coach.email}
+      style={buttonStyle}
+    />
   </div>
-</div>
 
-                        <div style={{ color: "#64748b", fontSize: 13, fontWeight: 800 }}>
-                          {coach.title || "Coach"}
-                        </div>
+  <div style={{ color: "#64748b", fontSize: 13, fontWeight: 800, marginTop: 4 }}>
+    {coach.title || "Coach"}
+  </div>
 
-                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-                          {coach.bioUrl ? <ExternalButton href={coach.bioUrl}>Bio</ExternalButton> : null}
+  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
+    {coach.bioUrl ? <ExternalButton href={coach.bioUrl}>Bio</ExternalButton> : null}
 
-                          {coach.email ? (
-                            <ExternalButton href={`mailto:${coach.email}`} title={coach.email}>
-                              Email
-                            </ExternalButton>
-                          ) : null}
-{coach.email ? (
-  <CopyCoachEmailButton email={coach.email} style={buttonStyle} />
-) : null}
-<SendPlayerCardButton
-  collegeSlug={college.slug}
-  coachId={coach.id}
-  coachName={coach.name || ""}
-  coachEmail={coach.email}
-  style={buttonStyle}
-/>
-                        </div>
+    {coach.email ? (
+      <ExternalButton href={`mailto:${coach.email}`} title={coach.email}>
+        Email
+      </ExternalButton>
+    ) : null}
+
+    {coach.email ? <CopyCoachEmailButton email={coach.email} style={buttonStyle} /> : null}
+  </div>
                       </div>
                     </div>
                   </div>
