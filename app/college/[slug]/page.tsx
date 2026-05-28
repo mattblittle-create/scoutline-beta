@@ -948,23 +948,88 @@ export default async function CollegeDetailPage({ params }: PageProps) {
           )}
         </section>
 
-        <section style={{ ...cardStyle, marginTop: 16 }}>
-          <h2 style={sectionTitleStyle}>Data Verification</h2>
+<section style={{ ...cardStyle, marginTop: 16 }}>
+  <h2 style={sectionTitleStyle}>Data Verification</h2>
 
-          <div style={gridStyle}>
-            <Info label="School Verification" value={pretty(college.verificationStatus)} />
-            <Info label="School Last Verified" value={formatDate(college.lastVerifiedAt)} />
-            <Info label="Program Verification" value={pretty(baseball?.verificationStatus)} />
-            <Info label="Program Last Verified" value={formatDate(baseball?.lastVerifiedAt)} />
-          </div>
+  <div style={{ display: "grid", gap: 8 }}>
+    {(() => {
+      const badge = getVerificationBadge(
+        college.verificationStatus,
+        college.dataSourceUrl || college.websiteUrl
+      );
 
-          <div style={buttonRowStyle}>
-            {college.dataSourceUrl ? <ExternalButton href={college.dataSourceUrl}>School Data Source</ExternalButton> : null}
-            {baseball?.dataSourceUrl ? <ExternalButton href={baseball.dataSourceUrl}>Program Data Source</ExternalButton> : null}
-            {baseball?.generalContactUrl ? <ExternalButton href={baseball.generalContactUrl}>General Contact</ExternalButton> : null}
-            {baseball?.generalContactEmail ? <ExternalButton href={`mailto:${baseball.generalContactEmail}`}>Program Email</ExternalButton> : null}
-          </div>
-        </section>
+      return (
+        <div style={verificationRowStyle}>
+          <span style={verificationLabelStyle}>General School</span>
+          <span style={badge.style} title={badge.title}>
+            {badge.label}
+          </span>
+        </div>
+      );
+    })()}
+
+    {(() => {
+      const badge = getVerificationBadge(
+        baseball?.verificationStatus,
+        baseball?.dataSourceUrl || baseball?.baseballWebsiteUrl
+      );
+
+      return (
+        <div style={verificationRowStyle}>
+          <span style={verificationLabelStyle}>Baseball Program</span>
+          <span style={badge.style} title={badge.title}>
+            {badge.label}
+          </span>
+        </div>
+      );
+    })()}
+
+    {(() => {
+      const hasOfficialCoachSource = coaches.some(
+        (coach) => coach.email || coach.bioUrl || coach.contactUrl
+      );
+
+      const badge = hasOfficialCoachSource
+        ? {
+            label: "Official Source",
+            title: "Contact information compiled from official school / program source",
+            style: officialSiteBadgeStyle,
+          }
+        : {
+            label: "Unverified",
+            title: "Outdated / unknown source",
+            style: unverifiedBadgeStyle,
+          };
+
+      return (
+        <div style={verificationRowStyle}>
+          <span style={verificationLabelStyle}>Coach Contacts</span>
+          <span style={badge.style} title={badge.title}>
+            {badge.label}
+          </span>
+        </div>
+      );
+    })()}
+  </div>
+
+  <div style={{ ...buttonRowStyle, marginTop: 12 }}>
+    {college.dataSourceUrl ? (
+      <ExternalButton href={college.dataSourceUrl}>School Data Source</ExternalButton>
+    ) : null}
+
+    {baseball?.dataSourceUrl ? (
+      <ExternalButton href={baseball.dataSourceUrl}>Program Data Source</ExternalButton>
+    ) : null}
+
+    {baseball?.generalContactUrl ? (
+      <ExternalButton href={baseball.generalContactUrl}>General Contact</ExternalButton>
+    ) : null}
+
+    {baseball?.generalContactEmail ? (
+      <ExternalButton href={`mailto:${baseball.generalContactEmail}`}>Program Email</ExternalButton>
+    ) : null}
+  </div>
+</section>
       </section>
     </main>
   );
@@ -1486,4 +1551,19 @@ const officialSiteBadgeStyle: React.CSSProperties = {
   background: "#eff6ff",
   color: "#1d4ed8",
   borderColor: "#bfdbfe",
+};
+
+const verificationRowStyle: React.CSSProperties = {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  gap: 12,
+  padding: "8px 0",
+  borderBottom: "1px solid #e5e7eb",
+};
+
+const verificationLabelStyle: React.CSSProperties = {
+  color: "#334155",
+  fontSize: 13,
+  fontWeight: 900,
 };
