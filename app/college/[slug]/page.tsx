@@ -4,6 +4,7 @@ import Link from "next/link";
 import { cookies } from "next/headers";
 import CollegeSaveStar from "@/app/components/college/CollegeSaveStar";
 import CollegeRecruitingStatusCard from "@/app/components/college/CollegeRecruitingStatusCard";
+import SendPlayerCardButton from "./SendPlayerCardButton";
 
 type PageProps = {
   params: {
@@ -600,39 +601,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                             </ExternalButton>
                           ) : null}
 
-<button
-  type="button"
+<SendPlayerCardButton
+  collegeSlug={college.slug}
+  coachId={coach.id}
+  coachName={coach.name || ""}
+  coachEmail={coach.email}
   style={buttonStyle}
-  onClick={async () => {
-    const res = await fetch("/api/player/current-card-route", {
-      cache: "no-store",
-    });
-
-    const json = await res.json().catch(() => null);
-
-    if (!res.ok || !json?.ok || !json?.data?.cardUrl) {
-      window.location.href = `/login?next=${encodeURIComponent(
-        `/college/${college.slug}`
-      )}`;
-      return;
-    }
-
-    const url = new URL(json.data.cardUrl, window.location.origin);
-
-    url.searchParams.set("shareMode", "intro");
-    url.searchParams.set("college", college.slug);
-    url.searchParams.set("coachId", coach.id);
-    url.searchParams.set("coachName", coach.name || "");
-
-    if (coach.email) {
-      url.searchParams.set("coachEmail", coach.email);
-    }
-
-    window.location.href = url.toString();
-  }}
->
-  Send Player Card
-</button>
+/>
                         </div>
                       </div>
                     </div>
