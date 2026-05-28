@@ -559,15 +559,43 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             ) : null}
 
             <div style={buttonRowStyle}>
-              {baseball?.baseballWebsiteUrl ? <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton> : null}
-              {baseball?.questionnaireUrl ? (
-  <ExternalButton href={baseball.questionnaireUrl}>Recruiting Questionnaire</ExternalButton>
-) : null}
-              {baseball?.rosterUrl ? <ExternalButton href={baseball.rosterUrl}>Roster</ExternalButton> : null}
-              {baseball?.scheduleUrl ? <ExternalButton href={baseball.scheduleUrl}>Schedule</ExternalButton> : null}
-              {baseball?.questionnaireUrl ? <ExternalButton href={baseball.questionnaireUrl}>Recruiting Questionnaire</ExternalButton> : null}
-              {baseball?.campsUrl ? <ExternalButton href={baseball.campsUrl}>Camps</ExternalButton> : null}
-              {baseball?.scholarshipInfoUrl ? <ExternalButton href={baseball.scholarshipInfoUrl}>Scholarship Info</ExternalButton> : null}
+<div style={buttonRowStyle}>
+  {baseball?.baseballWebsiteUrl ? (
+    <ExternalButton href={baseball.baseballWebsiteUrl}>
+      Baseball Website
+    </ExternalButton>
+  ) : null}
+
+  {baseball?.questionnaireUrl ? (
+    <ExternalButton href={baseball.questionnaireUrl}>
+      Recruiting Questionnaire
+    </ExternalButton>
+  ) : null}
+
+  {baseball?.rosterUrl ? (
+    <ExternalButton href={baseball.rosterUrl}>
+      Roster
+    </ExternalButton>
+  ) : null}
+
+  {baseball?.scheduleUrl ? (
+    <ExternalButton href={baseball.scheduleUrl}>
+      Schedule
+    </ExternalButton>
+  ) : null}
+
+  {baseball?.campsUrl ? (
+    <ExternalButton href={baseball.campsUrl}>
+      Camps
+    </ExternalButton>
+  ) : null}
+
+  {baseball?.scholarshipInfoUrl ? (
+    <ExternalButton href={baseball.scholarshipInfoUrl}>
+      Scholarship Info
+    </ExternalButton>
+  ) : null}
+</div>
             </div>
           </section>
         </div>
