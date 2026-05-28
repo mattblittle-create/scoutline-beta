@@ -696,6 +696,11 @@ model College {
 
   // Relations
   academicAreas                  CollegeAcademicArea[]
+  academicProfile                CollegeAcademicProfile?
+  admissionsProfile              CollegeAdmissionsProfile?
+  financialProfile               CollegeFinancialProfile?
+  campusProfile                  CollegeCampusProfile?
+  nilProfile                     CollegeNilProfile?
   baseballProgram                CollegeBaseballProgram?
   coachInvites                   CoachInvite[]
   coachJoinRequests              CoachJoinRequest[]
@@ -1434,9 +1439,12 @@ model CollegeBaseballProgram {
   lastVerifiedAt     DateTime?
   verificationStatus CollegeBaseballVerificationStatus @default(UNVERIFIED)
 
-  coaches        CollegeBaseballCoach[]
-  rosterNeeds    CollegeBaseballRosterNeed[]
-  metricAverages CollegeBaseballMetricAverage[]
+  coaches          CollegeBaseballCoach[]
+  rosterNeeds      CollegeBaseballRosterNeed[]
+  metricAverages   CollegeBaseballMetricAverage[]
+  rosterSnapshots  CollegeBaseballRosterSnapshot[]
+  portalActivities CollegeBaseballPortalActivity[]
+  programOutcomes  CollegeBaseballProgramOutcome[]
 
   @@index([division])
   @@index([conference])
@@ -1576,4 +1584,352 @@ enum BenchmarkScope {
   CONFERENCE
   DIVISION
   GLOBAL
+}
+
+enum DataConfidence {
+  HIGH
+  MEDIUM
+  LOW
+  ESTIMATED
+  UNKNOWN
+}
+
+enum DataSourceType {
+  OFFICIAL_SCHOOL
+  OFFICIAL_ATHLETICS
+  GOVERNMENT
+  CONFERENCE
+  NCAA
+  NAIA
+  NJCAA
+  COLLECTIVE
+  THIRD_PARTY
+  COACH_VERIFIED
+  USER_SUBMITTED
+  INTERNAL_ESTIMATE
+}
+
+enum NilStrengthTier {
+  ELITE
+  STRONG
+  COMPETITIVE
+  EMERGING
+  LIMITED
+  UNKNOWN
+}
+
+enum SportKey {
+  BASEBALL
+  SOFTBALL
+  FOOTBALL
+  MENS_BASKETBALL
+  WOMENS_BASKETBALL
+  MENS_SOCCER
+  WOMENS_SOCCER
+  VOLLEYBALL
+  OTHER
+}
+
+enum CampusSetting {
+  URBAN
+  SUBURBAN
+  RURAL
+  SMALL_TOWN
+  UNKNOWN
+}
+
+enum PortalActivityLevel {
+  HIGH
+  MEDIUM
+  LOW
+  UNKNOWN
+}
+
+model CollegeAcademicProfile {
+  id        String  @id @default(cuid())
+  collegeId String  @unique
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  majorsSummary           String?
+  strongestMajors         String?
+  academicStrengthTags    String?
+  intendedMajorCategories String?
+  sportsManagement        Boolean @default(false)
+  kinesiology             Boolean @default(false)
+  business                Boolean @default(false)
+  engineering             Boolean @default(false)
+  nursing                 Boolean @default(false)
+  communications          Boolean @default(false)
+  education               Boolean @default(false)
+  biologyPreMed           Boolean @default(false)
+
+  majorsUrl  String?
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([sportsManagement])
+  @@index([business])
+  @@index([engineering])
+  @@index([nursing])
+}
+
+model CollegeAdmissionsProfile {
+  id        String  @id @default(cuid())
+  collegeId String  @unique
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  applicationUrl        String?
+  admissionsContactUrl  String?
+  admissionsEmail       String?
+  admissionsPhone       String?
+  applicationDeadline   String?
+  testOptional          Boolean?
+  transferFriendly      Boolean?
+  freshmanRetentionRate Decimal? @db.Decimal(5, 2)
+  averageGpa            Decimal? @db.Decimal(4, 2)
+  averageSat            Int?
+  averageAct            Int?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CollegeFinancialProfile {
+  id        String  @id @default(cuid())
+  collegeId String  @unique
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  averageNetCostCents   Int?
+  averageAidAwardCents  Int?
+  meritAidStrength      String?
+  needBasedAidStrength  String?
+  outOfStateValueRating String?
+  inStateValueRating    String?
+  financialAidUrl       String?
+  scholarshipUrl        String?
+  costOfAttendanceUrl   String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CollegeCampusProfile {
+  id        String  @id @default(cuid())
+  collegeId String  @unique
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  campusSetting     CampusSetting @default(UNKNOWN)
+  faithBased        Boolean       @default(false)
+  hbcu              Boolean       @default(false)
+  militaryCollege   Boolean       @default(false)
+  commuterFriendly  Boolean       @default(false)
+  greekLifePresence Boolean?
+  nearestMajorCity  String?
+  distanceToAirport String?
+  climateCategory   String?
+  campusLifeSummary String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CollegeNilProfile {
+  id        String  @id @default(cuid())
+  collegeId String  @unique
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  nilAvailable              Boolean         @default(false)
+  overallNilStrength        NilStrengthTier @default(UNKNOWN)
+  baseballNilStrength       NilStrengthTier @default(UNKNOWN)
+  localMarketScore          Int?
+  localBusinessSupportScore Int?
+  athleteBrandSupport       String?
+  nilSummary                String?
+  nilNotes                  String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  collectives CollegeNilCollective[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([overallNilStrength])
+  @@index([baseballNilStrength])
+}
+
+model CollegeNilCollective {
+  id           String            @id @default(cuid())
+  nilProfileId String
+  nilProfile   CollegeNilProfile @relation(fields: [nilProfileId], references: [id], onDelete: Cascade)
+
+  name         String
+  websiteUrl   String?
+  xUrl         String?
+  instagramUrl String?
+  contactEmail String?
+  contactUrl   String?
+
+  estimatedAnnualValueCents Int?
+  fundingTier               NilStrengthTier @default(UNKNOWN)
+  notes                     String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  sportAllocations CollegeNilSportAllocation[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([nilProfileId])
+  @@index([fundingTier])
+}
+
+model CollegeNilSportAllocation {
+  id           String               @id @default(cuid())
+  collectiveId String
+  collective   CollegeNilCollective @relation(fields: [collectiveId], references: [id], onDelete: Cascade)
+
+  sport SportKey
+
+  estimatedAnnualAllocationCents Int?
+  allocationPercent              Decimal?        @db.Decimal(5, 2)
+  strengthTier                   NilStrengthTier @default(UNKNOWN)
+  notes                          String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([collectiveId, sport])
+  @@index([sport])
+  @@index([strengthTier])
+}
+
+model CollegeBaseballRosterSnapshot {
+  id        String                 @id @default(cuid())
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  season String
+
+  rosterSize       Int?
+  freshmen         Int?
+  sophomores       Int?
+  juniors          Int?
+  seniors          Int?
+  graduateStudents Int?
+
+  pitchers      Int?
+  catchers      Int?
+  infielders    Int?
+  outfielders   Int?
+  twoWayPlayers Int?
+
+  leftHandedPitchers  Int?
+  rightHandedPitchers Int?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([programId, season])
+  @@index([programId])
+  @@index([season])
+}
+
+model CollegeBaseballPortalActivity {
+  id        String                 @id @default(cuid())
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  season String
+
+  transfersIn         Int?
+  transfersOut        Int?
+  jucoTransfersIn     Int?
+  d1TransfersIn       Int?
+  d2TransfersIn       Int?
+  portalActivityLevel PortalActivityLevel @default(UNKNOWN)
+
+  transferHeavy Boolean @default(false)
+  jucoFriendly  Boolean @default(false)
+  portalNotes   String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([programId, season])
+  @@index([programId])
+  @@index([season])
+  @@index([portalActivityLevel])
+}
+
+model CollegeBaseballProgramOutcome {
+  id        String                 @id @default(cuid())
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  season String
+
+  wins             Int?
+  losses           Int?
+  conferenceWins   Int?
+  conferenceLosses Int?
+  postseasonResult String?
+  mlbDraftPicks    Int?
+  proSignings      Int?
+  notableAlumni    String?
+  developmentNotes String?
+
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([programId, season])
+  @@index([programId])
+  @@index([season])
 }

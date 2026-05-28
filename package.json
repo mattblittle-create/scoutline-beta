@@ -10,7 +10,8 @@
     "db:seed": "tsx ./prisma/seed_discounts.ts",
     "db:reset": "prisma migrate reset --force",
     "db:status": "prisma migrate status",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "import:college-enrichment": "tsx scripts/import-college-enrichment.ts"
   },
   "dependencies": {
     "@aws-sdk/client-rekognition": "^3.883.0",
