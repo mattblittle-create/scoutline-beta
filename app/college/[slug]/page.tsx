@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import CollegeSaveStar from "@/app/components/college/CollegeSaveStar";
 import CollegeRecruitingStatusCard from "@/app/components/college/CollegeRecruitingStatusCard";
 import SendPlayerCardButton from "./SendPlayerCardButton";
+import CopyCoachEmailButton from "./CopyCoachEmailButton";
 
 type PageProps = {
   params: {
@@ -609,9 +610,9 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                               Email
                             </ExternalButton>
                           ) : null}
-
-                          {coach.email ? <CopyEmailButton email={coach.email} /> : null}
-
+{coach.email ? (
+  <CopyCoachEmailButton email={coach.email} style={buttonStyle} />
+) : null}
 <SendPlayerCardButton
   collegeSlug={college.slug}
   coachId={coach.id}
@@ -896,27 +897,6 @@ function CoachSocialLink({
     <a href={href} target="_blank" rel="noreferrer" style={coachSocialLinkStyle}>
       {children}
     </a>
-  );
-}
-
-function CopyEmailButton({ email }: { email: string }) {
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(email);
-      alert("Email copied to clipboard");
-    } catch {
-      alert("Unable to copy email");
-    }
-  }
-
-  return (
-    <button
-      type="button"
-      onClick={handleCopy}
-      style={buttonStyle}
-    >
-      Copy Email
-    </button>
   );
 }
 
