@@ -567,13 +567,37 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton>
   ) : null}
 
-  {college.programXUrl ? (
-    <ExternalButton href={college.programXUrl}>X</ExternalButton>
-  ) : null}
+{college.programXUrl ? (
+  <a
+    href={college.programXUrl}
+    target="_blank"
+    rel="noreferrer"
+    title="Program X"
+    style={{ display: "inline-flex", alignItems: "center" }}
+  >
+    <img
+      src="/icons/x.webp"
+      alt="X"
+      style={{ width: 20, height: 20 }}
+    />
+  </a>
+) : null}
 
-  {college.programInstagramUrl ? (
-    <ExternalButton href={college.programInstagramUrl}>Instagram</ExternalButton>
-  ) : null}
+{college.programInstagramUrl ? (
+  <a
+    href={college.programInstagramUrl}
+    target="_blank"
+    rel="noreferrer"
+    title="Program Instagram"
+    style={{ display: "inline-flex", alignItems: "center" }}
+  >
+    <img
+      src="/icons/instagram.webp"
+      alt="Instagram"
+      style={{ width: 20, height: 20 }}
+    />
+  </a>
+) : null}
 
   {(baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl) ? (
     <ExternalButton href={baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl || ""}>
@@ -657,13 +681,51 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     marginTop: 4,
   }}
 >
-  <div style={{ color: "#64748b", fontSize: 13, fontWeight: 800 }}>
-    {coach.title || "Coach"}
-  </div>
+<div
+  style={{
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    flexWrap: "wrap",
+    color: "#64748b",
+    fontSize: 13,
+    fontWeight: 800,
+  }}
+>
+  <span>{coach.title || "Coach"}</span>
 
-  {coach.xUrl ? <CoachSocialLink href={coach.xUrl}>X</CoachSocialLink> : null}
-  {coach.instagramUrl ? <CoachSocialLink href={coach.instagramUrl}>IG</CoachSocialLink> : null}
-  {coach.linkedinUrl ? <CoachSocialLink href={coach.linkedinUrl}>LinkedIn</CoachSocialLink> : null}
+  {coach.xUrl ? (
+    <a
+      href={coach.xUrl}
+      target="_blank"
+      rel="noreferrer"
+      title="Coach X"
+      style={{ display: "inline-flex" }}
+    >
+      <img
+        src="/icons/x.webp"
+        alt="X"
+        style={{ width: 18, height: 18 }}
+      />
+    </a>
+  ) : null}
+
+  {coach.instagramUrl ? (
+    <a
+      href={coach.instagramUrl}
+      target="_blank"
+      rel="noreferrer"
+      title="Coach Instagram"
+      style={{ display: "inline-flex" }}
+    >
+      <img
+        src="/icons/instagram.webp"
+        alt="Instagram"
+        style={{ width: 18, height: 18 }}
+      />
+    </a>
+  ) : null}
+</div>
 </div>
 
   <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
