@@ -88,6 +88,10 @@ export default function PlayerCardPage() {
   const searchParams = useSearchParams();
   const fromTeaserCard = searchParams.get("from") === "teaser";
 
+  const prefillShareMode = searchParams.get("shareMode");
+  const prefillCoachEmail = searchParams.get("coachEmail") || "";
+  const prefillCoachName = searchParams.get("coachName") || "";
+
   const [data, setData] = React.useState<PublicPayload | null>(null);
   const [loading, setLoading] = React.useState(true);
   const [notFound, setNotFound] = React.useState(false);
@@ -111,6 +115,12 @@ const canUseCardTools =
     const t = window.setTimeout(() => setToast(null), 2200);
     return () => window.clearTimeout(t);
   }, [toast]);
+
+    React.useEffect(() => {
+    if (prefillShareMode === "intro" || prefillShareMode === "followup") {
+      setShareMode(prefillShareMode);
+    }
+  }, [prefillShareMode]);
 
     React.useEffect(() => {
     let cancelled = false;
@@ -689,7 +699,8 @@ ${name}
     const subject = shareMode === "followup" ? followUpSubject : introSubject;
     const body = shareMode === "followup" ? followUpBody : introBody;
 
-    const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const to = prefillCoachEmail ? encodeURIComponent(prefillCoachEmail) : "";
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
   };
 
@@ -701,7 +712,8 @@ ${name}
     const subject = shareMode === "followup" ? followUpSubject : introSubject;
     const body = shareMode === "followup" ? followUpBody : introBody;
 
-    const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const to = prefillCoachEmail ? encodeURIComponent(prefillCoachEmail) : "";
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailto;
   };
 
@@ -775,7 +787,18 @@ ${name}
         </a>
 
         {canUseCardTools ? (
-          <div
+          <div style={{ display: "grid", gap: 8 }}>
+            {prefillCoachName || prefillCoachEmail ? (
+              <div style={prefillBannerStyle}>
+                Sending intro to{" "}
+                <strong>
+                  {prefillCoachName || "selected coach"}
+                  {prefillCoachEmail ? ` • ${prefillCoachEmail}` : ""}
+                </strong>
+              </div>
+            ) : null}
+
+            <div
             style={{
               display: "flex",
               flexWrap: "nowrap",
@@ -840,6 +863,7 @@ ${name}
             >
               Print Player Card
             </button>
+            </div>
           </div>
         ) : null}
       </header>
@@ -1004,4 +1028,14 @@ const modeToggleBtn: React.CSSProperties = {
 const modeToggleBtnActive: React.CSSProperties = {
   background: "#e0f2fe",
   color: "#0f172a",
+};
+
+const prefillBannerStyle: React.CSSProperties = {
+  padding: "8px 10px",
+  borderRadius: 12,
+  border: "1px solid #fde68a",
+  background: "#fffbeb",
+  color: "#92400e",
+  fontSize: 12,
+  fontWeight: 800,
 };

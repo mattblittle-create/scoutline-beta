@@ -116,6 +116,7 @@ type CollegeDetail = {
       phone?: string | null;
       bioUrl?: string | null;
       contactUrl?: string | null;
+      headshotUrl?: string | null;
       isHeadCoach?: boolean;
     }>;
     rosterNeeds?: Array<{
@@ -289,6 +290,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   const baseball = college.baseballProgram;
   const truthFit = college.truthFit;
   const coaches = baseball?.coaches || [];
+  const coachesSectionUrl =
+    coaches.find((coach) => coach.contactUrl)?.contactUrl ||
+    baseball?.generalContactUrl ||
+    baseball?.rosterUrl ||
+    baseball?.baseballWebsiteUrl ||
+    null;
+
   const rosterNeeds = baseball?.rosterNeeds || [];
   const metricAverages = baseball?.metricAverages || [];
   const academicAreas = college.academicAreas || [];
@@ -545,35 +553,89 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
         <div style={wideGridStyle}>
           <section style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Coaches & Recruiting Contacts</h2>
+            {coachesSectionUrl ? (
+              <a href={coachesSectionUrl} target="_blank" rel="noreferrer" style={sectionTitleLinkStyle}>
+                Coaches & Recruiting Contacts
+              </a>
+            ) : (
+              <h2 style={sectionTitleStyle}>Coaches & Recruiting Contacts</h2>
+            )}
 
             {coaches.length ? (
               <div style={{ display: "grid", gap: 10 }}>
                 {coaches.map((coach) => (
                   <div key={coach.id} style={miniCardStyle}>
-                    <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-                      <div>
-                        <div style={{ fontWeight: 950 }}>
-                          {coach.name}
-                          {coach.isHeadCoach ? <span style={smallGoldTagStyle}>Head Coach</span> : null}
+                    <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+                      {coach.headshotUrl ? (
+                        <img
+                          src={coach.headshotUrl}
+                          alt={`${coach.name} headshot`}
+                          style={coachHeadshotStyle}
+                        />
+                      ) : (
+                        <div style={coachHeadshotFallbackStyle}>
+                          {coach.name
+                            .split(" ")
+                            .filter(Boolean)
+                            .slice(0, 2)
+                            .map((part) => part[0])
+                            .join("")
+                            .toUpperCase()}
                         </div>
+                      )}
+
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontWeight: 950 }}>{coach.name}</div>
+
                         <div style={{ color: "#64748b", fontSize: 13, fontWeight: 800 }}>
                           {coach.title || "Coach"}
                         </div>
-                      </div>
 
-                      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                        {coach.email ? <ExternalButton href={`mailto:${coach.email}`}>Email</ExternalButton> : null}
-                        {coach.bioUrl ? <ExternalButton href={coach.bioUrl}>Bio</ExternalButton> : null}
-                        {coach.contactUrl ? <ExternalButton href={coach.contactUrl}>Contact</ExternalButton> : null}
+                        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
+                          {coach.bioUrl ? <ExternalButton href={coach.bioUrl}>Bio</ExternalButton> : null}
+
+                          {coach.email ? (
+                            <ExternalButton href={`mailto:${coach.email}`} title={coach.email}>
+                              Email
+                            </ExternalButton>
+                          ) : null}
+
+<button
+  type="button"
+  style={buttonStyle}
+  onClick={async () => {
+    const res = await fetch("/api/player/current-card-route", {
+      cache: "no-store",
+    });
+
+    const json = await res.json().catch(() => null);
+
+    if (!res.ok || !json?.ok || !json?.data?.cardUrl) {
+      window.location.href = `/login?next=${encodeURIComponent(
+        `/college/${college.slug}`
+      )}`;
+      return;
+    }
+
+    const url = new URL(json.data.cardUrl, window.location.origin);
+
+    url.searchParams.set("shareMode", "intro");
+    url.searchParams.set("college", college.slug);
+    url.searchParams.set("coachId", coach.id);
+    url.searchParams.set("coachName", coach.name || "");
+
+    if (coach.email) {
+      url.searchParams.set("coachEmail", coach.email);
+    }
+
+    window.location.href = url.toString();
+  }}
+>
+  Send Player Card
+</button>
+                        </div>
                       </div>
                     </div>
-
-                    {coach.phone ? (
-                      <div style={{ marginTop: 8, color: "#475569", fontWeight: 800, fontSize: 13 }}>
-                        {coach.phone}
-                      </div>
-                    ) : null}
                   </div>
                 ))}
               </div>
@@ -837,9 +899,17 @@ function TruthList({
   );
 }
 
-function ExternalButton({ href, children }: { href: string; children: React.ReactNode }) {
+function ExternalButton({
+  href,
+  children,
+  title,
+}: {
+  href: string;
+  children: React.ReactNode;
+  title?: string;
+}) {
   return (
-    <a href={href} target="_blank" rel="noreferrer" style={buttonStyle}>
+    <a href={href} title={title} target="_blank" rel="noreferrer" style={buttonStyle}>
       {children}
     </a>
   );
@@ -1124,4 +1194,31 @@ const tdStyle: React.CSSProperties = {
   padding: "9px 8px",
   fontWeight: 800,
   verticalAlign: "top",
+};
+
+const sectionTitleLinkStyle: React.CSSProperties = {
+  ...sectionTitleStyle,
+  display: "inline-flex",
+  color: "#0f172a",
+  textDecoration: "none",
+};
+
+const coachHeadshotStyle: React.CSSProperties = {
+  width: 58,
+  height: 58,
+  borderRadius: 16,
+  objectFit: "cover",
+  border: "1px solid #e5e7eb",
+  background: "#f8fafc",
+  flexShrink: 0,
+};
+
+const coachHeadshotFallbackStyle: React.CSSProperties = {
+  ...coachHeadshotStyle,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  fontWeight: 950,
+  color: "#92400e",
+  background: "#fff7ed",
 };
