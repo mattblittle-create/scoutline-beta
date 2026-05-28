@@ -23,6 +23,9 @@ type CollegeDetail = {
   majorsUrl?: string | null;
   applicationUrl?: string | null;
   financialAidUrl?: string | null;
+  programInstagramUrl?: string | null;
+  programXUrl?: string | null;
+  recruitingQuestionnaireUrl?: string | null;
   city?: string | null;
   state?: string | null;
   region?: string | null;
@@ -561,39 +564,37 @@ export default async function CollegeDetailPage({ params }: PageProps) {
             <div style={buttonRowStyle}>
 <div style={buttonRowStyle}>
   {baseball?.baseballWebsiteUrl ? (
-    <ExternalButton href={baseball.baseballWebsiteUrl}>
-      Baseball Website
-    </ExternalButton>
+    <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton>
   ) : null}
 
-  {baseball?.questionnaireUrl ? (
-    <ExternalButton href={baseball.questionnaireUrl}>
+  {college.programXUrl ? (
+    <ExternalButton href={college.programXUrl}>X</ExternalButton>
+  ) : null}
+
+  {college.programInstagramUrl ? (
+    <ExternalButton href={college.programInstagramUrl}>Instagram</ExternalButton>
+  ) : null}
+
+  {(baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl) ? (
+    <ExternalButton href={baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl || ""}>
       Recruiting Questionnaire
     </ExternalButton>
   ) : null}
 
   {baseball?.rosterUrl ? (
-    <ExternalButton href={baseball.rosterUrl}>
-      Roster
-    </ExternalButton>
+    <ExternalButton href={baseball.rosterUrl}>Roster</ExternalButton>
   ) : null}
 
   {baseball?.scheduleUrl ? (
-    <ExternalButton href={baseball.scheduleUrl}>
-      Schedule
-    </ExternalButton>
+    <ExternalButton href={baseball.scheduleUrl}>Schedule</ExternalButton>
   ) : null}
 
   {baseball?.campsUrl ? (
-    <ExternalButton href={baseball.campsUrl}>
-      Camps
-    </ExternalButton>
+    <ExternalButton href={baseball.campsUrl}>Camps</ExternalButton>
   ) : null}
 
   {baseball?.scholarshipInfoUrl ? (
-    <ExternalButton href={baseball.scholarshipInfoUrl}>
-      Scholarship Info
-    </ExternalButton>
+    <ExternalButton href={baseball.scholarshipInfoUrl}>Scholarship Info</ExternalButton>
   ) : null}
 </div>
             </div>
