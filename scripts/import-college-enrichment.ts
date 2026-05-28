@@ -394,7 +394,12 @@ async function importNilSportAllocations() {
 }
 
 async function importBaseballCoaches() {
-  const rows = readCsv("college-baseball-coaches.csv");
+  const verifiedRows = readCsv("college-baseball-coaches.verified.d1-pilot.csv");
+const fallbackRows = verifiedRows.length
+  ? []
+  : readCsv("college-baseball-coaches.csv");
+
+const rows = verifiedRows.length ? verifiedRows : fallbackRows;
   console.log(`\n👔 Baseball coaches: ${rows.length}`);
 
   const touchedProgramIds = new Set<string>();
@@ -457,6 +462,9 @@ console.log(`Processing slug: "${slug}"`);
         bioUrl: emptyToNull(row.bioUrl),
         contactUrl: emptyToNull(row.contactUrl),
         headshotUrl: emptyToNull(row.headshotUrl),
+        xUrl: emptyToNull(row.xUrl),
+        instagramUrl: emptyToNull(row.instagramUrl),
+        linkedinUrl: emptyToNull(row.linkedinUrl),
         isHeadCoach: parseBool(row.isHeadCoach),
       },
     });

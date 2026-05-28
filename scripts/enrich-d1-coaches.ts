@@ -7,7 +7,18 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const OUT_DIR = path.join(process.cwd(), "data", "enrichment", "generated");
-const OUT_FILE = path.join(OUT_DIR, "college-baseball-coaches.generated.csv");
+const stamp = new Date().toISOString().replace(/[:.]/g, "-");
+const OUT_FILE = path.join(
+  OUT_DIR,
+  `college-baseball-coaches.generated.${stamp}.csv`
+);
+
+const OVERRIDES_FILE = path.join(
+  process.cwd(),
+  "data",
+  "enrichment",
+  "coach-staff-page-overrides.csv"
+);
 
 const LIMIT_ARG = process.argv.find((a) => a.startsWith("--limit="));
 const LIMIT = LIMIT_ARG ? Number(LIMIT_ARG.split("=")[1]) : 25;
@@ -22,6 +33,23 @@ function normalizeUrl(url: string | null | undefined) {
   const trimmed = String(url ?? "").trim();
   if (!trimmed) return null;
   return trimmed.endsWith("/") ? trimmed.slice(0, -1) : trimmed;
+}
+
+function readStaffUrlOverrides() {
+  if (!fs.existsSync(OVERRIDES_FILE)) return new Map<string, string>();
+
+  const raw = fs.readFileSync(OVERRIDES_FILE, "utf8").replace(/^\uFEFF/, "");
+  const lines = raw.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const [, ...rows] = lines;
+
+  const map = new Map<string, string>();
+
+  for (const line of rows) {
+    const [slug, staffUrl] = line.split(",").map((v) => v.trim());
+    if (slug && staffUrl) map.set(slug, staffUrl);
+  }
+
+  return map;
 }
 
 function candidateStaffUrls(baseballWebsiteUrl: string) {
@@ -72,13 +100,49 @@ function findCoachCandidates(text: string) {
     );
 
     for (const match of text.matchAll(re)) {
-      const name = match[1]?.trim();
-      if (!name) continue;
-      results.push({ name, title });
+const rawName = match[1]?.trim();
+if (!rawName) continue;
+
+const name = cleanCoachName(rawName);
+if (isProbablyBadCoachName(rawName)) continue;
+
+results.push({ name, title });
     }
   }
 
   return results;
+}
+
+function cleanCoachName(name: string) {
+  return name
+    .replace(/\b(Address|Phone|Email|Twitter|Staff|Archived|Stories|Additional|Links|Name|Sport|Administrator)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isProbablyBadCoachName(name: string) {
+  const cleaned = cleanCoachName(name);
+  if (!cleaned) return true;
+
+  const badPhrases = [
+    "address",
+    "phone",
+    "email",
+    "twitter",
+    "archived stories",
+    "additional links",
+    "name phone",
+    "sport administrator",
+  ];
+
+  const lower = name.toLowerCase();
+
+  if (badPhrases.some((p) => lower.includes(p))) return true;
+
+  const parts = cleaned.split(/\s+/).filter(Boolean);
+  if (parts.length < 2 || parts.length > 4) return true;
+
+  return false;
 }
 
 async function fetchText(url: string) {
@@ -108,6 +172,8 @@ async function fetchText(url: string) {
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
+  const staffUrlOverrides = readStaffUrlOverrides();
+
   const programs = await prisma.collegeBaseballProgram.findMany({
     where: {
       division: "NCAA_D1",
@@ -122,13 +188,34 @@ async function main() {
 
   console.log(`Scanning ${programs.length} D1 programs...`);
 
-  const rows: string[][] = [
-    ["slug", "name", "title", "email", "phone", "bioUrl", "contactUrl", "isHeadCoach"],
-  ];
+const rows: string[][] = [
+  [
+    "slug",
+    "name",
+    "title",
+    "email",
+    "phone",
+    "bioUrl",
+    "contactUrl",
+    "headshotUrl",
+    "xUrl",
+    "instagramUrl",
+    "linkedinUrl",
+    "isHeadCoach",
+    "reviewStatus",
+  ],
+];
 
   for (const program of programs) {
     const slug = program.college.slug;
-    const urls = candidateStaffUrls(program.baseballWebsiteUrl ?? "");
+    const overrideUrl = staffUrlOverrides.get(slug);
+
+const urls = Array.from(
+  new Set([
+    ...(overrideUrl ? [overrideUrl] : []),
+    ...candidateStaffUrls(program.baseballWebsiteUrl ?? ""),
+  ])
+);
 
     console.log(`\n${program.college.name}`);
     console.log(`  slug: ${slug}`);
@@ -145,16 +232,21 @@ async function main() {
       if (candidates.length === 0) continue;
 
       for (const c of candidates.slice(0, 8)) {
-        rows.push([
-          slug,
-          c.name,
-          c.title,
-          "",
-          "",
-          url,
-          "",
-          String(c.title.toLowerCase().includes("head coach")),
-        ]);
+rows.push([
+  slug,
+  c.name,
+  c.title,
+  "",
+  "",
+  url,
+  "",
+  "",
+  "",
+  "",
+  "",
+  String(c.title.toLowerCase().includes("head coach")),
+  "NEEDS_REVIEW",
+]);
       }
 
       console.log(`  ✅ found ${candidates.length} candidate(s)`);
@@ -163,7 +255,21 @@ async function main() {
     }
 
     if (!found) {
-      rows.push([slug, "", "", "", "", program.baseballWebsiteUrl ?? "", "", "false"]);
+      rows.push([
+  slug,
+  "",
+  "",
+  "",
+  "",
+  program.baseballWebsiteUrl ?? "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "false",
+  "NO_CANDIDATES_FOUND",
+]);
       console.log(`  ⚠️ no candidates found`);
     }
   }

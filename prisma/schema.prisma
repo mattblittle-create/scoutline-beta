@@ -1487,13 +1487,16 @@ model CollegeBaseballCoach {
   programId String
   program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
 
-  name        String
-  title       String?
-  email       String?
-  phone       String?
-  bioUrl      String?
-  contactUrl  String?
-  headshotUrl String?
+  name         String
+  title        String?
+  email        String?
+  phone        String?
+  bioUrl       String?
+  contactUrl   String?
+  headshotUrl  String?
+  xUrl         String?
+  instagramUrl String?
+  linkedinUrl  String?
 
   isHeadCoach Boolean @default(false)
 

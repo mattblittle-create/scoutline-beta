@@ -118,6 +118,9 @@ type CollegeDetail = {
       bioUrl?: string | null;
       contactUrl?: string | null;
       headshotUrl?: string | null;
+      xUrl?: string | null;
+      instagramUrl?: string | null;
+      linkedinUrl?: string | null;
       isHeadCoach?: boolean;
     }>;
     rosterNeeds?: Array<{
@@ -586,7 +589,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                       )}
 
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontWeight: 950 }}>{coach.name}</div>
+<div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+  <div style={{ fontWeight: 950 }}>{coach.name}</div>
+
+  {coach.xUrl ? <CoachSocialLink href={coach.xUrl}>X</CoachSocialLink> : null}
+  {coach.instagramUrl ? <CoachSocialLink href={coach.instagramUrl}>IG</CoachSocialLink> : null}
+  {coach.linkedinUrl ? <CoachSocialLink href={coach.linkedinUrl}>LinkedIn</CoachSocialLink> : null}
+</div>
 
                         <div style={{ color: "#64748b", fontSize: 13, fontWeight: 800 }}>
                           {coach.title || "Coach"}
@@ -600,6 +609,8 @@ export default async function CollegeDetailPage({ params }: PageProps) {
                               Email
                             </ExternalButton>
                           ) : null}
+
+                          {coach.email ? <CopyEmailButton email={coach.email} /> : null}
 
 <SendPlayerCardButton
   collegeSlug={college.slug}
@@ -871,6 +882,41 @@ function TruthList({
         <div style={{ color: "#64748b", fontWeight: 800 }}>{empty}</div>
       )}
     </div>
+  );
+}
+
+function CoachSocialLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" style={coachSocialLinkStyle}>
+      {children}
+    </a>
+  );
+}
+
+function CopyEmailButton({ email }: { email: string }) {
+  async function handleCopy() {
+    try {
+      await navigator.clipboard.writeText(email);
+      alert("Email copied to clipboard");
+    } catch {
+      alert("Unable to copy email");
+    }
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      style={buttonStyle}
+    >
+      Copy Email
+    </button>
   );
 }
 
@@ -1197,4 +1243,20 @@ const coachHeadshotFallbackStyle: React.CSSProperties = {
   fontWeight: 950,
   color: "#92400e",
   background: "#fff7ed",
+};
+
+const coachSocialLinkStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  minWidth: 24,
+  height: 24,
+  padding: "0 7px",
+  borderRadius: 999,
+  border: "1px solid #e5e7eb",
+  background: "#ffffff",
+  color: "#0f172a",
+  fontSize: 11,
+  fontWeight: 950,
+  textDecoration: "none",
 };
