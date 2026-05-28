@@ -533,7 +533,11 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   <h2 style={sectionTitleStyle}>Baseball Program</h2>
   {(() => {
     const badge = getVerificationBadge(baseball?.verificationStatus);
-    return <span style={badge.style}>{badge.label}</span>;
+    return (
+  <span style={badge.style} title={badge.title}>
+    {badge.label}
+  </span>
+);
   })()}
 </div>
 
@@ -602,7 +606,11 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 <div style={{ marginBottom: 4 }}>
   {(() => {
     const badge = getCoachContactBadge(coach);
-    return <span style={badge.style}>Coach Contact: {badge.label}</span>;
+    return (
+  <span style={badge.style} title={badge.title}>
+    Coach Contact: {badge.label}
+  </span>
+);
   })()}
 </div>
 
@@ -912,34 +920,69 @@ function TruthList({
   );
 }
 
-function getVerificationBadge(status?: string | null) {
+function getVerificationBadge(status?: string | null, sourceUrl?: string | null) {
   const normalized = String(status || "").trim().toUpperCase();
 
   if (normalized === "VERIFIED") {
-    return { label: "Verified", style: verifiedBadgeStyle };
+    return {
+      label: "Program Verified",
+      title: "Coach / program staff confirmed",
+      style: verifiedBadgeStyle,
+    };
+  }
+
+  if (sourceUrl) {
+    return {
+      label: "Official Source",
+      title: "Data compiled from official school / program sources",
+      style: officialSiteBadgeStyle,
+    };
   }
 
   if (normalized === "NEEDS_REVIEW") {
-    return { label: "Needs Review", style: needsReviewBadgeStyle };
+    return {
+      label: "Needs Review",
+      title: "Imported / enriched but not fully reviewed and verified",
+      style: needsReviewBadgeStyle,
+    };
   }
 
-  if (normalized === "UNVERIFIED") {
-    return { label: "Unverified", style: unverifiedBadgeStyle };
-  }
-
-  return { label: "Unverified", style: unverifiedBadgeStyle };
+  return {
+    label: "Unverified",
+    title: "Outdated / unknown source",
+    style: unverifiedBadgeStyle,
+  };
 }
 
 function getCoachContactBadge(coach: {
   email?: string | null;
   bioUrl?: string | null;
   contactUrl?: string | null;
+  verificationStatus?: string | null;
 }) {
-  if (coach.email || coach.bioUrl || coach.contactUrl) {
-    return { label: "Official Site", style: officialSiteBadgeStyle };
+  const normalized = String(coach.verificationStatus || "").trim().toUpperCase();
+
+  if (normalized === "VERIFIED") {
+    return {
+      label: "Verified",
+      title: "Coach verified contact information",
+      style: verifiedBadgeStyle,
+    };
   }
 
-  return { label: "Needs Review", style: needsReviewBadgeStyle };
+  if (coach.email || coach.bioUrl || coach.contactUrl) {
+    return {
+      label: "Official Source",
+      title: "Contact information compiled from official school / program source",
+      style: officialSiteBadgeStyle,
+    };
+  }
+
+  return {
+    label: "Unverified",
+    title: "Outdated / unknown source",
+    style: unverifiedBadgeStyle,
+  };
 }
 
 function CoachSocialLink({
