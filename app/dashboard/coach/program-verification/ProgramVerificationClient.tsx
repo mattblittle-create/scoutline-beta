@@ -460,7 +460,7 @@ export default function ProgramVerificationClient() {
           <h1 style={title}>Program Verification</h1>
           <p style={subtitle}>
             Confirm baseball-specific details for {collegeName}. These updates are submitted for
-            ScoutLine review before becoming official.
+            review before becoming official.
           </p>
         </div>
       </div>
