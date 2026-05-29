@@ -95,6 +95,14 @@ function buildProgramUpdate(data: any) {
     scholarshipInfoUrl: cleanString(data?.scholarshipInfoUrl, 1000),
     transferHeavy: cleanBoolean(data?.transferHeavy),
     jucoFriendly: cleanBoolean(data?.jucoFriendly),
+    recruitingCoordinatorName: cleanString(data?.recruitingCoordinatorName, 120),
+    recruitingCoordinatorEmail: cleanString(data?.recruitingCoordinatorEmail, 320),
+    recruitingCoordinatorPhone: cleanString(data?.recruitingCoordinatorPhone, 80),
+    recruitingCoordinatorXUrl: cleanString(data?.recruitingCoordinatorXUrl, 1000),
+    recruitingCoordinatorInstagramUrl: cleanString(
+      data?.recruitingCoordinatorInstagramUrl,
+      1000
+    ),
     recruitingAggressiveness: cleanString(data?.recruitingAggressiveness, 120),
     regionalRecruitingBias: cleanString(data?.regionalRecruitingBias, 240),
     rosterTurnoverLevel: cleanString(data?.rosterTurnoverLevel, 120),
@@ -113,6 +121,8 @@ function getCoachContacts(data: any) {
       title: cleanString(c?.title, 120),
       email: cleanString(c?.email, 320),
       phone: cleanString(c?.phone, 80),
+      xUrl: cleanString(c?.xUrl, 1000),
+      instagramUrl: cleanString(c?.instagramUrl, 1000),
       isRecruitingContact: Boolean(c?.isRecruitingContact),
     }))
     .filter((c: any) => c.name || c.email)
@@ -300,6 +310,8 @@ export async function PATCH(
           title: coach.title,
           email: coach.email,
           phone: coach.phone,
+          xUrl: coach.xUrl,
+          instagramUrl: coach.instagramUrl,
           isHeadCoach: String(coach.title || "")
             .toLowerCase()
             .includes("head coach"),
