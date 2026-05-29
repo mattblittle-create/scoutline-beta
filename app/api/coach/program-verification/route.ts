@@ -3,11 +3,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import { resend } from "@/lib/email/resend";
+import { EMAIL_SENDERS, getBaseUrl } from "@/lib/email/senders";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 type Err = { ok: false; error: string };
+
+const PROGRAM_VERIFICATION_ADMIN_EMAIL =
+  process.env.SCOUTLINE_PROGRAM_VERIFICATION_ADMIN_EMAIL ||
+  process.env.SCOUTLINE_ADMIN_EMAIL ||
+  "matt@midaspayments.com";
 
 function asString(value: unknown, max = 2000): string | null {
   const s = String(value ?? "").trim();
@@ -242,7 +249,51 @@ export async function POST(req: NextRequest) {
       status: "PENDING",
       submittedData,
     },
+    include: {
+      college: {
+        select: {
+          name: true,
+          slug: true,
+        },
+      },
+      submittedByUser: {
+        select: {
+          email: true,
+          name: true,
+        },
+      },
+    },
   });
+
+  try {
+    const baseUrl = getBaseUrl();
+    const reviewUrl = `${baseUrl}/dashboard/admin/program-verifications`;
+
+    await resend.emails.send({
+      from: EMAIL_SENDERS.support,
+      to: PROGRAM_VERIFICATION_ADMIN_EMAIL,
+      subject: `ScoutLine Program Verification Submitted: ${submission.college.name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+          <h2>Program Verification Submitted</h2>
+          <p><strong>Program:</strong> ${submission.college.name}</p>
+          <p><strong>Submitted by:</strong> ${
+            submission.submittedByUser?.name ||
+            submission.submittedByUser?.email ||
+            "Unknown user"
+          }</p>
+          <p><strong>Status:</strong> ${submission.status}</p>
+          <p>
+            <a href="${reviewUrl}" style="display:inline-block;padding:10px 14px;background:#caa042;color:#0f172a;text-decoration:none;border-radius:8px;font-weight:700;">
+              Review Submission
+            </a>
+          </p>
+        </div>
+      `,
+    });
+  } catch (emailErr) {
+    console.error("Program verification admin email failed:", emailErr);
+  }
 
   return NextResponse.json({
     ok: true,
