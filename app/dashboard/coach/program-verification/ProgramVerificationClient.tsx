@@ -17,6 +17,8 @@ type CoachContact = {
   title: string;
   email: string;
   phone: string;
+  xUrl: string;
+  instagramUrl: string;
   isRecruitingContact: boolean;
 };
 
@@ -48,6 +50,8 @@ type FormState = {
   recruitingCoordinatorName: string;
   recruitingCoordinatorEmail: string;
   recruitingCoordinatorPhone: string;
+  recruitingCoordinatorXUrl: string;
+  recruitingCoordinatorInstagramUrl: string;
 
   currentRosterSize: string;
   averageGpa: string;
@@ -140,6 +144,8 @@ const emptyCoachContact: CoachContact = {
   title: "",
   email: "",
   phone: "",
+  xUrl: "",
+  instagramUrl: "",
   isRecruitingContact: false,
 };
 
@@ -171,6 +177,8 @@ const emptyForm: FormState = {
   recruitingCoordinatorName: "",
   recruitingCoordinatorEmail: "",
   recruitingCoordinatorPhone: "",
+  recruitingCoordinatorXUrl: "",
+  recruitingCoordinatorInstagramUrl: "",
 
   currentRosterSize: "",
   averageGpa: "",
@@ -351,6 +359,8 @@ export default function ProgramVerificationClient() {
               title: c?.title || "",
               email: c?.email || "",
               phone: c?.phone || "",
+              xUrl: c?.xUrl || "",
+              instagramUrl: c?.instagramUrl || "",
               isRecruitingContact: Boolean(
                 String(c?.title || "").toLowerCase().includes("recruit")
               ),
@@ -514,6 +524,17 @@ export default function ProgramVerificationClient() {
           <Field label="Name" value={form.recruitingCoordinatorName} onChange={(v) => update("recruitingCoordinatorName", v)} />
           <Field label="Email" value={form.recruitingCoordinatorEmail} onChange={(v) => update("recruitingCoordinatorEmail", v)} />
           <Field label="Phone" value={form.recruitingCoordinatorPhone} onChange={(v) => update("recruitingCoordinatorPhone", v)} />
+          <Field
+            label="X URL"
+            value={form.recruitingCoordinatorXUrl}
+            onChange={(v) => update("recruitingCoordinatorXUrl", v)}
+          />
+
+          <Field
+            label="Instagram URL"
+            value={form.recruitingCoordinatorInstagramUrl}
+            onChange={(v) => update("recruitingCoordinatorInstagramUrl", v)}
+          />
         </div>
       </section>
 
@@ -527,6 +548,21 @@ export default function ProgramVerificationClient() {
                 <Field label="Title" value={coach.title} onChange={(v) => updateCoachContact(index, "title", v)} />
                 <Field label="Email" value={coach.email} onChange={(v) => updateCoachContact(index, "email", v)} />
                 <Field label="Phone" value={coach.phone} onChange={(v) => updateCoachContact(index, "phone", v)} />
+                                <Field
+                  label="X URL"
+                  value={coach.xUrl}
+                  onChange={(v) =>
+                    updateCoachContact(index, "xUrl", v)
+                  }
+                />
+
+                <Field
+                  label="Instagram URL"
+                  value={coach.instagramUrl}
+                  onChange={(v) =>
+                    updateCoachContact(index, "instagramUrl", v)
+                  }
+                />
                 <Toggle label="Recruiting Contact" checked={coach.isRecruitingContact} onChange={(v) => updateCoachContact(index, "isRecruitingContact", v)} />
               </div>
 
