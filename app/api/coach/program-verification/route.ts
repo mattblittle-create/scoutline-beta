@@ -104,6 +104,10 @@ function normalizeSubmittedData(body: any) {
     generalContactUrl: asString(body?.generalContactUrl, 1000),
     generalContactEmail: asString(body?.generalContactEmail, 320),
 
+    programXUrl: asString(body?.programXUrl, 1000),
+    programInstagramUrl: asString(body?.programInstagramUrl, 1000),
+    programYoutubeUrl: asString(body?.programYoutubeUrl, 1000),
+
     recruitingCoordinatorName: asString(body?.recruitingCoordinatorName, 120),
     recruitingCoordinatorEmail: asString(body?.recruitingCoordinatorEmail, 320),
     recruitingCoordinatorPhone: asString(body?.recruitingCoordinatorPhone, 80),

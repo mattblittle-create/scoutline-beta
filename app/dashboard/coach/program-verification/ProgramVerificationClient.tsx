@@ -41,6 +41,10 @@ type FormState = {
   generalContactUrl: string;
   generalContactEmail: string;
 
+  programXUrl: string;
+  programInstagramUrl: string;
+  programYoutubeUrl: string;
+
   recruitingCoordinatorName: string;
   recruitingCoordinatorEmail: string;
   recruitingCoordinatorPhone: string;
@@ -159,6 +163,10 @@ const emptyForm: FormState = {
   questionnaireUrl: "",
   generalContactUrl: "",
   generalContactEmail: "",
+
+  programXUrl: "",
+  programInstagramUrl: "",
+  programYoutubeUrl: "",
 
   recruitingCoordinatorName: "",
   recruitingCoordinatorEmail: "",
@@ -377,6 +385,10 @@ export default function ProgramVerificationClient() {
         generalContactUrl: program?.generalContactUrl || "",
         generalContactEmail: program?.generalContactEmail || "",
 
+        programXUrl: program?.xUrl || college?.programXUrl || "",
+        programInstagramUrl: program?.instagramUrl || college?.programInstagramUrl || "",
+        programYoutubeUrl: program?.youtubeUrl || "",
+
         recruitingCoordinatorName: "",
         recruitingCoordinatorEmail: "",
         recruitingCoordinatorPhone: "",
@@ -490,6 +502,9 @@ export default function ProgramVerificationClient() {
           <Field label="Recruiting Questionnaire URL" value={form.questionnaireUrl} onChange={(v) => update("questionnaireUrl", v)} />
           <Field label="General Contact URL" value={form.generalContactUrl} onChange={(v) => update("generalContactUrl", v)} />
           <Field label="General Contact Email" value={form.generalContactEmail} onChange={(v) => update("generalContactEmail", v)} />
+          <Field label="Program X URL" value={form.programXUrl} onChange={(v) => update("programXUrl", v)} />
+          <Field label="Program Instagram URL" value={form.programInstagramUrl} onChange={(v) => update("programInstagramUrl", v)} />
+          <Field label="Program YouTube URL" value={form.programYoutubeUrl} onChange={(v) => update("programYoutubeUrl", v)} />
         </div>
       </section>
 
