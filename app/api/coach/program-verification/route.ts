@@ -57,6 +57,8 @@ function normalizeCoachContacts(value: unknown) {
       title: asString(item?.title, 120),
       email: asString(item?.email, 320),
       phone: asString(item?.phone, 80),
+      xUrl: asString(item?.xUrl, 1000),
+      instagramUrl: asString(item?.instagramUrl, 1000),
       isRecruitingContact: asBoolean(item?.isRecruitingContact),
     }))
     .filter((item) => item.name || item.email)
@@ -111,6 +113,11 @@ function normalizeSubmittedData(body: any) {
     recruitingCoordinatorName: asString(body?.recruitingCoordinatorName, 120),
     recruitingCoordinatorEmail: asString(body?.recruitingCoordinatorEmail, 320),
     recruitingCoordinatorPhone: asString(body?.recruitingCoordinatorPhone, 80),
+    recruitingCoordinatorXUrl: asString(body?.recruitingCoordinatorXUrl, 1000),
+    recruitingCoordinatorInstagramUrl: asString(
+      body?.recruitingCoordinatorInstagramUrl,
+      1000
+    ),
 
     currentRosterSize: asNumber(body?.currentRosterSize),
     averageGpa: asNumber(body?.averageGpa),
