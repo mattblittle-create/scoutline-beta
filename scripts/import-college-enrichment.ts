@@ -393,6 +393,54 @@ async function importNilSportAllocations() {
   }
 }
 
+async function importProgramSocials(dryRun: boolean) {
+  const rows = readCsv("college-program-socials.csv");
+
+  console.log(`\n📣 Program socials: ${rows.length}`);
+
+  for (const row of rows) {
+    const slug = String(row.slug || "").trim();
+    if (!slug) {
+      console.log("⚠️ Missing slug row:", row);
+      continue;
+    }
+
+    console.log(`Processing slug: "${slug}"`);
+
+    const data = {
+      programXUrl: emptyToNull(row.programXUrl),
+      programInstagramUrl: emptyToNull(row.programInstagramUrl),
+      recruitingQuestionnaireUrl: emptyToNull(row.recruitingQuestionnaireUrl),
+    };
+
+    const programData = {
+      questionnaireUrl: emptyToNull(row.recruitingQuestionnaireUrl),
+      generalContactUrl: emptyToNull(row.recruitsPageUrl),
+      dataSourceUrl: emptyToNull(row.sourceUrl),
+      verificationStatus: "NEEDS_REVIEW" as const,
+    };
+
+    if (dryRun) {
+      console.log(`  DRY program socials: ${slug}`);
+      continue;
+    }
+
+    await prisma.college.update({
+      where: { slug },
+      data,
+    });
+
+    await prisma.collegeBaseballProgram.updateMany({
+      where: {
+        college: { slug },
+      },
+      data: programData,
+    });
+
+    console.log(`  ✅ program socials: ${slug}`);
+  }
+}
+
 async function importBaseballCoaches() {
   const verifiedRows = readCsv("college-baseball-coaches.verified.d1-pilot.csv");
 const fallbackRows = verifiedRows.length
@@ -477,11 +525,12 @@ async function main() {
   console.log(`ScoutLine enrichment import`);
   console.log(DRY_RUN ? `Mode: DRY RUN` : `Mode: WRITE`);
 
-  await importAcademicProfiles();
-  await importNilProfiles();
-  await importNilCollectives();
-  await importNilSportAllocations();
-  await importBaseballCoaches();
+await importAcademicProfiles();
+await importNilProfiles();
+await importNilCollectives();
+await importNilSportAllocations();
+await importProgramSocials(DRY_RUN);
+await importBaseballCoaches();
 
   console.log(`\n✅ Done.`);
 }
