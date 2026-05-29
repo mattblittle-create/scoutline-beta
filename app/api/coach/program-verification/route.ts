@@ -11,11 +11,6 @@ export const dynamic = "force-dynamic";
 
 type Err = { ok: false; error: string };
 
-const PROGRAM_VERIFICATION_ADMIN_EMAIL =
-  process.env.SCOUTLINE_PROGRAM_VERIFICATION_ADMIN_EMAIL ||
-  process.env.SCOUTLINE_ADMIN_EMAIL ||
-  "matt@midaspayments.com";
-
 function asString(value: unknown, max = 2000): string | null {
   const s = String(value ?? "").trim();
   return s ? s.slice(0, max) : null;
@@ -266,33 +261,55 @@ export async function POST(req: NextRequest) {
   });
 
   try {
-    const baseUrl = getBaseUrl();
-    const reviewUrl = `${baseUrl}/dashboard/admin/program-verifications`;
-
-    await resend.emails.send({
-      from: EMAIL_SENDERS.support,
-      to: PROGRAM_VERIFICATION_ADMIN_EMAIL,
-      subject: `ScoutLine Program Verification Submitted: ${submission.college.name}`,
-      html: `
-        <div style="font-family: Arial, sans-serif; line-height: 1.5;">
-          <h2>Program Verification Submitted</h2>
-          <p><strong>Program:</strong> ${submission.college.name}</p>
-          <p><strong>Submitted by:</strong> ${
-            submission.submittedByUser?.name ||
-            submission.submittedByUser?.email ||
-            "Unknown user"
-          }</p>
-          <p><strong>Status:</strong> ${submission.status}</p>
-          <p>
-            <a href="${reviewUrl}" style="display:inline-block;padding:10px 14px;background:#caa042;color:#0f172a;text-decoration:none;border-radius:8px;font-weight:700;">
-              Review Submission
-            </a>
-          </p>
-        </div>
-      `,
+    const programAdmins = await prisma.user.findMany({
+      where: {
+        collegeId: user.collegeId,
+        coachProfile: {
+          isProgramAdmin: true,
+        },
+      },
+      select: {
+        email: true,
+      },
     });
+
+    const adminEmails = programAdmins
+      .map((admin) => String(admin.email || "").trim())
+      .filter(Boolean);
+
+    const recipients = adminEmails.length
+      ? adminEmails
+      : [String(user.email || "").trim()].filter(Boolean);
+
+    if (recipients.length) {
+      const baseUrl = getBaseUrl();
+      const reviewUrl = `${baseUrl}/dashboard/coach/program-verifications`;
+
+      await resend.emails.send({
+        from: EMAIL_SENDERS.support,
+        to: recipients,
+        subject: `ScoutLine Program Verification Submitted: ${submission.college.name}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; line-height: 1.5;">
+            <h2>Program Verification Submitted</h2>
+            <p><strong>Program:</strong> ${submission.college.name}</p>
+            <p><strong>Submitted by:</strong> ${
+              submission.submittedByUser?.name ||
+              submission.submittedByUser?.email ||
+              "Unknown user"
+            }</p>
+            <p><strong>Status:</strong> ${submission.status}</p>
+            <p>
+              <a href="${reviewUrl}" style="display:inline-block;padding:10px 14px;background:#caa042;color:#0f172a;text-decoration:none;border-radius:8px;font-weight:700;">
+                Review Submission
+              </a>
+            </p>
+          </div>
+        `,
+      });
+    }
   } catch (emailErr) {
-    console.error("Program verification admin email failed:", emailErr);
+    console.error("Program verification email failed:", emailErr);
   }
 
   return NextResponse.json({
