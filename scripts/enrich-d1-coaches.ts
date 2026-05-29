@@ -80,16 +80,13 @@ function stripHtml(html: string) {
 }
 
 function findCoachCandidates(text: string) {
-  const titles = [
-    "Head Coach",
-    "Associate Head Coach",
-    "Assistant Coach",
-    "Pitching Coach",
-    "Hitting Coach",
-    "Recruiting Coordinator",
-    "Director of Baseball Operations",
-    "Volunteer Assistant Coach",
-  ];
+const titles = [
+  "Head Coach",
+  "Associate Head Coach",
+  "Recruiting Coordinator",
+  "Pitching Coach",
+  "Hitting Coach",
+];
 
   const results: { name: string; title: string }[] = [];
 
@@ -133,6 +130,26 @@ function isProbablyBadCoachName(name: string) {
     "additional links",
     "name phone",
     "sport administrator",
+    "basketball",
+    "football",
+    "soccer",
+    "golf",
+    "volleyball",
+    "track",
+    "softball",
+    "wrestling",
+    "lacrosse",
+    "cross country",
+    "news schedule",
+    "roster coaches",
+    "position social",
+    "coaching title",
+    "team roster",
+    "alma mater",
+    "sports covered",
+    "fax mail",
+    "central.uh.edu",
+    "orthopedic physician",
   ];
 
   const lower = name.toLowerCase();
@@ -143,6 +160,18 @@ function isProbablyBadCoachName(name: string) {
   if (parts.length < 2 || parts.length > 4) return true;
 
   return false;
+}
+
+function isAllowedCoachTitle(title: string) {
+  const t = String(title || "").trim().toLowerCase();
+
+  return (
+    t === "head coach" ||
+    t === "associate head coach" ||
+    t === "recruiting coordinator" ||
+    t === "pitching coach" ||
+    t === "hitting coach"
+  );
 }
 
 async function fetchText(url: string) {
@@ -227,27 +256,31 @@ const urls = Array.from(
       const text = await fetchText(url);
       if (!text) continue;
 
-      const candidates = findCoachCandidates(text);
+const candidates = findCoachCandidates(text);
 
-      if (candidates.length === 0) continue;
+const filteredCandidates = candidates
+  .filter((c) => isAllowedCoachTitle(c.title))
+  .filter((c) => !isProbablyBadCoachName(c.name));
 
-      for (const c of candidates.slice(0, 8)) {
-rows.push([
-  slug,
-  c.name,
-  c.title,
-  "",
-  "",
-  url,
-  "",
-  "",
-  "",
-  "",
-  "",
-  String(c.title.toLowerCase().includes("head coach")),
-  "NEEDS_REVIEW",
-]);
-      }
+if (filteredCandidates.length === 0) continue;
+
+for (const c of filteredCandidates.slice(0, 5)) {
+  rows.push([
+    slug,
+    c.name,
+    c.title,
+    "",
+    "",
+    url,
+    "",
+    "",
+    "",
+    "",
+    "",
+    String(c.title.toLowerCase() === "head coach"),
+    "NEEDS_REVIEW",
+  ]);
+}
 
       console.log(`  ✅ found ${candidates.length} candidate(s)`);
       found = true;

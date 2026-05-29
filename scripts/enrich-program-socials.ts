@@ -2,7 +2,7 @@
 
 import fs from "fs";
 import path from "path";
-import { PrismaClient } from "@prisma/client";
+import { CollegeAthleticDivision, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -15,6 +15,11 @@ const OUT_FILE = path.join(
 
 const LIMIT_ARG = process.argv.find((a) => a.startsWith("--limit="));
 const LIMIT = LIMIT_ARG ? Number(LIMIT_ARG.split("=")[1]) : 25;
+
+const DIVISION_ARG = process.argv.find((a) => a.startsWith("--division="));
+const DIVISION = (
+  DIVISION_ARG ? DIVISION_ARG.split("=")[1] : "NCAA_D1"
+) as CollegeAthleticDivision;
 
 function csvEscape(value: unknown) {
   const s = String(value ?? "");
@@ -230,19 +235,19 @@ async function fetchHtml(url: string) {
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  const programs = await prisma.collegeBaseballProgram.findMany({
-    where: {
-      division: "NCAA_D1",
-      baseballWebsiteUrl: { not: null },
-    },
-    include: {
-      college: true,
-    },
-    orderBy: [{ conference: "asc" }, { college: { name: "asc" } }],
-    take: LIMIT,
-  });
+const programs = await prisma.collegeBaseballProgram.findMany({
+  where: {
+    division: DIVISION,
+    baseballWebsiteUrl: { not: null },
+  },
+  include: {
+    college: true,
+  },
+  orderBy: [{ conference: "asc" }, { college: { name: "asc" } }],
+  take: LIMIT,
+});
 
-  console.log(`Scanning ${programs.length} D1 programs...`);
+console.log(`Scanning ${programs.length} ${DIVISION} programs...`);
 
   const rows: string[][] = [
     [
@@ -261,6 +266,15 @@ async function main() {
   for (const program of programs) {
     const slug = program.college.slug;
     const sourceUrl = normalizeUrl(program.baseballWebsiteUrl);
+if (
+  sourceUrl?.includes("naiastats.prestosports.com") ||
+  sourceUrl?.includes("njcaastats.prestosports.com")
+) {
+  console.log(`\n${program.college.name}`);
+  console.log(`  slug: ${program.college.slug}`);
+  console.log("  ⚠️ skipping stats URL");
+  continue;
+}
 
     console.log(`\n${program.college.name}`);
     console.log(`  slug: ${slug}`);

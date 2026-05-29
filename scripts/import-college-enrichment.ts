@@ -92,6 +92,57 @@ function emptyToNull(value: string | undefined): string | null {
   return trimmed ? trimmed : null;
 }
 
+function isImportableCoach(row: CsvRow) {
+  const name = String(row.name || "").trim();
+  const title = String(row.title || "").trim().toLowerCase();
+  const lowerName = name.toLowerCase();
+
+  const allowedTitles = [
+    "head coach",
+    "associate head coach",
+    "recruiting coordinator",
+    "pitching coach",
+    "hitting coach",
+  ];
+
+  const badNameTerms = [
+    "basketball",
+    "football",
+    "soccer",
+    "golf",
+    "volleyball",
+    "track",
+    "softball",
+    "wrestling",
+    "lacrosse",
+    "cheerleading",
+    "rowing",
+    "tennis",
+    "ticketing",
+    "coaching",
+    "position",
+    "admin",
+    "ad baseball",
+    "baseball coach",
+    "coaches coaches",
+    "team roster",
+    "news schedule",
+    "staff directory",
+    "sports covered",
+    "alma mater",
+    "assistant coach",
+    "spirit",
+  ];
+
+  if (!name || !allowedTitles.includes(title)) return false;
+  if (badNameTerms.some((term) => lowerName.includes(term))) return false;
+
+  const parts = name.split(/\s+/).filter(Boolean);
+  if (parts.length < 2 || parts.length > 4) return false;
+
+  return true;
+}
+
 function parseBool(value: string | undefined, fallback = false): boolean {
   const v = String(value ?? "").trim().toLowerCase();
   if (["true", "1", "yes", "y"].includes(v)) return true;
@@ -495,6 +546,11 @@ console.log(`Processing slug: "${slug}"`);
       throw new Error(`No baseball program found for slug: ${slug}`);
     }
 
+    if (!isImportableCoach(row)) {
+      console.log(`  ⚠️ skipping coach row: ${slug} / ${row.name || ""} / ${row.title || ""}`);
+      continue;
+    }
+
     if (DRY_RUN) {
       console.log(`  DRY coach: ${slug} / ${row.name}`);
       continue;
@@ -530,7 +586,10 @@ await importNilProfiles();
 await importNilCollectives();
 await importNilSportAllocations();
 await importProgramSocials(DRY_RUN);
-await importBaseballCoaches();
+
+// Coach import paused until scraper quality improves.
+// Staff/contact truth will come from coach verification workflow.
+// await importBaseballCoaches();
 
   console.log(`\n✅ Done.`);
 }

@@ -191,16 +191,13 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const [playerUserId, setPlayerUserId] = React.useState<string | null>(null);
   const [messageRecruitSending, setMessageRecruitSending] = React.useState(false);
 
-  const canMessageRecruit = React.useMemo(() => {
-    const role = String(viewerRole || "").trim().toUpperCase();
+const isCoachRole = React.useMemo(() => {
+  const role = String(viewerRole || "").trim().toUpperCase();
 
-    return (
-      role === "COACH" ||
-      role === "COLLEGE_COACH" ||
-      role === "TEAM_ADMIN" ||
-      role === "TEAM"
-    );
-  }, [viewerRole]);
+  return role === "COACH" || role === "COLLEGE_COACH";
+}, [viewerRole]);
+
+const canMessageRecruit = isCoachRole;
 
   React.useEffect(() => {
     let cancelled = false;
@@ -221,13 +218,8 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
           setViewerRole(role || null);
         }
 
-        const coachRes = await fetch("/api/coach/dashboard", {
-          method: "GET",
-          cache: "no-store",
-        });
-
         if (!cancelled) {
-          setIsCoachViewer(coachRes.ok);
+          setIsCoachViewer(role === "COACH" || role === "COLLEGE_COACH");
         }
       } catch {
         if (!cancelled) {
