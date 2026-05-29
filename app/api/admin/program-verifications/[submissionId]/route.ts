@@ -42,6 +42,39 @@ function cleanBoolean(value: unknown) {
   return typeof value === "boolean" ? value : undefined;
 }
 
+function cleanStringArray(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+
+  return Array.from(
+    new Set(
+      value
+        .map((v) => String(v ?? "").trim())
+        .filter(Boolean)
+        .slice(0, 100)
+    )
+  );
+}
+
+function cleanNeedLevel(value: unknown) {
+  const v = String(value ?? "").trim().toUpperCase();
+  if (["HIGH", "MEDIUM", "LOW", "UNKNOWN"].includes(v)) return v as any;
+  return "UNKNOWN" as const;
+}
+
+function cleanNilStrength(value: unknown) {
+  const v = String(value ?? "").trim().toUpperCase();
+
+  if (
+    ["ELITE", "STRONG", "COMPETITIVE", "EMERGING", "LIMITED", "UNKNOWN"].includes(
+      v
+    )
+  ) {
+    return v as any;
+  }
+
+  return "UNKNOWN" as const;
+}
+
 function buildProgramUpdate(data: any) {
   return {
     nickname: cleanString(data?.nickname, 120),
@@ -66,6 +99,52 @@ function buildProgramUpdate(data: any) {
     lastVerifiedAt: new Date(),
     verificationStatus: "VERIFIED" as const,
   };
+}
+
+function getCoachContacts(data: any) {
+  const raw = Array.isArray(data?.coachContacts) ? data.coachContacts : [];
+
+  return raw
+    .map((c: any) => ({
+      name: cleanString(c?.name, 120),
+      title: cleanString(c?.title, 120),
+      email: cleanString(c?.email, 320),
+      phone: cleanString(c?.phone, 80),
+      isRecruitingContact: Boolean(c?.isRecruitingContact),
+    }))
+    .filter((c: any) => c.name || c.email)
+    .slice(0, 25);
+}
+
+function getRosterNeeds(data: any) {
+  const raw = Array.isArray(data?.rosterNeeds) ? data.rosterNeeds : [];
+
+  return raw
+    .map((n: any) => ({
+      gradYear: cleanNumber(n?.gradYear),
+      position: cleanString(n?.position, 40),
+      needLevel: cleanNeedLevel(n?.needLevel),
+      notes: cleanString(n?.notes, 500),
+    }))
+    .filter((n: any) => n.gradYear && n.position)
+    .slice(0, 100);
+}
+
+function getProgramMetrics(data: any) {
+  const raw = Array.isArray(data?.programMetrics) ? data.programMetrics : [];
+
+  return raw
+    .map((m: any) => ({
+      position: cleanString(m?.position, 40),
+      metricKey: cleanString(m?.metricKey, 80),
+      metricLabel: cleanString(m?.metricLabel, 120),
+      averageValue: cleanNumber(m?.averageValue),
+      minValue: cleanNumber(m?.minValue),
+      maxValue: cleanNumber(m?.maxValue),
+      unit: cleanString(m?.unit, 40),
+    }))
+    .filter((m: any) => m.position && m.metricKey)
+    .slice(0, 200);
 }
 
 export async function PATCH(
@@ -163,9 +242,14 @@ export async function PATCH(
   }
 
   const programUpdate = buildProgramUpdate(submittedData);
+  const coachContacts = getCoachContacts(submittedData);
+  const rosterNeeds = getRosterNeeds(submittedData);
+  const programMetrics = getProgramMetrics(submittedData);
+  const academicAreas = cleanStringArray(submittedData?.academicAreas);
+  const nilInfo = submittedData?.nilInfo || {};
 
   const updated = await prisma.$transaction(async (tx) => {
-    await tx.collegeBaseballProgram.upsert({
+    const program = await tx.collegeBaseballProgram.upsert({
       where: { collegeId: submission.collegeId },
       create: {
         collegeId: submission.collegeId,
@@ -186,6 +270,132 @@ export async function PATCH(
         lastVerifiedAt: new Date(),
       },
     });
+
+    if (academicAreas.length) {
+      await tx.collegeAcademicArea.deleteMany({
+        where: { collegeId: submission.collegeId },
+      });
+
+      await tx.collegeAcademicArea.createMany({
+        data: academicAreas.map((name) => ({
+          collegeId: submission.collegeId,
+          name,
+        })),
+        skipDuplicates: true,
+      });
+    }
+
+    if (coachContacts.length) {
+      await tx.collegeBaseballCoach.deleteMany({
+        where: { programId: program.id },
+      });
+
+      await tx.collegeBaseballCoach.createMany({
+        data: coachContacts.map((coach: any) => ({
+          programId: program.id,
+          name: coach.name || "Unknown Coach",
+          title: coach.title,
+          email: coach.email,
+          phone: coach.phone,
+          isHeadCoach: String(coach.title || "")
+            .toLowerCase()
+            .includes("head coach"),
+        })),
+      });
+    }
+
+    if (rosterNeeds.length) {
+      await tx.collegeBaseballRosterNeed.deleteMany({
+        where: { programId: program.id },
+      });
+
+      await tx.collegeBaseballRosterNeed.createMany({
+        data: rosterNeeds.map((need: any) => ({
+          programId: program.id,
+          gradYear: need.gradYear,
+          position: need.position,
+          needLevel: need.needLevel,
+          notes: need.notes,
+          lastVerifiedAt: new Date(),
+        })),
+      });
+    }
+
+        if (programMetrics.length) {
+      await tx.collegeBaseballMetricAverage.deleteMany({
+        where: { programId: program.id },
+      });
+
+      await tx.collegeBaseballMetricAverage.createMany({
+        data: programMetrics.map((metric: any) => ({
+          programId: program.id,
+          position: metric.position,
+          metricKey: metric.metricKey,
+          metricLabel: metric.metricLabel,
+          averageValue: metric.averageValue,
+          minValue: metric.minValue,
+          maxValue: metric.maxValue,
+          unit: metric.unit,
+          lastVerifiedAt: new Date(),
+        })),
+      });
+    }
+
+    const nilAvailable = cleanBoolean(nilInfo?.nilAvailable);
+    const baseballNilStrength = cleanNilStrength(nilInfo?.baseballNilStrength);
+    const nilSummary = cleanString(nilInfo?.nilSummary, 2000);
+    const nilNotes = cleanString(nilInfo?.nilNotes, 2000);
+    const collectiveName = cleanString(nilInfo?.collectiveName, 160);
+    const collectiveWebsiteUrl = cleanString(nilInfo?.collectiveWebsiteUrl, 1000);
+
+    if (
+      nilAvailable !== undefined ||
+      baseballNilStrength !== "UNKNOWN" ||
+      nilSummary ||
+      nilNotes ||
+      collectiveName ||
+      collectiveWebsiteUrl
+    ) {
+      const nilProfile = await tx.collegeNilProfile.upsert({
+        where: { collegeId: submission.collegeId },
+        create: {
+          collegeId: submission.collegeId,
+          nilAvailable: nilAvailable ?? false,
+          baseballNilStrength,
+          nilSummary,
+          nilNotes,
+          sourceType: "COACH_VERIFIED",
+          confidence: "HIGH",
+          verifiedAt: new Date(),
+        },
+        update: {
+          nilAvailable,
+          baseballNilStrength,
+          nilSummary,
+          nilNotes,
+          sourceType: "COACH_VERIFIED",
+          confidence: "HIGH",
+          verifiedAt: new Date(),
+        },
+      });
+
+      if (collectiveName || collectiveWebsiteUrl) {
+        await tx.collegeNilCollective.deleteMany({
+          where: { nilProfileId: nilProfile.id },
+        });
+
+        await tx.collegeNilCollective.create({
+          data: {
+            nilProfileId: nilProfile.id,
+            name: collectiveName || "Program NIL Collective",
+            websiteUrl: collectiveWebsiteUrl,
+            sourceType: "COACH_VERIFIED",
+            confidence: "HIGH",
+            verifiedAt: new Date(),
+          },
+        });
+      }
+    }
 
     const reviewed = await tx.collegeProgramVerificationSubmission.update({
       where: { id: submission.id },
