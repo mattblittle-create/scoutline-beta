@@ -100,7 +100,7 @@ export default function CoachDashboardHome() {
       <p style={p}>
         Confirm recruiting links, roster needs, contact information, roster size,
         GPA expectations, recruiting preferences, and other baseball-specific
-        program intelligence for ScoutLine.
+        program intelligence.
       </p>
 
       <div style={actions}>
