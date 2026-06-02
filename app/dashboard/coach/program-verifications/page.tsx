@@ -29,6 +29,26 @@ type Submission = {
   } | null;
 };
 
+async function readJsonSafe(res: Response) {
+  const text = await res.text();
+
+  if (!text.trim()) {
+    return {
+      ok: false,
+      error: `Empty response from server (${res.status}). Check the server/API logs for the approve route.`,
+    };
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    return {
+      ok: false,
+      error: `Non-JSON response from server (${res.status}): ${text.slice(0, 500)}`,
+    };
+  }
+}
+
 export default function CoachProgramVerificationsPage() {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +65,7 @@ export default function CoachProgramVerificationsPage() {
         cache: "no-store",
       });
 
-      const json = await res.json();
+      const json = await readJsonSafe(res);
 
       if (!res.ok || !json?.ok) {
         throw new Error(json?.error || "Could not load program verifications.");
@@ -73,13 +93,13 @@ export default function CoachProgramVerificationsPage() {
         }),
       });
 
-      const json = await res.json();
+      const json = await readJsonSafe(res);
 
       if (!res.ok || !json?.ok) {
         throw new Error(json?.error || `Could not ${action.toLowerCase()} submission.`);
       }
 
-      setMsg(`Submission ${action === "APPROVE" ? "approved" : "rejected"}.`);
+      setMsg(`Submission ${action === "APPROVE" ? "approved and applied" : "rejected"}.`);
       await load();
     } catch (err: any) {
       setMsg(err?.message || `Could not ${action.toLowerCase()} submission.`);
@@ -122,9 +142,24 @@ export default function CoachProgramVerificationsPage() {
         <div
           style={{
             ...notice,
-            borderColor: msg.includes("Could not") || msg.includes("Unauthorized") ? "#fecaca" : "#bbf7d0",
-            background: msg.includes("Could not") || msg.includes("Unauthorized") ? "#fef2f2" : "#f0fdf4",
-            color: msg.includes("Could not") || msg.includes("Unauthorized") ? "#991b1b" : "#166534",
+            borderColor:
+              msg.includes("Could not") ||
+              msg.includes("Unauthorized") ||
+              msg.includes("server")
+                ? "#fecaca"
+                : "#bbf7d0",
+            background:
+              msg.includes("Could not") ||
+              msg.includes("Unauthorized") ||
+              msg.includes("server")
+                ? "#fef2f2"
+                : "#f0fdf4",
+            color:
+              msg.includes("Could not") ||
+              msg.includes("Unauthorized") ||
+              msg.includes("server")
+                ? "#991b1b"
+                : "#166534",
           }}
         >
           {msg}
@@ -187,30 +222,36 @@ export default function CoachProgramVerificationsPage() {
                   </span>
                 </div>
 
+                {isPending ? (
+                  <p style={pendingHint}>
+                    Red values below are proposed updates awaiting approval.
+                  </p>
+                ) : null}
+
                 <div style={grid}>
-                  <Data label="Nickname" value={d.nickname} />
-                  <Data label="Baseball Website" value={d.baseballWebsiteUrl} />
-                  <Data label="Roster URL" value={d.rosterUrl} />
-                  <Data label="Schedule URL" value={d.scheduleUrl} />
-                  <Data label="Camps URL" value={d.campsUrl} />
-                  <Data label="Questionnaire URL" value={d.questionnaireUrl} />
-                  <Data label="Program X URL" value={d.programXUrl} />
-                  <Data label="Program Instagram URL" value={d.programInstagramUrl} />
-                  <Data label="Program YouTube URL" value={d.programYoutubeUrl} />
-                  <Data label="Current Roster Size" value={d.currentRosterSize} />
-                  <Data label="Average GPA" value={d.averageGpa} />
-                  <Data label="Transfer Heavy" value={boolText(d.transferHeavy)} />
-                  <Data label="JUCO Friendly" value={boolText(d.jucoFriendly)} />
-                  <Data label="Recruiting Aggressiveness" value={d.recruitingAggressiveness} />
-                  <Data label="Regional Recruiting Bias" value={d.regionalRecruitingBias} />
-                  <Data label="Roster Turnover" value={d.rosterTurnoverLevel} />
+                  <Data pending={isPending} label="Nickname" value={d.nickname} />
+                  <Data pending={isPending} label="Baseball Website" value={d.baseballWebsiteUrl} />
+                  <Data pending={isPending} label="Roster URL" value={d.rosterUrl} />
+                  <Data pending={isPending} label="Schedule URL" value={d.scheduleUrl} />
+                  <Data pending={isPending} label="Camps URL" value={d.campsUrl} />
+                  <Data pending={isPending} label="Questionnaire URL" value={d.questionnaireUrl} />
+                  <Data pending={isPending} label="Program X URL" value={d.programXUrl} />
+                  <Data pending={isPending} label="Program Instagram URL" value={d.programInstagramUrl} />
+                  <Data pending={isPending} label="Program YouTube URL" value={d.programYoutubeUrl} />
+                  <Data pending={isPending} label="Current Roster Size" value={d.currentRosterSize} />
+                  <Data pending={isPending} label="Average GPA" value={d.averageGpa} />
+                  <Data pending={isPending} label="Transfer Heavy" value={boolText(d.transferHeavy)} />
+                  <Data pending={isPending} label="JUCO Friendly" value={boolText(d.jucoFriendly)} />
+                  <Data pending={isPending} label="Recruiting Aggressiveness" value={d.recruitingAggressiveness} />
+                  <Data pending={isPending} label="Regional Recruiting Bias" value={d.regionalRecruitingBias} />
+                  <Data pending={isPending} label="Roster Turnover" value={d.rosterTurnoverLevel} />
                 </div>
 
-                <MiniList title="Coach Contacts" items={d.coachContacts} />
-                <MiniList title="Roster Needs" items={d.rosterNeeds} />
-                <MiniList title="Academic Areas" items={d.academicAreas} />
-                <MiniList title="Program Metrics" items={d.programMetrics} />
-                <MiniObject title="NIL Info" value={d.nilInfo} />
+                <MiniList pending={isPending} title="Coach Contacts" items={d.coachContacts} />
+                <MiniList pending={isPending} title="Roster Needs" items={d.rosterNeeds} />
+                <MiniList pending={isPending} title="Academic Areas" items={d.academicAreas} />
+                <MiniList pending={isPending} title="Program Metrics" items={d.programMetrics} />
+                <MiniObject pending={isPending} title="NIL Info" value={d.nilInfo} />
 
                 {isPending ? (
                   <div style={reviewBox}>
@@ -274,35 +315,39 @@ export default function CoachProgramVerificationsPage() {
   );
 }
 
-function Data(props: { label: string; value: any }) {
+function Data(props: { label: string; value: any; pending?: boolean }) {
   return (
     <div style={dataCell}>
       <span style={dataLabel}>{props.label}</span>
-      <span style={dataValue}>
+      <span style={{ ...dataValue, color: props.pending ? "#b91c1c" : "#0f172a" }}>
         {props.value == null || props.value === "" ? "—" : String(props.value)}
       </span>
     </div>
   );
 }
 
-function MiniList(props: { title: string; items: any }) {
+function MiniList(props: { title: string; items: any; pending?: boolean }) {
   if (!Array.isArray(props.items) || props.items.length === 0) return null;
 
   return (
     <div style={miniBlock}>
       <h3 style={miniTitle}>{props.title}</h3>
-      <pre style={pre}>{JSON.stringify(props.items, null, 2)}</pre>
+      <pre style={{ ...pre, color: props.pending ? "#b91c1c" : "#334155" }}>
+        {JSON.stringify(props.items, null, 2)}
+      </pre>
     </div>
   );
 }
 
-function MiniObject(props: { title: string; value: any }) {
+function MiniObject(props: { title: string; value: any; pending?: boolean }) {
   if (!props.value || typeof props.value !== "object") return null;
 
   return (
     <div style={miniBlock}>
       <h3 style={miniTitle}>{props.title}</h3>
-      <pre style={pre}>{JSON.stringify(props.value, null, 2)}</pre>
+      <pre style={{ ...pre, color: props.pending ? "#b91c1c" : "#334155" }}>
+        {JSON.stringify(props.value, null, 2)}
+      </pre>
     </div>
   );
 }
@@ -384,6 +429,13 @@ const muted: React.CSSProperties = {
   margin: 0,
 };
 
+const pendingHint: React.CSSProperties = {
+  margin: 0,
+  color: "#b91c1c",
+  fontWeight: 900,
+  fontSize: 13,
+};
+
 const grid: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
@@ -407,7 +459,6 @@ const dataLabel: React.CSSProperties = {
 
 const dataValue: React.CSSProperties = {
   fontSize: 13,
-  color: "#0f172a",
   fontWeight: 700,
   overflowWrap: "anywhere",
 };
@@ -438,7 +489,6 @@ const pre: React.CSSProperties = {
   whiteSpace: "pre-wrap",
   fontSize: 12,
   lineHeight: 1.35,
-  color: "#334155",
 };
 
 const reviewBox: React.CSSProperties = {

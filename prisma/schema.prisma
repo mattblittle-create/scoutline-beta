@@ -1398,6 +1398,16 @@ model CollegeBaseballProgram {
   generalContactUrl   String?
   generalContactEmail String?
 
+  programXUrl         String?
+  programInstagramUrl String?
+  programYoutubeUrl   String?
+
+  recruitingCoordinatorName         String?
+  recruitingCoordinatorEmail        String?
+  recruitingCoordinatorPhone        String?
+  recruitingCoordinatorXUrl         String?
+  recruitingCoordinatorInstagramUrl String?
+
   division   CollegeAthleticDivision?
   conference String?
 
