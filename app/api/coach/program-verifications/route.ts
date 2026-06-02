@@ -1,4 +1,4 @@
-// app/api/coach/program-verifications/route.ts
+/// app/api/coach/program-verifications/route.ts
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -42,13 +42,22 @@ export async function GET() {
     take: 100,
     include: {
       college: {
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          division: true,
-          conference: true,
-          state: true,
+        include: {
+          academicAreas: { orderBy: { name: "asc" } },
+          nilProfile: { include: { collectives: true } },
+          baseballProgram: {
+            include: {
+              coaches: {
+                orderBy: [{ isHeadCoach: "desc" }, { title: "asc" }, { name: "asc" }],
+              },
+              rosterNeeds: {
+                orderBy: [{ gradYear: "asc" }, { position: "asc" }],
+              },
+              metricAverages: {
+                orderBy: [{ position: "asc" }, { metricKey: "asc" }],
+              },
+            },
+          },
         },
       },
       submittedByUser: {
@@ -71,18 +80,80 @@ export async function GET() {
   return NextResponse.json({
     ok: true,
     data: {
-      submissions: submissions.map((s) => ({
-        id: s.id,
-        status: s.status,
-        submittedData: s.submittedData,
-        adminNotes: s.adminNotes,
-        createdAt: s.createdAt.toISOString(),
-        updatedAt: s.updatedAt.toISOString(),
-        reviewedAt: s.reviewedAt ? s.reviewedAt.toISOString() : null,
-        college: s.college,
-        submittedByUser: s.submittedByUser,
-        reviewedByUser: s.reviewedByUser,
-      })),
+      submissions: submissions.map((s) => {
+        const program = s.college.baseballProgram;
+        const nilProfile = s.college.nilProfile;
+        const firstCollective = nilProfile?.collectives?.[0] || null;
+
+        return {
+          id: s.id,
+          status: s.status,
+          submittedData: s.submittedData,
+          currentData: {
+            nickname: program?.nickname,
+            logoUrl: program?.logoUrl || s.college.logoUrl,
+            baseballWebsiteUrl: program?.baseballWebsiteUrl || s.college.programWebsiteUrl,
+            rosterUrl: program?.rosterUrl,
+            scheduleUrl: program?.scheduleUrl,
+            campsUrl: program?.campsUrl,
+            questionnaireUrl:
+              program?.questionnaireUrl || s.college.recruitingQuestionnaireUrl,
+            generalContactUrl: program?.generalContactUrl,
+            generalContactEmail: program?.generalContactEmail,
+
+            programXUrl: program?.programXUrl || s.college.programXUrl,
+            programInstagramUrl:
+              program?.programInstagramUrl || s.college.programInstagramUrl,
+            programYoutubeUrl: program?.programYoutubeUrl,
+
+            recruitingCoordinatorName: program?.recruitingCoordinatorName,
+            recruitingCoordinatorEmail: program?.recruitingCoordinatorEmail,
+            recruitingCoordinatorPhone: program?.recruitingCoordinatorPhone,
+            recruitingCoordinatorXUrl: program?.recruitingCoordinatorXUrl,
+            recruitingCoordinatorInstagramUrl:
+              program?.recruitingCoordinatorInstagramUrl,
+
+            currentRosterSize: program?.currentRosterSize,
+            averageGpa: program?.averageGpa?.toString?.() ?? program?.averageGpa,
+            scholarshipNotes: program?.scholarshipNotes,
+            scholarshipInfoUrl: program?.scholarshipInfoUrl,
+            transferHeavy: program?.transferHeavy,
+            jucoFriendly: program?.jucoFriendly,
+            recruitingAggressiveness: program?.recruitingAggressiveness,
+            regionalRecruitingBias: program?.regionalRecruitingBias,
+            rosterTurnoverLevel: program?.rosterTurnoverLevel,
+            playerDevelopmentNotes: program?.playerDevelopmentNotes,
+
+            academicAreas: s.college.academicAreas.map((a) => a.name),
+            coachContacts: program?.coaches ?? [],
+            rosterNeeds: program?.rosterNeeds ?? [],
+            programMetrics: program?.metricAverages ?? [],
+
+            nilInfo: {
+              nilAvailable: nilProfile?.nilAvailable,
+              baseballNilStrength: nilProfile?.baseballNilStrength,
+              nilSummary: nilProfile?.nilSummary,
+              nilNotes: nilProfile?.nilNotes,
+              collectiveName: firstCollective?.name,
+              collectiveWebsiteUrl: firstCollective?.websiteUrl,
+            },
+          },
+          adminNotes: s.adminNotes,
+          createdAt: s.createdAt.toISOString(),
+          updatedAt: s.updatedAt.toISOString(),
+          reviewedAt: s.reviewedAt ? s.reviewedAt.toISOString() : null,
+          college: {
+            id: s.college.id,
+            name: s.college.name,
+            slug: s.college.slug,
+            division: s.college.division,
+            conference: s.college.conference,
+            state: s.college.state,
+          },
+          submittedByUser: s.submittedByUser,
+          reviewedByUser: s.reviewedByUser,
+        };
+      }),
     },
   });
 }

@@ -9,6 +9,7 @@ type Submission = {
   id: string;
   status: string;
   submittedData: any;
+  currentData?: any;
   adminNotes?: string | null;
   createdAt: string;
   reviewedAt?: string | null;
@@ -46,6 +47,33 @@ async function readJsonSafe(res: Response) {
       ok: false,
       error: `Non-JSON response from server (${res.status}): ${text.slice(0, 500)}`,
     };
+  }
+}
+
+function normalizeCompare(value: any) {
+  if (value === null || value === undefined || value === "") return "";
+  if (typeof value === "boolean") return value ? "true" : "false";
+  if (typeof value === "number") return String(value);
+  return String(value).trim();
+}
+
+function isChanged(currentValue: any, proposedValue: any) {
+  return normalizeCompare(currentValue) !== normalizeCompare(proposedValue);
+}
+
+function pretty(value: any) {
+  if (value === true) return "Yes";
+  if (value === false) return "No";
+  if (value === null || value === undefined || value === "") return "—";
+  return String(value);
+}
+
+function stableJson(value: any) {
+  if (value === null || value === undefined || value === "") return "";
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
   }
 }
 
@@ -177,6 +205,7 @@ export default function CoachProgramVerificationsPage() {
           {submissions.map((submission) => {
             const isPending = submission.status === "PENDING";
             const d = submission.submittedData || {};
+            const c = submission.currentData || {};
 
             return (
               <section key={submission.id} style={card}>
@@ -224,34 +253,40 @@ export default function CoachProgramVerificationsPage() {
 
                 {isPending ? (
                   <p style={pendingHint}>
-                    Red values below are proposed updates awaiting approval.
+                    Red proposed values are changes from the current live program data.
                   </p>
                 ) : null}
 
                 <div style={grid}>
-                  <Data pending={isPending} label="Nickname" value={d.nickname} />
-                  <Data pending={isPending} label="Baseball Website" value={d.baseballWebsiteUrl} />
-                  <Data pending={isPending} label="Roster URL" value={d.rosterUrl} />
-                  <Data pending={isPending} label="Schedule URL" value={d.scheduleUrl} />
-                  <Data pending={isPending} label="Camps URL" value={d.campsUrl} />
-                  <Data pending={isPending} label="Questionnaire URL" value={d.questionnaireUrl} />
-                  <Data pending={isPending} label="Program X URL" value={d.programXUrl} />
-                  <Data pending={isPending} label="Program Instagram URL" value={d.programInstagramUrl} />
-                  <Data pending={isPending} label="Program YouTube URL" value={d.programYoutubeUrl} />
-                  <Data pending={isPending} label="Current Roster Size" value={d.currentRosterSize} />
-                  <Data pending={isPending} label="Average GPA" value={d.averageGpa} />
-                  <Data pending={isPending} label="Transfer Heavy" value={boolText(d.transferHeavy)} />
-                  <Data pending={isPending} label="JUCO Friendly" value={boolText(d.jucoFriendly)} />
-                  <Data pending={isPending} label="Recruiting Aggressiveness" value={d.recruitingAggressiveness} />
-                  <Data pending={isPending} label="Regional Recruiting Bias" value={d.regionalRecruitingBias} />
-                  <Data pending={isPending} label="Roster Turnover" value={d.rosterTurnoverLevel} />
+                  <CompareData label="Nickname" current={c.nickname} proposed={d.nickname} pending={isPending} />
+                  <CompareData label="Logo URL" current={c.logoUrl} proposed={d.logoUrl} pending={isPending} />
+                  <CompareData label="Baseball Website" current={c.baseballWebsiteUrl} proposed={d.baseballWebsiteUrl} pending={isPending} />
+                  <CompareData label="Roster URL" current={c.rosterUrl} proposed={d.rosterUrl} pending={isPending} />
+                  <CompareData label="Schedule URL" current={c.scheduleUrl} proposed={d.scheduleUrl} pending={isPending} />
+                  <CompareData label="Camps URL" current={c.campsUrl} proposed={d.campsUrl} pending={isPending} />
+                  <CompareData label="Questionnaire URL" current={c.questionnaireUrl} proposed={d.questionnaireUrl} pending={isPending} />
+                  <CompareData label="Program X URL" current={c.programXUrl} proposed={d.programXUrl} pending={isPending} />
+                  <CompareData label="Program Instagram URL" current={c.programInstagramUrl} proposed={d.programInstagramUrl} pending={isPending} />
+                  <CompareData label="Program YouTube URL" current={c.programYoutubeUrl} proposed={d.programYoutubeUrl} pending={isPending} />
+                  <CompareData label="Recruiting Coordinator" current={c.recruitingCoordinatorName} proposed={d.recruitingCoordinatorName} pending={isPending} />
+                  <CompareData label="Recruiting Coordinator Email" current={c.recruitingCoordinatorEmail} proposed={d.recruitingCoordinatorEmail} pending={isPending} />
+                  <CompareData label="Recruiting Coordinator Phone" current={c.recruitingCoordinatorPhone} proposed={d.recruitingCoordinatorPhone} pending={isPending} />
+                  <CompareData label="Recruiting Coordinator X URL" current={c.recruitingCoordinatorXUrl} proposed={d.recruitingCoordinatorXUrl} pending={isPending} />
+                  <CompareData label="Recruiting Coordinator Instagram URL" current={c.recruitingCoordinatorInstagramUrl} proposed={d.recruitingCoordinatorInstagramUrl} pending={isPending} />
+                  <CompareData label="Current Roster Size" current={c.currentRosterSize} proposed={d.currentRosterSize} pending={isPending} />
+                  <CompareData label="Average GPA" current={c.averageGpa} proposed={d.averageGpa} pending={isPending} />
+                  <CompareData label="Transfer Heavy" current={c.transferHeavy} proposed={d.transferHeavy} pending={isPending} />
+                  <CompareData label="JUCO Friendly" current={c.jucoFriendly} proposed={d.jucoFriendly} pending={isPending} />
+                  <CompareData label="Recruiting Aggressiveness" current={c.recruitingAggressiveness} proposed={d.recruitingAggressiveness} pending={isPending} />
+                  <CompareData label="Regional Recruiting Bias" current={c.regionalRecruitingBias} proposed={d.regionalRecruitingBias} pending={isPending} />
+                  <CompareData label="Roster Turnover" current={c.rosterTurnoverLevel} proposed={d.rosterTurnoverLevel} pending={isPending} />
                 </div>
 
-                <MiniList pending={isPending} title="Coach Contacts" items={d.coachContacts} />
-                <MiniList pending={isPending} title="Roster Needs" items={d.rosterNeeds} />
-                <MiniList pending={isPending} title="Academic Areas" items={d.academicAreas} />
-                <MiniList pending={isPending} title="Program Metrics" items={d.programMetrics} />
-                <MiniObject pending={isPending} title="NIL Info" value={d.nilInfo} />
+                <CompareBlock title="Coach Contacts" current={c.coachContacts} proposed={d.coachContacts} pending={isPending} />
+                <CompareBlock title="Roster Needs" current={c.rosterNeeds} proposed={d.rosterNeeds} pending={isPending} />
+                <CompareBlock title="Academic Areas" current={c.academicAreas} proposed={d.academicAreas} pending={isPending} />
+                <CompareBlock title="Program Metrics" current={c.programMetrics} proposed={d.programMetrics} pending={isPending} />
+                <CompareBlock title="NIL Info" current={c.nilInfo} proposed={d.nilInfo} pending={isPending} />
 
                 {isPending ? (
                   <div style={reviewBox}>
@@ -315,47 +350,57 @@ export default function CoachProgramVerificationsPage() {
   );
 }
 
-function Data(props: { label: string; value: any; pending?: boolean }) {
+function CompareData(props: {
+  label: string;
+  current: any;
+  proposed: any;
+  pending?: boolean;
+}) {
+  const changed = props.pending && isChanged(props.current, props.proposed);
+
   return (
     <div style={dataCell}>
       <span style={dataLabel}>{props.label}</span>
-      <span style={{ ...dataValue, color: props.pending ? "#b91c1c" : "#0f172a" }}>
-        {props.value == null || props.value === "" ? "—" : String(props.value)}
+      <span style={currentValue}>Current: {pretty(props.current)}</span>
+      <span style={{ ...dataValue, color: changed ? "#b91c1c" : "#0f172a" }}>
+        Proposed: {pretty(props.proposed)}
       </span>
     </div>
   );
 }
 
-function MiniList(props: { title: string; items: any; pending?: boolean }) {
-  if (!Array.isArray(props.items) || props.items.length === 0) return null;
+function CompareBlock(props: {
+  title: string;
+  current: any;
+  proposed: any;
+  pending?: boolean;
+}) {
+  const proposedEmpty =
+    props.proposed === null ||
+    props.proposed === undefined ||
+    (Array.isArray(props.proposed) && props.proposed.length === 0);
+
+  if (proposedEmpty) return null;
+
+  const changed = props.pending && stableJson(props.current) !== stableJson(props.proposed);
 
   return (
     <div style={miniBlock}>
       <h3 style={miniTitle}>{props.title}</h3>
-      <pre style={{ ...pre, color: props.pending ? "#b91c1c" : "#334155" }}>
-        {JSON.stringify(props.items, null, 2)}
-      </pre>
+      <div style={compareJsonGrid}>
+        <div>
+          <div style={dataLabel}>Current</div>
+          <pre style={pre}>{JSON.stringify(props.current ?? null, null, 2)}</pre>
+        </div>
+        <div>
+          <div style={dataLabel}>Proposed</div>
+          <pre style={{ ...pre, color: changed ? "#b91c1c" : "#334155" }}>
+            {JSON.stringify(props.proposed ?? null, null, 2)}
+          </pre>
+        </div>
+      </div>
     </div>
   );
-}
-
-function MiniObject(props: { title: string; value: any; pending?: boolean }) {
-  if (!props.value || typeof props.value !== "object") return null;
-
-  return (
-    <div style={miniBlock}>
-      <h3 style={miniTitle}>{props.title}</h3>
-      <pre style={{ ...pre, color: props.pending ? "#b91c1c" : "#334155" }}>
-        {JSON.stringify(props.value, null, 2)}
-      </pre>
-    </div>
-  );
-}
-
-function boolText(value: any) {
-  if (value === true) return "Yes";
-  if (value === false) return "No";
-  return "—";
 }
 
 const page: React.CSSProperties = {
@@ -438,8 +483,14 @@ const pendingHint: React.CSSProperties = {
 
 const grid: React.CSSProperties = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
   gap: 10,
+};
+
+const compareJsonGrid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  gap: 12,
 };
 
 const dataCell: React.CSSProperties = {
@@ -457,9 +508,16 @@ const dataLabel: React.CSSProperties = {
   fontWeight: 900,
 };
 
+const currentValue: React.CSSProperties = {
+  fontSize: 12,
+  color: "#64748b",
+  fontWeight: 700,
+  overflowWrap: "anywhere",
+};
+
 const dataValue: React.CSSProperties = {
   fontSize: 13,
-  fontWeight: 700,
+  fontWeight: 800,
   overflowWrap: "anywhere",
 };
 
@@ -489,6 +547,7 @@ const pre: React.CSSProperties = {
   whiteSpace: "pre-wrap",
   fontSize: 12,
   lineHeight: 1.35,
+  color: "#334155",
 };
 
 const reviewBox: React.CSSProperties = {
