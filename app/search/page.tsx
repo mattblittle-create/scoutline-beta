@@ -982,6 +982,11 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   <Info label="JUCO Friendly" value={baseball.jucoFriendly ? "Yes" : "No"} />
 ) : null}
 
+{college.nilProfile?.baseballNilStrength &&
+college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
+  <Info label="NIL" value={college.nilProfile.baseballNilStrength} />
+) : null}
+
   {isLoggedIn && savedCollegeIds.includes(college.id) ? (
     <>
       <label style={statusFieldStyle}>
@@ -1020,43 +1025,60 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   ) : null}
 </div>
 
-{(baseball?.verificationStatus === "VERIFIED" ||
-  baseball?.currentRosterSize ||
-  typeof baseball?.transferHeavy === "boolean" ||
-  typeof baseball?.jucoFriendly === "boolean" ||
-  college.academicAreas?.length ||
-  baseball?.rosterNeeds?.length ||
-  college.nilProfile) ? (
-  <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
-    {baseball?.verificationStatus === "VERIFIED" ? <span style={pillStyle}>✅ Verified Program</span> : null}
-
-{college.nilProfile?.baseballNilStrength &&
- college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
-  <span style={pillStyle}>
-    NIL: {college.nilProfile.baseballNilStrength}
-  </span>
-) : null}
-
+{(baseball?.rosterNeeds?.length || college.academicAreas?.length) ? (
+  <div
+    style={{
+      marginTop: 12,
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      gap: 10,
+    }}
+  >
     {baseball?.rosterNeeds?.length ? (
-      <span style={pillStyle}>
-        Need: {baseball.rosterNeeds[0].gradYear} {baseball.rosterNeeds[0].position}
-      </span>
+      <div style={miniPanelStyle}>
+        <div style={miniPanelTitleStyle}>Roster Needs</div>
+
+        <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
+          {Object.entries(
+            baseball.rosterNeeds.reduce<Record<string, string[]>>((acc, need) => {
+              const year = String(need.gradYear || "Unknown");
+              if (!acc[year]) acc[year] = [];
+              if (need.position) acc[year].push(need.position);
+              return acc;
+            }, {})
+          )
+            .sort(([a], [b]) => Number(a) - Number(b))
+            .map(([year, positions]) => (
+              <div key={year} style={needLineStyle}>
+                <strong>{year}</strong>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {Array.from(new Set(positions)).map((pos) => (
+                    <span key={pos} style={smallPillStyle}>
+                      {pos}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
     ) : null}
 
     {college.academicAreas?.length ? (
-      <span style={pillStyle}>Major: {college.academicAreas[0].name}</span>
-    ) : null}
+      <div style={miniPanelStyle}>
+        <div style={miniPanelTitleStyle}>Academic Areas</div>
 
-    {baseball?.currentRosterSize ? (
-      <span style={pillStyle}>Roster: {baseball.currentRosterSize}</span>
-    ) : null}
-
-    {typeof baseball?.transferHeavy === "boolean" ? (
-      <span style={pillStyle}>Transfer Heavy: {baseball.transferHeavy ? "Yes" : "No"}</span>
-    ) : null}
-
-    {typeof baseball?.jucoFriendly === "boolean" ? (
-      <span style={pillStyle}>JUCO Friendly: {baseball.jucoFriendly ? "Yes" : "No"}</span>
+        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
+          {[...college.academicAreas]
+            .filter((area) => area.name)
+            .sort((a, b) => String(a.name).localeCompare(String(b.name)))
+            .map((area) => (
+              <span key={area.id || area.name} style={smallPillStyle}>
+                {area.name}
+              </span>
+            ))}
+        </div>
+      </div>
     ) : null}
   </div>
 ) : null}
@@ -1319,4 +1341,40 @@ const statusSelectStyle: React.CSSProperties = {
   color: "#0f172a",
   fontWeight: 800,
   outline: "none",
+};
+
+const miniPanelStyle: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 14,
+  background: "#f8fafc",
+  padding: 12,
+};
+
+const miniPanelTitleStyle: React.CSSProperties = {
+  color: "#0f172a",
+  fontSize: 12,
+  fontWeight: 900,
+  textTransform: "uppercase",
+  letterSpacing: 0.3,
+};
+
+const needLineStyle: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "52px 1fr",
+  gap: 8,
+  alignItems: "start",
+  color: "#0f172a",
+  fontSize: 13,
+};
+
+const smallPillStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "5px 8px",
+  background: "#ffffff",
+  border: "1px solid #e5e7eb",
+  color: "#0f172a",
+  fontSize: 12,
+  fontWeight: 900,
 };
