@@ -939,6 +939,97 @@ export default async function CollegeDetailPage({ params }: PageProps) {
         </div>
 
         <section style={{ ...cardStyle, marginTop: 16 }}>
+          <h2 style={sectionTitleStyle}>NIL</h2>
+
+          {nilProfile ? (
+            <>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+                  gap: 10,
+                }}
+              >
+                <Info
+                  label="Baseball NIL Strength"
+                  value={pretty(nilProfile.baseballNilStrength)}
+                />
+
+                <Info
+                  label="Overall NIL Strength"
+                  value={pretty(nilProfile.overallNilStrength)}
+                />
+
+                <Info
+                  label="NIL Available"
+                  value={nilProfile.nilAvailable ? "Yes" : "No"}
+                />
+              </div>
+
+              {nilCollectives.length ? (
+                <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
+                  {nilCollectives.map((collective) => (
+                    <div key={collective.id} style={miniInfoBoxStyle}>
+                      <div style={{ fontWeight: 900 }}>
+                        {collective.name}
+                      </div>
+
+                      <div
+                        style={{
+                          marginTop: 4,
+                          color: "#64748b",
+                          fontWeight: 800,
+                          fontSize: 13,
+                        }}
+                      >
+                        Funding Tier: {pretty(collective.fundingTier)}
+                      </div>
+
+                      {collective.sportAllocations?.length ? (
+                        <div
+                          style={{
+                            marginTop: 8,
+                            display: "flex",
+                            gap: 8,
+                            flexWrap: "wrap",
+                          }}
+                        >
+                          {collective.sportAllocations
+                            .filter((a) => a.sport === "BASEBALL")
+                            .map((allocation) => (
+                              <span key={allocation.id} style={pillStyle}>
+                                Baseball: {pretty(allocation.strengthTier)}
+                                {allocation.allocationPercent
+                                  ? ` · ${allocation.allocationPercent}%`
+                                  : ""}
+                              </span>
+                            ))}
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              ) : null}
+
+              {nilProfile.nilSummary ? (
+                <p
+                  style={{
+                    margin: "12px 0 0",
+                    color: "#475569",
+                    fontWeight: 700,
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {nilProfile.nilSummary}
+                </p>
+              ) : null}
+            </>
+          ) : (
+            <EmptyState text="No NIL information has been added yet." />
+          )}
+        </section>
+
+        <section style={{ ...cardStyle, marginTop: 16 }}>
           <h2 style={sectionTitleStyle}>Similar Schools</h2>
 
           {similarSchools.length ? (
