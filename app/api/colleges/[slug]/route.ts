@@ -217,6 +217,11 @@ export async function GET(
             },
           },
         },
+        coaches: {
+          include: {
+            coachProfile: true,
+          },
+        },
         baseballProgram: {
           include: {
             coaches: true,

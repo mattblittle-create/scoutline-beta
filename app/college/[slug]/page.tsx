@@ -112,6 +112,23 @@ type CollegeDetail = {
       }>;
     }>;
   } | null;
+    coaches?: Array<{
+    id: string;
+    name?: string | null;
+    email: string;
+    workPhone?: string | null;
+    workPhoneExt?: string | null;
+    phonePrivate?: boolean | null;
+    photoUrl?: string | null;
+    coachProfile?: {
+      staffTitle?: string | null;
+      contactEmail?: string | null;
+      coachBio?: string | null;
+      coachXUrl?: string | null;
+      coachInstagramUrl?: string | null;
+      isProgramAdmin?: boolean | null;
+    } | null;
+  }>;
   baseballProgram?: {
     id: string;
     nickname?: string | null;
@@ -347,42 +364,82 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
   const baseball = college.baseballProgram;
   const truthFit = college.truthFit;
-const coaches = [...(baseball?.coaches || [])].sort((a, b) => {
-  const rankDiff = coachSortRank(a) - coachSortRank(b);
-  if (rankDiff !== 0) return rankDiff;
-  return String(a.name || "").localeCompare(String(b.name || ""));
-});
+  const verifiedCoachContacts = [...(baseball?.coaches || [])].sort((a, b) => {
+    const rankDiff = coachSortRank(a) - coachSortRank(b);
+    if (rankDiff !== 0) return rankDiff;
+    return String(a.name || "").localeCompare(String(b.name || ""));
+  });
 
-const hasRecruitingCoordinator = !!(
-  baseball?.recruitingCoordinatorName ||
-  baseball?.recruitingCoordinatorEmail ||
-  baseball?.recruitingCoordinatorPhone ||
-  baseball?.recruitingCoordinatorXUrl ||
-  baseball?.recruitingCoordinatorInstagramUrl
-);
+  const scoutLineCoachContacts = (college.coaches || []).map((user) => ({
+    id: `user-${user.id}`,
+    name: user.name || "Coach",
+    title: user.coachProfile?.staffTitle || "Coach",
+    email: user.coachProfile?.contactEmail || user.email,
+    phone: user.phonePrivate ? null : user.workPhone || null,
+    bioUrl: null,
+    contactUrl: null,
+    headshotUrl: user.photoUrl || null,
+    xUrl: user.coachProfile?.coachXUrl || null,
+    instagramUrl: user.coachProfile?.coachInstagramUrl || null,
+    linkedinUrl: null,
+    isHeadCoach: String(user.coachProfile?.staffTitle || "")
+      .toLowerCase()
+      .includes("head coach"),
+    isScoutLineCoach: true,
+    isProgramAdmin: !!user.coachProfile?.isProgramAdmin,
+  }));
 
-const recruitingCoordinatorContact: any = hasRecruitingCoordinator
-  ? {
-      id: "recruiting-coordinator",
-      name: baseball?.recruitingCoordinatorName || "Recruiting Coordinator",
-      title: "Recruiting Coordinator",
-      email: baseball?.recruitingCoordinatorEmail || null,
-      phone: baseball?.recruitingCoordinatorPhone || null,
-      bioUrl: null,
-      contactUrl: null,
-      headshotUrl: null,
-      xUrl: baseball?.recruitingCoordinatorXUrl || null,
-      instagramUrl: baseball?.recruitingCoordinatorInstagramUrl || null,
-      linkedinUrl: null,
-      isHeadCoach: false,
-      isRecruitingCoordinator: true,
+  const hasRecruitingCoordinator = !!(
+    baseball?.recruitingCoordinatorName ||
+    baseball?.recruitingCoordinatorEmail ||
+    baseball?.recruitingCoordinatorPhone ||
+    baseball?.recruitingCoordinatorXUrl ||
+    baseball?.recruitingCoordinatorInstagramUrl
+  );
+
+  const recruitingCoordinatorContact: any = hasRecruitingCoordinator
+    ? {
+        id: "recruiting-coordinator",
+        name: baseball?.recruitingCoordinatorName || "Recruiting Coordinator",
+        title: "Recruiting Coordinator",
+        email: baseball?.recruitingCoordinatorEmail || null,
+        phone: baseball?.recruitingCoordinatorPhone || null,
+        bioUrl: null,
+        contactUrl: null,
+        headshotUrl: null,
+        xUrl: baseball?.recruitingCoordinatorXUrl || null,
+        instagramUrl: baseball?.recruitingCoordinatorInstagramUrl || null,
+        linkedinUrl: null,
+        isHeadCoach: false,
+        isRecruitingCoordinator: true,
+      }
+    : null;
+
+  const mergedCoachMap = new Map<string, any>();
+
+  for (const coach of [
+    recruitingCoordinatorContact,
+    ...scoutLineCoachContacts,
+    ...verifiedCoachContacts,
+  ].filter(Boolean)) {
+    const key =
+      String(coach.email || "").trim().toLowerCase() ||
+      String(coach.name || "").trim().toLowerCase();
+
+    if (!key) continue;
+
+    if (!mergedCoachMap.has(key)) {
+      mergedCoachMap.set(key, coach);
     }
-  : null;
+  }
 
-const displayCoaches = recruitingCoordinatorContact
-  ? [recruitingCoordinatorContact, ...coaches]
-  : coaches;
-const coachesSectionUrl =
+  const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
+    const rankDiff = coachSortRank(a) - coachSortRank(b);
+    if (rankDiff !== 0) return rankDiff;
+    return String(a.name || "").localeCompare(String(b.name || ""));
+  });
+
+  const coachesSectionUrl =
   displayCoaches.find((coach) => coach.contactUrl)?.contactUrl ||
   baseball?.generalContactUrl ||
   baseball?.rosterUrl ||
@@ -1192,7 +1249,7 @@ const coachesSectionUrl =
     })()}
 
     {(() => {
-      const hasOfficialCoachSource = coaches.some(
+      const hasOfficialCoachSource = displayCoaches.some(
         (coach) => coach.email || coach.bioUrl || coach.contactUrl
       );
 

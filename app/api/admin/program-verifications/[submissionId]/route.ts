@@ -298,11 +298,11 @@ export async function PATCH(
       });
     }
 
-    if (coachContacts.length) {
-      await tx.collegeBaseballCoach.deleteMany({
-        where: { programId: program.id },
-      });
+    await tx.collegeBaseballCoach.deleteMany({
+      where: { programId: program.id },
+    });
 
+    if (coachContacts.length) {
       await tx.collegeBaseballCoach.createMany({
         data: coachContacts.map((coach: any) => ({
           programId: program.id,
