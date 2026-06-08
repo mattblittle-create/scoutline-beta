@@ -230,12 +230,26 @@ type CollegeResult = {
   schoolType?: string | null;
   tuitionInState?: number | null;
   tuitionOutOfState?: number | null;
-  baseballProgram?: {
-    division?: string | null;
-    conference?: string | null;
-    nickname?: string | null;
-    baseballWebsiteUrl?: string | null;
-  } | null;
+baseballProgram?: {
+  division?: string | null;
+  conference?: string | null;
+  nickname?: string | null;
+  baseballWebsiteUrl?: string | null;
+
+  isVerified?: boolean | null;
+  currentRosterSize?: number | null;
+  transferHeavy?: boolean | null;
+  jucoFriendly?: boolean | null;
+
+  verificationStatus?: string | null;
+
+  rosterNeeds?: Array<{
+    id?: string;
+    gradYear?: number | null;
+    position?: string | null;
+    needLevel?: string | null;
+  }>;
+} | null;
   truthFit?: {
     score: number;
     label: string;
@@ -245,6 +259,15 @@ type CollegeResult = {
       };
     };
   } | null;
+  academicAreas?: Array<{
+  id?: string;
+  name?: string | null;
+}>;
+
+nilProfile?: {
+  baseballNilStrength?: string | null;
+  overallNilStrength?: string | null;
+} | null;
 };
 
 function pretty(value?: string | null) {
@@ -943,6 +966,21 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   <Info label="Conference" value={baseball?.conference || "—"} />
   <Info label="In-State Tuition" value={money(college.tuitionInState)} />
   <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
+  {baseball?.verificationStatus === "VERIFIED" ? (
+  <Info label="Verified" value="Yes" />
+) : null}
+
+{baseball?.currentRosterSize ? (
+  <Info label="Roster Size" value={String(baseball.currentRosterSize)} />
+) : null}
+
+{typeof baseball?.transferHeavy === "boolean" ? (
+  <Info label="Transfer Heavy" value={baseball.transferHeavy ? "Yes" : "No"} />
+) : null}
+
+{typeof baseball?.jucoFriendly === "boolean" ? (
+  <Info label="JUCO Friendly" value={baseball.jucoFriendly ? "Yes" : "No"} />
+) : null}
 
   {isLoggedIn && savedCollegeIds.includes(college.id) ? (
     <>
@@ -982,6 +1020,47 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   ) : null}
 </div>
 
+{(baseball?.verificationStatus === "VERIFIED" ||
+  baseball?.currentRosterSize ||
+  typeof baseball?.transferHeavy === "boolean" ||
+  typeof baseball?.jucoFriendly === "boolean" ||
+  college.academicAreas?.length ||
+  baseball?.rosterNeeds?.length ||
+  college.nilProfile) ? (
+  <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
+    {baseball?.verificationStatus === "VERIFIED" ? <span style={pillStyle}>✅ Verified Program</span> : null}
+
+{college.nilProfile?.baseballNilStrength &&
+ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
+  <span style={pillStyle}>
+    NIL: {college.nilProfile.baseballNilStrength}
+  </span>
+) : null}
+
+    {baseball?.rosterNeeds?.length ? (
+      <span style={pillStyle}>
+        Need: {baseball.rosterNeeds[0].gradYear} {baseball.rosterNeeds[0].position}
+      </span>
+    ) : null}
+
+    {college.academicAreas?.length ? (
+      <span style={pillStyle}>Major: {college.academicAreas[0].name}</span>
+    ) : null}
+
+    {baseball?.currentRosterSize ? (
+      <span style={pillStyle}>Roster: {baseball.currentRosterSize}</span>
+    ) : null}
+
+    {typeof baseball?.transferHeavy === "boolean" ? (
+      <span style={pillStyle}>Transfer Heavy: {baseball.transferHeavy ? "Yes" : "No"}</span>
+    ) : null}
+
+    {typeof baseball?.jucoFriendly === "boolean" ? (
+      <span style={pillStyle}>JUCO Friendly: {baseball.jucoFriendly ? "Yes" : "No"}</span>
+    ) : null}
+  </div>
+) : null}
+
 <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 8 }}>
   {isLoggedIn && savedCollegeIds.includes(college.id) ? (
     <Link href="/dashboard/player/target-programs" style={secondaryButtonStyle}>
@@ -989,16 +1068,16 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
     </Link>
   ) : null}
 
-<Link
-  href={`/dashboard/player/recruiting-tool?collegeId=${college.id}`}
-  style={secondaryButtonStyle}
->
-  {savedCollegeIds.includes(college.id)
-    ? college.truthFit
-      ? "View Truth Fit"
-      : "Generate Truth Fit"
-    : "Generate Truth Fit"}
-</Link>
+  <Link
+    href={`/dashboard/player/recruiting-tool?collegeId=${college.id}`}
+    style={secondaryButtonStyle}
+  >
+    {savedCollegeIds.includes(college.id)
+      ? college.truthFit
+        ? "View Truth Fit"
+        : "Generate Truth Fit"
+      : "Generate Truth Fit"}
+  </Link>
 
   {college.admissionsUrl ? (
     <a href={college.admissionsUrl} target="_blank" rel="noreferrer" style={buttonStyle}>

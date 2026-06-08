@@ -156,14 +156,16 @@ export async function GET(req: NextRequest) {
             : {},
         ],
       },
-      include: {
-        baseballProgram: {
-          include: {
-            rosterNeeds: true,
-            metricAverages: true,
-          },
-        },
-      },
+include: {
+  academicAreas: true,
+  nilProfile: true,
+  baseballProgram: {
+    include: {
+      rosterNeeds: true,
+      metricAverages: true,
+    },
+  },
+},
       orderBy: { name: "asc" },
       take: limit,
     });

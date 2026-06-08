@@ -183,6 +183,53 @@ const CONFERENCES_BY_DIVISION: Record<string, string[]> = {
 type RecruitingTarget = { gradYear: number; positions: string[] };
 const POSITION_OPTIONS = ["RHP", "LHP", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility"] as const;
 
+type ProgramCoachContact = {
+  id: string;
+  name: string | null;
+  email: string;
+  contactEmail?: string | null;
+  title?: string | null;
+  photoUrl?: string | null;
+  bio?: string | null;
+  coachXUrl?: string | null;
+  coachInstagramUrl?: string | null;
+  isProgramAdmin?: boolean;
+};
+
+type AcademicArea = {
+  id: string;
+  name: string | null;
+  category?: string | null;
+  verified?: boolean;
+};
+
+type NilProfile = {
+  strengthTier?: string | null;
+  collectiveName?: string | null;
+  estimatedValue?: number | string | null;
+  baseballAllocationPercent?: number | string | null;
+  updatedAt?: string | null;
+};
+
+type RosterNeed = {
+  id: string;
+  gradYear?: number | null;
+  position?: string | null;
+  priority?: string | null;
+  notes?: string | null;
+};
+
+type MetricBenchmark = {
+  id: string;
+  positionGroup?: string | null;
+  metricKey?: string | null;
+  label?: string | null;
+  value?: number | string | null;
+  unit?: string | null;
+  sourceLevel?: string | null;
+  confidence?: string | null;
+};
+
 type ApiOk = {
   ok: true;
   data: {
@@ -206,11 +253,25 @@ type ApiOk = {
       logoUrl: string | null;
       websiteUrl: string | null;
       programWebsiteUrl: string | null;
+      recruitingQuestionnaireUrl?: string | null;
+      programXUrl?: string | null;
+      programInstagramUrl?: string | null;
       division: string | null;
       conference: string | null;
       programBio?: string | null;
       lastEditedAt?: string | null;
       lastEditedBy?: { id: string; name: string | null; email: string } | null;
+
+      verifiedStatus?: string | null;
+      lastVerifiedAt?: string | null;
+      lastVerifiedBy?: { id: string; name: string | null; email: string } | null;
+
+      recruitingCoordinator?: ProgramCoachContact | null;
+      coachContacts?: ProgramCoachContact[];
+      academicAreas?: AcademicArea[];
+      nilProfile?: NilProfile | null;
+      rosterNeeds?: RosterNeed[];
+      metricBenchmarks?: MetricBenchmark[];
     };
   };
 };
@@ -292,6 +353,235 @@ function Field(props: { label: string; hint?: string; children: React.ReactNode 
       <div style={{ fontWeight: 900, fontSize: 12, color: "#64748b" }}>{props.label}</div>
       {props.hint ? <div style={{ fontSize: 11, color: "#94a3b8" }}>{props.hint}</div> : null}
       {props.children}
+    </div>
+  );
+}
+
+function formatMoneyish(value: any) {
+  if (value === null || value === undefined || value === "") return "—";
+  const n = Number(value);
+  if (!Number.isFinite(n)) return String(value);
+  return n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+}
+
+function formatPercentish(value: any) {
+  if (value === null || value === undefined || value === "") return "—";
+  const n = Number(value);
+  if (!Number.isFinite(n)) return String(value);
+  return `${n}%`;
+}
+
+function InfoPill(props: { children: React.ReactNode }) {
+  return <span style={infoPill}>{props.children}</span>;
+}
+
+function EmptyState(props: { children: React.ReactNode }) {
+  return <div style={emptyState}>{props.children}</div>;
+}
+
+function ProgramIntelligenceSection(props: {
+  verifiedStatus: string | null;
+  lastVerifiedAt: string | null;
+  lastVerifiedBy: { name: string | null; email: string } | null;
+  recruitingCoordinator: ProgramCoachContact | null;
+  coachContacts: ProgramCoachContact[];
+  academicAreas: AcademicArea[];
+  nilProfile: NilProfile | null;
+  rosterNeeds: RosterNeed[];
+  metricBenchmarks: MetricBenchmark[];
+}) {
+  const {
+    verifiedStatus,
+    lastVerifiedAt,
+    lastVerifiedBy,
+    recruitingCoordinator,
+    coachContacts,
+    academicAreas,
+    nilProfile,
+    rosterNeeds,
+    metricBenchmarks,
+  } = props;
+
+  const isVerified = String(verifiedStatus || "").toUpperCase() === "VERIFIED";
+
+  const needsByYear = rosterNeeds.reduce<Record<string, RosterNeed[]>>((acc, need) => {
+    const key = need.gradYear ? String(need.gradYear) : "Unassigned";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(need);
+    return acc;
+  }, {});
+
+  const metricsByGroup = metricBenchmarks.reduce<Record<string, MetricBenchmark[]>>((acc, m) => {
+    const key = m.positionGroup || "General";
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(m);
+    return acc;
+  }, {});
+
+  return (
+    <div style={card}>
+      <div style={cardTitle}>Verified Program Intelligence</div>
+      <div style={cardSub}>
+        Read-only program data used across ScoutLine for public profiles, Suggested Programs, College Search, Truth Fit, and Opportunity Score.
+      </div>
+
+      <div style={intelligenceGrid}>
+        <div style={intelBox}>
+          <div style={intelHeaderRow}>
+            <div style={intelTitle}>Program Verification</div>
+            <span style={isVerified ? verifiedBadge : unverifiedBadge}>{isVerified ? "Verified Program" : "Not Verified Yet"}</span>
+          </div>
+
+          {lastVerifiedAt ? (
+            <div style={intelText}>
+              Last verified {formatShortDateTime(lastVerifiedAt)}
+              {lastVerifiedBy ? ` by ${lastVerifiedBy.name || lastVerifiedBy.email}` : ""}
+            </div>
+          ) : (
+            <EmptyState>No verification date available yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Recruiting Coordinator</div>
+          {recruitingCoordinator ? (
+            <div style={contactRow}>
+              {recruitingCoordinator.photoUrl ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={recruitingCoordinator.photoUrl} alt="" style={contactAvatar} />
+              ) : (
+                <div style={contactAvatarFallback}>{(recruitingCoordinator.name || "?").slice(0, 1)}</div>
+              )}
+
+              <div style={{ minWidth: 0 }}>
+                <div style={contactName}>{recruitingCoordinator.name || "Unnamed Coach"}</div>
+                <div style={intelText}>{recruitingCoordinator.title || "Recruiting Coordinator"}</div>
+                <div style={intelText}>{recruitingCoordinator.contactEmail || recruitingCoordinator.email}</div>
+              </div>
+            </div>
+          ) : (
+            <EmptyState>No recruiting coordinator identified yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Coach Contacts</div>
+          {coachContacts.length ? (
+            <div style={{ display: "grid", gap: 10 }}>
+              {coachContacts.map((c) => (
+                <div key={c.id} style={contactRow}>
+                  {c.photoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={c.photoUrl} alt="" style={contactAvatar} />
+                  ) : (
+                    <div style={contactAvatarFallback}>{(c.name || "?").slice(0, 1)}</div>
+                  )}
+
+                  <div style={{ minWidth: 0 }}>
+                    <div style={contactName}>{c.name || "Unnamed Coach"}</div>
+                    <div style={intelText}>{c.title || "Staff"}</div>
+                    <div style={intelText}>{c.contactEmail || c.email}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState>No coach contacts available yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Academic Areas / Majors</div>
+          {academicAreas.length ? (
+            <div style={chipsWrap}>
+              {academicAreas.map((a) => (
+                <InfoPill key={a.id}>{a.name || "Academic Area"}</InfoPill>
+              ))}
+            </div>
+          ) : (
+            <EmptyState>No academic areas loaded yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>NIL Snapshot</div>
+          {nilProfile ? (
+            <div style={factGrid}>
+              <div>
+                <div style={factLabel}>Strength</div>
+                <div style={factValue}>{nilProfile.strengthTier || "—"}</div>
+              </div>
+              <div>
+                <div style={factLabel}>Collective</div>
+                <div style={factValue}>{nilProfile.collectiveName || "—"}</div>
+              </div>
+              <div>
+                <div style={factLabel}>Estimated Value</div>
+                <div style={factValue}>{formatMoneyish(nilProfile.estimatedValue)}</div>
+              </div>
+              <div>
+                <div style={factLabel}>Baseball Allocation</div>
+                <div style={factValue}>{formatPercentish(nilProfile.baseballAllocationPercent)}</div>
+              </div>
+              <div>
+                <div style={factLabel}>Updated</div>
+                <div style={factValue}>{nilProfile.updatedAt ? formatShortDateTime(nilProfile.updatedAt) : "—"}</div>
+              </div>
+            </div>
+          ) : (
+            <EmptyState>No NIL profile loaded yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Roster Needs</div>
+          {Object.keys(needsByYear).length ? (
+            <div style={{ display: "grid", gap: 10 }}>
+              {Object.entries(needsByYear).map(([year, needs]) => (
+                <div key={year}>
+                  <div style={factLabel}>Class of {year}</div>
+                  <div style={chipsWrap}>
+                    {needs.map((need) => (
+                      <InfoPill key={need.id}>
+                        {need.position || "Position"}
+                        {need.priority ? ` · ${need.priority}` : ""}
+                      </InfoPill>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState>No roster needs loaded yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={{ ...intelBox, gridColumn: "1 / -1" }}>
+          <div style={intelTitle}>Program Metrics / Benchmarks</div>
+          {Object.keys(metricsByGroup).length ? (
+            <div style={metricGrid}>
+              {Object.entries(metricsByGroup).map(([group, metrics]) => (
+                <div key={group} style={metricGroupBox}>
+                  <div style={factLabel}>{group}</div>
+                  <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
+                    {metrics.map((m) => (
+                      <div key={m.id} style={metricRow}>
+                        <span>{m.label || m.metricKey || "Metric"}</span>
+                        <strong>
+                          {m.value ?? "—"}
+                          {m.unit ? ` ${m.unit}` : ""}
+                        </strong>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState>No program benchmarks loaded yet.</EmptyState>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -417,6 +707,17 @@ export default function CoachProfilePage() {
   const [programLastEditedAt, setProgramLastEditedAt] = useState<string | null>(null);
   const [programLastEditedBy, setProgramLastEditedBy] = useState<{ name: string | null; email: string } | null>(null);
 
+  const [verifiedStatus, setVerifiedStatus] = useState<string | null>(null);
+  const [lastVerifiedAt, setLastVerifiedAt] = useState<string | null>(null);
+  const [lastVerifiedBy, setLastVerifiedBy] = useState<{ name: string | null; email: string } | null>(null);
+
+  const [recruitingCoordinator, setRecruitingCoordinator] = useState<ProgramCoachContact | null>(null);
+  const [coachContacts, setCoachContacts] = useState<ProgramCoachContact[]>([]);
+  const [academicAreas, setAcademicAreas] = useState<AcademicArea[]>([]);
+  const [nilProfile, setNilProfile] = useState<NilProfile | null>(null);
+  const [rosterNeeds, setRosterNeeds] = useState<RosterNeed[]>([]);
+  const [metricBenchmarks, setMetricBenchmarks] = useState<MetricBenchmark[]>([]);
+
   const conferenceOptions = useMemo(() => {
     const d = (division || "").trim();
     return d ? CONFERENCES_BY_DIVISION[d] || [] : [];
@@ -507,6 +808,24 @@ export default function CoachProfilePage() {
           lastEditedBy && typeof lastEditedBy === "object"
             ? { name: lastEditedBy.name ?? null, email: String(lastEditedBy.email || "") }
             : null
+        );
+                setVerifiedStatus((json.data.program as any)?.verifiedStatus ?? null);
+        setLastVerifiedAt((json.data.program as any)?.lastVerifiedAt ?? null);
+
+        const rawLastVerifiedBy = (json.data.program as any)?.lastVerifiedBy ?? null;
+        setLastVerifiedBy(
+          rawLastVerifiedBy && typeof rawLastVerifiedBy === "object"
+            ? { name: rawLastVerifiedBy.name ?? null, email: String(rawLastVerifiedBy.email || "") }
+            : null
+        );
+        
+        setRecruitingCoordinator((json.data.program as any)?.recruitingCoordinator ?? null);
+        setCoachContacts(Array.isArray((json.data.program as any)?.coachContacts) ? (json.data.program as any).coachContacts : []);
+        setAcademicAreas(Array.isArray((json.data.program as any)?.academicAreas) ? (json.data.program as any).academicAreas : []);
+        setNilProfile((json.data.program as any)?.nilProfile ?? null);
+        setRosterNeeds(Array.isArray((json.data.program as any)?.rosterNeeds) ? (json.data.program as any).rosterNeeds : []);
+        setMetricBenchmarks(
+          Array.isArray((json.data.program as any)?.metricBenchmarks) ? (json.data.program as any).metricBenchmarks : []
         );
       } catch (e: any) {
         setErr(e?.message || "Failed to load profile.");
@@ -988,6 +1307,18 @@ const url = await uploadUserPhoto(file, uploadSlug);
             </div>
           </div>
 
+          <ProgramIntelligenceSection
+            verifiedStatus={verifiedStatus}
+            lastVerifiedAt={lastVerifiedAt}
+            lastVerifiedBy={lastVerifiedBy}
+            recruitingCoordinator={recruitingCoordinator}
+            coachContacts={coachContacts}
+            academicAreas={academicAreas}
+            nilProfile={nilProfile}
+            rosterNeeds={rosterNeeds}
+            metricBenchmarks={metricBenchmarks}
+          />
+
           {/* FULL-WIDTH Recruiting Targets (moved out of Coach Profile card) */}
           <RecruitingTargetsSection
             recruitingTargets={recruitingTargets}
@@ -1302,4 +1633,162 @@ const qrWrap: CSSProperties = {
   padding: 12,
   display: "grid",
   placeItems: "center",
+};
+
+const intelligenceGrid: CSSProperties = {
+  marginTop: 14,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  gap: 12,
+};
+
+const intelBox: CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 14,
+  background: "#f8fafc",
+  padding: 14,
+  minWidth: 0,
+};
+
+const intelHeaderRow: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 10,
+  alignItems: "center",
+  flexWrap: "wrap",
+};
+
+const intelTitle: CSSProperties = {
+  fontWeight: 900,
+  fontSize: 14,
+  color: "#0f172a",
+};
+
+const intelText: CSSProperties = {
+  marginTop: 4,
+  color: "#64748b",
+  fontSize: 12,
+  lineHeight: 1.35,
+  wordBreak: "break-word",
+};
+
+const verifiedBadge: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "6px 10px",
+  background: "rgba(22,163,74,0.12)",
+  color: "#166534",
+  border: "1px solid rgba(22,163,74,0.25)",
+  fontSize: 12,
+  fontWeight: 900,
+};
+
+const unverifiedBadge: CSSProperties = {
+  ...verifiedBadge,
+  background: "rgba(100,116,139,0.12)",
+  color: "#475569",
+  border: "1px solid rgba(100,116,139,0.25)",
+};
+
+const contactRow: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "44px 1fr",
+  gap: 10,
+  alignItems: "center",
+  minWidth: 0,
+};
+
+const contactAvatar: CSSProperties = {
+  width: 44,
+  height: 44,
+  borderRadius: 999,
+  objectFit: "cover",
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+};
+
+const contactAvatarFallback: CSSProperties = {
+  width: 44,
+  height: 44,
+  borderRadius: 999,
+  display: "grid",
+  placeItems: "center",
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+  color: "#0f172a",
+  fontWeight: 900,
+};
+
+const contactName: CSSProperties = {
+  fontWeight: 900,
+  color: "#0f172a",
+  fontSize: 13,
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+};
+
+const infoPill: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "7px 10px",
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+  color: "#0f172a",
+  fontSize: 12,
+  fontWeight: 900,
+};
+
+const emptyState: CSSProperties = {
+  marginTop: 8,
+  color: "#94a3b8",
+  fontSize: 12,
+  lineHeight: 1.35,
+};
+
+const factGrid: CSSProperties = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+  gap: 10,
+};
+
+const factLabel: CSSProperties = {
+  color: "#64748b",
+  fontSize: 11,
+  fontWeight: 900,
+  textTransform: "uppercase",
+  letterSpacing: 0.3,
+};
+
+const factValue: CSSProperties = {
+  marginTop: 3,
+  color: "#0f172a",
+  fontSize: 13,
+  fontWeight: 900,
+  wordBreak: "break-word",
+};
+
+const metricGrid: CSSProperties = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: 10,
+};
+
+const metricGroupBox: CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  background: "#fff",
+  padding: 12,
+};
+
+const metricRow: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 10,
+  color: "#0f172a",
+  fontSize: 13,
 };
