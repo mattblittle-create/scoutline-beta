@@ -433,11 +433,17 @@ export default async function CollegeDetailPage({ params }: PageProps) {
     }
   }
 
-  const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
-    const rankDiff = coachSortRank(a) - coachSortRank(b);
-    if (rankDiff !== 0) return rankDiff;
-    return String(a.name || "").localeCompare(String(b.name || ""));
-  });
+const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
+  const aIsRc = !!(a as any).isRecruitingCoordinator;
+  const bIsRc = !!(b as any).isRecruitingCoordinator;
+
+  if (aIsRc !== bIsRc) return aIsRc ? -1 : 1;
+
+  const rankDiff = coachSortRank(a) - coachSortRank(b);
+  if (rankDiff !== 0) return rankDiff;
+
+  return String(a.name || "").localeCompare(String(b.name || ""));
+});
 
   const coachesSectionUrl =
   displayCoaches.find((coach) => coach.contactUrl)?.contactUrl ||
