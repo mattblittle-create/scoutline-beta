@@ -123,6 +123,13 @@ type CollegeDetail = {
     questionnaireUrl?: string | null;
     generalContactUrl?: string | null;
     generalContactEmail?: string | null;
+
+    recruitingCoordinatorName?: string | null;
+    recruitingCoordinatorEmail?: string | null;
+    recruitingCoordinatorPhone?: string | null;
+    recruitingCoordinatorXUrl?: string | null;
+    recruitingCoordinatorInstagramUrl?: string | null;
+
     division?: string | null;
     conference?: string | null;
     currentRosterSize?: number | null;
@@ -340,6 +347,13 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
   const baseball = college.baseballProgram;
   const truthFit = college.truthFit;
+    const hasRecruitingCoordinator = !!(
+    baseball?.recruitingCoordinatorName ||
+    baseball?.recruitingCoordinatorEmail ||
+    baseball?.recruitingCoordinatorPhone ||
+    baseball?.recruitingCoordinatorXUrl ||
+    baseball?.recruitingCoordinatorInstagramUrl
+  );
   const coaches = [...(baseball?.coaches || [])].sort((a, b) => {
     const rankDiff = coachSortRank(a) - coachSortRank(b);
     if (rankDiff !== 0) return rankDiff;
@@ -671,6 +685,60 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   ) : null}
 </div>
             </div>
+                    {hasRecruitingCoordinator ? (
+          <section style={{ ...cardStyle, marginBottom: 16 }}>
+            <h2 style={sectionTitleStyle}>Recruiting Coordinator</h2>
+
+            <div style={miniInfoBoxStyle}>
+              <div style={{ fontSize: 18, fontWeight: 950, color: "#0f172a" }}>
+                {baseball?.recruitingCoordinatorName || "Recruiting Coordinator"}
+              </div>
+
+              <div style={{ marginTop: 4, color: "#64748b", fontWeight: 800 }}>
+                Primary recruiting contact
+              </div>
+
+              <div style={{ marginTop: 12, display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {baseball?.recruitingCoordinatorEmail ? (
+                  <a
+                    href={`mailto:${baseball.recruitingCoordinatorEmail}`}
+                    style={buttonStyle}
+                  >
+                    Email
+                  </a>
+                ) : null}
+
+                {baseball?.recruitingCoordinatorPhone ? (
+                  <span style={pillStyle}>
+                    {baseball.recruitingCoordinatorPhone}
+                  </span>
+                ) : null}
+
+                {baseball?.recruitingCoordinatorXUrl ? (
+                  <a
+                    href={baseball.recruitingCoordinatorXUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={buttonStyle}
+                  >
+                    X
+                  </a>
+                ) : null}
+
+                {baseball?.recruitingCoordinatorInstagramUrl ? (
+                  <a
+                    href={baseball.recruitingCoordinatorInstagramUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={buttonStyle}
+                  >
+                    Instagram
+                  </a>
+                ) : null}
+              </div>
+            </div>
+          </section>
+        ) : null}
           </section>
         </div>
 
