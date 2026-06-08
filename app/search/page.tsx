@@ -967,7 +967,11 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   <Info label="In-State Tuition" value={money(college.tuitionInState)} />
   <Info label="Out-of-State Tuition" value={money(college.tuitionOutOfState)} />
   {baseball?.verificationStatus === "VERIFIED" ? (
-  <Info label="Verified" value="Yes" />
+  <Info
+  label="Verified"
+  value="Yes"
+  tip="Program information has been reviewed and approved by a verified coach or program administrator."
+/>
 ) : null}
 
 {baseball?.currentRosterSize ? (
@@ -975,16 +979,28 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
 ) : null}
 
 {typeof baseball?.transferHeavy === "boolean" ? (
-  <Info label="Transfer Heavy" value={baseball.transferHeavy ? "Yes" : "No"} />
+  <Info
+  label="Transfer Heavy"
+  value={baseball.transferHeavy ? "Yes" : "No"}
+  tip="Program regularly supplements recruiting classes through the transfer portal."
+/>
 ) : null}
 
 {typeof baseball?.jucoFriendly === "boolean" ? (
-  <Info label="JUCO Friendly" value={baseball.jucoFriendly ? "Yes" : "No"} />
+  <Info
+  label="JUCO Friendly"
+  value={baseball.jucoFriendly ? "Yes" : "No"}
+  tip="Program has historically recruited or shown interest in junior college athletes."
+/>
 ) : null}
 
 {college.nilProfile?.baseballNilStrength &&
 college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
-  <Info label="NIL" value={college.nilProfile.baseballNilStrength} />
+  <Info
+  label="NIL"
+  value={college.nilProfile.baseballNilStrength}
+  tip="Estimated baseball-specific NIL opportunity strength based on verified program information."
+/>
 ) : null}
 
   {isLoggedIn && savedCollegeIds.includes(college.id) ? (
@@ -1036,7 +1052,12 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
   >
     {baseball?.rosterNeeds?.length ? (
       <div style={miniPanelStyle}>
-        <div style={miniPanelTitleStyle}>Roster Needs</div>
+        <div style={miniPanelTitleStyle}>
+  <TooltipLabel
+    label="Roster Needs"
+    tip="Verified recruiting needs submitted by the program. Needs may change throughout the recruiting cycle."
+  />
+</div>
 
         <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
           {Object.entries(
@@ -1066,7 +1087,12 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
 
     {college.academicAreas?.length ? (
       <div style={miniPanelStyle}>
-        <div style={miniPanelTitleStyle}>Academic Areas</div>
+        <div style={miniPanelTitleStyle}>
+  <TooltipLabel
+    label="Academic Areas"
+    tip="Academic programs offered or emphasized by the institution."
+  />
+</div>
 
         <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
           {[...college.academicAreas]
@@ -1240,10 +1266,28 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   );
 }
 
-function Info({ label, value }: { label: string; value: string }) {
+function TooltipLabel({ label, tip }: { label: string; tip?: string }) {
+  return (
+    <span title={tip || ""} style={{ cursor: tip ? "help" : "default" }}>
+      {label}
+    </span>
+  );
+}
+
+function Info({
+  label,
+  value,
+  tip,
+}: {
+  label: string;
+  value: React.ReactNode;
+  tip?: string;
+}) {
   return (
     <div style={{ border: "1px solid #eef2f7", background: "#f8fafc", borderRadius: 12, padding: "10px 12px" }}>
-      <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>{label}</div>
+      <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+        <TooltipLabel label={label} tip={tip} />
+      </div>
       <div style={{ marginTop: 3, fontWeight: 900 }}>{value}</div>
     </div>
   );
