@@ -361,7 +361,7 @@ const hasRecruitingCoordinator = !!(
   baseball?.recruitingCoordinatorInstagramUrl
 );
 
-const recruitingCoordinatorContact = hasRecruitingCoordinator
+const recruitingCoordinatorContact: any = hasRecruitingCoordinator
   ? {
       id: "recruiting-coordinator",
       name: baseball?.recruitingCoordinatorName || "Recruiting Coordinator",
@@ -738,7 +738,7 @@ const coachesSectionUrl =
                             .split(" ")
                             .filter(Boolean)
                             .slice(0, 2)
-                            .map((part) => part[0])
+                            .map((part: string) => part[0])
                             .join("")
                             .toUpperCase()}
                         </div>
@@ -746,82 +746,94 @@ const coachesSectionUrl =
 
 <div style={{ flex: 1, minWidth: 0 }}>
 
-<div style={coachTopRowStyle}>
-  <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-  <div style={{ fontWeight: 900, fontSize: 18 }}>{coach.name}</div>
+  <div style={coachTopRowStyle}>
+    <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+      <div style={{ fontWeight: 900, fontSize: 18 }}>
+        {coach.name}
 
-  {(coach as any).isRecruitingCoordinator ? (
-    <span style={goldPillStyle}>Primary Recruiting Contact</span>
-  ) : null}
-</div>
+        {coach.title ? (
+          <span
+            style={{
+              marginLeft: 8,
+              color: "#64748b",
+              fontSize: 13,
+              fontWeight: 800,
+            }}
+          >
+            {coach.title}
+          </span>
+        ) : null}
+      </div>
 
-  <SendPlayerCardButton
-    collegeSlug={college.slug}
-    coachId={coach.id}
-    coachName={coach.name || ""}
-    coachEmail={coach.email}
-    style={buttonStyle}
-  />
-</div>
+      {(coach as any).isRecruitingCoordinator ? (
+        <span style={smallGoldPillStyle}>
+          Primary Recruiting Contact
+        </span>
+      ) : null}
+    </div>
+  </div>
 
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    flexWrap: "wrap",
-    marginTop: 4,
-  }}
->
-<div
-  style={{
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    flexWrap: "wrap",
-    color: "#64748b",
-    fontSize: 13,
-    fontWeight: 800,
-  }}
->
-  <span>{coach.title || "Coach"}</span>
+  <div
+    style={{
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      flexWrap: "wrap",
+      marginTop: 4,
+      color: "#64748b",
+      fontSize: 13,
+      fontWeight: 800,
+    }}
+  >
+    {coach.xUrl ? (
+      <a
+        href={coach.xUrl}
+        target="_blank"
+        rel="noreferrer"
+        title="Coach X"
+        style={{ display: "inline-flex" }}
+      >
+        <img
+          src="/icons/x.webp"
+          alt="X"
+          style={{ width: 18, height: 18 }}
+        />
+      </a>
+    ) : null}
 
-  {coach.xUrl ? (
-    <a
-      href={coach.xUrl}
-      target="_blank"
-      rel="noreferrer"
-      title="Coach X"
-      style={{ display: "inline-flex" }}
-    >
-      <img
-        src="/icons/x.webp"
-        alt="X"
-        style={{ width: 18, height: 18 }}
-      />
-    </a>
-  ) : null}
+    {coach.instagramUrl ? (
+      <a
+        href={coach.instagramUrl}
+        target="_blank"
+        rel="noreferrer"
+        title="Coach Instagram"
+        style={{ display: "inline-flex" }}
+      >
+        <img
+          src="/icons/instagram.webp"
+          alt="Instagram"
+          style={{ width: 18, height: 18 }}
+        />
+      </a>
+    ) : null}
+  </div>
 
-  {coach.instagramUrl ? (
-    <a
-      href={coach.instagramUrl}
-      target="_blank"
-      rel="noreferrer"
-      title="Coach Instagram"
-      style={{ display: "inline-flex" }}
-    >
-      <img
-        src="/icons/instagram.webp"
-        alt="Instagram"
-        style={{ width: 18, height: 18 }}
-      />
-    </a>
-  ) : null}
-</div>
-</div>
-
-  <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginTop: 8 }}>
-    {coach.bioUrl ? <ExternalButton href={coach.bioUrl}>Bio</ExternalButton> : null}
+  <div
+    style={{
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap",
+      alignItems: "center",
+      marginTop: 8,
+    }}
+  >
+    <SendPlayerCardButton
+      collegeSlug={college.slug}
+      coachId={coach.id}
+      coachName={coach.name || ""}
+      coachEmail={coach.email}
+      style={buttonStyle}
+    />
 
     {coach.email ? (
       <ExternalButton href={`mailto:${coach.email}`} title={coach.email}>
@@ -829,12 +841,24 @@ const coachesSectionUrl =
       </ExternalButton>
     ) : null}
 
-    {coach.email ? <CopyCoachEmailButton email={coach.email} style={buttonStyle} /> : null}
+    {coach.email ? (
+      <CopyCoachEmailButton
+        email={coach.email}
+        style={buttonStyle}
+      />
+    ) : null}
+
+    {coach.bioUrl ? (
+      <ExternalButton href={coach.bioUrl}>
+        Bio
+      </ExternalButton>
+    ) : null}
   </div>
 
   <div style={{ marginTop: 8 }}>
     {(() => {
       const badge = getCoachContactBadge(coach);
+
       return (
         <span style={badge.style} title={badge.title}>
           Coach Contact: {badge.label}
@@ -842,7 +866,7 @@ const coachesSectionUrl =
       );
     })()}
   </div>
-                      </div>
+</div>
                     </div>
                   </div>
                 ))}
@@ -1467,6 +1491,13 @@ const goldPillStyle: React.CSSProperties = {
   background: "#fffbeb",
   border: "1px solid #fde68a",
   color: "#78350f",
+};
+
+const smallGoldPillStyle: React.CSSProperties = {
+  ...goldPillStyle,
+  padding: "4px 8px",
+  fontSize: 11,
+  lineHeight: 1,
 };
 
 const smallGoldTagStyle: React.CSSProperties = {
