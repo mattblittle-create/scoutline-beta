@@ -1307,6 +1307,17 @@ const url = await uploadUserPhoto(file, uploadSlug);
             </div>
           </div>
 
+          {/* FULL-WIDTH Recruiting Targets (moved out of Coach Profile card) */}
+          <RecruitingTargetsSection
+            recruitingTargets={recruitingTargets}
+            sortedRecruitingTargets={sortedRecruitingTargets}
+            newTargetYear={newTargetYear}
+            setNewTargetYear={setNewTargetYear}
+            addTargetYear={addTargetYear}
+            removeTargetYear={removeTargetYear}
+            toggleTargetPosition={toggleTargetPosition}
+          />
+
           <ProgramIntelligenceSection
             verifiedStatus={verifiedStatus}
             lastVerifiedAt={lastVerifiedAt}
@@ -1317,17 +1328,6 @@ const url = await uploadUserPhoto(file, uploadSlug);
             nilProfile={nilProfile}
             rosterNeeds={rosterNeeds}
             metricBenchmarks={metricBenchmarks}
-          />
-
-          {/* FULL-WIDTH Recruiting Targets (moved out of Coach Profile card) */}
-          <RecruitingTargetsSection
-            recruitingTargets={recruitingTargets}
-            sortedRecruitingTargets={sortedRecruitingTargets}
-            newTargetYear={newTargetYear}
-            setNewTargetYear={setNewTargetYear}
-            addTargetYear={addTargetYear}
-            removeTargetYear={removeTargetYear}
-            toggleTargetPosition={toggleTargetPosition}
           />
 
           {/* Actions */}
