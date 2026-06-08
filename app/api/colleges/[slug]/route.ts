@@ -208,6 +208,15 @@ export async function GET(
       where: { slug: params.slug },
       include: {
         academicAreas: true,
+        nilProfile: {
+          include: {
+            collectives: {
+              include: {
+                sportAllocations: true,
+              },
+            },
+          },
+        },
         baseballProgram: {
           include: {
             coaches: true,
