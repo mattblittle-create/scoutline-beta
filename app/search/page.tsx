@@ -4,6 +4,7 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { ACADEMIC_AREA_OPTIONS } from "@/app/lib/academics/academicAreas";
 
 const TUITION_MAX = 100000;
 
@@ -42,25 +43,6 @@ const DIVISIONS = [
   ["NJCAA_D2", "NJCAA D2"],
   ["NJCAA_D3", "NJCAA D3"],
 ] as const;
-
-const ACADEMIC_AREA_OPTIONS = [
-  "Business",
-  "Finance",
-  "Marketing",
-  "Sports Management",
-  "Kinesiology",
-  "Exercise Science",
-  "Sports Medicine",
-  "Education",
-  "Engineering",
-  "Computer Science",
-  "Communications",
-  "Criminal Justice",
-  "Biology",
-  "Pre-Med",
-  "Nursing",
-  "Psychology",
-].sort((a, b) => a.localeCompare(b));
 
 const TARGET_STATUS_OPTIONS = [
   ["SAVED", "Saved"],
@@ -349,6 +331,7 @@ export default function CollegeSearchPage() {
   const [academicAreas, setAcademicAreas] = useState<string[]>([]);
   const [academicAreaInput, setAcademicAreaInput] = useState("");
   const [didLoadProfileMajors, setDidLoadProfileMajors] = useState(false);
+  const [profileAcademicAreas, setProfileAcademicAreas] = useState<string[]>([]);
   const [control, setControl] = useState("");
   const [maxTuition, setMaxTuition] = useState(TUITION_MAX);
 
@@ -499,9 +482,10 @@ useEffect(() => {
             .filter(Boolean)
         : [];
 
-      if (!cancelled && profileMajors.length) {
-        setAcademicAreas(profileMajors);
-      }
+if (!cancelled && profileMajors.length) {
+  setProfileAcademicAreas(profileMajors);
+  setAcademicAreas(profileMajors);
+}
 
       if (!cancelled) {
         setDidLoadProfileMajors(true);
@@ -566,14 +550,9 @@ useEffect(() => {
               .filter(Boolean)
           : [];
 
-        if (
-          !didLoadProfileMajors &&
-          academicAreas.length === 0 &&
-          profileMajors.length
-        ) {
-          setAcademicAreas(profileMajors);
-          setDidLoadProfileMajors(true);
-        }
+if (!cancelled && profileMajors.length) {
+  setProfileAcademicAreas(profileMajors);
+}
 
         setResults(data.results || []);
       }
@@ -1008,6 +987,11 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   {visibleResults.map((college) => {
             const baseball = college.baseballProgram;
 
+            const academicMatch = getAcademicMatch(
+  profileAcademicAreas.length ? profileAcademicAreas : academicAreas,
+  college.academicAreas || []
+);
+
             return (
               <article key={college.id} style={cardStyle}>
                 <div style={{ display: "flex", justifyContent: "space-between", gap: 14, flexWrap: "wrap" }}>
@@ -1080,6 +1064,13 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
                 </div>
 
 <div style={{ marginTop: 12, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 10 }}>
+{academicMatch.score !== null ? (
+  <Info
+    label="Academic Match"
+    value={`${academicMatch.label} • ${academicMatch.score}`}
+    tip="Compares your intended major(s) with the academic areas listed for this school."
+  />
+) : null}
   <Info label="Nickname" value={baseball?.nickname || "—"} />
   <Info label="Division" value={pretty(baseball?.division)} />
   <Info label="Conference" value={baseball?.conference || "—"} />
@@ -1391,6 +1382,41 @@ function TooltipLabel({ label, tip }: { label: string; tip?: string }) {
       {label}
     </span>
   );
+}
+
+function getAcademicMatch(
+  playerAreas: string[],
+  schoolAreas: Array<{ name?: string | null }>
+) {
+  const player = playerAreas
+    .map((v) => String(v || "").trim())
+    .filter(Boolean);
+
+  const school = schoolAreas
+    .map((a) => String(a?.name || "").trim())
+    .filter(Boolean);
+
+  if (!player.length) {
+    return {
+      label: "No Major Preference",
+      score: null as number | null,
+      matches: [] as string[],
+      missing: [] as string[],
+    };
+  }
+
+  const schoolSet = new Set(school.map((v) => v.toLowerCase()));
+
+  const matches = player.filter((area) => schoolSet.has(area.toLowerCase()));
+  const missing = player.filter((area) => !schoolSet.has(area.toLowerCase()));
+
+  const score = Math.round((matches.length / player.length) * 100);
+
+  let label = "Low Academic Match";
+  if (score === 100) label = "Strong Academic Match";
+  else if (score >= 50) label = "Partial Academic Match";
+
+  return { label, score, matches, missing };
 }
 
 function Info({
