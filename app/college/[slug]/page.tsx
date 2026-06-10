@@ -153,6 +153,14 @@ type CollegeDetail = {
     averageGpa?: number | string | null;
     scholarshipNotes?: string | null;
     scholarshipInfoUrl?: string | null;
+    recruitingAggressiveness?: string | null;
+    regionalRecruitingBias?: string | null;
+    rosterTurnoverLevel?: string | null;
+    playerDevelopmentNotes?: string | null;
+    headCoachTenureYears?: number | null;
+    recentWinPercentage?: number | string | null;
+    conferenceStrength?: string | null;
+    draftHistoryNotes?: string | null;
     transferHeavy?: boolean;
     jucoFriendly?: boolean;
     dataSourceUrl?: string | null;
@@ -774,10 +782,103 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
           </section>
         </div>
 
+        <section style={{ ...cardStyle, marginBottom: 16 }}>
+          <h2 style={sectionTitleStyle}>Recruiting Intelligence</h2>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
+              gap: 10,
+            }}
+          >
+            <Info
+              label="Recruiting Aggressiveness"
+              value={pretty(baseball?.recruitingAggressiveness)}
+            />
+
+            <Info
+              label="Regional Recruiting Bias"
+              value={pretty(baseball?.regionalRecruitingBias)}
+            />
+
+            <Info
+              label="Roster Turnover"
+              value={pretty(baseball?.rosterTurnoverLevel)}
+            />
+
+            <Info
+              label="Head Coach Tenure"
+              value={
+                baseball?.headCoachTenureYears != null
+                  ? `${baseball.headCoachTenureYears} year${
+                      baseball.headCoachTenureYears === 1 ? "" : "s"
+                    }`
+                  : "—"
+              }
+            />
+
+<Info
+  label="Recent Win %"
+  value={
+    baseball?.recentWinPercentage != null
+      ? String(baseball.recentWinPercentage)
+      : "—"
+  }
+/>
+
+            <Info
+              label="Conference Strength"
+              value={pretty(baseball?.conferenceStrength)}
+            />
+          </div>
+
+          {baseball?.playerDevelopmentNotes ? (
+            <div style={{ ...miniInfoBoxStyle, marginTop: 14 }}>
+              <div style={{ fontWeight: 900, color: "#0f172a" }}>
+                Player Development Notes
+              </div>
+              <p
+                style={{
+                  margin: "6px 0 0",
+                  color: "#475569",
+                  fontWeight: 700,
+                  lineHeight: 1.5,
+                }}
+              >
+                {baseball.playerDevelopmentNotes}
+              </p>
+            </div>
+          ) : null}
+
+          {baseball?.draftHistoryNotes ? (
+            <div style={{ ...miniInfoBoxStyle, marginTop: 10 }}>
+              <div style={{ fontWeight: 900, color: "#0f172a" }}>
+                Draft / Pro Development Notes
+              </div>
+              <p
+                style={{
+                  margin: "6px 0 0",
+                  color: "#475569",
+                  fontWeight: 700,
+                  lineHeight: 1.5,
+                }}
+              >
+                {baseball.draftHistoryNotes}
+              </p>
+            </div>
+          ) : null}
+        </section>
+
         <div style={wideGridStyle}>
           <section style={cardStyle}>
             {coachesSectionUrl ? (
-              <a href={coachesSectionUrl} target="_blank" rel="noreferrer" style={sectionTitleLinkStyle}>
+              <a
+                href={coachesSectionUrl}
+                target="_blank"
+                rel="noreferrer"
+                style={sectionTitleLinkStyle}
+              >
                 Coaches & Recruiting Contacts
               </a>
             ) : (
