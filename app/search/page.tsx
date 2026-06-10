@@ -836,7 +836,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
       />
 
       <AutoChipField
-        label="Academic Area / Major(s)"
+        label="Major(s)"
         value={academicAreaInput}
         setValue={setAcademicAreaInput}
         selected={academicAreas}
