@@ -481,6 +481,47 @@ setSavedCollegePriorities({});
 useEffect(() => {
   let cancelled = false;
 
+  async function preloadProfileMajors() {
+    if (!isLoggedIn || didLoadProfileMajors || academicAreas.length > 0) return;
+
+    try {
+      const res = await fetch("/api/colleges/search?limit=1", {
+        cache: "no-store",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data?.ok) return;
+
+      const profileMajors = Array.isArray(data.profileAcademicAreas)
+        ? data.profileAcademicAreas
+            .map((v: any) => String(v || "").trim())
+            .filter(Boolean)
+        : [];
+
+      if (!cancelled && profileMajors.length) {
+        setAcademicAreas(profileMajors);
+      }
+
+      if (!cancelled) {
+        setDidLoadProfileMajors(true);
+      }
+    } catch (err) {
+      console.error("PROFILE_MAJOR_PRELOAD_ERROR", err);
+      if (!cancelled) setDidLoadProfileMajors(true);
+    }
+  }
+
+  preloadProfileMajors();
+
+  return () => {
+    cancelled = true;
+  };
+}, [isLoggedIn, didLoadProfileMajors, academicAreas.length]);
+
+useEffect(() => {
+  let cancelled = false;
+
   async function runSearch() {
     setError("");
 
