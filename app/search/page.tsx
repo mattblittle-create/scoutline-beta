@@ -5,6 +5,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { ACADEMIC_AREA_OPTIONS } from "@/app/lib/academics/academicAreas";
+import { getAcademicAreaMatches } from "@/app/lib/academics/getAcademicAreaMatches";
 
 const TUITION_MAX = 100000;
 
@@ -1388,13 +1389,8 @@ function getAcademicMatch(
   playerAreas: string[],
   schoolAreas: Array<{ name?: string | null }>
 ) {
-  const player = playerAreas
-    .map((v) => String(v || "").trim())
-    .filter(Boolean);
-
-  const school = schoolAreas
-    .map((a) => String(a?.name || "").trim())
-    .filter(Boolean);
+  const player = playerAreas.map((v) => String(v || "").trim()).filter(Boolean);
+  const school = schoolAreas.map((a) => String(a?.name || "").trim()).filter(Boolean);
 
   if (!player.length) {
     return {
@@ -1405,10 +1401,9 @@ function getAcademicMatch(
     };
   }
 
-  const schoolSet = new Set(school.map((v) => v.toLowerCase()));
-
-  const matches = player.filter((area) => schoolSet.has(area.toLowerCase()));
-  const missing = player.filter((area) => !schoolSet.has(area.toLowerCase()));
+  const matches = getAcademicAreaMatches(player, school);
+  const matchSet = new Set(matches.map((v) => v.toLowerCase()));
+  const missing = player.filter((area) => !matchSet.has(area.toLowerCase()));
 
   const score = Math.round((matches.length / player.length) * 100);
 
