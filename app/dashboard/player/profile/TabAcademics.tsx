@@ -258,24 +258,37 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     }
   }
 
-  /** ---------------- Intended Major(s) control ---------------- */
-  const [areasText, setAreasText] = React.useState<string>(areasOfStudyInput ?? "");
-  React.useEffect(() => {
-    if (typeof areasOfStudyInput === "string" && areasOfStudyInput !== areasText) {
-      setAreasText(areasOfStudyInput);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [areasOfStudyInput]);
+  function parseInitialAreas(raw?: string): string[] {
+  if (!raw) return [];
 
-  const writeAreas = React.useCallback(
-    (v: string) => {
-      if (setAreasOfStudyInput) setAreasOfStudyInput(v);
-      setAreasText(v);
-    },
-    [setAreasOfStudyInput]
-  );
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => s.replace(/\s+/g, " "))
+    .slice(0, 12);
+}
 
-  const areasInput = areasText;
+/** ---------------- Intended Major(s) control ---------------- */
+const [selectedAreas, setSelectedAreas] = React.useState<string[]>(() =>
+  parseInitialAreas(areasOfStudyInput)
+);
+
+const [areasSearch, setAreasSearch] = React.useState("");
+
+React.useEffect(() => {
+  if (typeof areasOfStudyInput === "string") {
+    setSelectedAreas(parseInitialAreas(areasOfStudyInput));
+  }
+}, [areasOfStudyInput]);
+
+function syncAreas(next: string[]) {
+  const cleaned = Array.from(new Set(next.map((v) => v.trim()).filter(Boolean))).slice(0, 12);
+  setSelectedAreas(cleaned);
+  if (setAreasOfStudyInput) setAreasOfStudyInput(cleaned.join(", "));
+}
+
+const areasInput = selectedAreas.join(", ");
 
   // Capitalize first letter of each word (keep internal whitespace collapsed)
   const titleCase = (s: string) =>
@@ -297,15 +310,15 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       .slice(0, 12);
   }, []);
 
-  const academicAreaMatches = React.useMemo(
-    () =>
-      ACADEMIC_AREA_OPTIONS.filter(
-        (area) =>
-          area.toLowerCase().startsWith(areasText.toLowerCase()) &&
-          !parseAreas(areasInput).includes(area)
-      ),
-    [areasText, areasInput, parseAreas]
-  );
+const academicAreaMatches = React.useMemo(
+  () =>
+    ACADEMIC_AREA_OPTIONS.filter(
+      (area) =>
+        area.toLowerCase().startsWith(areasSearch.toLowerCase()) &&
+        !selectedAreas.includes(area)
+    ),
+  [areasSearch, selectedAreas]
+);
 
   // Expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
@@ -327,7 +340,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         // bio & majors
         academicBio,
         academicBioPrivate,
-        areasOfStudy: parseAreas(areasInput),
+        areasOfStudy: selectedAreas,
       }),
     }),
     [
@@ -343,20 +356,19 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       transcriptUrl,
       academicBio,
       academicBioPrivate,
-      areasInput,
-      parseAreas,
+      selectedAreas,
     ]
   );
 
   // Derived preview chips for intended majors
-  const studyChips = React.useMemo(() => parseAreas(areasInput), [areasInput, parseAreas]);
+  const studyChips = selectedAreas;
 
   // Remove one chip: rebuild the CSV minus that index
-  const removeChip = (idx: number) => {
-    const arr = parseAreas(areasInput);
-    arr.splice(idx, 1);
-    writeAreas(arr.join(", "));
-  };
+ const removeChip = (idx: number) => {
+  const next = [...selectedAreas];
+  next.splice(idx, 1);
+  syncAreas(next);
+};
 
   /** ---------------- Upload helpers ---------------- */
   function inferUploadSlug(): string | null {
@@ -885,33 +897,27 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
   </p>
 
   <div style={{ position: "relative" }}>
-    <input
-      value={areasText}
-      disabled={academicsLocked || intendedMajorsReadOnly}
-      onChange={(e) => {
-        if (intendedMajorsReadOnly) return;
-
-        const v = e.target.value;
-        const clipped =
-          v.length <= MAX_STUDY_CHARS ? v : v.slice(0, MAX_STUDY_CHARS);
-
-        setAreasText(clipped);
-        if (setAreasOfStudyInput) setAreasOfStudyInput(clipped);
-      }}
-      placeholder="Search majors or academic areas..."
-      style={{
-        ...inputStyle,
-        width: "100%",
-        background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
-        color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
-        cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
-      }}
+<input
+  value={areasSearch}
+  disabled={academicsLocked || intendedMajorsReadOnly}
+  onChange={(e) => {
+    if (intendedMajorsReadOnly) return;
+    setAreasSearch(e.target.value);
+  }}
+  placeholder="Type to search majors or academic areas..."
+  style={{
+    ...inputStyle,
+    width: "100%",
+    background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
+    color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
+    cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
+  }}
+/>
       maxLength={MAX_STUDY_CHARS}
-    />
 
     {!academicsLocked &&
     !intendedMajorsReadOnly &&
-    areasText.trim() &&
+    areasSearch.trim() &&
     academicAreaMatches.length ? (
       <div
         style={{
@@ -930,30 +936,28 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         }}
       >
         {academicAreaMatches.map((area) => (
-          <button
-            key={area}
-            type="button"
-            onClick={() => {
-              const current = parseAreas(areasInput);
-              const next = Array.from(new Set([...current, area])).slice(0, 12);
-
-              writeAreas(next.join(", "));
-              setAreasText("");
-            }}
-            style={{
-              width: "100%",
-              textAlign: "left",
-              border: "none",
-              background: "transparent",
-              padding: "9px 10px",
-              borderRadius: 9,
-              cursor: "pointer",
-              fontWeight: 800,
-              color: "#0f172a",
-            }}
-          >
-            {area}
-          </button>
+<button
+  key={area}
+  type="button"
+  onClick={() => {
+    const next = Array.from(new Set([...selectedAreas, area])).slice(0, 12);
+    syncAreas(next);
+    setAreasSearch("");
+  }}
+  style={{
+    width: "100%",
+    textAlign: "left",
+    border: "none",
+    background: "transparent",
+    padding: "9px 10px",
+    borderRadius: 9,
+    cursor: "pointer",
+    fontWeight: 800,
+    color: "#0f172a",
+  }}
+>
+  {area}
+</button>
         ))}
       </div>
     ) : null}
@@ -1049,7 +1053,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       color: "#64748b",
     }}
   >
-    {areasInput.length}/{MAX_STUDY_CHARS}
+    {selectedAreas.length}/12 selected
   </div>
 </section>
     </>
