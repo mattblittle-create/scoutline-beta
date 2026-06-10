@@ -794,17 +794,17 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(125px, 1fr))",
               gap: 10,
             }}
           >
             <Info
-              label="Recruiting Aggressiveness"
+              label="Aggressiveness"
               value={pretty(baseball?.recruitingAggressiveness)}
             />
 
             <Info
-              label="Regional Recruiting Bias"
+              label="Regional Bias"
               value={pretty(baseball?.regionalRecruitingBias)}
             />
 
