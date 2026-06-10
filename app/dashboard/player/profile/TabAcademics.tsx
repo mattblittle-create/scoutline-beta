@@ -275,6 +275,7 @@ const [selectedAreas, setSelectedAreas] = React.useState<string[]>(() =>
 );
 
 const [areasSearch, setAreasSearch] = React.useState("");
+const [areasDropdownOpen, setAreasDropdownOpen] = React.useState(false);
 
 React.useEffect(() => {
   if (typeof areasOfStudyInput === "string") {
@@ -314,9 +315,9 @@ const academicAreaMatches = React.useMemo(
   () =>
     ACADEMIC_AREA_OPTIONS.filter(
       (area) =>
-        area.toLowerCase().startsWith(areasSearch.toLowerCase()) &&
+        area.toLowerCase().startsWith(areasSearch.trim().toLowerCase()) &&
         !selectedAreas.includes(area)
-    ),
+    ).sort((a, b) => a.localeCompare(b)),
   [areasSearch, selectedAreas]
 );
 
@@ -896,71 +897,103 @@ const academicAreaMatches = React.useMemo(
     You can update this anytime.
   </p>
 
-  <div style={{ position: "relative" }}>
-<input
-  value={areasSearch}
-  disabled={academicsLocked || intendedMajorsReadOnly}
-  onChange={(e) => {
-    if (intendedMajorsReadOnly) return;
-    setAreasSearch(e.target.value);
-  }}
-  placeholder="Type to search majors or academic areas..."
-  style={{
-    ...inputStyle,
-    width: "100%",
-    background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
-    color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
-    cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
-  }}
-/>
+<div style={{ position: "relative" }}>
+  <div style={{ display: "flex", gap: 6 }}>
+    <input
+      value={areasSearch}
+      disabled={academicsLocked || intendedMajorsReadOnly}
+      onFocus={() => {
+        if (!academicsLocked && !intendedMajorsReadOnly) {
+          setAreasDropdownOpen(true);
+        }
+      }}
+      onChange={(e) => {
+        if (intendedMajorsReadOnly) return;
+        setAreasSearch(e.target.value);
+        setAreasDropdownOpen(true);
+      }}
+      placeholder="Type to search majors or academic areas..."
+      style={{
+        ...inputStyle,
+        width: "100%",
+        background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
+        color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
+        cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
+      }}
+    />
 
-    {!academicsLocked &&
-    !intendedMajorsReadOnly &&
-    areasSearch.trim() &&
-    academicAreaMatches.length ? (
-      <div
-        style={{
-          position: "absolute",
-          zIndex: 20,
-          top: "calc(100% + 4px)",
-          left: 0,
-          right: 0,
-          background: "#ffffff",
-          border: "1px solid #cbd5e1",
-          borderRadius: 12,
-          boxShadow: "0 12px 30px rgba(15,23,42,0.14)",
-          maxHeight: 220,
-          overflowY: "auto",
-          padding: 6,
-        }}
-      >
-        {academicAreaMatches.map((area) => (
-<button
-  key={area}
-  type="button"
-  onClick={() => {
-    const next = Array.from(new Set([...selectedAreas, area])).slice(0, 12);
-    syncAreas(next);
-    setAreasSearch("");
-  }}
-  style={{
-    width: "100%",
-    textAlign: "left",
-    border: "none",
-    background: "transparent",
-    padding: "9px 10px",
-    borderRadius: 9,
-    cursor: "pointer",
-    fontWeight: 800,
-    color: "#0f172a",
-  }}
->
-  {area}
-</button>
-        ))}
-      </div>
-    ) : null}
+    <button
+      type="button"
+      disabled={academicsLocked || intendedMajorsReadOnly}
+      onClick={() => {
+        if (academicsLocked || intendedMajorsReadOnly) return;
+        setAreasDropdownOpen((prev) => !prev);
+      }}
+      style={{
+        border: "1px solid #cbd5e1",
+        borderRadius: 10,
+        background: "#ffffff",
+        color: "#0f172a",
+        fontWeight: 900,
+        padding: "0 12px",
+        cursor: academicsLocked || intendedMajorsReadOnly ? "not-allowed" : "pointer",
+      }}
+      aria-label="Open intended major options"
+      title="Open major options"
+    >
+      ▾
+    </button>
   </div>
+
+  {!academicsLocked &&
+  !intendedMajorsReadOnly &&
+  areasDropdownOpen &&
+  academicAreaMatches.length ? (
+    <div
+      style={{
+        position: "absolute",
+        zIndex: 20,
+        top: "calc(100% + 4px)",
+        left: 0,
+        right: 0,
+        background: "#ffffff",
+        border: "1px solid #cbd5e1",
+        borderRadius: 12,
+        boxShadow: "0 12px 30px rgba(15,23,42,0.14)",
+        maxHeight: 240,
+        overflowY: "auto",
+        padding: 6,
+      }}
+    >
+      {academicAreaMatches.map((area) => (
+        <button
+          key={area}
+          type="button"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => {
+            const next = Array.from(new Set([...selectedAreas, area])).slice(0, 12);
+            syncAreas(next);
+            setAreasSearch("");
+            setAreasDropdownOpen(true);
+          }}
+          style={{
+            width: "100%",
+            textAlign: "left",
+            border: "none",
+            background: "transparent",
+            padding: "9px 10px",
+            borderRadius: 9,
+            cursor: "pointer",
+            fontWeight: 800,
+            color: "#0f172a",
+          }}
+        >
+          {area}
+        </button>
+      ))}
+    </div>
+  ) : null}
+</div>
 
   <div
     style={{
