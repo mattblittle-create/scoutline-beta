@@ -845,7 +845,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
         allOptions={ACADEMIC_AREA_OPTIONS.map((area) => [area, area])}
       />
 
-      <Field label={`Max: $${maxTuition.toLocaleString()}`}>
+      <Field label={`Max Tuition: $${maxTuition.toLocaleString()}`}>
         <div style={{ width: "100%" }}>
           <input
             type="range"
