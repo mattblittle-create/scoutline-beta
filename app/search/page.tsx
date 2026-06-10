@@ -348,6 +348,7 @@ export default function CollegeSearchPage() {
   const [conferenceInput, setConferenceInput] = useState("");
   const [academicAreas, setAcademicAreas] = useState<string[]>([]);
   const [academicAreaInput, setAcademicAreaInput] = useState("");
+  const [didLoadProfileMajors, setDidLoadProfileMajors] = useState(false);
   const [control, setControl] = useState("");
   const [maxTuition, setMaxTuition] = useState(TUITION_MAX);
 
@@ -477,63 +478,95 @@ setSavedCollegePriorities({});
   };
 }, [isLoggedIn]);
 
-  useEffect(() => {
-    let cancelled = false;
+useEffect(() => {
+  let cancelled = false;
 
-    async function runSearch() {
-      setError("");
+  async function runSearch() {
+    setError("");
 
-      if (!shouldSearch) {
-        setResults([]);
-        return;
-      }
-
-      try {
-        setLoading(true);
-
-        const params = new URLSearchParams();
-if (q.trim().length >= 2) params.set("q", q.trim());
-
-if (isLoggedIn) {
-  if (states.length) params.set("state", states.join(","));
-  if (regions.length) params.set("region", regions.join(","));
-  if (divisions.length) params.set("division", divisions.join(","));
-  if (conferences.length) params.set("conference", conferences.join(","));
-  if (academicAreas.length) params.set("academicArea", academicAreas.join(","));
-  if (control) params.set("control", control);
-  if (maxTuition < TUITION_MAX) params.set("maxTuition", String(maxTuition));
-}
-        params.set("limit", "100");
-
-        const res = await fetch(`/api/colleges/search?${params.toString()}`, {
-          cache: "no-store",
-        });
-
-        const data = await res.json();
-
-        if (!res.ok || !data?.ok) {
-          throw new Error(data?.error || "Search failed.");
-        }
-
-        if (!cancelled) setResults(data.results || []);
-      } catch (err) {
-        console.error("COLLEGE_SEARCH_PAGE_ERROR", err);
-        if (!cancelled) {
-          setError("Could not search colleges. Please try again.");
-          setResults([]);
-        }
-      } finally {
-        if (!cancelled) setLoading(false);
-      }
+    if (!shouldSearch) {
+      setResults([]);
+      return;
     }
 
-    const t = window.setTimeout(runSearch, 250);
+    try {
+      setLoading(true);
 
-    return () => {
-      cancelled = true;
-      window.clearTimeout(t);
-    };
-  }, [q, states, regions, divisions, conferences, control, maxTuition, isLoggedIn, shouldSearch]);
+      const params = new URLSearchParams();
+
+      if (q.trim().length >= 2) params.set("q", q.trim());
+
+      if (isLoggedIn) {
+        if (states.length) params.set("state", states.join(","));
+        if (regions.length) params.set("region", regions.join(","));
+        if (divisions.length) params.set("division", divisions.join(","));
+        if (conferences.length) params.set("conference", conferences.join(","));
+        if (academicAreas.length) params.set("academicArea", academicAreas.join(","));
+        if (control) params.set("control", control);
+        if (maxTuition < TUITION_MAX) params.set("maxTuition", String(maxTuition));
+      }
+
+      params.set("limit", "100");
+
+      const res = await fetch(`/api/colleges/search?${params.toString()}`, {
+        cache: "no-store",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Search failed.");
+      }
+
+      if (!cancelled) {
+        const profileMajors = Array.isArray(data.profileAcademicAreas)
+          ? data.profileAcademicAreas
+              .map((v: any) => String(v || "").trim())
+              .filter(Boolean)
+          : [];
+
+        if (
+          !didLoadProfileMajors &&
+          academicAreas.length === 0 &&
+          profileMajors.length
+        ) {
+          setAcademicAreas(profileMajors);
+          setDidLoadProfileMajors(true);
+        }
+
+        setResults(data.results || []);
+      }
+    } catch (err) {
+      console.error("COLLEGE_SEARCH_PAGE_ERROR", err);
+
+      if (!cancelled) {
+        setError("Could not search colleges. Please try again.");
+        setResults([]);
+      }
+    } finally {
+      if (!cancelled) setLoading(false);
+    }
+  }
+
+  const t = window.setTimeout(runSearch, 250);
+
+  return () => {
+    cancelled = true;
+    window.clearTimeout(t);
+  };
+}, [
+  q,
+  states,
+  regions,
+  divisions,
+  conferences,
+  academicAreas,
+  control,
+  maxTuition,
+  isLoggedIn,
+  shouldSearch,
+  didLoadProfileMajors,
+]);
 
   const stateMatches = useMemo(
     () =>

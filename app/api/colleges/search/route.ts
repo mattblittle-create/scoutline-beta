@@ -27,6 +27,46 @@ function listParam(searchParams: URLSearchParams, key: string) {
     .filter(Boolean);
 }
 
+function extractAcademicAreasFromProfileData(data: any): string[] {
+  const normalized = data?.normalized || data || {};
+
+  const candidates = [
+    normalized?.areasOfStudy,
+    normalized?.academics?.areasOfStudy,
+    normalized?.academic?.areasOfStudy,
+    normalized?.intendedMajors,
+    normalized?.academics?.intendedMajors,
+    data?.areasOfStudy,
+    data?.academics?.areasOfStudy,
+    data?.intendedMajors,
+  ];
+
+  for (const value of candidates) {
+    if (Array.isArray(value)) {
+      return Array.from(
+        new Set(
+          value
+            .map((v) => String(v || "").trim())
+            .filter(Boolean)
+        )
+      ).slice(0, 12);
+    }
+
+    if (typeof value === "string" && value.trim()) {
+      return Array.from(
+        new Set(
+          value
+            .split(",")
+            .map((v) => v.trim())
+            .filter(Boolean)
+        )
+      ).slice(0, 12);
+    }
+  }
+
+  return [];
+}
+
 async function getCurrentPlayerProfile() {
   const userId = cookies().get("scoutline_uid")?.value || "";
 
@@ -104,6 +144,7 @@ async function getCurrentPlayerProfile() {
         normalized?.metrics && typeof normalized.metrics === "object"
           ? normalized.metrics
           : {},
+      academicAreas: extractAcademicAreasFromProfileData(data),
     },
   };
 }
@@ -237,11 +278,12 @@ export async function GET(req: NextRequest) {
       })
     );
 
-    return NextResponse.json({
-      ok: true,
-      count: resultsWithTruthFit.length,
-      results: resultsWithTruthFit,
-    });
+return NextResponse.json({
+  ok: true,
+  count: resultsWithTruthFit.length,
+  profileAcademicAreas: profile?.player?.academicAreas || [],
+  results: resultsWithTruthFit,
+});
   } catch (err) {
     console.error("COLLEGE_SEARCH_ERROR", err);
     return NextResponse.json(
