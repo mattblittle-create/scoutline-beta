@@ -60,7 +60,7 @@ const ACADEMIC_AREA_OPTIONS = [
   "Pre-Med",
   "Nursing",
   "Psychology",
-];
+].sort((a, b) => a.localeCompare(b));
 
 const TARGET_STATUS_OPTIONS = [
   ["SAVED", "Saved"],

@@ -118,6 +118,40 @@ type Props = {
   uploadEndpoint?: string;
 };
 
+const ACADEMIC_AREA_OPTIONS = [
+  "Accounting",
+  "Architecture",
+  "Athletic Training",
+  "Biology",
+  "Business",
+  "Chemistry",
+  "Communications",
+  "Computer Science",
+  "Criminal Justice",
+  "Data Science",
+  "Education",
+  "Engineering",
+  "Entrepreneurship",
+  "Exercise Science",
+  "Finance",
+  "Health Sciences",
+  "History",
+  "Kinesiology",
+  "Marketing",
+  "Mathematics",
+  "Nursing",
+  "Political Science",
+  "Pre-Law",
+  "Pre-Med",
+  "Psychology",
+  "Public Health",
+  "Sociology",
+  "Sports Management",
+  "Sports Medicine",
+  "Statistics",
+  "Supply Chain & Logistics",
+].sort((a, b) => a.localeCompare(b));
+
 /** ---------- Component ---------- */
 const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcademics(
   props,
@@ -258,10 +292,20 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean)
-      .map((s) => s.replace(/\s+/g, " ")) // collapse inner whitespace
-      .map(titleCase) // Title Case for chips & payload
-      .slice(0, 12); // soft cap
+      .map((s) => s.replace(/\s+/g, " "))
+      .map(titleCase)
+      .slice(0, 12);
   }, []);
+
+  const academicAreaMatches = React.useMemo(
+    () =>
+      ACADEMIC_AREA_OPTIONS.filter(
+        (area) =>
+          area.toLowerCase().startsWith(areasText.toLowerCase()) &&
+          !parseAreas(areasInput).includes(area)
+      ),
+    [areasText, areasInput, parseAreas]
+  );
 
   // Expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
@@ -809,149 +853,205 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       </section>
 
       {/* Intended Major(s) */}
-      <section style={{ marginTop: 12 }}>
-        
-        {intendedMajorsReadOnly ? (
-          <div
+<section style={{ marginTop: 12 }}>
+  {intendedMajorsReadOnly ? (
+    <div
+      style={{
+        marginBottom: 8,
+        padding: "10px 12px",
+        borderRadius: 10,
+        background: "#f8fafc",
+        border: "1px solid #e2e8f0",
+        color: "#FF0000",
+        fontSize: 13,
+        fontWeight: 600,
+      }}
+    >
+      Intended Majors is a player-controlled field and cannot be edited from the parent account.
+    </div>
+  ) : null}
+
+  <h3 style={{ ...labelText, margin: 0 }}>Intended Major(s)</h3>
+
+  <p
+    style={{
+      color: "#475569",
+      marginTop: 4,
+      marginBottom: 6,
+    }}
+  >
+    Select possible academic areas or majors you’re interested in. It’s okay if you do not know yet.
+    You can update this anytime.
+  </p>
+
+  <div style={{ position: "relative" }}>
+    <input
+      value={areasText}
+      disabled={academicsLocked || intendedMajorsReadOnly}
+      onChange={(e) => {
+        if (intendedMajorsReadOnly) return;
+
+        const v = e.target.value;
+        const clipped =
+          v.length <= MAX_STUDY_CHARS ? v : v.slice(0, MAX_STUDY_CHARS);
+
+        setAreasText(clipped);
+        if (setAreasOfStudyInput) setAreasOfStudyInput(clipped);
+      }}
+      placeholder="Search majors or academic areas..."
+      style={{
+        ...inputStyle,
+        width: "100%",
+        background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
+        color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
+        cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
+      }}
+      maxLength={MAX_STUDY_CHARS}
+    />
+
+    {!academicsLocked &&
+    !intendedMajorsReadOnly &&
+    areasText.trim() &&
+    academicAreaMatches.length ? (
+      <div
+        style={{
+          position: "absolute",
+          zIndex: 20,
+          top: "calc(100% + 4px)",
+          left: 0,
+          right: 0,
+          background: "#ffffff",
+          border: "1px solid #cbd5e1",
+          borderRadius: 12,
+          boxShadow: "0 12px 30px rgba(15,23,42,0.14)",
+          maxHeight: 220,
+          overflowY: "auto",
+          padding: 6,
+        }}
+      >
+        {academicAreaMatches.map((area) => (
+          <button
+            key={area}
+            type="button"
+            onClick={() => {
+              const current = parseAreas(areasInput);
+              const next = Array.from(new Set([...current, area])).slice(0, 12);
+
+              writeAreas(next.join(", "));
+              setAreasText("");
+            }}
             style={{
-              marginBottom: 8,
-              padding: "10px 12px",
-              borderRadius: 10,
-              background: "#f8fafc",
-              border: "1px solid #e2e8f0",
-              color: "#FF0000",
-              fontSize: 13,
-              fontWeight: 600,
+              width: "100%",
+              textAlign: "left",
+              border: "none",
+              background: "transparent",
+              padding: "9px 10px",
+              borderRadius: 9,
+              cursor: "pointer",
+              fontWeight: 800,
+              color: "#0f172a",
             }}
           >
-            Intended Majors is a player-controlled field and cannot be edited from the parent account.
-            </div>
-            ) : null}
-            
-        <h3 style={{ ...labelText, margin: 0 }}>Intended Major(s)</h3>
-        <p
-          style={{
-            color: "#475569",
-            marginTop: 4,
-            marginBottom: 6,
-          }}
-        >
-          List possible areas of study you’re interested in. Separate with commas (ex.{" "}
-          <em>Business, Biology, Sports Medicine, etc.</em>). It's ok if you do not
-          know yet. Just leave this area blank. Max {MAX_STUDY_CHARS} characters.
-        </p>
+            {area}
+          </button>
+        ))}
+      </div>
+    ) : null}
+  </div>
 
-        <input
-          value={areasInput}
-          disabled={academicsLocked || intendedMajorsReadOnly}
-          onChange={(e) => {
-            if (intendedMajorsReadOnly) return;
+  <div
+    style={{
+      marginTop: 8,
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+    }}
+  >
+    {studyChips.length > 0 ? (
+      studyChips
+        .slice()
+        .sort((a, b) => a.localeCompare(b))
+        .map((chip, idx) => (
+          <span
+            key={`${chip}-${idx}`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              fontSize: 12,
+              fontWeight: 700,
+              color: "#475569",
+              background: "#f1f5f9",
+              border: "1px solid #e2e8f0",
+              borderRadius: 999,
+              padding: "3px 10px",
+            }}
+            title={chip}
+          >
+            {chip}
 
-            const v = e.target.value;
-            const clipped =
-              v.length <= MAX_STUDY_CHARS ? v : v.slice(0, MAX_STUDY_CHARS);
-            writeAreas(clipped);
-          }}
-          placeholder="Business, Biology, Sports Medicine, etc."
-          style={{
-            ...inputStyle,
-            width: "100%",
-            background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
-            color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
-            cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
-          }}
-          maxLength={MAX_STUDY_CHARS}
-        />
-
-        <div
-          style={{
-            marginTop: 6,
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 6,
-          }}
-        >
-          {studyChips.length > 0 ? (
-            studyChips.map((chip, idx) => (
-              <span
-                key={`${chip}-${idx}`}
+            {!intendedMajorsReadOnly ? (
+              <button
+                type="button"
+                onClick={() => {
+                  if (academicsLocked || intendedMajorsReadOnly) return;
+                  removeChip(idx);
+                }}
+                disabled={academicsLocked || intendedMajorsReadOnly}
+                title={
+                  academicsLocked || intendedMajorsReadOnly
+                    ? "Team Admin cannot remove intended majors."
+                    : `Remove ${chip}`
+                }
+                aria-label={`Remove ${chip}`}
                 style={{
+                  marginLeft: 4,
+                  width: 18,
+                  height: 18,
+                  lineHeight: "16px",
+                  borderRadius: 9,
+                  border: "1px solid #cbd5e1",
+                  background: "#ffffff",
+                  color: "#64748b",
+                  fontWeight: 800,
+                  cursor:
+                    academicsLocked || intendedMajorsReadOnly ? "not-allowed" : "pointer",
+                  opacity: academicsLocked || intendedMajorsReadOnly ? 0.6 : 1,
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#475569",
-                  background: "#f1f5f9",
-                  border: "1px solid #e2e8f0",
-                  borderRadius: 999,
-                  padding: "3px 10px",
+                  justifyContent: "center",
+                  padding: 0,
                 }}
-                title={chip}
               >
-                {chip}
+                ×
+              </button>
+            ) : null}
+          </span>
+        ))
+    ) : (
+      <span
+        style={{
+          fontSize: 12,
+          color: "#94a3b8",
+          fontStyle: "italic",
+        }}
+      >
+        No majors added yet.
+      </span>
+    )}
+  </div>
 
-                {!intendedMajorsReadOnly ? (
-<button
-  type="button"
-  onClick={() => {
-    if (academicsLocked || intendedMajorsReadOnly) return;
-    removeChip(idx);
-  }}
-  disabled={academicsLocked || intendedMajorsReadOnly}
-  title={
-    academicsLocked || intendedMajorsReadOnly
-      ? "Team Admin cannot remove intended majors."
-      : `Remove ${chip}`
-  }
-  aria-label={`Remove ${chip}`}
-  style={{
-    marginLeft: 4,
-    width: 18,
-    height: 18,
-    lineHeight: "16px",
-    borderRadius: 9,
-    border: "1px solid #cbd5e1",
-    background: "#ffffff",
-    color: "#64748b",
-    fontWeight: 800,
-    cursor: academicsLocked || intendedMajorsReadOnly ? "not-allowed" : "pointer",
-    opacity: academicsLocked || intendedMajorsReadOnly ? 0.6 : 1,
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 0,
-  }}
->
-  ×
-</button>
-                ) : null}
-              </span>
-            ))
-          ) : (
-            <span
-              style={{
-                fontSize: 12,
-                color: "#94a3b8",
-                fontStyle: "italic",
-              }}
-            >
-              No majors added yet.
-            </span>
-          )}
-        </div>
-
-        <div
-          style={{
-            marginTop: 4,
-            textAlign: "right",
-            fontSize: 12,
-            color: "#64748b",
-          }}
-        >
-          {areasInput.length}/{MAX_STUDY_CHARS}
-        </div>
-      </section>
+  <div
+    style={{
+      marginTop: 4,
+      textAlign: "right",
+      fontSize: 12,
+      color: "#64748b",
+    }}
+  >
+    {areasInput.length}/{MAX_STUDY_CHARS}
+  </div>
+</section>
     </>
   );
 });
