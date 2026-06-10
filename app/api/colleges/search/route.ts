@@ -28,32 +28,49 @@ function listParam(searchParams: URLSearchParams, key: string) {
 }
 
 function extractAcademicAreasFromProfileData(data: any): string[] {
-  const normalized = data?.normalized || data || {};
+  const normalized = data?.normalized || {};
+  const academics = data?.academics || {};
+  const normalizedAcademics = normalized?.academics || {};
+  const tabs = data?.tabs || {};
+  const tabAcademics = tabs?.academics || {};
 
   const candidates = [
-    normalized?.areasOfStudy,
-    normalized?.academics?.areasOfStudy,
-    normalized?.academic?.areasOfStudy,
-    normalized?.intendedMajors,
-    normalized?.academics?.intendedMajors,
     data?.areasOfStudy,
-    data?.academics?.areasOfStudy,
     data?.intendedMajors,
+
+    academics?.areasOfStudy,
+    academics?.intendedMajors,
+
+    normalized?.areasOfStudy,
+    normalized?.intendedMajors,
+
+    normalizedAcademics?.areasOfStudy,
+    normalizedAcademics?.intendedMajors,
+
+    tabAcademics?.areasOfStudy,
+    tabAcademics?.intendedMajors,
+
+    data?.academic?.areasOfStudy,
+    data?.academic?.intendedMajors,
+    normalized?.academic?.areasOfStudy,
+    normalized?.academic?.intendedMajors,
   ];
 
   for (const value of candidates) {
     if (Array.isArray(value)) {
-      return Array.from(
+      const cleaned = Array.from(
         new Set(
           value
             .map((v) => String(v || "").trim())
             .filter(Boolean)
         )
       ).slice(0, 12);
+
+      if (cleaned.length) return cleaned;
     }
 
     if (typeof value === "string" && value.trim()) {
-      return Array.from(
+      const cleaned = Array.from(
         new Set(
           value
             .split(",")
@@ -61,6 +78,8 @@ function extractAcademicAreasFromProfileData(data: any): string[] {
             .filter(Boolean)
         )
       ).slice(0, 12);
+
+      if (cleaned.length) return cleaned;
     }
   }
 
