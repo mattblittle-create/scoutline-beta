@@ -913,7 +913,6 @@ const academicAreaMatches = React.useMemo(
     cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
   }}
 />
-      maxLength={MAX_STUDY_CHARS}
 
     {!academicsLocked &&
     !intendedMajorsReadOnly &&
