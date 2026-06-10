@@ -120,6 +120,7 @@ export async function GET(req: NextRequest) {
     const controls = listParam(searchParams, "control");
     const divisions = listParam(searchParams, "division");
     const conferences = listParam(searchParams, "conference");
+    const academicAreas = listParam(searchParams, "academicArea");
 
     const rawMaxTuition = searchParams.get("maxTuition");
     const maxTuition = rawMaxTuition ? Number(rawMaxTuition) : undefined;
@@ -154,18 +155,28 @@ export async function GET(req: NextRequest) {
                 },
               }
             : {},
+
+          academicAreas.length
+            ? {
+                academicAreas: {
+                  some: {
+                    name: { in: academicAreas, mode: "insensitive" },
+                  },
+                },
+              }
+            : {},
         ],
       },
-include: {
-  academicAreas: true,
-  nilProfile: true,
-  baseballProgram: {
-    include: {
-      rosterNeeds: true,
-      metricAverages: true,
-    },
-  },
-},
+      include: {
+        academicAreas: true,
+        nilProfile: true,
+        baseballProgram: {
+          include: {
+            rosterNeeds: true,
+            metricAverages: true,
+          },
+        },
+      },
       orderBy: { name: "asc" },
       take: limit,
     });

@@ -43,6 +43,25 @@ const DIVISIONS = [
   ["NJCAA_D3", "NJCAA D3"],
 ] as const;
 
+const ACADEMIC_AREA_OPTIONS = [
+  "Business",
+  "Finance",
+  "Marketing",
+  "Sports Management",
+  "Kinesiology",
+  "Exercise Science",
+  "Sports Medicine",
+  "Education",
+  "Engineering",
+  "Computer Science",
+  "Communications",
+  "Criminal Justice",
+  "Biology",
+  "Pre-Med",
+  "Nursing",
+  "Psychology",
+];
+
 const TARGET_STATUS_OPTIONS = [
   ["SAVED", "Saved"],
   ["INTERESTED", "Interested"],
@@ -327,6 +346,8 @@ export default function CollegeSearchPage() {
   const [divisionInput, setDivisionInput] = useState("");
   const [conferences, setConferences] = useState<string[]>([]);
   const [conferenceInput, setConferenceInput] = useState("");
+  const [academicAreas, setAcademicAreas] = useState<string[]>([]);
+  const [academicAreaInput, setAcademicAreaInput] = useState("");
   const [control, setControl] = useState("");
   const [maxTuition, setMaxTuition] = useState(TUITION_MAX);
 
@@ -351,7 +372,8 @@ const hasAdvancedSearch =
   (states.length > 0 ||
     regions.length > 0 ||
     divisions.length > 0 ||
-    conferences.length > 0 ||
+  conferences.length > 0 ||
+    academicAreas.length > 0 ||
     !!control ||
     maxTuition < TUITION_MAX);
 
@@ -477,6 +499,7 @@ if (isLoggedIn) {
   if (regions.length) params.set("region", regions.join(","));
   if (divisions.length) params.set("division", divisions.join(","));
   if (conferences.length) params.set("conference", conferences.join(","));
+  if (academicAreas.length) params.set("academicArea", academicAreas.join(","));
   if (control) params.set("control", control);
   if (maxTuition < TUITION_MAX) params.set("maxTuition", String(maxTuition));
 }
@@ -551,6 +574,16 @@ const conferenceMatches = useMemo(
       !conferences.includes(c)
     ),
   [availableConferences, conferenceInput, conferences]
+);
+
+const academicAreaMatches = useMemo(
+  () =>
+    ACADEMIC_AREA_OPTIONS.filter(
+      (area) =>
+        area.toLowerCase().startsWith(academicAreaInput.toLowerCase()) &&
+        !academicAreas.includes(area)
+    ),
+  [academicAreaInput, academicAreas]
 );
 
 useEffect(() => {
@@ -714,12 +747,14 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
     setRegions([]);
     setDivisions([]);
     setConferences([]);
+    setAcademicAreas([]);
     setControl("");
     setMaxTuition(TUITION_MAX);
     setStateInput("");
     setRegionInput("");
     setDivisionInput("");
     setConferenceInput("");
+    setAcademicAreaInput("");
     setSortBy("TRUTH_FIT");
   }
 
@@ -798,6 +833,16 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
         setSelected={setConferences}
         matches={conferenceMatches.map((c) => [c, c])}
         allOptions={availableConferences.map((c) => [c, c])}
+      />
+
+      <AutoChipField
+        label="Academic Area / Major(s)"
+        value={academicAreaInput}
+        setValue={setAcademicAreaInput}
+        selected={academicAreas}
+        setSelected={setAcademicAreas}
+        matches={academicAreaMatches.map((area) => [area, area])}
+        allOptions={ACADEMIC_AREA_OPTIONS.map((area) => [area, area])}
       />
 
       <Field label={`Max: $${maxTuition.toLocaleString()}`}>
