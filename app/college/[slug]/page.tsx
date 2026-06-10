@@ -208,7 +208,13 @@ type CollegeDetail = {
 function pretty(value?: string | null) {
   if (!value) return "—";
 
-  const raw = value.replace(/_/g, " ").toUpperCase();
+  const normalized = value.trim().toUpperCase();
+
+  if (normalized === "LOW_0_25") return "Low";
+  if (normalized === "MEDIUM_26_60") return "Medium";
+  if (normalized === "HIGH_61_100") return "High";
+
+  const raw = normalized.replace(/_/g, " ");
 
   return raw
     .split(" ")
@@ -916,16 +922,16 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
         {coach.name}
 
         {coach.title ? (
-          <span
-            style={{
-              marginLeft: 8,
-              color: "#64748b",
-              fontSize: 13,
-              fontWeight: 800,
-            }}
-          >
-            {coach.title}
-          </span>
+<span
+  style={{
+    marginLeft: 8,
+    color: "#64748b",
+    fontSize: 13,
+    fontWeight: 800,
+  }}
+>
+  {coach.title}
+</span>
         ) : null}
       </div>
 
