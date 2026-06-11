@@ -4,6 +4,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { QRCodeSVG } from "qrcode.react";
+import { ACADEMIC_AREA_OPTIONS } from "@/app/lib/academics/academicAreas";
 
 const ROLE_PRESETS = [
   "Head Coach",
@@ -389,6 +390,14 @@ function ProgramIntelligenceSection(props: {
   nilProfile: NilProfile | null;
   rosterNeeds: RosterNeed[];
   metricBenchmarks: MetricBenchmark[];
+  selectedAcademicAreas: string[];
+  academicAreaInput: string;
+  academicAreaMatches: string[];
+  setAcademicAreaInput: (value: string) => void;
+  addAcademicArea: (area: string) => void;
+  removeAcademicArea: (area: string) => void;
+  submitProgramVerification: () => void;
+  submittingVerification: boolean;
 }) {
   const {
     verifiedStatus,
@@ -400,27 +409,36 @@ function ProgramIntelligenceSection(props: {
     nilProfile,
     rosterNeeds,
     metricBenchmarks,
+    selectedAcademicAreas,
+    academicAreaInput,
+    academicAreaMatches,
+    setAcademicAreaInput,
+    addAcademicArea,
+    removeAcademicArea,
+    submitProgramVerification,
+    submittingVerification,
   } = props;
 
   const isVerified = String(verifiedStatus || "").toUpperCase() === "VERIFIED";
 
-  const needsByYear = rosterNeeds.reduce<Record<string, RosterNeed[]>>((acc, need) => {
+  const needsByYear: Record<string, RosterNeed[]> = {};
+  rosterNeeds.forEach((need) => {
     const key = need.gradYear ? String(need.gradYear) : "Unassigned";
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(need);
-    return acc;
-  }, {});
+    if (!needsByYear[key]) needsByYear[key] = [];
+    needsByYear[key].push(need);
+  });
 
-  const metricsByGroup = metricBenchmarks.reduce<Record<string, MetricBenchmark[]>>((acc, m) => {
-    const key = m.positionGroup || "General";
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(m);
-    return acc;
-  }, {});
+  const metricsByGroup: Record<string, MetricBenchmark[]> = {};
+  metricBenchmarks.forEach((metric) => {
+    const key = metric.positionGroup || "General";
+    if (!metricsByGroup[key]) metricsByGroup[key] = [];
+    metricsByGroup[key].push(metric);
+  });
 
   return (
     <div style={card}>
       <div style={cardTitle}>Verified Program Intelligence</div>
+
       <div style={cardSub}>
         Read-only program data used across ScoutLine for public profiles, Suggested Programs, College Search, Truth Fit, and Opportunity Score.
       </div>
@@ -429,7 +447,9 @@ function ProgramIntelligenceSection(props: {
         <div style={intelBox}>
           <div style={intelHeaderRow}>
             <div style={intelTitle}>Program Verification</div>
-            <span style={isVerified ? verifiedBadge : unverifiedBadge}>{isVerified ? "Verified Program" : "Not Verified Yet"}</span>
+            <span style={isVerified ? verifiedBadge : unverifiedBadge}>
+              {isVerified ? "Verified Program" : "Not Verified Yet"}
+            </span>
           </div>
 
           {lastVerifiedAt ? (
@@ -443,21 +463,95 @@ function ProgramIntelligenceSection(props: {
         </div>
 
         <div style={intelBox}>
+          <div style={intelHeaderRow}>
+            <div style={intelTitle}>Academic Areas / Majors</div>
+
+            <button
+              type="button"
+              onClick={submitProgramVerification}
+              disabled={submittingVerification}
+              style={{
+                ...btnOutlineSmall,
+                opacity: submittingVerification ? 0.65 : 1,
+                cursor: submittingVerification ? "not-allowed" : "pointer",
+              }}
+            >
+              {submittingVerification ? "Submitting..." : "Submit Verification"}
+            </button>
+          </div>
+
+          <div style={intelText}>
+            Confirm, add, or remove academic areas offered by your school.
+          </div>
+
+          <div style={{ display: "grid", gap: 8, marginTop: 10 }}>
+            <input
+              value={academicAreaInput}
+              onChange={(e) => setAcademicAreaInput(e.target.value)}
+              style={input}
+              placeholder="Search majors / academic areas..."
+            />
+
+            {academicAreaInput.trim() ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 6,
+                  maxHeight: 110,
+                  overflowY: "auto",
+                  padding: 8,
+                  border: "1px solid #e2e8f0",
+                  borderRadius: 12,
+                  background: "#f8fafc",
+                }}
+              >
+                {academicAreaMatches.length ? (
+                  academicAreaMatches.map((area) => (
+                    <button
+                      key={area}
+                      type="button"
+                      onClick={() => addAcademicArea(area)}
+                      style={chipOff}
+                    >
+                      + {area}
+                    </button>
+                  ))
+                ) : (
+                  <span style={mutedSmall}>No matching academic areas found.</span>
+                )}
+              </div>
+            ) : null}
+
+            {selectedAcademicAreas.length ? (
+              <div style={chipsWrap}>
+                {selectedAcademicAreas.map((area) => (
+                  <button
+                    key={area}
+                    type="button"
+                    onClick={() => removeAcademicArea(area)}
+                    style={chipOn}
+                    title={`Remove ${area}`}
+                  >
+                    {area} ×
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <EmptyState>No academic areas selected yet.</EmptyState>
+            )}
+          </div>
+        </div>
+
+        <div style={intelBox}>
           <div style={intelTitle}>Recruiting Coordinator</div>
           {recruitingCoordinator ? (
-            <div style={contactRow}>
-              {recruitingCoordinator.photoUrl ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={recruitingCoordinator.photoUrl} alt="" style={contactAvatar} />
-              ) : (
-                <div style={contactAvatarFallback}>{(recruitingCoordinator.name || "?").slice(0, 1)}</div>
-              )}
-
-              <div style={{ minWidth: 0 }}>
-                <div style={contactName}>{recruitingCoordinator.name || "Unnamed Coach"}</div>
-                <div style={intelText}>{recruitingCoordinator.title || "Recruiting Coordinator"}</div>
-                <div style={intelText}>{recruitingCoordinator.contactEmail || recruitingCoordinator.email}</div>
-              </div>
+            <div style={intelText}>
+              <strong>{recruitingCoordinator.name || "Unnamed"}</strong>
+              <br />
+              {recruitingCoordinator.title || "Recruiting Contact"}
+              <br />
+              {recruitingCoordinator.contactEmail || recruitingCoordinator.email}
             </div>
           ) : (
             <EmptyState>No recruiting coordinator identified yet.</EmptyState>
@@ -467,66 +561,30 @@ function ProgramIntelligenceSection(props: {
         <div style={intelBox}>
           <div style={intelTitle}>Coach Contacts</div>
           {coachContacts.length ? (
-            <div style={{ display: "grid", gap: 10 }}>
-              {coachContacts.map((c) => (
-                <div key={c.id} style={contactRow}>
-                  {c.photoUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={c.photoUrl} alt="" style={contactAvatar} />
-                  ) : (
-                    <div style={contactAvatarFallback}>{(c.name || "?").slice(0, 1)}</div>
-                  )}
-
-                  <div style={{ minWidth: 0 }}>
-                    <div style={contactName}>{c.name || "Unnamed Coach"}</div>
-                    <div style={intelText}>{c.title || "Staff"}</div>
-                    <div style={intelText}>{c.contactEmail || c.email}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <EmptyState>No coach contacts available yet.</EmptyState>
-          )}
-        </div>
-
-        <div style={intelBox}>
-          <div style={intelTitle}>Academic Areas / Majors</div>
-          {academicAreas.length ? (
             <div style={chipsWrap}>
-              {academicAreas.map((a) => (
-                <InfoPill key={a.id}>{a.name || "Academic Area"}</InfoPill>
+              {coachContacts.slice(0, 10).map((coach) => (
+                <InfoPill key={coach.id}>
+                  {coach.name || coach.email}
+                  {coach.title ? ` — ${coach.title}` : ""}
+                </InfoPill>
               ))}
             </div>
           ) : (
-            <EmptyState>No academic areas loaded yet.</EmptyState>
+            <EmptyState>No coach contacts loaded yet.</EmptyState>
           )}
         </div>
 
         <div style={intelBox}>
-          <div style={intelTitle}>NIL Snapshot</div>
+          <div style={intelTitle}>NIL</div>
           {nilProfile ? (
-            <div style={factGrid}>
-              <div>
-                <div style={factLabel}>Strength</div>
-                <div style={factValue}>{nilProfile.strengthTier || "—"}</div>
-              </div>
-              <div>
-                <div style={factLabel}>Collective</div>
-                <div style={factValue}>{nilProfile.collectiveName || "—"}</div>
-              </div>
-              <div>
-                <div style={factLabel}>Estimated Value</div>
-                <div style={factValue}>{formatMoneyish(nilProfile.estimatedValue)}</div>
-              </div>
-              <div>
-                <div style={factLabel}>Baseball Allocation</div>
-                <div style={factValue}>{formatPercentish(nilProfile.baseballAllocationPercent)}</div>
-              </div>
-              <div>
-                <div style={factLabel}>Updated</div>
-                <div style={factValue}>{nilProfile.updatedAt ? formatShortDateTime(nilProfile.updatedAt) : "—"}</div>
-              </div>
+            <div style={intelText}>
+              Strength: {nilProfile.strengthTier || "—"}
+              <br />
+              Collective: {nilProfile.collectiveName || "—"}
+              <br />
+              Est. Value: {formatMoneyish(nilProfile.estimatedValue)}
+              <br />
+              Baseball Allocation: {formatPercentish(nilProfile.baseballAllocationPercent)}
             </div>
           ) : (
             <EmptyState>No NIL profile loaded yet.</EmptyState>
@@ -536,18 +594,15 @@ function ProgramIntelligenceSection(props: {
         <div style={intelBox}>
           <div style={intelTitle}>Roster Needs</div>
           {Object.keys(needsByYear).length ? (
-            <div style={{ display: "grid", gap: 10 }}>
+            <div style={{ display: "grid", gap: 8 }}>
               {Object.entries(needsByYear).map(([year, needs]) => (
-                <div key={year}>
-                  <div style={factLabel}>Class of {year}</div>
-                  <div style={chipsWrap}>
-                    {needs.map((need) => (
-                      <InfoPill key={need.id}>
-                        {need.position || "Position"}
-                        {need.priority ? ` · ${need.priority}` : ""}
-                      </InfoPill>
-                    ))}
-                  </div>
+                <div key={year} style={intelText}>
+                  <strong>{year}</strong>:{" "}
+                  {needs
+                    .map((need) =>
+                      [need.position, need.priority].filter(Boolean).join(" ")
+                    )
+                    .join(", ")}
                 </div>
               ))}
             </div>
@@ -556,29 +611,26 @@ function ProgramIntelligenceSection(props: {
           )}
         </div>
 
-        <div style={{ ...intelBox, gridColumn: "1 / -1" }}>
-          <div style={intelTitle}>Program Metrics / Benchmarks</div>
+        <div style={intelBox}>
+          <div style={intelTitle}>Metric Benchmarks</div>
           {Object.keys(metricsByGroup).length ? (
-            <div style={metricGrid}>
+            <div style={{ display: "grid", gap: 8 }}>
               {Object.entries(metricsByGroup).map(([group, metrics]) => (
-                <div key={group} style={metricGroupBox}>
-                  <div style={factLabel}>{group}</div>
-                  <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
-                    {metrics.map((m) => (
-                      <div key={m.id} style={metricRow}>
-                        <span>{m.label || m.metricKey || "Metric"}</span>
-                        <strong>
-                          {m.value ?? "—"}
-                          {m.unit ? ` ${m.unit}` : ""}
-                        </strong>
-                      </div>
-                    ))}
-                  </div>
+                <div key={group} style={intelText}>
+                  <strong>{group}</strong>:{" "}
+                  {metrics
+                    .slice(0, 6)
+                    .map((metric) =>
+                      [metric.label || metric.metricKey, metric.value, metric.unit]
+                        .filter(Boolean)
+                        .join(" ")
+                    )
+                    .join(", ")}
                 </div>
               ))}
             </div>
           ) : (
-            <EmptyState>No program benchmarks loaded yet.</EmptyState>
+            <EmptyState>No metric benchmarks loaded yet.</EmptyState>
           )}
         </div>
       </div>
@@ -714,6 +766,9 @@ export default function CoachProfilePage() {
   const [recruitingCoordinator, setRecruitingCoordinator] = useState<ProgramCoachContact | null>(null);
   const [coachContacts, setCoachContacts] = useState<ProgramCoachContact[]>([]);
   const [academicAreas, setAcademicAreas] = useState<AcademicArea[]>([]);
+  const [selectedAcademicAreas, setSelectedAcademicAreas] = useState<string[]>([]);
+  const [academicAreaInput, setAcademicAreaInput] = useState("");
+  const [submittingVerification, setSubmittingVerification] = useState(false);
   const [nilProfile, setNilProfile] = useState<NilProfile | null>(null);
   const [rosterNeeds, setRosterNeeds] = useState<RosterNeed[]>([]);
   const [metricBenchmarks, setMetricBenchmarks] = useState<MetricBenchmark[]>([]);
@@ -821,7 +876,18 @@ export default function CoachProfilePage() {
         
         setRecruitingCoordinator((json.data.program as any)?.recruitingCoordinator ?? null);
         setCoachContacts(Array.isArray((json.data.program as any)?.coachContacts) ? (json.data.program as any).coachContacts : []);
-        setAcademicAreas(Array.isArray((json.data.program as any)?.academicAreas) ? (json.data.program as any).academicAreas : []);
+        const loadedAcademicAreas = Array.isArray((json.data.program as any)?.academicAreas)
+  ? (json.data.program as any).academicAreas
+  : [];
+
+setAcademicAreas(loadedAcademicAreas);
+
+setSelectedAcademicAreas(
+  loadedAcademicAreas
+    .map((area: any) => String(area?.name || "").trim())
+    .filter(Boolean)
+    .sort((a: string, b: string) => a.localeCompare(b))
+);
         setNilProfile((json.data.program as any)?.nilProfile ?? null);
         setRosterNeeds(Array.isArray((json.data.program as any)?.rosterNeeds) ? (json.data.program as any).rosterNeeds : []);
         setMetricBenchmarks(
@@ -839,6 +905,27 @@ export default function CoachProfilePage() {
       cancelled = true;
     };
   }, []);
+
+const academicAreaMatches = ACADEMIC_AREA_OPTIONS.filter(
+  (area) =>
+    area.toLowerCase().startsWith(academicAreaInput.toLowerCase()) &&
+    !selectedAcademicAreas.includes(area)
+).slice(0, 12);
+
+function addAcademicArea(area: string) {
+  const clean = String(area || "").trim();
+  if (!clean) return;
+
+  setSelectedAcademicAreas((prev) =>
+    Array.from(new Set([...prev, clean])).sort((a, b) => a.localeCompare(b))
+  );
+
+  setAcademicAreaInput("");
+}
+
+function removeAcademicArea(area: string) {
+  setSelectedAcademicAreas((prev) => prev.filter((item) => item !== area));
+}
 
   function toggleTargetPosition(gradYear: number, pos: string) {
     setRecruitingTargets((prev) =>
@@ -866,6 +953,36 @@ export default function CoachProfilePage() {
     });
     setNewTargetYear("");
   }
+
+  async function submitProgramVerification() {
+  try {
+    setSubmittingVerification(true);
+    setErr(null);
+    setOkMsg(null);
+
+    const res = await fetch("/api/coach/program-verification", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        academicAreas: selectedAcademicAreas,
+      }),
+    });
+
+    const text = await res.text();
+    const json = text ? JSON.parse(text) : null;
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || `Program verification failed (${res.status})`);
+    }
+
+    setOkMsg("Program verification submitted.");
+  } catch (e: any) {
+    setErr(e?.message || "Failed to submit program verification.");
+  } finally {
+    setSubmittingVerification(false);
+    setTimeout(() => setOkMsg(null), 1800);
+  }
+}
 
   async function save() {
     try {
@@ -1321,6 +1438,14 @@ const url = await uploadUserPhoto(file, uploadSlug);
           <ProgramIntelligenceSection
             verifiedStatus={verifiedStatus}
             lastVerifiedAt={lastVerifiedAt}
+            selectedAcademicAreas={selectedAcademicAreas}
+academicAreaInput={academicAreaInput}
+academicAreaMatches={academicAreaMatches}
+setAcademicAreaInput={setAcademicAreaInput}
+addAcademicArea={addAcademicArea}
+removeAcademicArea={removeAcademicArea}
+submitProgramVerification={submitProgramVerification}
+submittingVerification={submittingVerification}
             lastVerifiedBy={lastVerifiedBy}
             recruitingCoordinator={recruitingCoordinator}
             coachContacts={coachContacts}
