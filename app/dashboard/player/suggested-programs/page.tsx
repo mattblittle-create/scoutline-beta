@@ -1841,6 +1841,7 @@ const filterGridStyle: React.CSSProperties = {
 const filterLabelStyle: React.CSSProperties = {
   display: "grid",
   gap: 6,
+  minWidth: 0,
 };
 
 const filterLabelTextStyle: React.CSSProperties = {
@@ -1850,6 +1851,8 @@ const filterLabelTextStyle: React.CSSProperties = {
 };
 
 const selectStyle: React.CSSProperties = {
+  width: "100%",
+  minWidth: 0,
   height: 36,
   borderRadius: 10,
   border: "1px solid #cbd5e1",
