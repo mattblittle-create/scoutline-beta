@@ -1061,7 +1061,17 @@ setAcademicAreaFilter("ALL");
             </button>
           </div>
 
-          <div style={filterGridStyle}>
+          <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: 12,
+  }}
+>
+  <div style={filterGridStyle}>
+    {/* filters */}
+  </div>
+</div>
             <FilterSelect
               label="Division"
               value={divisionFilter}
@@ -1833,8 +1843,8 @@ const filterSubtitleStyle: React.CSSProperties = {
 
 const filterGridStyle: React.CSSProperties = {
   display: "grid",
-  gap: 8,
-  gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
+  gap: 10,
+  gridTemplateColumns: "repeat(5, minmax(0, 1fr))",
 };
 
 const filterLabelStyle: React.CSSProperties = {
