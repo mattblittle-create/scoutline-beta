@@ -1696,6 +1696,42 @@ title={getOpportunityTooltip(
         {item.opportunityNarrative.headline}
       </div>
 
+      {Array.isArray(item.opportunityScore?.reasons) &&
+item.opportunityScore.reasons.length ? (
+  <div style={{ display: "grid", gap: 6, marginTop: 8 }}>
+    <div
+      style={{
+        fontSize: 11,
+        fontWeight: 950,
+        color: "#92400e",
+        textTransform: "uppercase",
+        letterSpacing: "0.04em",
+      }}
+    >
+      Opportunity Signals
+    </div>
+
+    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+      {item.opportunityScore.reasons.map((reason: string) => (
+        <span
+          key={reason}
+          style={{
+            borderRadius: 999,
+            padding: "5px 9px",
+            background: "#fffbeb",
+            border: "1px solid #fde68a",
+            color: "#92400e",
+            fontSize: 12,
+            fontWeight: 850,
+          }}
+        >
+          {reason}
+        </span>
+      ))}
+    </div>
+  </div>
+) : null}
+
       <div style={narrativeTextStyle}>
         {item.opportunityNarrative.summary}
       </div>
