@@ -550,6 +550,10 @@ const relatedAcademicMatches = academicMatches.filter(
       missingAreas,
     };
 
+const reasonMatchAreas = exactAcademicMatches.length
+  ? exactAcademicMatches
+  : academicMatches;
+
 if (academicMatches.length === playerAcademicAreas.length) {
   if (exactAcademicMatches.length) {
     reasons.push(
