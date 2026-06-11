@@ -1228,7 +1228,7 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
   ) : null}
 
   <Link
-    href={`/dashboard/player/recruiting-tool?collegeId=${college.id}`}
+    href={`/college/${college.slug}`}
     style={secondaryButtonStyle}
   >
     {savedCollegeIds.includes(college.id)
