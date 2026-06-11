@@ -1061,52 +1061,42 @@ setAcademicAreaFilter("ALL");
             </button>
           </div>
 
-          <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: 12,
-  }}
->
-  <div style={filterGridStyle}>
-    {/* filters */}
-  </div>
+<div style={filterGridStyle}>
+  <FilterSelect
+    label="Division"
+    value={divisionFilter}
+    onChange={setDivisionFilter}
+    options={DIVISION_OPTIONS}
+  />
+
+  <FilterSelect
+    label="Region"
+    value={regionFilter}
+    onChange={setRegionFilter}
+    options={REGION_OPTIONS}
+  />
+
+  <FilterSelect
+    label="State"
+    value={stateFilter}
+    onChange={setStateFilter}
+    options={STATE_OPTIONS}
+  />
+
+  <FilterSelect
+    label="School Type"
+    value={controlFilter}
+    onChange={setControlFilter}
+    options={CONTROL_OPTIONS}
+  />
+
+  <FilterSelect
+    label="Major"
+    value={academicAreaFilter}
+    onChange={setAcademicAreaFilter}
+    options={["ALL", ...ACADEMIC_AREA_OPTIONS]}
+  />
 </div>
-            <FilterSelect
-              label="Division"
-              value={divisionFilter}
-              onChange={setDivisionFilter}
-              options={DIVISION_OPTIONS}
-            />
-            <FilterSelect
-              label="Region"
-              value={regionFilter}
-              onChange={setRegionFilter}
-              options={REGION_OPTIONS}
-            />
-            <FilterSelect
-              label="State"
-              value={stateFilter}
-              onChange={setStateFilter}
-              options={STATE_OPTIONS}
-            />
-            <FilterSelect
-              label="School Type"
-              value={controlFilter}
-              onChange={setControlFilter}
-              options={CONTROL_OPTIONS}
-            />
-            <FilterSelect
-  label="Major"
-  value={academicAreaFilter}
-  onChange={setAcademicAreaFilter}
-  options={[
-    "ALL",
-    ...ACADEMIC_AREA_OPTIONS,
-  ]}
-/>
-          </div>
-        </section>
 
         {truthFitError ? <div style={errorStyle}>{truthFitError}</div> : null}
 
