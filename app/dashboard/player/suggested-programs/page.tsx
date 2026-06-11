@@ -1345,7 +1345,7 @@ style={{
     background: "#f0f9ff",
     color: "#0369a1",
   }}
->
+> 
   Suggested Rank {getSuggestedProgramCompositeScore(item, selectedLaneFit?.division)}/100
 </div>
 
