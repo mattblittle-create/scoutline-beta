@@ -521,7 +521,7 @@ function getRankingReasons(item: any) {
   const c = item?.college || {};
   const baseball = c?.baseballProgram || {};
   const reasons: string[] = [];
-
+ 
   if (item?.geographyLabel) reasons.push(item.geographyLabel);
   if (item?.distance?.label) reasons.push(item.distance.label);
 
