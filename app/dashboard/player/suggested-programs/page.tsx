@@ -285,17 +285,7 @@ function getRosterNeedScore(item: any) {
 }
 
 function getVerifiedProgramScore(item: any) {
-  const college = item?.college || {};
-  const baseball = college?.baseballProgram || {};
-
-  const collegeVerified =
-    String(college?.verificationStatus || "").toUpperCase() === "VERIFIED";
-
-  const programVerified =
-    String(baseball?.verificationStatus || "").toUpperCase() === "VERIFIED" ||
-    baseball?.isVerified === true;
-
-  return collegeVerified || programVerified ? 100 : 0;
+  return isVerifiedProgram(item) ? 100 : 0;
 }
 
 function getDistanceScore(item: any) {
@@ -425,6 +415,20 @@ function getBestRosterNeedLevel(item: any) {
   return "";
 }
 
+function isVerifiedProgram(item: any) {
+  const college = item?.college || {};
+  const baseball = college?.baseballProgram || {};
+
+  const collegeVerified =
+    String(college?.verificationStatus || "").toUpperCase() === "VERIFIED";
+
+  const programVerified =
+    String(baseball?.verificationStatus || "").toUpperCase() === "VERIFIED" ||
+    baseball?.isVerified === true;
+
+  return collegeVerified || programVerified;
+}
+
 function getRecommendationPills(item: any) {
   const c = item?.college || {};
   const fit = item?.truthFit || {};
@@ -434,6 +438,8 @@ function getRecommendationPills(item: any) {
   const pills: string[] = [];
 
   if (item?.isTopRecommendation) pills.push("TOP RECOMMENDATION");
+
+  if (isVerifiedProgram(item)) pills.push("VERIFIED PROGRAM");
 
   if (typeof miles === "number") {
     if (miles <= 50) pills.push("LOCAL");
@@ -574,6 +580,8 @@ if (academicScore >= 90) {
   ) {
     reasons.push("Metric alignment");
   }
+
+  if (isVerifiedProgram(item)) reasons.push("Verified program data");
 
   if (baseball?.jucoFriendly) reasons.push("JUCO-friendly program");
   if (baseball?.transferHeavy) reasons.push("Transfer-friendly roster");
@@ -1424,6 +1432,23 @@ title={getOpportunityTooltip(
   <div style={recommendationExplanationStyle}>
     {getRecommendationExplanation(item)}
   </div>
+
+  {getRecommendationPills(item).length > 0 ? (
+  <div
+    style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+      marginTop: 8,
+    }}
+  >
+    {getRecommendationPills(item).map((pill) => (
+      <span key={pill} style={smallNeutralPillStyle}>
+        {pill}
+      </span>
+    ))}
+  </div>
+) : null}
 
   {/* Line 4 right */}
   <div style={rightPillRowStyle}>
