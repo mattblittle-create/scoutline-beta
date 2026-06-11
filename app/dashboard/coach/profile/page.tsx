@@ -591,13 +591,13 @@ function ProgramIntelligenceSection(props: {
           )}
         </div>
 
-<div style={infoBlock}>
-  <div style={infoLabel}>Roster Needs</div>
+<div style={intelBox}>
+  <div style={intelTitle}>Roster Needs</div>
 
-  {program.rosterNeeds?.length ? (
+  {rosterNeeds.length ? (
     <div style={{ display: "grid", gap: 10 }}>
       {Object.entries(
-        program.rosterNeeds.reduce((acc: any, need: any) => {
+        rosterNeeds.reduce((acc: any, need: any) => {
           const year = String(need.gradYear || "Unknown");
 
           if (!acc[year]) acc[year] = [];
