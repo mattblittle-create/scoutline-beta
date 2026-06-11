@@ -8,6 +8,7 @@ import { upload } from "@vercel/blob/client";
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
 
 export type VideoSocialPayload = {
+  hydrated: boolean;
   externalVideos: {
     id: string;
     title?: string;
@@ -25,16 +26,16 @@ export type VideoSocialPayload = {
     category?: VideoCategory | null;
   }[];
   social: {
-  xHandle?: string;
-  instagramHandle?: string;
-  youtubeChannelUrl?: string;
+    xHandle?: string;
+    instagramHandle?: string;
+    youtubeChannelUrl?: string;
 
-  gameChangerUrl?: string;
-  maxPrepsUrl?: string;
-  rapsodoUrl?: string;
-  trackmanUrl?: string;
-  pocketRadarUrl?: string;
-};
+    gameChangerUrl?: string;
+    maxPrepsUrl?: string;
+    rapsodoUrl?: string;
+    trackmanUrl?: string;
+    pocketRadarUrl?: string;
+  };
   primary: { kind: "local" | "external"; id: string } | null;
 };
 
@@ -959,7 +960,13 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
             }
           })();
 
-          return { externalVideos: externals, localVideos: locals, social, primary };
+          return {
+  hydrated,
+  externalVideos: externals,
+  localVideos: locals,
+  social,
+  primary,
+};
         },
       }),
       [state, xHandle, igHandle, ytUrl, gameChangerUrl, maxPrepsUrl, rapsodoUrl, trackmanUrl, pocketRadarUrl]

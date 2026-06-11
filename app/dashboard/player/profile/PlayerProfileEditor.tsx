@@ -1859,8 +1859,18 @@ const otherAcademicDocsPayload =
       const ageComputed = isDobValid(dob) ? computeAgeFromDob(dob) : null;
 
       // NEW: collect atomic payloads from Tab 6 & Tab 7
-      const vs = videoSocialRef.current?.getPayload();
-      const cr = coachesRef.current?.getPayload();
+const vs = videoSocialRef.current?.getPayload();
+const cr = coachesRef.current?.getPayload();
+
+const videoSocialPatch =
+  vs?.hydrated
+    ? {
+        externalVideos: vs.externalVideos ?? [],
+        localVideos: vs.localVideos ?? [],
+        social: vs.social ?? {},
+        primary: vs.primary ?? null,
+      }
+    : {};
 
       const payload: PlayerProfilePayload = {
         email: canonicalEmail,
@@ -1960,11 +1970,8 @@ const otherAcademicDocsPayload =
         playerBio: safe(playerBio || ""),
         playerBioPrivate,
 
-        // --- NEW: Video/Social (Tab 6) ---
-        externalVideos: vs?.externalVideos ?? [],
-        localVideos: vs?.localVideos ?? [],
-        social: vs?.social ?? {},
-        primary: vs?.primary ?? null,
+// --- NEW: Video/Social (Tab 6) ---
+...videoSocialPatch,
 
         // --- NEW: Coaches / References (Tab 7) ---
         coaches: (cr?.coaches ?? []).map((c: any) => ({
