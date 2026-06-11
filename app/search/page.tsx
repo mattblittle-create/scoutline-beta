@@ -336,9 +336,10 @@ export default function CollegeSearchPage() {
   const [control, setControl] = useState("");
   const [maxTuition, setMaxTuition] = useState(TUITION_MAX);
 
-  const [results, setResults] = useState<CollegeResult[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+const [results, setResults] = useState<CollegeResult[]>([]);
+const [visibleCount, setVisibleCount] = useState(25);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState("");
 
   const [savedCollegeIds, setSavedCollegeIds] = useState<string[]>([]);
   const [savedCollegeResults, setSavedCollegeResults] = useState<CollegeResult[]>([]);
@@ -364,6 +365,19 @@ const hasAdvancedSearch =
 
 const shouldSearch =
   q.trim().length >= 2 || hasAdvancedSearch;
+
+  useEffect(() => {
+  setVisibleCount(25);
+}, [
+  q,
+  states,
+  regions,
+  divisions,
+  conferences,
+  academicAreas,
+  control,
+  maxTuition,
+]);
 
 useEffect(() => {
   let cancelled = false;
@@ -641,6 +655,19 @@ const academicAreaMatches = useMemo(
 );
 
 useEffect(() => {
+  setVisibleCount(25);
+}, [
+  q,
+  states,
+  regions,
+  divisions,
+  conferences,
+  academicAreas,
+  control,
+  maxTuition,
+]);
+
+useEffect(() => {
   if (!divisions.length) return;
 
   setConferences((current) =>
@@ -779,7 +806,7 @@ async function updateSavedPriority(collegeId: string, priority: string) {
   }
 }
 
-const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort((a, b) => {
+const sortedResults = [...(showSavedOnly ? savedCollegeResults : results)].sort((a, b) => {
   if (sortBy === "TRUTH_FIT") {
     return (b.truthFit?.score || 0) - (a.truthFit?.score || 0);
   }
@@ -794,6 +821,9 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
 
   return a.name.localeCompare(b.name);
 });
+
+const visibleResults = sortedResults.slice(0, visibleCount);
+const remainingResults = Math.max(0, sortedResults.length - visibleResults.length);
 
   function clearFilters() {
     setQ("");
@@ -978,7 +1008,7 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   ? "Click on the school name in the results below to see more information."
   : loading
   ? "Searching colleges..."
-: `${visibleResults.length} result${visibleResults.length === 1 ? "" : "s"} found.`}
+: `${sortedResults.length} result${sortedResults.length === 1 ? "" : "s"} found.`}
           </div>
         </div>
 
@@ -1042,6 +1072,32 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
                       {[college.city, college.state].filter(Boolean).join(", ") || "Location TBD"}
                     </div>
                   </div>
+
+{remainingResults > 0 ? (
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      marginTop: 20,
+    }}
+  >
+    <button
+      type="button"
+      onClick={() => setVisibleCount((v) => v + 25)}
+      style={{
+        border: "1px solid #cbd5e1",
+        borderRadius: 999,
+        padding: "12px 18px",
+        background: "#fff",
+        color: "#0f172a",
+        fontWeight: 900,
+        cursor: "pointer",
+      }}
+    >
+      Load More Programs ({remainingResults} remaining)
+    </button>
+  </div>
+) : null}
 
 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
   {isLoggedIn && college.truthFit ? (
