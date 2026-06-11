@@ -8,6 +8,7 @@ import React, { Suspense } from "react";
 import { calculateOpportunityScore } from "@/lib/recommendations/opportunityScore";
 import { buildOpportunityNarrative } from "@/lib/recommendations/opportunityNarrative";
 import { buildRecruitingStrategy } from "@/lib/recommendations/recruitingStrategy";
+import { ACADEMIC_AREA_OPTIONS } from "@/app/lib/academics/academicAreas";
 
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
@@ -580,6 +581,7 @@ const toolQuery = playerProfileId
   const [regionFilter, setRegionFilter] = React.useState("ALL");
   const [stateFilter, setStateFilter] = React.useState("ALL");
   const [controlFilter, setControlFilter] = React.useState("ALL");
+  const [academicAreaFilter, setAcademicAreaFilter] = React.useState("ALL");
   const [visibleCount, setVisibleCount] = React.useState(25);
   const [expandedCollegeIds, setExpandedCollegeIds] = React.useState<string[]>([]);
 
@@ -697,10 +699,14 @@ const visibleTruthFitResults = isRedshirt
 
       const params = new URLSearchParams();
 
-      if (divisionFilter !== "ALL") params.set("division", divisionFilter);
-      if (regionFilter !== "ALL") params.set("region", regionFilter);
-      if (stateFilter !== "ALL") params.set("state", stateFilter);
-      if (controlFilter !== "ALL") params.set("control", controlFilter);
+if (divisionFilter !== "ALL") params.set("division", divisionFilter);
+if (regionFilter !== "ALL") params.set("region", regionFilter);
+if (stateFilter !== "ALL") params.set("state", stateFilter);
+if (controlFilter !== "ALL") params.set("control", controlFilter);
+
+if (academicAreaFilter !== "ALL") {
+  params.set("academicArea", academicAreaFilter);
+}
 
 if (playerProfileId) {
   params.set("playerProfileId", playerProfileId);
@@ -823,6 +829,7 @@ const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
   regionFilter,
   stateFilter,
   controlFilter,
+  academicAreaFilter,
   selectedCollegeId,
   playerProfileId,
 ]);
@@ -833,7 +840,7 @@ const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
 
   React.useEffect(() => {
   setVisibleCount(25);
-}, [divisionFilter, regionFilter, stateFilter, controlFilter]);
+}, [divisionFilter, regionFilter, stateFilter, controlFilter, academicAreaFilter]);
 
   React.useEffect(() => {
   const recommendedDivision =
@@ -1042,10 +1049,11 @@ const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
             <button
               type="button"
               onClick={() => {
-                setDivisionFilter("ALL");
-                setRegionFilter("ALL");
-                setStateFilter("ALL");
-                setControlFilter("ALL");
+setDivisionFilter("ALL");
+setRegionFilter("ALL");
+setStateFilter("ALL");
+setControlFilter("ALL");
+setAcademicAreaFilter("ALL");
               }}
               style={secondaryButtonStyle}
             >
@@ -1078,6 +1086,15 @@ const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
               onChange={setControlFilter}
               options={CONTROL_OPTIONS}
             />
+            <FilterSelect
+  label="Major"
+  value={academicAreaFilter}
+  onChange={setAcademicAreaFilter}
+  options={[
+    "ALL",
+    ...ACADEMIC_AREA_OPTIONS,
+  ]}
+/>
           </div>
         </section>
 

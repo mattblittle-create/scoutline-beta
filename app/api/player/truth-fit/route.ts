@@ -28,6 +28,51 @@ function cleanFilter(value: string | null) {
   return s;
 }
 
+function extractAcademicAreasFromProfileData(data: any): string[] {
+  const normalized = data?.normalized || {};
+  const academics = data?.academics || {};
+  const normalizedAcademics = normalized?.academics || {};
+  const tabs = data?.tabs || {};
+  const tabAcademics = tabs?.academics || {};
+
+  const candidates = [
+    data?.areasOfStudy,
+    data?.intendedMajors,
+    academics?.areasOfStudy,
+    academics?.intendedMajors,
+    normalized?.areasOfStudy,
+    normalized?.intendedMajors,
+    normalizedAcademics?.areasOfStudy,
+    normalizedAcademics?.intendedMajors,
+    tabAcademics?.areasOfStudy,
+    tabAcademics?.intendedMajors,
+    data?.academic?.areasOfStudy,
+    data?.academic?.intendedMajors,
+    normalized?.academic?.areasOfStudy,
+    normalized?.academic?.intendedMajors,
+  ];
+
+  for (const value of candidates) {
+    if (Array.isArray(value)) {
+      const cleaned = Array.from(
+        new Set(value.map((v) => String(v || "").trim()).filter(Boolean))
+      ).slice(0, 12);
+
+      if (cleaned.length) return cleaned;
+    }
+
+    if (typeof value === "string" && value.trim()) {
+      const cleaned = Array.from(
+        new Set(value.split(",").map((v) => v.trim()).filter(Boolean))
+      ).slice(0, 12);
+
+      if (cleaned.length) return cleaned;
+    }
+  }
+
+  return [];
+}
+
 async function getCurrentPlayerProfile(
   req?: NextRequest
 ) {
@@ -106,6 +151,8 @@ async function getCurrentPlayerProfile(
           typeof normalized.metrics === "object"
             ? normalized.metrics
             : {},
+
+        academicAreas: extractAcademicAreasFromProfileData(data),
       },
     };
   }
@@ -229,6 +276,8 @@ async function getCurrentPlayerProfile(
         typeof normalized.metrics === "object"
           ? normalized.metrics
           : {},
+
+      academicAreas: extractAcademicAreasFromProfileData(data),
     },
   };
 }
@@ -252,6 +301,7 @@ export async function GET(req: NextRequest) {
     const region = cleanFilter(searchParams.get("region"));
     const state = cleanFilter(searchParams.get("state"))?.toUpperCase() || null;
     const control = cleanFilter(searchParams.get("control"));
+    const academicArea = cleanFilter(searchParams.get("academicArea"));
 
     const colleges = await prisma.college.findMany({
       take: 250,
@@ -260,6 +310,18 @@ export async function GET(req: NextRequest) {
         ...(region ? { region: region as any } : {}),
         ...(state ? { state } : {}),
         ...(control ? { control: control as any } : {}),
+        ...(academicArea
+  ? {
+      academicAreas: {
+        some: {
+          name: {
+            equals: academicArea,
+            mode: "insensitive",
+          },
+        },
+      },
+    }
+  : {}),
 baseballProgram: {
   is: {
     ...(division ? { division: division as any } : {}),
@@ -270,8 +332,9 @@ baseballProgram: {
   },
 },
       },
-      include: {
-        baseballProgram: {
+include: {
+  academicAreas: true,
+  baseballProgram: {
           include: {
             rosterNeeds: true,
             metricAverages: true,
@@ -294,10 +357,11 @@ baseballProgram: {
 
           const fit = scoreCollegeFit({
             player: profile.player,
-            college: {
-              averageGpa: asNumber(baseball?.averageGpa),
-              division: baseball?.division || college.division || null,
-              metricAverages: bestMetrics.benchmarks,
+college: {
+  averageGpa: asNumber(baseball?.averageGpa),
+  division: baseball?.division || college.division || null,
+  academicAreas: college.academicAreas || [],
+  metricAverages: bestMetrics.benchmarks,
               metricBenchmarkSource: {
                 level: bestMetrics.level,
                 label: bestMetrics.label,
@@ -334,6 +398,7 @@ baseballProgram: {
               region: college.region,
               control: college.control,
               schoolType: college.schoolType,
+              academicAreas: college.academicAreas || [],
               tuitionInState: college.tuitionInState,
               tuitionOutOfState: college.tuitionOutOfState,
               distance,
@@ -886,12 +951,13 @@ return NextResponse.json({
     divisionFits: orderedDivisionFits,
     recommendedLaneDivision,
   },
-  filters: {
-        division,
-        region,
-        state,
-        control,
-      },
+filters: {
+  division,
+  region,
+  state,
+  control,
+  academicArea,
+},
       count: results.length,
       results: finalResults,
     });
