@@ -266,6 +266,81 @@ function getSuggestedProgramGroup(item: any, bestLaneDivision?: string | null) {
   };
 }
 
+function getAcademicMatchScore(item: any) {
+  const score = Number(item?.truthFit?.academicFit?.score ?? 0);
+  return Number.isFinite(score) ? score : 0;
+}
+
+function getRosterNeedScore(item: any) {
+  const baseball = item?.college?.baseballProgram || {};
+  const needs = Array.isArray(baseball?.rosterNeeds) ? baseball.rosterNeeds : [];
+
+  const needLevels = needs
+    .map((need: any) => String(need?.needLevel || "").toUpperCase())
+    .filter(Boolean);
+
+  if (needLevels.includes("HIGH")) return 100;
+  if (needLevels.includes("MEDIUM")) return 70;
+  if (needLevels.includes("LOW")) return 40;
+
+  return 0;
+}
+
+function getVerifiedProgramScore(item: any) {
+  const college = item?.college || {};
+  const baseball = college?.baseballProgram || {};
+
+  const collegeVerified =
+    String(college?.verificationStatus || "").toUpperCase() === "VERIFIED";
+
+  const programVerified =
+    String(baseball?.verificationStatus || "").toUpperCase() === "VERIFIED" ||
+    baseball?.isVerified === true;
+
+  return collegeVerified || programVerified ? 100 : 0;
+}
+
+function getDistanceScore(item: any) {
+  const miles = getDistanceMiles(item);
+
+  if (typeof miles !== "number") return 20;
+
+  if (miles <= 50) return 100;
+  if (miles <= 150) return 85;
+  if (miles <= 400) return 65;
+  if (miles <= 700) return 45;
+  if (miles <= 1200) return 30;
+
+  return 15;
+}
+
+function getSuggestedProgramCompositeScore(
+  item: any,
+  bestLaneDivision?: string | null
+) {
+  const truthFitScore = Number(item?.truthFit?.score ?? 0);
+  const opportunityScore = Number(item?.opportunityScore?.score ?? 0);
+  const academicScore = getAcademicMatchScore(item);
+  const rosterNeedScore = getRosterNeedScore(item);
+  const verifiedScore = getVerifiedProgramScore(item);
+  const distanceScore = getDistanceScore(item);
+
+  const bestLane = String(bestLaneDivision || "").trim();
+  const division = getCollegeDivision(item);
+  const bestLaneBonus = bestLane && division === bestLane ? 5 : 0;
+
+  const composite =
+    truthFitScore * 0.4 +
+    opportunityScore * 0.25 +
+    academicScore * 0.15 +
+    rosterNeedScore * 0.1 +
+    distanceScore * 0.05 +
+    verifiedScore * 0.05 +
+    bestLaneBonus;
+
+  return Math.round(Math.max(0, Math.min(105, composite)));
+}
+
 function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | null) {
   const bestLane = String(bestLaneDivision || "").trim();
 
@@ -275,31 +350,47 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aIsBestLane = bestLane && aDivision === bestLane ? 1 : 0;
   const bIsBestLane = bestLane && bDivision === bestLane ? 1 : 0;
 
-  // 1. Best Lane Division first when viewing all divisions.
+  // 1. Best Lane Division still gets priority grouping.
   if (aIsBestLane !== bIsBestLane) {
     return bIsBestLane - aIsBestLane;
+  }
+
+  const aComposite = getSuggestedProgramCompositeScore(a, bestLaneDivision);
+  const bComposite = getSuggestedProgramCompositeScore(b, bestLaneDivision);
+
+  // 2. Smarter composite score.
+  if (aComposite !== bComposite) {
+    return bComposite - aComposite;
   }
 
   const aOpportunity = Number(a?.opportunityScore?.score ?? 0);
   const bOpportunity = Number(b?.opportunityScore?.score ?? 0);
 
-  const aScore = Number(a?.truthFit?.score ?? 0);
-  const bScore = Number(b?.truthFit?.score ?? 0);
-
-  const aGeo = getGeographyRank(a);
-  const bGeo = getGeographyRank(b);
-
-  // 2. Opportunity Index first for realistic recruiting priority.
+  // 3. Opportunity as first tiebreaker.
   if (aOpportunity !== bOpportunity) {
     return bOpportunity - aOpportunity;
   }
 
-  // 3. Match Score next.
+  const aScore = Number(a?.truthFit?.score ?? 0);
+  const bScore = Number(b?.truthFit?.score ?? 0);
+
+  // 4. Truth Fit as second tiebreaker.
   if (aScore !== bScore) {
     return bScore - aScore;
   }
 
-  // 4. Closest geography next.
+  const aAcademic = getAcademicMatchScore(a);
+  const bAcademic = getAcademicMatchScore(b);
+
+  // 5. Academic Match next.
+  if (aAcademic !== bAcademic) {
+    return bAcademic - aAcademic;
+  }
+
+  const aGeo = getGeographyRank(a);
+  const bGeo = getGeographyRank(b);
+
+  // 6. Closest geography.
   if (aGeo !== bGeo) {
     return aGeo - bGeo;
   }
@@ -307,7 +398,6 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   const aState = String(a?.college?.state || "");
   const bState = String(b?.college?.state || "");
 
-  // 5. Stable location fallback before name.
   if (aState !== bState) {
     return aState.localeCompare(bState);
   }
@@ -319,7 +409,6 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
     return aCity.localeCompare(bCity);
   }
 
-  // 6. Only use name as final tiebreaker.
   return String(a?.college?.name || "").localeCompare(String(b?.college?.name || ""));
 }
 
@@ -1238,6 +1327,20 @@ style={{
   </div>
 
   {/* Line 2 right */}
+  <div
+  title="Suggested Rank Score blends Truth Fit, Opportunity Index, Academic Match, roster need, distance, and verified program data."
+  style={{
+    ...confidenceBadgeStyle,
+    marginTop: 0,
+    border: "1px solid rgba(14,165,233,0.35)",
+    background: "#f0f9ff",
+    color: "#0369a1",
+  }}
+>
+  Suggested Rank{" "}
+  {getSuggestedProgramCompositeScore(item, selectedLaneFit?.division)}/100
+</div>
+
   <div style={rightPillRowStyle}>
     {item.opportunityScore ? (
       <div
