@@ -1327,28 +1327,6 @@ style={{
   </div>
 
   {/* Line 2 right */}
-  <div
-  title="Suggested Rank Score blends Truth Fit, Opportunity Index, Academic Match, roster need, distance, and verified program data."
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    width: "fit-content",
-    maxWidth: "fit-content",
-    flex: "0 0 auto",
-    borderRadius: 999,
-    padding: "5px 12px",
-    fontSize: 11,
-    fontWeight: 900,
-    whiteSpace: "nowrap",
-    border: "1px solid rgba(14,165,233,0.35)",
-    background: "#f0f9ff",
-    color: "#0369a1",
-  }}
-> 
-  Suggested Rank {getSuggestedProgramCompositeScore(item, selectedLaneFit?.division)}/100
-</div>
-
   <div style={rightPillRowStyle}>
     {item.opportunityScore ? (
       <div
@@ -1441,6 +1419,13 @@ title={getOpportunityTooltip(
 </div>
 
 <div style={metaGridStyle}>
+  <Info
+    label="Suggested Rank"
+    value={`${getSuggestedProgramCompositeScore(
+      item,
+      selectedLaneFit?.division
+    )}/100`}
+  />
   <Info label="Division" value={pretty(baseball?.division)} />
   <Info label="Conference" value={baseball?.conference || "—"} />
   <Info label="Nickname" value={baseball?.nickname || "—"} />
