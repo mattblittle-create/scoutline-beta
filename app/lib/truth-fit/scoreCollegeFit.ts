@@ -1,5 +1,7 @@
 // app/lib/truth-fit/scoreCollegeFit.ts
 
+import { getAcademicAreaMatches } from "@/app/lib/academics/getAcademicAreaMatches";
+
 export type TruthFitLabel =
   | "Strong Fit"
   | "Match"
@@ -24,6 +26,7 @@ export type TruthFitInput = {
     heightIn?: number | null;
     weightLb?: number | null;
     metrics?: Record<string, Array<{ value?: number | null }>>;
+    academicAreas?: string[];
   };
   college: {
     averageGpa?: number | null;
@@ -45,6 +48,9 @@ export type TruthFitInput = {
       gradYear?: number | null;
       position?: string | null;
       needLevel?: string | null;
+    }>;
+    academicAreas?: Array<{
+      name?: string | null;
     }>;
   };
 };
@@ -351,45 +357,45 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   const playerGpa = input.player.gpa ?? null;
   const collegeGpa = input.college.averageGpa ?? null;
 
-  // GPA fit: 35 points
-  possible += 35;
+// GPA fit: 25 points
+possible += 25;
 
 if (playerGpa == null && collegeGpa == null) {
-  earned += 14;
+  earned += 10;
   reasons.push("Academic fit is estimated because player GPA and program GPA benchmark data are incomplete.");
   development.push("Adding your GPA will make Truth Fit more accurate.");
 } else if (playerGpa == null) {
-  earned += 14;
+  earned += 10;
   reasons.push("Academic fit is estimated because player GPA is incomplete.");
   development.push("Adding your GPA will make Truth Fit more accurate.");
 } else if (collegeGpa == null) {
-  earned += 18;
+  earned += 13;
   reasons.push("Academic fit is estimated because this program does not have GPA benchmark data yet.");
 } else if (playerGpa >= collegeGpa) {
-    earned += 35;
+    earned += 25;
     reasons.push(
       `Your GPA (${formatGpa(playerGpa)}) meets or exceeds this program's average GPA (${formatGpa(collegeGpa)}).`
     );
-  } else if (playerGpa >= collegeGpa - 0.25) {
-    earned += 27;
+} else if (playerGpa >= collegeGpa - 0.25) {
+    earned += 20;
     reasons.push(
       `Your GPA (${formatGpa(playerGpa)}) is within 0.25 of this program's average GPA (${formatGpa(collegeGpa)}).`
     );
     gaps.push("A small GPA bump could strengthen this academic fit.");
-  } else if (playerGpa >= collegeGpa - 0.5) {
-    earned += 18;
+} else if (playerGpa >= collegeGpa - 0.5) {
+    earned += 13;
     gaps.push(
       `Your GPA (${formatGpa(playerGpa)}) is below this program's average GPA (${formatGpa(collegeGpa)}).`
     );
   } else {
-    earned += 8;
+    earned += 6;
     gaps.push(
       `Your GPA (${formatGpa(playerGpa)}) is significantly below this program's average GPA (${formatGpa(collegeGpa)}).`
     );
   }
 
-  // Position / grad-year need fit: 35 points
-  possible += 35;
+// Position / grad-year need fit: 30 points
+possible += 30;
 
   const playerGradYear = input.player.gradYear ?? null;
   const positions = expandedPositions(input.player.primaryPos, input.player.secondaryPos);
@@ -418,28 +424,88 @@ if (playerGpa == null && collegeGpa == null) {
   const posLabel = formatPositions(displayPositions);
 
   if (highNeed) {
-    earned += 35;
+    earned += 30;
     reasons.push(
       `This program has a HIGH roster need matching your ${playerGradYear} class and ${posLabel} position profile.`
     );
   } else if (mediumNeed) {
-    earned += 27;
+    earned += 23;
     reasons.push(
       `This program has a MEDIUM roster need matching your ${playerGradYear} class and ${posLabel} position profile.`
     );
   } else if (lowNeed) {
-    earned += 18;
+    earned += 15;
     reasons.push(
       `This program has a LOW roster need match for your ${playerGradYear} class and ${posLabel} position profile.`
     );
   } else if (needs.length === 0) {
-    earned += 12;
+    earned += 10;
     reasons.push("Roster need fit is estimated because program need data is not available yet.");
   } else {
-    earned += 8;
+    earned += 6;
     gaps.push(
       `No confirmed roster need currently matches your ${playerGradYear || "grad year"} class and ${posLabel} position profile.`
     );
+  }
+
+  // Academic area / intended major fit: 15 points
+  possible += 15;
+
+  const playerAcademicAreas = input.player.academicAreas || [];
+  const collegeAcademicAreas = (input.college.academicAreas || [])
+    .map((area) => String(area?.name || "").trim())
+    .filter(Boolean);
+
+  if (!playerAcademicAreas.length) {
+    earned += 6;
+    reasons.push(
+      "Academic major fit is estimated because the player has not added intended major(s) yet."
+    );
+    development.push("Adding intended major(s) will improve academic fit accuracy.");
+  } else if (!collegeAcademicAreas.length) {
+    earned += 6;
+    reasons.push(
+      "Academic major fit is estimated because this school does not have academic area data yet."
+    );
+  } else {
+    const academicMatches = getAcademicAreaMatches(
+      playerAcademicAreas,
+      collegeAcademicAreas
+    );
+
+    const academicScore = Math.round(
+      (academicMatches.length / playerAcademicAreas.length) * 15
+    );
+
+    earned += academicScore;
+
+    if (academicMatches.length === playerAcademicAreas.length) {
+      reasons.push(
+        `Strong academic match: this school aligns with your intended major(s): ${academicMatches.join(", ")}.`
+      );
+    } else if (academicMatches.length > 0) {
+      reasons.push(
+        `Partial academic match: this school aligns with ${academicMatches.join(", ")}.`
+      );
+
+      const missingAreas = playerAcademicAreas.filter(
+        (area) =>
+          !academicMatches.some(
+            (match) => match.toLowerCase() === area.toLowerCase()
+          )
+      );
+
+      if (missingAreas.length) {
+        gaps.push(
+          `Academic gap: no confirmed match yet for ${missingAreas.join(", ")}.`
+        );
+      }
+    } else {
+      earned += 2;
+      gaps.push(
+        `No confirmed academic match yet for your intended major(s): ${playerAcademicAreas.join(", ")}.`
+      );
+    }
   }
 
   // Metrics fit: 30 points

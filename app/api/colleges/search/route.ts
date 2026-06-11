@@ -272,10 +272,11 @@ export async function GET(req: NextRequest) {
 
         const truthFit = scoreCollegeFit({
           player: profile.player,
-          college: {
-            averageGpa: asNumber(baseball.averageGpa),
-            division: baseball.division || college.division || null,
-            metricAverages: bestMetrics.benchmarks,
+college: {
+  averageGpa: asNumber(baseball.averageGpa),
+  division: baseball.division || college.division || null,
+  academicAreas: college.academicAreas || [],
+  metricAverages: bestMetrics.benchmarks,
             metricBenchmarkSource: {
               level: bestMetrics.level,
               label: bestMetrics.label,

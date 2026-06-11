@@ -19,6 +19,51 @@ function asString(value: unknown): string | null {
   return s ? s : null;
 }
 
+function extractAcademicAreasFromProfileData(data: any): string[] {
+  const normalized = data?.normalized || {};
+  const academics = data?.academics || {};
+  const normalizedAcademics = normalized?.academics || {};
+  const tabs = data?.tabs || {};
+  const tabAcademics = tabs?.academics || {};
+
+  const candidates = [
+    data?.areasOfStudy,
+    data?.intendedMajors,
+    academics?.areasOfStudy,
+    academics?.intendedMajors,
+    normalized?.areasOfStudy,
+    normalized?.intendedMajors,
+    normalizedAcademics?.areasOfStudy,
+    normalizedAcademics?.intendedMajors,
+    tabAcademics?.areasOfStudy,
+    tabAcademics?.intendedMajors,
+    data?.academic?.areasOfStudy,
+    data?.academic?.intendedMajors,
+    normalized?.academic?.areasOfStudy,
+    normalized?.academic?.intendedMajors,
+  ];
+
+  for (const value of candidates) {
+    if (Array.isArray(value)) {
+      const cleaned = Array.from(
+        new Set(value.map((v) => String(v || "").trim()).filter(Boolean))
+      ).slice(0, 12);
+
+      if (cleaned.length) return cleaned;
+    }
+
+    if (typeof value === "string" && value.trim()) {
+      const cleaned = Array.from(
+        new Set(value.split(",").map((v) => v.trim()).filter(Boolean))
+      ).slice(0, 12);
+
+      if (cleaned.length) return cleaned;
+    }
+  }
+
+  return [];
+}
+
 async function getCurrentPlayerProfile() {
   const userId = cookies().get("scoutline_uid")?.value || "";
   if (!userId) return null;
@@ -85,10 +130,11 @@ async function getCurrentPlayerProfile() {
         asString(user.Player?.secondaryPos) ?? asString(normalized?.secondaryPos),
       heightIn: totalHeightIn,
       weightLb: asNumber(user.Player?.weightLb) ?? asNumber(normalized?.weightLb),
-      metrics:
-        normalized?.metrics && typeof normalized.metrics === "object"
-          ? normalized.metrics
-          : {},
+metrics:
+  normalized?.metrics && typeof normalized.metrics === "object"
+    ? normalized.metrics
+    : {},
+academicAreas: extractAcademicAreasFromProfileData(data),
     },
   };
 }
@@ -254,10 +300,11 @@ export async function GET(
 
       truthFit = scoreCollegeFit({
         player: profile.player,
-        college: {
-          averageGpa: asNumber(baseball.averageGpa),
-          division: baseball.division || college.division || null,
-          metricAverages: bestMetrics.benchmarks,
+college: {
+  averageGpa: asNumber(baseball.averageGpa),
+  division: baseball.division || college.division || null,
+  academicAreas: college.academicAreas || [],
+  metricAverages: bestMetrics.benchmarks,
           metricBenchmarkSource: {
             level: bestMetrics.level,
             label: bestMetrics.label,
