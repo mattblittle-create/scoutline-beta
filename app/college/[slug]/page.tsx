@@ -386,6 +386,16 @@ export default async function CollegeDetailPage({ params }: PageProps) {
   }
 
   const baseball = college.baseballProgram;
+  const rosterNeeds = baseball?.rosterNeeds || [];
+
+const rosterNeedsByYear = rosterNeeds.reduce((acc: Record<string, any[]>, need: any) => {
+  const year = String(need.gradYear || "Unassigned");
+
+  if (!acc[year]) acc[year] = [];
+  acc[year].push(need);
+
+  return acc;
+}, {});
   const truthFit = college.truthFit;
   const academicFit = truthFit?.academicFit || null;
 
@@ -489,7 +499,6 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
   baseball?.baseballWebsiteUrl ||
   null;
 
-  const rosterNeeds = baseball?.rosterNeeds || [];
   const metricAverages = baseball?.metricAverages || [];
   const academicAreas = college.academicAreas || [];
   const nilProfile = college.nilProfile || null;
@@ -1295,36 +1304,93 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
         </div>
 
         <div style={wideGridStyle}>
-          <section style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Roster Needs</h2>
+<section style={cardStyle}>
+  <h2 style={sectionTitleStyle}>Roster Needs</h2>
 
-            {rosterNeeds.length ? (
-              <div style={{ overflowX: "auto" }}>
-                <table style={tableStyle}>
-                  <thead>
-                    <tr>
-                      <Th>Grad Year</Th>
-                      <Th>Position</Th>
-                      <Th>Need</Th>
-                      <Th>Notes</Th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {rosterNeeds.map((need) => (
-                      <tr key={need.id}>
-                        <Td>{need.gradYear}</Td>
-                        <Td>{need.position}</Td>
-                        <Td>{pretty(need.needLevel)}</Td>
-                        <Td>{need.notes || "—"}</Td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <EmptyState text="No roster needs have been added yet." />
-            )}
-          </section>
+  {Object.keys(rosterNeedsByYear).length ? (
+    <div style={{ display: "grid", gap: 12 }}>
+      {Object.entries(rosterNeedsByYear)
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(([year, needs]) => (
+          <div key={year}>
+            <div
+              style={{
+                fontSize: 13,
+                fontWeight: 900,
+                color: "#334155",
+                marginBottom: 8,
+              }}
+            >
+              {year}
+            </div>
+
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+              {(needs as any[])
+                .sort((a, b) => {
+                  const rank: Record<string, number> = {
+                    HIGH: 1,
+                    MEDIUM: 2,
+                    LOW: 3,
+                    UNKNOWN: 4,
+                  };
+
+                  const aRank = rank[String(a.needLevel || "").toUpperCase()] || 5;
+                  const bRank = rank[String(b.needLevel || "").toUpperCase()] || 5;
+
+                  return (
+                    aRank - bRank ||
+                    String(a.position || "").localeCompare(String(b.position || ""))
+                  );
+                })
+                .map((need, idx) => {
+                  const level = String(need.needLevel || "UNKNOWN").toUpperCase();
+
+                  const badgeStyle =
+                    level === "HIGH"
+                      ? {
+                          background: "#dcfce7",
+                          border: "1px solid #86efac",
+                          color: "#166534",
+                        }
+                      : level === "MEDIUM"
+                      ? {
+                          background: "#fef3c7",
+                          border: "1px solid #fde68a",
+                          color: "#92400e",
+                        }
+                      : {
+                          background: "#f8fafc",
+                          border: "1px solid #e2e8f0",
+                          color: "#475569",
+                        };
+
+                  return (
+                    <span
+                      key={`${year}-${need.position}-${idx}`}
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        borderRadius: 999,
+                        padding: "5px 10px",
+                        fontSize: 12,
+                        fontWeight: 900,
+                        ...badgeStyle,
+                      }}
+                      title={need.notes || `${level} roster need`}
+                    >
+                      {level !== "UNKNOWN" ? `${level}: ` : ""}
+                      {need.position || "Position TBD"}
+                    </span>
+                  );
+                })}
+            </div>
+          </div>
+        ))}
+    </div>
+  ) : (
+    <EmptyState text="No roster needs have been verified yet." />
+  )}
+</section>
 
           <section style={cardStyle}>
             <h2 style={sectionTitleStyle}>Program Metric Averages</h2>
