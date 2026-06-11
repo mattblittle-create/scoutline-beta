@@ -1205,16 +1205,36 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
   />
 </div>
 
-        <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
-          {[...college.academicAreas]
-            .filter((area) => area.name)
-            .sort((a, b) => String(a.name).localeCompare(String(b.name)))
-            .map((area) => (
-              <span key={area.id || area.name} style={smallPillStyle}>
-                {area.name}
-              </span>
-            ))}
-        </div>
+<div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
+  {[...college.academicAreas]
+    .filter((area) => area.name)
+    .sort((a, b) => String(a.name).localeCompare(String(b.name)))
+    .map((area) => {
+      const areaName = String(area.name || "").trim();
+
+      const isMatch = academicMatch.matches.some(
+        (match) => match.toLowerCase() === areaName.toLowerCase()
+      );
+
+      return (
+        <span
+          key={area.id || area.name}
+          style={{
+            ...smallPillStyle,
+            border: isMatch
+              ? "1px solid rgba(202,160,66,0.65)"
+              : smallPillStyle.border,
+            background: isMatch ? "rgba(202,160,66,0.18)" : smallPillStyle.background,
+            color: isMatch ? "#7c5a12" : smallPillStyle.color,
+          }}
+          title={isMatch ? "Matches player intended major(s)" : areaName}
+        >
+          {isMatch ? "✓ " : ""}
+          {areaName}
+        </span>
+      );
+    })}
+</div>
       </div>
     ) : null}
   </div>

@@ -89,6 +89,7 @@ metricComparisons: Array<{
   schoolAreas: string[];
   matchingAreas: string[];
   missingAreas: string[];
+  relatedAreas: string[];
 };
   projectionSummary: string;
 };
@@ -366,6 +367,7 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   schoolAreas: [],
   matchingAreas: [],
   missingAreas: [],
+  relatedAreas: [],
 };
 
   let earned = 0;
@@ -483,6 +485,7 @@ possible += 30;
     schoolAreas: collegeAcademicAreas,
     matchingAreas: [],
     missingAreas: [],
+    relatedAreas: [],
   };
 
   if (!playerAcademicAreas.length) {
@@ -507,6 +510,18 @@ possible += 30;
       collegeAcademicAreas
     );
 
+    const collegeAreaSet = new Set(
+  collegeAcademicAreas.map((area) => area.toLowerCase())
+);
+
+const exactAcademicMatches = playerAcademicAreas.filter((area) =>
+  collegeAreaSet.has(area.toLowerCase())
+);
+
+const relatedAcademicMatches = academicMatches.filter(
+  (area) => !exactAcademicMatches.some((exact) => exact.toLowerCase() === area.toLowerCase())
+);
+
     const matchSet = new Set(academicMatches.map((area) => area.toLowerCase()));
 
     const missingAreas = playerAcademicAreas.filter(
@@ -530,7 +545,8 @@ possible += 30;
       label: academicLabel,
       playerAreas: playerAcademicAreas,
       schoolAreas: collegeAcademicAreas,
-      matchingAreas: academicMatches,
+      matchingAreas: exactAcademicMatches,
+      relatedAreas: relatedAcademicMatches,
       missingAreas,
     };
 

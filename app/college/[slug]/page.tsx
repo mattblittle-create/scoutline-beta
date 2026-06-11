@@ -53,6 +53,7 @@ type CollegeDetail = {
   schoolAreas: string[];
   matchingAreas: string[];
   missingAreas: string[];
+  relatedAreas?: string[];
 };
     reasons: string[];
     gaps: string[];
@@ -394,7 +395,7 @@ const matchingAcademicAreas = new Set(
 
 const missingAcademicAreas = academicFit?.missingAreas || [];
 
-const relatedAcademicAreas =
+const relatedAcademicAreas = academicFit?.relatedAreas || [];
   academicFit?.schoolAreas?.filter(
     (area) =>
       !matchingAcademicAreas.has(area.toLowerCase()) &&
