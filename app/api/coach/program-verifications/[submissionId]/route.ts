@@ -288,19 +288,21 @@ export async function PATCH(
       },
     });
 
-    if (academicAreas.length) {
-      await tx.collegeAcademicArea.deleteMany({
-        where: { collegeId: submission.collegeId },
-      });
+if (Array.isArray(submittedData?.academicAreas)) {
+  await tx.collegeAcademicArea.deleteMany({
+    where: { collegeId: submission.collegeId },
+  });
 
-      await tx.collegeAcademicArea.createMany({
-        data: academicAreas.map((name) => ({
-          collegeId: submission.collegeId,
-          name,
-        })),
-        skipDuplicates: true,
-      });
-    }
+  if (academicAreas.length) {
+    await tx.collegeAcademicArea.createMany({
+      data: academicAreas.map((name) => ({
+        collegeId: submission.collegeId,
+        name,
+      })),
+      skipDuplicates: true,
+    });
+  }
+}
 
     if (coachContacts.length) {
       await tx.collegeBaseballCoach.deleteMany({
