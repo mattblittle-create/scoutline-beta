@@ -1089,6 +1089,34 @@ const visibleResults = [...(showSavedOnly ? savedCollegeResults : results)].sort
   <Info label="Roster Size" value={String(baseball.currentRosterSize)} />
 ) : null}
 
+{Array.isArray(baseball?.rosterNeeds) && baseball.rosterNeeds.length ? (
+  <Info
+    label="Roster Need"
+    value={
+      baseball.rosterNeeds.some(
+        (need: any) => String(need?.needLevel || "").toUpperCase() === "HIGH"
+      )
+        ? "High"
+        : baseball.rosterNeeds.some(
+            (need: any) => String(need?.needLevel || "").toUpperCase() === "MEDIUM"
+          )
+        ? "Medium"
+        : "Low"
+    }
+    tip={baseball.rosterNeeds
+      .map((need: any) =>
+        [
+          need.gradYear,
+          String(need.needLevel || "").toUpperCase(),
+          need.position,
+        ]
+          .filter(Boolean)
+          .join(" • ")
+      )
+      .join("\n")}
+  />
+) : null}
+
 {typeof baseball?.transferHeavy === "boolean" ? (
   <Info
   label="Transfer Heavy"
