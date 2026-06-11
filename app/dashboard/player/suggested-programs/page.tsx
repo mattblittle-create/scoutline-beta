@@ -410,6 +410,21 @@ function compareSuggestedPrograms(a: any, b: any, bestLaneDivision?: string | nu
   return String(a?.college?.name || "").localeCompare(String(b?.college?.name || ""));
 }
 
+function getBestRosterNeedLevel(item: any) {
+  const baseball = item?.college?.baseballProgram || {};
+  const needs = Array.isArray(baseball?.rosterNeeds) ? baseball.rosterNeeds : [];
+
+  const levels = needs
+    .map((need: any) => String(need?.needLevel || "").toUpperCase())
+    .filter(Boolean);
+
+  if (levels.includes("HIGH")) return "HIGH";
+  if (levels.includes("MEDIUM")) return "MEDIUM";
+  if (levels.includes("LOW")) return "LOW";
+
+  return "";
+}
+
 function getRecommendationPills(item: any) {
   const c = item?.college || {};
   const fit = item?.truthFit || {};
@@ -430,6 +445,12 @@ function getRecommendationPills(item: any) {
   if (baseball?.jucoFriendly) pills.push("JUCO FRIENDLY");
   if (baseball?.transferHeavy) pills.push("TRANSFER FRIENDLY");
   if (fit?.priority === "HIGH") pills.push("HIGH PRIORITY");
+
+  const bestRosterNeed = getBestRosterNeedLevel(item);
+
+if (bestRosterNeed === "HIGH") pills.push("HIGH ROSTER NEED");
+else if (bestRosterNeed === "MEDIUM") pills.push("ROSTER NEED");
+else if (bestRosterNeed === "LOW") pills.push("LOW ROSTER NEED");
 
   return Array.from(new Set(pills)).slice(0, 6);
 }
@@ -528,9 +549,15 @@ function getRankingReasons(item: any) {
   if (fit?.score >= 76) reasons.push("Strong match score");
   else if (fit?.score >= 62) reasons.push("Solid fit score");
 
-  if (fit?.reasons?.some((r: string) => r.toLowerCase().includes("roster need"))) {
-    reasons.push("Roster opportunity");
-  }
+const bestRosterNeed = getBestRosterNeedLevel(item);
+
+if (bestRosterNeed === "HIGH") {
+  reasons.push("High roster need");
+} else if (bestRosterNeed === "MEDIUM") {
+  reasons.push("Roster opportunity");
+} else if (bestRosterNeed === "LOW") {
+  reasons.push("Low roster need signal");
+}
 
 const academicScore = Number(fit?.academicFit?.score ?? 0);
 
