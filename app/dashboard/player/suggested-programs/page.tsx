@@ -1097,8 +1097,9 @@ setAcademicAreaFilter("ALL");
     options={["ALL", ...ACADEMIC_AREA_OPTIONS]}
   />
 </div>
+</section>
 
-        {truthFitError ? <div style={errorStyle}>{truthFitError}</div> : null}
+{truthFitError ? <div style={errorStyle}>{truthFitError}</div> : null}
 
         {loadingTruthFit && !truthFitResults.length ? (
           <div style={infoBannerStyle}>
