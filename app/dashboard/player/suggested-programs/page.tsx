@@ -1511,6 +1511,10 @@ title={getOpportunityTooltip(
   <Info label="Conference" value={baseball?.conference || "—"} />
   <Info label="Nickname" value={baseball?.nickname || "—"} />
   <Info label="School Type" value={pretty(c.control)} />
+  <Info
+  label="Roster Need"
+  value={getBestRosterNeedLevel(item) ? pretty(getBestRosterNeedLevel(item)) : "—"}
+/>
 </div>
 
 {isExpanded ? (
