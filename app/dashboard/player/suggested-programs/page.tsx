@@ -163,12 +163,6 @@ function getRecruitingAnchors(
     item?.distance?.miles ??
     999999;
 
-  const gpaReason = Array.isArray(item?.truthFit?.reasons)
-    ? item.truthFit.reasons.some((r: string) =>
-        r.toLowerCase().includes("gpa")
-      )
-    : false;
-
   const metricStrength = Array.isArray(item?.truthFit?.metricComparisons)
     ? item.truthFit.metricComparisons.filter(
         (m: any) => m.status === "ABOVE"
@@ -206,9 +200,13 @@ function getRecruitingAnchors(
     anchors.push("Best Local Match");
   }
 
-  if (gpaReason) {
-    anchors.push("Best Academic Match");
-  }
+const academicScore = Number(item?.truthFit?.academicFit?.score ?? 0);
+
+if (academicScore >= 90) {
+  anchors.push("Best Academic Match");
+} else if (academicScore >= 50) {
+  anchors.push("Academic Match");
+}
 
   if (metricStrength === bestMetricStrength && metricStrength > 0) {
     anchors.push("Best Athletic Match");
@@ -534,9 +532,13 @@ function getRankingReasons(item: any) {
     reasons.push("Roster opportunity");
   }
 
-  if (fit?.reasons?.some((r: string) => r.toLowerCase().includes("gpa"))) {
-    reasons.push("Academic alignment");
-  }
+const academicScore = Number(fit?.academicFit?.score ?? 0);
+
+if (academicScore >= 90) {
+  reasons.push("Strong academic match");
+} else if (academicScore >= 50) {
+  reasons.push("Partial academic match");
+}
 
   if (
     fit?.metricComparisons?.some(
