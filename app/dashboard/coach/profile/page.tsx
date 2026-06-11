@@ -591,25 +591,68 @@ function ProgramIntelligenceSection(props: {
           )}
         </div>
 
-        <div style={intelBox}>
-          <div style={intelTitle}>Roster Needs</div>
-          {Object.keys(needsByYear).length ? (
-            <div style={{ display: "grid", gap: 8 }}>
-              {Object.entries(needsByYear).map(([year, needs]) => (
-                <div key={year} style={intelText}>
-                  <strong>{year}</strong>:{" "}
-                  {needs
-                    .map((need) =>
-                      [need.position, need.priority].filter(Boolean).join(" ")
-                    )
-                    .join(", ")}
-                </div>
+<div style={infoBlock}>
+  <div style={infoLabel}>Roster Needs</div>
+
+  {program.rosterNeeds?.length ? (
+    <div style={{ display: "grid", gap: 10 }}>
+      {Object.entries(
+        program.rosterNeeds.reduce((acc: any, need: any) => {
+          const year = String(need.gradYear || "Unknown");
+
+          if (!acc[year]) acc[year] = [];
+          acc[year].push(need);
+
+          return acc;
+        }, {})
+      )
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(([year, needs]: any) => (
+          <div key={year}>
+            <div
+              style={{
+                fontWeight: 800,
+                color: "#0f172a",
+                marginBottom: 4,
+              }}
+            >
+              {year}
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 6,
+              }}
+            >
+              {needs.map((need: any, idx: number) => (
+                <span
+                  key={`${year}-${idx}`}
+                  style={{
+                    padding: "4px 8px",
+                    borderRadius: 999,
+                    background:
+                      need.priority === "HIGH"
+                        ? "#dcfce7"
+                        : need.priority === "MEDIUM"
+                        ? "#fef3c7"
+                        : "#f1f5f9",
+                    fontSize: 12,
+                    fontWeight: 700,
+                  }}
+                >
+                  {need.position} • {need.priority}
+                </span>
               ))}
             </div>
-          ) : (
-            <EmptyState>No roster needs loaded yet.</EmptyState>
-          )}
-        </div>
+          </div>
+        ))}
+    </div>
+  ) : (
+    "No roster needs verified."
+  )}
+</div>
 
         <div style={intelBox}>
           <div style={intelTitle}>Metric Benchmarks</div>
