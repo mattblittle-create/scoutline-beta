@@ -1086,7 +1086,7 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
           marginBottom: 8,
         }}
       >
-        Known Academic Areas
+        Known Areas
       </div>
 
       <div
@@ -1101,7 +1101,9 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
       >
         {academicAreas.length ? (
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-            {academicAreas.map((area) => {
+            {[...academicAreas]
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .map((area) => {
               const isMatch = matchingAcademicAreas.has(area.name.toLowerCase());
 
               return (
@@ -1197,7 +1199,9 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
                   Matching Areas
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {academicFit.matchingAreas.map((area) => (
+                  {[...academicFit.matchingAreas]
+  .sort((a, b) => a.localeCompare(b))
+  .map((area) => (
                     <span
                       key={area}
                       style={{
@@ -1220,10 +1224,13 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
             {relatedAcademicAreas.length ? (
               <div>
                 <div style={{ fontSize: 12, fontWeight: 900, color: "#475569", marginBottom: 6 }}>
-                  Related School Areas
+                  Related Areas
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {relatedAcademicAreas.slice(0, 20).map((area) => (
+                  {[...relatedAcademicAreas]
+  .sort((a, b) => a.localeCompare(b))
+  .slice(0, 20)
+  .map((area) => (
                     <span
                       key={area}
                       style={{
@@ -1249,7 +1256,9 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
                   Not Confirmed Yet
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {missingAcademicAreas.map((area) => (
+                  {[...missingAcademicAreas]
+  .sort((a, b) => a.localeCompare(b))
+  .map((area) => (
                     <span
                       key={area}
                       style={{
