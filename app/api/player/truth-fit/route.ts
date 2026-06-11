@@ -334,6 +334,7 @@ baseballProgram: {
       },
 include: {
   academicAreas: true,
+  nilProfile: true,
   baseballProgram: {
           include: {
             rosterNeeds: true,
@@ -398,6 +399,7 @@ college: {
               region: college.region,
               control: college.control,
               schoolType: college.schoolType,
+              nilProfile: college.nilProfile || null,
               academicAreas: college.academicAreas || [],
               tuitionInState: college.tuitionInState,
               tuitionOutOfState: college.tuitionOutOfState,

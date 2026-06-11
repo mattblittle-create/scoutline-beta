@@ -415,6 +415,17 @@ function getBestRosterNeedLevel(item: any) {
   return "";
 }
 
+function getNilStrengthLabel(item: any) {
+  const nil = item?.college?.nilProfile || {};
+
+  return (
+    nil?.baseballNilStrength ||
+    nil?.overallNilStrength ||
+    nil?.fundingTier ||
+    ""
+  );
+}
+
 function isVerifiedProgram(item: any) {
   const college = item?.college || {};
   const baseball = college?.baseballProgram || {};
@@ -440,6 +451,12 @@ function getRecommendationPills(item: any) {
   if (item?.isTopRecommendation) pills.push("TOP RECOMMENDATION");
 
   if (isVerifiedProgram(item)) pills.push("VERIFIED PROGRAM");
+
+  const nilStrength = String(getNilStrengthLabel(item) || "").toUpperCase();
+
+if (nilStrength && nilStrength !== "UNKNOWN") {
+  pills.push(`NIL ${pretty(nilStrength)}`);
+}
 
   if (typeof miles === "number") {
     if (miles <= 50) pills.push("LOCAL");
@@ -582,6 +599,12 @@ if (academicScore >= 90) {
   }
 
   if (isVerifiedProgram(item)) reasons.push("Verified program data");
+
+  const nilStrength = String(getNilStrengthLabel(item) || "").toUpperCase();
+
+if (nilStrength && nilStrength !== "UNKNOWN") {
+  reasons.push(`NIL ${pretty(nilStrength)}`);
+}
 
   if (baseball?.jucoFriendly) reasons.push("JUCO-friendly program");
   if (baseball?.transferHeavy) reasons.push("Transfer-friendly roster");
