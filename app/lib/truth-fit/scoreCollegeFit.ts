@@ -82,6 +82,14 @@ metricComparisons: Array<{
   };
 
   projectionTag: string;
+  academicFit: {
+  score: number | null;
+  label: string;
+  playerAreas: string[];
+  schoolAreas: string[];
+  matchingAreas: string[];
+  missingAreas: string[];
+};
   projectionSummary: string;
 };
 
@@ -351,6 +359,15 @@ export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
   const gaps: string[] = [];
   const development: string[] = [];
 
+  let academicFit: TruthFitResult["academicFit"] = {
+  score: null,
+  label: "No Major Preference",
+  playerAreas: [],
+  schoolAreas: [],
+  matchingAreas: [],
+  missingAreas: [],
+};
+
   let earned = 0;
   let possible = 0;
 
@@ -451,10 +468,22 @@ possible += 30;
   // Academic area / intended major fit: 15 points
   possible += 15;
 
-  const playerAcademicAreas = input.player.academicAreas || [];
+  const playerAcademicAreas = (input.player.academicAreas || [])
+    .map((area) => String(area || "").trim())
+    .filter(Boolean);
+
   const collegeAcademicAreas = (input.college.academicAreas || [])
     .map((area) => String(area?.name || "").trim())
     .filter(Boolean);
+
+  academicFit = {
+    score: null,
+    label: "No Major Preference",
+    playerAreas: playerAcademicAreas,
+    schoolAreas: collegeAcademicAreas,
+    matchingAreas: [],
+    missingAreas: [],
+  };
 
   if (!playerAcademicAreas.length) {
     earned += 6;
@@ -464,6 +493,11 @@ possible += 30;
     development.push("Adding intended major(s) will improve academic fit accuracy.");
   } else if (!collegeAcademicAreas.length) {
     earned += 6;
+    academicFit = {
+      ...academicFit,
+      label: "Academic Data Pending",
+      missingAreas: playerAcademicAreas,
+    };
     reasons.push(
       "Academic major fit is estimated because this school does not have academic area data yet."
     );
@@ -473,11 +507,32 @@ possible += 30;
       collegeAcademicAreas
     );
 
-    const academicScore = Math.round(
-      (academicMatches.length / playerAcademicAreas.length) * 15
+    const matchSet = new Set(academicMatches.map((area) => area.toLowerCase()));
+
+    const missingAreas = playerAcademicAreas.filter(
+      (area) => !matchSet.has(area.toLowerCase())
     );
 
-    earned += academicScore;
+    const academicScore = Math.round(
+      (academicMatches.length / playerAcademicAreas.length) * 100
+    );
+
+    const academicPoints = Math.round((academicScore / 100) * 15);
+
+    earned += academicPoints > 0 ? academicPoints : 2;
+
+    let academicLabel = "Low Academic Match";
+    if (academicScore === 100) academicLabel = "Strong Academic Match";
+    else if (academicScore >= 50) academicLabel = "Partial Academic Match";
+
+    academicFit = {
+      score: academicScore,
+      label: academicLabel,
+      playerAreas: playerAcademicAreas,
+      schoolAreas: collegeAcademicAreas,
+      matchingAreas: academicMatches,
+      missingAreas,
+    };
 
     if (academicMatches.length === playerAcademicAreas.length) {
       reasons.push(
@@ -488,20 +543,12 @@ possible += 30;
         `Partial academic match: this school aligns with ${academicMatches.join(", ")}.`
       );
 
-      const missingAreas = playerAcademicAreas.filter(
-        (area) =>
-          !academicMatches.some(
-            (match) => match.toLowerCase() === area.toLowerCase()
-          )
-      );
-
       if (missingAreas.length) {
         gaps.push(
           `Academic gap: no confirmed match yet for ${missingAreas.join(", ")}.`
         );
       }
     } else {
-      earned += 2;
       gaps.push(
         `No confirmed academic match yet for your intended major(s): ${playerAcademicAreas.join(", ")}.`
       );
@@ -822,6 +869,7 @@ return {
   benchmarkSource: {
     metrics: metricsBenchmarkSource,
   },
+  academicFit,
   projectionTag: projection.projectionTag,
   projectionSummary: projection.projectionSummary,
 };

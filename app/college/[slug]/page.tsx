@@ -46,6 +46,14 @@ type CollegeDetail = {
     score: number;
     label: string;
     priority: "HIGH" | "MEDIUM" | "LOW";
+    academicFit?: {
+  score: number | null;
+  label: string;
+  playerAreas: string[];
+  schoolAreas: string[];
+  matchingAreas: string[];
+  missingAreas: string[];
+};
     reasons: string[];
     gaps: string[];
     development: string[];
@@ -378,6 +386,20 @@ export default async function CollegeDetailPage({ params }: PageProps) {
 
   const baseball = college.baseballProgram;
   const truthFit = college.truthFit;
+  const academicFit = truthFit?.academicFit || null;
+
+const matchingAcademicAreas = new Set(
+  (academicFit?.matchingAreas || []).map((area) => area.toLowerCase())
+);
+
+const missingAcademicAreas = academicFit?.missingAreas || [];
+
+const relatedAcademicAreas =
+  academicFit?.schoolAreas?.filter(
+    (area) =>
+      !matchingAcademicAreas.has(area.toLowerCase()) &&
+      (academicFit?.playerAreas || []).length > 0
+  ) || [];
   const verifiedCoachContacts = [...(baseball?.coaches || [])].sort((a, b) => {
     const rankDiff = coachSortRank(a) - coachSortRank(b);
     if (rankDiff !== 0) return rankDiff;
@@ -1046,21 +1068,220 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
             )}
           </section>
 
-          <section style={cardStyle}>
-            <h2 style={sectionTitleStyle}>Academic Areas</h2>
+<section style={cardStyle}>
+  <h2 style={sectionTitleStyle}>Academic Areas</h2>
 
-            {academicAreas.length ? (
-              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                {academicAreas.map((area) => (
-                  <span key={area.id} style={pillStyle}>
-                    {area.name}
-                  </span>
-                ))}
+  <div
+    style={{
+      display: "grid",
+      gap: 14,
+    }}
+  >
+    <div>
+      <div
+        style={{
+          fontSize: 13,
+          fontWeight: 900,
+          color: "#334155",
+          marginBottom: 8,
+        }}
+      >
+        Known Academic Areas
+      </div>
+
+      <div
+        style={{
+          maxHeight: 150,
+          overflowY: "auto",
+          border: "1px solid #e2e8f0",
+          borderRadius: 12,
+          padding: 10,
+          background: "#f8fafc",
+        }}
+      >
+        {academicAreas.length ? (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {academicAreas.map((area) => {
+              const isMatch = matchingAcademicAreas.has(area.name.toLowerCase());
+
+              return (
+                <span
+                  key={area.id}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    borderRadius: 999,
+                    padding: "5px 10px",
+                    fontSize: 12,
+                    fontWeight: 900,
+                    border: isMatch
+                      ? "1px solid rgba(202,160,66,0.65)"
+                      : "1px solid #e2e8f0",
+                    background: isMatch ? "rgba(202,160,66,0.18)" : "#ffffff",
+                    color: isMatch ? "#7c5a12" : "#334155",
+                  }}
+                  title={isMatch ? "Matches player intended major(s)" : area.name}
+                >
+                  {isMatch ? "✓ " : ""}
+                  {area.name}
+                </span>
+              );
+            })}
+          </div>
+        ) : (
+          <EmptyState text="No academic areas have been added yet." />
+        )}
+      </div>
+    </div>
+
+    <div>
+      <div
+        style={{
+          fontSize: 13,
+          fontWeight: 900,
+          color: "#334155",
+          marginBottom: 8,
+        }}
+      >
+        Academic Match
+      </div>
+
+      <div
+        style={{
+          maxHeight: 180,
+          overflowY: "auto",
+          border: "1px solid #e2e8f0",
+          borderRadius: 12,
+          padding: 12,
+          background: "#ffffff",
+        }}
+      >
+        {academicFit ? (
+          <div style={{ display: "grid", gap: 10 }}>
+            <div
+              style={{
+                display: "inline-flex",
+                width: "fit-content",
+                alignItems: "center",
+                borderRadius: 999,
+                padding: "5px 10px",
+                fontSize: 12,
+                fontWeight: 900,
+                background:
+                  academicFit.score != null && academicFit.score >= 100
+                    ? "rgba(34,197,94,0.12)"
+                    : academicFit.score != null && academicFit.score >= 50
+                    ? "rgba(202,160,66,0.16)"
+                    : "#f1f5f9",
+                color:
+                  academicFit.score != null && academicFit.score >= 100
+                    ? "#166534"
+                    : academicFit.score != null && academicFit.score >= 50
+                    ? "#7c5a12"
+                    : "#475569",
+                border:
+                  academicFit.score != null && academicFit.score >= 100
+                    ? "1px solid rgba(34,197,94,0.28)"
+                    : academicFit.score != null && academicFit.score >= 50
+                    ? "1px solid rgba(202,160,66,0.45)"
+                    : "1px solid #e2e8f0",
+              }}
+            >
+              {academicFit.label}
+              {academicFit.score != null ? ` • ${academicFit.score}` : ""}
+            </div>
+
+            {academicFit.matchingAreas?.length ? (
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 900, color: "#475569", marginBottom: 6 }}>
+                  Matching Areas
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {academicFit.matchingAreas.map((area) => (
+                    <span
+                      key={area}
+                      style={{
+                        borderRadius: 999,
+                        padding: "4px 9px",
+                        fontSize: 12,
+                        fontWeight: 900,
+                        background: "rgba(34,197,94,0.12)",
+                        border: "1px solid rgba(34,197,94,0.25)",
+                        color: "#166534",
+                      }}
+                    >
+                      ✓ {area}
+                    </span>
+                  ))}
+                </div>
               </div>
-            ) : (
-              <EmptyState text="No academic areas have been added yet." />
-            )}
-          </section>
+            ) : null}
+
+            {relatedAcademicAreas.length ? (
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 900, color: "#475569", marginBottom: 6 }}>
+                  Related School Areas
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {relatedAcademicAreas.slice(0, 20).map((area) => (
+                    <span
+                      key={area}
+                      style={{
+                        borderRadius: 999,
+                        padding: "4px 9px",
+                        fontSize: 12,
+                        fontWeight: 800,
+                        background: "#f8fafc",
+                        border: "1px solid #e2e8f0",
+                        color: "#475569",
+                      }}
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {missingAcademicAreas.length ? (
+              <div>
+                <div style={{ fontSize: 12, fontWeight: 900, color: "#475569", marginBottom: 6 }}>
+                  Not Confirmed Yet
+                </div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {missingAcademicAreas.map((area) => (
+                    <span
+                      key={area}
+                      style={{
+                        borderRadius: 999,
+                        padding: "4px 9px",
+                        fontSize: 12,
+                        fontWeight: 800,
+                        background: "#fff7ed",
+                        border: "1px solid #fed7aa",
+                        color: "#9a3412",
+                      }}
+                    >
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
+            {!academicFit.playerAreas?.length ? (
+              <p style={{ margin: 0, color: "#64748b", fontWeight: 700, lineHeight: 1.45 }}>
+                Add intended major(s) to your player profile to see a personalized academic match.
+              </p>
+            ) : null}
+          </div>
+        ) : (
+          <EmptyState text="Log in as a player with intended major(s) to see Academic Match." />
+        )}
+      </div>
+    </div>
+  </div>
+</section>
         </div>
 
         <div style={wideGridStyle}>
