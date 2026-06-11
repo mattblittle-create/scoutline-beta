@@ -1833,8 +1833,8 @@ const filterSubtitleStyle: React.CSSProperties = {
 
 const filterGridStyle: React.CSSProperties = {
   display: "grid",
-  gap: 10,
-  gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
+  gap: 8,
+  gridTemplateColumns: "repeat(auto-fit, minmax(100px, 1fr))",
 };
 
 const filterLabelStyle: React.CSSProperties = {
@@ -1849,13 +1849,14 @@ const filterLabelTextStyle: React.CSSProperties = {
 };
 
 const selectStyle: React.CSSProperties = {
-  height: 40,
+  height: 36,
   borderRadius: 10,
   border: "1px solid #cbd5e1",
   background: "#ffffff",
   color: "#0f172a",
   fontWeight: 800,
-  padding: "0 10px",
+  padding: "0 8px",
+  fontSize: 13,
 };
 
 const upgradeBoxStyle: React.CSSProperties = {
