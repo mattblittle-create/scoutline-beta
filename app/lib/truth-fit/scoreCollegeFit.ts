@@ -550,14 +550,26 @@ const relatedAcademicMatches = academicMatches.filter(
       missingAreas,
     };
 
-    if (academicMatches.length === playerAcademicAreas.length) {
-      reasons.push(
-        `Strong academic match: this school aligns with your intended major(s): ${academicMatches.join(", ")}.`
-      );
-    } else if (academicMatches.length > 0) {
-      reasons.push(
-        `Partial academic match: this school aligns with ${academicMatches.join(", ")}.`
-      );
+if (academicMatches.length === playerAcademicAreas.length) {
+  if (exactAcademicMatches.length) {
+    reasons.push(
+      `Strong academic match: this school has confirmed academic area(s) matching your intended major(s): ${exactAcademicMatches.join(", ")}.`
+    );
+  } else {
+    reasons.push(
+      `Strong academic match: this school has related academic area(s) aligned with your intended major(s).`
+    );
+  }
+} else if (academicMatches.length > 0) {
+  if (exactAcademicMatches.length) {
+    reasons.push(
+      `Partial academic match: this school has confirmed academic area(s) matching ${exactAcademicMatches.join(", ")}.`
+    );
+  } else {
+    reasons.push(
+      `Partial academic match: this school has related academic area(s) aligned with your intended major(s).`
+    );
+  }
 
       if (missingAreas.length) {
         gaps.push(
