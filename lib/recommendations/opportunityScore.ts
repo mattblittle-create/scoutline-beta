@@ -14,6 +14,9 @@ type OpportunitySignalInput = {
   currentRosterSize?: number | null;
   headCoachTenureYears?: number | null;
   recentWinPercentage?: unknown;
+  academicMatchScore?: number | null;
+  verifiedProgram?: boolean | null;
+  nilStrength?: string | null;
 
   // Roster-cycle intelligence
   graduatingSeniors?: number | null;
@@ -93,6 +96,19 @@ function hasNumber(value?: number | null) {
 
 function hasText(value?: string | null) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function nilStrengthScore(value?: string | null) {
+  const raw = normalizeText(value).replace(/_/g, " ");
+
+  if (!raw || raw === "unknown") return 0;
+
+  if (raw.includes("elite")) return 8;
+  if (raw.includes("strong")) return 5;
+  if (raw.includes("moderate")) return 3;
+  if (raw.includes("limited")) return -2;
+
+  return 0;
 }
 
 function clampScore(value: number) {
@@ -191,6 +207,9 @@ function calculateDataConfidence(input: OpportunitySignalInput) {
     hasNumber(input.currentRosterSize),
     hasNumber(input.headCoachTenureYears),
     decimalToNumber(input.recentWinPercentage) != null,
+    hasNumber(input.academicMatchScore),
+      typeof input.verifiedProgram === "boolean",
+      hasText(input.nilStrength),
 
     hasNumber(input.graduatingSeniors),
     hasNumber(input.graduatingPitchers),
@@ -409,6 +428,34 @@ export function calculateOpportunityScore(
     score += 5;
     reasons.push("Transfer-heavy roster history");
   }
+
+  if (typeof input.academicMatchScore === "number") {
+  if (input.academicMatchScore >= 90) {
+    score += 7;
+    reasons.push("Strong academic match");
+  } else if (input.academicMatchScore >= 50) {
+    score += 4;
+    reasons.push("Partial academic match");
+  } else if (input.academicMatchScore > 0) {
+    score += 1;
+    reasons.push("Limited academic match");
+  }
+}
+
+if (input.verifiedProgram) {
+  score += 4;
+  reasons.push("Verified program data");
+}
+
+const nilBonus = nilStrengthScore(input.nilStrength);
+
+if (nilBonus > 0) {
+  score += nilBonus;
+  reasons.push(`${String(input.nilStrength).replace(/_/g, " ")} NIL signal`);
+} else if (nilBonus < 0) {
+  score += nilBonus;
+  reasons.push("Limited NIL signal");
+}
 
   if (input.jucoFriendly) {
     score += 5;

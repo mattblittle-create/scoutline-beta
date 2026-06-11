@@ -918,6 +918,10 @@ const url = qs ? `/api/player/truth-fit?${qs}` : "/api/player/truth-fit";
             currentRosterSize: baseball?.currentRosterSize ?? null,
             headCoachTenureYears: baseball?.headCoachTenureYears ?? null,
             recentWinPercentage: baseball?.recentWinPercentage ?? null,
+            
+            academicMatchScore: item?.truthFit?.academicFit?.score ?? null,
+            verifiedProgram: isVerifiedProgram(item),
+            nilStrength: getNilStrengthLabel(item) || null,
 
             graduatingSeniors: baseball?.graduatingSeniors ?? null,
             graduatingPitchers: baseball?.graduatingPitchers ?? null,
