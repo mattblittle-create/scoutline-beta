@@ -445,7 +445,16 @@ useEffect(() => {
       const res = await fetch(`/api/player/profile?email=${encodeURIComponent(storageEmail)}`);
       const json = await res.json();
 
-      const vs = json?.normalized?.videoSocial;
+const norm = json?.normalized || {};
+
+const vs =
+  norm?.videoSocial ||
+  {
+    externalVideos: norm?.externalVideos || [],
+    localVideos: norm?.localVideos || [],
+    social: norm?.social || {},
+    primary: norm?.primary || null,
+  };
 
       if (vs) {
         setState({
@@ -1470,7 +1479,6 @@ style={{
               <div style={cardHeaderStyle}>
                 <span style={cardTitleStyle}>Connect Social Profiles</span>
                 <span style={pillStyle}>
-  X / Instagram / YouTube / GameChanger / MaxPreps / Rapsodo / TrackMan / Pocket Radar
 </span>
               </div>
 
