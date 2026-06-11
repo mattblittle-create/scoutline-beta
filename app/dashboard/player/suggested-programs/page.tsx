@@ -1330,15 +1330,23 @@ style={{
   <div
   title="Suggested Rank Score blends Truth Fit, Opportunity Index, Academic Match, roster need, distance, and verified program data."
   style={{
-    ...confidenceBadgeStyle,
-    marginTop: 0,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "fit-content",
+    maxWidth: "fit-content",
+    flex: "0 0 auto",
+    borderRadius: 999,
+    padding: "5px 12px",
+    fontSize: 11,
+    fontWeight: 900,
+    whiteSpace: "nowrap",
     border: "1px solid rgba(14,165,233,0.35)",
     background: "#f0f9ff",
     color: "#0369a1",
   }}
 >
-  Suggested Rank{" "}
-  {getSuggestedProgramCompositeScore(item, selectedLaneFit?.division)}/100
+  Suggested Rank {getSuggestedProgramCompositeScore(item, selectedLaneFit?.division)}/100
 </div>
 
   <div style={rightPillRowStyle}>
