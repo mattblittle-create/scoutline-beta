@@ -24,6 +24,17 @@ type DashboardNotification = {
   createdAt: string;
 };
 
+type RecruitingActivitySummary = {
+  totalCoachViews: number;
+  uniquePrograms: number;
+  recentPrograms: Array<{
+    name: string;
+    division: string | null;
+    lastViewedAt: string;
+    views: number;
+  }>;
+};
+
 type ApiChatConversation = {
   id: string;
   subject: string | null;
@@ -186,6 +197,16 @@ export default function PlayerDashboardPage() {
   const [currentUserId, setCurrentUserId] = React.useState<string>("");
   const [suggestedPrograms, setSuggestedPrograms] = React.useState<any[]>([]);
   const [loadingSuggestedPrograms, setLoadingSuggestedPrograms] = React.useState(false);
+
+  const [recruitingActivity, setRecruitingActivity] =
+  React.useState<RecruitingActivitySummary>({
+    totalCoachViews: 0,
+    uniquePrograms: 0,
+    recentPrograms: [],
+  });
+
+const [loadingRecruitingActivity, setLoadingRecruitingActivity] =
+  React.useState(false);
 
   const selectedConversation =
     chatConversations.find((c) => c.id === selectedChatId) ?? null;
@@ -388,6 +409,46 @@ export default function PlayerDashboardPage() {
       if (intervalId) clearInterval(intervalId);
     };
   }, []);
+
+  React.useEffect(() => {
+  let cancelled = false;
+
+  async function loadRecruitingActivity() {
+    try {
+      setLoadingRecruitingActivity(true);
+
+      const res = await fetch("/api/player/recruiting-activity", {
+        cache: "no-store",
+        credentials: "include",
+      });
+
+      const json = await res.json().catch(() => null);
+
+      if (cancelled) return;
+      if (!res.ok || !json?.ok) return;
+
+      setRecruitingActivity(json.data);
+    } catch {
+      if (!cancelled) {
+        setRecruitingActivity({
+          totalCoachViews: 0,
+          uniquePrograms: 0,
+          recentPrograms: [],
+        });
+      }
+    } finally {
+      if (!cancelled) {
+        setLoadingRecruitingActivity(false);
+      }
+    }
+  }
+
+  loadRecruitingActivity();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -1128,6 +1189,83 @@ const unreadChatCount = chatConversations.reduce(
           description="View and manage the college programs you saved from search."
           href="/dashboard/player/target-programs"
         />
+
+                <div
+          style={{
+            border: "1px solid #e5e7eb",
+            borderRadius: 16,
+            padding: 18,
+            background: "#ffffff",
+            boxShadow: "0 10px 24px rgba(15,23,42,0.06)",
+          }}
+        >
+          <div style={{ fontSize: 12, fontWeight: 900, color: "#caa042", marginBottom: 6 }}>
+            RECRUITING ACTIVITY
+          </div>
+
+          <h2 style={{ margin: "0 0 8px", fontSize: 20, color: "#0f172a" }}>
+            Profile Views
+          </h2>
+
+          <p style={{ margin: "0 0 12px", color: "#64748b", fontSize: 13, fontWeight: 700 }}>
+            Last 30 days
+          </p>
+
+          {loadingRecruitingActivity ? (
+            <p style={{ margin: 0, color: "#64748b", fontSize: 13 }}>
+              Loading activity...
+            </p>
+          ) : (
+            <>
+              <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 12 }}>
+                <div>
+                  <div style={{ fontSize: 24, fontWeight: 950, color: "#0f172a" }}>
+                    {recruitingActivity.totalCoachViews}
+                  </div>
+                  <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+                    Coach Views
+                  </div>
+                </div>
+
+                <div>
+                  <div style={{ fontSize: 24, fontWeight: 950, color: "#0f172a" }}>
+                    {recruitingActivity.uniquePrograms}
+                  </div>
+                  <div style={{ fontSize: 12, color: "#64748b", fontWeight: 800 }}>
+                    Unique Programs
+                  </div>
+                </div>
+              </div>
+
+              {recruitingActivity.recentPrograms.length ? (
+                <div style={{ display: "grid", gap: 6 }}>
+                  {recruitingActivity.recentPrograms.map((program) => (
+                    <div
+                      key={program.name}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        gap: 8,
+                        fontSize: 13,
+                        color: "#334155",
+                        fontWeight: 800,
+                      }}
+                    >
+                      <span>{program.name}</span>
+                      <span style={{ color: "#64748b", fontWeight: 700 }}>
+                        {program.views} view{program.views === 1 ? "" : "s"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p style={{ margin: 0, color: "#64748b", fontSize: 13, lineHeight: 1.5 }}>
+                  No college coach views yet. Share your profile with coaches to start tracking recruiting activity.
+                </p>
+              )}
+            </>
+          )}
+        </div>
 
         <DashboardCard
           title="Profile Editor"
