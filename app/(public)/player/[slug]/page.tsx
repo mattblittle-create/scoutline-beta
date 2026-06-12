@@ -206,8 +206,12 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
 
   const canMessageRecruit = isCoachRole;
 
-  const isGuestCoachMode = !isCoachRole;
-  const showGuestCoachBanner = isGuestCoachMode && !guestBannerDismissed;
+const isCoachShareView =
+  typeof window !== "undefined" &&
+  new URLSearchParams(window.location.search).get("view") === "coach";
+
+const isGuestCoachMode = isCoachShareView && !isCoachRole;
+const showGuestCoachBanner = isGuestCoachMode && !guestBannerDismissed;
 
   const coachSignupUrl = "/onboarding/coach";
   const coachLoginUrl = "/login";
@@ -936,7 +940,7 @@ body: JSON.stringify({
   slug,
   coachEmail: email,
   message: shareMessage.trim(),
-  profileUrl: publicProfileUrl,
+  profileUrl: `${publicProfileUrl}?view=coach`,
   player: {
     firstName: (data as any)?.profile?.firstName || "",
     lastName: (data as any)?.profile?.lastName || "",
