@@ -366,7 +366,7 @@ const hasAdvancedSearch =
 const shouldSearch =
   q.trim().length >= 2 || hasAdvancedSearch;
 
-  useEffect(() => {
+useEffect(() => {
   setVisibleCount(25);
 }, [
   q,
@@ -653,19 +653,6 @@ const academicAreaMatches = useMemo(
     ),
   [academicAreaInput, academicAreas]
 );
-
-useEffect(() => {
-  setVisibleCount(25);
-}, [
-  q,
-  states,
-  regions,
-  divisions,
-  conferences,
-  academicAreas,
-  control,
-  maxTuition,
-]);
 
 useEffect(() => {
   if (!divisions.length) return;
