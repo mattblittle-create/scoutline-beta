@@ -191,13 +191,30 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const [playerUserId, setPlayerUserId] = React.useState<string | null>(null);
   const [messageRecruitSending, setMessageRecruitSending] = React.useState(false);
 
-const isCoachRole = React.useMemo(() => {
+  const [guestBannerDismissed, setGuestBannerDismissed] = React.useState(false);
+  const [showShareProfile, setShowShareProfile] = React.useState(false);
+  const [shareCoachEmail, setShareCoachEmail] = React.useState("");
+  const [shareMessage, setShareMessage] = React.useState("");
+  const [sharingProfile, setSharingProfile] = React.useState(false);
+  const [shareStatus, setShareStatus] = React.useState<string | null>(null);
+
+  const isCoachRole = React.useMemo(() => {
   const role = String(viewerRole || "").trim().toUpperCase();
 
   return role === "COACH" || role === "COLLEGE_COACH";
 }, [viewerRole]);
 
-const canMessageRecruit = isCoachRole;
+  const canMessageRecruit = isCoachRole;
+
+  const isGuestCoachMode = !isCoachRole;
+  const showGuestCoachBanner = isGuestCoachMode && !guestBannerDismissed;
+
+  const coachSignupUrl = "/onboarding/coach";
+  const coachLoginUrl = "/login";
+  const publicProfileUrl =
+    typeof window !== "undefined"
+      ? `${window.location.origin}/player/${encodeURIComponent(slug)}`
+      : `https://www.myscoutline.com/player/${encodeURIComponent(slug)}`;
 
   React.useEffect(() => {
     let cancelled = false;
@@ -900,9 +917,144 @@ const coachesData: CoachesData = {
     }
   }
 
+  async function handleShareProfile() {
+  const email = shareCoachEmail.trim();
+
+  if (!email) {
+    setShareStatus("Enter a coach email address.");
+    return;
+  }
+
+  try {
+    setSharingProfile(true);
+    setShareStatus(null);
+
+    const res = await fetch("/api/player/share-profile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        slug,
+        coachEmail: email,
+        message: shareMessage.trim(),
+        profileUrl: publicProfileUrl,
+      }),
+    });
+
+    const json = await res.json().catch(() => null);
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Could not send profile.");
+    }
+
+    setShareStatus("Profile sent.");
+    setShareCoachEmail("");
+    setShareMessage("");
+  } catch (err: any) {
+    setShareStatus(err?.message || "Could not send profile.");
+  } finally {
+    setSharingProfile(false);
+  }
+}
+
   /** ---------- Render ---------- */
   return (
     <main style={wrap}>
+      {showGuestCoachBanner ? (
+  <section
+    style={{
+      ...card,
+      position: "sticky",
+      top: 0,
+      zIndex: 50,
+      marginBottom: 12,
+      border: "1px solid #bfdbfe",
+      background: "#eff6ff",
+      boxShadow: "0 8px 24px rgba(15,23,42,0.12)",
+    }}
+  >
+    <div style={{ display: "flex", justifyContent: "space-between", gap: 16, flexWrap: "wrap" }}>
+      <div>
+        <div style={{ fontWeight: 950, color: "#1e3a8a", marginBottom: 6 }}>
+          Viewing as Guest Coach
+        </div>
+
+        <div style={{ color: "#334155", fontSize: 13, fontWeight: 750, lineHeight: 1.5 }}>
+          Coach accounts are always free and take just a few minutes to set up.
+        </div>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 10 }}>
+          {[
+            "Search full database of players",
+            "Build recruiting boards",
+            "Share notes with program staff",
+            "Track prospects",
+            "Message players",
+            "Access verified program tools",
+          ].map((item) => (
+            <span key={item} style={smallNeutralPillStyle}>
+              ✓ {item}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+        <a
+  href={coachSignupUrl}
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 999,
+    padding: "10px 14px",
+    background: "#0f172a",
+    color: "#ffffff",
+    textDecoration: "none",
+    fontWeight: 900,
+    fontSize: 13,
+  }}
+>
+          Create Free Coach Account
+        </a>
+
+        <a
+  href={coachLoginUrl}
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 999,
+    padding: "10px 14px",
+    border: "1px solid #cbd5e1",
+    background: "#ffffff",
+    color: "#334155",
+    textDecoration: "none",
+    fontWeight: 900,
+    fontSize: 13,
+  }}
+>
+          Log In
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setGuestBannerDismissed(true)}
+          style={{
+  borderRadius: 999,
+  padding: "10px 14px",
+  border: "1px solid #cbd5e1",
+  background: "#ffffff",
+  color: "#334155",
+  fontWeight: 900,
+  cursor: "pointer",
+}}
+        >
+          Not Now
+        </button>
+      </div>
+    </div>
+  </section>
+) : null}
       {/* Sticky block */}
       <section
         style={{
@@ -1032,6 +1184,31 @@ const coachesData: CoachesData = {
                 chatUrl={showChat ? connectChatUrl : null}
               />
 
+              <button
+  type="button"
+  onClick={() => {
+    setShowShareProfile((prev) => !prev);
+    setShareStatus(null);
+  }}
+  style={{
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    minHeight: 34,
+    padding: "0 12px",
+    borderRadius: 10,
+    border: "1px solid #caa042",
+    background: "#caa042",
+    color: "#0f172a",
+    fontSize: 12,
+    fontWeight: 900,
+    whiteSpace: "nowrap",
+    cursor: "pointer",
+  }}
+>
+  Share Profile
+</button>
+
               {canMessageRecruit ? (
                 <button
                   type="button"
@@ -1068,6 +1245,91 @@ const coachesData: CoachesData = {
           </div>
         </div>
       </section>
+
+      {showShareProfile ? (
+  <section style={{ ...card, marginTop: 10, marginBottom: 12 }}>
+    <h2 style={h2}>Share Profile</h2>
+
+    <p style={{ color: "#64748b", fontSize: 13, fontWeight: 700, lineHeight: 1.5 }}>
+      Send this public player profile directly to a college coach.
+    </p>
+
+    <div style={{ display: "grid", gap: 10 }}>
+      <input
+        type="email"
+        value={shareCoachEmail}
+        onChange={(e) => setShareCoachEmail(e.target.value)}
+        placeholder="Coach email address"
+        style={{
+          width: "100%",
+          border: "1px solid #cbd5e1",
+          borderRadius: 10,
+          padding: "10px 12px",
+          fontSize: 14,
+          fontWeight: 700,
+        }}
+      />
+
+      <textarea
+        value={shareMessage}
+        onChange={(e) => setShareMessage(e.target.value)}
+        placeholder="Optional message"
+        rows={4}
+        style={{
+          width: "100%",
+          border: "1px solid #cbd5e1",
+          borderRadius: 10,
+          padding: "10px 12px",
+          fontSize: 14,
+          fontWeight: 700,
+          resize: "vertical",
+        }}
+      />
+
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap", alignItems: "center" }}>
+        <button
+          type="button"
+          onClick={handleShareProfile}
+          disabled={sharingProfile}
+style={{
+  borderRadius: 999,
+  padding: "10px 14px",
+  border: "1px solid #0ea5e9",
+  background: "#0ea5e9",
+  color: "#ffffff",
+  fontWeight: 900,
+  cursor: sharingProfile ? "not-allowed" : "pointer",
+  opacity: sharingProfile ? 0.7 : 1,
+}}
+        >
+          {sharingProfile ? "Sending..." : "Send Profile"}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => setShowShareProfile(false)}
+          style={{
+  borderRadius: 999,
+  padding: "10px 14px",
+  border: "1px solid #cbd5e1",
+  background: "#ffffff",
+  color: "#334155",
+  fontWeight: 900,
+  cursor: "pointer",
+}}
+        >
+          Cancel
+        </button>
+
+        {shareStatus ? (
+          <span style={{ fontSize: 13, fontWeight: 800, color: "#334155" }}>
+            {shareStatus}
+          </span>
+        ) : null}
+      </div>
+    </div>
+  </section>
+) : null}
 
       {showDebug ? (
         <section style={card}>
@@ -1271,4 +1533,17 @@ const connectIconHover: React.CSSProperties = {
   transform: "translateY(-1px)",
   boxShadow: "0 4px 10px rgba(15,23,42,0.18)",
   background: "#f8fafc",
+};
+
+const smallNeutralPillStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "5px 9px",
+  background: "#ffffff",
+  border: "1px solid #bfdbfe",
+  color: "#1e3a8a",
+  fontSize: 12,
+  fontWeight: 850,
+  whiteSpace: "nowrap",
 };
