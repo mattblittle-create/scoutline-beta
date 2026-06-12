@@ -159,6 +159,8 @@ export async function POST(req: NextRequest) {
       viewerType = "PLAYER_SELF";
     } else if (
       role.includes("COLLEGE") ||
+      role === "COACH" ||
+      role.includes("COACH") ||
       viewerUser?.collegeId ||
       viewerUser?.program
     ) {
@@ -169,7 +171,7 @@ export async function POST(req: NextRequest) {
     } else if (role.includes("TEAM_ADMIN")) {
       viewerType = "TEAM_ADMIN";
       teamId = viewerUser?.teamMemberships?.[0]?.teamId || null;
-    } else if (role.includes("TEAM") || role.includes("COACH")) {
+    } else if (role.includes("TEAM")) {
       viewerType = "TEAM_COACH";
       teamId = viewerUser?.teamMemberships?.[0]?.teamId || null;
     } else if (role.includes("ADMIN")) {
@@ -221,6 +223,17 @@ export async function POST(req: NextRequest) {
         data: { notifiedPlayer: true },
       });
     }
+
+    console.log("PROFILE_VIEW_EVENT_DEBUG", {
+      viewerType,
+      viewerRole: role,
+      viewerUserId: viewerUser?.id || null,
+      viewerProgram: viewerUser?.program || null,
+      collegeId,
+      playerProfileId: playerProfile.id,
+      playerUserId,
+      notified: viewerType === "COLLEGE_COACH" && !!playerUserId,
+    });
 
     return NextResponse.json({
       ok: true,
