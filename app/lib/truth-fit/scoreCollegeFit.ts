@@ -31,6 +31,15 @@ export type TruthFitInput = {
   college: {
     averageGpa?: number | null;
     division?: string | null;
+    verificationStatus?: string | null;
+    transferHeavy?: boolean | null;
+    jucoFriendly?: boolean | null;
+    recruitingAggressiveness?: string | null;
+    regionalRecruitingBias?: string | null;
+    rosterTurnoverLevel?: string | null;
+    currentRosterSize?: number | null;
+    nilAvailable?: boolean | null;
+    baseballNilStrength?: string | null;
     metricAverages?: Array<{
       position?: string | null;
       metricKey?: string | null;
@@ -836,6 +845,53 @@ development.push(
 
 const rawScore = Math.round((earned / possible) * 100);
 
+let programContextAdjustment = 0;
+
+const verificationStatus = String(input.college.verificationStatus || "").toUpperCase();
+const recruitingAggressiveness = String(input.college.recruitingAggressiveness || "").toUpperCase();
+const rosterTurnoverLevel = String(input.college.rosterTurnoverLevel || "").toUpperCase();
+const baseballNilStrength = String(input.college.baseballNilStrength || "").toUpperCase();
+
+if (verificationStatus === "VERIFIED") {
+  programContextAdjustment += 2;
+  reasons.push("This program has verified recruiting intelligence, improving confidence in this fit.");
+}
+
+if (
+  recruitingAggressiveness.includes("HIGH") ||
+  recruitingAggressiveness.includes("AGGRESSIVE")
+) {
+  programContextAdjustment += 2;
+  reasons.push("This program appears to be actively recruiting, which improves opportunity fit.");
+} else if (
+  recruitingAggressiveness.includes("MEDIUM") ||
+  recruitingAggressiveness.includes("MODERATE")
+) {
+  programContextAdjustment += 1;
+}
+
+if (
+  rosterTurnoverLevel.includes("HIGH") ||
+  rosterTurnoverLevel.includes("ELEVATED")
+) {
+  programContextAdjustment += 2;
+  reasons.push("Roster turnover may create additional opportunity at this program.");
+} else if (
+  rosterTurnoverLevel.includes("MEDIUM") ||
+  rosterTurnoverLevel.includes("MODERATE")
+) {
+  programContextAdjustment += 1;
+}
+
+if (
+  baseballNilStrength === "ELITE" ||
+  baseballNilStrength === "STRONG"
+) {
+  reasons.push("This program has notable baseball NIL opportunity.");
+}
+
+programContextAdjustment = Math.min(programContextAdjustment, 6);
+
 const hasEstimatedSections =
   playerGpa == null ||
   collegeGpa == null ||
@@ -846,7 +902,7 @@ const confidenceMultiplier = benchmarkConfidenceMultiplier(metricsBenchmarkSourc
 
 const score = Math.max(
   0,
-  Math.min(100, Math.round(rawScore * confidenceMultiplier))
+  Math.min(100, Math.round(rawScore * confidenceMultiplier) + programContextAdjustment)
 );
 
 if (confidenceMultiplier < 1) {
