@@ -562,7 +562,7 @@ const jumpSections = React.useMemo(() => {
     (data as any)?.profileId ||
     "";
 
-  if (!playerProfileId) return;
+  if (!playerProfileId && !slug) return;
 
   const isCoachShareView =
     typeof window !== "undefined" &&
@@ -573,10 +573,11 @@ const jumpSections = React.useMemo(() => {
   fetch("/api/public/player/view-event", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      playerProfileId,
-      source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
-    }),
+body: JSON.stringify({
+  playerProfileId,
+  slug,
+  source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
+}),
   }).catch(() => {
     // tracking should never break profile viewing
   });

@@ -27,22 +27,77 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => null);
 
     const playerProfileId = cleanString(body?.playerProfileId);
+    const slug = cleanString(body?.slug);
     const sourceRaw = cleanString(body?.source) || "PUBLIC_PROFILE";
 
-    if (!playerProfileId) {
+    if (!playerProfileId && !slug) {
       return NextResponse.json(
         { ok: false, error: "Missing player profile id." },
         { status: 400 }
       );
     }
 
-    const playerProfile = await prisma.playerProfile.findUnique({
-      where: { id: playerProfileId },
-      select: {
-        id: true,
-        userId: true,
-      },
-    });
+    let playerProfile:
+      | {
+          id: string;
+          userId: string | null;
+        }
+      | null = null;
+
+    if (playerProfileId) {
+      playerProfile = await prisma.playerProfile.findUnique({
+        where: { id: playerProfileId },
+        select: {
+          id: true,
+          userId: true,
+        },
+      });
+    }
+
+    if (!playerProfile && slug) {
+      playerProfile = await prisma.playerProfile.findFirst({
+        where: {
+          data: {
+            path: ["profile", "slug"],
+            equals: slug,
+          },
+        },
+        select: {
+          id: true,
+          userId: true,
+        },
+      });
+    }
+
+    if (!playerProfile && slug) {
+      playerProfile = await prisma.playerProfile.findFirst({
+        where: {
+          data: {
+            path: ["slug"],
+            equals: slug,
+          },
+        },
+        select: {
+          id: true,
+          userId: true,
+        },
+      });
+    }
+
+    if (!playerProfile && slug) {
+      playerProfile = await prisma.playerProfile.findFirst({
+        where: {
+          data: {
+            path: ["normalized", "slug"],
+            equals: slug,
+          },
+        },
+        select: {
+          id: true,
+          userId: true,
+        },
+      });
+    }
 
     if (!playerProfile) {
       return NextResponse.json(
@@ -56,11 +111,11 @@ export async function POST(req: NextRequest) {
     const viewerUser = userId
       ? await prisma.user.findUnique({
           where: { id: userId },
-            select: {
-              id: true,
-              role: true,
-              program: true,
-              collegeId: true,
+          select: {
+            id: true,
+            role: true,
+            program: true,
+            collegeId: true,
             college: {
               select: {
                 id: true,
@@ -116,7 +171,7 @@ export async function POST(req: NextRequest) {
 
     const event = await prisma.profileViewEvent.create({
       data: {
-        playerProfileId,
+        playerProfileId: playerProfile.id,
         viewerUserId: viewerUser?.id || null,
         viewerType,
         source,
@@ -132,14 +187,11 @@ export async function POST(req: NextRequest) {
       },
     });
 
-if (
-  viewerType === "COLLEGE_COACH" &&
-  playerProfile.userId
-) {
-const collegeName =
-  viewerUser?.college?.name ||
-  viewerUser?.program ||
-  "a college program";
+    if (viewerType === "COLLEGE_COACH" && playerProfile.userId) {
+      const collegeName =
+        viewerUser?.college?.name ||
+        viewerUser?.program ||
+        "a college program";
 
       await prisma.notification.create({
         data: {
