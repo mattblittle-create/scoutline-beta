@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
 
     if (!playerProfileId && !slug) {
       return NextResponse.json(
-        { ok: false, error: "Missing player profile id." },
+        { ok: false, error: "Missing player profile id or slug." },
         { status: 400 }
       );
     }
@@ -41,16 +41,20 @@ export async function POST(req: NextRequest) {
       | {
           id: string;
           userId: string | null;
+          email: string;
         }
       | null = null;
+
+    const profileSelect = {
+      id: true,
+      userId: true,
+      email: true,
+    } as const;
 
     if (playerProfileId) {
       playerProfile = await prisma.playerProfile.findUnique({
         where: { id: playerProfileId },
-        select: {
-          id: true,
-          userId: true,
-        },
+        select: profileSelect,
       });
     }
 
@@ -62,10 +66,7 @@ export async function POST(req: NextRequest) {
             equals: slug,
           },
         },
-        select: {
-          id: true,
-          userId: true,
-        },
+        select: profileSelect,
       });
     }
 
@@ -77,10 +78,7 @@ export async function POST(req: NextRequest) {
             equals: slug,
           },
         },
-        select: {
-          id: true,
-          userId: true,
-        },
+        select: profileSelect,
       });
     }
 
@@ -92,10 +90,7 @@ export async function POST(req: NextRequest) {
             equals: slug,
           },
         },
-        select: {
-          id: true,
-          userId: true,
-        },
+        select: profileSelect,
       });
     }
 
@@ -104,6 +99,17 @@ export async function POST(req: NextRequest) {
         { ok: false, error: "Player profile not found." },
         { status: 404 }
       );
+    }
+
+    let playerUserId = playerProfile.userId;
+
+    if (!playerUserId && playerProfile.email) {
+      const playerUser = await prisma.user.findUnique({
+        where: { email: playerProfile.email },
+        select: { id: true },
+      });
+
+      playerUserId = playerUser?.id || null;
     }
 
     const userId = cookies().get("scoutline_uid")?.value || "";
@@ -149,9 +155,13 @@ export async function POST(req: NextRequest) {
 
     const role = String(viewerUser?.role || "").toUpperCase();
 
-    if (viewerUser?.id && viewerUser.id === playerProfile.userId) {
+    if (viewerUser?.id && viewerUser.id === playerUserId) {
       viewerType = "PLAYER_SELF";
-    } else if (role.includes("COLLEGE") || viewerUser?.collegeId) {
+    } else if (
+      role.includes("COLLEGE") ||
+      viewerUser?.collegeId ||
+      viewerUser?.program
+    ) {
       viewerType = "COLLEGE_COACH";
       collegeId = viewerUser?.collegeId || null;
     } else if (role.includes("PARENT")) {
@@ -187,7 +197,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    if (viewerType === "COLLEGE_COACH" && playerProfile.userId) {
+    if (viewerType === "COLLEGE_COACH" && playerUserId) {
       const collegeName =
         viewerUser?.college?.name ||
         viewerUser?.program ||
@@ -195,7 +205,7 @@ export async function POST(req: NextRequest) {
 
       await prisma.notification.create({
         data: {
-          userId: playerProfile.userId,
+          userId: playerUserId,
           type: "PLAYER_PROFILE_VIEWED_BY_COACH",
           message: `A coach from ${collegeName} viewed your profile.`,
           data: {
