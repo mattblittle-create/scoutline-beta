@@ -199,6 +199,8 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const [sharingProfile, setSharingProfile] = React.useState(false);
   const [shareStatus, setShareStatus] = React.useState<string | null>(null);
 
+  const viewEventTrackedRef = React.useRef(false);
+
   const isCoachRole = React.useMemo(() => {
   const role = String(viewerRole || "").trim().toUpperCase();
 
@@ -1049,6 +1051,34 @@ const res = await fetch("/api/player/share-profile", {
     setSharingProfile(false);
   }
 }
+
+React.useEffect(() => {
+  if (viewEventTrackedRef.current) return;
+
+  const playerProfileId =
+    (data as any)?.profile?.profileId ||
+    (data as any)?.profileId ||
+    "";
+
+  if (!playerProfileId) return;
+
+  const isCoachShareView =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("view") === "coach";
+
+  viewEventTrackedRef.current = true;
+
+  fetch("/api/public/player/view-event", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      playerProfileId,
+      source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
+    }),
+  }).catch(() => {
+    // tracking should never break profile viewing
+  });
+}, [data]);
 
   /** ---------- Render ---------- */
   return (
