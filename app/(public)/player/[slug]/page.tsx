@@ -570,16 +570,27 @@ const jumpSections = React.useMemo(() => {
 
   viewEventTrackedRef.current = true;
 
-  fetch("/api/public/player/view-event", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-body: JSON.stringify({
+  console.log("PROFILE_VIEW_CLIENT_TRACKING", {
   playerProfileId,
   slug,
   source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
-}),
-  }).catch(() => {
-    // tracking should never break profile viewing
+});
+
+fetch("/api/public/player/view-event", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    playerProfileId,
+    slug,
+    source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
+  }),
+})
+  .then(async (res) => {
+    const json = await res.json().catch(() => null);
+    console.log("PROFILE_VIEW_CLIENT_RESULT", res.status, json);
+  })
+  .catch((err) => {
+    console.error("PROFILE_VIEW_CLIENT_ERROR", err);
   });
 }, [data]);
 
