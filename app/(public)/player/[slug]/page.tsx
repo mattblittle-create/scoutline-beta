@@ -1000,42 +1000,40 @@ function buildShareMessage() {
     setSharingProfile(true);
     setShareStatus(null);
 
-    const res = await fetch("/api/player/share-profile", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-body: JSON.stringify({
-  slug,
-  subject: shareSubject.trim(),
-  coachEmail: email,
-  message: shareMessage.trim(),
-  profileUrl: `${publicProfileUrl}?view=coach`,
-  player: {
-    firstName: (data as any)?.profile?.firstName || "",
-    lastName: (data as any)?.profile?.lastName || "",
-    gradYear: (data as any)?.profile?.gradYear || "",
-    primaryPos:
-      (data as any)?.profile?.primaryPos ||
-      (data as any)?.profile?.primaryPosition ||
-      "",
-    secondaryPos:
-      (data as any)?.profile?.secondaryPos ||
-      (data as any)?.profile?.secondaryPosition ||
-      "",
-    pitcherHandedness:
-      (data as any)?.profile?.pitcherHandedness ||
-      (data as any)?.profile?.throwingHand ||
-      "",
-    highSchool:
-      (data as any)?.profile?.highSchool || "",
-    travelTeam:
-      (data as any)?.profile?.travelTeam ||
-      (data as any)?.profile?.travelBallTeam ||
-      "",
-    otherTeams:
-      (data as any)?.profile?.otherTeams || [],
-  },
-    }),
-  });
+const res = await fetch("/api/player/share-profile", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    slug,
+    subject: shareSubject.trim(),
+    coachEmail: email,
+    message: shareMessage.trim(),
+    profileUrl: `${publicProfileUrl}?view=coach`,
+    player: {
+      firstName: (data as any)?.profile?.firstName || "",
+      lastName: (data as any)?.profile?.lastName || "",
+      gradYear: (data as any)?.profile?.gradYear || "",
+      primaryPos:
+        (data as any)?.profile?.primaryPos ||
+        (data as any)?.profile?.primaryPosition ||
+        "",
+      secondaryPos:
+        (data as any)?.profile?.secondaryPos ||
+        (data as any)?.profile?.secondaryPosition ||
+        "",
+      pitcherHandedness:
+        (data as any)?.profile?.pitcherHandedness ||
+        (data as any)?.profile?.throwingHand ||
+        "",
+      highSchool: (data as any)?.profile?.highSchool || "",
+      travelTeam:
+        (data as any)?.profile?.travelTeam ||
+        (data as any)?.profile?.travelBallTeam ||
+        "",
+      otherTeams: (data as any)?.profile?.otherTeams || [],
+    },
+  }),
+});
 
   const json = await res.json().catch(() => null);
 
@@ -1377,22 +1375,20 @@ onClick={() => {
     }}
   />
 
-  <input
-    type="email"
-      <input
-        type="email"
-        value={shareCoachEmail}
-        onChange={(e) => setShareCoachEmail(e.target.value)}
-        placeholder="Coach email address"
-        style={{
-          width: "100%",
-          border: "1px solid #cbd5e1",
-          borderRadius: 10,
-          padding: "10px 12px",
-          fontSize: 14,
-          fontWeight: 700,
-        }}
-      />
+<input
+  type="email"
+  value={shareCoachEmail}
+  onChange={(e) => setShareCoachEmail(e.target.value)}
+  placeholder="Coach email address"
+  style={{
+    width: "100%",
+    border: "1px solid #cbd5e1",
+    borderRadius: 10,
+    padding: "10px 12px",
+    fontSize: 14,
+    fontWeight: 700,
+  }}
+/>
 
       <textarea
         value={shareMessage}

@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
 
     const slug = cleanString(body?.slug);
     const playerProfileId = cleanString(body?.playerProfileId);
+    const subjectInput = cleanString(body?.subject);
     const coachEmail = cleanString(body?.coachEmail).toLowerCase();
     const message = cleanString(body?.message);
     const profileUrl = cleanString(body?.profileUrl);
