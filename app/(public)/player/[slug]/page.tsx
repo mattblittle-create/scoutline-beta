@@ -932,10 +932,13 @@ const coachesData: CoachesData = {
   const gradYear = p.gradYear || "";
   const primaryPos = p.primaryPos || p.primaryPosition || "";
   const secondaryPos = p.secondaryPos || p.secondaryPosition || "";
-  const pitcherHandedness =
-    p.pitcherHandedness ||
-    p.throwingHand ||
-    "";
+const pitcherHandedness =
+  p.pitcherHandedness ||
+  p.throwingHand ||
+  p.throws ||
+  p.pitchingHand ||
+  p.handedness ||
+  "";
 
   const positionString = [
     primaryPos,
