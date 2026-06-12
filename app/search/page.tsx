@@ -1073,32 +1073,6 @@ const remainingResults = Math.max(0, sortedResults.length - visibleResults.lengt
                     </div>
                   </div>
 
-{remainingResults > 0 ? (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      marginTop: 20,
-    }}
-  >
-    <button
-      type="button"
-      onClick={() => setVisibleCount((v) => v + 25)}
-      style={{
-        border: "1px solid #cbd5e1",
-        borderRadius: 999,
-        padding: "12px 18px",
-        background: "#fff",
-        color: "#0f172a",
-        fontWeight: 900,
-        cursor: "pointer",
-      }}
-    >
-      Load More Programs ({remainingResults} remaining)
-    </button>
-  </div>
-) : null}
-
 <div style={{ display: "flex", gap: 8, flexWrap: "wrap", justifyContent: "flex-end" }}>
   {isLoggedIn && college.truthFit ? (
     <span
@@ -1358,6 +1332,34 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
             );
           })}
         </div>
+
+        {remainingResults > 0 ? (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              marginTop: 22,
+              marginBottom: 8,
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => setVisibleCount((v) => v + 25)}
+              style={{
+                border: "1px solid #cbd5e1",
+                borderRadius: 999,
+                padding: "12px 18px",
+                background: "#fff",
+                color: "#0f172a",
+                fontWeight: 900,
+                cursor: "pointer",
+                boxShadow: "0 8px 18px rgba(15,23,42,0.08)",
+              }}
+            >
+              Load More Programs ({remainingResults} remaining)
+            </button>
+          </div>
+        ) : null}
       </section>
     </main>
   );
