@@ -1355,7 +1355,7 @@ onClick={() => {
     <h2 style={h2}>Share Profile</h2>
 
     <p style={{ color: "#64748b", fontSize: 13, fontWeight: 700, lineHeight: 1.5 }}>
-      Send this public player profile directly to a college coach.
+      Send this public player profile directly to a college coach. The subject line, body, and signature are editable.
     </p>
 
     <div style={{ display: "grid", gap: 10 }}>
