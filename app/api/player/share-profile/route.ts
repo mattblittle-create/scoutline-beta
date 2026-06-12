@@ -111,16 +111,18 @@ if (!profile && slug) {
   });
 }
 
-if (!profile) {
+const bodyPlayer = body?.player || {};
+
+if (!profile && !bodyPlayer) {
   return NextResponse.json(
     { ok: false, error: "Player profile not found." },
     { status: 404 }
   );
 }
 
-    const data = (profile.data || {}) as any;
-    const profileData = data?.profile || {};
-    const normalized = data?.normalized || {};
+const data = (profile?.data || {}) as any;
+const profileData = data?.profile || bodyPlayer || {};
+const normalized = data?.normalized || {};
 
     const firstName =
       cleanString(profileData?.firstName) ||

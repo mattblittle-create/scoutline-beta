@@ -934,13 +934,19 @@ const coachesData: CoachesData = {
       headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
   slug,
-  playerProfileId:
-  (data as any)?.profile?.profileId ||
-  (data as any)?.profileId ||
-  "",
   coachEmail: email,
   message: shareMessage.trim(),
   profileUrl: publicProfileUrl,
+  player: {
+    firstName: (data as any)?.profile?.firstName || "",
+    lastName: (data as any)?.profile?.lastName || "",
+    gradYear: (data as any)?.profile?.gradYear || "",
+    primaryPos:
+      (data as any)?.profile?.primaryPos ||
+      (data as any)?.profile?.primaryPosition ||
+      "",
+    highSchool: (data as any)?.profile?.highSchool || "",
+  },
 }),
     });
 
