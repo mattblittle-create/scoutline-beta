@@ -208,8 +208,8 @@ function calculateDataConfidence(input: OpportunitySignalInput) {
     hasNumber(input.headCoachTenureYears),
     decimalToNumber(input.recentWinPercentage) != null,
     hasNumber(input.academicMatchScore),
-      typeof input.verifiedProgram === "boolean",
-      hasText(input.nilStrength),
+    typeof input.verifiedProgram === "boolean",
+    hasText(input.nilStrength),
 
     hasNumber(input.graduatingSeniors),
     hasNumber(input.graduatingPitchers),
