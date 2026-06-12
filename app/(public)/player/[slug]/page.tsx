@@ -960,10 +960,10 @@ function buildShareMessage() {
     .filter(Boolean)
     .join(" ");
 
-  const highSchool = p.highSchool || "";
+  const highSchool = p.hsName || "";
 
   const travelTeam =
-    p.travelTeam ||
+    p.travelTeamName ||
     p.travelBallTeam ||
     "";
 
