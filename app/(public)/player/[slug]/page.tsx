@@ -933,11 +933,7 @@ const coachesData: CoachesData = {
   const primaryPos = p.primaryPos || p.primaryPosition || "";
   const secondaryPos = p.secondaryPos || p.secondaryPosition || "";
 const pitcherHandedness =
-  p.pitcherHandedness ||
-  p.throwingHand ||
-  p.throws ||
-  p.pitchingHand ||
-  p.handedness ||
+  p.pitcherHand ||
   "";
 
   const positionString = [
