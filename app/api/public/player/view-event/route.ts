@@ -56,10 +56,11 @@ export async function POST(req: NextRequest) {
     const viewerUser = userId
       ? await prisma.user.findUnique({
           where: { id: userId },
-          select: {
-            id: true,
-            role: true,
-            collegeId: true,
+            select: {
+              id: true,
+              role: true,
+              program: true,
+              collegeId: true,
             college: {
               select: {
                 id: true,
@@ -131,13 +132,14 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    if (
-      viewerType === "COLLEGE_COACH" &&
-      collegeId &&
-      playerProfile.userId
-    ) {
-      const collegeName =
-        viewerUser?.college?.name || "a college program";
+if (
+  viewerType === "COLLEGE_COACH" &&
+  playerProfile.userId
+) {
+const collegeName =
+  viewerUser?.college?.name ||
+  viewerUser?.program ||
+  "a college program";
 
       await prisma.notification.create({
         data: {
@@ -146,7 +148,7 @@ export async function POST(req: NextRequest) {
           message: `A coach from ${collegeName} viewed your profile.`,
           data: {
             profileViewEventId: event.id,
-            collegeId,
+            collegeId: collegeId || null,
             collegeName,
           },
         },

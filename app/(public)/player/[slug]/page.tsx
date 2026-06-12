@@ -1308,40 +1308,42 @@ const res = await fetch("/api/player/share-profile", {
                 chatUrl={showChat ? connectChatUrl : null}
               />
 
-              <button
-  type="button"
-onClick={() => {
-  setShowShareProfile((prev) => {
-    const next = !prev;
+             {!isCoachRole ? (
+  <button
+    type="button"
+    onClick={() => {
+      setShowShareProfile((prev) => {
+        const next = !prev;
 
-    if (next) {
-      setShareSubject(buildShareSubject());
-      setShareMessage(buildShareMessage());
-    }
+        if (next) {
+          setShareSubject(buildShareSubject());
+          setShareMessage(buildShareMessage());
+        }
 
-    return next;
-  });
+        return next;
+      });
 
-  setShareStatus(null);
-}}
-  style={{
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    minHeight: 34,
-    padding: "0 12px",
-    borderRadius: 10,
-    border: "1px solid #caa042",
-    background: "#caa042",
-    color: "#0f172a",
-    fontSize: 12,
-    fontWeight: 900,
-    whiteSpace: "nowrap",
-    cursor: "pointer",
-  }}
->
-  Share Profile
-</button>
+      setShareStatus(null);
+    }}
+    style={{
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: 34,
+      padding: "0 12px",
+      borderRadius: 10,
+      border: "1px solid #caa042",
+      background: "#caa042",
+      color: "#0f172a",
+      fontSize: 12,
+      fontWeight: 900,
+      whiteSpace: "nowrap",
+      cursor: "pointer",
+    }}
+  >
+    Share Profile
+  </button>
+) : null}
 
               {canMessageRecruit ? (
                 <button
@@ -1380,7 +1382,7 @@ onClick={() => {
         </div>
       </section>
 
-      {showShareProfile ? (
+{!isCoachRole && showShareProfile ? (
   <section style={{ ...card, marginTop: 10, marginBottom: 12 }}>
     <h2 style={h2}>Share Profile</h2>
 
