@@ -43,19 +43,51 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const profile = await prisma.playerProfile.findFirst({
-where: {
-  data: {
-    path: ["profile", "slug"],
-    equals: slug,
+let profile = await prisma.playerProfile.findFirst({
+  where: {
+    data: {
+      path: ["profile", "slug"],
+      equals: slug,
+    },
   },
-},
-      select: {
-        id: true,
-        email: true,
-        data: true,
+  select: {
+    id: true,
+    email: true,
+    data: true,
+  },
+});
+
+if (!profile) {
+  profile = await prisma.playerProfile.findFirst({
+    where: {
+      data: {
+        path: ["slug"],
+        equals: slug,
       },
-    });
+    },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+}
+
+if (!profile) {
+  profile = await prisma.playerProfile.findFirst({
+    where: {
+      data: {
+        path: ["normalized", "slug"],
+        equals: slug,
+      },
+    },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+}
 
     if (!profile) {
       return NextResponse.json(
