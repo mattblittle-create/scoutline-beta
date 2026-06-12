@@ -1190,7 +1190,19 @@ const unreadChatCount = chatConversations.reduce(
           href="/dashboard/player/target-programs"
         />
 
-                <div
+        <DashboardCard
+          title="Profile Editor"
+          description="Open your player profile editor to update academics, athletics, metrics, stats, video, and references."
+          href="/dashboard/player/profile"
+        />
+
+        <DashboardCard
+          title="Plan Billing"
+          description="Manage your ScoutLine plan, review billing details, payment info, and upgrade options."
+          href="/dashboard/player/profile/billing"
+        />
+
+        <div
           style={{
             border: "1px solid #e5e7eb",
             borderRadius: 16,
@@ -1266,18 +1278,6 @@ const unreadChatCount = chatConversations.reduce(
             </>
           )}
         </div>
-
-        <DashboardCard
-          title="Profile Editor"
-          description="Open your player profile editor to update academics, athletics, metrics, stats, video, and references."
-          href="/dashboard/player/profile"
-        />
-
-        <DashboardCard
-          title="Plan Billing"
-          description="Manage your ScoutLine plan, review billing details, payment info, and upgrade options."
-          href="/dashboard/player/profile/billing"
-        />
       </section>
 
       {/* Alerts / upcoming feature area */}
