@@ -554,15 +554,24 @@ const jumpSections = React.useMemo(() => {
     }
   }, [slug, coreEmail, mediaDataFromApi, primaryUrlFromApi]);
 
-  React.useEffect(() => {
-  if (viewEventTrackedRef.current) return;
-
+React.useEffect(() => {
   const playerProfileId =
     (data as any)?.profile?.profileId ||
     (data as any)?.profileId ||
     "";
 
-  if (!playerProfileId && !slug) return;
+  const profileSlug = slug || (data as any)?.profile?.slug || "";
+
+  console.log("PROFILE_VIEW_EFFECT_CHECK", {
+    alreadyTracked: viewEventTrackedRef.current,
+    hasData: !!data,
+    playerProfileId,
+    profileSlug,
+  });
+
+  if (viewEventTrackedRef.current) return;
+  if (!data) return;
+  if (!playerProfileId && !profileSlug) return;
 
   const isCoachShareView =
     typeof window !== "undefined" &&
@@ -571,28 +580,28 @@ const jumpSections = React.useMemo(() => {
   viewEventTrackedRef.current = true;
 
   console.log("PROFILE_VIEW_CLIENT_TRACKING", {
-  playerProfileId,
-  slug,
-  source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
-});
-
-fetch("/api/public/player/view-event", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
     playerProfileId,
-    slug,
+    slug: profileSlug,
     source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
-  }),
-})
-  .then(async (res) => {
-    const json = await res.json().catch(() => null);
-    console.log("PROFILE_VIEW_CLIENT_RESULT", res.status, json);
-  })
-  .catch((err) => {
-    console.error("PROFILE_VIEW_CLIENT_ERROR", err);
   });
-}, [data]);
+
+  fetch("/api/public/player/view-event", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      playerProfileId,
+      slug: profileSlug,
+      source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
+    }),
+  })
+    .then(async (res) => {
+      const json = await res.json().catch(() => null);
+      console.log("PROFILE_VIEW_CLIENT_RESULT", res.status, json);
+    })
+    .catch((err) => {
+      console.error("PROFILE_VIEW_CLIENT_ERROR", err);
+    });
+}, [data, slug]);
 
   // ---------------- Early returns ----------------
   if (loading) {
