@@ -555,6 +555,8 @@ const jumpSections = React.useMemo(() => {
   }, [slug, coreEmail, mediaDataFromApi, primaryUrlFromApi]);
 
 React.useEffect(() => {
+  console.log("SCOUTLINE_TRACKING_EFFECT_REACHED");
+
   const playerProfileId =
     (data as any)?.profile?.profileId ||
     (data as any)?.profileId ||

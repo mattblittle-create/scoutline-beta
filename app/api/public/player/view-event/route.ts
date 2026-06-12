@@ -2,7 +2,7 @@
 
 import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import { prisma } from "@/lib/prisma";
 
 function cleanString(value: unknown) {
@@ -94,6 +94,22 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    if (!playerProfile && slug) {
+  const cached = await prisma.publicProfileCache.findUnique({
+    where: { slug },
+    select: {
+      userId: true,
+    },
+  });
+
+  if (cached?.userId) {
+    playerProfile = await prisma.playerProfile.findFirst({
+      where: { userId: cached.userId },
+      select: profileSelect,
+    });
+  }
+}
+
     if (!playerProfile) {
       return NextResponse.json(
         { ok: false, error: "Player profile not found." },
@@ -112,12 +128,12 @@ export async function POST(req: NextRequest) {
       playerUserId = playerUser?.id || null;
     }
 
-    const userId = cookies().get("scoutline_uid")?.value || "";
+const currentUser = await getCurrentUser();
 
-    const viewerUser = userId
-      ? await prisma.user.findUnique({
-          where: { id: userId },
-          select: {
+const viewerUser = currentUser?.id
+  ? await prisma.user.findUnique({
+      where: { id: currentUser.id },
+      select: {
             id: true,
             role: true,
             program: true,
