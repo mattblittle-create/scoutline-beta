@@ -1204,6 +1204,7 @@ const unreadChatCount = chatConversations.reduce(
 
         <div
           style={{
+            gridColumn: "span 2",
             border: "1px solid #e5e7eb",
             borderRadius: 16,
             padding: 18,
