@@ -159,7 +159,7 @@ const normalized = data?.normalized || {};
         )}</p>`
       : "";
 
-    const subject = `${playerName} ScoutLine Profile`;
+    const subject = subjectInput || `${playerName} ScoutLine Profile`;
 
     const html = `
       <div style="font-family:Arial,sans-serif;line-height:1.6;color:#0f172a;">

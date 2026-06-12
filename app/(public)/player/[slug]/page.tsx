@@ -194,6 +194,7 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const [guestBannerDismissed, setGuestBannerDismissed] = React.useState(false);
   const [showShareProfile, setShowShareProfile] = React.useState(false);
   const [shareCoachEmail, setShareCoachEmail] = React.useState("");
+  const [shareSubject, setShareSubject] = React.useState("");
   const [shareMessage, setShareMessage] = React.useState("");
   const [sharingProfile, setSharingProfile] = React.useState(false);
   const [shareStatus, setShareStatus] = React.useState<string | null>(null);
@@ -921,6 +922,72 @@ const coachesData: CoachesData = {
     }
   }
 
+  function buildShareSubject() {
+  const p = (data as any)?.profile || {};
+
+  const playerName = [p.firstName, p.lastName]
+    .filter(Boolean)
+    .join(" ");
+
+  const gradYear = p.gradYear || "";
+  const primaryPos = p.primaryPos || p.primaryPosition || "";
+  const secondaryPos = p.secondaryPos || p.secondaryPosition || "";
+  const pitcherHandedness =
+    p.pitcherHandedness ||
+    p.throwingHand ||
+    "";
+
+  const positionString = [
+    primaryPos,
+    secondaryPos,
+    pitcherHandedness,
+  ]
+    .filter(Boolean)
+    .join(" / ");
+
+  return [
+    playerName,
+    gradYear,
+    positionString,
+  ]
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function buildShareMessage() {
+  const p = (data as any)?.profile || {};
+
+  const playerName = [p.firstName, p.lastName]
+    .filter(Boolean)
+    .join(" ");
+
+  const highSchool = p.highSchool || "";
+
+  const travelTeam =
+    p.travelTeam ||
+    p.travelBallTeam ||
+    "";
+
+  const otherTeams = Array.isArray(p.otherTeams)
+    ? p.otherTeams
+    : [];
+
+  return [
+    "Coach,",
+    "",
+    "I wanted to share my ScoutLine recruiting profile with you.",
+    "",
+    "Thank you for your time and consideration.",
+    "",
+    playerName,
+    highSchool,
+    travelTeam,
+    ...otherTeams,
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
   async function handleShareProfile() {
   const email = shareCoachEmail.trim();
 
@@ -938,6 +1005,7 @@ const coachesData: CoachesData = {
       headers: { "Content-Type": "application/json" },
 body: JSON.stringify({
   slug,
+  subject: shareSubject.trim(),
   coachEmail: email,
   message: shareMessage.trim(),
   profileUrl: `${publicProfileUrl}?view=coach`,
@@ -949,12 +1017,27 @@ body: JSON.stringify({
       (data as any)?.profile?.primaryPos ||
       (data as any)?.profile?.primaryPosition ||
       "",
-    highSchool: (data as any)?.profile?.highSchool || "",
+    secondaryPos:
+      (data as any)?.profile?.secondaryPos ||
+      (data as any)?.profile?.secondaryPosition ||
+      "",
+    pitcherHandedness:
+      (data as any)?.profile?.pitcherHandedness ||
+      (data as any)?.profile?.throwingHand ||
+      "",
+    highSchool:
+      (data as any)?.profile?.highSchool || "",
+    travelTeam:
+      (data as any)?.profile?.travelTeam ||
+      (data as any)?.profile?.travelBallTeam ||
+      "",
+    otherTeams:
+      (data as any)?.profile?.otherTeams || [],
   },
-}),
-    });
+    }),
+  });
 
-    const json = await res.json().catch(() => null);
+  const json = await res.json().catch(() => null);
 
     if (!res.ok || !json?.ok) {
       throw new Error(json?.error || "Could not send profile.");
@@ -1200,10 +1283,20 @@ body: JSON.stringify({
 
               <button
   type="button"
-  onClick={() => {
-    setShowShareProfile((prev) => !prev);
-    setShareStatus(null);
-  }}
+onClick={() => {
+  setShowShareProfile((prev) => {
+    const next = !prev;
+
+    if (next) {
+      setShareSubject(buildShareSubject());
+      setShareMessage(buildShareMessage());
+    }
+
+    return next;
+  });
+
+  setShareStatus(null);
+}}
   style={{
     display: "inline-flex",
     alignItems: "center",
@@ -1269,6 +1362,23 @@ body: JSON.stringify({
     </p>
 
     <div style={{ display: "grid", gap: 10 }}>
+  <input
+    type="text"
+    value={shareSubject}
+    onChange={(e) => setShareSubject(e.target.value)}
+    placeholder="Subject"
+    style={{
+      width: "100%",
+      border: "1px solid #cbd5e1",
+      borderRadius: 10,
+      padding: "10px 12px",
+      fontSize: 14,
+      fontWeight: 700,
+    }}
+  />
+
+  <input
+    type="email"
       <input
         type="email"
         value={shareCoachEmail}
