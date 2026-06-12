@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json().catch(() => null);
 
     const slug = cleanString(body?.slug);
+    const playerProfileId = cleanString(body?.playerProfileId);
     const coachEmail = cleanString(body?.coachEmail).toLowerCase();
     const message = cleanString(body?.message);
     const profileUrl = cleanString(body?.profileUrl);
@@ -43,21 +44,42 @@ export async function POST(req: NextRequest) {
       );
     }
 
-let profile = await prisma.playerProfile.findFirst({
-  where: {
-    data: {
-      path: ["profile", "slug"],
-      equals: slug,
-    },
-  },
-  select: {
-    id: true,
-    email: true,
-    data: true,
-  },
-});
+let profile:
+  | {
+      id: string;
+      email: string;
+      data: any;
+    }
+  | null = null;
 
-if (!profile) {
+if (playerProfileId) {
+  profile = await prisma.playerProfile.findUnique({
+    where: { id: playerProfileId },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+}
+
+if (!profile && slug) {
+  profile = await prisma.playerProfile.findFirst({
+    where: {
+      data: {
+        path: ["profile", "slug"],
+        equals: slug,
+      },
+    },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+}
+
+if (!profile && slug) {
   profile = await prisma.playerProfile.findFirst({
     where: {
       data: {
@@ -73,7 +95,7 @@ if (!profile) {
   });
 }
 
-if (!profile) {
+if (!profile && slug) {
   profile = await prisma.playerProfile.findFirst({
     where: {
       data: {
@@ -89,12 +111,12 @@ if (!profile) {
   });
 }
 
-    if (!profile) {
-      return NextResponse.json(
-        { ok: false, error: "Player profile not found." },
-        { status: 404 }
-      );
-    }
+if (!profile) {
+  return NextResponse.json(
+    { ok: false, error: "Player profile not found." },
+    { status: 404 }
+  );
+}
 
     const data = (profile.data || {}) as any;
     const profileData = data?.profile || {};

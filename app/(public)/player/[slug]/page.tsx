@@ -932,12 +932,16 @@ const coachesData: CoachesData = {
     const res = await fetch("/api/player/share-profile", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        slug,
-        coachEmail: email,
-        message: shareMessage.trim(),
-        profileUrl: publicProfileUrl,
-      }),
+body: JSON.stringify({
+  slug,
+  playerProfileId:
+  (data as any)?.profile?.profileId ||
+  (data as any)?.profileId ||
+  "",
+  coachEmail: email,
+  message: shareMessage.trim(),
+  profileUrl: publicProfileUrl,
+}),
     });
 
     const json = await res.json().catch(() => null);
