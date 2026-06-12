@@ -554,6 +554,34 @@ const jumpSections = React.useMemo(() => {
     }
   }, [slug, coreEmail, mediaDataFromApi, primaryUrlFromApi]);
 
+  React.useEffect(() => {
+  if (viewEventTrackedRef.current) return;
+
+  const playerProfileId =
+    (data as any)?.profile?.profileId ||
+    (data as any)?.profileId ||
+    "";
+
+  if (!playerProfileId) return;
+
+  const isCoachShareView =
+    typeof window !== "undefined" &&
+    new URLSearchParams(window.location.search).get("view") === "coach";
+
+  viewEventTrackedRef.current = true;
+
+  fetch("/api/public/player/view-event", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      playerProfileId,
+      source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
+    }),
+  }).catch(() => {
+    // tracking should never break profile viewing
+  });
+}, [data]);
+
   // ---------------- Early returns ----------------
   if (loading) {
     return (
@@ -1051,34 +1079,6 @@ const res = await fetch("/api/player/share-profile", {
     setSharingProfile(false);
   }
 }
-
-React.useEffect(() => {
-  if (viewEventTrackedRef.current) return;
-
-  const playerProfileId =
-    (data as any)?.profile?.profileId ||
-    (data as any)?.profileId ||
-    "";
-
-  if (!playerProfileId) return;
-
-  const isCoachShareView =
-    typeof window !== "undefined" &&
-    new URLSearchParams(window.location.search).get("view") === "coach";
-
-  viewEventTrackedRef.current = true;
-
-  fetch("/api/public/player/view-event", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      playerProfileId,
-      source: isCoachShareView ? "SHARED_LINK" : "PUBLIC_PROFILE",
-    }),
-  }).catch(() => {
-    // tracking should never break profile viewing
-  });
-}, [data]);
 
   /** ---------- Render ---------- */
   return (
