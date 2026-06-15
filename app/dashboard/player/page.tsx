@@ -256,6 +256,28 @@ const [loadingRecruitingActivity, setLoadingRecruitingActivity] =
     });
   }
 
+function formatViewedAgo(isoDate: string) {
+  const viewed = new Date(isoDate);
+  const now = new Date();
+
+  if (Number.isNaN(viewed.getTime())) return "Viewed recently";
+
+  const diffMs = now.getTime() - viewed.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  if (diffDays <= 0) return "Viewed today";
+  if (diffDays === 1) return "Viewed yesterday";
+  if (diffDays < 7) return `Viewed ${diffDays} days ago`;
+
+  const diffWeeks = Math.floor(diffDays / 7);
+  if (diffWeeks === 1) return "Viewed 1 week ago";
+  if (diffWeeks < 5) return `Viewed ${diffWeeks} weeks ago`;
+
+  const diffMonths = Math.floor(diffDays / 30);
+  if (diffMonths <= 1) return "Viewed 1 month ago";
+  return `Viewed ${diffMonths} months ago`;
+}
+
   React.useEffect(() => {
     let cancelled = false;
 
@@ -1253,22 +1275,29 @@ const unreadChatCount = chatConversations.reduce(
               {recruitingActivity.recentPrograms.length ? (
                 <div style={{ display: "grid", gap: 6 }}>
                   {recruitingActivity.recentPrograms.map((program) => (
-                    <div
-                      key={program.name}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        gap: 8,
-                        fontSize: 13,
-                        color: "#334155",
-                        fontWeight: 800,
-                      }}
-                    >
-                      <span>{program.name}</span>
-                      <span style={{ color: "#64748b", fontWeight: 700 }}>
-                        {program.views} view{program.views === 1 ? "" : "s"}
-                      </span>
-                    </div>
+<div
+  key={program.name}
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    gap: 8,
+    fontSize: 13,
+    color: "#334155",
+    fontWeight: 800,
+    alignItems: "flex-start",
+  }}
+>
+  <div style={{ display: "grid", gap: 2 }}>
+    <span>{program.name}</span>
+    <span style={{ color: "#64748b", fontSize: 12, fontWeight: 700 }}>
+      {formatViewedAgo(program.lastViewedAt)}
+    </span>
+  </div>
+
+  <span style={{ color: "#64748b", fontWeight: 700, whiteSpace: "nowrap" }}>
+    {program.views} view{program.views === 1 ? "" : "s"}
+  </span>
+</div>
                   ))}
                 </div>
               ) : (
