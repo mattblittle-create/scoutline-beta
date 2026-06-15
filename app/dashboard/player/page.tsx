@@ -27,11 +27,21 @@ type DashboardNotification = {
 type RecruitingActivitySummary = {
   totalCoachViews: number;
   uniquePrograms: number;
+  totalBoardAdds: number;
+  totalListAdds: number;
   recentPrograms: Array<{
     name: string;
     division: string | null;
     lastViewedAt: string;
     views: number;
+  }>;
+  recentActivity: Array<{
+    id: string;
+    type: "PROFILE_VIEW" | "BOARD_ADD" | "LIST_ADD";
+    programName: string;
+    division: string | null;
+    createdAt: string;
+    label: string;
   }>;
 };
 
@@ -202,7 +212,10 @@ export default function PlayerDashboardPage() {
   React.useState<RecruitingActivitySummary>({
     totalCoachViews: 0,
     uniquePrograms: 0,
+    totalBoardAdds: 0,
+    totalListAdds: 0,
     recentPrograms: [],
+    recentActivity: [],
   });
 
 const [loadingRecruitingActivity, setLoadingRecruitingActivity] =
@@ -455,7 +468,10 @@ function formatViewedAgo(isoDate: string) {
         setRecruitingActivity({
           totalCoachViews: 0,
           uniquePrograms: 0,
+          totalBoardAdds: 0,
+          totalListAdds: 0,
           recentPrograms: [],
+          recentActivity: [],
         });
       }
     } finally {
@@ -1272,47 +1288,73 @@ const unreadChatCount = chatConversations.reduce(
                 </div>
               </div>
 
-{recruitingActivity.recentPrograms.length ? (
+{recruitingActivity.recentActivity.length ? (
   <div
     style={{
       display: "grid",
-      gap: 6,
-      maxHeight: 130,
+      gap: 8,
+      maxHeight: 160,
       overflowY: "auto",
       paddingRight: 4,
     }}
   >
-                  {recruitingActivity.recentPrograms.map((program) => (
-<div
-  key={program.name}
-  style={{
-    display: "flex",
-    justifyContent: "space-between",
-    gap: 8,
-    fontSize: 13,
-    color: "#334155",
-    fontWeight: 800,
-    alignItems: "flex-start",
-  }}
-> 
-  <div style={{ display: "grid", gap: 2 }}>
-    <span>{program.name}</span>
-    <span style={{ color: "#64748b", fontSize: 12, fontWeight: 700 }}>
-      {formatViewedAgo(program.lastViewedAt)}
-    </span>
-  </div>
+    {recruitingActivity.recentActivity.map((activity) => (
+      <div
+        key={`${activity.type}-${activity.id}`}
+        style={{
+          display: "grid",
+          gap: 2,
+          fontSize: 13,
+          color: "#334155",
+          fontWeight: 800,
+          borderTop: "1px solid #f1f5f9",
+          paddingTop: 8,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: 8,
+          }}
+        >
+          <span>{activity.programName}</span>
 
-  <span style={{ color: "#64748b", fontWeight: 700, whiteSpace: "nowrap" }}>
-    {program.views} view{program.views === 1 ? "" : "s"}
-  </span>
-</div>
-                  ))}
-                </div>
-              ) : (
-                <p style={{ margin: 0, color: "#64748b", fontSize: 13, lineHeight: 1.5 }}>
-                  No college coach views yet. Share your profile with coaches to start tracking recruiting activity.
-                </p>
-              )}
+          <span
+            style={{
+              color: "#64748b",
+              fontSize: 12,
+              fontWeight: 700,
+            }}
+          >
+            {formatViewedAgo(activity.createdAt)}
+          </span>
+        </div>
+
+        <div
+          style={{
+            color: "#64748b",
+            fontSize: 12,
+            fontWeight: 700,
+          }}
+        >
+          {activity.label}
+        </div>
+      </div>
+    ))}
+  </div>
+) : (
+  <p
+    style={{
+      margin: 0,
+      color: "#64748b",
+      fontSize: 13,
+      lineHeight: 1.5,
+    }}
+  >
+    No recruiting activity yet. Share your profile with coaches to start tracking recruiting engagement.
+  </p>
+)}
             </>
           )}
         </div>

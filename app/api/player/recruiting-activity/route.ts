@@ -13,6 +13,15 @@ function sinceDays(days: number) {
   return d;
 }
 
+type RecentActivityItem = {
+  id: string;
+  type: "PROFILE_VIEW" | "BOARD_ADD" | "LIST_ADD";
+  programName: string;
+  division: string | null;
+  createdAt: string;
+  label: string;
+};
+
 export async function GET() {
   try {
     const user = await getCurrentUser();
@@ -42,38 +51,96 @@ export async function GET() {
         data: {
           totalCoachViews: 0,
           uniquePrograms: 0,
+          totalBoardAdds: 0,
+          totalListAdds: 0,
           recentPrograms: [],
+          recentActivity: [],
         },
       });
     }
 
     const viewedAfter = sinceDays(30);
 
-    const views = await prisma.profileViewEvent.findMany({
-      where: {
-        playerProfileId: playerProfile.id,
-        viewedAt: {
-          gte: viewedAfter,
+    const [views, boardAdds, listAdds] = await Promise.all([
+      prisma.profileViewEvent.findMany({
+        where: {
+          playerProfileId: playerProfile.id,
+          viewedAt: {
+            gte: viewedAfter,
+          },
+          viewerType: "COLLEGE_COACH",
         },
-        viewerType: "COLLEGE_COACH",
-      },
-      select: {
-        id: true,
-        viewedAt: true,
-        collegeId: true,
-        college: {
-          select: {
-            id: true,
-            name: true,
-            division: true,
+        select: {
+          id: true,
+          viewedAt: true,
+          collegeId: true,
+          college: {
+            select: {
+              id: true,
+              name: true,
+              division: true,
+            },
           },
         },
-      },
-      orderBy: {
-        viewedAt: "desc",
-      },
-      take: 100,
-    });
+        orderBy: {
+          viewedAt: "desc",
+        },
+        take: 100,
+      }),
+
+      prisma.recruitingBoardEntry.findMany({
+        where: {
+          playerProfileId: playerProfile.id,
+          createdAt: {
+            gte: viewedAfter,
+          },
+        },
+        select: {
+          id: true,
+          createdAt: true,
+          college: {
+            select: {
+              id: true,
+              name: true,
+              division: true,
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 100,
+      }),
+
+      prisma.recruitingListMember.findMany({
+        where: {
+          playerProfileId: playerProfile.id,
+          createdAt: {
+            gte: viewedAfter,
+          },
+        },
+        select: {
+          id: true,
+          createdAt: true,
+          list: {
+            select: {
+              name: true,
+              college: {
+                select: {
+                  id: true,
+                  name: true,
+                  division: true,
+                },
+              },
+            },
+          },
+        },
+        orderBy: {
+          createdAt: "desc",
+        },
+        take: 100,
+      }),
+    ]);
 
     const programMap = new Map<
       string,
@@ -105,12 +172,46 @@ export async function GET() {
 
     const recentPrograms = Array.from(programMap.values()).slice(0, 4);
 
+    const recentActivity: RecentActivityItem[] = [
+      ...views.map((view) => ({
+        id: view.id,
+        type: "PROFILE_VIEW" as const,
+        programName: view.college?.name || "A college program",
+        division: view.college?.division || null,
+        createdAt: view.viewedAt.toISOString(),
+        label: "Viewed your profile",
+      })),
+
+      ...boardAdds.map((entry) => ({
+        id: entry.id,
+        type: "BOARD_ADD" as const,
+        programName: entry.college?.name || "A college program",
+        division: entry.college?.division || null,
+        createdAt: entry.createdAt.toISOString(),
+        label: "Added you to a recruiting board",
+      })),
+
+      ...listAdds.map((entry) => ({
+        id: entry.id,
+        type: "LIST_ADD" as const,
+        programName: entry.list?.college?.name || "A college program",
+        division: entry.list?.college?.division || null,
+        createdAt: entry.createdAt.toISOString(),
+        label: `Added you to ${entry.list?.name || "a recruiting list"}`,
+      })),
+    ]
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+      .slice(0, 20);
+
     return NextResponse.json({
       ok: true,
       data: {
         totalCoachViews: views.length,
         uniquePrograms: programMap.size,
+        totalBoardAdds: boardAdds.length,
+        totalListAdds: listAdds.length,
         recentPrograms,
+        recentActivity,
       },
     });
   } catch (err: any) {
