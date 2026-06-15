@@ -1286,7 +1286,7 @@ const unreadChatCount = chatConversations.reduce(
     fontWeight: 800,
     alignItems: "flex-start",
   }}
->
+> 
   <div style={{ display: "grid", gap: 2 }}>
     <span>{program.name}</span>
     <span style={{ color: "#64748b", fontSize: 12, fontWeight: 700 }}>
