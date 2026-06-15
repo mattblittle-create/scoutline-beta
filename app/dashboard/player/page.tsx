@@ -1166,25 +1166,41 @@ const unreadChatCount = chatConversations.reduce(
     gap: 8,
   }}
 >
-<button
-  type="button"
-  disabled={!publicProfileHref}
-  onClick={() => {
-    if (publicProfileHref) router.push(publicProfileHref);
-  }}
-  style={{
-    padding: "8px 12px",
-    borderRadius: 10,
-    border: "1px solid #e5e7eb",
-    background: "#ffffff",
-    color: "#0f172a",
-    fontWeight: 800,
-    cursor: publicProfileHref ? "pointer" : "not-allowed",
-    opacity: publicProfileHref ? 1 : 0.6,
-  }}
->
-  View Profile
-</button>
+  <button
+    type="button"
+    onClick={() => router.push("/dashboard/player/profile")}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 10,
+      border: "1px solid #0ea5e9",
+      background: "#38bdf8",
+      color: "#083344",
+      fontWeight: 800,
+      cursor: "pointer",
+    }}
+  >
+    Edit Profile
+  </button>
+
+  <button
+    type="button"
+    disabled={!publicProfileHref}
+    onClick={() => {
+      if (publicProfileHref) router.push(publicProfileHref);
+    }}
+    style={{
+      padding: "8px 12px",
+      borderRadius: 10,
+      border: "1px solid #e5e7eb",
+      background: "#ffffff",
+      color: "#0f172a",
+      fontWeight: 800,
+      cursor: publicProfileHref ? "pointer" : "not-allowed",
+      opacity: publicProfileHref ? 1 : 0.6,
+    }}
+  >
+    View Profile
+  </button>
 
   <button
     type="button"
