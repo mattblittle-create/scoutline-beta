@@ -1272,8 +1272,16 @@ const unreadChatCount = chatConversations.reduce(
                 </div>
               </div>
 
-              {recruitingActivity.recentPrograms.length ? (
-                <div style={{ display: "grid", gap: 6 }}>
+{recruitingActivity.recentPrograms.length ? (
+  <div
+    style={{
+      display: "grid",
+      gap: 6,
+      maxHeight: 130,
+      overflowY: "auto",
+      paddingRight: 4,
+    }}
+  >
                   {recruitingActivity.recentPrograms.map((program) => (
 <div
   key={program.name}
