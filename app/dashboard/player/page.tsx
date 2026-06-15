@@ -190,6 +190,7 @@ export default function PlayerDashboardPage() {
   const [playerProfileId, setPlayerProfileId] = React.useState<string>("");
   const [playerName, setPlayerName] = React.useState<string>("");
   const [playerPhotoUrl, setPlayerPhotoUrl] = React.useState<string>("");
+  const [publicProfileHref, setPublicProfileHref] = React.useState<string>("");
   const [profileCompletion, setProfileCompletion] = React.useState<number>(0);
   const [profileStatusLabel, setProfileStatusLabel] = React.useState<string>("Getting Started");
   const [lastProfileUpdateLabel, setLastProfileUpdateLabel] = React.useState<string>("Not available");
@@ -332,9 +333,22 @@ function formatViewedAgo(isoDate: string) {
           ""
         ).trim();
 
-        if (resolvedPlayerProfileId) setPlayerProfileId(resolvedPlayerProfileId);
+if (resolvedPlayerProfileId) setPlayerProfileId(resolvedPlayerProfileId);
 
-        if (fullName) setPlayerName(fullName);
+const resolvedSlug = String(
+  profileJson?.slug ||
+    profileJson?.profile?.slug ||
+    profileJson?.playerProfile?.slug ||
+    norm?.slug ||
+    user?.slug ||
+    ""
+).trim();
+
+if (resolvedSlug) {
+  setPublicProfileHref(`/player/${resolvedSlug}`);
+}
+
+if (fullName) setPlayerName(fullName);
 
         const photo = String(user?.photoUrl ?? norm?.photoUrl ?? "").trim();
         if (photo) setPlayerPhotoUrl(photo);
@@ -1152,21 +1166,25 @@ const unreadChatCount = chatConversations.reduce(
     gap: 8,
   }}
 >
-  <button
-    type="button"
-    onClick={() => router.push("/dashboard/player/profile")}
-    style={{
-      padding: "8px 12px",
-      borderRadius: 10,
-      border: "1px solid #0ea5e9",
-      background: "#38bdf8",
-      color: "#083344",
-      fontWeight: 800,
-      cursor: "pointer",
-    }}
-  >
-    Edit Profile
-  </button>
+<button
+  type="button"
+  disabled={!publicProfileHref}
+  onClick={() => {
+    if (publicProfileHref) router.push(publicProfileHref);
+  }}
+  style={{
+    padding: "8px 12px",
+    borderRadius: 10,
+    border: "1px solid #e5e7eb",
+    background: "#ffffff",
+    color: "#0f172a",
+    fontWeight: 800,
+    cursor: publicProfileHref ? "pointer" : "not-allowed",
+    opacity: publicProfileHref ? 1 : 0.6,
+  }}
+>
+  View Profile
+</button>
 
   <button
     type="button"
@@ -1184,13 +1202,11 @@ const unreadChatCount = chatConversations.reduce(
     Plan Billing
   </button>
 
-  <div style={{ gridColumn: "1 / span 2" }}>
-    <SupportButton
-      subjectPrefix="Account Support Request"
-      playerName={playerName}
-      targetId={playerProfileId}
-    />
-  </div>
+  <SupportButton
+    subjectPrefix="Account Support Request"
+    playerName={playerName}
+    targetId={playerProfileId}
+  />
 </div>
 </div>
       </section>
