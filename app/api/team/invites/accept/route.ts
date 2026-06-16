@@ -306,10 +306,19 @@ await prisma.playerProfile.upsert({
     schemaVersion: 1,
     data: {},
   },
-  update: {
-    userId: playerUser.id,
-    updatedAt: new Date(),
-  },
+update: {
+  userId: playerUser.id,
+  profileState: "TEAM_INVITED" as any,
+  ownershipMode: "TEAM_PENDING" as any,
+  ownerTeamId: joinLink.teamId,
+  hasActiveTeamBilling: false,
+  hasActivePlayerBilling: false,
+  billingConflictFlag: false,
+  playerPlanTier: "TEAM" as any,
+  playerBillingCadence: "monthly",
+  playerBillingStatus: "Team Invite Pending",
+  updatedAt: new Date(),
+},
 });
 
 const existingPendingInvite = await prisma.teamInvite.findFirst({
