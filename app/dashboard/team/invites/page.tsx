@@ -821,6 +821,11 @@ React.useEffect(() => {
                 const displayStatus = getDisplayStatus(r);
                 const tone = statusTone(displayStatus);
                 const isPending = displayStatus === "PENDING";
+                const isExpired = displayStatus === "EXPIRED";
+                const canManage =
+                  displayStatus === "PENDING" ||
+                  displayStatus === "EXPIRED" ||
+                  displayStatus === "CANCELLED";
                 const busy = busyInviteId === r.id;
 
                 return (
@@ -870,7 +875,7 @@ React.useEffect(() => {
                       </div>
                     </div>
 
-                    {isPending ? (
+                    {canManage ? (
                       <div style={rowActions}>
                         <button
                           type="button"
@@ -878,7 +883,7 @@ React.useEffect(() => {
                           disabled={busy}
                           onClick={() => openUpdateInvite(r)}
                         >
-                          Update
+                          Edit
                         </button>
 
                         <button
@@ -887,7 +892,13 @@ React.useEffect(() => {
                           disabled={busy}
                           onClick={() => resendInvite(r.id)}
                         >
-                          {busy ? "Working…" : "Resend"}
+                          {
+                          busy
+                            ? "Working…"
+                            : isExpired
+                            ? "Renew"
+                            : "Resend"
+                          }
                         </button>
 
                         <button
@@ -896,7 +907,7 @@ React.useEffect(() => {
                           disabled={busy}
                           onClick={() => cancelInvite(r.id)}
                         >
-                          Cancel
+                          {isExpired ? "Remove" : "Cancel"}
                         </button>
                       </div>
                     ) : null}

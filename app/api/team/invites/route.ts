@@ -221,9 +221,13 @@ export async function POST(req: Request) {
 
       if (!invite) return jsonError("Invite not found for this team.", 404);
 
-      if (invite.status !== "PENDING") {
-        return jsonError("Only pending invites can be updated, resent, or cancelled.", 400);
-      }
+if (invite.status === "ACCEPTED") {
+  return jsonError("Accepted invites cannot be edited, resent, or cancelled.", 400);
+}
+
+if (invite.status === "CANCELLED" && action !== "UPDATE") {
+  return jsonError("Cancelled invites cannot be resent or cancelled again. Edit the invite to renew it.", 400);
+}
 
       if (action === "CANCEL") {
         const updated = await prisma.teamInvite.update({
@@ -249,11 +253,12 @@ export async function POST(req: Request) {
 
         const updated = await prisma.teamInvite.update({
           where: { id: invite.id },
-          data: {
-            tokenHash: sha256Hex(rawInviteToken),
-            expiresAt: makeExpiresAt(14),
-            updatedAt: new Date(),
-          },
+data: {
+  tokenHash: sha256Hex(rawInviteToken),
+  status: "PENDING" as any,
+  expiresAt: makeExpiresAt(14),
+  updatedAt: new Date(),
+},
           select: {
             id: true,
             invitedEmail: true,
@@ -296,32 +301,33 @@ export async function POST(req: Request) {
           return jsonError("Parent email looks invalid.", 400);
         }
 
-        const existingPending = await prisma.teamInvite.findFirst({
-          where: {
-            teamId: found.team.id,
-            invitedEmail,
-            status: "PENDING" as any,
-            NOT: { id: invite.id },
-          },
-          select: { id: true },
-        });
-
-        if (existingPending) {
-          return jsonError("A pending invite already exists for this email.", 409);
-        }
+await prisma.teamInvite.updateMany({
+  where: {
+    teamId: found.team.id,
+    invitedEmail,
+    status: {
+      in: ["PENDING", "EXPIRED"] as any,
+    },
+  },
+  data: {
+    status: "CANCELLED" as any,
+    updatedAt: new Date(),
+  },
+});
 
         const rawInviteToken = makeInviteToken();
 
         const updated = await prisma.$transaction(async (tx) => {
           const saved = await tx.teamInvite.update({
             where: { id: invite.id },
-            data: {
-              invitedEmail,
-              parentEmail,
-              tokenHash: sha256Hex(rawInviteToken),
-              expiresAt: makeExpiresAt(14),
-              updatedAt: new Date(),
-            },
+data: {
+  invitedEmail,
+  parentEmail,
+  tokenHash: sha256Hex(rawInviteToken),
+  status: "PENDING" as any,
+  expiresAt: makeExpiresAt(14),
+  updatedAt: new Date(),
+},
             select: {
               id: true,
               invitedEmail: true,
@@ -401,18 +407,19 @@ export async function POST(req: Request) {
         ? makeExpiresAt(expiresInDays)
         : null;
 
-    const existingPending = await prisma.teamInvite.findFirst({
-      where: {
-        teamId: found.team.id,
-        invitedEmail,
-        status: "PENDING" as any,
-      },
-      select: { id: true },
-    });
-
-    if (existingPending) {
-      return jsonError("A pending invite already exists for this email.", 409);
-    }
+await prisma.teamInvite.updateMany({
+  where: {
+    teamId: found.team.id,
+    invitedEmail,
+    status: {
+      in: ["PENDING", "EXPIRED"] as any,
+    },
+  },
+  data: {
+    status: "CANCELLED" as any,
+    updatedAt: new Date(),
+  },
+});
 
     const rawInviteToken = makeInviteToken();
 
