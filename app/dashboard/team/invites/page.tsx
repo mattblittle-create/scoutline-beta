@@ -2,6 +2,7 @@
 "use client";
 
 import * as React from "react";
+import { useRouter } from "next/navigation";
 
 type InviteStatus =
   | "PENDING"
@@ -20,6 +21,8 @@ type InviteRow = {
   updatedAt?: string | null;
   acceptedAt?: string | null;
   expiresAt?: string | null;
+  acceptedUserId?: string | null;
+  playerProfileId?: string | null;
 };
 
 function isEmail(v: string) {
@@ -63,6 +66,7 @@ function statusTone(s: InviteStatus) {
 }
 
 export default function TeamInvitesPage() {
+  const router = useRouter();
   const [loading, setLoading] = React.useState(true);
   const [submitting, setSubmitting] = React.useState(false);
   const [busyInviteId, setBusyInviteId] = React.useState("");
@@ -192,6 +196,7 @@ async function copyJoinShareText() {
         updatedAt: r.updatedAt ?? null,
         acceptedAt: r.acceptedAt ?? null,
         expiresAt: r.expiresAt ?? null,
+        playerProfileId: r.playerProfileId ?? null,
       }));
 
       setRows(mapped);
@@ -820,13 +825,13 @@ React.useEffect(() => {
               {filtered.map((r) => {
                 const displayStatus = getDisplayStatus(r);
                 const tone = statusTone(displayStatus);
-                const isPending = displayStatus === "PENDING";
-                const isExpired = displayStatus === "EXPIRED";
-                const canManage =
-                  displayStatus === "PENDING" ||
-                  displayStatus === "EXPIRED" ||
-                  displayStatus === "CANCELLED";
-                const busy = busyInviteId === r.id;
+const isPending = displayStatus === "PENDING";
+const isExpired = displayStatus === "EXPIRED";
+const canManage =
+  displayStatus === "PENDING" ||
+  displayStatus === "EXPIRED" ||
+  displayStatus === "CANCELLED";
+const busy = busyInviteId === r.id;
 
                 return (
                   <div key={r.id} style={rowCard}>
@@ -875,42 +880,52 @@ React.useEffect(() => {
                       </div>
                     </div>
 
-                    {canManage ? (
-                      <div style={rowActions}>
-                        <button
-                          type="button"
-                          style={btnGhostSolid}
-                          disabled={busy}
-                          onClick={() => openUpdateInvite(r)}
-                        >
-                          Edit
-                        </button>
+{canManage ? (
+  <div style={rowActions}>
+    <button
+      type="button"
+      style={btnGhostSolid}
+      disabled={busy}
+      onClick={() => openUpdateInvite(r)}
+    >
+      Edit
+    </button>
 
-                        <button
-                          type="button"
-                          style={btnGhost}
-                          disabled={busy}
-                          onClick={() => resendInvite(r.id)}
-                        >
-                          {
-                          busy
-                            ? "Working…"
-                            : isExpired
-                            ? "Renew"
-                            : "Resend"
-                          }
-                        </button>
+    <button
+      type="button"
+      style={btnGhost}
+      disabled={busy}
+      onClick={() => resendInvite(r.id)}
+    >
+      {busy ? "Working…" : isExpired ? "Renew" : "Resend"}
+    </button>
 
-                        <button
-                          type="button"
-                          style={dangerBtn}
-                          disabled={busy}
-                          onClick={() => cancelInvite(r.id)}
-                        >
-                          {isExpired ? "Remove" : "Cancel"}
-                        </button>
-                      </div>
-                    ) : null}
+    <button
+      type="button"
+      style={dangerBtn}
+      disabled={busy}
+      onClick={() => cancelInvite(r.id)}
+    >
+      {isExpired ? "Remove" : "Cancel"}
+    </button>
+  </div>
+) : displayStatus === "ACCEPTED" && r.playerProfileId ? (
+  <div style={rowActions}>
+    <button
+      type="button"
+      style={btnGhostSolid}
+      onClick={() =>
+        router.push(
+          `/dashboard/team/roster/player/${encodeURIComponent(
+            String(r.playerProfileId || "")
+          )}/edit`
+        )
+      }
+    >
+      View Player
+    </button>
+  </div>
+) : null}
                   </div>
                 );
               })}

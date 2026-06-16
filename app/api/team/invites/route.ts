@@ -158,25 +158,46 @@ export async function GET() {
     const invites = await prisma.teamInvite.findMany({
       where: { teamId: found.team.id },
       orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        invitedEmail: true,
-        parentEmail: true,
-        status: true,
-        createdAt: true,
-        updatedAt: true,
-        acceptedAt: true,
-        expiresAt: true,
+select: {
+  id: true,
+  invitedEmail: true,
+  parentEmail: true,
+  status: true,
+  createdAt: true,
+  updatedAt: true,
+  acceptedAt: true,
+  expiresAt: true,
+  acceptedUser: {
+    select: {
+      PlayerProfile: {
+        select: {
+          id: true,
+        },
       },
+    },
+  },
+},
     });
 
-    return NextResponse.json({
-      ok: true,
-      data: {
-        teamId: found.team.id,
-        invites,
-      },
-    });
+const rows = invites.map((invite) => ({
+  id: invite.id,
+  invitedEmail: invite.invitedEmail,
+  parentEmail: invite.parentEmail,
+  status: invite.status,
+  createdAt: invite.createdAt,
+  updatedAt: invite.updatedAt,
+  acceptedAt: invite.acceptedAt,
+  expiresAt: invite.expiresAt,
+  playerProfileId: invite.acceptedUser?.PlayerProfile?.id || null,
+}));
+
+return NextResponse.json({
+  ok: true,
+  data: {
+    teamId: found.team.id,
+    invites: rows,
+  },
+});
   } catch (e: any) {
     return jsonError(e?.message || "Failed to load invites.", 500);
   }
@@ -307,6 +328,9 @@ await prisma.teamInvite.updateMany({
     invitedEmail,
     status: {
       in: ["PENDING", "EXPIRED"] as any,
+    },
+    NOT: {
+      id: invite.id,
     },
   },
   data: {
