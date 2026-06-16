@@ -340,16 +340,11 @@ const existingPendingInvite = await prisma.teamInvite.findFirst({
 });
 
 if (existingPendingInvite?.id) {
-  return NextResponse.json({
-    ok: true,
+  await prisma.teamInvite.update({
+    where: { id: existingPendingInvite.id },
     data: {
-      mode: "TEAM_JOIN_LINK_EXISTING_PENDING_INVITE",
-      invite: existingPendingInvite,
-      team: joinLink.team,
-      requiresNewToken: true,
-      message:
-        "A pending invite already exists for this player. Please ask the team admin to resend the invite from the Invites dashboard.",
-      redirectTo: `/team/invite/accept?code=${encodeURIComponent(code)}`,
+      status: "CANCELLED" as any,
+      updatedAt: new Date(),
     },
   });
 }
