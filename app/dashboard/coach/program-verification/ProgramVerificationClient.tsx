@@ -595,36 +595,150 @@ export default function ProgramVerificationClient() {
         <TextArea label="Player Development Notes" value={form.playerDevelopmentNotes} onChange={(v) => update("playerDevelopmentNotes", v)} />
       </section>
 
-      <section style={card}>
-        <h2 style={sectionTitle}>Program Benchmarks / Metrics</h2>
-        <p style={muted}>
-          Confirm division benchmark expectations or enter your own program-specific benchmark ranges.
-        </p>
+<section style={card}>
+  <h2 style={sectionTitle}>Program Benchmarks / Metrics</h2>
+  <p style={muted}>
+    Add program-specific benchmark ranges by position. These benchmarks power Truth Fit,
+    player metric comparisons, and recruiting fit recommendations.
+  </p>
 
-        <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
-          {form.programMetrics.map((metric, index) => (
-            <div key={index} style={nestedCard}>
-              <div style={grid}>
-                <SelectField label="Position" value={metric.position} options={POSITION_OPTIONS} onChange={(v) => updateProgramMetric(index, "position", v)} />
-                <SelectField label="Metric" value={metric.metricKey} options={METRIC_OPTIONS.map((m) => m.key)} onChange={(v) => updateProgramMetric(index, "metricKey", v)} />
-                <Field label="Metric Label" value={metric.metricLabel} onChange={(v) => updateProgramMetric(index, "metricLabel", v)} />
-                <Field label="Average Value" value={metric.averageValue} onChange={(v) => updateProgramMetric(index, "averageValue", v)} />
-                <Field label="Minimum Value" value={metric.minValue} onChange={(v) => updateProgramMetric(index, "minValue", v)} />
-                <Field label="Maximum Value" value={metric.maxValue} onChange={(v) => updateProgramMetric(index, "maxValue", v)} />
-                <Field label="Unit" value={metric.unit} onChange={(v) => updateProgramMetric(index, "unit", v)} />
+  <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
+    {form.programMetrics.map((metric, index) => {
+      const hasAnyValue =
+        metric.position.trim() ||
+        metric.metricKey.trim() ||
+        metric.averageValue.trim() ||
+        metric.minValue.trim() ||
+        metric.maxValue.trim();
+
+      const metricMeta = METRIC_OPTIONS.find((m) => m.key === metric.metricKey);
+
+      return (
+        <div key={index} style={nestedCard}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              alignItems: "center",
+              marginBottom: 10,
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 950, color: "#0f172a" }}>
+                Benchmark #{index + 1}
               </div>
-
-              <button type="button" onClick={() => removeProgramMetric(index)} style={secondaryBtn}>
-                Remove Metric
-              </button>
+              <div style={{ fontSize: 12, color: "#64748b", fontWeight: 700 }}>
+                Example: 3B • Exit Velocity • Avg 88 mph • Range 82–95 mph
+              </div>
             </div>
-          ))}
-        </div>
 
-        <button type="button" onClick={addProgramMetric} style={{ ...secondaryBtn, marginTop: 12 }}>
-          + Add Program Metric
-        </button>
-      </section>
+            <span
+              style={{
+                borderRadius: 999,
+                padding: "4px 8px",
+                fontSize: 11,
+                fontWeight: 900,
+                background: hasAnyValue ? "#dcfce7" : "#f1f5f9",
+                color: hasAnyValue ? "#166534" : "#64748b",
+                border: hasAnyValue ? "1px solid #86efac" : "1px solid #e2e8f0",
+              }}
+            >
+              {hasAnyValue ? "Ready" : "Empty"}
+            </span>
+          </div>
+
+          <div style={grid}>
+            <SelectField
+              label="Position"
+              value={metric.position}
+              options={POSITION_OPTIONS}
+              onChange={(v) => updateProgramMetric(index, "position", v)}
+            />
+
+            <SelectField
+              label="Metric"
+              value={metric.metricKey}
+              options={METRIC_OPTIONS.map((m) => m.key)}
+              onChange={(v) => updateProgramMetric(index, "metricKey", v)}
+            />
+
+            <Field
+              label="Metric Label"
+              value={metric.metricLabel}
+              onChange={(v) => updateProgramMetric(index, "metricLabel", v)}
+            />
+
+            <Field
+              label={`Unit${metricMeta?.unit ? ` (${metricMeta.unit})` : ""}`}
+              value={metric.unit}
+              onChange={(v) => updateProgramMetric(index, "unit", v)}
+            />
+          </div>
+
+          <div style={{ ...grid, marginTop: 10 }}>
+            <Field
+              label="Average Value"
+              value={metric.averageValue}
+              onChange={(v) => updateProgramMetric(index, "averageValue", v)}
+            />
+
+            <Field
+              label="Minimum Value"
+              value={metric.minValue}
+              onChange={(v) => updateProgramMetric(index, "minValue", v)}
+            />
+
+            <Field
+              label="Maximum Value"
+              value={metric.maxValue}
+              onChange={(v) => updateProgramMetric(index, "maxValue", v)}
+            />
+          </div>
+
+          <div
+            style={{
+              marginTop: 10,
+              padding: "8px 10px",
+              borderRadius: 12,
+              background: "#f8fafc",
+              border: "1px solid #e2e8f0",
+              color: "#64748b",
+              fontSize: 12,
+              fontWeight: 700,
+              lineHeight: 1.4,
+            }}
+          >
+            Tip: Use average as your typical recruited player benchmark. Use min/max
+            as the realistic accepted range for this position and metric.
+          </div>
+
+          <button
+            type="button"
+            onClick={() => removeProgramMetric(index)}
+            style={{
+              ...secondaryBtn,
+              borderColor: "#fecaca",
+              color: "#991b1b",
+              background: "#fff",
+              marginTop: 10,
+            }}
+          >
+            Remove Metric
+          </button>
+        </div>
+      );
+    })}
+  </div>
+
+  <button
+    type="button"
+    onClick={addProgramMetric}
+    style={{ ...secondaryBtn, marginTop: 12 }}
+  >
+    + Add Program Metric
+  </button>
+</section>
 
 <section style={card}>
   <h2 style={sectionTitle}>Roster Needs</h2>
