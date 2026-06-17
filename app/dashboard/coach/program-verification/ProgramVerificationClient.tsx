@@ -626,37 +626,113 @@ export default function ProgramVerificationClient() {
         </button>
       </section>
 
-      <section style={card}>
-        <h2 style={sectionTitle}>Roster Needs</h2>
-        <p style={muted}>
-          Add positional needs by graduating class. This helps ScoutLine understand actual recruiting opportunity.
-        </p>
+<section style={card}>
+  <h2 style={sectionTitle}>Roster Needs</h2>
+  <p style={muted}>
+    Add positional needs by graduating class. These needs power ScoutLine Opportunity Score,
+    College Search roster-need signals, and player recruiting recommendations.
+  </p>
 
-        <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
-          {form.rosterNeeds.map((need, index) => (
-            <div key={index} style={nestedCard}>
-              <div style={grid}>
-                <Field label="Grad Year" value={need.gradYear} onChange={(v) => updateRosterNeed(index, "gradYear", v)} />
-                <SelectField label="Position" value={need.position} options={POSITION_OPTIONS} onChange={(v) => updateRosterNeed(index, "position", v)} />
-                <SelectField label="Need Level" value={need.needLevel} options={NEED_LEVELS} onChange={(v) => updateRosterNeed(index, "needLevel", v)} />
+  <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
+    {form.rosterNeeds.map((need, index) => {
+      const hasAnyValue =
+        need.gradYear.trim() ||
+        need.position.trim() ||
+        need.needLevel.trim() ||
+        need.notes.trim();
+
+      return (
+        <div key={index} style={nestedCard}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              gap: 12,
+              alignItems: "center",
+              marginBottom: 10,
+            }}
+          >
+            <div>
+              <div style={{ fontWeight: 950, color: "#0f172a" }}>
+                Need #{index + 1}
               </div>
-
-              <TextArea label="Need Notes" value={need.notes} onChange={(v) => updateRosterNeed(index, "notes", v)} />
-
-              <button type="button" onClick={() => removeRosterNeed(index)} style={secondaryBtn}>
-                Remove Need
-              </button>
+              <div style={{ fontSize: 12, color: "#64748b", fontWeight: 700 }}>
+                Example: 2028 • 3B • HIGH
+              </div>
             </div>
-          ))}
+
+            <span
+              style={{
+                borderRadius: 999,
+                padding: "4px 8px",
+                fontSize: 11,
+                fontWeight: 900,
+                background: hasAnyValue ? "#dcfce7" : "#f1f5f9",
+                color: hasAnyValue ? "#166534" : "#64748b",
+                border: hasAnyValue ? "1px solid #86efac" : "1px solid #e2e8f0",
+              }}
+            >
+              {hasAnyValue ? "Ready" : "Empty"}
+            </span>
+          </div>
+
+          <div style={grid}>
+            <Field
+              label="Grad Year"
+              value={need.gradYear}
+              onChange={(v) => updateRosterNeed(index, "gradYear", v)}
+            />
+
+            <SelectField
+              label="Position"
+              value={need.position}
+              options={POSITION_OPTIONS}
+              onChange={(v) => updateRosterNeed(index, "position", v)}
+            />
+
+            <SelectField
+              label="Need Level"
+              value={need.needLevel}
+              options={NEED_LEVELS}
+              onChange={(v) => updateRosterNeed(index, "needLevel", v)}
+            />
+          </div>
+
+          <TextArea
+            label="Need Notes"
+            value={need.notes}
+            onChange={(v) => updateRosterNeed(index, "notes", v)}
+          />
+
+          <button
+            type="button"
+            onClick={() => removeRosterNeed(index)}
+            style={{
+              ...secondaryBtn,
+              borderColor: "#fecaca",
+              color: "#991b1b",
+              background: "#fff",
+              marginTop: 8,
+            }}
+          >
+            Remove Need
+          </button>
         </div>
+      );
+    })}
+  </div>
 
-        <button type="button" onClick={addRosterNeed} style={{ ...secondaryBtn, marginTop: 12 }}>
-          + Add Roster Need
-        </button>
-      </section>
+  <button
+    type="button"
+    onClick={addRosterNeed}
+    style={{ ...secondaryBtn, marginTop: 12 }}
+  >
+    + Add Roster Need
+  </button>
+</section>
 
-      <section style={card}>
-        <h2 style={sectionTitle}>Academic Areas / Majors</h2>
+<section style={card}>
+  <h2 style={sectionTitle}>Academic Areas / Majors</h2>
         <p style={muted}>
           Select academic areas your school offers or is especially known for. This will power recruit filters.
         </p>
