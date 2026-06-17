@@ -115,12 +115,12 @@ function buildAllowedTeamAdminPatch(
 ) {
   const patch: any = {};
 
-  // Core allowed fields only
-  for (const key of ["heightFt", "heightIn", "weightLb"]) {
-    if (Object.prototype.hasOwnProperty.call(incomingAtomic, key)) {
-      patch[key] = incomingAtomic[key];
-    }
+// Core allowed fields only
+for (const key of ["firstName", "lastName", "heightFt", "heightIn", "weightLb"]) {
+  if (Object.prototype.hasOwnProperty.call(incomingAtomic, key)) {
+    patch[key] = incomingAtomic[key];
   }
+}
 
   // Athletics allowed fields only
   for (const key of [
