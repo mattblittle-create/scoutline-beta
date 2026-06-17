@@ -301,7 +301,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>First Name</span>
           <input
             value={firstName}
-            disabled={coreLocked}
+            disabled={false}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First name"
             style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -313,7 +313,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>Last Name</span>
           <input
             value={lastName}
-            disabled={coreLocked}
+            disabled={false}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last name"
             style={{ ...inputStyle, flex: "1 1 auto" }}
