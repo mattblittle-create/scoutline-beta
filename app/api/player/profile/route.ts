@@ -8,8 +8,9 @@ import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 /** ================================
  *  Enumerations / options (keep in sync with client)
  * ================================= */
-const POS_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility"]);
-const SECONDARY_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "none"]);
+const POS_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "CIF", "MIF", "OF"]);
+
+const SECONDARY_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "CIF", "MIF", "OF", "none"]);
 const THROWS_OPTIONS = new Set(["R", "L", "S"]);
 const BATS_OPTIONS = new Set(["R", "L", "S"]);
 const YES_NO = new Set(["Yes", "No"]);
