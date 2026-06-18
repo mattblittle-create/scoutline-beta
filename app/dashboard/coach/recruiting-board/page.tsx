@@ -41,6 +41,7 @@ type SearchRow = {
   gradYear: number | null;
   primaryPos: string | null;
   secondaryPos: string | null;
+  pitcherHand: string | null;
   bats: string | null;
   throws: string | null;
 

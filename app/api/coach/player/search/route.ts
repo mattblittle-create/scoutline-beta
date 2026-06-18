@@ -499,6 +499,11 @@ export async function GET(req: Request) {
     }
   }
 
+  const normalized =
+  (p.data as any)?.normalized ||
+  (p.data as any) ||
+  {};
+
   const results = filtered.map(({ p, latest, resolvedTravelTeam }) => ({
     playerProfileId: p.id,
     lists: listsByProfileId.get(p.id) ?? [],
@@ -515,11 +520,30 @@ export async function GET(req: Request) {
     slug: p.user?.slug ?? null,
     photoUrl: p.user?.photoUrl ?? null,
 
-    gradYear: p.user?.Player?.gradYear ?? null,
-    primaryPos: p.user?.Player?.primaryPos ?? null,
-    secondaryPos: p.user?.Player?.secondaryPos ?? null,
-    bats: p.user?.Player?.bats ?? null,
-    throws: p.user?.Player?.throws ?? null,
+primaryPos:
+  normalized.primaryPos ||
+  p.user?.Player?.primaryPos ||
+  null,
+
+secondaryPos:
+  normalized.secondaryPos ||
+  p.user?.Player?.secondaryPos ||
+  null,
+
+  pitcherHand:
+  normalized.pitcherHand ||
+  p.user?.Player?.pitcherHand ||
+  null,
+
+bats:
+  normalized.bats ||
+  p.user?.Player?.bats ||
+  null,
+
+throws:
+  normalized.throws ||
+  p.user?.Player?.throws ||
+  null,
 
     isCommitted: p.user?.Player?.isCommitted ?? false,
     committedProgram: p.user?.Player?.committedProgram ?? null,
