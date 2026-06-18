@@ -506,6 +506,24 @@ const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
   const athletics: any = normalized?.athletics || {};
   const player: any = normalized?.player || {};
 
+  const firstName = firstString(
+    normalized.firstName,
+    core.firstName,
+    player.firstName
+  );
+
+  const lastName = firstString(
+   normalized.lastName,
+   core.lastName,
+    player.lastName
+  );
+
+  const displayName =
+    [firstName, lastName].filter(Boolean).join(" ").trim() ||
+    p.user?.name ||
+    p.email?.split("@")[0] ||
+    "Player";
+
   return {
     playerProfileId: p.id,
     lists: listsByProfileId.get(p.id) ?? [],
@@ -516,7 +534,7 @@ const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
     profileState: String((p as any).profileState),
 
     userId: p.user?.id ?? null,
-    name: p.user?.name ?? null,
+    name: displayName,
     email: p.user?.email ?? p.email,
     slug: p.user?.slug ?? null,
     photoUrl: p.user?.photoUrl ?? null,

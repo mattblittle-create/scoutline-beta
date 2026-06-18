@@ -1399,7 +1399,7 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
   </tr>
 ) : (
           sortedResults.map((r) => {
-            const name = r.name || (r.email ? r.email.split("@")[0] : "Player");
+            const name = r.name || "Player";
             const alreadyInList = selectedMemberIds.has(r.playerProfileId);
 
             return (
@@ -1453,8 +1453,6 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
                   ) : (
                     <span style={mutedSmall}>No public profile</span>
                   )}
-
-                  <div style={mutedSmall}>{r.email || r.profileEmail}</div>
                 </td>
 
                 <td style={td}>
