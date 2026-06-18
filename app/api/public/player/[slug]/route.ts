@@ -254,7 +254,7 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
 
       const row = await prisma.playerProfile.findUnique({
         where: { email: user.email.toLowerCase() },
-        select: { id: true, data: true },
+        select: { id: true, email: true, data: true },
       });
 
       const atomic = (row?.data || {}) as AtomicProfile;
@@ -546,7 +546,10 @@ return {
           hometown: (atomic as any).hometown ?? null,
           state: (atomic as any).state ?? null,
 
-          email: (atomic as any).emailPrivate ? null : (atomic as any).email ?? null,
+          email:
+            (atomic as any).emailPrivate
+              ? null
+              : row?.email ?? user?.email ?? (atomic as any).email ?? null,
           phone: (atomic as any).phonePrivate ? null : (atomic as any).phone ?? null,
 
           primaryPos: (atomic as any).primaryPos ?? null,
