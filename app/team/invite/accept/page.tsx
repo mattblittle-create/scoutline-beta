@@ -75,6 +75,8 @@ function TeamInviteAcceptPageInner() {
   const [data, setData] = React.useState<AcceptData | null>(null);
 
   const [joinPlayerEmail, setJoinPlayerEmail] = React.useState("");
+  const [joinPlayerFirstName, setJoinPlayerFirstName] = React.useState("");
+  const [joinPlayerLastName, setJoinPlayerLastName] = React.useState("");
   const [joinParentEmail, setJoinParentEmail] = React.useState("");
 
   React.useEffect(() => {
@@ -130,11 +132,13 @@ async function submitJoinLink() {
     const res = await fetch("/api/team/invites/accept", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        code,
-        playerEmail: joinPlayerEmail,
-        parentEmail: joinParentEmail,
-      }),
+body: JSON.stringify({
+  code,
+  playerFirstName: joinPlayerFirstName,
+  playerLastName: joinPlayerLastName,
+  playerEmail: joinPlayerEmail,
+  parentEmail: joinParentEmail,
+}),
     });
 
     const json = await res.json().catch(() => ({}));
@@ -273,6 +277,30 @@ async function acceptInvite(
           Enter the player and parent email to create a ScoutLine team invite and connect this player to the team roster.
         </p>
 
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 1fr))", gap: 10 }}>
+  <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
+    <span style={{ fontWeight: 900 }}>Player First Name (required)</span>
+    <input
+      value={joinPlayerFirstName}
+      onChange={(e) => setJoinPlayerFirstName(e.target.value)}
+      placeholder="First name"
+      type="text"
+      style={inputStyle}
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
+    <span style={{ fontWeight: 900 }}>Player Last Name (required)</span>
+    <input
+      value={joinPlayerLastName}
+      onChange={(e) => setJoinPlayerLastName(e.target.value)}
+      placeholder="Last name"
+      type="text"
+      style={inputStyle}
+    />
+  </label>
+</div>
+
         <label style={{ display: "grid", gap: 6, marginTop: 8 }}>
           <span style={{ fontWeight: 900 }}>Player Email (required)</span>
           <input
@@ -299,25 +327,31 @@ async function acceptInvite(
           <button
             type="button"
             onClick={submitJoinLink}
-            disabled={
+disabled={
   submitting ||
+  !joinPlayerFirstName.trim() ||
+  !joinPlayerLastName.trim() ||
   !joinPlayerEmail.trim() ||
   !joinParentEmail.trim()
 }
             style={{
               ...btnGoldButton,
-              opacity:
+opacity:
   submitting ||
+  !joinPlayerFirstName.trim() ||
+  !joinPlayerLastName.trim() ||
   !joinPlayerEmail.trim() ||
   !joinParentEmail.trim()
     ? 0.6
     : 1,
-              cursor:
-                submitting ||
-!joinPlayerEmail.trim() ||
-!joinParentEmail.trim()
-                  ? "not-allowed"
-                  : "pointer",
+cursor:
+  submitting ||
+  !joinPlayerFirstName.trim() ||
+  !joinPlayerLastName.trim() ||
+  !joinPlayerEmail.trim() ||
+  !joinParentEmail.trim()
+    ? "not-allowed"
+    : "pointer",
             }}
           >
             {submitting ? "Creating Invite…" : "Continue"}

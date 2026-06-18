@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import { slugifyName, generateUniqueSlug } from "@/lib/slug";
 import {
   createVerificationToken,
   invalidateExistingTokens,
@@ -20,6 +21,33 @@ function normalizeText(v: unknown): string {
 
 function normalizeEmail(v: unknown): string {
   return String(v ?? "").trim().toLowerCase();
+}
+
+function pickFirstName(body: any) {
+  return normalizeText(
+    body?.playerFirstName ??
+      body?.firstName ??
+      body?.player?.firstName ??
+      ""
+  );
+}
+
+function pickLastName(body: any) {
+  return normalizeText(
+    body?.playerLastName ??
+      body?.lastName ??
+      body?.player?.lastName ??
+      ""
+  );
+}
+
+function buildFullName(firstName: string, lastName: string) {
+  return [firstName, lastName].filter(Boolean).join(" ").trim();
+}
+
+function isGenericPlayerSlug(slug?: string | null) {
+  const s = normalizeText(slug).toLowerCase();
+  return !s || s === "player" || /^player-\d+$/.test(s);
 }
 
 function sha256Hex(input: string) {
@@ -237,6 +265,14 @@ const body = (await req.json().catch(() => ({}))) as {
   playerEmail?: string | null;
   parentEmail?: string | null;
   teamChoice?: TeamChoice | null;
+  playerFirstName?: string | null;
+  playerLastName?: string | null;
+  firstName?: string | null;
+  lastName?: string | null;
+  player?: {
+    firstName?: string | null;
+    lastName?: string | null;
+  } | null;
 };
 
 const rawToken = normalizeText(body?.token);
@@ -244,6 +280,9 @@ const code = normalizeText(body?.code);
 const playerEmail = normalizeEmail(body?.playerEmail);
 const parentEmail = normalizeEmail(body?.parentEmail);
 const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
+const playerFirstName = pickFirstName(body);
+const playerLastName = pickLastName(body);
+const playerFullName = buildFullName(playerFirstName, playerLastName);
 
     if (code && !rawToken) {
   if (!playerEmail) {
@@ -266,22 +305,53 @@ const teamChoice = normalizeText(body?.teamChoice) as TeamChoice | "";
 
 let playerUser = await prisma.user.findUnique({
   where: { email: playerEmail },
-  select: {
-    id: true,
-    email: true,
-    passwordHash: true,
-  },
+select: {
+  id: true,
+  email: true,
+  name: true,
+  slug: true,
+  passwordHash: true,
+},
 });
 
 if (!playerUser?.id) {
+  const slugBase =
+    slugifyName(playerFullName) ||
+    playerEmail.split("@")[0]?.toLowerCase().replace(/[^a-z0-9]+/g, "-") ||
+    "player";
+
+  const uniqueSlug = await generateUniqueSlug(prisma as any, slugBase);
+
   playerUser = await prisma.user.create({
     data: {
       email: playerEmail,
+      name: playerFullName || null,
+      slug: uniqueSlug,
       role: "PLAYER" as any,
     },
     select: {
       id: true,
       email: true,
+      name: true,
+      slug: true,
+      passwordHash: true,
+    },
+  });
+} else if (playerFullName && isGenericPlayerSlug((playerUser as any).slug)) {
+  const slugBase = slugifyName(playerFullName) || "player";
+  const uniqueSlug = await generateUniqueSlug(prisma as any, slugBase);
+
+  playerUser = await prisma.user.update({
+    where: { id: playerUser.id },
+    data: {
+      name: playerFullName,
+      slug: uniqueSlug,
+    },
+    select: {
+      id: true,
+      email: true,
+      name: true,
+      slug: true,
       passwordHash: true,
     },
   });
@@ -304,7 +374,11 @@ await prisma.playerProfile.upsert({
     playerBillingCadence: "monthly",
     playerBillingStatus: "Team Invite Pending",
     schemaVersion: 1,
-    data: {},
+    data: {
+  email: playerEmail,
+  firstName: playerFirstName || null,
+  lastName: playerLastName || null,
+},
   },
 update: {
   userId: playerUser.id,
@@ -317,6 +391,11 @@ update: {
   playerPlanTier: "TEAM" as any,
   playerBillingCadence: "monthly",
   playerBillingStatus: "Team Invite Pending",
+  data: {
+    email: playerEmail,
+    firstName: playerFirstName || undefined,
+    lastName: playerLastName || undefined,
+  },
   updatedAt: new Date(),
 },
 });

@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { getByEmail, saveUser, StoredUser } from "@/lib/devStore"; // dev fallback
 import { prisma } from "@/lib/prisma";
 import { slugifyName, generateUniqueSlug } from "@/lib/slug";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
 /** ================================
  *  Enumerations / options (keep in sync with client)
@@ -497,6 +498,34 @@ const trimOrNull = (v: any): string | null => {
   return s ? s : null;
 };
 
+async function assertEmailAvailableForUser(nextEmail: string, currentUserId: string | null) {
+  const existingUser = await prisma.user.findFirst({
+    where: {
+      email: { equals: nextEmail, mode: "insensitive" },
+      ...(currentUserId ? { NOT: { id: currentUserId } } : {}),
+    },
+    select: { id: true },
+  });
+
+  if (existingUser) {
+    return "That email address is already in use by another ScoutLine account.";
+  }
+
+  const existingProfile = await prisma.playerProfile.findFirst({
+    where: {
+      email: { equals: nextEmail, mode: "insensitive" },
+      ...(currentUserId ? { NOT: { userId: currentUserId } } : {}),
+    },
+    select: { id: true },
+  });
+
+  if (existingProfile) {
+    return "That email address is already in use by another player profile.";
+  }
+
+  return null;
+}
+
 function uid() {
   return Math.random().toString(36).slice(2) + "-" + Date.now().toString(36);
 }
@@ -625,13 +654,28 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const email: string = String(body.email ?? "").trim().toLowerCase();
-    if (!email) {
-      return NextResponse.json({ ok: false, error: "Email is required." }, { status: 400 });
-    }
+const requestedEmail: string = String(body.email ?? "").trim().toLowerCase();
+if (!requestedEmail) {
+  return NextResponse.json({ ok: false, error: "Email is required." }, { status: 400 });
+}
+
+const currentUser = await getCurrentUser().catch(() => null);
+const currentUserId = String((currentUser as any)?.id || "").trim() || null;
+const currentUserEmail = String((currentUser as any)?.email || "").trim().toLowerCase() || null;
+
+const email = requestedEmail;
+const oldEmail = currentUserEmail || email;
+const emailChanged = !!currentUserEmail && currentUserEmail !== email;
+
+if (emailChanged) {
+  const emailError = await assertEmailAvailableForUser(email, currentUserId);
+  if (emailError) {
+    return NextResponse.json({ ok: false, error: emailError }, { status: 409 });
+  }
+}
 
     // ✅ Cancellation access cutoff (effective end-of-period)
-    const gate = await enforcePlayerCancellationGate(email);
+    const gate = await enforcePlayerCancellationGate(oldEmail);
     if (!gate.allowed) {
       return NextResponse.json(
         {
@@ -644,10 +688,12 @@ export async function POST(req: Request) {
     }
 
     // Load existing profile so we can preserve docs when not re-sent
-    const existing = await prisma.playerProfile.findUnique({
-      where: { email },
-      select: { data: true },
-    });
+const existing = await prisma.playerProfile.findFirst({
+  where: currentUserId
+    ? { userId: currentUserId }
+    : { email: { equals: oldEmail, mode: "insensitive" } },
+  select: { id: true, email: true, userId: true, data: true },
+});
     const existingData = (existing?.data as any) || {};
 
     /** ---------- Normalize core/athletics ---------- */
@@ -1230,25 +1276,78 @@ export async function POST(req: Request) {
     if (hasNcaaKey) (normalized as any).ncaaId = ncaaIdNormalized;      // may be null to clear
     if (hasNaiaKey) (normalized as any).naiaEcid = naiaEcidNormalized;   // may be null to clear
 
-    /** ---------- Persist ---------- */
-    const stored = await saveUser(normalized);
-    const schemaVersion = 1;
+/** ---------- Persist ---------- */
+const stored = await saveUser(normalized);
+const schemaVersion = 1;
 
-    // Ensure User + slug exists and is upgraded if we have names
-    const userRow = await ensureUserRowAndSlug(email, firstName ?? undefined, lastName ?? undefined);
+// Ensure User + slug exists and is upgraded if we have names
+let userRow = currentUserId
+  ? await prisma.user.findUnique({
+      where: { id: currentUserId },
+      select: { id: true, email: true, slug: true, name: true, phonePrivate: true, emailPrivate: true },
+    })
+  : null;
 
-    await prisma.playerProfile.upsert({
-      where: { email },
-      create: { email, userId: userRow?.id ?? null, schemaVersion, data: normalized },
-      update: { userId: userRow?.id ?? null, schemaVersion, data: normalized },
-    });
+if (!userRow) {
+  userRow = await ensureUserRowAndSlug(oldEmail, firstName ?? undefined, lastName ?? undefined);
+}
 
-    /** ---------- BUST public cache so /api/public/... recomputes ---------- */
-    try {
-      if (userRow?.slug) {
-        await prisma.publicProfileCache.delete({ where: { slug: userRow.slug } }).catch(() => {});
-      }
-    } catch {}
+if (!userRow) {
+  return NextResponse.json({ ok: false, error: "Could not resolve user account." }, { status: 400 });
+}
+
+const oldSlug = userRow.slug;
+
+if (userRow.email.toLowerCase() !== email) {
+  userRow = await prisma.user.update({
+    where: { id: userRow.id },
+    data: { email },
+    select: { id: true, email: true, slug: true, name: true, phonePrivate: true, emailPrivate: true },
+  });
+}
+
+const normalizedWithCanonicalEmail = {
+  ...(normalized as any),
+  email,
+  contact: {
+    ...((normalized as any).contact || {}),
+    email,
+  },
+};
+
+if (existing?.id) {
+  await prisma.playerProfile.update({
+    where: { id: existing.id },
+    data: {
+      email,
+      userId: userRow.id,
+      schemaVersion,
+      data: normalizedWithCanonicalEmail,
+    },
+  });
+} else {
+  await prisma.playerProfile.create({
+    data: {
+      email,
+      userId: userRow.id,
+      schemaVersion,
+      data: normalizedWithCanonicalEmail,
+    },
+  });
+}
+
+/** ---------- BUST public cache so /api/public/... recomputes ---------- */
+try {
+  await prisma.publicProfileCache.deleteMany({
+    where: {
+      OR: [
+        { userId: userRow.id },
+        ...(oldSlug ? [{ slug: oldSlug }] : []),
+        ...(userRow.slug ? [{ slug: userRow.slug }] : []),
+      ],
+    },
+  });
+} catch {}
 
     // Keep Player row in sync (best-effort)
     try {
@@ -1307,8 +1406,8 @@ export async function POST(req: Request) {
     return NextResponse.json(
       {
         ok: true,
-        normalized: { ...stored, slug: userRow?.slug ?? null },
-        user: { ...stored, slug: userRow?.slug ?? null },
+        normalized: { ...stored, email, slug: userRow?.slug ?? null },
+        user: { ...stored, email, slug: userRow?.slug ?? null },
       },
       { status: 200 }
     );
