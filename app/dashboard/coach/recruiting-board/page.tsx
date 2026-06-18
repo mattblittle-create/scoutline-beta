@@ -103,6 +103,7 @@ type SortKey =
   | "rating"
   | "gradYear"
   | "pos"
+  | "pitcherHand"
   | "state"
   | "city"
   | "hsName"
@@ -545,6 +546,8 @@ const sortedMembers = useMemo(() => {
           return cmpNumNullLast(a.gradYear ?? null, b.gradYear ?? null) * dir;
         case "pos":
           return cmpStr(aPos, bPos) * dir;
+        case "pitcherHand":
+          return String(a.pitcherHand || "").localeCompare(String(b.pitcherHand || ""));
         case "state":
           return cmpStr(aState, bState) * dir;
         case "city":
@@ -1364,6 +1367,7 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("rating")}>Rating</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("gradYear")}>Grad Yr</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("pos")}>Pos</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("pitcherHand")}>Pitcher</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("state")}>State</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("city")}>City</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("hsName")}>High School</th>
@@ -1385,7 +1389,7 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
       <tbody>
 {sortedResults.length === 0 ? (
   <tr>
-    <td style={tdMuted} colSpan={15}>
+    <td style={tdMuted} colSpan={18}>
       {loading
         ? "Searching…"
         : !hasAnySearchCriteria()
@@ -1462,6 +1466,8 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
                 <td style={td}>
                   {r.primaryPos ? `${r.primaryPos}${r.secondaryPos ? ` / ${r.secondaryPos}` : ""}` : "—"}
                 </td>
+
+                <td style={td}>{r.pitcherHand || "—"}</td>
 
                 <td style={td}>{r.state || "—"}</td>
                 <td style={td}>{r.hometown || "—"}</td>
