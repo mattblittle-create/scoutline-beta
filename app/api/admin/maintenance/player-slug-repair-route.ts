@@ -1,4 +1,4 @@
-// app/api/admin/repair/player-slugs/route.ts
+// app/api/admin/maintenance/player-slug-repair/route.ts
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -6,6 +6,9 @@ import { getAdminContext } from "@/lib/admin/getAdminContext";
 import { slugifyName, generateUniqueSlug } from "@/lib/slug";
 
 export const dynamic = "force-dynamic";
+
+// Flip to true only when you intentionally need to run this repair.
+const ENABLE_PLAYER_SLUG_REPAIR = false;
 
 function isGenericPlayerSlug(slug?: string | null) {
   const s = String(slug || "").trim().toLowerCase();
@@ -18,6 +21,7 @@ function clean(v: any) {
 
 export async function GET(req: Request) {
   const ctx = await getAdminContext();
+
   if (!ctx.ok) {
     return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
@@ -28,6 +32,13 @@ export async function GET(req: Request) {
 
   if (!canRepair) {
     return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
+  }
+
+  if (!ENABLE_PLAYER_SLUG_REPAIR) {
+    return NextResponse.json(
+      { ok: false, error: "Player slug repair route disabled." },
+      { status: 404 }
+    );
   }
 
   const url = new URL(req.url);
@@ -102,6 +113,7 @@ export async function GET(req: Request) {
       : user.slug;
 
     const updateData: any = {};
+
     if (shouldUpdateName) updateData.name = fullName;
     if (shouldUpdateSlug) updateData.slug = nextSlug;
 
@@ -111,13 +123,15 @@ export async function GET(req: Request) {
         data: updateData,
       });
 
-      if (user.slug && user.slug !== nextSlug) {
-        await prisma.publicProfileCache.deleteMany({
-          where: {
-            OR: [{ userId: user.id }, { slug: user.slug }, { slug: String(nextSlug || "") }],
-          },
-        });
-      }
+      await prisma.publicProfileCache.deleteMany({
+        where: {
+          OR: [
+            { userId: user.id },
+            ...(user.slug ? [{ slug: user.slug }] : []),
+            ...(nextSlug ? [{ slug: String(nextSlug) }] : []),
+          ],
+        },
+      });
     }
 
     results.push({
