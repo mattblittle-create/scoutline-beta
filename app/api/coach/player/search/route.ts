@@ -499,16 +499,17 @@ export async function GET(req: Request) {
     }
   }
 
-  const normalized =
-  (p.data as any)?.normalized ||
-  (p.data as any) ||
-  {};
+const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
+  const dataObj: any = (p as any).data || {};
+  const normalized: any = dataObj?.normalized || dataObj || {};
+  const core: any = normalized?.core || {};
+  const athletics: any = normalized?.athletics || {};
+  const player: any = normalized?.player || {};
 
-  const results = filtered.map(({ p, latest, resolvedTravelTeam }) => ({
+  return {
     playerProfileId: p.id,
     lists: listsByProfileId.get(p.id) ?? [],
 
-    // ✅ NEW: coach/program-scoped rating (0..5). Default 0 when not rated.
     rating: ratingsByProfileId.get(p.id) ?? 0,
 
     profileEmail: p.email,
@@ -520,45 +521,61 @@ export async function GET(req: Request) {
     slug: p.user?.slug ?? null,
     photoUrl: p.user?.photoUrl ?? null,
 
-primaryPos:
-  normalized.primaryPos ||
-  p.user?.Player?.primaryPos ||
-  null,
+    gradYear:
+      toNum(normalized.gradYear) ??
+      toNum(athletics.gradYear) ??
+      toNum(player.gradYear) ??
+      p.user?.Player?.gradYear ??
+      null,
 
-secondaryPos:
-  normalized.secondaryPos ||
-  p.user?.Player?.secondaryPos ||
-  null,
+    primaryPos:
+      firstString(normalized.primaryPos, athletics.primaryPos, player.primaryPos, p.user?.Player?.primaryPos),
 
-  pitcherHand:
-  normalized.pitcherHand ||
-  p.user?.Player?.pitcherHand ||
-  null,
+    secondaryPos:
+      firstString(normalized.secondaryPos, athletics.secondaryPos, player.secondaryPos, p.user?.Player?.secondaryPos),
 
-bats:
-  normalized.bats ||
-  p.user?.Player?.bats ||
-  null,
+    pitcherHand:
+      firstString(normalized.pitcherHand, athletics.pitcherHand, player.pitcherHand, p.user?.Player?.pitcherHand),
 
-throws:
-  normalized.throws ||
-  p.user?.Player?.throws ||
-  null,
+    bats:
+      firstString(normalized.bats, athletics.bats, player.bats, p.user?.Player?.bats),
 
-    isCommitted: p.user?.Player?.isCommitted ?? false,
-    committedProgram: p.user?.Player?.committedProgram ?? null,
+    throws:
+      firstString(normalized.throws, athletics.throws, player.throws, p.user?.Player?.throws),
 
-    state: p.user?.Player?.state ?? null,
-    hometown: p.user?.Player?.hometown ?? null,
-    hsName: p.user?.Player?.hsName ?? null,
+    isCommitted:
+      normalized.isCommitted ??
+      athletics.isCommitted ??
+      player.isCommitted ??
+      p.user?.Player?.isCommitted ??
+      false,
+
+    committedProgram:
+      firstString(normalized.committedProgram, athletics.committedProgram, player.committedProgram, p.user?.Player?.committedProgram),
+
+    state:
+      firstString(normalized.state, core.state, player.state, p.user?.Player?.state),
+
+    hometown:
+      firstString(normalized.hometown, core.hometown, player.hometown, p.user?.Player?.hometown),
+
+    hsName:
+      firstString(normalized.hsName, athletics.hsName, player.hsName, p.user?.Player?.hsName),
+
     travelTeam: resolvedTravelTeam,
 
-    gpa: p.user?.Player?.gpa ?? null,
+    gpa:
+      toNum(normalized.gpa) ??
+      toNum(core.gpa) ??
+      toNum(player.gpa) ??
+      p.user?.Player?.gpa ??
+      null,
 
     metricsLatest: latest,
 
     updatedAt: p.updatedAt.toISOString(),
-  }));
+  };
+});
 
-  return NextResponse.json({ ok: true, results });
+return NextResponse.json({ ok: true, results });
 }
