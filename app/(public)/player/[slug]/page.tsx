@@ -156,7 +156,7 @@ function JumpToSectionNav({ sections }: { sections: { id: string; label: string 
 }
 
 const SECTION_SCROLL_MARGIN_DESKTOP = 300;
-const SECTION_SCROLL_MARGIN_MOBILE = 200;
+const SECTION_SCROLL_MARGIN_MOBILE = 250;
 
 function SectionWrapper({
   id,
