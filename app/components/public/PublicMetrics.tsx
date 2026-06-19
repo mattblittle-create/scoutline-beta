@@ -408,6 +408,7 @@ type MetricCardProps = {
 
   pill: React.CSSProperties;
   cardInner: React.CSSProperties;
+  isMobile: boolean;
 };
 
 function MetricCard({
@@ -424,6 +425,7 @@ function MetricCard({
 
   pill,
   cardInner,
+  isMobile,
 }: MetricCardProps) {
   const seriesKey = String(series.key);
 
@@ -736,7 +738,16 @@ function MetricCard({
   return (
     <div style={cardInner}>
       {/* Header pills */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "space-between",
+          alignItems: isMobile ? "stretch" : "flex-start",
+          gap: isMobile ? 8 : 12,
+          minWidth: 0,
+        }}
+      >
         <div style={{ display: "grid", gap: 4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{ fontWeight: 800, color: "#0f172a" }}>
@@ -781,7 +792,16 @@ function MetricCard({
           ) : null}
         </div>
 
-        <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 6,
+            justifyContent: isMobile ? "flex-start" : "flex-end",
+            minWidth: 0,
+            maxWidth: "100%",
+          }}
+        >
           <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
           <span style={pill}>Source: {latestSource || "—"}</span>
           <span style={pill}>Trajectory: {trajectory}</span>
@@ -916,6 +936,15 @@ export default function PublicMetrics({
   h2Style,
   pillStyle,
 }: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const { series = [], dob } = metrics || {};
 
   // Plan gating: only All-American + Teams show growth tracking charts
@@ -1022,14 +1051,15 @@ export default function PublicMetrics({
   // not just Utility.
   const allowRawThrowVelo = hasAnyHints ? (hasUtilityPos || hasInfieldPos || hasOutfieldPos || hasCatcher) : true;
 
-  const safeCard: React.CSSProperties = {
-    marginTop: 16,
-    background: "#fff",
-    border: "1px solid #e5e7eb",
-    borderRadius: 12,
-    padding: 16,
-    ...(cardStyle || {}),
-  };
+const safeCard: React.CSSProperties = {
+  marginTop: 16,
+  background: "#fff",
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  padding: isMobile ? 12 : 16,
+  overflow: "hidden",
+  ...(cardStyle || {}),
+};
 
   const safeH2: React.CSSProperties = {
     margin: 0,
@@ -1038,34 +1068,42 @@ export default function PublicMetrics({
     ...(h2Style || {}),
   };
 
-  const pill: React.CSSProperties = {
-    fontSize: 12,
-    fontWeight: 800,
-    color: "#0f172a",
-    background: "#f1f5f9",
-    border: "1px solid #e2e8f0",
-    borderRadius: 999,
-    padding: "4px 10px",
-    lineHeight: 1,
-    whiteSpace: "nowrap",
-    ...(pillStyle || {}),
-  };
+const pill: React.CSSProperties = {
+  fontSize: isMobile ? 11 : 12,
+  fontWeight: 800,
+  color: "#0f172a",
+  background: "#f1f5f9",
+  border: "1px solid #e2e8f0",
+  borderRadius: 999,
+  padding: isMobile ? "4px 8px" : "4px 10px",
+  lineHeight: 1.2,
+  whiteSpace: "normal",
+  maxWidth: "100%",
+  overflowWrap: "anywhere",
+  wordBreak: "break-word",
+  ...(pillStyle || {}),
+};
 
-  const grid: React.CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-    gap: 12,
-    marginTop: 8,
-  };
+const grid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0, 1fr))",
+  gap: 12,
+  marginTop: 8,
+  minWidth: 0,
+  maxWidth: "100%",
+};
 
-  const cardInner: React.CSSProperties = {
-    border: "1px solid #e5e7eb",
-    borderRadius: 10,
-    padding: 12,
-    background: "#ffffff",
-    display: "grid",
-    gap: 8,
-  };
+const cardInner: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 10,
+  padding: isMobile ? 10 : 12,
+  background: "#ffffff",
+  display: "grid",
+  gap: 8,
+  minWidth: 0,
+  maxWidth: "100%",
+  overflow: "hidden",
+};
 
   return (
     <section style={safeCard}>
@@ -1113,6 +1151,7 @@ export default function PublicMetrics({
               allowRawThrow={allowRawThrowVelo}
               pill={pill}
               cardInner={cardInner}
+              isMobile={isMobile}
             />
           ))}
         </div>
