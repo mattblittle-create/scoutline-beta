@@ -281,6 +281,15 @@ const VideoCompatibilityNote: React.FC = () => (
 
 /** ---------------- component ---------------- */
 export default function PublicMedia(props: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const media: MediaData = (() => {
     if ("media" in props) return props.media || {};
     if ("payload" in props) {
@@ -320,7 +329,8 @@ export default function PublicMedia(props: Props) {
     background: "#fff",
     border: "1px solid #e5e7eb",
     borderRadius: 12,
-    padding: 16,
+    padding: isMobile ? 12 : 16,
+    overflow: "hidden",
     ...(cardStyle || {}),
   };
 
@@ -342,6 +352,39 @@ export default function PublicMedia(props: Props) {
     whiteSpace: "nowrap",
     ...(pillStyle || {}),
   };
+
+  const mediaCardStyle: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 10,
+  padding: isMobile ? 8 : 10,
+  background: "#ffffff",
+  display: "grid",
+  gap: 8,
+  minWidth: 0,
+  maxWidth: "100%",
+  overflow: "hidden",
+};
+
+const mediaTitleStyle: React.CSSProperties = {
+  fontWeight: 800,
+  color: "#0f172a",
+  fontSize: isMobile ? 13 : 14,
+  lineHeight: 1.25,
+  minWidth: 0,
+  maxWidth: "100%",
+  overflowWrap: "anywhere",
+  wordBreak: "break-word",
+};
+
+const responsiveVideoShell: React.CSSProperties = {
+  position: "relative",
+  paddingTop: "56.25%",
+  borderRadius: 8,
+  overflow: "hidden",
+  background: "#111",
+  width: "100%",
+  maxWidth: "100%",
+};
 
   const primaryPillStyle: React.CSSProperties = {
     fontSize: 11,
@@ -408,28 +451,33 @@ export default function PublicMedia(props: Props) {
             background: "#ffffff",
           }}
         >
-          <div
+<div
             style={{
               display: "flex",
               justifyContent: "space-between",
-              alignItems: "center",
+              alignItems: "flex-start",
+              flexWrap: "wrap",
               marginBottom: 8,
+              gap: 8,
+              minWidth: 0,
             }}
           >
-            <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+<div
+  style={{
+    fontWeight: 900,
+    fontSize: isMobile ? 14 : 16,
+    color: "#0f172a",
+    minWidth: 0,
+    maxWidth: "100%",
+    overflowWrap: "anywhere",
+    wordBreak: "break-word",
+  }}
+>
               {primaryLabel || "Primary Highlight"}
             </div>
             <span style={primaryPillStyle}>PRIMARY</span>
           </div>
-          <div
-            style={{
-              position: "relative",
-              paddingTop: "56.25%",
-              borderRadius: 12,
-              overflow: "hidden",
-              background: "#111",
-            }}
-          >
+<div style={responsiveVideoShell}>
             <iframe
               src={src}
               title={primaryLabel || "Primary Highlight"}
@@ -484,28 +532,33 @@ export default function PublicMedia(props: Props) {
             background: "#ffffff",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 8,
-            }}
-          >
-            <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
+    marginBottom: 8,
+    gap: 8,
+    minWidth: 0,
+  }}
+>
+<div
+  style={{
+    fontWeight: 900,
+    fontSize: isMobile ? 14 : 16,
+    color: "#0f172a",
+    minWidth: 0,
+    maxWidth: "100%",
+    overflowWrap: "anywhere",
+    wordBreak: "break-word",
+  }}
+>
               {primaryLabel || "Primary Highlight"}
             </div>
             <span style={primaryPillStyle}>PRIMARY</span>
           </div>
-          <div
-            style={{
-              position: "relative",
-              paddingTop: "56.25%",
-              borderRadius: 12,
-              overflow: "hidden",
-              background: "#111",
-            }}
-          >
+<div style={responsiveVideoShell}>
             <iframe
               src={src}
               title={primaryLabel || "Primary Highlight"}
@@ -537,8 +590,28 @@ export default function PublicMedia(props: Props) {
             background: "#ffffff",
           }}
         >
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-            <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    flexWrap: "wrap",
+    gap: 8,
+    minWidth: 0,
+    marginBottom: 8,
+  }}
+>
+<div
+  style={{
+    fontWeight: 900,
+    fontSize: isMobile ? 14 : 16,
+    color: "#0f172a",
+    minWidth: 0,
+    maxWidth: "100%",
+    overflowWrap: "anywhere",
+    wordBreak: "break-word",
+  }}
+>
               {primaryLabel || "Primary Highlight"}
             </div>
             <span style={primaryPillStyle}>PRIMARY</span>
@@ -567,7 +640,8 @@ export default function PublicMedia(props: Props) {
               rel="noopener noreferrer"
               style={{
                 display: "inline-flex",
-                alignItems: "center",
+                alignItems: "flex-start",
+                flexWrap: "wrap",
                 gap: 8,
                 textDecoration: "none",
                 fontWeight: 800,
@@ -596,15 +670,28 @@ export default function PublicMedia(props: Props) {
           background: "#ffffff",
         }}
       >
-        <div
+<div
           style={{
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "center",
+            alignItems: "flex-start",
+            flexWrap: "wrap",
+            gap: 8,
+            minWidth: 0,
             marginBottom: 8,
           }}
         >
-          <div style={{ fontWeight: 900, fontSize: 16, color: "#0f172a" }}>
+<div
+  style={{
+    fontWeight: 900,
+    fontSize: isMobile ? 14 : 16,
+    color: "#0f172a",
+    minWidth: 0,
+    maxWidth: "100%",
+    overflowWrap: "anywhere",
+    wordBreak: "break-word",
+  }}
+>
             {primaryLabel || "Primary Highlight"}
           </div>
           <span style={primaryPillStyle}>PRIMARY</span>
@@ -700,7 +787,15 @@ export default function PublicMedia(props: Props) {
                   : "No videos available."}
               </div>
             ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0,1fr))", gap: 12 }}>
+              <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0,1fr))",
+    gap: 12,
+    minWidth: 0,
+    maxWidth: "100%",
+  }}
+>
                 {uploads.map((v, idx) => {
                   const url = v.url;
                   const label = (v.title?.trim() || fileNameFromUrl(url)) ?? "Video";
@@ -709,27 +804,12 @@ export default function PublicMedia(props: Props) {
                   return (
                     <div
                       key={`upload-${idx}-${url}`}
-                      style={{
-                        border: "1px solid #e5e7eb",
-                        borderRadius: 10,
-                        padding: 10,
-                        background: "#ffffff",
-                        display: "grid",
-                        gap: 8,
-                      }}
+                      style={mediaCardStyle}
                       aria-roledescription="Video card"
                     >
-                      <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                      <div style={mediaTitleStyle}>{label}</div>
 
-                      <div
-                        style={{
-                          position: "relative",
-                          paddingTop: "56.25%",
-                          borderRadius: 8,
-                          overflow: "hidden",
-                          background: "#111",
-                        }}
-                      >
+<div style={responsiveVideoShell}>
                         <video
                           controls
                           playsInline
@@ -789,7 +869,17 @@ export default function PublicMedia(props: Props) {
                   : "No Videos available."}
               </div>
             ) : (
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(600px, 1fr))", gap: 12 }}>
+              <div
+  style={{
+    display: "grid",
+    gridTemplateColumns: isMobile
+  ? "1fr"
+  : "repeat(2, minmax(0, 1fr))",
+    gap: 12,
+    minWidth: 0,
+    maxWidth: "100%",
+  }}
+>
                 {links.map((v, idx) => {
                   const url = v.url;
                   const label = v.title?.trim() || url;
@@ -809,22 +899,13 @@ export default function PublicMedia(props: Props) {
                     return (
                       <div
                         key={`ext-${idx}-${url}`}
-                        style={{
-                          border: "1px solid #e5e7eb",
-                          borderRadius: 10,
-                          padding: 10,
-                          background: "#ffffff",
-                          display: "grid",
-                          gap: 8,
-                        }}
+                        style={mediaCardStyle}
                         aria-roledescription="Video card"
                       >
-                        <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>
-                          {label}
-                        </div>
+                        <div style={mediaTitleStyle}>{label}</div>
 
                         {src ? (
-                          <div style={{ position: "relative", paddingTop: "56.25%" }}>
+                          <div style={responsiveVideoShell}>
                             <iframe
                               src={src}
                               title={label}
@@ -878,19 +959,12 @@ export default function PublicMedia(props: Props) {
                     return (
                       <div
                         key={`ext-${idx}-${url}`}
-                        style={{
-                          border: "1px solid #e5e7eb",
-                          borderRadius: 10,
-                          padding: 10,
-                          background: "#ffffff",
-                          display: "grid",
-                          gap: 8,
-                        }}
+                        style={mediaCardStyle}
                         aria-roledescription="Video card"
                       >
-                        <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                        <div style={mediaTitleStyle}>{label}</div>
                         {src ? (
-                          <div style={{ position: "relative", paddingTop: "56.25%" }}>
+                          <div style={responsiveVideoShell}>
                             <iframe
                               src={src}
                               title={label}
@@ -920,17 +994,10 @@ export default function PublicMedia(props: Props) {
                     return (
                       <div
                         key={`ext-${idx}-${url}`}
-                        style={{
-                          border: "1px solid #e5e7eb",
-                          borderRadius: 10,
-                          padding: 10,
-                          background: "#ffffff",
-                          display: "grid",
-                          gap: 8,
-                        }}
+                        style={mediaCardStyle}
                         aria-roledescription="Video card"
                       >
-                        <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                        <div style={mediaTitleStyle}>{label}</div>
                         <video
                           controls
                           playsInline
@@ -978,17 +1045,10 @@ export default function PublicMedia(props: Props) {
                   return (
                     <div
                       key={`ext-${idx}-${url}`}
-                      style={{
-                        border: "1px solid #e5e7eb",
-                        borderRadius: 10,
-                        padding: 10,
-                        background: "#ffffff",
-                        display: "grid",
-                        gap: 8,
-                      }}
+                      style={mediaCardStyle}
                       aria-roledescription="Video card"
                     >
-                      <div style={{ fontWeight: 800, color: "#0f172a", fontSize: 14 }}>{label}</div>
+                      <div style={mediaTitleStyle}>{label}</div>
                       <LinkPill href={url}>Open Video</LinkPill>
                     </div>
                   );
