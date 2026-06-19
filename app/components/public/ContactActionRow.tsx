@@ -124,6 +124,15 @@ type Props = {
 };
 
 export default function ContactActionRow(props: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const email = String(props.email || "").trim();
   const phoneDigits = digitsOnly(props.phoneDigits).slice(0, 10);
 
@@ -157,35 +166,51 @@ export default function ContactActionRow(props: Props) {
 
   if (!hasAny) return null;
 
+  const iconSize = isMobile ? 16 : 18;
+  const linkStyle: React.CSSProperties = {
+    ...iconLink,
+    width: isMobile ? 30 : 34,
+    height: isMobile ? 30 : 34,
+    borderRadius: isMobile ? 9 : 10,
+  };
+
+  const rowStyle: React.CSSProperties = {
+    ...row,
+    gap: isMobile ? 7 : 10,
+    justifyContent: isMobile ? "center" : "flex-start",
+    maxWidth: "100%",
+    overflow: "hidden",
+  };
+
   return (
-    <div style={row}>
+    <div style={rowStyle}>
       {mailHref ? (
-        <a href={mailHref} style={iconLink} title="Email" aria-label="Email">
-          <Mail size={18} color="#0ea5e9" />
+        <a href={mailHref} style={linkStyle} title="Email" aria-label="Email">
+          <Mail size={iconSize} color="#0ea5e9" />
         </a>
       ) : null}
 
       {telHref ? (
-        <a href={telHref} style={iconLink} title="Call" aria-label="Call">
-          <Phone size={18} color="#0ea5e9" />
+        <a href={telHref} style={linkStyle} title="Call" aria-label="Call">
+          <Phone size={iconSize} color="#0ea5e9" />
         </a>
       ) : null}
 
       {xUrl ? (
-        <a href={xUrl} target="_blank" rel="noreferrer" style={iconLink} title="X" aria-label="X">
-          <IconX size={18} />
+        <a href={xUrl} target="_blank" rel="noreferrer" style={linkStyle} title="X" aria-label="X">
+          <IconX size={iconSize} />
         </a>
       ) : null}
 
       {igUrl ? (
-        <a href={igUrl} target="_blank" rel="noreferrer" style={iconLink} title="Instagram" aria-label="Instagram">
-          <IconInstagram size={18} />
+        <a href={igUrl} target="_blank" rel="noreferrer" style={linkStyle} title="Instagram" aria-label="Instagram">
+          <IconInstagram size={iconSize} />
         </a>
       ) : null}
 
       {youtubeUrl ? (
-        <a href={youtubeUrl} target="_blank" rel="noreferrer" style={iconLink} title="YouTube" aria-label="YouTube">
-          <IconYouTube size={18} />
+        <a href={youtubeUrl} target="_blank" rel="noreferrer" style={linkStyle} title="YouTube" aria-label="YouTube">
+          <IconYouTube size={iconSize} />
         </a>
       ) : null}
 
@@ -194,12 +219,12 @@ export default function ContactActionRow(props: Props) {
           href={gameChangerUrl}
           target="_blank"
           rel="noreferrer"
-          style={iconLink}
+          style={linkStyle}
           title="GameChanger"
           aria-label="GameChanger"
         >
-          <LogoIcon src="/logos/gamechanger.png" alt="GameChanger" size={18} fallback="GC" />
-          <LogoFallback text="GC" size={18} />
+          <LogoIcon src="/logos/gamechanger.png" alt="GameChanger" size={iconSize} fallback="GC" />
+          <LogoFallback text="GC" size={iconSize} />
         </a>
       ) : null}
 
@@ -208,12 +233,12 @@ export default function ContactActionRow(props: Props) {
           href={maxPrepsUrl}
           target="_blank"
           rel="noreferrer"
-          style={iconLink}
+          style={linkStyle}
           title="MaxPreps"
           aria-label="MaxPreps"
         >
-          <LogoIcon src="/logos/maxpreps.png" alt="MaxPreps" size={18} fallback="MP" />
-          <LogoFallback text="MP" size={18} />
+          <LogoIcon src="/logos/maxpreps.png" alt="MaxPreps" size={iconSize} fallback="MP" />
+          <LogoFallback text="MP" size={iconSize} />
         </a>
       ) : null}
 
@@ -222,12 +247,12 @@ export default function ContactActionRow(props: Props) {
           href={rapsodoUrl}
           target="_blank"
           rel="noreferrer"
-          style={iconLink}
+          style={linkStyle}
           title="Rapsodo"
           aria-label="Rapsodo"
         >
-          <LogoIcon src="/logos/rapsodo.png" alt="Rapsodo" size={18} fallback="RA" />
-          <LogoFallback text="RA" size={18} />
+          <LogoIcon src="/logos/rapsodo.png" alt="Rapsodo" size={iconSize} fallback="RA" />
+          <LogoFallback text="RA" size={iconSize} />
         </a>
       ) : null}
 
@@ -236,12 +261,12 @@ export default function ContactActionRow(props: Props) {
           href={trackmanUrl}
           target="_blank"
           rel="noreferrer"
-          style={iconLink}
+          style={linkStyle}
           title="TrackMan"
           aria-label="TrackMan"
         >
-          <LogoIcon src="/logos/trackman.png" alt="TrackMan" size={18} fallback="TM" />
-          <LogoFallback text="TM" size={18} />
+          <LogoIcon src="/logos/trackman.png" alt="TrackMan" size={iconSize} fallback="TM" />
+          <LogoFallback text="TM" size={iconSize} />
         </a>
       ) : null}
 
@@ -250,18 +275,18 @@ export default function ContactActionRow(props: Props) {
           href={pocketRadarUrl}
           target="_blank"
           rel="noreferrer"
-          style={iconLink}
+          style={linkStyle}
           title="Pocket Radar"
           aria-label="Pocket Radar"
         >
-          <LogoIcon src="/logos/pocketradar.png" alt="Pocket Radar" size={18} fallback="PR" />
-          <LogoFallback text="PR" size={18} />
+          <LogoIcon src="/logos/pocketradar.png" alt="Pocket Radar" size={iconSize} fallback="PR" />
+          <LogoFallback text="PR" size={iconSize} />
         </a>
       ) : null}
 
       {chatUrl ? (
-        <a href={chatUrl} style={iconLink} title="ScoutLine Chat" aria-label="ScoutLine Chat">
-          <MessageCircle size={18} color="#0ea5e9" />
+        <a href={chatUrl} style={linkStyle} title="ScoutLine Chat" aria-label="ScoutLine Chat">
+          <MessageCircle size={iconSize} color="#0ea5e9" />
         </a>
       ) : null}
     </div>
