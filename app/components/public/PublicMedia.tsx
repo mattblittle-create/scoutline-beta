@@ -372,8 +372,11 @@ const mediaTitleStyle: React.CSSProperties = {
   lineHeight: 1.25,
   minWidth: 0,
   maxWidth: "100%",
-  overflowWrap: "anywhere",
-  wordBreak: "break-word",
+  overflow: isMobile ? "hidden" : "visible",
+  textOverflow: isMobile ? "ellipsis" : "clip",
+  whiteSpace: isMobile ? "nowrap" : "normal",
+  overflowWrap: isMobile ? "normal" : "anywhere",
+  wordBreak: isMobile ? "normal" : "break-word",
 };
 
 const responsiveVideoShell: React.CSSProperties = {
