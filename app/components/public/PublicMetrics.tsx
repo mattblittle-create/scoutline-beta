@@ -427,6 +427,7 @@ function MetricCard({
   cardInner,
   isMobile,
 }: MetricCardProps) {
+  const [expanded, setExpanded] = React.useState(false);
   const seriesKey = String(series.key);
 
   // If hints exist, enforce eligibility right away
@@ -442,6 +443,7 @@ function MetricCard({
 
   const latestSource = latestSourceFrom(pts);
   const avgPts = avgSeriesFor(series, dob);
+  const isCollapsedMobile = isMobile && !expanded;
   const trend = getTrendInfo(seriesKey, pts);
   const trajectory = getTrajectoryLabel(seriesKey, dob, pts);
   const benchmarks = COLLEGE_BENCHMARKS[toMetricKey(seriesKey) ?? (seriesKey as MetricKey)] ?? null;
@@ -454,11 +456,39 @@ function MetricCard({
   if (!showCharts) {
     return (
       <div style={cardInner}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+      <div
+        role={isMobile ? "button" : undefined}
+        tabIndex={isMobile ? 0 : undefined}
+        onClick={isMobile ? () => setExpanded((v) => !v) : undefined}
+        onKeyDown={
+          isMobile
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setExpanded((v) => !v);
+                }
+              }
+            : undefined
+        }
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "space-between",
+          alignItems: isMobile ? "stretch" : "flex-start",
+          gap: isMobile ? 8 : 12,
+          cursor: isMobile ? "pointer" : "default",
+          minWidth: 0,
+        }}
+      >
         <div style={{ display: "grid", gap: 4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{ fontWeight: 800, color: "#0f172a" }}>
               {series._display}
+              {isMobile ? (
+                <span style={{ marginLeft: 8, color: "#64748b", fontWeight: 900 }}>
+                  {expanded ? "−" : "+"}
+                </span>
+              ) : null}
             </div>
 <span
   title={trend.label}
@@ -482,7 +512,7 @@ function MetricCard({
 </span>
           </div>
 
-          {benchmarks ? (
+          {!isCollapsedMobile && benchmarks ? (
             <div
               style={{
                 color: "#caa042",
@@ -499,11 +529,24 @@ function MetricCard({
           ) : null}
         </div>
 
-        <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
+        {!isCollapsedMobile ? (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 6,
+              justifyContent: isMobile ? "flex-start" : "flex-end",
+              minWidth: 0,
+              maxWidth: "100%",
+            }}
+          >
+            <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
+            <span style={pill}>Source: {latestSource || "—"}</span>
+            <span style={pill}>Trajectory: {trajectory}</span>
+          </div>
+        ) : (
           <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-          <span style={pill}>Source: {latestSource || "—"}</span>
-          <span style={pill}>Trajectory: {trajectory}</span>
-        </div>
+        )}
       </div>
 
         {!hasAnyPoint && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No Metrics available.</div>}
@@ -596,7 +639,7 @@ function MetricCard({
 </span>
           </div>
 
-          {benchmarks ? (
+          {!isCollapsedMobile && benchmarks ? (
             <div
               style={{
                 color: "#caa042",
@@ -739,6 +782,19 @@ function MetricCard({
     <div style={cardInner}>
       {/* Header pills */}
       <div
+        role={isMobile ? "button" : undefined}
+        tabIndex={isMobile ? 0 : undefined}
+        onClick={isMobile ? () => setExpanded((v) => !v) : undefined}
+        onKeyDown={
+          isMobile
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setExpanded((v) => !v);
+                }
+              }
+            : undefined
+        }
         style={{
           display: "flex",
           flexDirection: isMobile ? "column" : "row",
@@ -752,6 +808,11 @@ function MetricCard({
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <div style={{ fontWeight: 800, color: "#0f172a" }}>
               {series._display}
+              {isMobile ? (
+                <span style={{ marginLeft: 8, color: "#64748b", fontWeight: 900 }}>
+                  {expanded ? "−" : "+"}
+                </span>
+              ) : null}
             </div>
 <span
   title={trend.label}
@@ -798,7 +859,8 @@ function MetricCard({
             flexWrap: "wrap",
             gap: 6,
             justifyContent: isMobile ? "flex-start" : "flex-end",
-            minWidth: 0,
+          minWidth: 0,
+          cursor: isMobile ? "pointer" : "default",
             maxWidth: "100%",
           }}
         >
@@ -808,6 +870,8 @@ function MetricCard({
         </div>
       </div>
 
+      {!isCollapsedMobile ? (
+        <>
       {/* Chart */}
       <div style={{ width: "100%", overflow: "hidden" }}>
         <svg
@@ -922,6 +986,8 @@ function MetricCard({
       </div>
 
       {pts.length === 0 && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No data yet for this metric.</div>}
+        </>
+      ) : null}
     </div>
   );
 }
