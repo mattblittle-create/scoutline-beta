@@ -836,7 +836,7 @@ function MetricCard({
 </span>
           </div>
 
-          {benchmarks ? (
+          {!isCollapsedMobile && benchmarks ? (
             <div
               style={{
                 color: "#caa042",
@@ -859,16 +859,33 @@ function MetricCard({
             flexWrap: "wrap",
             gap: 6,
             justifyContent: isMobile ? "flex-start" : "flex-end",
-          minWidth: 0,
-          cursor: isMobile ? "pointer" : "default",
+            minWidth: 0,
             maxWidth: "100%",
           }}
         >
           <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-          <span style={pill}>Source: {latestSource || "—"}</span>
-          <span style={pill}>Trajectory: {trajectory}</span>
+
+          {!isCollapsedMobile ? (
+            <>
+              <span style={pill}>Source: {latestSource || "—"}</span>
+              <span style={pill}>Trajectory: {trajectory}</span>
+            </>
+          ) : null}
         </div>
       </div>
+
+      {isCollapsedMobile ? (
+        <div
+          style={{
+            fontSize: 11,
+            color: "#64748b",
+            fontWeight: 800,
+            marginTop: 2,
+          }}
+        >
+          Click metric title to expand
+        </div>
+      ) : null}
 
       {!isCollapsedMobile ? (
         <>
