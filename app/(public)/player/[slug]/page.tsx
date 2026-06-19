@@ -155,10 +155,27 @@ function JumpToSectionNav({ sections }: { sections: { id: string; label: string 
   );
 }
 
-const SECTION_SCROLL_MARGIN = 300;
-function SectionWrapper({ id, children }: { id: string; children: React.ReactNode }) {
+const SECTION_SCROLL_MARGIN_DESKTOP = 300;
+const SECTION_SCROLL_MARGIN_MOBILE = 190;
+
+function SectionWrapper({
+  id,
+  children,
+  isMobile = false,
+}: {
+  id: string;
+  children: React.ReactNode;
+  isMobile?: boolean;
+}) {
   return (
-    <section id={id} style={{ scrollMarginTop: SECTION_SCROLL_MARGIN }}>
+    <section
+      id={id}
+      style={{
+        scrollMarginTop: isMobile
+          ? SECTION_SCROLL_MARGIN_MOBILE
+          : SECTION_SCROLL_MARGIN_DESKTOP,
+      }}
+    >
       {children}
     </section>
   );
@@ -1214,8 +1231,8 @@ const res = await fetch("/api/player/share-profile", {
       <section
         style={{
           position: "sticky",
-          top: isMobile ? 0 : 110,
-          zIndex: 20,
+          top: isMobile ? 118 : 110,
+          zIndex: 40,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
           marginBottom: isMobile ? 6 : 8,
         }}
@@ -1265,7 +1282,24 @@ const res = await fetch("/api/player/share-profile", {
       onChange={(e) => {
         const id = e.target.value;
         if (!id) return;
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        const el = document.getElementById(id);
+        if (el) {
+          const offset = isMobile
+            ? SECTION_SCROLL_MARGIN_MOBILE
+            : SECTION_SCROLL_MARGIN_DESKTOP;
+
+          const y =
+            el.getBoundingClientRect().top +
+            window.scrollY -
+            offset;
+
+          window.scrollTo({
+            top: Math.max(0, y),
+            behavior: "smooth",
+          });
+        }
+
         e.currentTarget.value = "";
       }}
       style={{
@@ -1586,7 +1620,7 @@ style={{
       ) : null}
 
       {/* Core */}
-      <SectionWrapper id="core">
+      <SectionWrapper id="core" isMobile={isMobile}>
         <PublicProfileHeader
           profile={{
             ...profileForHeader,
@@ -1603,7 +1637,7 @@ style={{
       </SectionWrapper>
 
       {primaryUrlView ? (
-  <SectionWrapper id="primary-video">
+  <SectionWrapper id="primary-video" isMobile={isMobile}>
     <PublicMedia
       media={mediaDataView}
       title="Primary Video"
@@ -1618,15 +1652,15 @@ style={{
   </SectionWrapper>
 ) : null}
 
-      <SectionWrapper id="academics">
+      <SectionWrapper id="academics" isMobile={isMobile}>
         <PublicAcademics academics={academicsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
       </SectionWrapper>
 
-      <SectionWrapper id="athletics">
+      <SectionWrapper id="athletics" isMobile={isMobile}>
         <PublicAthletics athletics={athleticsData} cardStyle={card} h2Style={h2} pillStyle={pillStyle} />
       </SectionWrapper>
 
-      <SectionWrapper id="metrics">
+      <SectionWrapper id="metrics" isMobile={isMobile}>
         <PublicMetrics
           metrics={metricsData}
           canShowCharts={feature(ctx, "METRICS_GROWTH_CHARTS")}
@@ -1636,7 +1670,7 @@ style={{
         />
       </SectionWrapper>
 
-      <SectionWrapper id="stats">
+      <SectionWrapper id="stats" isMobile={isMobile}>
         <PublicStats
           stats={{ teams: statsTeams, seasons: rawSeasons }}
           title="Stats"
@@ -1647,7 +1681,7 @@ style={{
       </SectionWrapper>
 
       {showVideoSocial ? (
-        <SectionWrapper id="video">
+        <SectionWrapper id="video" isMobile={isMobile}>
           <PublicMedia
             media={mediaDataView}
             primaryUrl={primaryUrlView}
@@ -1662,7 +1696,7 @@ style={{
       ) : null}
 
       {showCoachesRefs ? (
-        <SectionWrapper id="coaches">
+        <SectionWrapper id="coaches" isMobile={isMobile}>
           <PublicCoaches data={coachesData} cardStyle={card} h2Style={h2} />
         </SectionWrapper>
       ) : null}
