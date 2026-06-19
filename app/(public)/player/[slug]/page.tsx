@@ -198,6 +198,14 @@ export default function PublicPlayerPage({ params }: { params: { slug: string } 
   const [shareMessage, setShareMessage] = React.useState("");
   const [sharingProfile, setSharingProfile] = React.useState(false);
   const [shareStatus, setShareStatus] = React.useState<string | null>(null);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   const viewEventTrackedRef = React.useRef(false);
 
@@ -1206,18 +1214,19 @@ const res = await fetch("/api/player/share-profile", {
       <section
         style={{
           position: "sticky",
-          top: 110,
+          top: isMobile ? 0 : 110,
           zIndex: 20,
           marginTop: isCoachViewer && playerProfileId ? 16 : 0,
-          marginBottom: 8,
+          marginBottom: isMobile ? 6 : 8,
         }}
       >
         <div
           style={{
             ...card,
             marginTop: 0,
-            padding: 12,
+            padding: isMobile ? 8 : 12,
             boxShadow: "0 8px 20px rgba(15,23,42,0.08)",
+            overflow: "hidden",
           }}
         >
       {/* Coach-only jacket tools */}
@@ -1237,71 +1246,133 @@ const res = await fetch("/api/player/share-profile", {
               justifyContent: "space-between",
               gap: 10,
               flexWrap: "wrap",
-              marginBottom: 10,
+              marginBottom: isMobile ? 6 : 10,
             }}
           >
-<nav
-  aria-label="Jump to section"
-  style={{
-    marginTop: 0,
-    marginBottom: 0,
-    padding: 0,
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 8,
-    alignItems: "center",
-  }}
->
-  <span
+{isMobile ? (
+  <div
     style={{
-      fontSize: 12,
-      fontWeight: 700,
-      color: "#64748b",
-      textTransform: "uppercase",
-      letterSpacing: 0.06,
+      display: "flex",
+      gap: 8,
+      alignItems: "center",
+      width: "100%",
+      minWidth: 0,
     }}
   >
-    Jump to:
-  </span>
-
-  {jumpSections.map((section) => (
-    <a
-      key={section.id}
-      href={`#${section.id}`}
+    <select
+      aria-label="Jump to section"
+      defaultValue=""
+      onChange={(e) => {
+        const id = e.target.value;
+        if (!id) return;
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        e.currentTarget.value = "";
+      }}
       style={{
-        fontSize: 13,
-        fontWeight: 700,
-        padding: "6px 10px",
-        borderRadius: 9999,
-        border: "1px solid #e5e7eb",
+        flex: "1 1 auto",
+        minWidth: 0,
+        height: 34,
+        borderRadius: 10,
+        border: "1px solid #cbd5e1",
         background: "#ffffff",
         color: "#0f172a",
+        fontSize: 12,
+        fontWeight: 800,
+        padding: "0 10px",
+      }}
+    >
+      <option value="">Jump To...</option>
+      {jumpSections.map((section) => (
+        <option key={section.id} value={section.id}>
+          {section.label}
+        </option>
+      ))}
+    </select>
+
+    <a
+      href={cardViewUrl}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: 34,
+        padding: "0 10px",
+        borderRadius: 10,
+        border: "1px solid #eab308",
+        background: "#eab308",
+        color: "#334155",
+        fontSize: 12,
+        fontWeight: 900,
         textDecoration: "none",
         whiteSpace: "nowrap",
       }}
     >
-      {section.label}
+      Card
     </a>
-  ))}
-
-  {/* 👇 ADD THIS */}
-  <a
-    href={cardViewUrl}
+  </div>
+) : (
+  <nav
+    aria-label="Jump to section"
     style={{
-      fontSize: 13,
-      fontWeight: 800,
-      padding: "6px 12px",
-      borderRadius: 9999,
-      border: "1px solid #eab308",
-      background: "#eab308",
-      color: "#334155",
-      textDecoration: "none",
-      whiteSpace: "nowrap",
+      marginTop: 0,
+      marginBottom: 0,
+      padding: 0,
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 8,
+      alignItems: "center",
     }}
   >
-    View Player Card
-  </a>
-</nav>
+    <span
+      style={{
+        fontSize: 12,
+        fontWeight: 700,
+        color: "#64748b",
+        textTransform: "uppercase",
+        letterSpacing: 0.06,
+      }}
+    >
+      Jump to:
+    </span>
+
+    {jumpSections.map((section) => (
+      <a
+        key={section.id}
+        href={`#${section.id}`}
+        style={{
+          fontSize: 13,
+          fontWeight: 700,
+          padding: "6px 10px",
+          borderRadius: 9999,
+          border: "1px solid #e5e7eb",
+          background: "#ffffff",
+          color: "#0f172a",
+          textDecoration: "none",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {section.label}
+      </a>
+    ))}
+
+    <a
+      href={cardViewUrl}
+      style={{
+        fontSize: 13,
+        fontWeight: 800,
+        padding: "6px 12px",
+        borderRadius: 9999,
+        border: "1px solid #eab308",
+        background: "#eab308",
+        color: "#334155",
+        textDecoration: "none",
+        whiteSpace: "nowrap",
+      }}
+    >
+      View Player Card
+    </a>
+  </nav>
+)}
           </div>
 
           {/* Row B */}
@@ -1626,6 +1697,7 @@ const card: React.CSSProperties = {
   border: "1px solid #e5e7eb",
   borderRadius: 12,
   padding: 16,
+  overflow: "hidden",
 };
 
 const h2: React.CSSProperties = {
@@ -1667,8 +1739,10 @@ const connectRow: React.CSSProperties = {
   display: "flex",
   flexWrap: "wrap",
   alignItems: "center",
-  gap: 20,
-  marginTop: 4,
+  gap: 8,
+  marginTop: 2,
+  minWidth: 0,
+  maxWidth: "100%",
 };
 
 const connectLabel: React.CSSProperties = {
