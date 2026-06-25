@@ -13,6 +13,7 @@ export type CorePayload = {
 
   hometownCity: string;
   hometownState: string;
+  hometownZip: string;
 
   heightFt: string;
   heightIn: string;
@@ -50,6 +51,7 @@ type Props = {
 
   hometownCity: string;
   hometownState: string;
+  hometownZip: string;
 
   /** Selected file (from file input) */
   photoFile: File | null;
@@ -94,6 +96,7 @@ type Props = {
 
   setHometownCity: (v: string) => void;
   setHometownState: (v: string) => void;
+  setHometownZip: (v: string) => void;
 
   onPickPhoto: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onUploadPhoto: (userSlug: string) => void | Promise<void>;
@@ -137,6 +140,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
       phonePrivate: props.phonePrivate,
       hometownCity: props.hometownCity,
       hometownState: props.hometownState,
+      hometownZip: props.hometownZip,
       heightFt: props.heightFt,
       heightIn: props.heightIn,
       weightLb: props.weightLb,
@@ -162,6 +166,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
     phonePrivate,
     hometownCity,
     hometownState,
+    hometownZip,
     photoPreview,
     photoFile,
     submitting,
@@ -328,7 +333,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
+          gridTemplateColumns: isMobile ? "1fr" : "2fr 0.75fr 1fr",
           gap: 12,
           alignItems: "end",
         }}
@@ -361,6 +366,22 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
             ))}
           </select>
         </label>
+
+        <label style={labelStyle}>
+  <span style={labelText}>ZIP</span>
+  <input
+    value={hometownZip}
+    disabled={coreLocked}
+    onChange={(e) =>
+      setHometownZip(e.target.value.replace(/\D/g, "").slice(0, 5))
+    }
+    placeholder="ZIP"
+    maxLength={5}
+    inputMode="numeric"
+    autoComplete="postal-code"
+    style={inputStyle}
+  />
+</label>
       </div>
 
       <hr style={hrStyle} />

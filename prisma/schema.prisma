@@ -241,6 +241,7 @@ model Player {
   travelTeam         String?
   hometown           String?
   state              String?
+  hometownZip        String?
   gpa                Decimal?     @db.Decimal(4, 2)
   act                Int?
   sat                Int?

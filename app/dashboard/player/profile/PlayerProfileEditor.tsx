@@ -320,6 +320,7 @@ export function PlayerProfileEditor({
   // Hometown City + State
   const [hometownCity, setHometownCity] = useState<string>("");
   const [hometownState, setHometownState] = useState<string>("");
+  const [hometownZip, setHometownZip] = useState<string>("");
 
   // EMAIL RESOLVER:
   // 1) honor ?email= when present
@@ -988,7 +989,7 @@ function removeStatFile(seasonId: string, fileIndex: number) {
   useEffect(() => {
     if (msg) setMsg(null);
   }, [
-    firstName, lastName, hometownCity, hometownState, email, emailPrivate, phone, phonePrivate,
+    firstName, lastName, hometownCity, hometownState, hometownZip, email, emailPrivate, phone, phonePrivate,
     hometownCity, hometownState,
     photoFile, photoPreview, gradYear, primaryPos, secondaryPos, isPitcher, pitcherHand,
     throwsHand, batsSide, heightFt, heightIn, weightLb, age, dob, dobPrivate, gender,
@@ -1393,6 +1394,7 @@ useEffect(() => {
         // Core: Hometown (city/state)
         setHometownCity(src.hometown ?? (src as any).hsCity ?? "");
         setHometownState(src.state ?? (src as any).hsState ?? "");
+        setHometownZip((src as any).zip ?? "");
 
         // GPA / tests
         setGpa(
@@ -1889,6 +1891,7 @@ const videoSocialPatch =
         hsGeneralWebsiteUrl: safe(hsGeneralWebsiteUrl || ""),
         hometown: safe(hometownCity || ""), // Player.hometown
         state: safe(hometownState || ""),   // Player.state
+        zip: safe(hometownZip || ""),
 
         // GPA / tests
         gpa: numOrNull(gpa),
@@ -2151,6 +2154,7 @@ const videoSocialPatch =
 
       if (typeof norm.hometown !== "undefined") setHometownCity(norm.hometown ?? hometownCity);
       if (typeof norm.state !== "undefined") setHometownState(norm.state ?? hometownState);
+      if (typeof norm.zip !== "undefined") setHometownZip(norm.zip ?? hometownZip);
 
       if (typeof norm.hsScheduleUrl !== "undefined") setHsScheduleUrl(norm.hsScheduleUrl ?? hsScheduleUrl);
       if (typeof norm.hsWebsiteUrl !== "undefined") setHsWebsiteUrl(norm.hsWebsiteUrl ?? hsWebsiteUrl);
@@ -2386,6 +2390,7 @@ return (
     phonePrivate={phonePrivate}
     hometownCity={hometownCity}        // ← NEW
     hometownState={hometownState}      // ← NEW
+    hometownZip={hometownZip}
     photoPreview={photoPreview}
     photoFile={photoFile}
     submitting={submitting}
@@ -2416,6 +2421,7 @@ return (
     setPhonePrivate={setPhonePrivate}
     setHometownCity={setHometownCity}  // ← NEW
     setHometownState={setHometownState} // ← NEW
+    setHometownZip={setHometownZip}
     onPickPhoto={onPickPhoto}
     onUploadPhoto={onUploadPhoto}
     onRemovePhoto={onRemovePhoto}

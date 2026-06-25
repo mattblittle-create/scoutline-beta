@@ -731,6 +731,7 @@ const existing = await prisma.playerProfile.findFirst({
     const hsGeneralWebsiteUrl = safeTrim(body.hsGeneralWebsiteUrl || "");
     const hometown = safeTrim(body.hometown || "");
     const state = safeTrim(body.state || "");
+    const hometownZip = safeTrim(body.hometownZip || "");
     const hsScheduleUrl = safeTrim(body.hsScheduleUrl || "");
     const hsSchedulePrivate = !!body.hsSchedulePrivate;
     const hsWebsiteUrl = safeTrim(body.hsWebsiteUrl || "");                      // ✅ NEW
@@ -1022,6 +1023,7 @@ const existing = await prisma.playerProfile.findFirst({
       hsGeneralWebsiteUrl,
       hometown,
       state,
+      hometownZip,
       gpa,
       gpaScale,
       sat,
@@ -1372,6 +1374,7 @@ try {
             weightLb: weightLb ?? undefined,
             hometown: hometown ?? undefined,
             state: state ?? undefined,
+            hometownZip: hometownZip ?? undefined,
             gpa: (gpa as any) ?? undefined,
             sat: sat ?? undefined,
             act: act ?? undefined,
@@ -1394,6 +1397,7 @@ try {
             weightLb: weightLb ?? null,
             hometown: hometown ?? null,
             state: state ?? null,
+            hometownZip: hometownZip ?? null,
             gpa: (gpa as any) ?? null,
             sat: sat ?? null,
             act: act ?? null,
