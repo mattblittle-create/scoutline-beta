@@ -228,6 +228,17 @@ type CollegeResult = {
   city?: string | null;
   state?: string | null;
   region?: string | null;
+  distance?: {
+  miles: number | null;
+  label: string;
+} | null;
+programCompleteness?: {
+  score: number;
+  label: string;
+  completed: number;
+  total: number;
+  missing: string[];
+} | null;
   control?: string | null;
   schoolType?: string | null;
   tuitionInState?: number | null;
@@ -253,6 +264,12 @@ baseballProgram?: {
   }>;
 } | null;
   truthFit?: {
+    confidenceBreakdown?: {
+  score: number;
+  label: string;
+  reasons: string[];
+  missing: string[];
+};
     score: number;
     label: string;
     benchmarkSource?: {
@@ -1157,6 +1174,40 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
   value={college.nilProfile.baseballNilStrength}
   tip="Estimated baseball-specific NIL opportunity strength based on verified program information."
 />
+) : null}
+
+{college.distance?.label ? (
+  <Info
+    label="Distance"
+    value={college.distance.label}
+    tip="Approximate distance from the player's home location."
+  />
+) : null}
+
+{college.programCompleteness ? (
+  <Info
+    label="Program Data"
+    value={`${college.programCompleteness.score}% ${college.programCompleteness.label}`}
+    tip={`${college.programCompleteness.completed} of ${college.programCompleteness.total} enrichment signals are complete.`}
+  />
+) : null}
+
+{college.truthFit?.confidenceBreakdown ? (
+  <Info
+    label="Recommendation Confidence"
+    value={`${college.truthFit.confidenceBreakdown.label} (${college.truthFit.confidenceBreakdown.score}/100)`}
+    tip={[
+      "Available Signals:",
+      ...(college.truthFit.confidenceBreakdown.reasons || []).map(
+        (r: string) => `• ${r}`
+      ),
+      "",
+      "Still Missing:",
+      ...(college.truthFit.confidenceBreakdown.missing || []).map(
+        (m: string) => `• ${m}`
+      ),
+    ].join("\n")}
+  />
 ) : null}
 
   {isLoggedIn && savedCollegeIds.includes(college.id) ? (
