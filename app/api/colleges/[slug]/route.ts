@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
 import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
+import { calculateProgramCompleteness } from "@/app/lib/college/programCompleteness";
 
 export const dynamic = "force-dynamic";
 
@@ -334,12 +335,15 @@ truthFit = scoreCollegeFit({
 
     const similarSchools = await getSimilarSchools(college);
 
+    const programCompleteness = calculateProgramCompleteness(college);
+
     return NextResponse.json({
       ok: true,
       college: {
         ...college,
-        truthFit,
-        similarSchools,
+      truthFit,
+      similarSchools,
+      programCompleteness,
       },
     });
   } catch (err) {

@@ -41,10 +41,23 @@ type CollegeDetail = {
   graduationRate?: number | string | null;
   dataSourceUrl?: string | null;
   lastVerifiedAt?: string | null;
+  programCompleteness?: {
+  score: number;
+  label: string;
+  completed: number;
+  total: number;
+  missing: string[];
+} | null;
   verificationStatus?: string | null;
   truthFit?: {
     score: number;
     label: string;
+    confidenceBreakdown?: {
+  score: number;
+  label: string;
+  reasons: string[];
+  missing: string[];
+};
     priority: "HIGH" | "MEDIUM" | "LOW";
     academicFit?: {
   score: number | null;
@@ -583,6 +596,23 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
   <Info label="Priority" value={truthFit.priority} />
   <Info label="Benchmark Source" value={truthFit.benchmarkSource?.metrics?.label || "Estimated"} />
   <Info label="Confidence" value={truthFit.benchmarkSource?.metrics?.confidence || "LOW"} />
+  <Info
+  label="Recommendation Confidence"
+  value={
+    truthFit.confidenceBreakdown
+      ? `${truthFit.confidenceBreakdown.label} (${truthFit.confidenceBreakdown.score}/100)`
+      : "—"
+  }
+/>
+
+<Info
+  label="Program Data"
+  value={
+    college.programCompleteness
+      ? `${college.programCompleteness.score}% ${college.programCompleteness.label}`
+      : "—"
+  }
+/>
 </div>
 
 <div style={outlookGridStyle}>
@@ -622,6 +652,46 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
     </div>
   </div>
 </div>
+
+{truthFit.confidenceBreakdown ? (
+  <div style={{ ...miniCardStyle, marginTop: 14 }}>
+    <h3 style={subTitleStyle}>
+      Recommendation Confidence · {truthFit.confidenceBreakdown.label} ({truthFit.confidenceBreakdown.score}/100)
+    </h3>
+
+    {truthFit.confidenceBreakdown.reasons?.length ? (
+      <div style={{ marginTop: 8 }}>
+        <div style={{ fontSize: 12, fontWeight: 900, color: "#166534", marginBottom: 6 }}>
+          Available Signals
+        </div>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {truthFit.confidenceBreakdown.reasons.map((reason) => (
+            <span key={reason} style={statusGoodStyle}>
+              ✓ {reason}
+            </span>
+          ))}
+        </div>
+      </div>
+    ) : null}
+
+    {truthFit.confidenceBreakdown.missing?.length ? (
+      <div style={{ marginTop: 10 }}>
+        <div style={{ fontSize: 12, fontWeight: 900, color: "#9a3412", marginBottom: 6 }}>
+          Still Missing
+        </div>
+
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {truthFit.confidenceBreakdown.missing.map((item) => (
+            <span key={item} style={statusGapStyle}>
+              • {item}
+            </span>
+          ))}
+        </div>
+      </div>
+    ) : null}
+  </div>
+) : null}
 
               <div style={truthGridStyle}>
                 <TruthList title="Why This Fits" items={truthFit.reasons} empty="No positive fit reasons available yet." />
@@ -1624,6 +1694,28 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
 
 <section style={{ ...cardStyle, marginTop: 16 }}>
   <h2 style={sectionTitleStyle}>Data Verification</h2>
+
+  {college.programCompleteness ? (
+  <div style={{ ...miniInfoBoxStyle, marginBottom: 12 }}>
+    <div style={{ fontWeight: 950, color: "#0f172a" }}>
+      Program Data Completeness
+    </div>
+
+    <div style={{ marginTop: 4, fontSize: 22, fontWeight: 950 }}>
+      {college.programCompleteness.score}% {college.programCompleteness.label}
+    </div>
+
+    <div style={{ marginTop: 4, color: "#64748b", fontSize: 13, fontWeight: 800 }}>
+      {college.programCompleteness.completed} of {college.programCompleteness.total} enrichment signals complete.
+    </div>
+
+    {college.programCompleteness.missing?.length ? (
+      <div style={{ marginTop: 8, color: "#64748b", fontSize: 12, fontWeight: 800 }}>
+        Missing: {college.programCompleteness.missing.slice(0, 6).join(", ")}
+      </div>
+    ) : null}
+  </div>
+) : null}
 
   <div style={{ display: "grid", gap: 8 }}>
     {(() => {
