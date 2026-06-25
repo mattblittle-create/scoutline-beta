@@ -369,14 +369,14 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
         </label>
 
         <label style={labelStyle}>
-  <span style={labelText}>ZIP</span>
+  <span style={labelText}>Hometown ZIP</span>
   <input
     value={hometownZip}
     disabled={coreLocked}
     onChange={(e) =>
       setHometownZip(e.target.value.replace(/\D/g, "").slice(0, 5))
     }
-    placeholder="ZIP"
+    placeholder="Hometown ZIP"
     maxLength={5}
     inputMode="numeric"
     autoComplete="postal-code"

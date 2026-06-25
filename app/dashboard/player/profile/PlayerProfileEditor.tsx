@@ -1394,7 +1394,7 @@ useEffect(() => {
         // Core: Hometown (city/state)
         setHometownCity(src.hometown ?? (src as any).hsCity ?? "");
         setHometownState(src.state ?? (src as any).hsState ?? "");
-        setHometownZip((src as any).zip ?? "");
+        setHometownZip((src as any).zip ?? (src as any).hometownZip ?? "");
 
         // GPA / tests
         setGpa(

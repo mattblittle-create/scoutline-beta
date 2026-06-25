@@ -732,6 +732,7 @@ const existing = await prisma.playerProfile.findFirst({
     const hometown = safeTrim(body.hometown || "");
     const state = safeTrim(body.state || "");
     const hometownZip = safeTrim(body.hometownZip || "");
+    const zip = String(body.zip ?? body.hometownZip ?? "").replace(/\D/g, "").slice(0, 5);
     const hsScheduleUrl = safeTrim(body.hsScheduleUrl || "");
     const hsSchedulePrivate = !!body.hsSchedulePrivate;
     const hsWebsiteUrl = safeTrim(body.hsWebsiteUrl || "");                      // ✅ NEW
@@ -1023,7 +1024,8 @@ const existing = await prisma.playerProfile.findFirst({
       hsGeneralWebsiteUrl,
       hometown,
       state,
-      hometownZip,
+      zip,
+      hometownZip: zip,
       gpa,
       gpaScale,
       sat,
@@ -1374,7 +1376,7 @@ try {
             weightLb: weightLb ?? undefined,
             hometown: hometown ?? undefined,
             state: state ?? undefined,
-            hometownZip: hometownZip ?? undefined,
+            hometownZip: zip || undefined,
             gpa: (gpa as any) ?? undefined,
             sat: sat ?? undefined,
             act: act ?? undefined,
@@ -1397,7 +1399,7 @@ try {
             weightLb: weightLb ?? null,
             hometown: hometown ?? null,
             state: state ?? null,
-            hometownZip: hometownZip ?? null,
+            hometownZip: zip || null,
             gpa: (gpa as any) ?? null,
             sat: sat ?? null,
             act: act ?? null,
@@ -1411,8 +1413,20 @@ try {
     return NextResponse.json(
       {
         ok: true,
-        normalized: { ...stored, email, slug: userRow?.slug ?? null },
-        user: { ...stored, email, slug: userRow?.slug ?? null },
+        normalized: {
+          ...stored,
+          zip,
+          hometownZip: zip,
+          email,
+          slug: userRow?.slug ?? null,
+        },
+        user: {
+          ...stored,
+          zip,
+          hometownZip: zip,
+          email,
+          slug: userRow?.slug ?? null,
+        },
       },
       { status: 200 }
     );
