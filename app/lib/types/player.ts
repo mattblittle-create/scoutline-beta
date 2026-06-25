@@ -277,6 +277,7 @@ export type PlayerProfilePayload = {
   hsGeneralWebsiteUrl?: string | null;
   hometown?: string | null; // city
   state?: string | null;
+  zip?: string | null;
 
   gpa?: number | null;
   gpaScale?: string | null; // "5.0" | "4.0" | "100"

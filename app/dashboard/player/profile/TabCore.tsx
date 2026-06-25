@@ -194,6 +194,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
     setPhonePrivate,
     setHometownCity,
     setHometownState,
+    setHometownZip,
     onRemovePhoto,
     onPickPhoto,
     onUploadPhoto,
