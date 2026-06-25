@@ -356,26 +356,38 @@ include: {
             division: String(baseball?.division || college.division || ""),
           });
 
-          const fit = scoreCollegeFit({
-            player: profile.player,
-college: {
-  averageGpa: asNumber(baseball?.averageGpa),
-  division: baseball?.division || college.division || null,
-  academicAreas: college.academicAreas || [],
-  metricAverages: bestMetrics.benchmarks,
-              metricBenchmarkSource: {
-                level: bestMetrics.level,
-                label: bestMetrics.label,
-                confidence: bestMetrics.confidence,
-              },
-              rosterNeeds:
-                baseball?.rosterNeeds?.map((need) => ({
-                  gradYear: need.gradYear,
-                  position: need.position,
-                  needLevel: need.needLevel,
-                })) || [],
-            },
-          });
+const fit = scoreCollegeFit({
+  player: profile.player,
+  college: {
+    averageGpa: asNumber(baseball?.averageGpa),
+    division: baseball?.division || college.division || null,
+
+    verificationStatus: baseball?.verificationStatus || null,
+    transferHeavy: baseball?.transferHeavy ?? null,
+    jucoFriendly: baseball?.jucoFriendly ?? null,
+    recruitingAggressiveness: baseball?.recruitingAggressiveness || null,
+    regionalRecruitingBias: baseball?.regionalRecruitingBias || null,
+    rosterTurnoverLevel: baseball?.rosterTurnoverLevel || null,
+    currentRosterSize: baseball?.currentRosterSize ?? null,
+
+    nilAvailable: college.nilProfile?.nilAvailable ?? null,
+    baseballNilStrength: college.nilProfile?.baseballNilStrength || null,
+
+    academicAreas: college.academicAreas || [],
+    metricAverages: bestMetrics.benchmarks,
+    metricBenchmarkSource: {
+      level: bestMetrics.level,
+      label: bestMetrics.label,
+      confidence: bestMetrics.confidence,
+    },
+    rosterNeeds:
+      baseball?.rosterNeeds?.map((need) => ({
+        gradYear: need.gradYear,
+        position: need.position,
+        needLevel: need.needLevel,
+      })) || [],
+  },
+});
 
           const distance = playerCoordinates
             ? getDistanceResult(

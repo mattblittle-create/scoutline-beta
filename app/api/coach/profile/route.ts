@@ -139,9 +139,29 @@ export async function GET() {
             programXUrl: true,
             programInstagramUrl: true,
 
-            // audit
-            programProfileUpdatedAt: true,
-            programProfileUpdatedByUser: { select: { id: true, name: true, email: true } },
+// audit
+verificationStatus: true,
+lastVerifiedAt: true,
+programProfileUpdatedAt: true,
+programProfileUpdatedByUser: { select: { id: true, name: true, email: true } },
+
+            baseballProgram: {
+  include: {
+    rosterNeeds: {
+      orderBy: [{ gradYear: "asc" }, { position: "asc" }],
+    },
+    metricAverages: {
+      orderBy: [{ position: "asc" }, { metricKey: "asc" }],
+    },
+    coaches: {
+      orderBy: [{ isHeadCoach: "desc" }, { title: "asc" }, { name: "asc" }],
+    },
+  },
+},
+nilProfile: true,
+academicAreas: {
+  orderBy: { name: "asc" },
+},
           },
         },
         coachProfile: {
@@ -212,65 +232,11 @@ export async function GET() {
       allCoachContacts.find((c: any) => c.coachProfile?.staffTitle === "Recruiting Staff") ||
       null;
 
-    const academicAreasDelegate =
-      getDelegate("collegeAcademicArea") ||
-      getDelegate("academicArea") ||
-      getDelegate("collegeMajor") ||
-      getDelegate("academicProfile");
-
-    const academicAreas = collegeId && academicAreasDelegate
-      ? await safeList("academicAreas", async () =>
-          academicAreasDelegate.findMany({
-            where: { collegeId },
-            orderBy: [{ name: "asc" }],
-            take: 100,
-          })
-        )
-      : [];
-
-    const nilProfileDelegate =
-      getDelegate("collegeNilProfile") ||
-      getDelegate("nilProfile") ||
-      getDelegate("collegeNILProfile");
-
-    const nilProfile = collegeId && nilProfileDelegate
-      ? await safeOne("nilProfile", async () =>
-          nilProfileDelegate.findFirst({
-            where: { collegeId },
-            orderBy: [{ updatedAt: "desc" }],
-          })
-        )
-      : null;
-
-    const rosterNeedsDelegate =
-      getDelegate("baseballRosterNeed") ||
-      getDelegate("programRosterNeed") ||
-      getDelegate("rosterNeed");
-
-    const rosterNeeds = collegeId && rosterNeedsDelegate
-      ? await safeList("rosterNeeds", async () =>
-          rosterNeedsDelegate.findMany({
-            where: { collegeId },
-            orderBy: [{ gradYear: "asc" }],
-            take: 100,
-          })
-        )
-      : [];
-
-    const metricBenchmarksDelegate =
-      getDelegate("baseballMetricBenchmark") ||
-      getDelegate("programMetricBenchmark") ||
-      getDelegate("metricBenchmark");
-
-    const metricBenchmarks = collegeId && metricBenchmarksDelegate
-      ? await safeList("metricBenchmarks", async () =>
-          metricBenchmarksDelegate.findMany({
-            where: { collegeId },
-            orderBy: [{ positionGroup: "asc" }, { metricKey: "asc" }],
-            take: 100,
-          })
-        )
-      : [];
+    const baseballProgram = user.college?.baseballProgram ?? null;
+    const academicAreas = user.college?.academicAreas ?? [];
+    const nilProfile = user.college?.nilProfile ?? null;
+    const rosterNeeds = baseballProgram?.rosterNeeds ?? [];
+    const metricBenchmarks = baseballProgram?.metricAverages ?? [];
 
     return NextResponse.json({
       ok: true,
@@ -320,8 +286,12 @@ export async function GET() {
                 email: user.college.programProfileUpdatedByUser.email,
               }
             : null,
-                      verifiedStatus: user.college?.programProfileUpdatedAt ? "VERIFIED" : "UNVERIFIED",
-          lastVerifiedAt: user.college?.programProfileUpdatedAt ? user.college.programProfileUpdatedAt.toISOString() : null,
+          verifiedStatus: baseballProgram?.verificationStatus ?? user.college?.verificationStatus ?? "UNVERIFIED",
+          lastVerifiedAt: baseballProgram?.lastVerifiedAt
+            ? baseballProgram.lastVerifiedAt.toISOString()
+            : user.college?.lastVerifiedAt
+            ? user.college.lastVerifiedAt.toISOString()
+            : null,
           lastVerifiedBy: user.college?.programProfileUpdatedByUser
             ? {
                 id: user.college.programProfileUpdatedByUser.id,
@@ -364,18 +334,15 @@ export async function GET() {
             verified: !!(a.verified ?? a.isVerified ?? true),
           })),
 
-          nilProfile: nilProfile
-            ? {
-                strengthTier: (nilProfile as any).strengthTier ?? (nilProfile as any).nilStrengthTier ?? null,
-                collectiveName: (nilProfile as any).collectiveName ?? null,
-                estimatedValue: (nilProfile as any).estimatedValue ?? (nilProfile as any).estimatedAnnualValue ?? null,
-                baseballAllocationPercent:
-                  (nilProfile as any).baseballAllocationPercent ??
-                  (nilProfile as any).baseballAllocationPct ??
-                  null,
-                updatedAt: toIso((nilProfile as any).updatedAt ?? (nilProfile as any).asOfDate),
-              }
-            : null,
+nilProfile: nilProfile
+  ? {
+      strengthTier: nilProfile.baseballNilStrength ?? nilProfile.overallNilStrength ?? null,
+      collectiveName: null,
+      estimatedValue: null,
+      baseballAllocationPercent: null,
+      updatedAt: toIso(nilProfile.updatedAt),
+    }
+  : null,
 
           rosterNeeds: rosterNeeds.map((r: any) => ({
             id: String(r.id ?? `${r.gradYear}-${r.position}`),
@@ -385,16 +352,16 @@ export async function GET() {
             notes: r.notes ?? null,
           })),
 
-          metricBenchmarks: metricBenchmarks.map((m: any) => ({
-            id: String(m.id ?? `${m.positionGroup}-${m.metricKey}`),
-            positionGroup: m.positionGroup ?? m.group ?? null,
-            metricKey: m.metricKey ?? m.metric ?? null,
-            label: m.label ?? m.metricLabel ?? m.metricKey ?? null,
-            value: m.value ?? m.benchmarkValue ?? m.minValue ?? null,
-            unit: m.unit ?? null,
-            sourceLevel: m.sourceLevel ?? null,
-            confidence: m.confidence ?? null,
-          })),
+metricBenchmarks: metricBenchmarks.map((m: any) => ({
+  id: String(m.id ?? `${m.position}-${m.metricKey}`),
+  positionGroup: m.position ?? null,
+  metricKey: m.metricKey ?? null,
+  label: m.metricLabel ?? m.metricKey ?? null,
+  value: m.averageValue ?? null,
+  unit: m.unit ?? null,
+  sourceLevel: "PROGRAM",
+  confidence: m.lastVerifiedAt ? "HIGH" : "MEDIUM",
+})),
         },
       },
     });
