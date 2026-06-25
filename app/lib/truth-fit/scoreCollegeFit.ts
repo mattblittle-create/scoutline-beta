@@ -90,6 +90,13 @@ metricComparisons: Array<{
     };
   };
 
+confidenceBreakdown: {
+  score: number;
+  label: "High Confidence" | "Medium Confidence" | "Limited Data";
+  reasons: string[];
+  missing: string[];
+};
+
   projectionTag: string;
   academicFit: {
   score: number | null;
@@ -942,6 +949,49 @@ const projection = projectionFromFit({
   metricComparisons: sortedComparisons,
 });
 
+const confidenceReasons: string[] = [];
+const confidenceMissing: string[] = [];
+
+if (verificationStatus === "VERIFIED") confidenceReasons.push("Verified program data");
+else confidenceMissing.push("Program verification");
+
+if (metricsBenchmarkSource.level === "SCHOOL") confidenceReasons.push("School-specific benchmarks");
+else if (metricsBenchmarkSource.level === "CONFERENCE") confidenceReasons.push("Conference benchmark fallback");
+else if (metricsBenchmarkSource.level === "DIVISION") confidenceReasons.push("Division benchmark fallback");
+else confidenceMissing.push("School / conference metric benchmarks");
+
+if (needs.length > 0) confidenceReasons.push("Roster needs available");
+else confidenceMissing.push("Roster needs");
+
+if (collegeAcademicAreas.length > 0) confidenceReasons.push("Academic areas available");
+else confidenceMissing.push("Academic areas");
+
+if (matchedMetricScores.length > 0) confidenceReasons.push("Player metrics matched to benchmarks");
+else confidenceMissing.push("Player metrics or benchmark comparisons");
+
+if (input.college.currentRosterSize != null) confidenceReasons.push("Roster size available");
+else confidenceMissing.push("Roster size");
+
+if (input.college.baseballNilStrength && input.college.baseballNilStrength !== "UNKNOWN") {
+  confidenceReasons.push("NIL signal available");
+}
+
+const confidenceScore = Math.round(
+  (confidenceReasons.length / (confidenceReasons.length + confidenceMissing.length || 1)) * 100
+);
+
+const confidenceBreakdown = {
+  score: confidenceScore,
+  label:
+    confidenceScore >= 75
+      ? "High Confidence"
+      : confidenceScore >= 45
+      ? "Medium Confidence"
+      : "Limited Data",
+  reasons: confidenceReasons.slice(0, 6),
+  missing: confidenceMissing.slice(0, 6),
+} as const;
+
 return {
   score,
   label,
@@ -956,5 +1006,6 @@ return {
   academicFit,
   projectionTag: projection.projectionTag,
   projectionSummary: projection.projectionSummary,
+  confidenceBreakdown,
 };
 }

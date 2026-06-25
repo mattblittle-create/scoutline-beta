@@ -105,6 +105,8 @@ function nilStrengthScore(value?: string | null) {
 
   if (raw.includes("elite")) return 8;
   if (raw.includes("strong")) return 5;
+  if (raw.includes("competitive")) return 3;
+  if (raw.includes("emerging")) return 2;
   if (raw.includes("moderate")) return 3;
   if (raw.includes("limited")) return -2;
 

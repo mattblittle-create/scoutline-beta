@@ -6,6 +6,7 @@ import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
 import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
 import { getDistanceResult } from "@/lib/recommendations/distance";
+import { calculateProgramCompleteness } from "@/app/lib/college/programCompleteness";
 import { getCoordinatesForZip } from "@/lib/recommendations/zipCoordinates";
 import { getTeamAdminPlayerAccess } from "@/lib/team/getTeamAdminPlayerAccess";
 
@@ -335,12 +336,13 @@ baseballProgram: {
 include: {
   academicAreas: true,
   nilProfile: true,
-  baseballProgram: {
-          include: {
-            rosterNeeds: true,
-            metricAverages: true,
-          },
-        },
+baseballProgram: {
+  include: {
+    rosterNeeds: true,
+    metricAverages: true,
+    coaches: true,
+  },
+},
       },
     });
 
@@ -389,17 +391,19 @@ const fit = scoreCollegeFit({
   },
 });
 
-          const distance = playerCoordinates
-            ? getDistanceResult(
-                playerCoordinates,
-                {
-                  latitude: college.latitude,
-                  longitude: college.longitude,
-                }
-              )
-            : null;
+const distance = playerCoordinates
+  ? getDistanceResult(
+      playerCoordinates,
+      {
+        latitude: college.latitude,
+        longitude: college.longitude,
+      }
+    )
+  : null;
 
-          return {
+const programCompleteness = calculateProgramCompleteness(college);
+
+return {
             college: {
               id: college.id,
               name: college.name,
@@ -415,19 +419,43 @@ const fit = scoreCollegeFit({
               academicAreas: college.academicAreas || [],
               tuitionInState: college.tuitionInState,
               tuitionOutOfState: college.tuitionOutOfState,
-              distance,
-              baseballProgram: baseball
-                ? {
-                    nickname: baseball.nickname,
-                    division: baseball.division,
-                    conference: baseball.conference,
-                    baseballWebsiteUrl: baseball.baseballWebsiteUrl,
-                    averageGpa: baseball.averageGpa,
-                    currentRosterSize: baseball.currentRosterSize,
-                    transferHeavy: baseball.transferHeavy,
-                    jucoFriendly: baseball.jucoFriendly,
-                  }
-                : null,
+distance,
+programCompleteness,
+baseballProgram: baseball
+  ? {
+      nickname: baseball.nickname,
+      division: baseball.division,
+      conference: baseball.conference,
+      baseballWebsiteUrl: baseball.baseballWebsiteUrl,
+      averageGpa: baseball.averageGpa,
+      currentRosterSize: baseball.currentRosterSize,
+      transferHeavy: baseball.transferHeavy,
+      jucoFriendly: baseball.jucoFriendly,
+
+      verificationStatus: baseball.verificationStatus,
+      rosterNeeds: baseball.rosterNeeds || [],
+      metricAverages: baseball.metricAverages || [],
+      recruitingAggressiveness: baseball.recruitingAggressiveness,
+      regionalRecruitingBias: baseball.regionalRecruitingBias,
+      rosterTurnoverLevel: baseball.rosterTurnoverLevel,
+      headCoachTenureYears: baseball.headCoachTenureYears,
+      recentWinPercentage: baseball.recentWinPercentage,
+
+      graduatingSeniors: baseball.graduatingSeniors,
+      graduatingPitchers: baseball.graduatingPitchers,
+      graduatingCatchers: baseball.graduatingCatchers,
+      graduatingInfielders: baseball.graduatingInfielders,
+      graduatingOutfielders: baseball.graduatingOutfielders,
+      returningPitchers: baseball.returningPitchers,
+      returningPositionPlayers: baseball.returningPositionPlayers,
+      rosterFreshmen: baseball.rosterFreshmen,
+      rosterSophomores: baseball.rosterSophomores,
+      rosterJuniors: baseball.rosterJuniors,
+      rosterSeniors: baseball.rosterSeniors,
+      portalTransfersIn: baseball.portalTransfersIn,
+      portalTransfersOut: baseball.portalTransfersOut,
+    }
+  : null,
             },
             distance,
             truthFit: fit,

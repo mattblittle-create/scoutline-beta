@@ -1426,15 +1426,25 @@ title={getOpportunityTooltip(
       Match Score {fit.score}/100
     </div>
 
-    {(() => {
-      const confidence = getRecruitingConfidence(item);
-
-      return (
-        <div title={confidence.title} style={{ ...confidenceBadgeStyle, marginTop: 0 }}>
-          {confidence.label}
-        </div>
-      );
-    })()}
+{fit.confidenceBreakdown ? (
+  <div
+    title={[
+      `Confidence Score: ${fit.confidenceBreakdown.score}/100`,
+      "",
+      "Available Signals:",
+      ...(fit.confidenceBreakdown.reasons || []).map((r: string) => `• ${r}`),
+      "",
+      "Missing Signals:",
+      ...(fit.confidenceBreakdown.missing || []).map((m: string) => `• ${m}`),
+    ].join("\n")}
+    style={{
+      ...confidenceBadgeStyle,
+      marginTop: 0,
+    }}
+  >
+    {fit.confidenceBreakdown.label}
+  </div>
+) : null}
   </div>
 
   {/* Line 3 left */}
@@ -1511,6 +1521,19 @@ title={getOpportunityTooltip(
   <Info label="Conference" value={baseball?.conference || "—"} />
   <Info label="Nickname" value={baseball?.nickname || "—"} />
   <Info label="School Type" value={pretty(c.control)} />
+  <Info
+  label="Distance"
+  value={item.distance?.label || c.distance?.label || "—"}
+/>
+
+<Info
+  label="Program Data"
+  value={
+    c.programCompleteness
+      ? `${c.programCompleteness.score}% ${c.programCompleteness.label}`
+      : "—"
+  }
+/>
   <Info
   label="Roster Need"
   value={getBestRosterNeedLevel(item) ? pretty(getBestRosterNeedLevel(item)) : "—"}
@@ -1641,6 +1664,48 @@ title={getOpportunityTooltip(
                         </div>
                       </div>
                     ) : null}
+
+{fit.confidenceBreakdown ? (
+  <div style={comparisonBoxStyle}>
+    <div style={comparisonTitleStyle}>
+      Recommendation Confidence
+    </div>
+
+    <div
+      style={{
+        fontWeight: 900,
+        marginBottom: 10,
+      }}
+    >
+      {fit.confidenceBreakdown.label} ({fit.confidenceBreakdown.score}/100)
+    </div>
+
+    <div
+      style={{
+        display: "grid",
+        gap: 8,
+      }}
+    >
+      <div>
+        <strong>Available Signals</strong>
+
+        {(fit.confidenceBreakdown.reasons || []).map((reason: string) => (
+          <div key={reason}>✓ {reason}</div>
+        ))}
+      </div>
+
+      {(fit.confidenceBreakdown.missing || []).length ? (
+        <div>
+          <strong>Still Missing</strong>
+
+          {(fit.confidenceBreakdown.missing || []).map((reason: string) => (
+            <div key={reason}>• {reason}</div>
+          ))}
+        </div>
+      ) : null}
+    </div>
+  </div>
+) : null}
 
 {fit?.benchmarkSource?.metrics?.label ? (
   <div style={benchmarkSourceStyle}>
