@@ -5,6 +5,10 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 import { PrismaClient, InvoiceStatus } from "@prisma/client";
 
+import {
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
+
 const prisma = new PrismaClient();
 
 function getAppBaseUrl() {
@@ -127,7 +131,8 @@ if (playerProfileId) redirect.searchParams.set("playerProfileId", playerProfileI
         where: { id: invoice.playerProfileId },
         data: {
           hasActivePlayerBilling: false,
-          playerBillingStatus: "Past Due",
+          playerBillingStatus:
+            PLAYER_BILLING_STATUS.PAST_DUE,
         },
       });
 

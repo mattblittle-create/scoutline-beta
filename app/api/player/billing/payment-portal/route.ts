@@ -4,6 +4,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
 
+import {
+  CARD_PROCESSING_RATE,
+} from "@/lib/billing/constants";
+
+import {
+  centsToDecimalString,
+  normalizeCents,
+} from "@/lib/billing/money";
+
 export const dynamic = "force-dynamic";
 
 type ReturnTo = "onboarding" | "player-dashboard";
@@ -38,7 +47,9 @@ function addYears(date: Date, years: number) {
 }
 
 function getCardFeeCents(amountCents: number) {
-  return Math.round(amountCents * 0.03);
+  return normalizeCents(
+    amountCents * CARD_PROCESSING_RATE
+  );
 }
 
 async function calculatePlayerTotalDue(playerProfileId: string) {
@@ -83,7 +94,19 @@ async function calculatePlayerTotalDue(playerProfileId: string) {
   if (discountType && typeof discountValue === "number") {
     switch (String(discountType)) {
       case "PERCENT":
-        totalCents = Math.max(0, baseAmountCents - Math.round((baseAmountCents * Math.max(0, Math.min(100, discountValue))) / 100));
+        totalCents = Math.max(
+  0,
+  baseAmountCents -
+    normalizeCents(
+      (
+        baseAmountCents *
+        Math.max(
+          0,
+          Math.min(100, discountValue)
+        )
+      ) / 100
+    )
+);
         break;
       case "FIXED":
         totalCents = Math.max(0, baseAmountCents - Math.max(0, discountValue));
@@ -194,11 +217,13 @@ async function createPlayerPaymentPortal(args: {
     appkey: process.env.VALOR_APP_KEY || "",
     epi: process.env.VALOR_EPI || "",
     txn_type: "sale",
-    amount: (amountCents / 100).toFixed(2),
+    amount:
+      centsToDecimalString(amountCents),
     invoicenumber: reference,
     orderdescription: `ScoutLine ${billing.planTier} ${billing.cadence} billing`,
     tax: "0.00",
-    surcharge: (cardFeeCents / 100).toFixed(2),
+    surcharge:
+      centsToDecimalString(cardFeeCents),
     ignore_surcharge_calc: "1",
     epage: "1",
     customer_name: billing.profile.user?.name || "ScoutLine Player",

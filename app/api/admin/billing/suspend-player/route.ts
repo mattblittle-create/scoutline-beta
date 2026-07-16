@@ -3,6 +3,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
+import {
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +47,8 @@ export async function POST(req: NextRequest) {
       },
       data: {
         hasActivePlayerBilling: false,
-        playerBillingStatus: "Suspended",
+        playerBillingStatus:
+          PLAYER_BILLING_STATUS.SUSPENDED,
       },
     });
 

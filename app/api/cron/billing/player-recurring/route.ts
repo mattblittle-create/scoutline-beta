@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { chargeValorStoredToken } from "@/lib/billing/valorRecurringCharge";
+import { chargeStoredPaymentMethod } from "@/lib/billing/chargeStoredPaymentMethod";
 import { markPlayerInvoicePaymentFailed } from "@/lib/billing/playerDunning";
 import { maybeAutoSuspendPlayerForDunning } from "@/lib/billing/playerAutoSuspension";
 
@@ -123,16 +123,21 @@ if (!dryRun) {
     const billing = invoice.playerProfile.playerBillingProfile;
     const token = billing?.providerPaymentRef || "";
 
-    const result = await chargeValorStoredToken({
-      token,
-      invoiceNumber: invoice.externalId || invoice.id,
-      amountCents: invoice.amountCents,
-      description: `ScoutLine ${String(invoice.playerProfile.playerPlanTier)} ${String(
-        invoice.playerProfile.playerBillingCadence || "monthly"
-      )} recurring billing`,
-      customerName: invoice.playerProfile.email,
-      email: invoice.playerProfile.email,
-    });
+const result = await chargeStoredPaymentMethod({
+  token,
+  provider: billing?.provider,
+  paymentType: billing?.paymentType,
+  invoiceNumber: invoice.externalId || invoice.id,
+  amountCents: invoice.amountCents,
+  cardFeeCents: invoice.cardFeeCents,
+  description: `ScoutLine ${String(
+    invoice.playerProfile.playerPlanTier
+  )} ${String(
+    invoice.playerProfile.playerBillingCadence || "monthly"
+  )} recurring billing`,
+  customerName: invoice.playerProfile.email,
+  email: invoice.playerProfile.email,
+});
 
 let dunningResult = null;
 
@@ -170,6 +175,6 @@ return NextResponse.json({
   chargeResults,
   message: dryRun
     ? "Dry run only. No charges were attempted."
-    : "Recurring charge adapter was called. Live charges remain disabled unless VALOR_RECURRING_CHARGES_ENABLED=true.",
+    : "The stored-payment adapter was called. Card charges remain controlled by VALOR_RECURRING_CHARGES_ENABLED, and ACH charges remain disabled until the Clearent integration is configured.",
 });
 }

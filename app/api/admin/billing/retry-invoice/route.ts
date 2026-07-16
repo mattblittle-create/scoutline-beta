@@ -2,7 +2,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { chargeValorStoredToken } from "@/lib/billing/valorRecurringCharge";
+import { chargeStoredPaymentMethod } from "@/lib/billing/chargeStoredPaymentMethod";
 import { markPlayerInvoicePaymentFailed } from "@/lib/billing/playerDunning";
 import { markPlayerRecurringPaymentSucceeded } from "@/lib/billing/playerRecurringSuccess";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
@@ -83,16 +83,21 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const result: any = await chargeValorStoredToken({
-      token,
-      invoiceNumber: invoice.externalId || invoice.id,
-      amountCents: invoice.amountCents,
-      description: `ScoutLine ${String(invoice.playerProfile.playerPlanTier)} ${String(
-        invoice.playerProfile.playerBillingCadence || "monthly"
-      )} manual invoice retry`,
-      customerName: invoice.playerProfile.email,
-      email: invoice.playerProfile.email,
-    });
+const result: any = await chargeStoredPaymentMethod({
+  token,
+  provider: billing?.provider,
+  paymentType: billing?.paymentType,
+  invoiceNumber: invoice.externalId || invoice.id,
+  amountCents: invoice.amountCents,
+  cardFeeCents: invoice.cardFeeCents,
+  description: `ScoutLine ${String(
+    invoice.playerProfile.playerPlanTier
+  )} ${String(
+    invoice.playerProfile.playerBillingCadence || "monthly"
+  )} manual invoice retry`,
+  customerName: invoice.playerProfile.email,
+  email: invoice.playerProfile.email,
+});
 
     if (result.skipped) {
       await createBillingAuditLog({
@@ -112,7 +117,8 @@ export async function POST(req: NextRequest) {
         skipped: true,
         result,
         message:
-          "Retry endpoint is wired, but Valor recurring charges are currently disabled.",
+          result.reason ||
+          "The stored payment method cannot currently be charged.",
       });
     }
 

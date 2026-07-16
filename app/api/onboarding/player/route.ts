@@ -6,6 +6,9 @@ import {
   invalidateExistingTokens,
 } from "@/lib/auth/tokens";
 import { sendSetPasswordEmail } from "@/lib/email/sendSetPasswordEmail";
+import {
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -188,7 +191,8 @@ export async function POST(req: Request) {
               billingConflictFlag: false,
               playerPlanTier: planEnum as any,
               playerBillingCadence: "monthly",
-              playerBillingStatus: "Pending",
+              playerBillingStatus:
+                PLAYER_BILLING_STATUS.PENDING,
               schemaVersion: 1,
               data: mergedData,
             },

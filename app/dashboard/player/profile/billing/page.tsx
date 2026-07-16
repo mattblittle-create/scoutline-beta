@@ -11,6 +11,10 @@ import PlayerBillingInvoices from "./PlayerBillingInvoices";
 import PlayerBillingPaymentMethod from "./PlayerBillingPaymentMethod";
 import { getTeamSponsoredBillingInfo } from "@/lib/billing/getTeamSponsoredBillingInfo";
 
+import {
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
+
 function formatUSD(cents: number) {
   const dollars = cents / 100;
   return dollars.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -48,7 +52,9 @@ function computeDerivedStatusFromInvoices(
 
   if (hasPastDue) return "PastDue";
 
-  if (!hasBillingProfile) return "Pending";
+  if (!hasBillingProfile) {
+    return PLAYER_BILLING_STATUS.PENDING;
+  }
 
   return "Active";
 }

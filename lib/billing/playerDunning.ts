@@ -2,6 +2,10 @@
 
 import { prisma } from "@/lib/prisma";
 
+import {
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
+
 function addDays(date: Date, days: number) {
   return new Date(date.getTime() + days * 24 * 60 * 60 * 1000);
 }
@@ -52,7 +56,9 @@ export async function markPlayerInvoicePaymentFailed(args: {
       where: { id: invoice.playerProfileId },
       data: {
         hasActivePlayerBilling: !shouldSuspend,
-        playerBillingStatus: shouldSuspend ? "Suspended" : "Past Due",
+        playerBillingStatus: shouldSuspend
+          ? PLAYER_BILLING_STATUS.SUSPENDED
+          : PLAYER_BILLING_STATUS.PAST_DUE,
       },
     });
   });

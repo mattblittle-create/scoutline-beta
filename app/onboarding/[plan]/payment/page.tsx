@@ -5,11 +5,11 @@
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { PaymentMethod } from "@/lib/payments/types";
 
 type PageProps = { params: { plan: string } };
 
 type Billing = "monthly" | "annual";
-type PaymentMethod = "card" | "ach";
 
 function normalizePlanSlug(raw: string): string {
   const p = String(raw || "").trim().toLowerCase().replace(/\s+/g, "-");
@@ -74,7 +74,9 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
     billingParam === "annual" && planSupportsAnnual(plan) ? "annual" : "monthly";
 
   const [billingTerm, setBillingTerm] = React.useState<Billing>(initialBilling);
-  const [paymentMethod, setPaymentMethod] = React.useState<PaymentMethod>("card");
+  const [paymentMethod, setPaymentMethod] = React.useState<PaymentMethod>(
+  PaymentMethod.CARD
+)
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -152,7 +154,8 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
   }
 
   const disableAnnual = !planSupportsAnnual(plan);
-  const showFeeNote = paymentMethod === "card";
+  const showFeeNote =
+  paymentMethod === PaymentMethod.CARD;
 
   const planLabel = formatPlanLabel(plan);
   const planPrice = DISPLAY_PRICING[plan] || {};
@@ -218,16 +221,20 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
             <label className="pill">
               <input
                 type="radio"
-                checked={paymentMethod === "card"}
-                onChange={() => setPaymentMethod("card")}
+                checked={
+                  paymentMethod === PaymentMethod.CARD
+                }
+                onChange={() => setPaymentMethod(PaymentMethod.CARD)}
               />
               <span>Credit / Debit</span>
             </label>
             <label className="pill">
               <input
                 type="radio"
-                checked={paymentMethod === "ach"}
-                onChange={() => setPaymentMethod("ach")}
+                checked={
+                  paymentMethod === PaymentMethod.ACH
+                }
+                onChange={() => setPaymentMethod(PaymentMethod.ACH)}
               />
               <span>eCheck / ACH</span>
             </label>

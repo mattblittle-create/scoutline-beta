@@ -4,11 +4,13 @@
 
 import React, { Suspense, useEffect, useMemo, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { PaymentMethod } from "@/lib/payments/types";
+import { formatUsd } from "@/lib/billing/money";
 
 type Summary = {
   plan: string;
   cadence: "monthly" | "annual";
-  paymentMethod: "card" | "ach";
+  paymentMethod: PaymentMethod;
   basePrice: number;
   discountAmount: number;
   discountedPrice: number;
@@ -26,7 +28,8 @@ function PlayerBillingPageInner() {
 
   const [plan, setPlan] = useState<"WALK_ON" | "ALL_AMERICAN">("WALK_ON");
   const [cadence, setCadence] = useState<"monthly" | "annual">("monthly");
-  const [paymentMethod, setPaymentMethod] = useState<"card" | "ach">("card");
+  const [paymentMethod, setPaymentMethod] =
+    useState<PaymentMethod>(PaymentMethod.CARD);
   const [discountCode, setDiscountCode] = useState("");
   const [summary, setSummary] = useState<Summary | null>(null);
 
@@ -331,8 +334,8 @@ if (PAYMENTS_DISABLED) {
               type="radio"
               name="paymentMethod"
               value="card"
-              checked={paymentMethod === "card"}
-              onChange={() => setPaymentMethod("card")}
+              checked={paymentMethod === PaymentMethod.CARD}
+              onChange={() => setPaymentMethod(PaymentMethod.CARD)}
             />
             <span>Card — 3% processing fee applies</span>
           </label>
@@ -351,8 +354,8 @@ if (PAYMENTS_DISABLED) {
               type="radio"
               name="paymentMethod"
               value="ach"
-              checked={paymentMethod === "ach"}
-              onChange={() => setPaymentMethod("ach")}
+              checked={paymentMethod === PaymentMethod.ACH}
+              onChange={() => setPaymentMethod(PaymentMethod.ACH)}
             />
             <span>ACH — no processing fee</span>
           </label>
@@ -389,16 +392,16 @@ if (PAYMENTS_DISABLED) {
 
         {summary && !loading && (
           <>
-            <p>Base Price: ${(summary.basePrice / 100).toFixed(2)}</p>
-            <p>Discount: -${(summary.discountAmount / 100).toFixed(2)}</p>
-            <p>Subtotal: ${(summary.discountedPrice / 100).toFixed(2)}</p>
+            <p>Base Price: {formatUsd(summary.basePrice)}</p>
+            <p>Discount: -{formatUsd(summary.discountAmount)}</p>
+            <p>Subtotal: {formatUsd(summary.discountedPrice)}</p>
             <p>
-              {summary.paymentMethod === "card"
+              {summary.paymentMethod === PaymentMethod.CARD
                 ? "Processing Fee (Card): "
                 : "Processing Fee (ACH): "}
-              ${(summary.surchargeAmount / 100).toFixed(2)}
+              {formatUsd(summary.surchargeAmount)}
             </p>
-            <h3>Total Due: ${(summary.finalPrice / 100).toFixed(2)}</h3>
+            <h3>Total Due: {formatUsd(summary.finalPrice)}</h3>
           </>
         )}
       </div>

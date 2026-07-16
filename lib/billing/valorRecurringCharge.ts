@@ -1,5 +1,16 @@
 // lib/billing/valorRecurringCharge.ts
 
+import type { StoredPaymentChargeResult } from "@/lib/payments/types";
+
+import {
+  centsToDecimalString,
+  normalizeCents,
+} from "@/lib/billing/money";
+
+import {
+  CARD_PROCESSING_RATE,
+} from "@/lib/billing/constants";
+
 type ValorRecurringChargeInput = {
   token: string;
   invoiceNumber: string;
@@ -17,11 +28,9 @@ function getSaleTokenUrl() {
   );
 }
 
-function dollars(cents: number) {
-  return (Math.max(0, Math.round(cents)) / 100).toFixed(2);
-}
-
-export async function chargeValorStoredToken(input: ValorRecurringChargeInput) {
+export async function chargeValorStoredToken(
+  input: ValorRecurringChargeInput
+): Promise<StoredPaymentChargeResult> {
   if (process.env.VALOR_RECURRING_CHARGES_ENABLED !== "true") {
     return {
       ok: false,
@@ -44,22 +53,28 @@ export async function chargeValorStoredToken(input: ValorRecurringChargeInput) {
     };
   }
 
-  const cardFeeCents =
-    typeof input.cardFeeCents === "number"
-      ? Math.max(0, Math.round(input.cardFeeCents))
-      : Math.round(input.amountCents * 0.03);
+const cardFeeCents =
+  typeof input.cardFeeCents === "number"
+    ? Math.max(
+        0,
+        normalizeCents(input.cardFeeCents)
+      )
+    : normalizeCents(
+        input.amountCents *
+          CARD_PROCESSING_RATE
+      );
 
   const body = {
     appid,
     appkey,
     epi,
     txn_type: "sale",
-    amount: dollars(input.amountCents),
+    amount: centsToDecimalString(input.amountCents),
     tax_amount: "0.00",
     token: input.token,
     invoicenumber: input.invoiceNumber,
     orderdescription: input.description.slice(0, 50),
-    surchargeAmount: dollars(cardFeeCents),
+    surchargeAmount: centsToDecimalString(cardFeeCents),
     surchargeIndicator: cardFeeCents > 0 ? "1" : "0",
     shipping_country: "US",
     email: input.email || "",
@@ -95,7 +110,12 @@ export async function chargeValorStoredToken(input: ValorRecurringChargeInput) {
         json?.mesg ||
         `Valor token charge failed with HTTP ${res.status}.`,
       invoiceNumber: input.invoiceNumber,
-      responseCode: json?.error_code || json?.error_no || null,
+      responseCode:
+        json?.error_code != null
+          ? String(json.error_code)
+          : json?.error_no != null
+            ? String(json.error_no)
+            : null,
       raw: json,
     };
   }

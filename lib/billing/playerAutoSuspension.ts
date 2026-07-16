@@ -3,6 +3,10 @@
 import { prisma } from "@/lib/prisma";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
 
+import {
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
+
 function daysBetween(start: Date, end: Date) {
   const ms = end.getTime() - start.getTime();
   return Math.floor(ms / (24 * 60 * 60 * 1000));
@@ -35,7 +39,10 @@ export async function maybeAutoSuspendPlayerForDunning(args: {
     return { ok: true, skipped: true, reason: "Invoice is not past due." };
   }
 
-  if (invoice.playerProfile.playerBillingStatus === "Suspended") {
+  if (
+    invoice.playerProfile.playerBillingStatus ===
+    PLAYER_BILLING_STATUS.SUSPENDED
+  ) {
     return { ok: true, skipped: true, reason: "Player is already suspended." };
   }
 
@@ -58,7 +65,8 @@ export async function maybeAutoSuspendPlayerForDunning(args: {
     where: { id: invoice.playerProfileId },
     data: {
       hasActivePlayerBilling: false,
-      playerBillingStatus: "Suspended",
+      playerBillingStatus:
+        PLAYER_BILLING_STATUS.SUSPENDED,
     },
   });
 

@@ -2,10 +2,23 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient, InvoiceStatus, Plan } from "@prisma/client";
+import { createPaymentCheckout } from "@/lib/payments/createCheckout";
+
+import {
+  PaymentMethod,
+  PaymentMethodKind,
+} from "@/lib/payments/types";
+
+import { centsToDecimalString } from "@/lib/billing/money";
+
+import {
+  PLAYER_BILLING_CADENCE,
+  PLAYER_BILLING_STATUS,
+} from "@/lib/billing/constants";
 
 const prisma = new PrismaClient();
 
-function getBaseUrl(req: NextRequest) {
+function getBaseUrl() {
   return (
     process.env.NEXT_PUBLIC_APP_URL ||
     "https://www.myscoutline.com"
@@ -19,22 +32,37 @@ function normalizePlan(value: string): Plan {
   throw new Error("Invalid plan");
 }
 
-function normalizeCadence(value: unknown): "monthly" | "annual" {
+function normalizePaymentMethod(
+  value: unknown
+): PaymentMethodKind {
+  if (value === PaymentMethod.CARD) {
+    return PaymentMethod.CARD;
+  }
+
+  if (value === PaymentMethod.ACH) {
+    return PaymentMethod.ACH;
+  }
+
+  throw new Error("Invalid payment method");
+}
+
+function normalizeCadence(
+  value: unknown
+) {
   // Annual is intentionally disabled for underwriting.
-  // Keep the type support so we can turn it back on later.
-  if (value === "monthly") return value;
+  if (
+    value ===
+    PLAYER_BILLING_CADENCE.MONTHLY
+  ) {
+    return PLAYER_BILLING_CADENCE.MONTHLY;
+  }
+
   throw new Error("Invalid cadence");
 }
 
 function addMonths(date: Date, months: number) {
   const next = new Date(date);
   next.setMonth(next.getMonth() + months);
-  return next;
-}
-
-function addYears(date: Date, years: number) {
-  const next = new Date(date);
-  next.setFullYear(next.getFullYear() + years);
   return next;
 }
 
@@ -50,6 +78,7 @@ export async function POST(req: NextRequest) {
 
 const cadence = normalizeCadence(rawCadence);
 const normalizedPlan = normalizePlan(plan);
+const normalizedPaymentMethod = normalizePaymentMethod(paymentMethod);
 
     if (!playerProfileId || typeof playerProfileId !== "string") {
       return NextResponse.json(
@@ -58,7 +87,7 @@ const normalizedPlan = normalizePlan(plan);
       );
     }
 
-    const baseUrl = getBaseUrl(req);
+    const baseUrl = getBaseUrl();
 
     const profile = await prisma.playerProfile.findUnique({
       where: { id: playerProfileId },
@@ -77,7 +106,12 @@ const normalizedPlan = normalizePlan(plan);
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, cadence, discountCode, paymentMethod }),
+        body: JSON.stringify({
+          plan,
+          cadence,
+          discountCode,
+          paymentMethod: normalizedPaymentMethod,
+        }),
         cache: "no-store",
       }
     );
@@ -91,45 +125,17 @@ const normalizedPlan = normalizePlan(plan);
       );
     }
 
-    if (summary.finalPrice <= 0) {
-      return NextResponse.json(
-        { error: "Free flow — skip checkout." },
-        { status: 400 }
-      );
-    }
+if (summary.finalPrice <= 0) {
+  return NextResponse.json(
+    { error: "Free flow — skip checkout." },
+    { status: 400 }
+  );
+}
 
-    const reference = `sc_${Date.now()}`;
-    const amount = (summary.finalPrice / 100).toFixed(2);
-    const surcharge = (summary.surchargeAmount / 100).toFixed(2);
+const reference = `sc_${Date.now()}`;
 
-    const now = new Date();
-    const periodEnd =
-      cadence === "annual" ? addYears(now, 1) : addMonths(now, 1);
-
-const invoice = await prisma.playerInvoice.create({
-  data: {
-    playerProfileId: profile.id,
-    status: InvoiceStatus.OPEN,
-    cadence,
-    periodStart: now,
-    periodEnd,
-    invoiceDate: now,
-    dueDate: now,
-    amountCents: summary.finalPrice,
-    amountPaidCents: 0,
-    externalId: reference,
-  },
-});
-
-    await prisma.playerProfile.update({
-      where: { id: profile.id },
-      data: {
-        hasActivePlayerBilling: false,
-        playerBillingStatus: "Pending",
-        playerBillingCadence: cadence,
-        playerPlanTier: normalizedPlan,
-      },
-    });
+const now = new Date();
+const periodEnd = addMonths(now, 1);
 
     const successUrl =
       `${baseUrl}/api/payments/valor/return?success=1` +
@@ -149,28 +155,73 @@ const invoice = await prisma.playerInvoice.create({
       `&plan=${encodeURIComponent(plan)}` +
       `&cadence=${encodeURIComponent(cadence)}`;
 
-    const params = new URLSearchParams({
-      appid: process.env.VALOR_APP_ID!,
-      appkey: process.env.VALOR_APP_KEY!,
-      epi: process.env.VALOR_EPI!,
-      txn_type: "sale",
-      amount,
-      invoicenumber: reference,
-      orderdescription: `ScoutLine ${plan} ${cadence}`,
-      merchant_email: "support@myscoutline.com",
-      website: "https://www.myscoutline.com",
-      surcharge,
-      tax: "0.00",
-      ignore_surcharge_calc: "0",
-      epage: "1",
-      customer_name: profile.user?.name || "ScoutLine Player",
-      shipping_country: "US",
-      redirect_url: redirectUrl,
-      success_url: successUrl,
-      failure_url: failureUrl,
-    });
+const checkoutResult = await createPaymentCheckout({
+  paymentMethod: normalizedPaymentMethod,
 
-    const checkoutUrl = `${process.env.VALOR_HPP_BASE_URL}&${params.toString()}`;
+  reference,
+
+// Valor expects the base transaction amount and added card fee
+// as separate values. Do not include the surcharge in amountCents.
+amountCents: summary.discountedPrice,
+surchargeCents: summary.surchargeAmount,
+
+  description: `ScoutLine ${plan} ${cadence}`,
+  customerName: profile.user?.name || "ScoutLine Player",
+  customerEmail: profile.email,
+
+  redirectUrl,
+  successUrl,
+  failureUrl,
+});
+
+if (!checkoutResult.ok || !checkoutResult.checkoutUrl) {
+  return NextResponse.json(
+    {
+      error:
+        checkoutResult.error ||
+        "Failed to create payment checkout.",
+      code:
+        checkoutResult.code ||
+        "CHECKOUT_CREATION_FAILED",
+      provider: checkoutResult.provider,
+    },
+    {
+      status:
+        checkoutResult.code === "ACH_NOT_CONFIGURED"
+          ? 503
+          : 500,
+    }
+  );
+}
+
+const checkoutUrl = checkoutResult.checkoutUrl;
+
+const invoice = await prisma.playerInvoice.create({
+  data: {
+    playerProfileId: profile.id,
+    status: InvoiceStatus.OPEN,
+    cadence,
+    periodStart: now,
+    periodEnd,
+    invoiceDate: now,
+    dueDate: now,
+    amountCents: summary.discountedPrice,
+    cardFeeCents: summary.surchargeAmount,
+    amountPaidCents: 0,
+    externalId: reference,
+  },
+});
+
+    await prisma.playerProfile.update({
+      where: { id: profile.id },
+      data: {
+        hasActivePlayerBilling: false,
+        playerBillingStatus:
+          PLAYER_BILLING_STATUS.PENDING,
+        playerBillingCadence: cadence,
+        playerPlanTier: normalizedPlan,
+      },
+    });
 
 await prisma.playerInvoice.update({
   where: { id: invoice.id },
@@ -179,12 +230,17 @@ await prisma.playerInvoice.update({
   },
 });
 
-    return NextResponse.json({
-      ok: true,
-      checkoutUrl,
-      reference,
-      amount,
-    });
+return NextResponse.json({
+  ok: true,
+  checkoutUrl,
+  reference,
+  provider: checkoutResult.provider,
+  paymentMethod: normalizedPaymentMethod,
+
+  subtotal: centsToDecimalString(summary.discountedPrice),
+  surcharge: centsToDecimalString(summary.surchargeAmount),
+  amount: centsToDecimalString(summary.finalPrice),
+});
   } catch (err) {
     console.error("VALOR_CHECKOUT_ERROR", err);
 
