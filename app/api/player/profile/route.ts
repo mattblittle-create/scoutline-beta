@@ -584,15 +584,31 @@ const row = await prisma.playerProfile.findUnique({
         photoUrl: userForGet?.photoUrl ?? null,
 
         // ---- Compatibility shim: always provide videoSocial for clients ----
-        videoSocial: isObj((norm as any).videoSocial)
-          ? (norm as any).videoSocial
-          : {
-              externalVideos: Array.isArray((norm as any).externalVideos) ? (norm as any).externalVideos : [],
-              localVideos: Array.isArray((norm as any).localVideos) ? (norm as any).localVideos : [],
-              social: isObj((norm as any).social) ? (norm as any).social : {},
-              primary: (norm as any).primary ?? null,
-              chatUrl: (norm as any).chatUrl ?? null,
-            },
+        videoSocial: {
+          externalVideos: Array.isArray((norm as any).externalVideos)
+            ? (norm as any).externalVideos
+            : Array.isArray((norm as any).videoSocial?.externalVideos)
+            ? (norm as any).videoSocial.externalVideos
+            : [],
+          localVideos: Array.isArray((norm as any).localVideos)
+            ? (norm as any).localVideos
+            : Array.isArray((norm as any).videoSocial?.localVideos)
+            ? (norm as any).videoSocial.localVideos
+            : [],
+          social: isObj((norm as any).social)
+            ? (norm as any).social
+            : isObj((norm as any).videoSocial?.social)
+            ? (norm as any).videoSocial.social
+            : {},
+          primary:
+            (norm as any).primary !== undefined
+              ? (norm as any).primary
+              : (norm as any).videoSocial?.primary ?? null,
+          chatUrl:
+            (norm as any).chatUrl !== undefined
+              ? (norm as any).chatUrl
+              : (norm as any).videoSocial?.chatUrl ?? null,
+        },
 
         // academics docs (accept either canonical or legacy keys)
         transcriptUrls: resolveDocUrls(norm.transcriptUrls ?? norm.transcripts ?? [], base),
@@ -696,6 +712,41 @@ const existing = await prisma.playerProfile.findFirst({
   select: { id: true, email: true, userId: true, data: true },
 });
     const existingData = (existing?.data as any) || {};
+
+    // Canonical Video / Social fallback.
+    // Older profiles may store these fields inside data.videoSocial,
+    // while newer saves use top-level fields.
+    const existingVideoSocial = isObj(existingData.videoSocial)
+      ? existingData.videoSocial
+      : {};
+
+    const existingExternalVideos = Array.isArray(existingData.externalVideos)
+      ? existingData.externalVideos
+      : Array.isArray(existingVideoSocial.externalVideos)
+      ? existingVideoSocial.externalVideos
+      : [];
+
+    const existingLocalVideos = Array.isArray(existingData.localVideos)
+      ? existingData.localVideos
+      : Array.isArray(existingVideoSocial.localVideos)
+      ? existingVideoSocial.localVideos
+      : [];
+
+    const existingSocial = isObj(existingData.social)
+      ? existingData.social
+      : isObj(existingVideoSocial.social)
+      ? existingVideoSocial.social
+      : {};
+
+    const existingPrimary =
+      existingData.primary !== undefined
+        ? existingData.primary
+        : existingVideoSocial.primary ?? null;
+
+    const existingChatUrl =
+      existingData.chatUrl !== undefined
+        ? existingData.chatUrl
+        : existingVideoSocial.chatUrl ?? null;
 
     /** ---------- Normalize core/athletics ---------- */
     const firstName = safeTrim(body.firstName || "");
@@ -914,19 +965,24 @@ const existing = await prisma.playerProfile.findFirst({
     });
 
     // ---------- Stats seasons (from Stats tab) ----------
+    const statsKeyPresent =
+      hasOwn(body, "statsSeasons") || hasOwn(body, "seasons");
+
     const incomingSeasonsRaw =
       Array.isArray(body.statsSeasons) ? body.statsSeasons :
       Array.isArray(body.seasons) ? body.seasons :
-      null;
+      [];
 
-    const cleanedIncomingSeasons = incomingSeasonsRaw ? cleanSeasonsArray(incomingSeasonsRaw) : [];
+    const cleanedIncomingSeasons = statsKeyPresent
+      ? cleanSeasonsArray(incomingSeasonsRaw)
+      : [];
 
     const existingSeasons =
       Array.isArray(existingData?.statsSeasons) ? existingData.statsSeasons :
       Array.isArray(existingData?.seasons) ? existingData.seasons :
       [];
 
-    const statsSeasons = cleanedIncomingSeasons.length > 0
+    const statsSeasons = statsKeyPresent
       ? cleanedIncomingSeasons
       : existingSeasons;
 
@@ -1091,7 +1147,7 @@ const existing = await prisma.playerProfile.findFirst({
           : body;
 
         if (!hasOwn(src, "externalVideos")) {
-          return existingData.externalVideos ?? undefined;
+          return existingExternalVideos;
         }
 
         const list = Array.isArray(src.externalVideos) ? src.externalVideos : [];
@@ -1130,7 +1186,7 @@ const existing = await prisma.playerProfile.findFirst({
           : body;
 
         if (!hasOwn(src, "localVideos")) {
-          return existingData.localVideos ?? undefined;
+          return existingLocalVideos;
         }
 
         const list = Array.isArray(src.localVideos) ? src.localVideos : [];
@@ -1176,7 +1232,7 @@ const existing = await prisma.playerProfile.findFirst({
           : body;
 
         if (!hasOwn(src, "social")) {
-          return existingData.social ?? undefined;
+          return existingSocial;
         }
 
         if (!isObj(src.social)) return {};
@@ -1199,7 +1255,7 @@ const existing = await prisma.playerProfile.findFirst({
           : body;
 
         if (!hasOwn(src, "primary")) {
-          return existingData.primary ?? null;
+          return existingPrimary;
         }
 
         if (src.primary == null) return null;
@@ -1275,6 +1331,141 @@ const existing = await prisma.playerProfile.findFirst({
 
       // stats (seasons)
       statsSeasons,
+    };
+
+    /**
+     * ---------- Partial-update safety ----------
+     * Every profile tab POSTs only the fields it owns. Missing fields therefore
+     * mean "preserve existing", while fields explicitly sent as empty/null/false
+     * retain their normal clear/delete behavior.
+     */
+    const preserveOmitted = (keys: string[], fieldWasProvided: boolean) => {
+      if (fieldWasProvided) return;
+
+      for (const key of keys) {
+        if (hasOwn(existingData, key)) {
+          (normalized as any)[key] = existingData[key];
+        } else {
+          delete (normalized as any)[key];
+        }
+      }
+    };
+
+    // Contact / identity
+    preserveOmitted(["firstName"], hasOwn(body, "firstName"));
+    preserveOmitted(["lastName"], hasOwn(body, "lastName"));
+    preserveOmitted(["emailPrivate"], hasOwn(body, "emailPrivate"));
+    preserveOmitted(["phone"], hasOwn(body, "phone"));
+    preserveOmitted(["phonePrivate"], hasOwn(body, "phonePrivate"));
+
+    // Academic / school information
+    preserveOmitted(["gradYear"], hasOwn(body, "gradYear"));
+    preserveOmitted(["hsName"], hasOwn(body, "hsName"));
+    preserveOmitted(["hsCity"], hasOwn(body, "hsCity"));
+    preserveOmitted(["hsState"], hasOwn(body, "hsState"));
+    preserveOmitted(["hsGeneralWebsiteUrl"], hasOwn(body, "hsGeneralWebsiteUrl"));
+    preserveOmitted(["hometown"], hasOwn(body, "hometown"));
+    preserveOmitted(["state"], hasOwn(body, "state"));
+
+    const zipWasProvided = hasOwn(body, "zip") || hasOwn(body, "hometownZip");
+    preserveOmitted(["zip", "hometownZip"], zipWasProvided);
+
+    preserveOmitted(["gpa"], hasOwn(body, "gpa"));
+    preserveOmitted(["gpaScale"], hasOwn(body, "gpaScale"));
+    preserveOmitted(["sat"], hasOwn(body, "sat"));
+    preserveOmitted(["act"], hasOwn(body, "act"));
+    preserveOmitted(["academicBio"], hasOwn(body, "academicBio"));
+    preserveOmitted(["academicBioPrivate"], hasOwn(body, "academicBioPrivate"));
+
+    const areasOfStudyWasProvided =
+      hasOwn(body, "areasOfStudy") ||
+      hasOwn(body, "areasOfStudyInput") ||
+      hasOwn(body, "intendedMajors");
+    preserveOmitted(["areasOfStudy", "areasOfStudyInput"], areasOfStudyWasProvided);
+
+    // Core / athletics
+    preserveOmitted(["primaryPos"], hasOwn(body, "primaryPos"));
+    preserveOmitted(["secondaryPos"], hasOwn(body, "secondaryPos"));
+    preserveOmitted(["isPitcher"], hasOwn(body, "isPitcher"));
+
+    const pitcherHandWasAffected =
+      hasOwn(body, "pitcherHand") ||
+      hasOwn(body, "isPitcher") ||
+      hasOwn(body, "primaryPos") ||
+      hasOwn(body, "secondaryPos");
+    preserveOmitted(["pitcherHand"], pitcherHandWasAffected);
+
+    preserveOmitted(["throws"], hasOwn(body, "throws"));
+    preserveOmitted(["bats"], hasOwn(body, "bats"));
+    preserveOmitted(["heightFt"], hasOwn(body, "heightFt"));
+    preserveOmitted(["heightIn"], hasOwn(body, "heightIn"));
+    preserveOmitted(["weightLb"], hasOwn(body, "weightLb"));
+
+    const dobOrAgeWasProvided = hasOwn(body, "dob") || hasOwn(body, "age");
+    preserveOmitted(["dob", "age"], dobOrAgeWasProvided);
+    preserveOmitted(["dobPrivate"], hasOwn(body, "dobPrivate"));
+    preserveOmitted(["gender"], hasOwn(body, "gender"));
+
+    // Eligibility / commitment
+    preserveOmitted(["eligibilityRegistered"], hasOwn(body, "eligibilityRegistered"));
+
+    const commitmentToggleWasProvided = hasOwn(body, "isCommitted");
+    preserveOmitted(["isCommitted"], commitmentToggleWasProvided);
+
+    if (!commitmentToggleWasProvided) {
+      preserveOmitted(["committedProgram"], hasOwn(body, "committedProgram"));
+      preserveOmitted(["committedProgramId"], hasOwn(body, "committedProgramId"));
+    } else if (!!body.isCommitted) {
+      // Turning commitment on should not erase an existing program merely
+      // because this particular request omitted the program fields.
+      preserveOmitted(["committedProgram"], hasOwn(body, "committedProgram"));
+      preserveOmitted(["committedProgramId"], hasOwn(body, "committedProgramId"));
+    }
+    // When isCommitted is explicitly false, the normalized nulls intentionally clear both.
+
+    // High-school / travel-team links and privacy
+    preserveOmitted(["hsScheduleUrl"], hasOwn(body, "hsScheduleUrl"));
+    preserveOmitted(["hsSchedulePrivate"], hasOwn(body, "hsSchedulePrivate"));
+    preserveOmitted(["hsWebsiteUrl"], hasOwn(body, "hsWebsiteUrl"));
+
+    preserveOmitted(["travelTeamName"], hasOwn(body, "travelTeamName"));
+    preserveOmitted(["travelTeamCity"], hasOwn(body, "travelTeamCity"));
+    preserveOmitted(["travelTeamState"], hasOwn(body, "travelTeamState"));
+    preserveOmitted(["travelTeamScheduleUrl"], hasOwn(body, "travelTeamScheduleUrl"));
+    preserveOmitted(["travelTeamSchedulePrivate"], hasOwn(body, "travelTeamSchedulePrivate"));
+    preserveOmitted(["travelTeamWebsiteUrl"], hasOwn(body, "travelTeamWebsiteUrl"));
+
+    preserveOmitted(["otherTeams"], hasOwn(body, "otherTeams"));
+    preserveOmitted(["playerBio"], hasOwn(body, "playerBio"));
+    preserveOmitted(["playerBioPrivate"], hasOwn(body, "playerBioPrivate"));
+
+    // Performance data
+    preserveOmitted(["metrics"], hasOwn(body, "metrics"));
+    preserveOmitted(["metricsPrivate"], hasOwn(body, "metricsPrivate"));
+    preserveOmitted(
+      ["statsSeasons"],
+      hasOwn(body, "statsSeasons") || hasOwn(body, "seasons")
+    );
+
+    // Keep legacy/nested and canonical/top-level Video / Social shapes synchronized.
+    (normalized as any).videoSocial = {
+      externalVideos: Array.isArray((normalized as any).externalVideos)
+        ? (normalized as any).externalVideos
+        : existingExternalVideos,
+      localVideos: Array.isArray((normalized as any).localVideos)
+        ? (normalized as any).localVideos
+        : existingLocalVideos,
+      social: isObj((normalized as any).social)
+        ? (normalized as any).social
+        : existingSocial,
+      primary:
+        (normalized as any).primary !== undefined
+          ? (normalized as any).primary
+          : existingPrimary,
+      chatUrl:
+        (normalized as any).chatUrl !== undefined
+          ? (normalized as any).chatUrl
+          : existingChatUrl,
     };
 
     // ✅ Only set these if the request included a governing-ID key; otherwise preserve existing
