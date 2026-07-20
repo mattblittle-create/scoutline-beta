@@ -80,13 +80,30 @@ function stripHtml(html: string) {
 }
 
 function findCoachCandidates(text: string) {
-const titles = [
-  "Head Coach",
-  "Associate Head Coach",
-  "Recruiting Coordinator",
-  "Pitching Coach",
-  "Hitting Coach",
-];
+  const titles = [
+    "Head Coach",
+    "Assistant Head Coach",
+    "Associate Head Coach",
+    "Assistant Coach",
+    "Pitching Coach",
+    "Hitting Coach",
+    "Catching Coach",
+    "Assistant Coach/Recruiting Coordinator",
+    "Associate Head Coach/Recruiting Coordinator",
+    "Recruiting Coordinator",
+    "Director of Recruiting",
+    "Director of Baseball Operations",
+    "Director of Operations",
+    "Director of Player Development",
+    "Director of Pitching Development",
+    "Director of Hitting Development",
+    "Player Development Coordinator",
+    "Pitching Strategist",
+    "Graduate Assistant",
+    "Volunteer Assistant",
+    "Video Coordinator",
+    "Analytics Coordinator",
+  ].sort((a, b) => b.length - a.length);
 
   const results: { name: string; title: string }[] = [];
 
@@ -163,15 +180,34 @@ function isProbablyBadCoachName(name: string) {
 }
 
 function isAllowedCoachTitle(title: string) {
-  const t = String(title || "").trim().toLowerCase();
+  const t = String(title || "")
+    .trim()
+    .toLowerCase();
 
-  return (
-    t === "head coach" ||
-    t === "associate head coach" ||
-    t === "recruiting coordinator" ||
-    t === "pitching coach" ||
-    t === "hitting coach"
-  );
+  return [
+    "head coach",
+    "assistant head coach",
+    "associate head coach",
+    "assistant coach",
+    "pitching coach",
+    "hitting coach",
+    "catching coach",
+    "assistant coach/recruiting coordinator",
+    "associate head coach/recruiting coordinator",
+    "recruiting coordinator",
+    "director of recruiting",
+    "director of baseball operations",
+    "director of operations",
+    "director of player development",
+    "director of pitching development",
+    "director of hitting development",
+    "player development coordinator",
+    "pitching strategist",
+    "graduate assistant",
+    "volunteer assistant",
+    "video coordinator",
+    "analytics coordinator",
+  ].includes(t);
 }
 
 async function fetchText(url: string) {
@@ -258,13 +294,27 @@ const urls = Array.from(
 
 const candidates = findCoachCandidates(text);
 
+const seenCandidates = new Set<string>();
+
 const filteredCandidates = candidates
   .filter((c) => isAllowedCoachTitle(c.title))
-  .filter((c) => !isProbablyBadCoachName(c.name));
+  .filter((c) => !isProbablyBadCoachName(c.name))
+  .filter((c) => {
+    const key = `${c.name.toLowerCase()}__${c.title.toLowerCase()}`;
 
-if (filteredCandidates.length === 0) continue;
+    if (seenCandidates.has(key)) {
+      return false;
+    }
 
-for (const c of filteredCandidates.slice(0, 5)) {
+    seenCandidates.add(key);
+    return true;
+  });
+
+if (filteredCandidates.length === 0) {
+  continue;
+}
+
+for (const c of filteredCandidates.slice(0, 12)) {
   rows.push([
     slug,
     c.name,
@@ -277,12 +327,16 @@ for (const c of filteredCandidates.slice(0, 5)) {
     "",
     "",
     "",
-    String(c.title.toLowerCase() === "head coach"),
+    String(
+  c.title.toLowerCase() === "head coach"
+),
     "NEEDS_REVIEW",
   ]);
 }
 
-      console.log(`  ✅ found ${candidates.length} candidate(s)`);
+      console.log(
+  `  ✅ found ${filteredCandidates.length} usable candidate(s)`
+);
       found = true;
       break;
     }

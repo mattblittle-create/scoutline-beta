@@ -3,22 +3,171 @@
 import fs from "fs";
 import path from "path";
 import * as cheerio from "cheerio";
+import { chromium } from "playwright";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const OUT_DIR = path.join(process.cwd(), "data", "enrichment", "generated");
 
+/*
+ * Stores the last successful URL pattern for each school.
+ *
+ * The cache is loaded into memory when the script starts and written
+ * back to disk whenever a school produces a complete result.
+ */
+const SUCCESSFUL_PATTERN_CACHE_FILE = path.join(
+  process.cwd(),
+  "data",
+  "enrichment",
+  "college-baseball-coach-url-patterns.json",
+);
+
+type CandidateUrl = {
+  url: string;
+  pattern: string;
+};
+
+type SuccessfulPatternCache = Record<string, string>;
+
+const SPECIAL_COACH_URLS: Record<string, CandidateUrl[]> = {
+  "university-of-michigan": [
+    {
+      pattern: "custom-coaches-page",
+      url: "https://mgoblue.com/sports/2017/6/28/baseball-coaches",
+    },
+  ],
+};
+
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
 
 const OUT_FILE = path.join(
   OUT_DIR,
-  `college-baseball-coaches.dom.generated.${stamp}.csv`
+  `college-baseball-coaches.dom.generated.${stamp}.csv`,
 );
 
-const LIMIT_ARG = process.argv.find((a) => a.startsWith("--limit="));
+const limitArg = process.argv.find((arg) =>
+  arg.startsWith("--limit="),
+);
 
-const LIMIT = LIMIT_ARG ? Number(LIMIT_ARG.split("=")[1]) : 25;
+const LIMIT = limitArg
+  ? Number(limitArg.split("=")[1])
+  : undefined;
+
+/*
+ * A result above this threshold is probably an athletics-wide
+ * staff directory rather than one baseball program's staff.
+ */
+const MAX_COACH_RECORDS_PER_PAGE = 20;
+const MIN_EXPECTED_COACH_RECORDS = 2;
+
+let emailWarningCount = 0;
+
+/*
+ * Determine the active college baseball roster season.
+ *
+ * Most programs begin publishing the next season's roster during
+ * the fall. Before September, use the current calendar year.
+ * Beginning in September, prefer the next calendar year.
+ */
+const today = new Date();
+
+const CURRENT_ROSTER_YEAR =
+  today.getMonth() >= 8 ? today.getFullYear() + 1 : today.getFullYear();
+
+function loadSuccessfulPatternCache(): SuccessfulPatternCache {
+  try {
+    if (!fs.existsSync(SUCCESSFUL_PATTERN_CACHE_FILE)) {
+      return {};
+    }
+
+    const raw = fs.readFileSync(SUCCESSFUL_PATTERN_CACHE_FILE, "utf8");
+
+    const parsed = JSON.parse(raw);
+
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return {};
+    }
+
+return Object.fromEntries(
+  Object.entries(parsed)
+    .filter(
+      ([slug, pattern]) =>
+        Boolean(slug) &&
+        typeof pattern === "string" &&
+        Boolean(pattern),
+    )
+    .map(
+      ([slug, pattern]) =>
+        [slug, pattern] as [string, string],
+    ),
+);
+  } catch (error) {
+    console.warn(
+      `⚠️ Could not load URL-pattern cache; continuing without it: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+
+    return {};
+  }
+}
+
+function saveSuccessfulPatternCache(cache: SuccessfulPatternCache) {
+  try {
+    fs.mkdirSync(path.dirname(SUCCESSFUL_PATTERN_CACHE_FILE), {
+      recursive: true,
+    });
+
+    /*
+     * Write to a temporary file first so an interrupted process does
+     * not leave behind a partially written JSON cache.
+     */
+    const temporaryFile = `${SUCCESSFUL_PATTERN_CACHE_FILE}.tmp`;
+
+    fs.writeFileSync(
+      temporaryFile,
+      `${JSON.stringify(cache, null, 2)}\n`,
+      "utf8",
+    );
+
+    fs.renameSync(temporaryFile, SUCCESSFUL_PATTERN_CACHE_FILE);
+  } catch (error) {
+    console.warn(
+      `⚠️ Could not save URL-pattern cache: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+  }
+}
+
+type ReviewStatus = "AUTO_IMPORTED" | "NEEDS_REVIEW" | "NEEDS_MANUAL_REVIEW";
+
+type CoachRecord = {
+  name: string;
+  title: string;
+  email: string;
+  phone: string;
+  bioUrl: string;
+  contactUrl: string;
+  headshotUrl: string;
+  xUrl: string;
+  instagramUrl: string;
+  linkedinUrl: string;
+  isHeadCoach: boolean;
+  reviewStatus: ReviewStatus;
+};
+
+type RunStats = {
+  programsScanned: number;
+  successfulPrograms: number;
+  programsWithoutCoachCards: number;
+  coachRecordsParsed: number;
+  emailWarnings: number;
+  cachedPatternsLoaded: number;
+  cachedPatternsLearned: number;
+  urlAttempts: number;
+};
 
 function csvEscape(value: unknown) {
   const s = String(value ?? "");
@@ -35,27 +184,109 @@ function normalizeUrl(url: string | null | undefined) {
 
   if (!trimmed) return null;
 
-  return trimmed.endsWith("/")
-    ? trimmed.slice(0, -1)
-    : trimmed;
+  return trimmed.endsWith("/") ? trimmed.slice(0, -1) : trimmed;
 }
 
-function buildCandidateUrls(baseUrl: string | null | undefined) {
+function buildCandidateUrls(
+  baseUrl: string | null | undefined,
+  rosterYear: number,
+  preferredPattern?: string,
+): CandidateUrl[] {
   const base = normalizeUrl(baseUrl);
 
   if (!base) return [];
 
-  return Array.from(
-    new Set([
-      `${base}/coaches`,
-      `${base}/roster#coaches`,
-      `${base}/roster/`,
-      `${base}/roster/coaches`,
-      `${base}/coaching-staff`,
-      `${base}/staff`,
-      base,
-    ])
+  /*
+   * Try the active roster year first, then the prior year for schools
+   * that have not yet rolled their athletics site forward.
+   */
+  const rosterYears = Array.from(new Set([rosterYear, rosterYear - 1]));
+
+  const candidates: CandidateUrl[] = [];
+
+  for (const year of rosterYears) {
+    candidates.push(
+      {
+        pattern: "coaches-year",
+        url: `${base}/coaches/${year}`,
+      },
+      {
+        pattern: "roster-year-sidearm",
+        url: `${base}/roster/${year}` + "#sidearm-roster-coaches",
+      },
+      {
+        pattern: "roster-year-coaches-anchor",
+        url: `${base}/roster/${year}#coaches`,
+      },
+      {
+        pattern: "roster-year",
+        url: `${base}/roster/${year}`,
+      },
+    );
+  }
+
+  candidates.push(
+    {
+      pattern: "coaches",
+      url: `${base}/coaches`,
+    },
+    {
+      pattern: "roster-sidearm",
+      url: `${base}/roster` + "#sidearm-roster-coaches",
+    },
+    {
+      pattern: "roster-coaches-anchor",
+      url: `${base}/roster#coaches`,
+    },
+    {
+      pattern: "roster-coaches",
+      url: `${base}/roster/coaches`,
+    },
+    {
+      pattern: "roster-staff",
+      url: `${base}/roster/staff`,
+    },
+    {
+      pattern: "coaching-staff",
+      url: `${base}/coaching-staff`,
+    },
+    {
+      pattern: "roster",
+      url: `${base}/roster`,
+    },
+    {
+      pattern: "program-root",
+      url: base,
+    },
   );
+
+  /*
+   * Remove duplicate URLs while preserving their original ordering.
+   */
+  const uniqueCandidates = candidates.filter(
+    (candidate, index, allCandidates) =>
+      allCandidates.findIndex((other) => other.url === candidate.url) === index,
+  );
+
+  if (!preferredPattern) {
+    return uniqueCandidates;
+  }
+
+  /*
+   * Stable-sort the previously successful pattern to the front.
+   *
+   * A generic pattern is cached rather than the exact URL, so a school
+   * that previously succeeded at /roster/2026 can automatically try
+   * /roster/2027 first during the next season.
+   */
+  return [
+    ...uniqueCandidates.filter(
+      (candidate) => candidate.pattern === preferredPattern,
+    ),
+    ...uniqueCandidates.filter(
+      (candidate) => candidate.pattern !== preferredPattern,
+    ),
+  ];
 }
 
 function absolutizeUrl(url: string, origin: string) {
@@ -66,26 +297,1061 @@ function absolutizeUrl(url: string, origin: string) {
   }
 }
 
+function normalizeSocialUrl(
+  rawUrl: string,
+  origin: string,
+  platform: "x" | "instagram" | "linkedin",
+) {
+  const raw = String(rawUrl ?? "").trim();
+
+  if (!raw) return "";
+
+  let absoluteUrl = absolutizeUrl(raw, origin);
+
+  if (!absoluteUrl) return "";
+
+  /*
+   * Some athletics sites accidentally produce URLs like:
+   *
+   * https://twitter.com/https://twitter.com/CoachMegahee
+   *
+   * When the domain appears more than once, retain the final social
+   * profile path rather than the malformed outer URL.
+   */
+  if (platform === "x") {
+    const duplicateTwitterMatch = absoluteUrl.match(
+      /(?:twitter\.com|x\.com)\/https?:\/\/(?:twitter\.com|x\.com)\/([^/?#]+)/i,
+    );
+
+    if (duplicateTwitterMatch?.[1]) {
+      absoluteUrl = `https://twitter.com/${duplicateTwitterMatch[1]}`;
+    }
+  }
+
+  try {
+    const parsed = new URL(absoluteUrl);
+    const hostname = parsed.hostname.toLowerCase().replace(/^www\./, "");
+
+    if (
+      platform === "x" &&
+      hostname !== "twitter.com" &&
+      hostname !== "x.com"
+    ) {
+      return "";
+    }
+
+    if (platform === "instagram" && hostname !== "instagram.com") {
+      return "";
+    }
+
+    if (
+      platform === "linkedin" &&
+      hostname !== "linkedin.com" &&
+      !hostname.endsWith(".linkedin.com")
+    ) {
+      return "";
+    }
+
+    /*
+     * Twitter links occasionally use /@handle. Twitter's actual profile
+     * URL format does not include the @ symbol.
+     */
+    if (platform === "x") {
+      parsed.pathname = parsed.pathname.replace(/^\/@/, "/");
+    }
+
+    parsed.hash = "";
+
+    return parsed.toString();
+  } catch {
+    return "";
+  }
+}
+
+function socialUrlMatchesCoach(socialUrl: string, coachName: string) {
+  if (!socialUrl) return false;
+
+  let handle = "";
+
+  try {
+    const parsed = new URL(socialUrl);
+
+    handle = parsed.pathname.split("/").filter(Boolean)[0] ?? "";
+  } catch {
+    return false;
+  }
+
+  const normalizedHandle = handle
+    .toLowerCase()
+    .replace(/^@/, "")
+    .replace(/[^a-z0-9]/g, "");
+
+  if (!normalizedHandle) return false;
+
+  const nameParts = cleanText(coachName)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s'-]/g, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((part) => !["jr", "sr", "ii", "iii", "iv"].includes(part));
+
+  if (nameParts.length < 2) return false;
+
+  const firstName = nameParts[0].replace(/[^a-z0-9]/g, "");
+  const lastName = nameParts[nameParts.length - 1].replace(/[^a-z0-9]/g, "");
+
+  const firstInitial = firstName[0] ?? "";
+  const lastInitial = lastName[0] ?? "";
+
+  const expectedFragments = [
+    firstName,
+    lastName,
+    `${firstName}${lastName}`,
+    `${lastName}${firstName}`,
+    `${firstInitial}${lastName}`,
+    `${lastName}${firstInitial}`,
+    `${firstName}${lastInitial}`,
+  ].filter((value) => value.length >= 3);
+
+  const directMatch = expectedFragments.some(
+    (fragment) =>
+      normalizedHandle.includes(fragment) ||
+      fragment.includes(normalizedHandle),
+  );
+
+  if (directMatch) {
+    return true;
+  }
+
+  /*
+   * Allow common first-name variations and shortened surnames in
+   * handles, such as:
+   *
+   * Steve Rodriguez -> stevierod
+   *
+   * Require both pieces to match so a broad first-name-only match does
+   * not assign another coach's account.
+   */
+  const firstNamePrefix =
+    firstName.length >= 4 ? firstName.slice(0, 4) : firstName;
+
+  const lastNamePrefix = lastName.length >= 3 ? lastName.slice(0, 3) : lastName;
+
+  return (
+    Boolean(firstNamePrefix) &&
+    Boolean(lastNamePrefix) &&
+    normalizedHandle.includes(firstNamePrefix) &&
+    normalizedHandle.includes(lastNamePrefix)
+  );
+}
+
 function cleanText(value: string) {
-  return value
-    .replace(/\s+/g, " ")
+  return String(value ?? "")
+    .replace(/<br\s*\/?\s*>/gi, " / ")
+    .replace(/<\/br\s*>/gi, " / ")
+    .replace(/<[^>]+>/g, " ")
     .replace(/\u00a0/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeTitle(value: string) {
+  return (
+    cleanText(value)
+      .replace(/\s*\/\s*\/\s*/g, " / ")
+      .replace(
+        /Coach(?=(Pitching|Hitting|Catching|Recruiting|Director|Infield|Outfield))/g,
+        "Coach / ",
+      )
+      .replace(
+        /Development(?=(Pitching|Hitting|Catching|Recruiting|Director|Infield|Outfield))/g,
+        "Development / ",
+      )
+      .replace(
+        /Coordinator(?=(Pitching|Hitting|Catching|Recruiting|Director|Infield|Outfield))/g,
+        "Coordinator / ",
+      )
+      .replace(
+        /Operations(?=(Pitching|Hitting|Catching|Recruiting|Director|Infield|Outfield))/g,
+        "Operations / ",
+      )
+      .replace(/\s*\/\s*/g, " / ")
+      /*
+       * Remove dangling separators left behind by empty HTML fields.
+       *
+       * Examples:
+       * "Head Coach / Pitching Coach /"
+       * becomes:
+       * "Head Coach / Pitching Coach"
+       */
+      .replace(/\s*(?:\/|-|–|—)\s*$/g, "")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+}
+
+function normalizeTitleForComparison(value: string) {
+  return normalizeTitle(value)
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, " ")
     .trim();
 }
 
 function looksLikeCoachTitle(value: string) {
-  const v = value.toLowerCase();
+  const v = normalizeTitle(value).toLowerCase();
 
   return [
     "head coach",
-    "assistant coach",
+    "head baseball coach",
+    "assistant head coach",
     "associate head coach",
+    "assistant coach",
+    "assistant baseball coach",
+    "baseball coach",
     "pitching coach",
     "hitting coach",
+    "catching coach",
     "recruiting coordinator",
+    "director of recruiting",
+    "director of baseball",
     "director of baseball operations",
+    "director of operations",
+    "director of player development",
+    "director of pitching",
+    "director of hitting",
+    "player development coordinator",
+    "pitching strategist",
+    "graduate assistant",
+    "undergraduate assistant",
     "volunteer assistant",
+    "quality control",
+    "video coordinator",
+    "analytics coordinator",
+    "program director",
   ].some((x) => v.includes(x));
+}
+
+function isHeadCoachTitle(value: string) {
+  const v = normalizeTitle(value)
+    .toLowerCase()
+    .replace(/\./g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+if (
+  /\bassistant\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+  /\bassociate\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+  /\bassoc\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+  /\bassistant\s+to\s+(?:the\s+)?(?:baseball\s+)?head\s+coach\b/.test(v) ||
+  /\bspecial\s+assistant\s+to\s+(?:the\s+)?(?:baseball\s+)?head\s+coach\b/.test(v)
+) {
+  return false;
+}
+
+if (
+  /\bhead\s+(?:baseball\s+)?coach\b/.test(v) ||
+  /\bhead\s+coach\b/.test(v)
+) {
+  return true;
+}
+
+  return (
+    /director of baseball$/.test(v) &&
+    !v.includes("operations") &&
+    !v.includes("player development") &&
+    !v.includes("recruiting")
+  );
+}
+
+function isProbablyBadCoachName(value: string) {
+  const name = cleanText(value);
+  const lower = name.toLowerCase();
+
+  if (!name) return true;
+
+  if (looksLikeCoachTitle(name)) {
+    return true;
+  }
+
+  const badPhrases = [
+    "name",
+    "email",
+    "email address",
+    "phone",
+    "title",
+    "staff",
+    "staff directory",
+    "directory members",
+    "category department",
+    "name title",
+    "phone email",
+    "coaching staff",
+    "baseball staff",
+    "roster staff",
+    "additional links",
+    "archived stories",
+    "sport administrator",
+  ];
+
+  if (badPhrases.some((phrase) => lower.includes(phrase))) {
+    return true;
+  }
+
+  if (
+    lower.includes("@") ||
+    lower.includes("http") ||
+    /\d{3}[-.)\s]\d{3}/.test(name)
+  ) {
+    return true;
+  }
+
+  const parts = name.split(/\s+/).filter(Boolean);
+
+  return parts.length < 2 || parts.length > 5;
+}
+
+function looksLikePersonName(value: string) {
+  const name = cleanText(value);
+
+  if (isProbablyBadCoachName(name)) {
+    return false;
+  }
+
+  return /^[A-Za-zÀ-ÖØ-öø-ÿ.'’-]+(?:\s+[A-Za-zÀ-ÖØ-öø-ÿ.'’-]+){1,4}(?:\s+(?:Jr\.?|Sr\.?|II|III|IV))?$/.test(
+    name,
+  );
+}
+
+function normalizeNameForUrl(value: string) {
+  return cleanText(value)
+    .toLowerCase()
+    .replace(/\b(jr|sr|ii|iii|iv)\b/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function normalizeCoachKey(value: string) {
+  return cleanText(value)
+    .toLowerCase()
+    .replace(/\b(jr|sr|ii|iii|iv)\b/g, "")
+    .replace(/[^a-z0-9]+/g, "")
+    .trim();
+}
+
+function cleanEmail(value: string | undefined) {
+  return String(value ?? "")
+    .replace(/^mailto:/i, "")
+    .split("?")[0]
+    .trim();
+}
+
+function cleanPhone(value: string | undefined) {
+  return String(value ?? "")
+    .replace(/^tel:/i, "")
+    .trim();
+}
+
+function editDistance(a: string, b: string) {
+  const left = a.toLowerCase();
+  const right = b.toLowerCase();
+
+  const matrix = Array.from({ length: left.length + 1 }, () =>
+    Array<number>(right.length + 1).fill(0),
+  );
+
+  for (let i = 0; i <= left.length; i++) matrix[i][0] = i;
+  for (let j = 0; j <= right.length; j++) matrix[0][j] = j;
+
+  for (let i = 1; i <= left.length; i++) {
+    for (let j = 1; j <= right.length; j++) {
+      const substitutionCost = left[i - 1] === right[j - 1] ? 0 : 1;
+
+      matrix[i][j] = Math.min(
+        matrix[i - 1][j] + 1,
+        matrix[i][j - 1] + 1,
+        matrix[i - 1][j - 1] + substitutionCost,
+      );
+    }
+  }
+
+  return matrix[left.length][right.length];
+}
+
+function emailMatchesCoachOrIsGeneric(email: string, coachName: string) {
+  const normalizedEmail = email.trim().toLowerCase();
+
+  if (!normalizedEmail || !normalizedEmail.includes("@")) {
+    return true;
+  }
+
+  const localPart = normalizedEmail.split("@")[0] ?? "";
+
+  const genericEmailTerms = [
+    "baseball",
+    "athletics",
+    "athletic",
+    "recruiting",
+    "recruit",
+    "coaches",
+    "coach",
+    "sports",
+    "info",
+  ];
+
+  if (genericEmailTerms.some((term) => localPart.includes(term))) {
+    return true;
+  }
+
+  const nameParts = cleanText(coachName)
+    .toLowerCase()
+    .replace(/[^a-z0-9\s'-]/g, "")
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((part) => !["jr", "sr", "ii", "iii", "iv"].includes(part));
+
+  if (nameParts.length < 2) {
+    return false;
+  }
+
+  const firstName = nameParts[0];
+  const lastName = nameParts[nameParts.length - 1];
+  const compactLocalPart = localPart.replace(/[^a-z0-9]/g, "");
+
+  const possibleMatches = [
+    lastName,
+    `${firstName}${lastName}`,
+    `${firstName[0] ?? ""}${lastName}`,
+    `${lastName}${firstName[0] ?? ""}`,
+    `${lastName}${firstName}`,
+  ]
+    .map((candidate) => candidate.replace(/[^a-z0-9]/g, ""))
+    .filter(Boolean);
+
+  if (
+    possibleMatches.some((candidate) => compactLocalPart.includes(candidate))
+  ) {
+    return true;
+  }
+
+  const lettersOnlyLocalPart = compactLocalPart.replace(/\d+/g, "");
+
+  const firstNameMatches =
+    firstName.length >= 4 &&
+    (lettersOnlyLocalPart === firstName ||
+      lettersOnlyLocalPart === `${firstName}${lastName[0] ?? ""}`);
+
+  if (firstNameMatches) {
+    return true;
+  }
+
+  const localVariants = new Set<string>([
+    lettersOnlyLocalPart,
+    lettersOnlyLocalPart.slice(1),
+    lettersOnlyLocalPart.slice(2),
+  ]);
+
+  for (const variant of localVariants) {
+    if (!variant) continue;
+
+    if (variant.includes(lastName) || lastName.includes(variant)) {
+      return true;
+    }
+
+    if (
+      variant.length >= 5 &&
+      lastName.length >= 5 &&
+      editDistance(variant, lastName) <= 1
+    ) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function normalizeHeadingText(value: string) {
+  return cleanText(value).toLowerCase().replace(/\s+/g, " ");
+}
+
+function isCoachingStaffHeading(value: string) {
+  const heading = normalizeHeadingText(value);
+
+  return (
+    heading === "coaching staff" ||
+    heading === "baseball coaching staff" ||
+    heading === "baseball coaches" ||
+    heading === "coaches"
+  );
+}
+
+function isEndOfCoachingStaffHeading(value: string) {
+  const heading = normalizeHeadingText(value);
+
+  return (
+    heading.includes("support staff") ||
+    heading.includes("baseball support staff") ||
+    heading.includes("administrative staff") ||
+    heading.includes("sports medicine") ||
+    heading.includes("strength and conditioning") ||
+    heading.includes("baseball roster") ||
+    heading.includes("player roster") ||
+    heading.includes("2026 baseball roster") ||
+    heading.includes("related news") ||
+    heading.includes("related videos") ||
+    heading.includes("recent results") ||
+    heading.includes("upcoming events")
+  );
+}
+
+function looksLikeCoachProfileHref(href: string) {
+  const lower = href.toLowerCase();
+
+  return (
+    lower.includes("/coach/") ||
+    lower.includes("/coaches/") ||
+    lower.includes("/staff/") ||
+    lower.includes("/roster/staff/") ||
+    lower.includes("/roster/coaches/")
+  );
+}
+
+function findDistinctCoachProfileNames(
+  $: cheerio.CheerioAPI,
+  root: cheerio.Cheerio<any>,
+) {
+  const names = new Set<string>();
+
+  root
+    .find("a[href]")
+    .addBack("a[href]")
+    .each((_, node) => {
+      const anchor = $(node);
+      const href = anchor.attr("href") ?? "";
+      const text = cleanText(anchor.text());
+
+      if (looksLikeCoachProfileHref(href) && looksLikePersonName(text)) {
+        names.add(normalizeCoachKey(text));
+      }
+    });
+
+  return names;
+}
+
+function findCoachingStaffRegions(
+  $: cheerio.CheerioAPI,
+): cheerio.Cheerio<any>[] {
+  const regions: cheerio.Cheerio<any>[] = [];
+
+  $("h1, h2, h3, h4, h5, h6").each((_, headingNode) => {
+    const heading = $(headingNode);
+
+    if (!isCoachingStaffHeading(heading.text())) {
+      return;
+    }
+
+    const collected: any[] = [];
+    let sibling = heading.next();
+
+    while (sibling.length > 0) {
+      const siblingNode = sibling.get(0);
+
+      if (!siblingNode) break;
+
+      const tagName = String((siblingNode as any).tagName ?? "").toLowerCase();
+
+      const isHeading = /^h[1-6]$/.test(tagName);
+
+      if (isHeading && isEndOfCoachingStaffHeading(sibling.text())) {
+        break;
+      }
+
+      if (
+        isHeading &&
+        collected.length > 0 &&
+        !isCoachingStaffHeading(sibling.text())
+      ) {
+        break;
+      }
+
+      collected.push(...sibling.toArray());
+      sibling = sibling.next();
+    }
+
+    if (collected.length === 0) return;
+
+    const wrapper = $("<div></div>");
+
+    for (const node of collected) {
+      wrapper.append($(node).clone());
+    }
+
+    regions.push(wrapper);
+  });
+
+  return regions;
+}
+
+function findCoachContainersFromProfileLinks(
+  $: cheerio.CheerioAPI,
+) {
+  const containers: cheerio.Cheerio<any>[] = [];
+  const seenElements = new Set<any>();
+
+  $("a[href]").each((_, anchorNode) => {
+    const anchor = $(anchorNode);
+    const href = anchor.attr("href") ?? "";
+    const anchorText = cleanText(anchor.text());
+
+    if (!looksLikeCoachProfileHref(href)) {
+      return;
+    }
+
+    if (!looksLikePersonName(anchorText)) {
+      return;
+    }
+
+    /*
+     * Prefer a table row when the coach appears in a staff directory
+     * table. Gardner-Webb and similar Sidearm pages commonly use this
+     * structure.
+     */
+    const tableRow = anchor.closest("tr");
+
+    if (tableRow.length) {
+      const rowText = cleanText(tableRow.text());
+
+      if (
+        rowText.includes(anchorText) &&
+        looksLikeCoachTitle(rowText)
+      ) {
+        const element = tableRow.get(0);
+
+        if (element && !seenElements.has(element)) {
+          seenElements.add(element);
+          containers.push(tableRow);
+        }
+
+        return;
+      }
+    }
+
+    /*
+     * Fall back to the nearest reasonably scoped parent containing one
+     * coach name and one recognized baseball staff title.
+     */
+    let container = anchor.parent();
+
+    for (let depth = 0; depth < 7; depth++) {
+      if (!container.length) {
+        break;
+      }
+
+      const distinctProfileNames =
+        findDistinctCoachProfileNames($, container);
+
+      if (distinctProfileNames.size > 1) {
+        break;
+      }
+
+      const containerText = cleanText(
+        container.text(),
+      );
+
+      if (
+        distinctProfileNames.size === 1 &&
+        containerText.includes(anchorText) &&
+        looksLikeCoachTitle(containerText)
+      ) {
+        const element = container.get(0);
+
+        if (element && !seenElements.has(element)) {
+          seenElements.add(element);
+          containers.push(container);
+        }
+
+        break;
+      }
+
+      container = container.parent();
+    }
+  });
+
+  return containers;
+}
+
+function findCoachContainersFromRegion(
+  $: cheerio.CheerioAPI,
+  region: cheerio.Cheerio<any>,
+) {
+  const containers: cheerio.Cheerio<any>[] = [];
+  const seenElements = new Set<any>();
+
+  region.find("a[href]").each((_, anchorNode) => {
+    const anchor = $(anchorNode);
+    const href = anchor.attr("href") ?? "";
+    const anchorText = cleanText(anchor.text());
+
+    if (!looksLikeCoachProfileHref(href)) return;
+    if (!looksLikePersonName(anchorText)) return;
+
+    let container = anchor.parent();
+
+    for (let depth = 0; depth < 7; depth++) {
+      if (!container.length) break;
+
+      const distinctProfileNames = findDistinctCoachProfileNames($, container);
+
+      /*
+       * Once a parent contains multiple people, every higher parent will
+       * be at least as broad. Stop before neighboring coach data merges.
+       */
+      if (distinctProfileNames.size > 1) {
+        break;
+      }
+
+      const containerText = cleanText(container.text());
+
+      if (
+        distinctProfileNames.size === 1 &&
+        containerText.includes(anchorText) &&
+        looksLikeCoachTitle(containerText)
+      ) {
+        const element = container.get(0);
+
+        if (element && !seenElements.has(element)) {
+          seenElements.add(element);
+          containers.push(container);
+        }
+
+        break;
+      }
+
+      container = container.parent();
+    }
+  });
+
+  return containers;
+}
+
+function titleQualityScore(title: string) {
+  const normalized = normalizeTitle(title);
+  const lower = normalized.toLowerCase();
+  let score = normalized.length;
+
+  if (isHeadCoachTitle(normalized)) score += 100;
+  if (lower.includes("recruiting coordinator")) score += 25;
+  if (lower.includes("pitching coach")) score += 20;
+  if (lower.includes("hitting coach")) score += 20;
+  if (lower.includes("director")) score += 10;
+  if (normalized.includes(" / ")) score += 5;
+
+  return score;
+}
+
+function mergeCoachRecords(
+  existing: CoachRecord | undefined,
+  incoming: CoachRecord,
+): CoachRecord {
+  if (!existing) {
+    return incoming;
+  }
+
+  const betterTitle =
+    titleQualityScore(incoming.title) > titleQualityScore(existing.title)
+      ? incoming.title
+      : existing.title;
+
+  const merged: CoachRecord = {
+    name:
+      incoming.name.length > existing.name.length
+        ? incoming.name
+        : existing.name,
+    title: normalizeTitle(betterTitle),
+    email: existing.email || incoming.email,
+    phone: existing.phone || incoming.phone,
+    bioUrl: existing.bioUrl || incoming.bioUrl,
+    contactUrl: existing.contactUrl || incoming.contactUrl,
+    headshotUrl: existing.headshotUrl || incoming.headshotUrl,
+    xUrl: existing.xUrl || incoming.xUrl,
+    instagramUrl: existing.instagramUrl || incoming.instagramUrl,
+    linkedinUrl: existing.linkedinUrl || incoming.linkedinUrl,
+    isHeadCoach: false,
+    reviewStatus:
+      existing.reviewStatus === "NEEDS_REVIEW" ||
+      incoming.reviewStatus === "NEEDS_REVIEW"
+        ? "NEEDS_REVIEW"
+        : "AUTO_IMPORTED",
+  };
+
+  merged.isHeadCoach = isHeadCoachTitle(merged.title);
+
+  return merged;
+}
+
+function extractCoachRecord(
+  $: cheerio.CheerioAPI,
+  root: cheerio.Cheerio<any>,
+  origin: string,
+  contactUrl: string,
+): CoachRecord | null {
+  const nameSelectors = [
+    ".sidearm-roster-player-name",
+    ".sidearm-staff-member-name",
+    ".staff-name",
+    ".coach-name",
+    ".name",
+    "[class*='name']",
+    "h2",
+    "h3",
+    "h4",
+    "strong",
+  ];
+
+  const titleSelectors = [
+    ".sidearm-roster-player-position",
+    ".sidearm-staff-member-title",
+    ".staff-title",
+    ".coach-title",
+    ".position",
+    ".title",
+    "[class*='position']",
+    "[class*='title']",
+  ];
+
+  const profileAnchor = root
+    .find("a[href]")
+    .addBack("a[href]")
+    .filter((_, node) => {
+      const anchor = $(node);
+      const href = anchor.attr("href") ?? "";
+      const text = cleanText(anchor.text());
+
+      return looksLikeCoachProfileHref(href) && looksLikePersonName(text);
+    })
+    .first();
+
+  let name = cleanText(profileAnchor.text());
+  let title = "";
+
+  if (!name) {
+    for (const selector of nameSelectors) {
+      const candidates = root.find(selector).addBack(selector);
+
+      candidates.each((_, node) => {
+        if (name) return;
+
+        const value = cleanText($(node).text());
+
+        if (looksLikePersonName(value)) {
+          name = value;
+        }
+      });
+
+      if (name) break;
+    }
+  }
+
+  for (const selector of titleSelectors) {
+    const candidates = root.find(selector).addBack(selector);
+
+    candidates.each((_, node) => {
+      if (title) return;
+
+      const value = normalizeTitle($(node).text());
+
+      if (looksLikeCoachTitle(value) && value.length <= 180) {
+        title = value;
+      }
+    });
+
+    if (title) break;
+  }
+
+  if (!name || !title) {
+    const directPieces: string[] = [];
+
+    root
+      .children("td, th, div, span, p, h2, h3, h4, strong")
+      .each((_, node) => {
+        const value = normalizeTitle(
+          $(node).clone().children().remove().end().text(),
+        );
+
+        if (value && value.length <= 180 && !directPieces.includes(value)) {
+          directPieces.push(value);
+        }
+      });
+
+    if (!name) {
+      name = directPieces.find((value) => looksLikePersonName(value)) ?? "";
+    }
+
+    if (!title) {
+      title = directPieces.find((value) => looksLikeCoachTitle(value)) ?? "";
+    }
+  }
+
+  title = normalizeTitle(title);
+
+  if (
+    !name ||
+    !title ||
+    isProbablyBadCoachName(name) ||
+    !looksLikeCoachTitle(title)
+  ) {
+    return null;
+  }
+
+  const extractedEmail = cleanEmail(
+    root.find('a[href^="mailto:"]').first().attr("href"),
+  );
+
+  const rejectedMismatchedEmail =
+    Boolean(extractedEmail) &&
+    !emailMatchesCoachOrIsGeneric(extractedEmail, name);
+
+  if (rejectedMismatchedEmail) {
+    emailWarningCount += 1;
+
+    console.log(
+      `    ⚠️ possible mismatched email requires review: ${name} <- ${extractedEmail}`,
+    );
+  }
+
+  const phone = cleanPhone(root.find('a[href^="tel:"]').first().attr("href"));
+
+  const normalizedName = normalizeNameForUrl(name);
+  const nameParts = normalizedName.split("-").filter(Boolean);
+  const lastName = nameParts[nameParts.length - 1] ?? "";
+
+  let bioUrl = "";
+
+  root.find("a[href]").each((_, node) => {
+    if (bioUrl) return;
+
+    const anchor = $(node);
+    const href = anchor.attr("href") ?? "";
+    const anchorText = cleanText(anchor.text()).toLowerCase();
+    const absoluteHref = absolutizeUrl(href, origin);
+    const normalizedHref = normalizeNameForUrl(absoluteHref);
+
+    const isPossibleBio =
+      href.includes("/staff/") ||
+      href.includes("/coaches/") ||
+      href.includes("/bio/") ||
+      href.includes("/roster/staff/");
+
+    const matchesPerson =
+      Boolean(lastName) &&
+      (normalizedHref.includes(lastName) || anchorText.includes(lastName));
+
+    if (isPossibleBio && matchesPerson) {
+      bioUrl = absoluteHref;
+    }
+  });
+
+  const image =
+    root.find("img").first().attr("src") ||
+    root.find("img").first().attr("data-src") ||
+    root.find("img").first().attr("data-lazy-src") ||
+    "";
+
+  const headshotUrl =
+    image && !image.startsWith("data:") && !image.startsWith("blob:")
+      ? absolutizeUrl(image, origin)
+      : "";
+
+  let xUrl = "";
+  let instagramUrl = "";
+  let linkedinUrl = "";
+
+  root.find("a[href]").each((_, node) => {
+    const href = $(node).attr("href") ?? "";
+
+    if (
+      !xUrl &&
+      (href.toLowerCase().includes("twitter.com") ||
+        href.toLowerCase().includes("x.com"))
+    ) {
+      const candidateUrl = normalizeSocialUrl(href, origin, "x");
+
+      /*
+       * Broader fallback containers can contain social links belonging
+       * to neighboring coaches. Only retain the link when its handle
+       * reasonably matches the current coach's name.
+       */
+      if (candidateUrl && socialUrlMatchesCoach(candidateUrl, name)) {
+        xUrl = candidateUrl;
+      }
+    }
+
+    if (!instagramUrl && href.toLowerCase().includes("instagram.com")) {
+      const candidateUrl = normalizeSocialUrl(href, origin, "instagram");
+
+      if (candidateUrl && socialUrlMatchesCoach(candidateUrl, name)) {
+        instagramUrl = candidateUrl;
+      }
+    }
+
+    if (!linkedinUrl && href.toLowerCase().includes("linkedin.com")) {
+      const candidateUrl = normalizeSocialUrl(href, origin, "linkedin");
+
+      if (candidateUrl && socialUrlMatchesCoach(candidateUrl, name)) {
+        linkedinUrl = candidateUrl;
+      }
+    }
+  });
+
+  const hasStrongIdentity = Boolean(extractedEmail) || Boolean(bioUrl);
+
+  return {
+    name,
+    title,
+    email: extractedEmail,
+    phone,
+    bioUrl,
+    contactUrl,
+    headshotUrl,
+    xUrl,
+    instagramUrl,
+    linkedinUrl,
+    isHeadCoach: isHeadCoachTitle(title),
+    reviewStatus: rejectedMismatchedEmail
+      ? "NEEDS_REVIEW"
+      : hasStrongIdentity
+        ? "AUTO_IMPORTED"
+        : "NEEDS_REVIEW",
+  };
+}
+
+function printRunSummary(stats: RunStats) {
+  const averageUrlAttempts =
+    stats.programsScanned > 0 ? stats.urlAttempts / stats.programsScanned : 0;
+
+  const successRate =
+    stats.programsScanned > 0
+      ? ((stats.successfulPrograms / stats.programsScanned) * 100).toFixed(1)
+      : "0.0";
+
+  console.log("");
+  console.log("=================================================");
+  console.log("D1 BASEBALL COACH ENRICHMENT SUMMARY");
+  console.log("=================================================");
+  console.log(`Programs scanned:              ${stats.programsScanned}`);
+  console.log(`Successful programs:           ${stats.successfulPrograms}`);
+  console.log(
+    `No structured coach cards:     ${stats.programsWithoutCoachCards}`,
+  );
+  console.log(`Success rate:                  ${successRate}%`);
+  console.log(`Coach records parsed:          ${stats.coachRecordsParsed}`);
+  console.log(`Possible email mismatches:     ${stats.emailWarnings}`);
+  console.log(`Cached patterns loaded:        ${stats.cachedPatternsLoaded}`);
+  console.log(`New cached patterns learned:   ${stats.cachedPatternsLearned}`);
+  console.log(`Total URL attempts:            ${stats.urlAttempts}`);
+  console.log(
+    `Average attempts per program:  ${averageUrlAttempts.toFixed(2)}`,
+  );
+  console.log("=================================================");
 }
 
 async function fetchHtml(url: string) {
@@ -99,8 +1365,7 @@ async function fetchHtml(url: string) {
     const res = await fetch(url, {
       signal: controller.signal,
       headers: {
-        "user-agent":
-          "Mozilla/5.0 ScoutLineBot/1.0 Coach Enrichment",
+        "user-agent": "Mozilla/5.0 ScoutLineBot/1.0 Coach Enrichment",
       },
     });
 
@@ -114,31 +1379,115 @@ async function fetchHtml(url: string) {
   }
 }
 
+async function fetchRenderedHtml(
+  url: string,
+): Promise<string | null> {
+  const browser = await chromium.launch({
+    headless: true,
+  });
+
+  try {
+    const page = await browser.newPage({
+      userAgent:
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+        "AppleWebKit/537.36 (KHTML, like Gecko) " +
+        "Chrome/131.0.0.0 Safari/537.36",
+    });
+
+    await page.goto(url, {
+      waitUntil: "domcontentloaded",
+      timeout: 30_000,
+    });
+
+    await page
+      .waitForLoadState("networkidle", {
+        timeout: 15_000,
+      })
+      .catch(() => undefined);
+
+    await page
+      .waitForSelector(
+        'a[href*="/sports/baseball/roster/coaches/"]',
+        {
+          timeout: 15_000,
+        },
+      )
+      .catch(() => undefined);
+
+    const renderedHtml = await page.content();
+
+    fs.writeFileSync(
+      path.join(
+        process.cwd(),
+        "data",
+        "enrichment",
+        "debug",
+        "gardner-webb-rendered.html",
+      ),
+      renderedHtml,
+      "utf8",
+    );
+
+    return renderedHtml;
+  } catch (error) {
+    console.warn(
+      `    rendered fetch failed: ${
+        error instanceof Error
+          ? error.message
+          : String(error)
+      }`,
+    );
+
+    return null;
+  } finally {
+    await browser.close();
+  }
+}
+
 async function main() {
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
-  const programs = await prisma.collegeBaseballProgram.findMany({
-    where: {
-      division: "NCAA_D1",
-      baseballWebsiteUrl: {
-        not: null,
+  const successfulPatternCache = loadSuccessfulPatternCache();
+
+  const initialCachedPatternCount = Object.keys(successfulPatternCache).length;
+
+  console.log(
+    `Loaded ${initialCachedPatternCount} cached successful URL pattern(s).`,
+  );
+
+const programs = await prisma.collegeBaseballProgram.findMany({
+  where: {
+    division: "NCAA_D1",
+    baseballWebsiteUrl: {
+      not: null,
+    },
+  },
+  include: {
+    college: true,
+  },
+  orderBy: [
+    {
+      conference: "asc",
+    },
+    {
+      college: {
+        name: "asc",
       },
     },
-    include: {
-      college: true,
-    },
-    orderBy: [
-      {
-        conference: "asc",
-      },
-      {
-        college: {
-          name: "asc",
-        },
-      },
-    ],
-    take: LIMIT,
-  });
+  ],
+  ...(LIMIT ? { take: LIMIT } : {}),
+});
+
+  const stats: RunStats = {
+    programsScanned: programs.length,
+    successfulPrograms: 0,
+    programsWithoutCoachCards: 0,
+    coachRecordsParsed: 0,
+    emailWarnings: 0,
+    cachedPatternsLoaded: initialCachedPatternCount,
+    cachedPatternsLearned: 0,
+    urlAttempts: 0,
+  };
 
   console.log(`Scanning ${programs.length} D1 programs...`);
 
@@ -160,20 +1509,141 @@ async function main() {
     ],
   ];
 
+  const partialSchools: Array<{
+    slug: string;
+    name: string;
+    count: number;
+  }> = [];
+
   for (const program of programs) {
     const slug = program.college.slug;
 
     console.log(`\n${program.college.name}`);
     console.log(`  slug: ${slug}`);
 
-    const urls = buildCandidateUrls(
-      program.baseballWebsiteUrl
+    const preferredPattern = successfulPatternCache[slug];
+
+    if (preferredPattern) {
+      console.log(`  cached pattern: ${preferredPattern}`);
+    }
+
+    const standardCandidates = buildCandidateUrls(
+      program.baseballWebsiteUrl,
+      CURRENT_ROSTER_YEAR,
+      preferredPattern,
     );
 
-    let found = false;
+const rawCandidates = [
+  ...(SPECIAL_COACH_URLS[slug] ?? []),
+  ...standardCandidates,
+].filter(
+  (candidate, index, allCandidates) =>
+    allCandidates.findIndex(
+      (other) => other.url === candidate.url,
+    ) === index,
+);
 
-    for (const url of urls) {
-      console.log(`  trying: ${url}`);
+/*
+ * Houston's current roster page may publish the returning staff before
+ * the incoming head coach is added. When that happens, prefer current
+ * coaches pages before looking at prior-year rosters, which would merge
+ * stale coaches into the current staff.
+ */
+const candidates =
+  slug === "university-of-houston"
+    ? [
+        /*
+         * Houston's unversioned roster currently contains the incoming,
+         * current staff. If it is already cached as the successful pattern,
+         * try it first so future runs complete in one request.
+         */
+        ...rawCandidates.filter(
+          (candidate) =>
+            candidate.pattern ===
+              successfulPatternCache[slug],
+        ),
+
+        /*
+         * If the cache is missing or stale, prefer the unversioned roster
+         * before year-specific pages because Houston publishes the newest
+         * staff there first.
+         */
+        ...rawCandidates.filter(
+          (candidate) =>
+            candidate.pattern === "roster-sidearm" &&
+            candidate.pattern !==
+              successfulPatternCache[slug],
+        ),
+
+        ...rawCandidates.filter(
+          (candidate) =>
+            candidate.pattern === "coaches",
+        ),
+
+        ...rawCandidates.filter(
+          (candidate) =>
+            candidate.pattern === "coaches-year" &&
+            candidate.url.includes(
+              `/coaches/${CURRENT_ROSTER_YEAR}`,
+            ),
+        ),
+
+        ...rawCandidates.filter(
+          (candidate) =>
+            candidate.pattern ===
+              "roster-year-sidearm" &&
+            candidate.url.includes(
+              `/roster/${CURRENT_ROSTER_YEAR}`,
+            ),
+        ),
+
+        ...rawCandidates.filter(
+          (candidate) =>
+            candidate.pattern !==
+              successfulPatternCache[slug] &&
+            candidate.pattern !== "roster-sidearm" &&
+            candidate.pattern !== "coaches" &&
+            !(
+              candidate.pattern === "coaches-year" &&
+              candidate.url.includes(
+                `/coaches/${CURRENT_ROSTER_YEAR}`,
+              )
+            ) &&
+            !(
+              candidate.pattern ===
+                "roster-year-sidearm" &&
+              candidate.url.includes(
+                `/roster/${CURRENT_ROSTER_YEAR}`,
+              )
+            ) &&
+            !candidate.url.includes(
+              `/roster/${CURRENT_ROSTER_YEAR - 1}`,
+            ) &&
+            !candidate.url.includes(
+              `/coaches/${CURRENT_ROSTER_YEAR - 1}`,
+            ),
+        ),
+      ].filter(
+        (candidate, index, allCandidates) =>
+          allCandidates.findIndex(
+            (other) => other.url === candidate.url,
+          ) === index,
+      )
+    : rawCandidates;
+
+const schoolRecords = new Map<string, CoachRecord>();
+let found = false;
+
+if (slug !== "gardner-webb-university") {
+  for (const candidate of candidates) {
+    const { url, pattern } = candidate;
+
+    stats.urlAttempts += 1;
+
+    console.log(
+      `  trying: ${url}` +
+        (pattern === preferredPattern ? " [cached pattern]" : ""),
+    );
 
       const html = await fetchHtml(url);
 
@@ -182,158 +1652,459 @@ async function main() {
       const origin = new URL(url).origin;
 
       const $ = cheerio.load(html);
+      const pageRecords = new Map<string, CoachRecord>();
 
-      const coachCards = $("article, .coach, .staff, .sidearm-roster-player");
+      const addCoachRecord = (root: cheerio.Cheerio<any>) => {
+        const record = extractCoachRecord($, root, origin, url);
 
-      if (!coachCards.length) {
-        continue;
-      }
+        if (!record) return;
 
-      const seen = new Set<string>();
+        const key = normalizeCoachKey(record.name);
 
-      coachCards.each((_, el) => {
-        const root = $(el);
+        if (!key) return;
 
-        const text = cleanText(root.text());
+        pageRecords.set(key, mergeCoachRecords(pageRecords.get(key), record));
+      };
 
-        if (!looksLikeCoachTitle(text)) {
-          return;
-        }
-
-        let name = "";
-        let title = "";
-
-        root.find("*").each((__, node) => {
-          const t = cleanText($(node).text());
-
-          if (!name && /^[A-Z][a-z]+(?:\s+[A-Z][a-z.'-]+)+$/.test(t)) {
-            name = t;
-          }
-
-          if (!title && looksLikeCoachTitle(t)) {
-            title = t;
-          }
-        });
-
-        if (!name || !title) {
-          return;
-        }
-
-        const dedupeKey = `${name}__${title}`;
-
-        if (seen.has(dedupeKey)) {
-          return;
-        }
-
-        seen.add(dedupeKey);
-
-        const email =
-          root.find('a[href^="mailto:"]').attr("href")?.replace("mailto:", "") ||
-          "";
-
-        const phone =
-          root.find('a[href^="tel:"]').attr("href")?.replace("tel:", "") ||
-          "";
-
-        let bioUrl = "";
-
-        root.find("a").each((__, a) => {
-          const href = $(a).attr("href");
-
-          if (!href) return;
-
-          if (
-            href.includes("/staff/") ||
-            href.includes("/coaches/") ||
-            href.includes("/bio/")
-          ) {
-            bioUrl = absolutizeUrl(href, origin);
-          }
-        });
-
-        const img =
-          root.find("img").attr("src") ||
-          "";
-
-        const headshotUrl = img
-          ? absolutizeUrl(img, origin)
-          : "";
-
-        let xUrl = "";
-        let instagramUrl = "";
-        let linkedinUrl = "";
-
-        root.find("a").each((__, a) => {
-          const href = $(a).attr("href") || "";
-
-          if (
-            href.includes("twitter.com") ||
-            href.includes("x.com")
-          ) {
-            xUrl = href;
-          }
-
-          if (href.includes("instagram.com")) {
-            instagramUrl = href;
-          }
-
-          if (href.includes("linkedin.com")) {
-            linkedinUrl = href;
-          }
-        });
-
-        rows.push([
-          slug,
-          name,
-          title,
-          email,
-          phone,
-          bioUrl,
-          url,
-          headshotUrl,
-          xUrl,
-          instagramUrl,
-          linkedinUrl,
-          String(title.toLowerCase().includes("head coach")),
-          "AUTO_IMPORTED",
-        ]);
+      $("table tbody tr").each((_, el) => {
+        addCoachRecord($(el));
       });
 
-      if (rows.length > 1) {
-        console.log(`  ✅ parsed coach cards`);
-        found = true;
-        break;
+      const coachCards = $(
+        [
+          ".sidearm-roster-player",
+          ".sidearm-roster-coach",
+          ".sidearm-staff-member",
+          ".sidearm-roster-staff",
+          ".s-person-card",
+          ".coach-card",
+          ".staff-card",
+          ".coaches__item",
+          ".coaching-staff__item",
+          ".roster-coach",
+          ".roster-staff",
+          "[class*='coach-card']",
+          "[class*='coach_item']",
+          "[class*='coach-item']",
+          "[class*='staff-card']",
+          "[class*='staff-member']",
+          "[class*='staff_item']",
+          "[class*='staff-item']",
+          "article",
+        ].join(", "),
+      );
+
+      coachCards.each((_, el) => {
+        addCoachRecord($(el));
+      });
+
+      const profileLinkContainers =
+  findCoachContainersFromProfileLinks($);
+
+for (const container of profileLinkContainers) {
+  addCoachRecord(container);
+}
+
+      const coachingRegions = findCoachingStaffRegions($);
+
+      for (const region of coachingRegions) {
+        const containers = findCoachContainersFromRegion($, region);
+
+        for (const container of containers) {
+          addCoachRecord(container);
+        }
+      }
+
+if (pageRecords.size > MAX_COACH_RECORDS_PER_PAGE) {
+  console.log(
+    `  ⚠️ discarded ${pageRecords.size} records; page appears to be an athletics-wide staff directory`,
+  );
+
+  continue;
+}
+
+const pageHasHeadCoach = Array.from(
+  pageRecords.values(),
+).some((record) => record.isHeadCoach);
+
+/*
+ * Houston's year-specific roster currently contains its outgoing staff,
+ * while the unversioned roster contains the incoming staff led by the
+ * new head coach. Once a page containing the actual head coach is found,
+ * replace the previously accumulated Houston records instead of merging
+ * the two staff versions together.
+ */
+if (
+  slug === "university-of-houston" &&
+  pageHasHeadCoach
+) {
+  schoolRecords.clear();
+
+  console.log(
+    "  🔄 Houston head coach found; replacing previously accumulated staff records",
+  );
+}
+
+for (const [key, record] of pageRecords) {
+  schoolRecords.set(
+    key,
+    mergeCoachRecords(
+      schoolRecords.get(key),
+      record,
+    ),
+  );
+}
+
+if (pageRecords.size > 0) {
+  const hasHeadCoach = Array.from(
+    schoolRecords.values(),
+  ).some((record) => record.isHeadCoach);
+
+  if (schoolRecords.size < MIN_EXPECTED_COACH_RECORDS) {
+    console.log(
+      `  ⚠️ parsed only ${schoolRecords.size} unique coach record(s) so far; retaining partial result and continuing fallback URLs`,
+    );
+
+    continue;
+  }
+
+  /*
+   * Houston's roster page contains the rest of the baseball staff but
+   * currently omits the head coach. Keep trying the coaches-page
+   * candidates and merge any missing records before declaring success.
+   */
+  if (
+    slug === "university-of-houston" &&
+    !hasHeadCoach
+  ) {
+    console.log(
+      `  ⚠️ parsed ${schoolRecords.size} Houston staff record(s), but no head coach yet; continuing fallback URLs`,
+    );
+
+    continue;
+  }
+
+  console.log(
+    `  ✅ parsed ${schoolRecords.size} unique coach record(s) from ${url}`,
+  );
+
+  stats.successfulPrograms += 1;
+  stats.coachRecordsParsed += schoolRecords.size;
+
+  if (successfulPatternCache[slug] !== pattern) {
+    const previouslyCached = Boolean(
+      successfulPatternCache[slug],
+    );
+
+    successfulPatternCache[slug] = pattern;
+
+    if (!previouslyCached) {
+      stats.cachedPatternsLearned += 1;
+    }
+
+    console.log(
+      `  💾 cached successful pattern: ${pattern}`,
+    );
+  }
+
+  found = true;
+  break;
+}
+    }
+}
+
+if (
+  schoolRecords.size === 0 &&
+  slug === "gardner-webb-university"
+) {
+  const renderedUrl =
+    "https://gwusports.com/sports/baseball/coaches";
+
+  console.log(`  trying rendered: ${renderedUrl}`);
+
+  stats.urlAttempts += 1;
+
+  const renderedHtml =
+    await fetchRenderedHtml(renderedUrl);
+
+  if (renderedHtml) {
+    const origin = new URL(renderedUrl).origin;
+    const $ = cheerio.load(renderedHtml);
+    const renderedRecords =
+      new Map<string, CoachRecord>();
+
+    const addRenderedCoachRecord = (
+      root: cheerio.Cheerio<any>,
+    ) => {
+      const record = extractCoachRecord(
+        $,
+        root,
+        origin,
+        renderedUrl,
+      );
+
+      if (!record) return;
+
+      const key = normalizeCoachKey(record.name);
+
+      if (!key) return;
+
+      renderedRecords.set(
+        key,
+        mergeCoachRecords(
+          renderedRecords.get(key),
+          record,
+        ),
+      );
+    };
+
+$("table tbody tr").each((_, el) => {
+  const row = $(el);
+  const cells = row.find("td");
+
+  if (cells.length < 2) {
+    return;
+  }
+
+  const nameCell = cells.eq(0);
+  const titleCell = cells.eq(1);
+  const phoneCell = cells.eq(2);
+  const emailCell = cells.eq(3);
+  const twitterCell = cells.eq(4);
+
+  const name = nameCell
+    .text()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const title = titleCell
+    .text()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!name || !title) {
+    return;
+  }
+
+  const profileHref =
+    nameCell
+      .find(
+        'a[href*="/sports/baseball/roster/coaches/"]',
+      )
+      .first()
+      .attr("href") ?? "";
+
+  const emailHref =
+    emailCell
+      .find('a[href^="mailto:"]')
+      .first()
+      .attr("href") ?? "";
+
+  const email = emailHref
+    .replace(/^mailto:/i, "")
+    .split("?")[0]
+    .trim();
+
+  const phone = phoneCell
+    .text()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const twitterHandle = twitterCell
+    .text()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const xUrl = twitterHandle.startsWith("@")
+    ? `https://x.com/${twitterHandle.slice(1)}`
+    : "";
+
+  const record: CoachRecord = {
+    name,
+    title,
+    email,
+    phone,
+    bioUrl: profileHref
+      ? new URL(profileHref, origin).toString()
+      : "",
+    contactUrl: renderedUrl,
+    headshotUrl: "",
+    xUrl,
+    instagramUrl: "",
+    linkedinUrl: "",
+    isHeadCoach: isHeadCoachTitle(title),
+    reviewStatus: "AUTO_IMPORTED",
+  };
+
+  const key = normalizeCoachKey(record.name);
+
+  if (!key) {
+    return;
+  }
+
+  renderedRecords.set(
+    key,
+    mergeCoachRecords(
+      renderedRecords.get(key),
+      record,
+    ),
+  );
+});
+
+    const renderedCoachCards = $(
+      [
+        ".sidearm-roster-player",
+        ".sidearm-roster-coach",
+        ".sidearm-staff-member",
+        ".sidearm-roster-staff",
+        ".s-person-card",
+        ".coach-card",
+        ".staff-card",
+        ".coaches__item",
+        ".coaching-staff__item",
+        ".roster-coach",
+        ".roster-staff",
+        "[class*='coach-card']",
+        "[class*='coach_item']",
+        "[class*='coach-item']",
+        "[class*='staff-card']",
+        "[class*='staff-member']",
+        "[class*='staff_item']",
+        "[class*='staff-item']",
+        "article",
+      ].join(", "),
+    );
+
+    renderedCoachCards.each((_, el) => {
+      addRenderedCoachRecord($(el));
+    });
+
+    const renderedProfileContainers =
+      findCoachContainersFromProfileLinks($);
+
+    for (const container of renderedProfileContainers) {
+      addRenderedCoachRecord(container);
+    }
+
+    const renderedRegions =
+      findCoachingStaffRegions($);
+
+    for (const region of renderedRegions) {
+      const containers =
+        findCoachContainersFromRegion($, region);
+
+      for (const container of containers) {
+        addRenderedCoachRecord(container);
       }
     }
 
-    if (!found) {
+    if (
+      renderedRecords.size > 0 &&
+      renderedRecords.size <=
+        MAX_COACH_RECORDS_PER_PAGE
+    ) {
+      for (const [key, record] of renderedRecords) {
+        schoolRecords.set(
+          key,
+          mergeCoachRecords(
+            schoolRecords.get(key),
+            record,
+          ),
+        );
+      }
+
+      console.log(
+        `  ✅ parsed ${schoolRecords.size} unique coach record(s) ` +
+          `from rendered ${renderedUrl}`,
+      );
+
+      stats.successfulPrograms += 1;
+      stats.coachRecordsParsed +=
+        schoolRecords.size;
+
+      found = true;
+    }
+  }
+}
+
+if (schoolRecords.size === 0) {
+  stats.programsWithoutCoachCards += 1;
+
+  rows.push([
+    slug,
+    "",
+    "",
+    "",
+    "",
+    "",
+    program.baseballWebsiteUrl ?? "",
+    "",
+    "",
+    "",
+    "",
+    "false",
+    "NEEDS_MANUAL_REVIEW",
+  ]);
+
+  console.log(
+    "  ⚠️ no structured coach cards found",
+  );
+
+  continue;
+}
+
+    if (!found && schoolRecords.size < MIN_EXPECTED_COACH_RECORDS) {
+      partialSchools.push({
+        slug,
+        name: program.college.name,
+        count: schoolRecords.size,
+      });
+
+      console.log(
+        `  ⚠️ retained ${schoolRecords.size} partial coach record(s); additional enrichment required`,
+      );
+    }
+
+    for (const record of schoolRecords.values()) {
       rows.push([
         slug,
-        "",
-        "",
-        "",
-        "",
-        "",
-        program.baseballWebsiteUrl ?? "",
-        "",
-        "",
-        "",
-        "",
-        "false",
-        "NEEDS_MANUAL_REVIEW",
+        record.name,
+        record.title,
+        record.email,
+        record.phone,
+        record.bioUrl,
+        record.contactUrl,
+        record.headshotUrl,
+        record.xUrl,
+        record.instagramUrl,
+        record.linkedinUrl,
+        String(record.isHeadCoach),
+        record.reviewStatus,
       ]);
-
-      console.log(`  ⚠️ no structured coach cards found`);
     }
   }
 
-  const csv = rows
-    .map((r) => r.map(csvEscape).join(","))
-    .join("\n");
+  const csv = rows.map((r) => r.map(csvEscape).join(",")).join("\n");
+
+  saveSuccessfulPatternCache(successfulPatternCache);
 
   fs.writeFileSync(OUT_FILE, csv, "utf8");
 
   console.log(`\n✅ Wrote ${OUT_FILE}`);
+
+  if (partialSchools.length > 0) {
+    console.log("\n⚠️ Programs with partial coach results:");
+
+    for (const school of partialSchools) {
+      console.log(
+        `  ${school.name} (${school.slug}): ${school.count} record(s)`,
+      );
+    }
+  }
+
+  stats.emailWarnings = emailWarningCount;
+
+  printRunSummary(stats);
 }
 
 main()
