@@ -9,19 +9,129 @@ const prisma = new PrismaClient();
 const ROOT = process.cwd();
 const ENRICHMENT_DIR = path.join(ROOT, "data", "enrichment");
 
-const DRY_RUN = process.argv.includes("--dry-run");
+const ARGS = process.argv.slice(2);
+
+const SHOW_HELP =
+  ARGS.includes("--help") ||
+  ARGS.includes("-h");
+
+const WRITE_MODE =
+  ARGS.includes("--write");
+
+const DRY_RUN =
+  !WRITE_MODE;
+
+const ONLY_PROGRAM_SOCIALS =
+  ARGS.includes(
+    "--only-program-socials",
+  );
+
+  const ONLY_COACHES =
+  ARGS.includes(
+    "--only-coaches",
+  );
+
+function getArgumentValue(
+  flag: string,
+): string | null {
+  const flagIndex =
+    ARGS.indexOf(flag);
+
+  if (
+    flagIndex === -1 ||
+    flagIndex ===
+      ARGS.length - 1
+  ) {
+    return null;
+  }
+
+  const value =
+    ARGS[flagIndex + 1];
+
+  if (
+    !value ||
+    value.startsWith("--")
+  ) {
+    return null;
+  }
+
+  return value;
+}
+
+const PROGRAM_SOCIALS_FILE =
+  getArgumentValue(
+    "--program-socials",
+  );
+
+  const COACHES_FILE =
+  getArgumentValue(
+    "--coaches",
+  );
 
 type CsvRow = Record<string, string>;
 
-function readCsv(fileName: string): CsvRow[] {
-  const filePath = path.join(ENRICHMENT_DIR, fileName);
+function resolveCsvPath(
+  fileNameOrPath: string,
+): string {
+  if (
+    path.isAbsolute(
+      fileNameOrPath,
+    )
+  ) {
+    return fileNameOrPath;
+  }
 
-  if (!fs.existsSync(filePath)) {
-    console.log(`⚠️  Missing ${fileName}; skipping.`);
+  const projectRelativePath =
+    path.resolve(
+      ROOT,
+      fileNameOrPath,
+    );
+
+  if (
+    fs.existsSync(
+      projectRelativePath,
+    )
+  ) {
+    return projectRelativePath;
+  }
+
+  return path.join(
+    ENRICHMENT_DIR,
+    fileNameOrPath,
+  );
+}
+
+function readCsv(
+  fileNameOrPath: string,
+): CsvRow[] {
+  const filePath =
+    resolveCsvPath(
+      fileNameOrPath,
+    );
+
+  if (
+    !fs.existsSync(
+      filePath,
+    )
+  ) {
+    console.log(
+      `⚠️ Missing CSV; skipping: ${filePath}`,
+    );
+
     return [];
   }
 
-  const raw = fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, "");
+  const raw =
+    fs
+      .readFileSync(
+        filePath,
+        "utf8",
+      )
+      .replace(
+        /^\uFEFF/,
+        "",
+      );
+
   return parseCsv(raw);
 }
 
@@ -92,18 +202,134 @@ function emptyToNull(value: string | undefined): string | null {
   return trimmed ? trimmed : null;
 }
 
-function isImportableCoach(row: CsvRow) {
-  const name = String(row.name || "").trim();
-  const title = String(row.title || "").trim().toLowerCase();
-  const lowerName = name.toLowerCase();
+function normalizedCoachTitle(
+  value: string | undefined,
+): string {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[–—]/g, "-")
+    .replace(/\s+/g, " ");
+}
 
-  const allowedTitles = [
-    "head coach",
+function isHeadCoachRow(
+  row: CsvRow,
+): boolean {
+  if (
+    parseBool(
+      row.isHeadCoach,
+    )
+  ) {
+    return true;
+  }
+
+  const title =
+    normalizedCoachTitle(
+      row.title,
+    );
+
+  if (!title) {
+    return false;
+  }
+
+  const nonHeadCoachTerms = [
     "associate head coach",
-    "recruiting coordinator",
-    "pitching coach",
-    "hitting coach",
+    "assistant head coach",
+    "assistant to the head coach",
+    "special assistant to the head coach",
   ];
+
+  if (
+    nonHeadCoachTerms.some(
+      (term) =>
+        title.includes(term),
+    )
+  ) {
+    return false;
+  }
+
+const isNamedDirectorHeadCoach =
+  title ===
+    "director of baseball" ||
+  title.endsWith(
+    " director of baseball",
+  );
+
+return (
+  title.includes(
+    "head coach",
+  ) ||
+  title.includes(
+    "head baseball coach",
+  ) ||
+  title.includes(
+    "head coaching chair",
+  ) ||
+  title.includes(
+    "head coach of baseball",
+  ) ||
+  isNamedDirectorHeadCoach
+);
+}
+
+function isImportableCoach(
+  row: CsvRow,
+): boolean {
+  const name =
+    String(
+      row.name ?? "",
+    ).trim();
+
+  const lowerName =
+    name.toLowerCase();
+
+  const title =
+    normalizedCoachTitle(
+      row.title,
+    );
+
+  if (
+    !name ||
+    !title
+  ) {
+    return false;
+  }
+
+  const badExactNames = [
+    "full bio",
+    "bio",
+    "view bio",
+    "read bio",
+    "baseball",
+    "baseball staff",
+    "baseball coaching staff",
+    "coaching staff",
+  ];
+
+  if (
+    badExactNames.includes(
+      lowerName,
+    )
+  ) {
+    return false;
+  }
+
+  const badNamePrefixes = [
+    "full bio ",
+    "view bio ",
+    "read bio ",
+  ];
+
+  if (
+    badNamePrefixes.some(
+      (prefix) =>
+        lowerName.startsWith(
+          prefix,
+        ),
+    )
+  ) {
+    return false;
+  }
 
   const badNameTerms = [
     "basketball",
@@ -119,26 +345,109 @@ function isImportableCoach(row: CsvRow) {
     "rowing",
     "tennis",
     "ticketing",
-    "coaching",
-    "position",
-    "admin",
-    "ad baseball",
-    "baseball coach",
-    "coaches coaches",
     "team roster",
     "news schedule",
     "staff directory",
     "sports covered",
     "alma mater",
-    "assistant coach",
-    "spirit",
+    "coaches coaches",
   ];
 
-  if (!name || !allowedTitles.includes(title)) return false;
-  if (badNameTerms.some((term) => lowerName.includes(term))) return false;
+  if (
+    badNameTerms.some(
+      (term) =>
+        lowerName.includes(
+          term,
+        ),
+    )
+  ) {
+    return false;
+  }
 
-  const parts = name.split(/\s+/).filter(Boolean);
-  if (parts.length < 2 || parts.length > 4) return false;
+  const excludedTitleTerms = [
+    "director of operations",
+    "baseball operations",
+    "director of baseball strategy",
+    "director of baseball player personnel",
+    "assistant director of operations",
+    "operations coordinator",
+    "director of player development",
+    "director of baseball player development",
+    "assistant director of player development",
+    "player development coordinator",
+    "director of pitching development",
+    "director of hitting development",
+    "pitching development",
+    "hitting development",
+    "director of baseball analytics",
+    "baseball analytics",
+    "pitching analytics",
+    "hitting analytics",
+    "video coordinator",
+    "creative video",
+    "quality control",
+    "strength & conditioning",
+    "strength and conditioning",
+    "strenght coach",
+    "sports performance",
+    "baseball performance",
+    "athletic performance",
+    "athletic trainer",
+    "communications",
+    "equipment",
+    "video analytics",
+    "team manager",
+    "graduate assistant",
+    "graduate manager",
+    "student assistant",
+    "undergraduate assistant",
+    "volunteer assistant",
+    "scouting assistant",
+    "special assistant",
+  ];
+
+  if (
+    excludedTitleTerms.some(
+      (term) =>
+        title.includes(term),
+    )
+  ) {
+    return false;
+  }
+
+const isCoachTitle =
+  title.includes("coach");
+
+const isRecruitingTitle =
+  title.includes(
+    "recruiting coordinator",
+  ) ||
+  title.includes(
+    "director of recruiting",
+  );
+
+const isConfirmedHeadCoach =
+  isHeadCoachRow(row);
+
+if (
+  !isCoachTitle &&
+  !isRecruitingTitle &&
+  !isConfirmedHeadCoach
+) {
+  return false;
+}
+
+  const nameParts =
+    name
+      .split(/\s+/)
+      .filter(Boolean);
+
+  if (
+    nameParts.length < 2 ||
+    nameParts.length > 5
+  ) {
+    return false;
+  }
 
   return true;
 }
@@ -184,10 +493,11 @@ async function requireCollegeBySlug(slug: string) {
     },
   });
 
-if (!college) {
-  console.error(`❌ No college found for slug: "${slug}"`);
-  throw new Error(`No college found for slug: ${slug}`);
-}
+  if (!college) {
+    throw new Error(
+      `No college found for slug: ${slug}`,
+    );
+  }
 
   return college;
 }
@@ -444,154 +754,624 @@ async function importNilSportAllocations() {
   }
 }
 
-async function importProgramSocials(dryRun: boolean) {
-  const rows = readCsv("college-program-socials.csv");
+async function importProgramSocials(
+  dryRun: boolean,
+) {
+  const programSocialsFile =
+    PROGRAM_SOCIALS_FILE ??
+    "college-program-socials.csv";
 
-  console.log(`\n📣 Program socials: ${rows.length}`);
+  const rows =
+    readCsv(
+      programSocialsFile,
+    );
+
+  console.log(
+    `Program socials CSV: ${resolveCsvPath(
+      programSocialsFile,
+    )}`,
+  );
+
+  console.log(
+    `\n📣 Program socials: ${rows.length}`,
+  );
+
+  let updatedCount = 0;
+  let missingCollegeCount = 0;
+  let missingProgramCount = 0;
 
   for (const row of rows) {
-    const slug = String(row.slug || "").trim();
+    const slug = String(
+      row.slug || "",
+    ).trim();
+
     if (!slug) {
-      console.log("⚠️ Missing slug row:", row);
+      console.log(
+        "⚠️ Missing slug row:",
+        row,
+      );
+
       continue;
     }
 
-    console.log(`Processing slug: "${slug}"`);
+    console.log(
+      `Processing slug: "${slug}"`,
+    );
+
+    const college =
+      await prisma.college.findUnique({
+        where: {
+          slug,
+        },
+        select: {
+          id: true,
+        },
+      });
+
+    if (!college) {
+      missingCollegeCount += 1;
+
+      console.log(
+        `  ⚠️ College not found; skipped: ${slug}`,
+      );
+
+      continue;
+    }
 
     const data = {
-      programXUrl: emptyToNull(row.programXUrl),
-      programInstagramUrl: emptyToNull(row.programInstagramUrl),
-      recruitingQuestionnaireUrl: emptyToNull(row.recruitingQuestionnaireUrl),
+      programWebsiteUrl:
+        emptyToNull(
+          row.baseballWebsiteUrl,
+        ),
+
+      programXUrl:
+        emptyToNull(
+          row.programXUrl,
+        ),
+
+      programInstagramUrl:
+        emptyToNull(
+          row.programInstagramUrl,
+        ),
+
+      recruitingQuestionnaireUrl:
+        emptyToNull(
+          row.questionnaireUrl ||
+            row.recruitingQuestionnaireUrl,
+        ),
     };
 
     const programData = {
-      questionnaireUrl: emptyToNull(row.recruitingQuestionnaireUrl),
-      generalContactUrl: emptyToNull(row.recruitsPageUrl),
-      dataSourceUrl: emptyToNull(row.sourceUrl),
-      verificationStatus: "NEEDS_REVIEW" as const,
+      nickname:
+        emptyToNull(
+          row.nickname,
+        ),
+
+      logoUrl:
+        emptyToNull(
+          row.logoUrl,
+        ),
+
+      baseballWebsiteUrl:
+        emptyToNull(
+          row.baseballWebsiteUrl,
+        ),
+
+      rosterUrl:
+        emptyToNull(
+          row.rosterUrl,
+        ),
+
+      scheduleUrl:
+        emptyToNull(
+          row.scheduleUrl,
+        ),
+
+      campsUrl:
+        emptyToNull(
+          row.campsUrl,
+        ),
+
+      questionnaireUrl:
+        emptyToNull(
+          row.questionnaireUrl ||
+            row.recruitingQuestionnaireUrl,
+        ),
+
+      generalContactUrl:
+        emptyToNull(
+          row.generalContactUrl ||
+            row.recruitsPageUrl,
+        ),
+
+      generalContactEmail:
+        emptyToNull(
+          row.generalContactEmail,
+        ),
+
+      programXUrl:
+        emptyToNull(
+          row.programXUrl,
+        ),
+
+      programInstagramUrl:
+        emptyToNull(
+          row.programInstagramUrl,
+        ),
+
+      programYoutubeUrl:
+        emptyToNull(
+          row.programYoutubeUrl,
+        ),
+
+      division:
+        emptyToNull(
+          row.division,
+        ) as any,
+
+      conference:
+        emptyToNull(
+          row.conference,
+        ),
+
+      dataSourceUrl:
+        emptyToNull(
+          row.sourceUrl,
+        ),
+
+      verificationStatus:
+        "NEEDS_REVIEW" as const,
     };
 
     if (dryRun) {
-      console.log(`  DRY program socials: ${slug}`);
+      console.log(
+        `  DRY program socials: ${slug}`,
+      );
+
       continue;
     }
 
     await prisma.college.update({
-      where: { slug },
+      where: {
+        id: college.id,
+      },
       data,
     });
 
-    await prisma.collegeBaseballProgram.updateMany({
-      where: {
-        college: { slug },
-      },
-      data: programData,
-    });
+    const programResult =
+      await prisma.collegeBaseballProgram.updateMany({
+        where: {
+          collegeId:
+            college.id,
+        },
+        data:
+          programData,
+      });
 
-    console.log(`  ✅ program socials: ${slug}`);
+    if (
+      programResult.count === 0
+    ) {
+      missingProgramCount += 1;
+
+      console.log(
+        `  ⚠️ Baseball program not found; college updated only: ${slug}`,
+      );
+
+      continue;
+    }
+
+    updatedCount += 1;
+
+    console.log(
+      `  ✅ program socials: ${slug}`,
+    );
   }
+
+  console.log(
+    "\n📣 Program socials summary",
+  );
+
+  console.log(
+    `  Updated: ${updatedCount}`,
+  );
+
+  console.log(
+    `  Missing colleges skipped: ${missingCollegeCount}`,
+  );
+
+  console.log(
+    `  Missing baseball programs: ${missingProgramCount}`,
+  );
 }
 
 async function importBaseballCoaches() {
-  const verifiedRows = readCsv("college-baseball-coaches.verified.d1-pilot.csv");
-const fallbackRows = verifiedRows.length
-  ? []
-  : readCsv("college-baseball-coaches.csv");
+  const rows = COACHES_FILE
+    ? readCsv(COACHES_FILE)
+    : [];
 
-const rows = verifiedRows.length ? verifiedRows : fallbackRows;
-  console.log(`\n👔 Baseball coaches: ${rows.length}`);
+  console.log(
+    `\n👔 Baseball coach source rows: ${rows.length}`,
+  );
 
-  const touchedProgramIds = new Set<string>();
-
-  for (const row of rows) {
-const slug = String(row.slug ?? "").trim();
-
-if (!slug) {
-  console.log("⚠️ Missing slug row:", row);
-  continue;
-}
-
-console.log(`Processing slug: "${slug}"`);
-
-    const college = await requireCollegeBySlug(slug);
-
-    if (!college.baseballProgram) {
-      throw new Error(`No baseball program found for slug: ${slug}`);
-    }
-
-    touchedProgramIds.add(college.baseballProgram.id);
+  if (rows.length === 0) {
+    throw new Error(
+      "No coach rows were found. Supply --coaches <path>.",
+    );
   }
 
-  if (!DRY_RUN) {
-    for (const programId of touchedProgramIds) {
-      await prisma.collegeBaseballCoach.deleteMany({
-        where: { programId },
-      });
-    }
-  }
+  const importableRowsBySlug =
+    new Map<string, CsvRow[]>();
+
+  let missingSlugCount = 0;
+  let skippedRowCount = 0;
 
   for (const row of rows) {
-const slug = String(row.slug ?? "").trim();
+    const slug =
+      String(row.slug ?? "").trim();
 
-if (!slug) {
-  console.log("⚠️ Missing slug row:", row);
-  continue;
-}
-
-console.log(`Processing slug: "${slug}"`);
-
-    const college = await requireCollegeBySlug(slug);
-
-    if (!college.baseballProgram) {
-      throw new Error(`No baseball program found for slug: ${slug}`);
+    if (!slug) {
+      missingSlugCount += 1;
+      console.log(
+        "  ⚠️ Missing slug row:",
+        row,
+      );
+      continue;
     }
 
     if (!isImportableCoach(row)) {
-      console.log(`  ⚠️ skipping coach row: ${slug} / ${row.name || ""} / ${row.title || ""}`);
+      skippedRowCount += 1;
+
+      console.log(
+        `  ⚠️ Skipping coach row: ${slug} / ${
+          row.name || ""
+        } / ${row.title || ""}`,
+      );
+
       continue;
     }
+
+    const existingRows =
+      importableRowsBySlug.get(slug) ??
+      [];
+
+    existingRows.push(row);
+
+    importableRowsBySlug.set(
+      slug,
+      existingRows,
+    );
+  }
+
+  console.log(
+    `  Importable schools: ${importableRowsBySlug.size}`,
+  );
+
+  console.log(
+    `  Importable coach rows: ${
+      Array.from(
+        importableRowsBySlug.values(),
+      ).reduce(
+        (total, schoolRows) =>
+          total + schoolRows.length,
+        0,
+      )
+    }`,
+  );
+
+  console.log(
+    `  Skipped non-importable rows: ${skippedRowCount}`,
+  );
+
+  console.log(
+    `  Missing-slug rows: ${missingSlugCount}`,
+  );
+
+let importedCoachCount = 0;
+let replacedProgramCount = 0;
+let missingProgramCount = 0;
+
+  for (
+    const [slug, schoolRows]
+    of importableRowsBySlug.entries()
+  ) {
+    console.log(
+      `\nProcessing coach staff: "${slug}"`,
+    );
+
+const college =
+      await prisma.college.findUnique({
+        where: {
+          slug,
+        },
+        include: {
+          baseballProgram: true,
+        },
+      });
+
+if (!college) {
+  console.log(
+    `  ⚠️ Unknown college slug; skipping coach staff: ${slug}`,
+  );
+
+  continue;
+}
+
+if (!college.baseballProgram) {
+  missingProgramCount += 1;
+
+  console.log(
+    `  ⚠️ No baseball program; skipping coach staff: ${slug}`,
+  );
+
+  continue;
+}
+
+const hasHeadCoach =
+  schoolRows.some(
+    isHeadCoachRow,
+  );
+
+if (!hasHeadCoach) {
+  console.log(
+    `  ⚠️ No confirmed head coach; preserving existing staff: ${slug}`,
+  );
+
+  for (
+    const row
+    of schoolRows
+  ) {
+    console.log(
+      `    Preserved candidate: ${row.name} / ${
+        row.title || ""
+      }`,
+    );
+  }
+
+  continue;
+}
 
     if (DRY_RUN) {
-      console.log(`  DRY coach: ${slug} / ${row.name}`);
+      console.log(
+        `  DRY replace: ${schoolRows.length} coach row(s)`,
+      );
+
+      for (const row of schoolRows) {
+        console.log(
+          `    DRY coach: ${row.name} / ${
+            row.title || ""
+          }`,
+        );
+      }
+
+      replacedProgramCount += 1;
+      importedCoachCount +=
+        schoolRows.length;
+
       continue;
     }
 
-    await prisma.collegeBaseballCoach.create({
-      data: {
-        programId: college.baseballProgram.id,
-        name: row.name,
-        title: emptyToNull(row.title),
-        email: emptyToNull(row.email),
-        phone: emptyToNull(row.phone),
-        bioUrl: emptyToNull(row.bioUrl),
-        contactUrl: emptyToNull(row.contactUrl),
-        headshotUrl: emptyToNull(row.headshotUrl),
-        xUrl: emptyToNull(row.xUrl),
-        instagramUrl: emptyToNull(row.instagramUrl),
-        linkedinUrl: emptyToNull(row.linkedinUrl),
-        isHeadCoach: parseBool(row.isHeadCoach),
-      },
-    });
+    await prisma.$transaction(
+      async (transaction) => {
+        await transaction
+          .collegeBaseballCoach
+          .deleteMany({
+            where: {
+              programId:
+                college.baseballProgram!.id,
+            },
+          });
 
-    console.log(`  ✅ coach: ${slug} / ${row.name}`);
+        for (const row of schoolRows) {
+          await transaction
+            .collegeBaseballCoach
+            .create({
+              data: {
+                programId:
+                  college.baseballProgram!.id,
+                name:
+                  String(
+                    row.name ?? "",
+                  ).trim(),
+                title:
+                  emptyToNull(
+                    row.title,
+                  ),
+                email:
+                  emptyToNull(
+                    row.email,
+                  ),
+                phone:
+                  emptyToNull(
+                    row.phone,
+                  ),
+                bioUrl:
+                  emptyToNull(
+                    row.bioUrl,
+                  ),
+                contactUrl:
+                  emptyToNull(
+                    row.contactUrl,
+                  ),
+                headshotUrl:
+                  emptyToNull(
+                    row.headshotUrl,
+                  ),
+                xUrl:
+                  emptyToNull(
+                    row.xUrl,
+                  ),
+                instagramUrl:
+                  emptyToNull(
+                    row.instagramUrl,
+                  ),
+                linkedinUrl:
+                  emptyToNull(
+                    row.linkedinUrl,
+                  ),
+                isHeadCoach:
+                  parseBool(
+                    row.isHeadCoach,
+                  ),
+              },
+            });
+        }
+      },
+    );
+
+    replacedProgramCount += 1;
+    importedCoachCount +=
+      schoolRows.length;
+
+    console.log(
+      `  ✅ Replaced staff with ${schoolRows.length} coach row(s)`,
+    );
   }
+
+  console.log(
+    "\n👔 Baseball coach import summary",
+  );
+
+  console.log(
+    `  Programs processed: ${replacedProgramCount}`,
+  );
+
+  console.log(
+    `  Coaches processed: ${importedCoachCount}`,
+  );
+
+  console.log(
+    `  Skipped rows: ${skippedRowCount}`,
+  );
+
+  console.log(
+    `  Missing-slug rows: ${missingSlugCount}`,
+  );
+
+  console.log(
+    `  Schools without baseball programs: ${missingProgramCount}`,
+  );
+}
+
+function printHelp() {
+  console.log(`
+ScoutLine enrichment import
+
+Usage:
+  npx tsx scripts/import-college-enrichment.ts [options]
+
+Safety:
+  The importer defaults to DRY RUN.
+  Database writes require --write.
+
+Options:
+  --help, -h
+      Show this help message.
+
+  --write
+      Enable database writes.
+
+  --dry-run
+      Run without database writes.
+      This is also the default mode.
+
+  --only-program-socials
+      Import only program-social data.
+
+  --program-socials <path>
+      Import program-social data from a specific CSV.
+
+  --only-coaches
+      Import only baseball coach data.
+
+  --coaches <path>
+      Import baseball coach data from a specific CSV.
+
+Example dry run:
+  npx tsx scripts/import-college-enrichment.ts --only-program-socials --program-socials "data/enrichment/generated/college-web-presence-2026-07-23T19-42-08-756Z/college-program-socials.generated.csv"
+
+Example write:
+  npx tsx scripts/import-college-enrichment.ts --write --only-program-socials --program-socials "data/enrichment/generated/college-web-presence-2026-07-23T19-42-08-756Z/college-program-socials.generated.csv"
+
+  Example coach dry run:
+  npx tsx scripts/import-college-enrichment.ts --only-coaches --coaches "data/enrichment/generated/college-baseball-coaches.dom.generated.2026-07-20T19-05-22-833Z.csv"
+
+Example coach write:
+  npx tsx scripts/import-college-enrichment.ts --write --only-coaches --coaches "data/enrichment/generated/college-baseball-coaches.dom.generated.2026-07-20T19-05-22-833Z.csv"
+`);
 }
 
 async function main() {
-  console.log(`ScoutLine enrichment import`);
-  console.log(DRY_RUN ? `Mode: DRY RUN` : `Mode: WRITE`);
+  if (SHOW_HELP) {
+    printHelp();
+    return;
+  }
 
-await importAcademicProfiles();
-await importNilProfiles();
-await importNilCollectives();
-await importNilSportAllocations();
-await importProgramSocials(DRY_RUN);
+  if (
+    ARGS.includes("--dry-run") &&
+    WRITE_MODE
+  ) {
+    throw new Error(
+      "Use either --dry-run or --write, not both.",
+    );
+  }
 
-// Coach import paused until scraper quality improves.
-// Staff/contact truth will come from coach verification workflow.
-// await importBaseballCoaches();
+  if (
+    ONLY_PROGRAM_SOCIALS &&
+    !PROGRAM_SOCIALS_FILE
+  ) {
+    throw new Error(
+      "--only-program-socials requires --program-socials <path>.",
+    );
+  }
 
-  console.log(`\n✅ Done.`);
+  if (
+  ONLY_COACHES &&
+  !COACHES_FILE
+) {
+  throw new Error(
+    "--only-coaches requires --coaches <path>.",
+  );
+}
+
+if (
+  ONLY_PROGRAM_SOCIALS &&
+  ONLY_COACHES
+) {
+  throw new Error(
+    "Use either --only-program-socials or --only-coaches, not both.",
+  );
+}
+
+  console.log(
+    "ScoutLine enrichment import",
+  );
+
+  console.log(
+    DRY_RUN
+      ? "Mode: DRY RUN"
+      : "Mode: WRITE",
+  );
+
+if (ONLY_COACHES) {
+  await importBaseballCoaches();
+} else if (ONLY_PROGRAM_SOCIALS) {
+  await importProgramSocials(
+    DRY_RUN,
+  );
+} else {
+  await importAcademicProfiles();
+  await importNilProfiles();
+  await importNilCollectives();
+  await importNilSportAllocations();
+
+  await importProgramSocials(
+    DRY_RUN,
+  );
+}
+
+  console.log(
+    "\n✅ Done.",
+  );
 }
 
 main()

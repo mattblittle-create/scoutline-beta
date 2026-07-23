@@ -18,6 +18,11 @@ const FIELDS = [
   "school.name",
   "school.city",
   "school.state",
+  "school.zip",
+  "school.ownership",
+  "school.school_url",
+  "location.lat",
+  "location.lon",
   "latest.cost.tuition.in_state",
   "latest.cost.tuition.out_of_state",
   "latest.admissions.admission_rate.overall",
@@ -272,6 +277,48 @@ const SCORECARD_NAME_ALIASES: Record<string, string> = {
   Wingate: "Wingate University",
   "Winona State": "Winona State University",
   "Young Harris": "Young Harris College",
+    "University of California, Santa Barbara":
+    "University of California-Santa Barbara",
+  "California Polytechnic State University":
+    "California Polytechnic State University-San Luis Obispo",
+  "University of California, San Diego":
+    "University of California-San Diego",
+  "California State University, Sacramento":
+    "California State University-Sacramento",
+  "Southern Illinois University Edwardsville":
+    "Southern Illinois University-Edwardsville",
+  "California State University, Fullerton":
+    "California State University-Fullerton",
+  "University of California, Irvine":
+    "University of California-Irvine",
+  "University of Hawaii at Manoa":
+    "University of Hawaii at Manoa",
+  "University of California, Davis":
+    "University of California-Davis",
+  "California State University, Northridge":
+    "California State University-Northridge",
+  "University of Maryland, Baltimore County":
+    "University of Maryland-Baltimore County",
+  "University of Massachusetts Lowell":
+    "University of Massachusetts-Lowell",
+  "California State University, Bakersfield":
+    "California State University-Bakersfield",
+  "California State University, Long Beach":
+    "California State University-Long Beach",
+  "University of Nebraska Omaha":
+    "University of Nebraska at Omaha",
+  "University of California, Riverside":
+    "University of California-Riverside",
+  "University at Albany, SUNY":
+    "SUNY at Albany",
+  "New Jersey Institute of Technology":
+    "New Jersey Institute of Technology",
+  "University of St. Thomas":
+    "University of St Thomas",
+  "University of Northern Colorado":
+    "University of Northern Colorado",
+  "University of New Haven":
+    "University of New Haven",
 };
 
 function getArgValue(flag: string): string | undefined {
@@ -328,6 +375,137 @@ function toNumber(value: unknown): number | null {
   if (value == null || value === "") return null;
   const n = Number(value);
   return Number.isFinite(n) ? n : null;
+}
+
+type ScoutLineRegion =
+  | "NORTHEAST"
+  | "MID_ATLANTIC"
+  | "SOUTHEAST"
+  | "MIDWEST"
+  | "SOUTHWEST"
+  | "WEST"
+  | "PACIFIC";
+
+function normalizeWebsiteUrl(
+  value: unknown,
+): string | null {
+  const cleaned = clean(value);
+
+  if (!cleaned) {
+    return null;
+  }
+
+  if (/^https?:\/\//i.test(cleaned)) {
+    return cleaned;
+  }
+
+  return `https://${cleaned}`;
+}
+
+function scorecardOwnershipToControl(
+  value: unknown,
+): "PUBLIC" | "PRIVATE" | null {
+  const ownership = toNumber(value);
+
+  if (ownership === 1) {
+    return "PUBLIC";
+  }
+
+  if (ownership === 2 || ownership === 3) {
+    return "PRIVATE";
+  }
+
+  return null;
+}
+
+function regionFromState(
+  value: unknown,
+): ScoutLineRegion | null {
+  const state = clean(value).toUpperCase();
+
+  const regions: Record<ScoutLineRegion, string[]> = {
+    NORTHEAST: [
+      "CT",
+      "ME",
+      "MA",
+      "NH",
+      "RI",
+      "VT",
+      "NY",
+    ],
+
+    MID_ATLANTIC: [
+      "DE",
+      "DC",
+      "MD",
+      "NJ",
+      "PA",
+      "VA",
+      "WV",
+    ],
+
+    SOUTHEAST: [
+      "AL",
+      "AR",
+      "FL",
+      "GA",
+      "KY",
+      "LA",
+      "MS",
+      "NC",
+      "SC",
+      "TN",
+    ],
+
+    MIDWEST: [
+      "IL",
+      "IN",
+      "IA",
+      "KS",
+      "MI",
+      "MN",
+      "MO",
+      "NE",
+      "ND",
+      "OH",
+      "SD",
+      "WI",
+    ],
+
+    SOUTHWEST: [
+      "AZ",
+      "NM",
+      "OK",
+      "TX",
+    ],
+
+    WEST: [
+      "CO",
+      "ID",
+      "MT",
+      "NV",
+      "UT",
+      "WY",
+    ],
+
+    PACIFIC: [
+      "AK",
+      "CA",
+      "HI",
+      "OR",
+      "WA",
+    ],
+  };
+
+  for (const [region, states] of Object.entries(
+    regions,
+  ) as Array<[ScoutLineRegion, string[]]>) {
+    if (states.includes(state)) {
+      return region;
+    }
+  }
+
+  return null;
 }
 
 function normalizeName(value: string) {
@@ -433,22 +611,27 @@ async function fetchScorecardMatch(row: Row): Promise<any | null> {
       per_page: "20",
     });
 
-    const exactRes = await fetch(`${SCORECARD_BASE_URL}?${exactParams.toString()}`);
-    const exactData = await exactRes.json();
-    const exactResults = Array.isArray(exactData?.results) ? exactData.results : [];
-    allResults.push(...exactResults);
+const exactRes = await fetch(
+  `${SCORECARD_BASE_URL}?${exactParams.toString()}`,
+);
 
-    const searchParams = new URLSearchParams({
-      api_key: API_KEY,
-      search: candidate,
-      fields: FIELDS.join(","),
-      per_page: "20",
-    });
+if (!exactRes.ok) {
+  console.warn(
+    `  Candidate skipped: "${candidate}" returned ${exactRes.status} ${exactRes.statusText}`,
+  );
 
-    const searchRes = await fetch(`${SCORECARD_BASE_URL}?${searchParams.toString()}`);
-    const searchData = await searchRes.json();
-    const searchResults = Array.isArray(searchData?.results) ? searchData.results : [];
-    allResults.push(...searchResults);
+  continue;
+}
+
+const exactData = await exactRes.json();
+
+const exactResults = Array.isArray(
+  exactData?.results,
+)
+  ? exactData.results
+  : [];
+
+allResults.push(...exactResults);
   }
 
   const uniqueResults = Array.from(
@@ -504,17 +687,98 @@ async function main() {
         continue;
       }
 
-    const matchedCity = clean(match["school.city"]);
-    const matchedState = clean(match["school.state"]);
+const matchedCity = clean(
+  match["school.city"],
+);
 
-    const tuitionInState = toNumber(match["latest.cost.tuition.in_state"]);
-    const tuitionOutOfState = toNumber(match["latest.cost.tuition.out_of_state"]);
-    const acceptanceRate = toNumber(match["latest.admissions.admission_rate.overall"]);
-    const graduationRate = toNumber(match["latest.completion.completion_rate_4yr_150nt"]);
-    const enrollmentUndergrad = toNumber(match["latest.student.size"]);
+const matchedState = clean(
+  match["school.state"],
+).toUpperCase();
 
-if (!row.city && matchedCity) row.city = matchedCity;
-if (!row.state && matchedState) row.state = matchedState;
+const matchedZipCode = clean(
+  match["school.zip"],
+);
+
+const matchedWebsiteUrl = normalizeWebsiteUrl(
+  match["school.school_url"],
+);
+
+const matchedLatitude = toNumber(
+  match["location.lat"],
+);
+
+const matchedLongitude = toNumber(
+  match["location.lon"],
+);
+
+const matchedControl =
+  scorecardOwnershipToControl(
+    match["school.ownership"],
+  );
+
+const matchedRegion = regionFromState(
+  matchedState || row.state,
+);
+
+const tuitionInState = toNumber(
+  match["latest.cost.tuition.in_state"],
+);
+
+const tuitionOutOfState = toNumber(
+  match["latest.cost.tuition.out_of_state"],
+);
+
+const acceptanceRate = toNumber(
+  match[
+    "latest.admissions.admission_rate.overall"
+  ],
+);
+
+const graduationRate = toNumber(
+  match[
+    "latest.completion.completion_rate_4yr_150nt"
+  ],
+);
+
+const enrollmentUndergrad = toNumber(
+  match["latest.student.size"],
+);
+
+if (!row.city && matchedCity) {
+  row.city = matchedCity;
+}
+
+if (!row.state && matchedState) {
+  row.state = matchedState;
+}
+
+if (!row.zipCode && matchedZipCode) {
+  row.zipCode = matchedZipCode;
+}
+
+if (!row.websiteUrl && matchedWebsiteUrl) {
+  row.websiteUrl = matchedWebsiteUrl;
+}
+
+if (!row.latitude && matchedLatitude != null) {
+  row.latitude = String(matchedLatitude);
+}
+
+if (!row.longitude && matchedLongitude != null) {
+  row.longitude = String(matchedLongitude);
+}
+
+if (!row.control && matchedControl) {
+  row.control = matchedControl;
+}
+
+if (!row.region && matchedRegion) {
+  row.region = matchedRegion;
+}
+
+if (!row.schoolType) {
+  row.schoolType = "FOUR_YEAR";
+}
 
       if (!row.tuitionInState && tuitionInState != null) {
         row.tuitionInState = String(Math.round(tuitionInState));
@@ -544,7 +808,8 @@ if (!row.state && matchedState) row.state = matchedState;
         row.enrollmentTotal = String(Math.round(enrollmentUndergrad));
       }
 
-      row.dataSourceUrl = "https://collegescorecard.ed.gov/";
+      row.dataSourceUrl =
+        `https://collegescorecard.ed.gov/school/?${match.id}`;
       row.verificationStatus = "NEEDS_REVIEW";
 
       updated++;

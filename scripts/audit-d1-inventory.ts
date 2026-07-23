@@ -443,13 +443,13 @@ async function main(): Promise<void> {
     `D1 in either field, deduplicated by ID:      ${eitherFieldLooksD1.length}`,
   );
   console.log(
-    `Expected external D1 inventory:              301`,
+    `Expected external D1 inventory:              308`,
   );
   console.log(
-    `Canonical gap versus 301:                    ${301 - canonicalD1Programs.length}`,
+    `Canonical gap versus 308:                    ${308 - canonicalD1Programs.length}`,
   );
   console.log(
-    `Either-field gap versus 301:                 ${301 - eitherFieldLooksD1.length}`,
+    `Either-field gap versus 308:                 ${308 - eitherFieldLooksD1.length}`,
   );
 
   printSection("DIVISION FIELD MISMATCHES");
@@ -590,16 +590,16 @@ async function main(): Promise<void> {
 
   const summary = {
     generatedAt: new Date().toISOString(),
-    expectedExternalD1Inventory: 301,
+    expectedExternalD1Inventory: 308,
     totalCollegeRecords: colleges.length,
     totalBaseballProgramRecords: allPrograms.length,
     canonicalD1Programs: canonicalD1Programs.length,
     legacyD1Colleges: legacyD1Colleges.length,
     eitherFieldD1Colleges: eitherFieldLooksD1.length,
-    canonicalGapVersus301:
-      301 - canonicalD1Programs.length,
-    eitherFieldGapVersus301:
-      301 - eitherFieldLooksD1.length,
+    canonicalGapVersus308:
+      308 - canonicalD1Programs.length,
+    eitherFieldGapVersus308:
+      308 - eitherFieldLooksD1.length,
     divisionMismatches: {
       legacyD1MissingProgram:
         legacyD1MissingProgram.length,
