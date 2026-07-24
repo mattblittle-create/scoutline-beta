@@ -617,6 +617,14 @@ if (
   );
 }
 
+function normalizeExtractedCoachName(value: string) {
+  return cleanText(value)
+    .replace(/^full\s+bio\s+/i, "")
+    .replace(/^view\s+(?:full\s+)?bio\s+/i, "")
+    .replace(/^bio\s+/i, "")
+    .trim();
+}
+
 function isProbablyBadCoachName(value: string) {
   const name = cleanText(value);
   const lower = name.toLowerCase();
@@ -631,6 +639,7 @@ function isProbablyBadCoachName(value: string) {
     "name",
     "email",
     "email address",
+    "full bio",
     "phone",
     "title",
     "staff",
@@ -645,6 +654,8 @@ function isProbablyBadCoachName(value: string) {
     "additional links",
     "archived stories",
     "sport administrator",
+    "view bio",
+    "view full bio",
   ];
 
   if (badPhrases.some((phrase) => lower.includes(phrase))) {
@@ -731,7 +742,10 @@ function editDistance(a: string, b: string) {
   return matrix[left.length][right.length];
 }
 
-function emailMatchesCoachOrIsGeneric(email: string, coachName: string) {
+function emailMatchesCoachOrIsGeneric(
+  email: string,
+  coachName: string,
+) {
   const normalizedEmail = email.trim().toLowerCase();
 
   if (!normalizedEmail || !normalizedEmail.includes("@")) {
@@ -761,43 +775,214 @@ function emailMatchesCoachOrIsGeneric(email: string, coachName: string) {
     .replace(/[^a-z0-9\s'-]/g, "")
     .split(/\s+/)
     .filter(Boolean)
-    .filter((part) => !["jr", "sr", "ii", "iii", "iv"].includes(part));
+    .filter(
+      (part) =>
+        !["jr", "sr", "ii", "iii", "iv"].includes(part),
+    );
 
   if (nameParts.length < 2) {
     return false;
   }
 
-  const firstName = nameParts[0];
-  const lastName = nameParts[nameParts.length - 1];
-  const compactLocalPart = localPart.replace(/[^a-z0-9]/g, "");
-
-  const possibleMatches = [
-    lastName,
-    `${firstName}${lastName}`,
-    `${firstName[0] ?? ""}${lastName}`,
-    `${lastName}${firstName[0] ?? ""}`,
-    `${lastName}${firstName}`,
-  ]
-    .map((candidate) => candidate.replace(/[^a-z0-9]/g, ""))
+  const firstName = nameParts[0].replace(/[^a-z0-9]/g, "");
+  const middleNames = nameParts
+    .slice(1, -1)
+    .map((part) => part.replace(/[^a-z0-9]/g, ""))
     .filter(Boolean);
+  const lastName = nameParts[nameParts.length - 1].replace(
+    /[^a-z0-9]/g,
+    "",
+  );
+
+  const compoundLastName = nameParts
+  .slice(1)
+  .map((part) => part.replace(/[^a-z0-9]/g, ""))
+  .join("");
+
+  const firstInitial = firstName[0] ?? "";
+  const middleInitials = middleNames
+    .map((part) => part[0] ?? "")
+    .join("");
+  const lastInitial = lastName[0] ?? "";
+
+  const compactLocalPart = localPart.replace(/[^a-z0-9]/g, "");
+  const lettersOnlyLocalPart = compactLocalPart.replace(/\d+/g, "");
+
+  if (!compactLocalPart || !lettersOnlyLocalPart) {
+    return false;
+  }
+
+  /*
+   * Standard institutional email formats.
+   *
+   * Examples:
+   * johnsmith
+   * jsmith
+   * smithj
+   * smithjohn
+   * johns
+   */
+const exactCandidates = [
+  firstName,
+  lastName,
+  compoundLastName,
+  `${firstName}${lastName}`,
+  `${firstName}${compoundLastName}`,
+  `${firstInitial}${lastName}`,
+  `${firstInitial}${compoundLastName}`,
+  `${lastName}${firstInitial}`,
+  `${compoundLastName}${firstInitial}`,
+  `${lastName}${firstName}`,
+  `${compoundLastName}${firstName}`,
+  `${firstName}${lastInitial}`,
+  `${firstInitial}${middleInitials}${lastName}`,
+  `${firstInitial}${middleInitials}${lastInitial}`,
+]
+  .map((candidate) => candidate.replace(/[^a-z0-9]/g, ""))
+  .filter((candidate) => candidate.length >= 3);
 
   if (
-    possibleMatches.some((candidate) => compactLocalPart.includes(candidate))
+    exactCandidates.some(
+      (candidate) =>
+        compactLocalPart === candidate ||
+        lettersOnlyLocalPart === candidate ||
+        compactLocalPart.includes(candidate),
+    )
   ) {
     return true;
   }
 
-  const lettersOnlyLocalPart = compactLocalPart.replace(/\d+/g, "");
+  /*
+   * Recognize truncated first and last names.
+   *
+   * Examples:
+   * Camden Duzenack -> camduz
+   * Jack Van Remortel -> jvanrem
+   * Ryan Colegate -> colegar
+   * Cam Johnson -> camjoh31
+   */
+  const firstPrefixes = [
+    firstName.slice(0, 3),
+    firstName.slice(0, 4),
+    firstName.slice(0, 5),
+  ].filter((value) => value.length >= 3);
 
-  const firstNameMatches =
-    firstName.length >= 4 &&
-    (lettersOnlyLocalPart === firstName ||
-      lettersOnlyLocalPart === `${firstName}${lastName[0] ?? ""}`);
+  const lastPrefixes = [
+    lastName.slice(0, 3),
+    lastName.slice(0, 4),
+    lastName.slice(0, 5),
+    lastName.slice(0, 6),
+  ].filter((value) => value.length >= 3);
 
-  if (firstNameMatches) {
+  if (
+  compoundLastName.length >= 5 &&
+  (
+    lettersOnlyLocalPart.includes(
+      compoundLastName.slice(0, 5),
+    ) ||
+    lettersOnlyLocalPart.includes(
+      compoundLastName.slice(0, 6),
+    )
+  )
+) {
+  return true;
+}
+
+  const containsFirstPrefix = firstPrefixes.some((prefix) =>
+    lettersOnlyLocalPart.includes(prefix),
+  );
+
+  const containsLastPrefix = lastPrefixes.some((prefix) =>
+    lettersOnlyLocalPart.includes(prefix),
+  );
+
+  if (containsFirstPrefix && containsLastPrefix) {
     return true;
   }
 
+  /*
+   * A sufficiently long surname prefix is usually reliable even when
+   * the institution appends initials or digits.
+   *
+   * Examples:
+   * Doug Walters -> walte2dl
+   * Justin Sumner -> sumne2jw
+   * Ely Stuart -> stuar1el
+   */
+  if (
+    lastName.length >= 5 &&
+    lastPrefixes
+      .filter((prefix) => prefix.length >= 5)
+      .some(
+        (prefix) =>
+          lettersOnlyLocalPart.startsWith(prefix) ||
+          lettersOnlyLocalPart.includes(prefix),
+      )
+  ) {
+    return true;
+  }
+
+  /*
+   * Some universities generate usernames containing the person's
+   * initials plus digits or unrelated account characters.
+   *
+   * Examples:
+   * Grayson Munyon -> cgm5j
+   * Jackson Finney -> jxf24c
+   * Casey Popham -> cfp25a
+   * Matthew Frappier -> mxf23g
+   *
+   * Require the first and last initials to appear in the correct order.
+   * This avoids accepting an arbitrary username based on one initial.
+   */
+  if (firstInitial && lastInitial) {
+    const firstInitialIndex =
+      lettersOnlyLocalPart.indexOf(firstInitial);
+
+    const lastInitialIndex =
+      lettersOnlyLocalPart.indexOf(
+        lastInitial,
+        firstInitialIndex + 1,
+      );
+
+    if (
+      firstInitialIndex >= 0 &&
+      lastInitialIndex > firstInitialIndex &&
+      compactLocalPart.length >= 4 &&
+      /\d/.test(compactLocalPart)
+    ) {
+      return true;
+    }
+  }
+
+  /*
+   * Permit first-name accounts and first-name-plus-initial formats.
+   *
+   * Examples:
+   * Josh Schwartz -> joshus
+   * Camden Duzenack -> camduz
+   */
+  if (
+    firstName.length >= 4 &&
+    (
+      lettersOnlyLocalPart === firstName ||
+      lettersOnlyLocalPart.startsWith(
+        `${firstName}${lastInitial}`,
+      ) ||
+      (
+        lettersOnlyLocalPart.startsWith(firstName.slice(0, 4)) &&
+        lettersOnlyLocalPart.includes(lastInitial)
+      )
+    )
+  ) {
+    return true;
+  }
+
+  /*
+   * Compare variants after removing one or two leading institutional
+   * characters. This preserves the useful fuzzy surname handling from
+   * the original implementation.
+   */
   const localVariants = new Set<string>([
     lettersOnlyLocalPart,
     lettersOnlyLocalPart.slice(1),
@@ -807,7 +992,13 @@ function emailMatchesCoachOrIsGeneric(email: string, coachName: string) {
   for (const variant of localVariants) {
     if (!variant) continue;
 
-    if (variant.includes(lastName) || lastName.includes(variant)) {
+    if (
+      variant.includes(lastName) ||
+      (
+        variant.length >= 4 &&
+        lastName.startsWith(variant)
+      )
+    ) {
       return true;
     }
 
@@ -815,6 +1006,15 @@ function emailMatchesCoachOrIsGeneric(email: string, coachName: string) {
       variant.length >= 5 &&
       lastName.length >= 5 &&
       editDistance(variant, lastName) <= 1
+    ) {
+      return true;
+    }
+
+    const surnamePrefix = lastName.slice(0, 5);
+
+    if (
+      surnamePrefix.length === 5 &&
+      variant.startsWith(surnamePrefix)
     ) {
       return true;
     }
@@ -1331,11 +1531,27 @@ function mergeCoachRecords(
     instagramUrl: existing.instagramUrl || incoming.instagramUrl,
     linkedinUrl: existing.linkedinUrl || incoming.linkedinUrl,
     isHeadCoach: false,
-    reviewStatus:
-      existing.reviewStatus === "NEEDS_REVIEW" ||
-      incoming.reviewStatus === "NEEDS_REVIEW"
-        ? "NEEDS_REVIEW"
-        : "AUTO_IMPORTED",
+reviewStatus:
+  (
+    existing.reviewStatus === "AUTO_IMPORTED" ||
+    incoming.reviewStatus === "AUTO_IMPORTED"
+  ) &&
+  Boolean(
+    existing.email ||
+    incoming.email ||
+    existing.bioUrl ||
+    incoming.bioUrl ||
+    existing.headshotUrl ||
+    incoming.headshotUrl ||
+    existing.xUrl ||
+    incoming.xUrl ||
+    existing.instagramUrl ||
+    incoming.instagramUrl ||
+    existing.linkedinUrl ||
+    incoming.linkedinUrl
+  )
+    ? "AUTO_IMPORTED"
+    : "NEEDS_REVIEW",
   };
 
   merged.isHeadCoach = isHeadCoachTitle(merged.title);
@@ -1385,7 +1601,9 @@ function extractCoachRecord(
     })
     .first();
 
-  let name = cleanText(profileAnchor.text());
+let name = normalizeExtractedCoachName(
+  profileAnchor.text(),
+);
   let title = "";
 
   if (!name) {
@@ -1395,7 +1613,9 @@ function extractCoachRecord(
       candidates.each((_, node) => {
         if (name) return;
 
-        const value = cleanText($(node).text());
+        const value = normalizeExtractedCoachName(
+  $(node).text(),
+);
 
         if (looksLikePersonName(value)) {
           name = value;
@@ -1471,13 +1691,18 @@ if (root.is("tr") && (!name || !title)) {
       });
 
     if (!name) {
-      name = directPieces.find((value) => looksLikePersonName(value)) ?? "";
+      name =
+  directPieces
+    .map(normalizeExtractedCoachName)
+    .find((value) => looksLikePersonName(value)) ?? "";
     }
 
     if (!title) {
       title = directPieces.find((value) => looksLikeCoachTitle(value)) ?? "";
     }
   }
+
+  name = normalizeExtractedCoachName(name);
 
   title = normalizeTitle(title);
 
@@ -1490,21 +1715,48 @@ if (
   return null;
 }
 
-  const extractedEmail = cleanEmail(
-    root.find('a[href^="mailto:"]').first().attr("href"),
+const emailCandidates = Array.from(
+  new Set(
+    root
+      .find('a[href^="mailto:"]')
+      .addBack('a[href^="mailto:"]')
+      .map((_, node) =>
+        cleanEmail($(node).attr("href")),
+      )
+      .get()
+      .filter(Boolean),
+  ),
+);
+
+/*
+ * Broad fallback containers can include mailto links belonging to
+ * neighboring staff members. Prefer a candidate that matches the
+ * current coach or is clearly a shared baseball/program inbox.
+ */
+const extractedEmail =
+  emailCandidates.find((candidate) =>
+    emailMatchesCoachOrIsGeneric(candidate, name),
+  ) ?? "";
+
+const rejectedEmailCandidates =
+  emailCandidates.filter(
+    (candidate) =>
+      !emailMatchesCoachOrIsGeneric(candidate, name),
   );
 
-  const rejectedMismatchedEmail =
-    Boolean(extractedEmail) &&
-    !emailMatchesCoachOrIsGeneric(extractedEmail, name);
+const rejectedMismatchedEmail =
+  !extractedEmail &&
+  rejectedEmailCandidates.length > 0;
 
-  if (rejectedMismatchedEmail) {
-    emailWarningCount += 1;
+if (rejectedMismatchedEmail) {
+  emailWarningCount += 1;
 
-    console.log(
-      `    ⚠️ possible mismatched email requires review: ${name} <- ${extractedEmail}`,
-    );
-  }
+  console.log(
+    `    ⚠️ possible mismatched email rejected: ${name} <- ${rejectedEmailCandidates.join(
+      ", ",
+    )}`,
+  );
+}
 
   const phone = cleanPhone(root.find('a[href^="tel:"]').first().attr("href"));
 
@@ -1593,7 +1845,13 @@ if (
     }
   });
 
-  const hasStrongIdentity = Boolean(extractedEmail) || Boolean(bioUrl);
+const hasStrongIdentity =
+  Boolean(extractedEmail) ||
+  Boolean(bioUrl) ||
+  Boolean(headshotUrl) ||
+  Boolean(xUrl) ||
+  Boolean(instagramUrl) ||
+  Boolean(linkedinUrl);
 
   return {
     name,
