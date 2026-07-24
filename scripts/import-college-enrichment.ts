@@ -70,6 +70,41 @@ const PROGRAM_SOCIALS_FILE =
 
 type CsvRow = Record<string, string>;
 
+type ExistingCoach = {
+  id: string;
+  name: string;
+  title: string | null;
+  email: string | null;
+  phone: string | null;
+  bioUrl: string | null;
+  contactUrl: string | null;
+  headshotUrl: string | null;
+  xUrl: string | null;
+  instagramUrl: string | null;
+  linkedinUrl: string | null;
+  isHeadCoach: boolean;
+};
+
+type CoachImportData = {
+  name: string;
+  title: string | null;
+  email: string | null;
+  phone: string | null;
+  bioUrl: string | null;
+  contactUrl: string | null;
+  headshotUrl: string | null;
+  xUrl: string | null;
+  instagramUrl: string | null;
+  linkedinUrl: string | null;
+  isHeadCoach: boolean;
+};
+
+type CoachImportAction =
+  | "CREATE"
+  | "UPDATE"
+  | "UNCHANGED"
+  | "CONFLICT";
+
 function resolveCsvPath(
   fileNameOrPath: string,
 ): string {
@@ -272,64 +307,38 @@ return (
 );
 }
 
-function isImportableCoach(
-  row: CsvRow,
-): boolean {
-  const name =
-    String(
-      row.name ?? "",
-    ).trim();
+function normalizeCoachNameKey(value: string | undefined) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\b(jr|sr|ii|iii|iv)\b/g, "")
+    .replace(/[^a-z0-9]+/g, "");
+}
+
+function normalizeComparableValue(
+  value: string | null | undefined,
+) {
+  return String(value ?? "")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function isImportableCoach(row: CsvRow) {
+  const name = normalizeComparableValue(
+    row.name,
+  );
+
+  const title = normalizeComparableValue(
+    row.title,
+  );
+
+  const reviewStatus =
+    normalizeComparableValue(
+      row.reviewStatus,
+    ).toUpperCase();
 
   const lowerName =
     name.toLowerCase();
-
-  const title =
-    normalizedCoachTitle(
-      row.title,
-    );
-
-  if (
-    !name ||
-    !title
-  ) {
-    return false;
-  }
-
-  const badExactNames = [
-    "full bio",
-    "bio",
-    "view bio",
-    "read bio",
-    "baseball",
-    "baseball staff",
-    "baseball coaching staff",
-    "coaching staff",
-  ];
-
-  if (
-    badExactNames.includes(
-      lowerName,
-    )
-  ) {
-    return false;
-  }
-
-  const badNamePrefixes = [
-    "full bio ",
-    "view bio ",
-    "read bio ",
-  ];
-
-  if (
-    badNamePrefixes.some(
-      (prefix) =>
-        lowerName.startsWith(
-          prefix,
-        ),
-    )
-  ) {
-    return false;
-  }
 
   const badNameTerms = [
     "basketball",
@@ -345,102 +354,35 @@ function isImportableCoach(
     "rowing",
     "tennis",
     "ticketing",
+    "coaching staff",
+    "staff directory",
     "team roster",
     "news schedule",
-    "staff directory",
     "sports covered",
     "alma mater",
-    "coaches coaches",
   ];
 
+  if (!name || !title) {
+    return false;
+  }
+
   if (
-    badNameTerms.some(
-      (term) =>
-        lowerName.includes(
-          term,
-        ),
-    )
+    reviewStatus ===
+    "NEEDS_MANUAL_REVIEW"
   ) {
     return false;
   }
 
-  const excludedTitleTerms = [
-    "director of operations",
-    "baseball operations",
-    "director of baseball strategy",
-    "director of baseball player personnel",
-    "assistant director of operations",
-    "operations coordinator",
-    "director of player development",
-    "director of baseball player development",
-    "assistant director of player development",
-    "player development coordinator",
-    "director of pitching development",
-    "director of hitting development",
-    "pitching development",
-    "hitting development",
-    "director of baseball analytics",
-    "baseball analytics",
-    "pitching analytics",
-    "hitting analytics",
-    "video coordinator",
-    "creative video",
-    "quality control",
-    "strength & conditioning",
-    "strength and conditioning",
-    "strenght coach",
-    "sports performance",
-    "baseball performance",
-    "athletic performance",
-    "athletic trainer",
-    "communications",
-    "equipment",
-    "video analytics",
-    "team manager",
-    "graduate assistant",
-    "graduate manager",
-    "student assistant",
-    "undergraduate assistant",
-    "volunteer assistant",
-    "scouting assistant",
-    "special assistant",
-  ];
-
   if (
-    excludedTitleTerms.some(
-      (term) =>
-        title.includes(term),
+    badNameTerms.some((term) =>
+      lowerName.includes(term),
     )
   ) {
     return false;
   }
-
-const isCoachTitle =
-  title.includes("coach");
-
-const isRecruitingTitle =
-  title.includes(
-    "recruiting coordinator",
-  ) ||
-  title.includes(
-    "director of recruiting",
-  );
-
-const isConfirmedHeadCoach =
-  isHeadCoachRow(row);
-
-if (
-  !isCoachTitle &&
-  !isRecruitingTitle &&
-  !isConfirmedHeadCoach
-) {
-  return false;
-}
 
   const nameParts =
-    name
-      .split(/\s+/)
-      .filter(Boolean);
+    name.split(/\s+/).filter(Boolean);
 
   if (
     nameParts.length < 2 ||
@@ -449,7 +391,9 @@ if (
     return false;
   }
 
-  return true;
+  return Boolean(
+    normalizeCoachNameKey(name),
+  );
 }
 
 function parseBool(value: string | undefined, fallback = false): boolean {
@@ -984,6 +928,307 @@ async function importProgramSocials(
   );
 }
 
+function coachRowToData(
+  row: CsvRow,
+): CoachImportData {
+  return {
+    name:
+      normalizeComparableValue(
+        row.name,
+      ),
+
+    title:
+      emptyToNull(
+        row.title,
+      ),
+
+    email:
+      emptyToNull(
+        row.email,
+      ),
+
+    phone:
+      emptyToNull(
+        row.phone,
+      ),
+
+    bioUrl:
+      emptyToNull(
+        row.bioUrl,
+      ),
+
+    contactUrl:
+      emptyToNull(
+        row.contactUrl,
+      ),
+
+    headshotUrl:
+      emptyToNull(
+        row.headshotUrl,
+      ),
+
+    xUrl:
+      emptyToNull(
+        row.xUrl,
+      ),
+
+    instagramUrl:
+      emptyToNull(
+        row.instagramUrl,
+      ),
+
+    linkedinUrl:
+      emptyToNull(
+        row.linkedinUrl,
+      ),
+
+    isHeadCoach:
+      parseBool(
+        row.isHeadCoach,
+      ),
+  };
+}
+
+function mergeCoachImportData(
+  existing: ExistingCoach,
+  incoming: CoachImportData,
+): CoachImportData {
+  /*
+   * Do not erase useful existing values merely because the current
+   * athletics page omitted a field during this scrape.
+   */
+  return {
+    name:
+      incoming.name ||
+      existing.name,
+
+    title:
+      incoming.title ??
+      existing.title,
+
+    email:
+      incoming.email ??
+      existing.email,
+
+    phone:
+      incoming.phone ??
+      existing.phone,
+
+    bioUrl:
+      incoming.bioUrl ??
+      existing.bioUrl,
+
+    contactUrl:
+      incoming.contactUrl ??
+      existing.contactUrl,
+
+    headshotUrl:
+      incoming.headshotUrl ??
+      existing.headshotUrl,
+
+    xUrl:
+      incoming.xUrl ??
+      existing.xUrl,
+
+    instagramUrl:
+      incoming.instagramUrl ??
+      existing.instagramUrl,
+
+    linkedinUrl:
+      incoming.linkedinUrl ??
+      existing.linkedinUrl,
+
+    /*
+     * This should reflect the current title, including when someone
+     * moves from head coach to another listed role.
+     */
+    isHeadCoach:
+      incoming.isHeadCoach,
+  };
+}
+
+function coachDataChanged(
+  existing: ExistingCoach,
+  merged: CoachImportData,
+) {
+  return (
+    normalizeComparableValue(
+      existing.name,
+    ) !==
+      normalizeComparableValue(
+        merged.name,
+      ) ||
+
+    normalizeComparableValue(
+      existing.title,
+    ) !==
+      normalizeComparableValue(
+        merged.title,
+      ) ||
+
+    normalizeComparableValue(
+      existing.email,
+    ).toLowerCase() !==
+      normalizeComparableValue(
+        merged.email,
+      ).toLowerCase() ||
+
+    normalizeComparableValue(
+      existing.phone,
+    ) !==
+      normalizeComparableValue(
+        merged.phone,
+      ) ||
+
+    normalizeComparableValue(
+      existing.bioUrl,
+    ) !==
+      normalizeComparableValue(
+        merged.bioUrl,
+      ) ||
+
+    normalizeComparableValue(
+      existing.contactUrl,
+    ) !==
+      normalizeComparableValue(
+        merged.contactUrl,
+      ) ||
+
+    normalizeComparableValue(
+      existing.headshotUrl,
+    ) !==
+      normalizeComparableValue(
+        merged.headshotUrl,
+      ) ||
+
+    normalizeComparableValue(
+      existing.xUrl,
+    ) !==
+      normalizeComparableValue(
+        merged.xUrl,
+      ) ||
+
+    normalizeComparableValue(
+      existing.instagramUrl,
+    ) !==
+      normalizeComparableValue(
+        merged.instagramUrl,
+      ) ||
+
+    normalizeComparableValue(
+      existing.linkedinUrl,
+    ) !==
+      normalizeComparableValue(
+        merged.linkedinUrl,
+      ) ||
+
+    existing.isHeadCoach !==
+      merged.isHeadCoach
+  );
+}
+
+function findExistingCoachMatch(
+  existingCoaches: ExistingCoach[],
+  incoming: CoachImportData,
+): {
+  action: "MATCH" | "CONFLICT" | "NONE";
+  coach?: ExistingCoach;
+  reason?: string;
+} {
+  const incomingNameKey =
+    normalizeCoachNameKey(
+      incoming.name,
+    );
+
+  const nameMatches =
+    existingCoaches.filter(
+      (coach) =>
+        normalizeCoachNameKey(
+          coach.name,
+        ) === incomingNameKey,
+    );
+
+  if (nameMatches.length === 1) {
+    return {
+      action: "MATCH",
+      coach: nameMatches[0],
+    };
+  }
+
+  if (nameMatches.length > 1) {
+    /*
+     * Try resolving duplicate names by exact email.
+     */
+    const normalizedIncomingEmail =
+      normalizeComparableValue(
+        incoming.email,
+      ).toLowerCase();
+
+    if (normalizedIncomingEmail) {
+      const emailMatches =
+        nameMatches.filter(
+          (coach) =>
+            normalizeComparableValue(
+              coach.email,
+            ).toLowerCase() ===
+            normalizedIncomingEmail,
+        );
+
+      if (emailMatches.length === 1) {
+        return {
+          action: "MATCH",
+          coach: emailMatches[0],
+        };
+      }
+    }
+
+    return {
+      action: "CONFLICT",
+      reason:
+        `Multiple existing coaches share normalized name "${incoming.name}"`,
+    };
+  }
+
+  /*
+   * Email is a useful secondary identity signal when a coach's displayed
+   * name changes slightly, but only use it when it resolves uniquely.
+   */
+  const normalizedIncomingEmail =
+    normalizeComparableValue(
+      incoming.email,
+    ).toLowerCase();
+
+  if (normalizedIncomingEmail) {
+    const emailMatches =
+      existingCoaches.filter(
+        (coach) =>
+          normalizeComparableValue(
+            coach.email,
+          ).toLowerCase() ===
+          normalizedIncomingEmail,
+      );
+
+    if (emailMatches.length === 1) {
+      return {
+        action: "MATCH",
+        coach: emailMatches[0],
+      };
+    }
+
+    if (emailMatches.length > 1) {
+      return {
+        action: "CONFLICT",
+        reason:
+          `Multiple existing coaches share email "${incoming.email}"`,
+      };
+    }
+  }
+
+  return {
+    action: "NONE",
+  };
+}
+
 async function importBaseballCoaches() {
   const rows = COACHES_FILE
     ? readCsv(COACHES_FILE)
@@ -1004,17 +1249,22 @@ async function importBaseballCoaches() {
 
   let missingSlugCount = 0;
   let skippedRowCount = 0;
+  let duplicateSourceRowCount = 0;
 
   for (const row of rows) {
     const slug =
-      String(row.slug ?? "").trim();
+      normalizeComparableValue(
+        row.slug,
+      );
 
     if (!slug) {
       missingSlugCount += 1;
+
       console.log(
         "  ⚠️ Missing slug row:",
         row,
       );
+
       continue;
     }
 
@@ -1030,32 +1280,56 @@ async function importBaseballCoaches() {
       continue;
     }
 
-    const existingRows =
+    const schoolRows =
       importableRowsBySlug.get(slug) ??
       [];
 
-    existingRows.push(row);
+    const incomingNameKey =
+      normalizeCoachNameKey(
+        row.name,
+      );
+
+    const duplicateSourceRow =
+      schoolRows.some(
+        (existingRow) =>
+          normalizeCoachNameKey(
+            existingRow.name,
+          ) === incomingNameKey,
+      );
+
+    if (duplicateSourceRow) {
+      duplicateSourceRowCount += 1;
+
+      console.log(
+        `  ⚠️ Duplicate source coach skipped: ${slug} / ${row.name}`,
+      );
+
+      continue;
+    }
+
+    schoolRows.push(row);
 
     importableRowsBySlug.set(
       slug,
-      existingRows,
+      schoolRows,
     );
   }
+
+  const importableCoachCount =
+    Array.from(
+      importableRowsBySlug.values(),
+    ).reduce(
+      (total, schoolRows) =>
+        total + schoolRows.length,
+      0,
+    );
 
   console.log(
     `  Importable schools: ${importableRowsBySlug.size}`,
   );
 
   console.log(
-    `  Importable coach rows: ${
-      Array.from(
-        importableRowsBySlug.values(),
-      ).reduce(
-        (total, schoolRows) =>
-          total + schoolRows.length,
-        0,
-      )
-    }`,
+    `  Importable coach rows: ${importableCoachCount}`,
   );
 
   console.log(
@@ -1063,12 +1337,27 @@ async function importBaseballCoaches() {
   );
 
   console.log(
+    `  Duplicate source rows: ${duplicateSourceRowCount}`,
+  );
+
+  console.log(
     `  Missing-slug rows: ${missingSlugCount}`,
   );
 
-let importedCoachCount = 0;
-let replacedProgramCount = 0;
-let missingProgramCount = 0;
+  let processedProgramCount = 0;
+  let missingCollegeCount = 0;
+  let missingProgramCount = 0;
+
+  let createdCount = 0;
+  let updatedCount = 0;
+  let unchangedCount = 0;
+  let conflictCount = 0;
+
+  const conflictRows: Array<{
+    slug: string;
+    name: string;
+    reason: string;
+  }> = [];
 
   for (
     const [slug, schoolRows]
@@ -1078,153 +1367,265 @@ let missingProgramCount = 0;
       `\nProcessing coach staff: "${slug}"`,
     );
 
-const college =
-      await prisma.college.findUnique({
-        where: {
-          slug,
-        },
-        include: {
-          baseballProgram: true,
-        },
-      });
+    const college =
+      await requireCollegeBySlug(slug);
 
-if (!college) {
-  console.log(
-    `  ⚠️ Unknown college slug; skipping coach staff: ${slug}`,
-  );
+    if (!college) {
+      missingCollegeCount += 1;
 
-  continue;
-}
-
-if (!college.baseballProgram) {
-  missingProgramCount += 1;
-
-  console.log(
-    `  ⚠️ No baseball program; skipping coach staff: ${slug}`,
-  );
-
-  continue;
-}
-
-const hasHeadCoach =
-  schoolRows.some(
-    isHeadCoachRow,
-  );
-
-if (!hasHeadCoach) {
-  console.log(
-    `  ⚠️ No confirmed head coach; preserving existing staff: ${slug}`,
-  );
-
-  for (
-    const row
-    of schoolRows
-  ) {
-    console.log(
-      `    Preserved candidate: ${row.name} / ${
-        row.title || ""
-      }`,
-    );
-  }
-
-  continue;
-}
-
-    if (DRY_RUN) {
       console.log(
-        `  DRY replace: ${schoolRows.length} coach row(s)`,
+        `  ⚠️ College not found; skipping: ${slug}`,
       );
-
-      for (const row of schoolRows) {
-        console.log(
-          `    DRY coach: ${row.name} / ${
-            row.title || ""
-          }`,
-        );
-      }
-
-      replacedProgramCount += 1;
-      importedCoachCount +=
-        schoolRows.length;
 
       continue;
     }
 
-    await prisma.$transaction(
-      async (transaction) => {
-        await transaction
-          .collegeBaseballCoach
-          .deleteMany({
-            where: {
-              programId:
-                college.baseballProgram!.id,
-            },
-          });
+    if (!college.baseballProgram) {
+      missingProgramCount += 1;
 
-        for (const row of schoolRows) {
-          await transaction
-            .collegeBaseballCoach
-            .create({
-              data: {
-                programId:
-                  college.baseballProgram!.id,
-                name:
-                  String(
-                    row.name ?? "",
-                  ).trim(),
-                title:
-                  emptyToNull(
-                    row.title,
-                  ),
-                email:
-                  emptyToNull(
-                    row.email,
-                  ),
-                phone:
-                  emptyToNull(
-                    row.phone,
-                  ),
-                bioUrl:
-                  emptyToNull(
-                    row.bioUrl,
-                  ),
-                contactUrl:
-                  emptyToNull(
-                    row.contactUrl,
-                  ),
-                headshotUrl:
-                  emptyToNull(
-                    row.headshotUrl,
-                  ),
-                xUrl:
-                  emptyToNull(
-                    row.xUrl,
-                  ),
-                instagramUrl:
-                  emptyToNull(
-                    row.instagramUrl,
-                  ),
-                linkedinUrl:
-                  emptyToNull(
-                    row.linkedinUrl,
-                  ),
-                isHeadCoach:
-                  parseBool(
-                    row.isHeadCoach,
-                  ),
-              },
-            });
-        }
-      },
-    );
+      console.log(
+        `  ⚠️ No baseball program; skipping coach staff: ${slug}`,
+      );
 
-    replacedProgramCount += 1;
-    importedCoachCount +=
-      schoolRows.length;
+      continue;
+    }
+
+    const programId =
+      college.baseballProgram.id;
+
+    const existingCoaches =
+      await prisma.collegeBaseballCoach.findMany({
+        where: {
+          programId,
+        },
+
+        select: {
+          id: true,
+          name: true,
+          title: true,
+          email: true,
+          phone: true,
+          bioUrl: true,
+          contactUrl: true,
+          headshotUrl: true,
+          xUrl: true,
+          instagramUrl: true,
+          linkedinUrl: true,
+          isHeadCoach: true,
+        },
+
+        orderBy: {
+          name: "asc",
+        },
+      });
+
+    const plannedActions: Array<{
+      action: CoachImportAction;
+      incoming: CoachImportData;
+      existing?: ExistingCoach;
+      merged?: CoachImportData;
+      reason?: string;
+    }> = [];
+
+    /*
+     * Prevent one existing coach from matching multiple incoming rows.
+     */
+    const matchedExistingCoachIds =
+      new Set<string>();
+
+    for (const row of schoolRows) {
+      const incoming =
+        coachRowToData(row);
+
+      const availableExistingCoaches =
+        existingCoaches.filter(
+          (coach) =>
+            !matchedExistingCoachIds.has(
+              coach.id,
+            ),
+        );
+
+      const match =
+        findExistingCoachMatch(
+          availableExistingCoaches,
+          incoming,
+        );
+
+      if (
+        match.action === "CONFLICT"
+      ) {
+        plannedActions.push({
+          action: "CONFLICT",
+          incoming,
+          reason:
+            match.reason ??
+            "Ambiguous coach match",
+        });
+
+        continue;
+      }
+
+      if (
+        match.action === "NONE" ||
+        !match.coach
+      ) {
+        plannedActions.push({
+          action: "CREATE",
+          incoming,
+        });
+
+        continue;
+      }
+
+      matchedExistingCoachIds.add(
+        match.coach.id,
+      );
+
+      const merged =
+        mergeCoachImportData(
+          match.coach,
+          incoming,
+        );
+
+      plannedActions.push({
+        action:
+          coachDataChanged(
+            match.coach,
+            merged,
+          )
+            ? "UPDATE"
+            : "UNCHANGED",
+
+        incoming,
+        existing:
+          match.coach,
+        merged,
+      });
+    }
+
+    const programCreated =
+      plannedActions.filter(
+        (item) =>
+          item.action === "CREATE",
+      ).length;
+
+    const programUpdated =
+      plannedActions.filter(
+        (item) =>
+          item.action === "UPDATE",
+      ).length;
+
+    const programUnchanged =
+      plannedActions.filter(
+        (item) =>
+          item.action === "UNCHANGED",
+      ).length;
+
+    const programConflicts =
+      plannedActions.filter(
+        (item) =>
+          item.action === "CONFLICT",
+      ).length;
 
     console.log(
-      `  ✅ Replaced staff with ${schoolRows.length} coach row(s)`,
+      `  Existing: ${existingCoaches.length}`,
     );
+
+    console.log(
+      `  Incoming: ${schoolRows.length}`,
+    );
+
+    console.log(
+      `  Plan: ${programCreated} create, ${programUpdated} update, ${programUnchanged} unchanged, ${programConflicts} conflict`,
+    );
+
+    for (const item of plannedActions) {
+      if (
+        item.action === "CONFLICT"
+      ) {
+        conflictRows.push({
+          slug,
+          name:
+            item.incoming.name,
+          reason:
+            item.reason ??
+            "Ambiguous coach match",
+        });
+
+        console.log(
+          `    ⚠️ CONFLICT: ${item.incoming.name} — ${item.reason}`,
+        );
+      } else {
+        console.log(
+          `    ${DRY_RUN ? "DRY " : ""}${item.action}: ${item.incoming.name} / ${
+            item.incoming.title ?? ""
+          }`,
+        );
+      }
+    }
+
+    if (!DRY_RUN) {
+      await prisma.$transaction(
+        async (transaction) => {
+          for (const item of plannedActions) {
+            if (
+              item.action === "CREATE"
+            ) {
+              await transaction
+                .collegeBaseballCoach
+                .create({
+                  data: {
+                    programId,
+                    ...item.incoming,
+                  },
+                });
+            }
+
+            if (
+              item.action === "UPDATE" &&
+              item.existing &&
+              item.merged
+            ) {
+              await transaction
+                .collegeBaseballCoach
+                .update({
+                  where: {
+                    id:
+                      item.existing.id,
+                  },
+
+                  data:
+                    item.merged,
+                });
+            }
+          }
+        },
+      );
+    }
+
+    processedProgramCount += 1;
+    createdCount += programCreated;
+    updatedCount += programUpdated;
+    unchangedCount += programUnchanged;
+    conflictCount += programConflicts;
+
+    /*
+     * Deliberately do not delete existing coaches that were absent from
+     * this scrape. A temporary page omission must not destroy saved data.
+     */
+    const unmatchedExistingCount =
+      existingCoaches.filter(
+        (coach) =>
+          !matchedExistingCoachIds.has(
+            coach.id,
+          ),
+      ).length;
+
+    if (unmatchedExistingCount > 0) {
+      console.log(
+        `  ℹ️ Preserved ${unmatchedExistingCount} existing unmatched coach row(s)`,
+      );
+    }
   }
 
   console.log(
@@ -1232,15 +1633,35 @@ if (!hasHeadCoach) {
   );
 
   console.log(
-    `  Programs processed: ${replacedProgramCount}`,
+    `  Mode: ${DRY_RUN ? "DRY RUN" : "WRITE"}`,
   );
 
   console.log(
-    `  Coaches processed: ${importedCoachCount}`,
+    `  Programs processed: ${processedProgramCount}`,
   );
 
   console.log(
-    `  Skipped rows: ${skippedRowCount}`,
+    `  Coaches created: ${createdCount}`,
+  );
+
+  console.log(
+    `  Coaches updated: ${updatedCount}`,
+  );
+
+  console.log(
+    `  Coaches unchanged: ${unchangedCount}`,
+  );
+
+  console.log(
+    `  Match conflicts: ${conflictCount}`,
+  );
+
+  console.log(
+    `  Skipped source rows: ${skippedRowCount}`,
+  );
+
+  console.log(
+    `  Duplicate source rows: ${duplicateSourceRowCount}`,
   );
 
   console.log(
@@ -1248,8 +1669,28 @@ if (!hasHeadCoach) {
   );
 
   console.log(
+    `  Missing colleges: ${missingCollegeCount}`,
+  );
+
+  console.log(
     `  Schools without baseball programs: ${missingProgramCount}`,
   );
+
+  if (conflictRows.length > 0) {
+    console.log(
+      "\n⚠️ Coach match conflicts:",
+    );
+
+    for (const conflict of conflictRows) {
+      console.log(
+        `  ${conflict.slug} / ${conflict.name}: ${conflict.reason}`,
+      );
+    }
+
+    throw new Error(
+      `${conflictRows.length} coach match conflict(s) require review before production import.`,
+    );
+  }
 }
 
 function printHelp() {
