@@ -50,9 +50,51 @@ const limitArg = process.argv.find((arg) =>
   arg.startsWith("--limit="),
 );
 
+const schoolEqualsArg = process.argv.find((arg) =>
+  arg.startsWith("--school="),
+);
+
+const schoolFlagIndex = process.argv.findIndex(
+  (arg) => arg === "--school",
+);
+
+const programIdEqualsArg = process.argv.find((arg) =>
+  arg.startsWith("--program-id="),
+);
+
+const programIdFlagIndex = process.argv.findIndex(
+  (arg) => arg === "--program-id",
+);
+
 const LIMIT = limitArg
   ? Number(limitArg.split("=")[1])
   : undefined;
+
+const SCHOOL_FILTER =
+  schoolEqualsArg?.slice("--school=".length).trim() ||
+  (
+    schoolFlagIndex >= 0
+      ? process.argv[schoolFlagIndex + 1]?.trim()
+      : ""
+  ) ||
+  undefined;
+
+const PROGRAM_ID_FILTER =
+  programIdEqualsArg
+    ?.slice("--program-id=".length)
+    .trim() ||
+  (
+    programIdFlagIndex >= 0
+      ? process.argv[programIdFlagIndex + 1]?.trim()
+      : ""
+  ) ||
+  undefined;
+
+const ZERO_COACHES_ONLY =
+  process.argv.includes("--zero-coaches");
+
+const DRY_RUN =
+  process.argv.includes("--dry-run");
 
 /*
  * A result above this threshold is probably an athletics-wide
@@ -206,6 +248,10 @@ function buildCandidateUrls(
 
   for (const year of rosterYears) {
     candidates.push(
+      {
+        pattern: "prestosports-coaches-index",
+        url: `${baseUrl}/coaches/index`,
+      },
       {
         pattern: "coaches-year",
         url: `${base}/coaches/${year}`,
@@ -505,9 +551,13 @@ function looksLikeCoachTitle(value: string) {
     "head baseball coach",
     "assistant head coach",
     "associate head coach",
+    "associate head baseball coach",
     "assistant coach",
     "assistant baseball coach",
+    "associate a.d./baseball",
+    "associate ad/baseball",
     "baseball coach",
+    "baseball operations coordinator",
     "pitching coach",
     "hitting coach",
     "catching coach",
@@ -517,7 +567,11 @@ function looksLikeCoachTitle(value: string) {
     "director of baseball operations",
     "director of operations",
     "director of player development",
+    "director of player development and scouting",
+    "director of program & player development",
+    "director of program and player development",
     "director of pitching",
+    "director of pitching development and scouting",
     "director of hitting",
     "player development coordinator",
     "pitching strategist",
@@ -804,14 +858,18 @@ function isEndOfCoachingStaffHeading(value: string) {
 }
 
 function looksLikeCoachProfileHref(href: string) {
-  const lower = href.toLowerCase();
+  const lower = String(href ?? "")
+    .toLowerCase()
+    .split("#")[0]
+    .split("?")[0];
 
   return (
     lower.includes("/coach/") ||
     lower.includes("/coaches/") ||
-    lower.includes("/staff/") ||
+    lower.includes("/coache/") ||
+    lower.includes("/roster/coaches/") ||
     lower.includes("/roster/staff/") ||
-    lower.includes("/roster/coaches/")
+    /\/sports\/[^/]+\/roster\/season\/\d+\/staff\/[^/]+\/?$/.test(lower)
   );
 }
 
@@ -893,73 +951,90 @@ function findCoachingStaffRegions(
 
 function findCoachContainersFromProfileLinks(
   $: cheerio.CheerioAPI,
-) {
+): cheerio.Cheerio<any>[] {
   const containers: cheerio.Cheerio<any>[] = [];
   const seenElements = new Set<any>();
+  const processedHrefs = new Set<string>();
 
   $("a[href]").each((_, anchorNode) => {
     const anchor = $(anchorNode);
-    const href = anchor.attr("href") ?? "";
+    const href = cleanText(anchor.attr("href") ?? "");
     const anchorText = cleanText(anchor.text());
 
-    if (!looksLikeCoachProfileHref(href)) {
+    if (!href || !looksLikeCoachProfileHref(href)) {
       return;
     }
 
+    /*
+     * Ignore image-only links, "Full Bio", and directory navigation links.
+     * We only begin container discovery from the actual person-name link.
+     */
     if (!looksLikePersonName(anchorText)) {
       return;
     }
 
-    /*
-     * Prefer a table row when the coach appears in a staff directory
-     * table. Gardner-Webb and similar Sidearm pages commonly use this
-     * structure.
-     */
-    const tableRow = anchor.closest("tr");
+    const normalizedHref = href
+      .toLowerCase()
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/\/+$/, "");
 
-    if (tableRow.length) {
-      const rowText = cleanText(tableRow.text());
-
-      if (
-        rowText.includes(anchorText) &&
-        looksLikeCoachTitle(rowText)
-      ) {
-        const element = tableRow.get(0);
-
-        if (element && !seenElements.has(element)) {
-          seenElements.add(element);
-          containers.push(tableRow);
-        }
-
-        return;
-      }
+    if (!normalizedHref || processedHrefs.has(normalizedHref)) {
+      return;
     }
 
-    /*
-     * Fall back to the nearest reasonably scoped parent containing one
-     * coach name and one recognized baseball staff title.
-     */
+    processedHrefs.add(normalizedHref);
+
     let container = anchor.parent();
 
-    for (let depth = 0; depth < 7; depth++) {
+    for (let depth = 0; depth < 8; depth += 1) {
       if (!container.length) {
         break;
       }
 
-      const distinctProfileNames =
-        findDistinctCoachProfileNames($, container);
+      const containerText = cleanText(container.text());
 
-      if (distinctProfileNames.size > 1) {
+      /*
+       * Count distinct person-name links in this candidate container,
+       * while collapsing image/name/Full Bio links that share one href.
+       */
+      const distinctPeople = new Map<string, string>();
+
+      container.find("a[href]").each((_, childNode) => {
+        const child = $(childNode);
+        const childHref = cleanText(child.attr("href") ?? "");
+        const childText = cleanText(child.text());
+
+        if (
+          !childHref ||
+          !looksLikeCoachProfileHref(childHref) ||
+          !looksLikePersonName(childText)
+        ) {
+          return;
+        }
+
+        const normalizedChildHref = childHref
+          .toLowerCase()
+          .split("?")[0]
+          .split("#")[0]
+          .replace(/\/+$/, "");
+
+        distinctPeople.set(normalizedChildHref, childText);
+      });
+
+      /*
+       * Once the parent contains multiple different people,
+       * we have climbed above the individual card.
+       */
+      if (distinctPeople.size > 1) {
         break;
       }
 
-      const containerText = cleanText(
-        container.text(),
-      );
+      const containsThisPerson =
+        distinctPeople.get(normalizedHref) === anchorText;
 
       if (
-        distinctProfileNames.size === 1 &&
-        containerText.includes(anchorText) &&
+        containsThisPerson &&
         looksLikeCoachTitle(containerText)
       ) {
         const element = container.get(0);
@@ -974,6 +1049,84 @@ function findCoachContainersFromProfileLinks(
 
       container = container.parent();
     }
+  });
+
+  return containers;
+}
+
+function findWmtRosterStaffContainers(
+  $: cheerio.CheerioAPI,
+): cheerio.Cheerio<any>[] {
+  const containers: cheerio.Cheerio<any>[] = [];
+  const seenElements = new Set<any>();
+
+  /*
+   * WMT Digital roster pages separate coaching staff and support staff
+   * into roster-staff-members__block elements.
+   *
+   * Each individual staff member is represented by one roster-list-item.
+   */
+  $(".roster-staff-members__block").each((_, blockNode) => {
+    const block = $(blockNode);
+
+    const heading = cleanText(
+      block
+        .find(".roster-staff-members__heading")
+        .first()
+        .text(),
+    );
+
+    /*
+     * Only extract the coaching-staff block.
+     *
+     * This excludes support staff, student managers, and player cards.
+     */
+    if (!isCoachingStaffHeading(heading)) {
+      return;
+    }
+
+    block
+      .find("li.roster-list-item")
+      .each((_, itemNode) => {
+        const item = $(itemNode);
+
+        const name = cleanText(
+          item
+            .find(
+              'a.roster-list-item__title[href*="/roster/"][href*="/staff/"]',
+            )
+            .first()
+            .text(),
+        );
+
+        const title = normalizeTitle(
+          item
+            .find(
+              ".roster-list-item__profile-field--position",
+            )
+            .first()
+            .text(),
+        );
+
+        if (
+          !looksLikePersonName(name) ||
+          !looksLikeCoachTitle(title)
+        ) {
+          return;
+        }
+
+        const element = item.get(0);
+
+        if (
+          !element ||
+          seenElements.has(element)
+        ) {
+          return;
+        }
+
+        seenElements.add(element);
+        containers.push(item);
+      });
   });
 
   return containers;
@@ -1031,6 +1184,108 @@ function findCoachContainersFromRegion(
   });
 
   return containers;
+}
+
+function extractWashingtonStateRosterRecords(
+  $: cheerio.CheerioAPI,
+  origin: string,
+  contactUrl: string,
+): CoachRecord[] {
+  const records = new Map<string, CoachRecord>();
+  const documentHtml = $.html();
+
+  const coachingHeadingMatch = documentHtml.match(
+    /<h[1-6][^>]*>\s*Baseball Coaching Staff\s*<\/h[1-6]>/i,
+  );
+
+  if (coachingHeadingMatch?.index === undefined) {
+    return [];
+  }
+
+  const sectionStart =
+    coachingHeadingMatch.index + coachingHeadingMatch[0].length;
+
+  const remainingHtml = documentHtml.slice(sectionStart);
+  const supportHeadingMatch = remainingHtml.match(
+    /<h[1-6][^>]*>\s*Baseball Support Staff\s*<\/h[1-6]>/i,
+  );
+
+  const sectionHtml = supportHeadingMatch?.index !== undefined
+    ? remainingHtml.slice(0, supportHeadingMatch.index)
+    : remainingHtml;
+
+  const section$ = cheerio.load(`<div id="wsu-coaching-section">${sectionHtml}</div>`);
+  const sectionRoot = section$("#wsu-coaching-section");
+
+  sectionRoot.find("a[href]").each((_, node) => {
+    const anchor = section$(node);
+    const href = cleanText(anchor.attr("href") ?? "");
+    const name = cleanText(anchor.text());
+
+    if (
+      !href ||
+      !looksLikeCoachProfileHref(href) ||
+      !looksLikePersonName(name)
+    ) {
+      return;
+    }
+
+    const normalizedHref = href
+      .toLowerCase()
+      .split("?")[0]
+      .split("#")[0]
+      .replace(/\/+$/, "");
+
+    let container = anchor.closest("li");
+
+    if (!container.length) {
+      container = anchor.parent();
+
+      for (let depth = 0; depth < 8; depth += 1) {
+        if (!container.length) break;
+
+        const distinctPeople = findDistinctCoachProfileNames(
+          section$,
+          container,
+        );
+
+        if (distinctPeople.size > 1) {
+          container = section$(node).parent();
+          break;
+        }
+
+        if (looksLikeCoachTitle(container.text())) {
+          break;
+        }
+
+        container = container.parent();
+      }
+    }
+
+    if (!container.length || !looksLikeCoachTitle(container.text())) {
+      return;
+    }
+
+    const record = extractCoachRecord(
+      section$,
+      container,
+      origin,
+      contactUrl,
+    );
+
+    if (!record) {
+      return;
+    }
+
+    const key = normalizeCoachKey(record.name) || normalizedHref;
+
+    records.set(
+      key,
+      mergeCoachRecords(records.get(key), record),
+    );
+  });
+
+  return Array.from(records.values());
 }
 
 function titleQualityScore(title: string) {
@@ -1167,6 +1422,39 @@ function extractCoachRecord(
     if (title) break;
   }
 
+/*
+ * Sidearm staff tables commonly place the person's name in a <th>
+ * and the title in one of the following <td> cells. Preserve nested
+ * text here; removing child elements can also remove the actual title.
+ */
+if (root.is("tr") && (!name || !title)) {
+  const rowPieces = root
+    .children("th, td")
+    .map((_, node) =>
+      normalizeTitle($(node).text()),
+    )
+    .get()
+    .filter(
+      (value) =>
+        Boolean(value) &&
+        value.length <= 180,
+    );
+
+  if (!name) {
+    name =
+      rowPieces.find((value) =>
+        looksLikePersonName(value),
+      ) ?? "";
+  }
+
+  if (!title) {
+    title =
+      rowPieces.find((value) =>
+        looksLikeCoachTitle(value),
+      ) ?? "";
+  }
+}
+
   if (!name || !title) {
     const directPieces: string[] = [];
 
@@ -1193,14 +1481,14 @@ function extractCoachRecord(
 
   title = normalizeTitle(title);
 
-  if (
-    !name ||
-    !title ||
-    isProbablyBadCoachName(name) ||
-    !looksLikeCoachTitle(title)
-  ) {
-    return null;
-  }
+if (
+  !name ||
+  !title ||
+  isProbablyBadCoachName(name) ||
+  !looksLikeCoachTitle(title)
+) {
+  return null;
+}
 
   const extractedEmail = cleanEmail(
     root.find('a[href^="mailto:"]').first().attr("href"),
@@ -1235,10 +1523,13 @@ function extractCoachRecord(
     const absoluteHref = absolutizeUrl(href, origin);
     const normalizedHref = normalizeNameForUrl(absoluteHref);
 
-    const isPossibleBio =
+  const isPossibleBio =
       href.includes("/staff/") ||
+      href.includes("/staff-directory/") ||
       href.includes("/coaches/") ||
       href.includes("/bio/") ||
+      href.includes("/coache/") ||
+      href.includes("/support-staff/") ||
       href.includes("/roster/staff/");
 
     const matchesPerson =
@@ -1381,7 +1672,12 @@ async function fetchHtml(url: string) {
 
 async function fetchRenderedHtml(
   url: string,
-): Promise<string | null> {
+  slug: string,
+): Promise<{
+  html: string;
+  finalUrl: string;
+  title: string;
+} | null> {
   const browser = await chromium.launch({
     headless: true,
   });
@@ -1405,30 +1701,70 @@ async function fetchRenderedHtml(
       })
       .catch(() => undefined);
 
+    /*
+     * Different athletics platforms expose staff in different ways.
+     * Wait for any likely coach-row or coach-profile structure rather
+     * than requiring Gardner-Webb's one exact profile-link format.
+     */
     await page
       .waitForSelector(
-        'a[href*="/sports/baseball/roster/coaches/"]',
+        [
+          "table tr",
+          ".sidearm-roster-coach",
+          ".sidearm-staff-member",
+          ".sidearm-roster-staff",
+          ".coach-card",
+          ".staff-card",
+          "[class*='coach-card']",
+          "[class*='staff-member']",
+          'a[href*="/roster/coaches/"]',
+          'a[href*="/staff-directory/"]',
+          'a[href*="/staff/"]',
+          'a[href*="/coaches/"]',
+        ].join(", "),
         {
           timeout: 15_000,
         },
       )
       .catch(() => undefined);
 
+      const finalUrl = page.url();
+const title = await page.title();
+
+console.log(
+  `    rendered final URL: ${finalUrl}`,
+);
+console.log(
+  `    rendered title: ${title || "(blank)"}`,
+);
+
     const renderedHtml = await page.content();
+
+    const debugDirectory = path.join(
+      process.cwd(),
+      "data",
+      "enrichment",
+      "debug",
+    );
+
+    fs.mkdirSync(debugDirectory, {
+      recursive: true,
+    });
 
     fs.writeFileSync(
       path.join(
-        process.cwd(),
-        "data",
-        "enrichment",
-        "debug",
-        "gardner-webb-rendered.html",
+        debugDirectory,
+        `${slug}-rendered.html`,
       ),
       renderedHtml,
       "utf8",
     );
 
-    return renderedHtml;
+    return {
+  html: renderedHtml,
+  finalUrl,
+  title,
+};
   } catch (error) {
     console.warn(
       `    rendered fetch failed: ${
@@ -1455,28 +1791,88 @@ async function main() {
     `Loaded ${initialCachedPatternCount} cached successful URL pattern(s).`,
   );
 
-const programs = await prisma.collegeBaseballProgram.findMany({
-  where: {
-    division: "NCAA_D1",
-    baseballWebsiteUrl: {
-      not: null,
-    },
-  },
-  include: {
-    college: true,
-  },
-  orderBy: [
-    {
-      conference: "asc",
-    },
-    {
-      college: {
-        name: "asc",
+  console.log(`Mode: ${DRY_RUN ? "DRY RUN" : "GENERATE CSV"}`);
+
+if (SCHOOL_FILTER) {
+  console.log(`School filter: ${SCHOOL_FILTER}`);
+}
+
+if (PROGRAM_ID_FILTER) {
+  console.log(`Program ID filter: ${PROGRAM_ID_FILTER}`);
+}
+
+if (ZERO_COACHES_ONLY) {
+  console.log("Filter: zero-coach programs only");
+}
+
+if (LIMIT) {
+  console.log(`Limit: ${LIMIT}`);
+}
+
+const programs =
+  await prisma.collegeBaseballProgram.findMany({
+    where: {
+      division: "NCAA_D1",
+
+      ...(PROGRAM_ID_FILTER
+        ? {
+            id: PROGRAM_ID_FILTER,
+          }
+        : {}),
+
+      ...(SCHOOL_FILTER
+        ? {
+            college: {
+              is: {
+                OR: [
+                  {
+                    name: {
+                      equals: SCHOOL_FILTER,
+                      mode: "insensitive",
+                    },
+                  },
+                  {
+                    slug: {
+                      equals: SCHOOL_FILTER,
+                      mode: "insensitive",
+                    },
+                  },
+                ],
+              },
+            },
+          }
+        : {}),
+
+      ...(ZERO_COACHES_ONLY
+        ? {
+            coaches: {
+              none: {},
+            },
+          }
+        : {}),
+
+      baseballWebsiteUrl: {
+        not: null,
       },
     },
-  ],
-  ...(LIMIT ? { take: LIMIT } : {}),
-});
+
+    include: {
+      college: true,
+    },
+
+    orderBy: [
+      {
+        conference: "asc",
+      },
+      {
+        college: {
+          name: "asc",
+        },
+      },
+    ],
+
+    ...(LIMIT ? { take: LIMIT } : {}),
+  });
 
   const stats: RunStats = {
     programsScanned: programs.length,
@@ -1652,6 +2048,7 @@ if (slug !== "gardner-webb-university") {
       const origin = new URL(url).origin;
 
       const $ = cheerio.load(html);
+
       const pageRecords = new Map<string, CoachRecord>();
 
       const addCoachRecord = (root: cheerio.Cheerio<any>) => {
@@ -1666,7 +2063,7 @@ if (slug !== "gardner-webb-university") {
         pageRecords.set(key, mergeCoachRecords(pageRecords.get(key), record));
       };
 
-      $("table tbody tr").each((_, el) => {
+      $("table tr").each((_, el) => {
         addCoachRecord($(el));
       });
 
@@ -1703,6 +2100,22 @@ if (slug !== "gardner-webb-university") {
 
 for (const container of profileLinkContainers) {
   addCoachRecord(container);
+}
+
+if (slug === "washington-state-university") {
+  const washingtonStateRecords =
+    extractWashingtonStateRosterRecords($, origin, url);
+
+  for (const record of washingtonStateRecords) {
+    const key = normalizeCoachKey(record.name);
+
+    if (!key) continue;
+
+    pageRecords.set(
+      key,
+      mergeCoachRecords(pageRecords.get(key), record),
+    );
+  }
 }
 
       const coachingRegions = findCoachingStaffRegions($);
@@ -1813,6 +2226,278 @@ if (pageRecords.size > 0) {
     }
 }
 
+/*
+ * Generic rendered-page fallback.
+ *
+ * Some athletics sites return navigation and shell markup to fetch()
+ * while inserting the actual coaching table after JavaScript runs.
+ * If every ordinary candidate failed, render the unversioned coaches
+ * page once with Playwright and run the same extraction logic.
+ */
+if (
+  schoolRecords.size < MIN_EXPECTED_COACH_RECORDS &&
+  slug !== "gardner-webb-university"
+) {
+  const baseUrl = normalizeUrl(
+    program.baseballWebsiteUrl,
+  );
+
+const renderedUrl = baseUrl
+  ? slug === "washington-state-university"
+    ? `${baseUrl}/roster#coaches`
+    : slug === "university-of-new-mexico"
+      ? `${baseUrl}/roster`
+      : `${baseUrl}/coaches`
+  : "";
+
+  if (renderedUrl) {
+    console.log(
+      `  trying rendered: ${renderedUrl}`,
+    );
+
+    stats.urlAttempts += 1;
+
+const renderedResult =
+  await fetchRenderedHtml(
+    renderedUrl,
+    slug,
+  );
+
+const renderedHtml =
+  renderedResult?.html ?? null;
+
+    if (renderedHtml) {
+      const origin =
+        new URL(renderedUrl).origin;
+
+      const $ = cheerio.load(renderedHtml);
+
+      const diagnosticTableCount =
+  $("table").length;
+
+const diagnosticRowCount =
+  $("table tr").length;
+
+const diagnosticCoachLinkCount =
+  $(
+    [
+      'a[href*="/coach/"]',
+      'a[href*="/coache/"]',
+      'a[href*="/coaches/"]',
+      'a[href*="/roster/coaches/"]',
+      'a[href*="/staff-directory/"]',
+      'a[href*="/staff/"]',
+      'a[href*="/support-staff/"]',
+    ].join(", "),
+  ).length;
+
+const diagnosticMailtoCount =
+  $('a[href^="mailto:"]').length;
+
+console.log(
+  `    rendered tables: ${diagnosticTableCount}`,
+);
+console.log(
+  `    rendered table rows: ${diagnosticRowCount}`,
+);
+console.log(
+  `    rendered coach-profile links: ${diagnosticCoachLinkCount}`,
+);
+console.log(
+  `    rendered mailto links: ${diagnosticMailtoCount}`,
+);
+
+      const renderedRecords =
+        new Map<string, CoachRecord>();
+
+      const addRenderedCoachRecord = (
+        root: cheerio.Cheerio<any>,
+      ) => {
+        const record = extractCoachRecord(
+          $,
+          root,
+          origin,
+          renderedUrl,
+        );
+
+        if (!record) return;
+
+        const key =
+          normalizeCoachKey(record.name);
+
+        if (!key) return;
+
+        renderedRecords.set(
+          key,
+          mergeCoachRecords(
+            renderedRecords.get(key),
+            record,
+          ),
+        );
+      };
+
+$("table tr").each((_, el) => {
+  addRenderedCoachRecord($(el));
+});
+
+      const renderedTableRecordCount =
+        renderedRecords.size;
+
+/*
+ * Exact table rows are the safest structure because each row normally
+ * represents one staff member. Do not run broader card/container
+ * fallbacks after a complete table has already been found; broader
+ * containers can span neighboring rows and attach another coach's
+ * contact information.
+ */
+if (
+  renderedTableRecordCount <
+    MIN_EXPECTED_COACH_RECORDS
+) {
+  const renderedCoachCards = $(
+    [
+      ".sidearm-roster-player",
+      ".sidearm-roster-coach",
+      ".sidearm-staff-member",
+      ".sidearm-roster-staff",
+      ".s-person-card",
+      ".coach-card",
+      ".staff-card",
+      ".coaches__item",
+      ".coaching-staff__item",
+      ".roster-coach",
+      ".roster-staff",
+      "[class*='coach-card']",
+      "[class*='coach_item']",
+      "[class*='coach-item']",
+      "[class*='staff-card']",
+      "[class*='staff-member']",
+      "[class*='staff_item']",
+      "[class*='staff-item']",
+      "article",
+    ].join(", "),
+  );
+
+  renderedCoachCards.each((_, el) => {
+    addRenderedCoachRecord($(el));
+  });
+
+  const renderedProfileContainers =
+    findCoachContainersFromProfileLinks($);
+
+  for (
+    const container
+    of renderedProfileContainers
+  ) {
+    addRenderedCoachRecord(container);
+  }
+
+const renderedWmtStaffContainers =
+  findWmtRosterStaffContainers($);
+
+for (
+  const container
+  of renderedWmtStaffContainers
+) {
+  addRenderedCoachRecord(container);
+}
+
+  if (slug === "washington-state-university") {
+    const washingtonStateRecords =
+      extractWashingtonStateRosterRecords(
+        $,
+        origin,
+        renderedUrl,
+      );
+
+    for (const record of washingtonStateRecords) {
+      const key = normalizeCoachKey(record.name);
+
+      if (!key) continue;
+
+      renderedRecords.set(
+        key,
+        mergeCoachRecords(
+          renderedRecords.get(key),
+          record,
+        ),
+      );
+    }
+  }
+
+  const renderedRegions =
+    findCoachingStaffRegions($);
+
+  for (const region of renderedRegions) {
+    const containers =
+      findCoachContainersFromRegion(
+        $,
+        region,
+      );
+
+    for (const container of containers) {
+      addRenderedCoachRecord(container);
+    }
+  }
+}
+
+      if (
+        renderedRecords.size >
+          MAX_COACH_RECORDS_PER_PAGE
+      ) {
+        console.log(
+          `  ⚠️ discarded ${renderedRecords.size} rendered records; page appears to be an athletics-wide staff directory`,
+        );
+      } else if (
+        renderedRecords.size >=
+          MIN_EXPECTED_COACH_RECORDS
+      ) {
+        for (
+          const [key, record]
+          of renderedRecords
+        ) {
+          schoolRecords.set(
+            key,
+            mergeCoachRecords(
+              schoolRecords.get(key),
+              record,
+            ),
+          );
+        }
+
+        console.log(
+          `  ✅ parsed ${schoolRecords.size} unique coach record(s) from rendered ${renderedUrl}`,
+        );
+
+        stats.successfulPrograms += 1;
+        stats.coachRecordsParsed +=
+          schoolRecords.size;
+
+        found = true;
+      } else if (
+        renderedRecords.size > 0
+      ) {
+        for (
+          const [key, record]
+          of renderedRecords
+        ) {
+          schoolRecords.set(
+            key,
+            mergeCoachRecords(
+              schoolRecords.get(key),
+              record,
+            ),
+          );
+        }
+
+        console.log(
+          `  ⚠️ rendered page produced only ${schoolRecords.size} partial coach record(s)`,
+        );
+      }
+    }
+  }
+}
+
 if (
   schoolRecords.size === 0 &&
   slug === "gardner-webb-university"
@@ -1824,8 +2509,14 @@ if (
 
   stats.urlAttempts += 1;
 
-  const renderedHtml =
-    await fetchRenderedHtml(renderedUrl);
+const renderedResult =
+  await fetchRenderedHtml(
+    renderedUrl,
+    slug,
+  );
+
+const renderedHtml =
+  renderedResult?.html ?? null;
 
   if (renderedHtml) {
     const origin = new URL(renderedUrl).origin;
@@ -1858,7 +2549,7 @@ if (
       );
     };
 
-$("table tbody tr").each((_, el) => {
+$("table tr").each((_, el) => {
   const row = $(el);
   const cells = row.find("td");
 
@@ -2086,11 +2777,30 @@ if (schoolRecords.size === 0) {
 
   const csv = rows.map((r) => r.map(csvEscape).join(",")).join("\n");
 
-  saveSuccessfulPatternCache(successfulPatternCache);
+if (!DRY_RUN) {
+  saveSuccessfulPatternCache(
+    successfulPatternCache,
+  );
+} else {
+  console.log(
+    "\nDRY RUN: URL-pattern cache was not updated.",
+  );
+}
 
-  fs.writeFileSync(OUT_FILE, csv, "utf8");
+fs.writeFileSync(
+  OUT_FILE,
+  csv,
+  "utf8",
+);
 
-  console.log(`\n✅ Wrote ${OUT_FILE}`);
+  console.log(
+  `\n✅ Wrote ${OUT_FILE}` +
+    (
+      DRY_RUN
+        ? " (dry-run output only)"
+        : ""
+    ),
+);
 
   if (partialSchools.length > 0) {
     console.log("\n⚠️ Programs with partial coach results:");

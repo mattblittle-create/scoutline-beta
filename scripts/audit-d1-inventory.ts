@@ -6,6 +6,13 @@ import path from "node:path";
 
 const prisma = new PrismaClient();
 
+const EXPECTED_EXTERNAL_D1_INVENTORY = 308;
+
+const SHARED_ATHLETICS_HOSTNAMES = new Set([
+  "naiastats.prestosports.com",
+  "njcaastats.prestosports.com",
+]);
+
 type AuditRow = {
   collegeId: string;
   collegeName: string;
@@ -56,7 +63,9 @@ function normalizeSchoolName(value: string): string {
     .join(" ");
 }
 
-function normalizeDivision(value: string | null | undefined): string {
+function normalizeDivision(
+  value: string | null | undefined,
+): string {
   return clean(value)
     .toUpperCase()
     .replace(/[\s-]+/g, "_")
@@ -66,7 +75,9 @@ function normalizeDivision(value: string | null | undefined): string {
     .replace(/^D_?1$/, "D1");
 }
 
-function legacyDivisionLooksD1(value: string | null | undefined): boolean {
+function legacyDivisionLooksD1(
+  value: string | null | undefined,
+): boolean {
   const normalized = normalizeDivision(value);
 
   return [
@@ -78,7 +89,9 @@ function legacyDivisionLooksD1(value: string | null | undefined): boolean {
   ].includes(normalized);
 }
 
-function getHostname(value: string | null | undefined): string {
+function getHostname(
+  value: string | null | undefined,
+): string {
   const raw = clean(value);
 
   if (!raw) {
@@ -101,7 +114,9 @@ function getHostname(value: string | null | undefined): string {
 
 function escapeCsv(value: unknown): string {
   const text =
-    value === null || value === undefined ? "" : String(value);
+    value === null || value === undefined
+      ? ""
+      : String(value);
 
   if (
     text.includes(",") ||
@@ -129,11 +144,17 @@ function writeCsv(
   const lines = [
     headers.map(escapeCsv).join(","),
     ...rows.map((row) =>
-      headers.map((header) => escapeCsv(row[header])).join(","),
+      headers
+        .map((header) => escapeCsv(row[header]))
+        .join(","),
     ),
   ];
 
-  fs.writeFileSync(filePath, `${lines.join("\n")}\n`, "utf8");
+  fs.writeFileSync(
+    filePath,
+    `${lines.join("\n")}\n`,
+    "utf8",
+  );
 }
 
 function printSection(title: string): void {
@@ -156,7 +177,9 @@ async function main(): Promise<void> {
     `d1-inventory-audit-${timestamp}`,
   );
 
-  fs.mkdirSync(outputDirectory, { recursive: true });
+  fs.mkdirSync(outputDirectory, {
+    recursive: true,
+  });
 
   const colleges = await prisma.college.findMany({
     orderBy: [
@@ -184,6 +207,35 @@ async function main(): Promise<void> {
   const allPrograms = colleges.filter(
     (college) => college.baseballProgram !== null,
   );
+
+  const programDivisionDistribution =
+    new Map<string, number>();
+
+  for (const college of allPrograms) {
+    const division =
+      clean(college.baseballProgram?.division) ||
+      "(NULL)";
+
+    programDivisionDistribution.set(
+      division,
+      (programDivisionDistribution.get(division) ?? 0) +
+        1,
+    );
+  }
+
+  const collegeDivisionDistribution =
+    new Map<string, number>();
+
+  for (const college of colleges) {
+    const division =
+      clean(college.division) || "(NULL)";
+
+    collegeDivisionDistribution.set(
+      division,
+      (collegeDivisionDistribution.get(division) ?? 0) +
+        1,
+    );
+  }
 
   const canonicalD1Programs = colleges.filter(
     (college) =>
@@ -219,15 +271,16 @@ async function main(): Promise<void> {
       !legacyDivisionLooksD1(college.division),
   );
 
-  const programDivisionMissingButLegacyD1 = colleges.filter(
-    (college) =>
-      legacyDivisionLooksD1(college.division) &&
-      college.baseballProgram &&
-      college.baseballProgram.division === null,
-  );
+  const programDivisionMissingButLegacyD1 =
+    colleges.filter(
+      (college) =>
+        legacyDivisionLooksD1(college.division) &&
+        college.baseballProgram &&
+        college.baseballProgram.division === null,
+    );
 
-  const canonicalRows: AuditRow[] = canonicalD1Programs.map(
-    (college) => {
+  const canonicalRows: AuditRow[] =
+    canonicalD1Programs.map((college) => {
       const program = college.baseballProgram;
 
       if (!program) {
@@ -259,22 +312,37 @@ async function main(): Promise<void> {
           (coach) => coach.isHeadCoach,
         ).length,
       };
-    },
-  );
+    });
+
+  const coachedProgramsNotCanonicalD1 =
+    colleges.filter(
+      (college) =>
+        college.baseballProgram &&
+        college.baseballProgram.division !==
+          "NCAA_D1" &&
+        college.baseballProgram.coaches.length > 0,
+    );
 
   /*
    * Exact normalized-name duplicate candidates.
    */
-  const nameGroups = new Map<string, typeof colleges>();
+  const nameGroups = new Map<
+    string,
+    typeof colleges
+  >();
 
   for (const college of colleges) {
-    const normalizedName = normalizeSchoolName(college.name);
+    const normalizedName = normalizeSchoolName(
+      college.name,
+    );
 
     if (!normalizedName) {
       continue;
     }
 
-    const existing = nameGroups.get(normalizedName) ?? [];
+    const existing =
+      nameGroups.get(normalizedName) ?? [];
+
     existing.push(college);
     nameGroups.set(normalizedName, existing);
   }
@@ -294,7 +362,9 @@ async function main(): Promise<void> {
         city: clean(college.city),
         state: clean(college.state),
         legacyDivision: clean(college.division),
-        programId: clean(college.baseballProgram?.id),
+        programId: clean(
+          college.baseballProgram?.id,
+        ),
         programDivision: clean(
           college.baseballProgram?.division,
         ),
@@ -303,21 +373,26 @@ async function main(): Promise<void> {
             college.conference,
         ),
         baseballWebsiteUrl: clean(
-          college.baseballProgram?.baseballWebsiteUrl ??
+          college.baseballProgram
+            ?.baseballWebsiteUrl ??
             college.programWebsiteUrl,
         ),
         coachCount:
-          college.baseballProgram?.coaches.length ?? 0,
+          college.baseballProgram?.coaches.length ??
+          0,
       })),
     );
 
   /*
    * Website-hostname duplicate candidates.
    *
-   * Two records pointing to the same athletics hostname are strong
-   * duplicate candidates, although they still require manual review.
+   * Shared statistics hosts are excluded because many unrelated
+   * programs use those same domains.
    */
-  const hostnameGroups = new Map<string, typeof colleges>();
+  const hostnameGroups = new Map<
+    string,
+    typeof colleges
+  >();
 
   for (const college of colleges) {
     const hostname = getHostname(
@@ -326,11 +401,16 @@ async function main(): Promise<void> {
         college.websiteUrl,
     );
 
-    if (!hostname) {
+    if (
+      !hostname ||
+      SHARED_ATHLETICS_HOSTNAMES.has(hostname)
+    ) {
       continue;
     }
 
-    const existing = hostnameGroups.get(hostname) ?? [];
+    const existing =
+      hostnameGroups.get(hostname) ?? [];
+
     existing.push(college);
     hostnameGroups.set(hostname, existing);
   }
@@ -350,7 +430,9 @@ async function main(): Promise<void> {
         city: clean(college.city),
         state: clean(college.state),
         legacyDivision: clean(college.division),
-        programId: clean(college.baseballProgram?.id),
+        programId: clean(
+          college.baseballProgram?.id,
+        ),
         programDivision: clean(
           college.baseballProgram?.division,
         ),
@@ -359,22 +441,28 @@ async function main(): Promise<void> {
             college.conference,
         ),
         baseballWebsiteUrl: clean(
-          college.baseballProgram?.baseballWebsiteUrl ??
+          college.baseballProgram
+            ?.baseballWebsiteUrl ??
             college.programWebsiteUrl,
         ),
         coachCount:
-          college.baseballProgram?.coaches.length ?? 0,
+          college.baseballProgram?.coaches.length ??
+          0,
       })),
     );
 
-  const toMismatchRow = (college: (typeof colleges)[number]) => ({
+  const toMismatchRow = (
+    college: (typeof colleges)[number],
+  ) => ({
     collegeId: college.id,
     collegeName: college.name,
     collegeSlug: college.slug,
     city: clean(college.city),
     state: clean(college.state),
     legacyDivision: clean(college.division),
-    programId: clean(college.baseballProgram?.id),
+    programId: clean(
+      college.baseballProgram?.id,
+    ),
     programDivision: clean(
       college.baseballProgram?.division,
     ),
@@ -396,17 +484,20 @@ async function main(): Promise<void> {
       ).length ?? 0,
   });
 
-  const noBaseballWebsite = canonicalD1Programs.filter(
-    (college) =>
-      !clean(
-        college.baseballProgram?.baseballWebsiteUrl ??
-          college.programWebsiteUrl,
-      ),
-  );
+  const noBaseballWebsite =
+    canonicalD1Programs.filter(
+      (college) =>
+        !clean(
+          college.baseballProgram
+            ?.baseballWebsiteUrl ??
+            college.programWebsiteUrl,
+        ),
+    );
 
   const noCoaches = canonicalD1Programs.filter(
     (college) =>
-      (college.baseballProgram?.coaches.length ?? 0) === 0,
+      (college.baseballProgram?.coaches.length ??
+        0) === 0,
   );
 
   const noHeadCoach = canonicalD1Programs.filter(
@@ -416,14 +507,15 @@ async function main(): Promise<void> {
       ),
   );
 
-  const multipleHeadCoaches = canonicalD1Programs.filter(
-    (college) =>
-      (
-        college.baseballProgram?.coaches.filter(
-          (coach) => coach.isHeadCoach,
-        ).length ?? 0
-      ) > 1,
-  );
+  const multipleHeadCoaches =
+    canonicalD1Programs.filter(
+      (college) =>
+        (
+          college.baseballProgram?.coaches.filter(
+            (coach) => coach.isHeadCoach,
+          ).length ?? 0
+        ) > 1,
+    );
 
   printSection("D1 DATABASE INVENTORY SUMMARY");
 
@@ -443,14 +535,51 @@ async function main(): Promise<void> {
     `D1 in either field, deduplicated by ID:      ${eitherFieldLooksD1.length}`,
   );
   console.log(
-    `Expected external D1 inventory:              308`,
+    `Expected external D1 inventory:              ${EXPECTED_EXTERNAL_D1_INVENTORY}`,
   );
   console.log(
-    `Canonical gap versus 308:                    ${308 - canonicalD1Programs.length}`,
+    `Canonical gap versus ${EXPECTED_EXTERNAL_D1_INVENTORY}:                    ${
+      EXPECTED_EXTERNAL_D1_INVENTORY -
+      canonicalD1Programs.length
+    }`,
   );
   console.log(
-    `Either-field gap versus 308:                 ${308 - eitherFieldLooksD1.length}`,
+    `Either-field gap versus ${EXPECTED_EXTERNAL_D1_INVENTORY}:                 ${
+      EXPECTED_EXTERNAL_D1_INVENTORY -
+      eitherFieldLooksD1.length
+    }`,
   );
+
+  printSection("DIVISION VALUE DISTRIBUTION");
+
+  console.log("CollegeBaseballProgram.division:");
+
+  for (
+    const [division, count] of Array.from(
+      programDivisionDistribution.entries(),
+    ).sort((a, b) => b[1] - a[1])
+  ) {
+    console.log(
+      `  ${division.padEnd(35)} ${String(
+        count,
+      ).padStart(5)}`,
+    );
+  }
+
+  console.log("");
+  console.log("College.division:");
+
+  for (
+    const [division, count] of Array.from(
+      collegeDivisionDistribution.entries(),
+    ).sort((a, b) => b[1] - a[1])
+  ) {
+    console.log(
+      `  ${division.padEnd(35)} ${String(
+        count,
+      ).padStart(5)}`,
+    );
+  }
 
   printSection("DIVISION FIELD MISMATCHES");
 
@@ -497,6 +626,9 @@ async function main(): Promise<void> {
   printSection("CANONICAL D1 DATA QUALITY");
 
   console.log(
+    `Coached programs not classified NCAA_D1:     ${coachedProgramsNotCanonicalD1.length}`,
+  );
+  console.log(
     `D1 programs without baseball website:        ${noBaseballWebsite.length}`,
   );
   console.log(
@@ -510,7 +642,10 @@ async function main(): Promise<void> {
   );
 
   writeCsv(
-    path.join(outputDirectory, "canonical-d1-programs.csv"),
+    path.join(
+      outputDirectory,
+      "canonical-d1-programs.csv",
+    ),
     canonicalRows,
   );
 
@@ -543,7 +678,9 @@ async function main(): Promise<void> {
       outputDirectory,
       "legacy-d1-null-program-division.csv",
     ),
-    programDivisionMissingButLegacyD1.map(toMismatchRow),
+    programDivisionMissingButLegacyD1.map(
+      toMismatchRow,
+    ),
   );
 
   writeCsv(
@@ -571,13 +708,29 @@ async function main(): Promise<void> {
   );
 
   writeCsv(
-    path.join(outputDirectory, "d1-zero-coaches.csv"),
+    path.join(
+      outputDirectory,
+      "d1-zero-coaches.csv",
+    ),
     noCoaches.map(toMismatchRow),
   );
 
   writeCsv(
-    path.join(outputDirectory, "d1-no-head-coach.csv"),
+    path.join(
+      outputDirectory,
+      "d1-no-head-coach.csv",
+    ),
     noHeadCoach.map(toMismatchRow),
+  );
+
+  writeCsv(
+    path.join(
+      outputDirectory,
+      "coached-programs-not-canonical-d1.csv",
+    ),
+    coachedProgramsNotCanonicalD1.map(
+      toMismatchRow,
+    ),
   );
 
   writeCsv(
@@ -590,16 +743,34 @@ async function main(): Promise<void> {
 
   const summary = {
     generatedAt: new Date().toISOString(),
-    expectedExternalD1Inventory: 308,
+    expectedExternalD1Inventory:
+      EXPECTED_EXTERNAL_D1_INVENTORY,
     totalCollegeRecords: colleges.length,
-    totalBaseballProgramRecords: allPrograms.length,
-    canonicalD1Programs: canonicalD1Programs.length,
+    totalBaseballProgramRecords:
+      allPrograms.length,
+    canonicalD1Programs:
+      canonicalD1Programs.length,
     legacyD1Colleges: legacyD1Colleges.length,
-    eitherFieldD1Colleges: eitherFieldLooksD1.length,
+    eitherFieldD1Colleges:
+      eitherFieldLooksD1.length,
     canonicalGapVersus308:
-      308 - canonicalD1Programs.length,
+      EXPECTED_EXTERNAL_D1_INVENTORY -
+      canonicalD1Programs.length,
     eitherFieldGapVersus308:
-      308 - eitherFieldLooksD1.length,
+      EXPECTED_EXTERNAL_D1_INVENTORY -
+      eitherFieldLooksD1.length,
+    divisionDistribution: {
+      baseballProgram: Object.fromEntries(
+        Array.from(
+          programDivisionDistribution.entries(),
+        ).sort((a, b) => b[1] - a[1]),
+      ),
+      college: Object.fromEntries(
+        Array.from(
+          collegeDivisionDistribution.entries(),
+        ).sort((a, b) => b[1] - a[1]),
+      ),
+    },
     divisionMismatches: {
       legacyD1MissingProgram:
         legacyD1MissingProgram.length,
@@ -627,7 +798,10 @@ async function main(): Promise<void> {
       ).size,
     },
     canonicalD1DataQuality: {
-      missingBaseballWebsite: noBaseballWebsite.length,
+      coachedProgramsNotCanonicalD1:
+        coachedProgramsNotCanonicalD1.length,
+      missingBaseballWebsite:
+        noBaseballWebsite.length,
       zeroCoaches: noCoaches.length,
       noMarkedHeadCoach: noHeadCoach.length,
       multipleMarkedHeadCoaches:
@@ -643,7 +817,7 @@ async function main(): Promise<void> {
 
   printSection("OUTPUT");
 
-  console.log(`Audit files written to:`);
+  console.log("Audit files written to:");
   console.log(outputDirectory);
   console.log("");
   console.log(
