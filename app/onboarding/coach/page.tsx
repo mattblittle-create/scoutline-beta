@@ -62,8 +62,18 @@ function digitsOnly(value: unknown) {
   return String(value ?? "").replace(/\D+/g, "");
 }
 
+function normalizeUSPhone(value: unknown) {
+  const digits = digitsOnly(value);
+
+  if (digits.length === 11 && digits.startsWith("1")) {
+    return digits.slice(1);
+  }
+
+  return digits.slice(0, 10);
+}
+
 function formatPhoneUS(input: unknown) {
-  const digits = digitsOnly(input).slice(0, 10);
+  const digits = normalizeUSPhone(input);
 
   if (!digits) return "";
   if (digits.length <= 3) return `(${digits}`;
@@ -333,9 +343,9 @@ function CoachOnboardingPageInner() {
             );
           }
 
-          const matchedPhone = digitsOnly(
-            nextMatch.phone
-          ).slice(0, 10);
+const matchedPhone = normalizeUSPhone(
+  nextMatch.phone
+);
 
           if (matchedPhone.length === 10) {
             setWorkPhone(matchedPhone);
@@ -378,7 +388,7 @@ function CoachOnboardingPageInner() {
     return Boolean(email) && isEmail(email);
   })();
 
-const phoneDigits = digitsOnly(workPhone).slice(0, 10);
+const phoneDigits = normalizeUSPhone(workPhone);
 
 const phoneOk =
   phoneDigits.length === 0 ||
@@ -429,7 +439,7 @@ const phoneOk =
     const name = `${fn} ${ln}`.trim();
     const selectedRole = String(role || "").trim();
     const email = workEmail.trim().toLowerCase();
-    const phone = digitsOnly(workPhone).slice(0, 10);
+    const phone = normalizeUSPhone(workPhone);
     const extension = digitsOnly(
       workPhoneExt
     ).slice(0, 6);
@@ -875,11 +885,9 @@ if (phone.length > 0 && phone.length !== 10) {
               <input
                 style={input}
                 value={formatPhoneUS(workPhone)}
-                onChange={(event) =>
-                  setWorkPhone(
-                    digitsOnly(event.target.value)
-                  )
-                }
+onChange={(event) =>
+  setWorkPhone(normalizeUSPhone(event.target.value))
+}
                 placeholder="(555) 555-5555"
                 inputMode="tel"
                 autoComplete="tel"

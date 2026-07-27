@@ -28,6 +28,16 @@ function digitsOnly(value: unknown) {
   return String(value ?? "").replace(/\D+/g, "");
 }
 
+function normalizeUSPhone(value: unknown) {
+  const digits = digitsOnly(value);
+
+  if (digits.length === 11 && digits.startsWith("1")) {
+    return digits.slice(1);
+  }
+
+  return digits.slice(0, 10);
+}
+
 function normalizeEmail(value: unknown) {
   return String(value ?? "").trim().toLowerCase();
 }
@@ -79,7 +89,7 @@ export async function POST(req: Request) {
       normalizeText(reqBody.coachRecordId) || null;
 
     const workEmail = normalizeEmail(reqBody.workEmail);
-    const workPhone = digitsOnly(reqBody.workPhone).slice(0, 10);
+    const workPhone = normalizeUSPhone(reqBody.workPhone);
     const workPhoneExt = digitsOnly(reqBody.workPhoneExt).slice(0, 6);
     const phonePrivate =
       reqBody.phonePrivate === false ? false : true;
