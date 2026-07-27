@@ -37,6 +37,20 @@ const SPECIAL_COACH_URLS: Record<string, CandidateUrl[]> = {
       url: "https://mgoblue.com/sports/2017/6/28/baseball-coaches",
     },
   ],
+
+  /*
+   * Coastal publishes its incoming/current staff on the unversioned
+   * roster before some year-specific and cached pages are updated.
+   *
+   * Keep this URL ahead of the learned pattern so stale Coastal staff
+   * are not carried forward after coaching changes.
+   */
+  "coastal-carolina-university": [
+    {
+      pattern: "current-roster",
+      url: "https://goccusports.com/sports/baseball/roster",
+    },
+  ],
 };
 
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
@@ -246,31 +260,42 @@ function buildCandidateUrls(
 
   const candidates: CandidateUrl[] = [];
 
-  for (const year of rosterYears) {
-    candidates.push(
-      {
-        pattern: "prestosports-coaches-index",
-        url: `${baseUrl}/coaches/index`,
-      },
-      {
-        pattern: "coaches-year",
-        url: `${base}/coaches/${year}`,
-      },
-      {
-        pattern: "roster-year-sidearm",
-        url: `${base}/roster/${year}` + "#sidearm-roster-coaches",
-      },
-      {
-        pattern: "roster-year-coaches-anchor",
-        url: `${base}/roster/${year}#coaches`,
-      },
-      {
-        pattern: "roster-year",
-        url: `${base}/roster/${year}`,
-      },
-    );
-  }
+  const currentYear = rosterYears[0];
+  const priorYears = rosterYears.slice(1);
 
+  /*
+   * Prefer the active season first.
+   */
+  candidates.push(
+    {
+      pattern: "prestosports-coaches-index",
+      url: `${base}/coaches/index`,
+    },
+    {
+      pattern: "coaches-year",
+      url: `${base}/coaches/${currentYear}`,
+    },
+    {
+      pattern: "roster-year-sidearm",
+      url: `${base}/roster/${currentYear}#sidearm-roster-coaches`,
+    },
+    {
+      pattern: "roster-year-coaches-anchor",
+      url: `${base}/roster/${currentYear}#coaches`,
+    },
+    {
+      pattern: "roster-year",
+      url: `${base}/roster/${currentYear}`,
+    },
+  );
+
+  /*
+   * Next try unversioned pages, which athletics sites generally use
+   * for the actively published staff.
+   *
+   * These must be attempted before prior-year pages so a temporary
+   * failure on the current-year URL does not import stale coaches.
+   */
   candidates.push(
     {
       pattern: "coaches",
@@ -278,7 +303,7 @@ function buildCandidateUrls(
     },
     {
       pattern: "roster-sidearm",
-      url: `${base}/roster` + "#sidearm-roster-coaches",
+      url: `${base}/roster#sidearm-roster-coaches`,
     },
     {
       pattern: "roster-coaches-anchor",
@@ -305,6 +330,30 @@ function buildCandidateUrls(
       url: base,
     },
   );
+
+  /*
+   * Use prior-season pages only as the final fallback.
+   */
+  for (const year of priorYears) {
+    candidates.push(
+      {
+        pattern: "coaches-year",
+        url: `${base}/coaches/${year}`,
+      },
+      {
+        pattern: "roster-year-sidearm",
+        url: `${base}/roster/${year}#sidearm-roster-coaches`,
+      },
+      {
+        pattern: "roster-year-coaches-anchor",
+        url: `${base}/roster/${year}#coaches`,
+      },
+      {
+        pattern: "roster-year",
+        url: `${base}/roster/${year}`,
+      },
+    );
+  }
 
   /*
    * Remove duplicate URLs while preserving their original ordering.
@@ -543,46 +592,163 @@ function normalizeTitleForComparison(value: string) {
     .trim();
 }
 
+function looksLikeExcludedStaffTitle(value: string) {
+  const v = normalizeTitle(value)
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!v) return true;
+
+  /*
+   * Exclude student, medical, communications, and equipment-support roles
+   * that may appear beside legitimate baseball staff.
+   *
+   * Keep legitimate titles such as:
+   * - Graduate Assistant
+   * - Graduate Assistant Manager
+   * - Volunteer Assistant Coach
+   * - Baseball Operations Assistant
+   */
+  return [
+    /\bstudent assistant\b/i,
+    /\bstudent manager\b/i,
+    /\bundergraduate assistant\b/i,
+
+    /\bathletic trainer\b/i,
+    /\bathletic training\b/i,
+    /\bsports medicine\b/i,
+
+    /\bathletic communications\b/i,
+    /\bcommunications graduate assistant\b/i,
+    /\bgraduate assistant (?:for|in) communications\b/i,
+    /\bmedia relations\b/i,
+
+    /\bequipment graduate assistant\b/i,
+    /\bgraduate assistant\b.*\bequipment\b/i,
+
+    /*
+     * Exclude entries such as:
+     * "Volunteer - Baseball Operations"
+     *
+     * Do not exclude legitimate "Volunteer Assistant" or
+     * "Volunteer Assistant Coach" titles.
+     */
+    /^volunteer\s*[-–—:]\s*/i,
+  ].some((pattern) => pattern.test(v));
+}
+
 function looksLikeCoachTitle(value: string) {
-  const v = normalizeTitle(value).toLowerCase();
+  const v = normalizeTitle(value)
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!v) return false;
+
+  /*
+   * Section headings are not individual staff titles.
+   *
+   * Without this guard, headings such as "2026 Baseball Coaching Staff"
+   * can be assigned to the first coach when a site's title field is
+   * missing or structured differently.
+   */
+  if (
+    /^(?:\d{4}\s+)?baseball coaching staff$/.test(v) ||
+    /^(?:\d{4}\s+)?coaching staff$/.test(v) ||
+    /^(?:\d{4}\s+)?baseball staff$/.test(v) ||
+    /^(?:\d{4}\s+)?baseball support staff$/.test(v)
+  ) {
+    return false;
+  }
+
+  /*
+   * Explicit exclusions must win before positive title matching.
+   *
+   * For example, "Student Assistant Coach" contains "assistant coach"
+   * but should not be treated as an importable staff contact.
+   */
+  if (looksLikeExcludedStaffTitle(v)) {
+    return false;
+  }
 
   return [
     "head coach",
     "head baseball coach",
+    "head coaching chair",
+
     "assistant head coach",
     "associate head coach",
     "associate head baseball coach",
+
     "assistant coach",
     "assistant baseball coach",
     "associate a.d./baseball",
     "associate ad/baseball",
     "baseball coach",
-    "baseball operations coordinator",
+
     "pitching coach",
     "hitting coach",
     "catching coach",
+
     "recruiting coordinator",
     "director of recruiting",
+
     "director of baseball",
     "director of baseball operations",
+    "assistant director of baseball operations",
+    "coordinator of baseball operations",
+    "baseball operations coordinator",
+    "baseball operations assistant",
+    "baseball operations",
+
     "director of operations",
+
     "director of player development",
+    "assistant director of player development",
     "director of player development and scouting",
     "director of program & player development",
     "director of program and player development",
-    "director of pitching",
-    "director of pitching development and scouting",
-    "director of hitting",
+    "director of baseball player development",
+    "coordinator of baseball player development",
     "player development coordinator",
+    "player development assistant",
+    "player development",
+
+    "director of player personnel",
+    "director of baseball player personnel",
+    "baseball player personnel",
+    "player personnel",
+
+    "director of pitching",
+    "director of pitching development",
+    "director of pitching development and scouting",
+    "coordinator of pitching development",
+    "pitching development assistant",
+    "pitching development",
+
+    "director of hitting",
+
+    "director of scouting",
+    "scouting coordinator",
+
     "pitching strategist",
+
     "graduate assistant",
-    "undergraduate assistant",
     "volunteer assistant",
+
     "quality control",
+
     "video coordinator",
     "analytics coordinator",
+
     "program director",
-  ].some((x) => v.includes(x));
+    "general manager",
+
+    "director of defense",
+    "director of baserunning",
+    "director of gameplay",
+  ].some((title) => v.includes(title));
 }
 
 function isHeadCoachTitle(value: string) {
@@ -592,27 +758,48 @@ function isHeadCoachTitle(value: string) {
     .replace(/\s+/g, " ")
     .trim();
 
-if (
-  /\bassistant\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
-  /\bassociate\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
-  /\bassoc\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
-  /\bassistant\s+to\s+(?:the\s+)?(?:baseball\s+)?head\s+coach\b/.test(v) ||
-  /\bspecial\s+assistant\s+to\s+(?:the\s+)?(?:baseball\s+)?head\s+coach\b/.test(v)
-) {
-  return false;
-}
+  if (!v) return false;
 
-if (
-  /\bhead\s+(?:baseball\s+)?coach\b/.test(v) ||
-  /\bhead\s+coach\b/.test(v)
-) {
-  return true;
-}
+  /*
+   * These titles contain "head coach" but are not the program's
+   * actual head-coach role.
+   */
+  if (
+    /\bassistant\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+    /\bassociate\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+    /\bassoc\s+(?:baseball\s+)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+    /\bassistant\s+to\s+(?:the\s+)?(?:baseball\s+)?head\s+coach\b/.test(v) ||
+    /\bspecial\s+assistant\s+to\s+(?:the\s+)?(?:baseball\s+)?head\s+coach\b/.test(v)
+  ) {
+    return false;
+  }
 
+  /*
+   * Includes:
+   * - Head Coach
+   * - Head Baseball Coach
+   * - Acting Head Coach
+   * - Interim Head Coach
+   * - Co-Head Coach
+   * - Head Coaching Chair in Baseball
+   */
+  if (
+    /\b(?:acting\s+|interim\s+|co[-\s]?)?head\s+(?:baseball\s+)?coach\b/.test(v) ||
+    /\bhead\s+coaching\s+chair\b/.test(v)
+  ) {
+    return true;
+  }
+
+  /*
+   * Some programs use "Director of Baseball" as the program-leading
+   * title. Do not confuse it with operations, recruiting, or player
+   * development roles.
+   */
   return (
     /director of baseball$/.test(v) &&
     !v.includes("operations") &&
     !v.includes("player development") &&
+    !v.includes("player personnel") &&
     !v.includes("recruiting")
   );
 }
@@ -711,9 +898,55 @@ function cleanEmail(value: string | undefined) {
 }
 
 function cleanPhone(value: string | undefined) {
-  return String(value ?? "")
+  const raw = String(value ?? "")
     .replace(/^tel:/i, "")
     .trim();
+
+  if (!raw) {
+    return "";
+  }
+
+  /*
+   * Remove URL encoding and normalize visible whitespace without
+   * destroying common phone-number formatting.
+   */
+  let decoded = raw;
+
+  try {
+    decoded = decodeURIComponent(raw);
+  } catch {
+    decoded = raw;
+  }
+
+  decoded = decoded
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const digits = decoded.replace(/\D/g, "");
+
+  /*
+   * Reject isolated extensions and malformed tel links.
+   *
+   * Examples rejected:
+   *   +
+   *   3657
+   *   5256
+   *   +4938
+   *   9866002
+   *
+   * A usable North American number has 10 digits, or 11 digits when
+   * prefixed by country code 1. International numbers may contain
+   * between 10 and 15 digits.
+   */
+  if (digits.length < 10 || digits.length > 15) {
+    return "";
+  }
+
+  if (digits.length === 11 && !digits.startsWith("1")) {
+    return "";
+  }
+
+  return decoded;
 }
 
 function editDistance(a: string, b: string) {
@@ -1501,6 +1734,34 @@ function titleQualityScore(title: string) {
   if (normalized.includes(" / ")) score += 5;
 
   return score;
+}
+
+function applyKnownSchoolRecordCorrections(
+  slug: string,
+  record: CoachRecord,
+): CoachRecord {
+  const coachKey = normalizeCoachKey(record.name);
+
+  /*
+   * Le Moyne's staff page exposes a section heading where the first
+   * coach's title would normally be expected. Mike Meola Jr. is the
+   * program's head coach, so correct the malformed extracted title.
+   */
+  if (
+    slug === "le-moyne-college" &&
+    coachKey === normalizeCoachKey("Mike Meola Jr.")
+  ) {
+    return {
+      ...record,
+      title: "Head Coach",
+      isHeadCoach: true,
+    };
+  }
+
+  return {
+    ...record,
+    isHeadCoach: isHeadCoachTitle(record.title),
+  };
 }
 
 function mergeCoachRecords(
@@ -2831,7 +3092,18 @@ $("table tr").each((_, el) => {
     .replace(/\s+/g, " ")
     .trim();
 
-  if (!name || !title) {
+  /*
+   * Gardner-Webb uses a manual table parser, so apply the same
+   * person-name and staff-title policy used by the generic extractors.
+   *
+   * This prevents rows such as "Student Assistant" from bypassing
+   * looksLikeExcludedStaffTitle().
+   */
+  if (
+    !looksLikePersonName(name) ||
+    !looksLikeCoachTitle(title) ||
+    looksLikeExcludedStaffTitle(title)
+  ) {
     return;
   }
 
@@ -2854,10 +3126,12 @@ $("table tr").each((_, el) => {
     .split("?")[0]
     .trim();
 
-  const phone = phoneCell
+const phone = cleanPhone(
+  phoneCell
     .text()
     .replace(/\s+/g, " ")
-    .trim();
+    .trim(),
+);
 
   const twitterHandle = twitterCell
     .text()
@@ -3014,23 +3288,28 @@ if (schoolRecords.size === 0) {
       );
     }
 
-    for (const record of schoolRecords.values()) {
-      rows.push([
-        slug,
-        record.name,
-        record.title,
-        record.email,
-        record.phone,
-        record.bioUrl,
-        record.contactUrl,
-        record.headshotUrl,
-        record.xUrl,
-        record.instagramUrl,
-        record.linkedinUrl,
-        String(record.isHeadCoach),
-        record.reviewStatus,
-      ]);
-    }
+for (const uncorrectedRecord of schoolRecords.values()) {
+  const record = applyKnownSchoolRecordCorrections(
+    slug,
+    uncorrectedRecord,
+  );
+
+  rows.push([
+    slug,
+    record.name,
+    record.title,
+    record.email,
+    record.phone,
+    record.bioUrl,
+    record.contactUrl,
+    record.headshotUrl,
+    record.xUrl,
+    record.instagramUrl,
+    record.linkedinUrl,
+    String(record.isHeadCoach),
+    record.reviewStatus,
+  ]);
+}
   }
 
   const csv = rows.map((r) => r.map(csvEscape).join(",")).join("\n");

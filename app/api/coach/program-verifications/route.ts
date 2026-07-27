@@ -1,4 +1,4 @@
-/// app/api/coach/program-verifications/route.ts
+// app/api/coach/program-verifications/route.ts
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";

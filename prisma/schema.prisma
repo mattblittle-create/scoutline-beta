@@ -30,6 +30,7 @@ model User {
   adminProfile                   AdminUser?
   chatConversationParticipants   ChatConversationParticipant[]
   chatMessagesSent               ChatMessage[]                          @relation("ChatMessageSender")
+  claimedCollegeBaseballCoach    CollegeBaseballCoach?                  @relation("ClaimedCollegeBaseballCoach")
   coachInvitesAccepted           CoachInvite[]                          @relation("CoachInviteAcceptedBy")
   coachInvitesCreated            CoachInvite[]                          @relation("CoachInviteCreatedBy")
   coachJoinRequestsDecided       CoachJoinRequest[]                     @relation("CoachJoinRequestDecidedBy")
@@ -1514,8 +1515,69 @@ model CollegeBaseballCoach {
 
   isHeadCoach Boolean @default(false)
 
+  /**
+   * Stable normalized key used by enrichment imports.
+   * Format:
+   * normalized-name|normalized-email
+   * Email may be blank when unavailable.
+   */
+  importKey String?
+
+  /**
+   * Identifies who owns the record.
+   * DOM_ENRICHMENT records may be updated or deactivated by the
+   * automated coach enrichment importer.
+   * MANUAL and COACH_VERIFIED records must not be overwritten by
+   * automated imports.
+   */
+  dataSource String @default("MANUAL")
+
+  /**
+   * Status emitted by the scraper, such as:
+   * AUTO_IMPORTED
+   * NEEDS_REVIEW
+   */
+  reviewStatus String?
+
+  /**
+   * Whether this coach is currently displayed as active staff.
+   * Missing enrichment records are deactivated instead of deleted so
+   * historical information and record IDs are preserved.
+   */
+  isActive Boolean @default(true)
+
+  /**
+   * Timestamp of the most recent enrichment run in which this coach
+   * appeared.
+   */
+  lastSeenAt DateTime?
+
+  /**
+   * Exact source page used for the most recent import.
+   */
+  sourceUrl String?
+
+  /**
+   * Optional manual verification marker.
+   * Automated importers must not overwrite records with this value set.
+   */
+  manuallyVerifiedAt DateTime?
+
+  /**
+   * Coach account that has claimed and verified this staff record.
+   */
+  claimedByUserId String?   @unique
+  claimedByUser   User?     @relation("ClaimedCollegeBaseballCoach", fields: [claimedByUserId], references: [id], onDelete: SetNull)
+  claimedAt       DateTime?
+
+  @@unique([programId, importKey])
   @@index([programId])
+  @@index([programId, isActive])
   @@index([isHeadCoach])
+  @@index([dataSource])
+  @@index([reviewStatus])
+  @@index([lastSeenAt])
+  @@index([claimedByUserId])
 }
 
 model CollegeBaseballRosterNeed {
