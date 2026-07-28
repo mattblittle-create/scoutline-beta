@@ -266,8 +266,6 @@ if (PAYMENTS_DISABLED) {
   try {
     setPageError("");
 
-    window.ClearentSDK.reset?.();
-
 window.ClearentSDK.init({
   pk: XPLOR_PUBLIC_KEY,
   paymentFormId: "payment-form",
@@ -314,15 +312,9 @@ window.ClearentSDK.init({
     );
   }
 
-  return () => {
-    try {
-      window.ClearentSDK?.reset?.();
-    } catch {
-      // Do not interrupt navigation if SDK cleanup fails.
-    }
-
-    setXplorFormReady(false);
-  };
+return () => {
+  setXplorFormReady(false);
+};
 }, [paymentMethod, xplorScriptReady]);
 
 const handleAchCheckout = async () => {

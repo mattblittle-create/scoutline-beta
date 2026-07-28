@@ -8,7 +8,6 @@ import {
   invalidateExistingTokens,
 } from "@/lib/auth/tokens";
 import { sendSetPasswordEmail } from "@/lib/email/sendSetPasswordEmail";
-import { getBaseUrl } from "@/lib/email/senders";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -186,13 +185,14 @@ export async function POST(req: Request) {
           where: {
             claimedByUserId: existing.id,
           },
-          select: {
-            id: true,
-            programId: true,
-            name: true,
-            email: true,
-            claimedByUserId: true,
-          },
+select: {
+  id: true,
+  programId: true,
+  name: true,
+  title: true,
+  email: true,
+  claimedByUserId: true,
+},
         })
       : null;
 
@@ -260,12 +260,13 @@ export async function POST(req: Request) {
           programId: baseballProgramId,
           isActive: true,
         },
-        select: {
-          id: true,
-          name: true,
-          email: true,
-          claimedByUserId: true,
-        },
+select: {
+  id: true,
+  name: true,
+  title: true,
+  email: true,
+  claimedByUserId: true,
+},
       });
 
     let resolvedCoachRecord:
@@ -291,12 +292,13 @@ export async function POST(req: Request) {
     }
 
     if (!resolvedCoachRecord && existingClaim) {
-      resolvedCoachRecord = {
-        id: existingClaim.id,
-        name: existingClaim.name,
-        email: existingClaim.email,
-        claimedByUserId: existingClaim.claimedByUserId,
-      };
+resolvedCoachRecord = {
+  id: existingClaim.id,
+  name: existingClaim.name,
+  title: existingClaim.title,
+  email: existingClaim.email,
+  claimedByUserId: existingClaim.claimedByUserId,
+};
     }
 
     if (!resolvedCoachRecord) {
@@ -347,6 +349,10 @@ export async function POST(req: Request) {
         { status: 409 }
       );
     }
+
+const verifiedStaffTitle =
+  normalizeText(resolvedCoachRecord?.title) ||
+  staffTitle;
 
     stage = "upsert-user-and-coach-profile";
 
@@ -401,23 +407,23 @@ export async function POST(req: Request) {
             where: {
               userId: user.id,
             },
-            create: {
-              userId: user.id,
-              staffTitle,
-              coachAccountType:
-                "COLLEGE_COACH" as any,
-              coachBillingStatus: "NONE" as any,
-              contactEmail: workEmail,
-              recruitingTargets: [],
-            },
-            update: {
-              staffTitle,
-              coachAccountType:
-                "COLLEGE_COACH" as any,
-              coachBillingStatus: "NONE" as any,
-              contactEmail: workEmail,
-              updatedAt: new Date(),
-            },
+create: {
+  userId: user.id,
+  staffTitle: verifiedStaffTitle,
+  coachAccountType:
+    "COLLEGE_COACH" as any,
+  coachBillingStatus: "NONE" as any,
+  contactEmail: workEmail,
+  recruitingTargets: [],
+},
+update: {
+  staffTitle: verifiedStaffTitle,
+  coachAccountType:
+    "COLLEGE_COACH" as any,
+  coachBillingStatus: "NONE" as any,
+  contactEmail: workEmail,
+  updatedAt: new Date(),
+},
             select: {
               id: true,
             },
@@ -433,14 +439,15 @@ export async function POST(req: Request) {
               where: {
                 id: resolvedCoachRecord.id,
               },
-              data: {
-                name,
-                title: staffTitle,
-                email: workEmail,
-                phone: workPhone,
+data: {
+  name,
+  title: verifiedStaffTitle,
+  email: workEmail,
+  phone: workPhone || null,
 
-                isHeadCoach:
-                  isHeadCoachTitle(staffTitle),
+  isHeadCoach:
+    isHeadCoachTitle(staffTitle) ||
+    isHeadCoachTitle(verifiedStaffTitle),
 
                 claimedByUserId: user.id,
                 claimedAt: verifiedAt,
@@ -459,16 +466,17 @@ export async function POST(req: Request) {
         } else {
           const claimedCoach =
             await tx.collegeBaseballCoach.create({
-              data: {
-                programId: baseballProgramId,
+data: {
+  programId: baseballProgramId,
 
-                name,
-                title: staffTitle,
-                email: workEmail,
-                phone: workPhone,
+  name,
+  title: verifiedStaffTitle,
+  email: workEmail,
+  phone: workPhone || null,
 
-                isHeadCoach:
-                  isHeadCoachTitle(staffTitle),
+  isHeadCoach:
+    isHeadCoachTitle(staffTitle) ||
+    isHeadCoachTitle(verifiedStaffTitle),
 
                 dataSource: "COACH_VERIFIED",
                 reviewStatus: "MANUAL_VERIFIED",
@@ -499,8 +507,6 @@ export async function POST(req: Request) {
       !result.user.passwordHash;
 
     let rawToken: string | null = null;
-    let setPasswordLink: string | null = null;
-    let expiresAt: Date | null = null;
 
     if (needsSetPassword) {
       stage =
@@ -519,13 +525,7 @@ export async function POST(req: Request) {
           purpose: "SET_PASSWORD",
         });
 
-      rawToken = tokenResult.rawToken;
-      expiresAt = tokenResult.token.expiresAt;
-
-      setPasswordLink =
-        `${getBaseUrl()}/set-password?token=${encodeURIComponent(
-          rawToken
-        )}`;
+    rawToken = tokenResult.rawToken;
 
       stage = "send-set-password-email";
 
@@ -546,7 +546,7 @@ export async function POST(req: Request) {
           email: result.user.email,
           name: result.user.name ?? null,
           slug: result.user.slug ?? null,
-          staffTitle,
+          staffTitle: verifiedStaffTitle,
           program: collegeProgram,
           collegeId: college.id,
           collegeSlug: college.slug,
@@ -558,9 +558,6 @@ export async function POST(req: Request) {
         claimedCoachRecordId:
           result.claimedCoachRecordId,
         needsSetPassword,
-        setPasswordToken: rawToken,
-        setPasswordLink,
-        expiresAt,
         emailDispatch: {
           sent: needsSetPassword,
           to: workEmail,
