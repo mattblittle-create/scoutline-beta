@@ -3,9 +3,47 @@
 "use client";
 
 import React, { Suspense, useEffect, useMemo, useState } from "react";
+import Script from "next/script";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PaymentMethod } from "@/lib/payments/types";
 import { formatUsd } from "@/lib/billing/money";
+
+type ClearentPaymentTokenResponse = {
+  code?: string;
+  status?: string;
+  message?: string;
+  error?: string;
+  payload?: {
+    "mobile-jwt"?: {
+      jwt?: string;
+      "last-four"?: string;
+    };
+    payloadType?: string;
+  };
+};
+
+type ClearentSdk = {
+  init: (options: {
+    baseUrl: string;
+    pk: string;
+    paymentFormId?: string;
+    showValidationMessages?: boolean;
+    clearFormOnSuccess?: boolean;
+    accountNumberMasked?: boolean;
+    routingNumberMasked?: boolean;
+    styles?: string;
+  }) => void;
+
+  getPaymentToken: () => Promise<ClearentPaymentTokenResponse>;
+
+  reset?: () => void;
+};
+
+declare global {
+  interface Window {
+    ClearentSDK?: ClearentSdk;
+  }
+}
 
 type Summary = {
   plan: string;
@@ -18,6 +56,13 @@ type Summary = {
   finalPrice: number;
   error?: string;
 };
+
+const XPLOR_GATEWAY_URL =
+  process.env.NEXT_PUBLIC_XPLOR_GATEWAY_URL ||
+  "https://gateway-sb.clearent.net";
+
+const XPLOR_PUBLIC_KEY =
+  process.env.NEXT_PUBLIC_XPLOR_PUBLIC_KEY || "";
 
 const PAYMENTS_DISABLED =
   process.env.NEXT_PUBLIC_SC_PAYMENTS_DISABLED === "true";
@@ -37,6 +82,14 @@ function PlayerBillingPageInner() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [playerProfileId, setPlayerProfileId] = useState("");
   const [pageError, setPageError] = useState("");
+
+  const [xplorScriptReady, setXplorScriptReady] = useState(false);
+  const [xplorFormReady, setXplorFormReady] = useState(false);
+  const [achSubmitting, setAchSubmitting] = useState(false);
+
+  const [accountHolderName, setAccountHolderName] = useState("");
+  const [achAccountType, setAchAccountType] =
+    useState<"Checking" | "Savings">("Checking");
 
   const paymentState = searchParams.get("payment") || "";
   const paymentMessage = searchParams.get("message") || "";
@@ -184,9 +237,226 @@ if (PAYMENTS_DISABLED) {
     };
   }, [searchParams]);
 
-  const handleCheckout = async () => {
+  useEffect(() => {
+  if (
+    paymentMethod !== PaymentMethod.ACH ||
+    !xplorScriptReady
+  ) {
+    return;
+  }
+
+  if (!XPLOR_PUBLIC_KEY) {
+    setXplorFormReady(false);
+    setPageError(
+      "Xplor ACH is missing its browser public key."
+    );
+    return;
+  }
+
+  if (!window.ClearentSDK) {
+    setXplorFormReady(false);
+    setPageError(
+      "The Xplor ACH payment form could not be loaded."
+    );
+    return;
+  }
+
+  try {
+    setPageError("");
+
+    window.ClearentSDK.reset?.();
+
+    window.ClearentSDK.init({
+      baseUrl: XPLOR_GATEWAY_URL,
+      pk: XPLOR_PUBLIC_KEY,
+      paymentFormId: "payment-form",
+      showValidationMessages: true,
+      clearFormOnSuccess: false,
+      accountNumberMasked: true,
+      routingNumberMasked: true,
+      styles: `
+        body {
+          margin: 0;
+          font-family: Arial, sans-serif;
+          color: #0f172a;
+        }
+
+        .form-control {
+          width: 100%;
+          box-sizing: border-box;
+          min-height: 42px;
+          border: 1px solid #d1d5db;
+          border-radius: 8px;
+          padding: 9px 10px;
+          font-size: 15px;
+        }
+
+        .form-control:focus {
+          border-color: #64748b;
+          outline: none;
+        }
+      `,
+    });
+
+    setXplorFormReady(true);
+  } catch (error) {
+    console.error(
+      "XPLOR_ACH_FORM_INIT_ERROR",
+      error
+    );
+
+    setXplorFormReady(false);
+    setPageError(
+      "The Xplor ACH payment form could not be initialized."
+    );
+  }
+
+  return () => {
     try {
-      if (!summary) {
+      window.ClearentSDK?.reset?.();
+    } catch {
+      // Do not interrupt navigation if SDK cleanup fails.
+    }
+
+    setXplorFormReady(false);
+  };
+}, [paymentMethod, xplorScriptReady]);
+
+const handleAchCheckout = async () => {
+  try {
+    if (!summary) {
+      setPageError(
+        "Please wait for pricing to finish loading."
+      );
+      return;
+    }
+
+    if (!playerProfileId) {
+      setPageError(
+        "Missing player profile ID for ACH checkout."
+      );
+      return;
+    }
+
+    if (!accountHolderName.trim()) {
+      setPageError(
+        "Enter the name shown on the bank account."
+      );
+      return;
+    }
+
+    if (!XPLOR_PUBLIC_KEY) {
+      setPageError(
+        "Xplor ACH is missing its browser public key."
+      );
+      return;
+    }
+
+    if (
+      !xplorFormReady ||
+      !window.ClearentSDK
+    ) {
+      setPageError(
+        "The ACH payment form is still loading."
+      );
+      return;
+    }
+
+    setAchSubmitting(true);
+    setPageError("");
+
+    /*
+     * Bank account and routing details remain
+     * inside Xplor's hosted form. ScoutLine
+     * receives only the short-lived mobile JWT.
+     */
+    const tokenResult =
+      await window.ClearentSDK.getPaymentToken();
+
+    const mobileJwt =
+      tokenResult?.payload?.["mobile-jwt"]?.jwt || "";
+
+    if (!mobileJwt) {
+      throw new Error(
+        tokenResult?.message ||
+          tokenResult?.error ||
+          "Xplor did not return an ACH payment token."
+      );
+    }
+
+    const res = await fetch(
+      "/api/payments/clearent/ach/debit",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          playerProfileId,
+          plan,
+          cadence,
+          discountCode,
+
+          mobileJwt,
+          accountHolderName:
+            accountHolderName.trim(),
+          accountType:
+            achAccountType,
+        }),
+      }
+    );
+
+    const data = await res
+      .json()
+      .catch(() => null);
+
+    if (!res.ok || !data?.ok) {
+      throw new Error(
+        data?.error ||
+          "The ACH payment could not be submitted."
+      );
+    }
+
+    const query = new URLSearchParams({
+      payment:
+        String(data.status || "")
+          .toLowerCase() || "pending",
+
+      message:
+        data.message ||
+        "ACH payment submitted.",
+
+      ref:
+        data.reference || "",
+    });
+
+    router.push(
+      `/onboarding/player/billing?${query.toString()}`
+    );
+  } catch (error) {
+    console.error(
+      "PLAYER_ACH_CHECKOUT_ERROR",
+      error
+    );
+
+    setPageError(
+      error instanceof Error
+        ? error.message
+        : "The ACH payment could not be submitted."
+    );
+  } finally {
+    setAchSubmitting(false);
+  }
+};
+
+  const handleCheckout = async () => {
+if (paymentMethod === PaymentMethod.ACH) {
+  await handleAchCheckout();
+  return;
+}
+
+try {
+  if (!summary) {
         setPageError("Please wait for pricing to finish loading.");
         return;
       }
@@ -234,7 +504,23 @@ if (PAYMENTS_DISABLED) {
     }
   };
 
-  return (
+return (
+  <>
+    <Script
+      id="xplor-ach-sdk"
+      src={`${XPLOR_GATEWAY_URL}/js-sdk/js/clearent-host.js`}
+      strategy="afterInteractive"
+      onLoad={() => {
+        setXplorScriptReady(true);
+      }}
+      onError={() => {
+        setXplorScriptReady(false);
+        setPageError(
+          "The secure Xplor ACH form could not be loaded."
+        );
+      }}
+    />
+
     <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "Arial" }}>
       <h1>Complete Your Subscription</h1>
 
@@ -366,6 +652,124 @@ if (PAYMENTS_DISABLED) {
         </div>
       </div>
 
+{paymentMethod === PaymentMethod.ACH ? (
+  <div
+    style={{
+      marginTop: 18,
+      padding: 16,
+      border: "1px solid #d1d5db",
+      borderRadius: 10,
+      background: "#ffffff",
+    }}
+  >
+    <h2
+      style={{
+        margin: "0 0 12px",
+        fontSize: 18,
+      }}
+    >
+      Bank Account
+    </h2>
+
+    <div style={{ marginBottom: 12 }}>
+      <label
+        htmlFor="ach-account-holder-name"
+        style={{
+          display: "block",
+          marginBottom: 6,
+          fontWeight: 700,
+        }}
+      >
+        Name on Account
+      </label>
+
+      <input
+        id="ach-account-holder-name"
+        value={accountHolderName}
+        onChange={(event) =>
+          setAccountHolderName(event.target.value)
+        }
+        autoComplete="name"
+        placeholder="Account holder name"
+        disabled={achSubmitting}
+        style={{
+          width: "100%",
+          boxSizing: "border-box",
+          minHeight: 42,
+          padding: "9px 10px",
+          border: "1px solid #d1d5db",
+          borderRadius: 8,
+          fontSize: 15,
+        }}
+      />
+    </div>
+
+    <div style={{ marginBottom: 14 }}>
+      <label
+        htmlFor="ach-account-type"
+        style={{
+          display: "block",
+          marginBottom: 6,
+          fontWeight: 700,
+        }}
+      >
+        Account Type
+      </label>
+
+      <select
+        id="ach-account-type"
+        value={achAccountType}
+        onChange={(event) =>
+          setAchAccountType(
+            event.target.value as
+              | "Checking"
+              | "Savings"
+          )
+        }
+        disabled={achSubmitting}
+        style={{
+          width: "100%",
+          minHeight: 42,
+          padding: "9px 10px",
+          border: "1px solid #d1d5db",
+          borderRadius: 8,
+          background: "#ffffff",
+          fontSize: 15,
+        }}
+      >
+        <option value="Checking">Checking</option>
+        <option value="Savings">Savings</option>
+      </select>
+    </div>
+
+    {!xplorScriptReady ? (
+      <div
+        style={{
+          padding: "12px 0",
+          color: "#64748b",
+        }}
+      >
+        Loading secure bank account form...
+      </div>
+    ) : null}
+
+    <div id="payment-form" />
+
+    <div
+      style={{
+        marginTop: 12,
+        fontSize: 12,
+        lineHeight: 1.5,
+        color: "#64748b",
+      }}
+    >
+      Bank account and routing information are
+      entered securely through Xplor Pay and are
+      not stored by ScoutLine.
+    </div>
+  </div>
+) : null}
+
       <div style={{ marginTop: 10 }}>
         <label>Discount Code</label>
         <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
@@ -406,24 +810,56 @@ if (PAYMENTS_DISABLED) {
         )}
       </div>
 
-      <button
-        onClick={handleCheckout}
-        disabled={!summary || checkoutLoading || !playerProfileId}
-        style={{
-          marginTop: 20,
-          padding: "10px 20px",
-          fontSize: 16,
-          cursor:
-            !summary || checkoutLoading || !playerProfileId
-              ? "not-allowed"
-              : "pointer",
-          opacity:
-            !summary || checkoutLoading || !playerProfileId ? 0.6 : 1,
-        }}
-      >
-        {checkoutLoading ? "Redirecting..." : "Proceed to Payment"}
-      </button>
+<button
+  onClick={handleCheckout}
+  disabled={
+    !summary ||
+    checkoutLoading ||
+    achSubmitting ||
+    !playerProfileId ||
+    (paymentMethod === PaymentMethod.ACH &&
+      (!xplorScriptReady ||
+        !xplorFormReady ||
+        !accountHolderName.trim()))
+  }
+  style={{
+    marginTop: 20,
+    padding: "10px 20px",
+    fontSize: 16,
+    cursor:
+      !summary ||
+      checkoutLoading ||
+      achSubmitting ||
+      !playerProfileId ||
+      (paymentMethod === PaymentMethod.ACH &&
+        (!xplorScriptReady ||
+          !xplorFormReady ||
+          !accountHolderName.trim()))
+        ? "not-allowed"
+        : "pointer",
+    opacity:
+      !summary ||
+      checkoutLoading ||
+      achSubmitting ||
+      !playerProfileId ||
+      (paymentMethod === PaymentMethod.ACH &&
+        (!xplorScriptReady ||
+          !xplorFormReady ||
+          !accountHolderName.trim()))
+        ? 0.6
+        : 1,
+  }}
+>
+  {paymentMethod === PaymentMethod.ACH
+    ? achSubmitting
+      ? "Submitting ACH Payment..."
+      : "Submit ACH Payment"
+    : checkoutLoading
+      ? "Redirecting..."
+      : "Proceed to Card Payment"}
+</button>
     </div>
+  </>
   );
 }
 

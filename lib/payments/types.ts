@@ -63,6 +63,66 @@ export type CreateCheckoutResult = {
   code?: string;
 };
 
+export type AchAccountType =
+  | "Checking"
+  | "Savings";
+
+export type AchStandardEntryClassCode =
+  | "PPD"
+  | "WEB";
+
+export type AchTransactionStatus =
+  | "PENDING"
+  | "APPROVED"
+  | "SETTLING"
+  | "SETTLED"
+  | "RETURNED"
+  | "CHARGEBACK"
+  | "FAILED"
+  | "VOIDED"
+  | "UNKNOWN";
+
+export type InitialAchDebitInput = {
+  mobileJwt: string;
+
+  reference: string;
+  amountCents: number;
+
+  accountType: AchAccountType;
+  individualName: string;
+
+  standardEntryClassCode:
+    AchStandardEntryClassCode;
+
+  softwareType: string;
+  softwareTypeVersion: string;
+
+  createToken?: boolean;
+};
+
+export type InitialAchDebitResult = {
+  ok: boolean;
+  provider: PaymentProviderCode;
+
+  reference: string;
+  status: AchTransactionStatus;
+
+  transactionId?: string | null;
+  tokenId?: string | null;
+  last4?: string | null;
+
+  accountType?: AchAccountType | null;
+  individualName?: string | null;
+
+  responseCode?: string | null;
+  responseMessage?: string | null;
+
+  raw?: unknown;
+
+  error?: string;
+  code?: string;
+};
+
 export type StoredPaymentChargeInput = {
   token: string;
   invoiceNumber: string;
@@ -98,6 +158,10 @@ export type PaymentProvider = {
   createCheckout(
     input: CreateCheckoutInput
   ): Promise<CreateCheckoutResult>;
+
+  createInitialAchDebit?(
+    input: InitialAchDebitInput
+  ): Promise<InitialAchDebitResult>;
 
   chargeStoredMethod(
     input: StoredPaymentChargeInput

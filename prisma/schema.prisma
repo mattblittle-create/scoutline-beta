@@ -517,6 +517,12 @@ model PlayerBillingProfile {
   paymentType        String?
   last4              String?
   brand              String?
+
+  // ACH display and recurring-payment metadata.
+  // Never store a routing number or bank account number.
+  accountHolderName  String?
+  accountType        String?
+
   updatedAt          DateTime      @updatedAt
   createdAt          DateTime      @default(now())
   playerProfile      PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
