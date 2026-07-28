@@ -24,7 +24,7 @@ type ClearentPaymentTokenResponse = {
 
 type ClearentSdk = {
   init: (options: {
-    baseUrl: string;
+    baseUrl?: string;
     pk: string;
     paymentFormId?: string;
     showValidationMessages?: boolean;
@@ -266,20 +266,19 @@ if (PAYMENTS_DISABLED) {
 
     window.ClearentSDK.reset?.();
 
-    window.ClearentSDK.init({
-      baseUrl: XPLOR_GATEWAY_URL,
-      pk: XPLOR_PUBLIC_KEY,
-      paymentFormId: "payment-form",
-      showValidationMessages: true,
-      clearFormOnSuccess: false,
-      accountNumberMasked: true,
-      routingNumberMasked: true,
-      styles: `
-        body {
-          margin: 0;
-          font-family: Arial, sans-serif;
-          color: #0f172a;
-        }
+window.ClearentSDK.init({
+  pk: XPLOR_PUBLIC_KEY,
+  paymentFormId: "payment-form",
+  showValidationMessages: true,
+  clearFormOnSuccess: false,
+  accountNumberMasked: true,
+  routingNumberMasked: true,
+  styles: `
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #0f172a;
+    }
 
         .form-control {
           width: 100%;

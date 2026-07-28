@@ -64,7 +64,7 @@ const nextConfig = {
 
       // Dev needs inline/eval for HMR
       "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.valorpaytech.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com https://gateway-sb.clearent.net https://gateway-int.clearent.net",
-      "style-src 'self' 'unsafe-inline'",
+      "style-src 'self' 'unsafe-inline' https://gateway-sb.clearent.net https://gateway-int.clearent.net",
       "font-src 'self' data:",
 
       // Allow API/fetch/websocket connections (adjust as needed)
