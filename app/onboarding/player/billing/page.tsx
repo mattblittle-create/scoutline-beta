@@ -35,7 +35,7 @@ type ClearentSdk = {
     routingNumberMasked?: boolean;
     styles?: string;
   }) => void;
-  configureListener?: () => void;
+
   getPaymentToken: () => Promise<ClearentPaymentTokenResponse>;
 
   reset?: () => void;
@@ -267,8 +267,6 @@ if (PAYMENTS_DISABLED) {
     setPageError("");
 
     window.ClearentSDK.reset?.();
-
-window.ClearentSDK.configureListener?.();
 
 window.ClearentSDK.init({
   pk: XPLOR_PUBLIC_KEY,
