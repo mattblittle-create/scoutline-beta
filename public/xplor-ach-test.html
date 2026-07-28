@@ -1,0 +1,72 @@
+// public/xplor-ach-test.html
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Xplor ACH Test</title>
+
+    <style>
+      body {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: Arial, sans-serif;
+      }
+
+      #payment-form {
+        margin-top: 20px;
+      }
+
+      button {
+        margin-top: 20px;
+        padding: 10px 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Xplor ACH Test</h1>
+
+    <div id="payment-form"></div>
+
+    <button id="payment-button" type="button">
+      Get Payment Token
+    </button>
+
+    <script src="https://gateway-int.clearent.net/js-sdk/js/clearent-host.js"></script>
+
+    <script>
+      document
+        .getElementById("payment-button")
+        .addEventListener("click", function () {
+          ClearentSDK.getPaymentToken();
+        });
+
+      ClearentSDK.init({
+        pk: "307a301406072a8648ce3d020106092b240303020801010c036200043a612d6e0a33deb3c59d757ce8c69b91ada7dca83bee95bfbde6ccda83d515a9650d821f8307ceaff233fce293002f7682e5982c746789ea0b90be3946c344106a7c6a2fa7dc04fa74a05bb9cfada25b63d220687338b2013189b38ad36285c7",
+        enableAch: true,
+        enableCard: false,
+        allowEmbedded: true,
+        paymentFormId: "payment-form"
+      });
+
+      function ClearentValidation(messages) {
+        console.log("ClearentValidation", messages);
+      }
+
+      function ClearentTokenSuccess(raw, json) {
+        console.log("ClearentTokenSuccess", raw, json);
+      }
+
+      function ClearentTokenError(raw, json) {
+        console.log("ClearentTokenError", raw, json);
+      }
+    </script>
+  </body>
+</html>
