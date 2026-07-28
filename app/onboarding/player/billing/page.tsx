@@ -27,6 +27,8 @@ type ClearentSdk = {
     baseUrl?: string;
     pk: string;
     paymentFormId?: string;
+    enableCard?: boolean;
+    enableAch?: boolean;
     showValidationMessages?: boolean;
     clearFormOnSuccess?: boolean;
     accountNumberMasked?: boolean;
@@ -269,6 +271,8 @@ if (PAYMENTS_DISABLED) {
 window.ClearentSDK.init({
   pk: XPLOR_PUBLIC_KEY,
   paymentFormId: "payment-form",
+  enableCard: false,
+  enableAch: true,
   showValidationMessages: true,
   clearFormOnSuccess: false,
   accountNumberMasked: true,
