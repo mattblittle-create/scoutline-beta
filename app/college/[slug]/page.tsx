@@ -2358,8 +2358,7 @@ const verificationLabelStyle: React.CSSProperties = {
 const coachListScrollStyle: React.CSSProperties = {
   display: "grid",
   gap: 10,
-  flex: 1,
-  minHeight: 0,
+  maxHeight: 360,
   overflowY: "auto",
   paddingRight: 4,
 };
