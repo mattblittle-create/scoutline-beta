@@ -421,6 +421,7 @@ async function main(): Promise<void> {
           lastSeenAt: true,
           sourceUrl: true,
           manuallyVerifiedAt: true,
+          claimedByUserId: true,
         },
       },
     },
@@ -453,12 +454,12 @@ async function main(): Promise<void> {
     row: ParsedCoachRow;
   }> = [];
 
-const updateActions: Array<{
-  coachId: string;
-  row: ParsedCoachRow;
-  wasInactive: boolean;
-  adoptLegacyRecord: boolean;
-}> = [];
+  const updateActions: Array<{
+    coachId: string;
+    row: ParsedCoachRow;
+    wasInactive: boolean;
+    adoptLegacyRecord: boolean;
+  }> = [];
 
   const deactivateActions: Array<{
     coachId: string;
@@ -505,19 +506,22 @@ const updateActions: Array<{
       validProgramRows.push(row);
     }
 
-const importedCoaches = program.coaches.filter(
-  (coach) => coach.dataSource === IMPORT_SOURCE,
-);
+    const importedCoaches = program.coaches.filter(
+      (coach) => coach.dataSource === IMPORT_SOURCE,
+    );
 
-const protectedCoaches = program.coaches.filter(
-  (coach) => coach.manuallyVerifiedAt !== null,
-);
+    const protectedCoaches = program.coaches.filter(
+      (coach) =>
+        coach.manuallyVerifiedAt !== null ||
+        coach.claimedByUserId !== null,
+    );
 
-const legacyCoaches = program.coaches.filter(
-  (coach) =>
-    coach.dataSource !== IMPORT_SOURCE &&
-    coach.manuallyVerifiedAt === null,
-);
+    const legacyCoaches = program.coaches.filter(
+      (coach) =>
+        coach.dataSource !== IMPORT_SOURCE &&
+        coach.manuallyVerifiedAt === null &&
+        coach.claimedByUserId === null,
+    );
 
     const importedByKey = new Map(
       importedCoaches
@@ -545,6 +549,30 @@ updateActions.push({
   adoptLegacyRecord: false,
 });
         }
+
+        continue;
+      }
+
+      const existingImportedNameMatch = importedCoaches.find(
+        (coach) =>
+          coach.manuallyVerifiedAt === null &&
+          coach.claimedByUserId === null &&
+          matchesCoachByName(coach, row),
+      );
+
+      if (existingImportedNameMatch) {
+        summary.updates += 1;
+
+        if (!existingImportedNameMatch.isActive) {
+          summary.reactivations += 1;
+        }
+
+        updateActions.push({
+          coachId: existingImportedNameMatch.id,
+          row,
+          wasInactive: !existingImportedNameMatch.isActive,
+          adoptLegacyRecord: false,
+        });
 
         continue;
       }
@@ -610,16 +638,41 @@ createActions.push({
     );
 
     const currentNames = new Set(
-  validProgramRows.map((row) => normalizeName(row.name)),
-);
+      validProgramRows.map((row) => normalizeName(row.name)),
+    );
 
     for (const coach of importedCoaches) {
+      const remainsCurrentByImportKey =
+        coach.importKey !== null &&
+        currentImportKeys.has(coach.importKey);
+
+      const remainsCurrentByName = currentNames.has(
+        normalizeName(coach.name),
+      );
+
       if (
         coach.manuallyVerifiedAt === null &&
-        coach.importKey &&
+        coach.claimedByUserId === null &&
         coach.isActive &&
-        !currentImportKeys.has(coach.importKey)
+        !remainsCurrentByImportKey &&
+        !remainsCurrentByName
       ) {
+        summary.deactivations += 1;
+
+        deactivateActions.push({
+          coachId: coach.id,
+          programName: program.college.name,
+          coachName: coach.name,
+        });
+      }
+    }
+
+    for (const coach of legacyCoaches) {
+      const remainsCurrentByName = currentNames.has(
+        normalizeName(coach.name),
+      );
+
+      if (coach.isActive && !remainsCurrentByName) {
         summary.deactivations += 1;
 
         deactivateActions.push({
@@ -670,6 +723,18 @@ createActions.push({
     for (const duplicate of duplicateCsvRows) {
       console.log(
         `${duplicate.slug} | ${duplicate.name} | ${duplicate.importKey}`,
+      );
+    }
+  }
+
+    if (deactivateActions.length > 0) {
+    console.log("");
+    console.log("RECORDS TO DEACTIVATE");
+    console.log("-".repeat(80));
+
+    for (const action of deactivateActions) {
+      console.log(
+        `${action.programName} | ${action.coachName}`,
       );
     }
   }

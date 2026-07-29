@@ -197,12 +197,20 @@ async function main(): Promise<void> {
             select: {
               id: true,
               isHeadCoach: true,
+              isActive: true,
             },
           },
         },
       },
     },
   });
+
+  const getActiveCoaches = (
+    college: (typeof colleges)[number],
+  ) =>
+    college.baseballProgram?.coaches.filter(
+      (coach) => coach.isActive,
+    ) ?? [];
 
   const allPrograms = colleges.filter(
     (college) => college.baseballProgram !== null,
@@ -307,8 +315,10 @@ async function main(): Promise<void> {
         baseballWebsiteUrl: clean(
           program.baseballWebsiteUrl,
         ),
-        coachCount: program.coaches.length,
-        headCoachCount: program.coaches.filter(
+        coachCount: getActiveCoaches(college).length,
+        headCoachCount: getActiveCoaches(
+          college,
+        ).filter(
           (coach) => coach.isHeadCoach,
         ).length,
       };
@@ -320,7 +330,7 @@ async function main(): Promise<void> {
         college.baseballProgram &&
         college.baseballProgram.division !==
           "NCAA_D1" &&
-        college.baseballProgram.coaches.length > 0,
+        getActiveCoaches(college).length > 0,
     );
 
   /*
@@ -377,9 +387,7 @@ async function main(): Promise<void> {
             ?.baseballWebsiteUrl ??
             college.programWebsiteUrl,
         ),
-        coachCount:
-          college.baseballProgram?.coaches.length ??
-          0,
+        coachCount: getActiveCoaches(college).length,
       })),
     );
 
@@ -445,9 +453,7 @@ async function main(): Promise<void> {
             ?.baseballWebsiteUrl ??
             college.programWebsiteUrl,
         ),
-        coachCount:
-          college.baseballProgram?.coaches.length ??
-          0,
+        coachCount: getActiveCoaches(college).length,
       })),
     );
 
@@ -476,12 +482,12 @@ async function main(): Promise<void> {
     baseballWebsiteUrl: clean(
       college.baseballProgram?.baseballWebsiteUrl,
     ),
-    coachCount:
-      college.baseballProgram?.coaches.length ?? 0,
-    headCoachCount:
-      college.baseballProgram?.coaches.filter(
-        (coach) => coach.isHeadCoach,
-      ).length ?? 0,
+    coachCount: getActiveCoaches(college).length,
+    headCoachCount: getActiveCoaches(
+      college,
+    ).filter(
+      (coach) => coach.isHeadCoach,
+    ).length,
   });
 
   const noBaseballWebsite =
@@ -496,13 +502,12 @@ async function main(): Promise<void> {
 
   const noCoaches = canonicalD1Programs.filter(
     (college) =>
-      (college.baseballProgram?.coaches.length ??
-        0) === 0,
+      getActiveCoaches(college).length === 0,
   );
 
   const noHeadCoach = canonicalD1Programs.filter(
     (college) =>
-      !college.baseballProgram?.coaches.some(
+      !getActiveCoaches(college).some(
         (coach) => coach.isHeadCoach,
       ),
   );
@@ -510,11 +515,9 @@ async function main(): Promise<void> {
   const multipleHeadCoaches =
     canonicalD1Programs.filter(
       (college) =>
-        (
-          college.baseballProgram?.coaches.filter(
-            (coach) => coach.isHeadCoach,
-          ).length ?? 0
-        ) > 1,
+        getActiveCoaches(college).filter(
+          (coach) => coach.isHeadCoach,
+        ).length > 1,
     );
 
   printSection("D1 DATABASE INVENTORY SUMMARY");
