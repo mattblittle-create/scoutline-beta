@@ -1,19 +1,30 @@
 {
   "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "prisma generate && next build",
-    "test": "vitest",
-    "test:run": "vitest run",
-    "start": "next start",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
-    "prisma:generate": "prisma generate",
-    "prisma:deploy": "prisma migrate deploy",
-    "db:seed": "tsx ./prisma/seed_discounts.ts",
-    "db:reset": "prisma migrate reset --force",
-    "db:status": "prisma migrate status",
-    "db:studio": "prisma studio",
-    "import:college-enrichment": "tsx scripts/import-college-enrichment.ts"
+"scripts": {
+  "dev": "next dev",
+  "build": "prisma generate && next build",
+  "test": "vitest",
+  "test:run": "vitest run",
+  "start": "next start",
+
+  "vercel-build": "prisma generate && prisma migrate deploy && next build",
+
+  "prisma:generate": "prisma generate",
+  "prisma:deploy": "prisma migrate deploy",
+
+  "db:seed": "tsx ./prisma/seed_discounts.ts",
+  "db:reset": "prisma migrate reset --force",
+  "db:status": "prisma migrate status",
+  "db:studio": "prisma studio",
+
+  "import:college-enrichment": "tsx scripts/import-college-enrichment.ts",
+
+  "audit:d1": "tsx scripts/audit-college-baseball-coaches.ts",
+  "scrape:d1": "tsx scripts/enrich-d1-coaches-dom.ts",
+  "import:d1": "tsx scripts/import-d1-coaches.ts",
+  "import:d1:apply": "tsx scripts/import-d1-coaches.ts --apply",
+  "enrich:d1": "npm run scrape:d1 && npm run import:d1",
+  "refresh:d1": "npm run scrape:d1 && npm run import:d1:apply"
   },
   "dependencies": {
     "@aws-sdk/client-rekognition": "^3.883.0",
