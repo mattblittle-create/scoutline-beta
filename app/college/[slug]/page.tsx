@@ -979,7 +979,14 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
         </section>
 
         <div style={wideGridStyle}>
-          <section style={cardStyle}>
+          <section
+  style={{
+    ...cardStyle,
+    display: "flex",
+    flexDirection: "column",
+    minHeight: 420,
+  }}
+>
             {coachesSectionUrl ? (
               <a
                 href={coachesSectionUrl}
@@ -2351,7 +2358,8 @@ const verificationLabelStyle: React.CSSProperties = {
 const coachListScrollStyle: React.CSSProperties = {
   display: "grid",
   gap: 10,
-  maxHeight: 185,
+  flex: 1,
+  minHeight: 0,
   overflowY: "auto",
   paddingRight: 4,
 };
