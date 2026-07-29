@@ -984,7 +984,7 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
     ...cardStyle,
     display: "flex",
     flexDirection: "column",
-    minHeight: 420,
+    minHeight: 360,
   }}
 >
             {coachesSectionUrl ? (
