@@ -38,17 +38,38 @@ const SPECIAL_COACH_URLS: Record<string, CandidateUrl[]> = {
     },
   ],
 
-  /*
-   * Coastal publishes its incoming/current staff on the unversioned
-   * roster before some year-specific and cached pages are updated.
-   *
-   * Keep this URL ahead of the learned pattern so stale Coastal staff
-   * are not carried forward after coaching changes.
-   */
   "coastal-carolina-university": [
     {
       pattern: "current-roster",
       url: "https://goccusports.com/sports/baseball/roster",
+    },
+  ],
+
+  "university-of-massachusetts-amherst": [
+    {
+      pattern: "custom-coaches-2027",
+      url: "https://umassathletics.com/sports/baseball/coaches/2027",
+    },
+  ],
+
+  "abilene-christian-university": [
+    {
+      pattern: "custom-roster-2027",
+      url: "https://acusports.com/sports/baseball/roster/2027",
+    },
+  ],
+
+  "kansas-state-university": [
+    {
+      pattern: "custom-roster-2026",
+      url: "https://www.kstatesports.com/sports/baseball/roster/2026",
+    },
+  ],
+
+  "illinois-state-university": [
+    {
+      pattern: "custom-coaches-page",
+      url: "https://goredbirds.com/sports/baseball/coaches",
     },
   ],
 };
@@ -710,6 +731,8 @@ function looksLikeCoachTitle(value: string) {
     "director of program & player development",
     "director of program and player development",
     "director of baseball player development",
+    "director of player & program development",
+    "director of player and program development",
     "coordinator of baseball player development",
     "player development coordinator",
     "player development assistant",

@@ -399,23 +399,97 @@ function parseCoachRow(row: CsvCoachRow): ParsedCoachRow | null {
 function coachDataMatches(
   existing: ExistingCoachData,
   incoming: ParsedCoachRow,
+  options?: {
+    ignoreProtectedFields?: boolean;
+  },
 ): boolean {
-  return getCoachDifferences(existing, incoming).length === 0;
+  return (
+    getCoachDifferences(
+      existing,
+      incoming,
+      options,
+    ).length === 0
+  );
+}
+
+function normalizeSeasonUrlForComparison(
+  value: string | null | undefined,
+): string {
+  const normalized = normalizeComparable(value ?? null);
+
+  if (!normalized) {
+    return "";
+  }
+
+  return normalized
+    // Example:
+    // /season/2025-26/staff/rick-heller
+    // /season/2026-27/staff/rick-heller
+    .replace(
+      /\/season\/20\d{2}-\d{2}(?=\/|#|\?|$)/gi,
+      "/season/{season}",
+    )
+
+    // Example:
+    // /sports/baseball/roster/2026
+    // /sports/baseball/roster/2027
+    .replace(
+      /\/roster\/20\d{2}(?=\/|#|\?|$)/gi,
+      "/roster/{season}",
+    )
+
+    // Example:
+    // /sports/baseball/coaches/2026
+    // /sports/baseball/coaches/2027
+    .replace(
+      /\/coaches\/20\d{2}(?=\/|#|\?|$)/gi,
+      "/coaches/{season}",
+    );
 }
 
 function getCoachDifferences(
   existing: ExistingCoachData,
   incoming: ParsedCoachRow,
+  options?: {
+    ignoreProtectedFields?: boolean;
+  },
 ): Array<{
   field: string;
   existing: string;
   incoming: string;
 }> {
+  const ignoreProtectedFields =
+    options?.ignoreProtectedFields ?? false;
+
   const differences: Array<{
     field: string;
     existing: string;
     incoming: string;
   }> = [];
+
+  const normalizeSeasonUrlForComparison = (
+    value: string | null,
+  ): string => {
+    const normalized = normalizeComparable(value ?? null);
+
+    if (!normalized) {
+      return "";
+    }
+
+    return normalized
+      .replace(
+        /\/season\/20\d{2}-\d{2}(?=\/|#|\?|$)/gi,
+        "/season/{season}",
+      )
+      .replace(
+        /\/roster\/20\d{2}(?=\/|#|\?|$)/gi,
+        "/roster/{season}",
+      )
+      .replace(
+        /\/coaches\/20\d{2}(?=\/|#|\?|$)/gi,
+        "/coaches/{season}",
+      );
+  };
 
   const compare = (
     field: string,
@@ -458,57 +532,91 @@ function getCoachDifferences(
     incoming.name,
     (value) => normalizeName(value ?? ""),
   );
-  compare("title", existing.title, incoming.title);
+
+  compare(
+    "title",
+    existing.title,
+    incoming.title,
+  );
+
   compare(
     "email",
     existing.email,
     incoming.email,
     normalizeEmail,
   );
+
   compare(
     "phone",
     existing.phone,
     incoming.phone,
     normalizePhone,
   );
-  compare("bioUrl", existing.bioUrl, incoming.bioUrl);
+
+  compare(
+    "bioUrl",
+    existing.bioUrl,
+    incoming.bioUrl,
+    normalizeSeasonUrlForComparison,
+  );
+
   compare(
     "contactUrl",
     existing.contactUrl,
     incoming.contactUrl,
+    normalizeSeasonUrlForComparison,
   );
+
   compare(
     "headshotUrl",
     existing.headshotUrl,
     incoming.headshotUrl,
   );
-  compare("xUrl", existing.xUrl, incoming.xUrl);
+
+  compare(
+    "xUrl",
+    existing.xUrl,
+    incoming.xUrl,
+  );
+
   compare(
     "instagramUrl",
     existing.instagramUrl,
     incoming.instagramUrl,
   );
+
   compare(
     "linkedinUrl",
     existing.linkedinUrl,
     incoming.linkedinUrl,
   );
+
   compare(
     "isHeadCoach",
     existing.isHeadCoach,
     incoming.isHeadCoach,
   );
-  compare(
-    "reviewStatus",
-    existing.reviewStatus,
-    incoming.reviewStatus,
-  );
-  compare("isActive", existing.isActive, true);
-  compare(
-    "sourceUrl",
-    existing.sourceUrl,
-    incoming.contactUrl,
-  );
+
+  if (!ignoreProtectedFields) {
+    compare(
+      "reviewStatus",
+      existing.reviewStatus,
+      incoming.reviewStatus,
+    );
+
+    compare(
+      "isActive",
+      existing.isActive,
+      true,
+    );
+
+    compare(
+      "sourceUrl",
+      existing.sourceUrl,
+      incoming.contactUrl,
+      normalizeSeasonUrlForComparison,
+    );
+  }
 
   return differences;
 }
@@ -792,10 +900,17 @@ if (protectedMatch) {
     row,
   );
 
-  const protectedRecordMatches = coachDataMatches(
+const protectedDifferences =
+  getCoachDifferences(
     protectedMatch,
     mergedRow,
+    {
+      ignoreProtectedFields: true,
+    },
   );
+
+const protectedRecordMatches =
+  protectedDifferences.length === 0;
 
   if (!protectedRecordMatches) {
     summary.manualConflicts += 1;
@@ -806,10 +921,7 @@ if (protectedMatch) {
       existingName: protectedMatch.name,
       existingEmail: protectedMatch.email,
       incomingEmail: mergedRow.email,
-      differences: getCoachDifferences(
-        protectedMatch,
-        mergedRow,
-      ),
+      differences: protectedDifferences,
     });
   }
 
