@@ -103,6 +103,20 @@ function digitsOnly(v: any) {
   return String(v ?? "").replace(/\D+/g, "");
 }
 
+function isHeadCoachTitle(value: unknown) {
+  const title = String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+
+  return [
+    "head coach",
+    "co-head coach",
+    "acting head coach",
+    "interim head coach",
+  ].includes(title);
+}
+
 export async function GET() {
   try {
     const sessionUser = await getCurrentUser();
@@ -383,10 +397,29 @@ export async function PUT(req: Request) {
     const program = body?.program || {};
 
     const name = String(coach?.name || "").trim();
-    const staffTitle = String(coach?.role || "").trim(); // this is the preset title string
+    const staffTitle = String(
+      coach?.role || ""
+    )
+      .trim()
+      .replace(/\s+/g, " ")
+      .slice(0, 120);
 
     const workPhoneRaw = String(coach?.workPhone ?? "").trim();
     const workPhone = digitsOnly(workPhoneRaw).slice(0, 10);
+
+    if (
+      workPhone.length > 0 &&
+      workPhone.length !== 10
+    ) {
+      return NextResponse.json<Err>(
+        {
+          ok: false,
+          error:
+            "Coach phone must be 10 digits when provided.",
+        },
+        { status: 400 }
+      );
+    }
 
     const workPhoneExtRaw = String(coach?.workPhoneExt ?? "").trim();
     const workPhoneExt = digitsOnly(workPhoneExtRaw).slice(0, 6);
@@ -411,41 +444,66 @@ export async function PUT(req: Request) {
 
     if (!name) return NextResponse.json<Err>({ ok: false, error: "Coach name is required." }, { status: 400 });
     if (!staffTitle) return NextResponse.json<Err>({ ok: false, error: "Coach role is required." }, { status: 400 });
-    if (!workPhone) return NextResponse.json<Err>({ ok: false, error: "Coach phone is required." }, { status: 400 });
 
-    await prisma.user.update({
-      where: { id: sessionUser.id },
-      data: {
-        name,
-        workPhone,
-        workPhoneExt: workPhoneExt || null,
-        phonePrivate,
-        photoUrl: photoUrl || null,
-      },
-    });
+await prisma.$transaction(async (tx) => {
+  await tx.user.update({
+    where: {
+      id: sessionUser.id,
+    },
+    data: {
+      name,
+      workPhone: workPhone || null,
+      workPhoneExt: workPhoneExt || null,
+      phonePrivate,
+      photoUrl: photoUrl || null,
+    },
+  });
 
-    await prisma.coachProfile.upsert({
-      where: { userId: sessionUser.id },
-      create: {
-        userId: sessionUser.id,
-        staffTitle,
-        recruitingTargets,
-        coachBio: coachBio || null,
+  await tx.coachProfile.upsert({
+    where: {
+      userId: sessionUser.id,
+    },
+    create: {
+      userId: sessionUser.id,
+      staffTitle,
+      recruitingTargets,
+      coachBio: coachBio || null,
+      contactEmail: contactEmail || null,
+      coachXUrl: coachXUrl || null,
+      coachInstagramUrl:
+        coachInstagramUrl || null,
+    },
+    update: {
+      staffTitle,
+      recruitingTargets,
+      coachBio: coachBio || null,
+      contactEmail: contactEmail || null,
+      coachXUrl: coachXUrl || null,
+      coachInstagramUrl:
+        coachInstagramUrl || null,
+    },
+  });
 
-        contactEmail: contactEmail || null,
-        coachXUrl: coachXUrl || null,
-        coachInstagramUrl: coachInstagramUrl || null,
-      },
-      update: {
-        staffTitle,
-        recruitingTargets,
-        coachBio: coachBio || null,
-
-        contactEmail: contactEmail || null,
-        coachXUrl: coachXUrl || null,
-        coachInstagramUrl: coachInstagramUrl || null,
-      },
-    });
+  await tx.collegeBaseballCoach.updateMany({
+    where: {
+      claimedByUserId: sessionUser.id,
+    },
+    data: {
+      name,
+      title: staffTitle,
+      email:
+        contactEmail ||
+        sessionUser.email,
+      phone: workPhone || null,
+      isHeadCoach:
+        isHeadCoachTitle(staffTitle),
+      manuallyVerifiedAt: new Date(),
+      dataSource: "COACH_VERIFIED",
+      reviewStatus: "MANUAL_VERIFIED",
+      isActive: true,
+    },
+  });
+});
 
     const fresh = await prisma.user.findUnique({
       where: { id: sessionUser.id },

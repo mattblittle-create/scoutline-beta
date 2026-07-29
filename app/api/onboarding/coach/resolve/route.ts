@@ -230,34 +230,59 @@ export async function POST(req: NextRequest) {
 
     const coaches = college.baseballProgram?.coaches ?? [];
 
-    let matchedCoach: (typeof coaches)[number] | null = null;
-    let matchType: "EMAIL" | "NAME" | null = null;
+let matchedCoach: (typeof coaches)[number] | null = null;
+let matchType: "EMAIL" | "NAME" | null = null;
 
-    if (email) {
-      matchedCoach =
-        coaches.find(
-          (coach) =>
-            normalizeEmail(coach.email) === email
-        ) ?? null;
+if (email) {
+  const emailMatches = coaches.filter(
+    (coach) =>
+      normalizeEmail(coach.email) === email
+  );
 
-      if (matchedCoach) {
-        matchType = "EMAIL";
-      }
-    }
+  if (emailMatches.length > 1) {
+    return NextResponse.json<Err>(
+      {
+        ok: false,
+        error:
+          "Multiple active coach records use this email. Contact ScoutLine support before continuing.",
+      },
+      { status: 409 }
+    );
+  }
 
-    if (!matchedCoach && name) {
-      const normalizedRequestedName = normalizeName(name);
+  if (emailMatches.length === 1) {
+    matchedCoach = emailMatches[0];
+    matchType = "EMAIL";
+  }
+}
 
-      matchedCoach =
-        coaches.find(
-          (coach) =>
-            normalizeName(coach.name) === normalizedRequestedName
-        ) ?? null;
+if (!matchedCoach && name) {
+  const normalizedRequestedName =
+    normalizeName(name);
 
-      if (matchedCoach) {
-        matchType = "NAME";
-      }
-    }
+  const nameMatches = coaches.filter(
+    (coach) =>
+      !normalizeEmail(coach.email) &&
+      normalizeName(coach.name) ===
+        normalizedRequestedName
+  );
+
+  if (nameMatches.length > 1) {
+    return NextResponse.json<Err>(
+      {
+        ok: false,
+        error:
+          "Multiple active coach records match this name. Contact ScoutLine support before continuing.",
+      },
+      { status: 409 }
+    );
+  }
+
+  if (nameMatches.length === 1) {
+    matchedCoach = nameMatches[0];
+    matchType = "NAME";
+  }
+}
 
     return NextResponse.json({
       ok: true,

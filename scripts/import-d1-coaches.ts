@@ -51,6 +51,23 @@ type ParsedCoachRow = {
   importKey: string;
 };
 
+type ExistingCoachData = {
+  name: string;
+  title: string | null;
+  email: string | null;
+  phone: string | null;
+  bioUrl: string | null;
+  contactUrl: string | null;
+  headshotUrl: string | null;
+  xUrl: string | null;
+  instagramUrl: string | null;
+  linkedinUrl: string | null;
+  isHeadCoach: boolean;
+  reviewStatus: string | null;
+  isActive: boolean;
+  sourceUrl: string | null;
+};
+
 type ImportSummary = {
   csvRows: number;
   programsResolved: number;
@@ -266,7 +283,89 @@ function normalizeComparable(value: string | null): string {
 }
 
 function normalizePhone(value: string | null): string {
-  return value?.replace(/\D/g, "") ?? "";
+  const digits = value?.replace(/\D/g, "") ?? "";
+
+  if (digits.length === 11 && digits.startsWith("1")) {
+    return digits.slice(1);
+  }
+
+  return digits;
+}
+
+function extractSeasonYear(value: string | null): number | null {
+  if (!value) {
+    return null;
+  }
+
+  const matches = value.match(/(?:\/|=)(20\d{2})(?:\/|#|&|$)/g);
+
+  if (!matches || matches.length === 0) {
+    return null;
+  }
+
+  const years = matches
+    .map((match) => match.match(/20\d{2}/)?.[0])
+    .filter((year): year is string => Boolean(year))
+    .map(Number)
+    .filter((year) => Number.isFinite(year));
+
+  return years.length > 0 ? Math.max(...years) : null;
+}
+
+function preserveNewerSeasonUrl(
+  existingValue: string | null,
+  incomingValue: string | null,
+): string | null {
+  if (!incomingValue) {
+    return existingValue;
+  }
+
+  if (!existingValue) {
+    return incomingValue;
+  }
+
+  const existingYear = extractSeasonYear(existingValue);
+  const incomingYear = extractSeasonYear(incomingValue);
+
+  if (
+    existingYear !== null &&
+    incomingYear !== null &&
+    incomingYear < existingYear
+  ) {
+    return existingValue;
+  }
+
+  return incomingValue;
+}
+
+function mergeIncomingCoachData(
+  existing: ExistingCoachData,
+  incoming: ParsedCoachRow,
+): ParsedCoachRow {
+  const email = incoming.email ?? existing.email;
+
+  return {
+    ...incoming,
+    title: incoming.title ?? existing.title,
+    email,
+    phone: incoming.phone ?? existing.phone,
+    bioUrl: preserveNewerSeasonUrl(
+      existing.bioUrl,
+      incoming.bioUrl,
+    ),
+    contactUrl: preserveNewerSeasonUrl(
+      existing.contactUrl,
+      incoming.contactUrl,
+    ),
+    headshotUrl:
+      incoming.headshotUrl ?? existing.headshotUrl,
+    xUrl: incoming.xUrl ?? existing.xUrl,
+    instagramUrl:
+      incoming.instagramUrl ?? existing.instagramUrl,
+    linkedinUrl:
+      incoming.linkedinUrl ?? existing.linkedinUrl,
+    importKey: buildImportKey(incoming.name, email),
+  };
 }
 
 function parseCoachRow(row: CsvCoachRow): ParsedCoachRow | null {
@@ -298,50 +397,120 @@ function parseCoachRow(row: CsvCoachRow): ParsedCoachRow | null {
 }
 
 function coachDataMatches(
-  existing: {
-    name: string;
-    title: string | null;
-    email: string | null;
-    phone: string | null;
-    bioUrl: string | null;
-    contactUrl: string | null;
-    headshotUrl: string | null;
-    xUrl: string | null;
-    instagramUrl: string | null;
-    linkedinUrl: string | null;
-    isHeadCoach: boolean;
-    reviewStatus: string | null;
-    isActive: boolean;
-    sourceUrl: string | null;
-  },
+  existing: ExistingCoachData,
   incoming: ParsedCoachRow,
 ): boolean {
-  return (
-    normalizeName(existing.name) === normalizeName(incoming.name) &&
-    normalizeComparable(existing.title) ===
-      normalizeComparable(incoming.title) &&
-    normalizeEmail(existing.email) ===
-      normalizeEmail(incoming.email) &&
-    normalizePhone(existing.phone) === normalizePhone(incoming.phone) &&
-    normalizeComparable(existing.bioUrl) ===
-      normalizeComparable(incoming.bioUrl) &&
-    normalizeComparable(existing.contactUrl) ===
-      normalizeComparable(incoming.contactUrl) &&
-    normalizeComparable(existing.headshotUrl) ===
-      normalizeComparable(incoming.headshotUrl) &&
-    normalizeComparable(existing.xUrl) ===
-      normalizeComparable(incoming.xUrl) &&
-    normalizeComparable(existing.instagramUrl) ===
-      normalizeComparable(incoming.instagramUrl) &&
-    normalizeComparable(existing.linkedinUrl) ===
-      normalizeComparable(incoming.linkedinUrl) &&
-    existing.isHeadCoach === incoming.isHeadCoach &&
-    normalizeComparable(existing.reviewStatus) ===
-      normalizeComparable(incoming.reviewStatus) &&
-    existing.isActive &&
-    normalizeComparable(existing.sourceUrl) ===
-      normalizeComparable(incoming.contactUrl)
+  return getCoachDifferences(existing, incoming).length === 0;
+}
+
+function getCoachDifferences(
+  existing: ExistingCoachData,
+  incoming: ParsedCoachRow,
+): Array<{
+  field: string;
+  existing: string;
+  incoming: string;
+}> {
+  const differences: Array<{
+    field: string;
+    existing: string;
+    incoming: string;
+  }> = [];
+
+  const compare = (
+    field: string,
+    existingValue: string | null | boolean,
+    incomingValue: string | null | boolean,
+    normalizer: (
+      value: string | null,
+    ) => string = normalizeComparable,
+  ): void => {
+    if (
+      typeof existingValue === "boolean" ||
+      typeof incomingValue === "boolean"
+    ) {
+      if (existingValue !== incomingValue) {
+        differences.push({
+          field,
+          existing: String(existingValue),
+          incoming: String(incomingValue),
+        });
+      }
+
+      return;
+    }
+
+    if (
+      normalizer(existingValue) !==
+      normalizer(incomingValue)
+    ) {
+      differences.push({
+        field,
+        existing: existingValue ?? "(blank)",
+        incoming: incomingValue ?? "(blank)",
+      });
+    }
+  };
+
+  compare(
+    "name",
+    existing.name,
+    incoming.name,
+    (value) => normalizeName(value ?? ""),
   );
+  compare("title", existing.title, incoming.title);
+  compare(
+    "email",
+    existing.email,
+    incoming.email,
+    normalizeEmail,
+  );
+  compare(
+    "phone",
+    existing.phone,
+    incoming.phone,
+    normalizePhone,
+  );
+  compare("bioUrl", existing.bioUrl, incoming.bioUrl);
+  compare(
+    "contactUrl",
+    existing.contactUrl,
+    incoming.contactUrl,
+  );
+  compare(
+    "headshotUrl",
+    existing.headshotUrl,
+    incoming.headshotUrl,
+  );
+  compare("xUrl", existing.xUrl, incoming.xUrl);
+  compare(
+    "instagramUrl",
+    existing.instagramUrl,
+    incoming.instagramUrl,
+  );
+  compare(
+    "linkedinUrl",
+    existing.linkedinUrl,
+    incoming.linkedinUrl,
+  );
+  compare(
+    "isHeadCoach",
+    existing.isHeadCoach,
+    incoming.isHeadCoach,
+  );
+  compare(
+    "reviewStatus",
+    existing.reviewStatus,
+    incoming.reviewStatus,
+  );
+  compare("isActive", existing.isActive, true);
+  compare(
+    "sourceUrl",
+    existing.sourceUrl,
+    incoming.contactUrl,
+  );
+
+  return differences;
 }
 
 function matchesCoachByName(
@@ -449,13 +618,16 @@ async function main(): Promise<void> {
     name: string;
   }> = [];
 
-  const createActions: Array<{
-    programId: string;
-    row: ParsedCoachRow;
-  }> = [];
+const createActions: Array<{
+  programId: string;
+  programName: string;
+  row: ParsedCoachRow;
+}> = [];
 
   const updateActions: Array<{
     coachId: string;
+    programName: string;
+    existing: ExistingCoachData;
     row: ParsedCoachRow;
     wasInactive: boolean;
     adoptLegacyRecord: boolean;
@@ -465,6 +637,9 @@ async function main(): Promise<void> {
     coachId: string;
     programName: string;
     coachName: string;
+    coachTitle: string | null;
+    dataSource: string | null;
+    lastSeenAt: Date | null;
   }> = [];
 
   const manualConflicts: Array<{
@@ -473,6 +648,11 @@ async function main(): Promise<void> {
     existingName: string;
     existingEmail: string | null;
     incomingEmail: string | null;
+    differences: Array<{
+      field: string;
+      existing: string;
+      incoming: string;
+    }>;
   }> = [];
 
   const runTimestamp = new Date();
@@ -533,7 +713,12 @@ async function main(): Promise<void> {
       const existingImported = importedByKey.get(row.importKey);
 
       if (existingImported) {
-        if (coachDataMatches(existingImported, row)) {
+        const mergedRow = mergeIncomingCoachData(
+          existingImported,
+          row,
+        );
+
+        if (coachDataMatches(existingImported, mergedRow)) {
           summary.unchanged += 1;
         } else {
           summary.updates += 1;
@@ -542,12 +727,14 @@ async function main(): Promise<void> {
             summary.reactivations += 1;
           }
 
-updateActions.push({
-  coachId: existingImported.id,
-  row,
-  wasInactive: !existingImported.isActive,
-  adoptLegacyRecord: false,
-});
+          updateActions.push({
+            coachId: existingImported.id,
+            programName: program.college.name,
+            existing: existingImported,
+            row: mergedRow,
+            wasInactive: !existingImported.isActive,
+            adoptLegacyRecord: false,
+          });
         }
 
         continue;
@@ -560,22 +747,38 @@ updateActions.push({
           matchesCoachByName(coach, row),
       );
 
-      if (existingImportedNameMatch) {
-        summary.updates += 1;
+if (existingImportedNameMatch) {
+  const mergedRow = mergeIncomingCoachData(
+    existingImportedNameMatch,
+    row,
+  );
 
-        if (!existingImportedNameMatch.isActive) {
-          summary.reactivations += 1;
-        }
+  if (
+    coachDataMatches(
+      existingImportedNameMatch,
+      mergedRow,
+    )
+  ) {
+    summary.unchanged += 1;
+  } else {
+    summary.updates += 1;
 
-        updateActions.push({
-          coachId: existingImportedNameMatch.id,
-          row,
-          wasInactive: !existingImportedNameMatch.isActive,
-          adoptLegacyRecord: false,
-        });
+    if (!existingImportedNameMatch.isActive) {
+      summary.reactivations += 1;
+    }
 
-        continue;
-      }
+    updateActions.push({
+      coachId: existingImportedNameMatch.id,
+      programName: program.college.name,
+      existing: existingImportedNameMatch,
+      row: mergedRow,
+      wasInactive: !existingImportedNameMatch.isActive,
+      adoptLegacyRecord: false,
+    });
+  }
+
+  continue;
+}
 
 const protectedMatch = protectedCoaches.find((coach) =>
   matchesCoachByName(coach, row),
@@ -584,9 +787,14 @@ const protectedMatch = protectedCoaches.find((coach) =>
 if (protectedMatch) {
   summary.manualMatches += 1;
 
-  const protectedRecordMatches = coachDataMatches(
+  const mergedRow = mergeIncomingCoachData(
     protectedMatch,
     row,
+  );
+
+  const protectedRecordMatches = coachDataMatches(
+    protectedMatch,
+    mergedRow,
   );
 
   if (!protectedRecordMatches) {
@@ -597,7 +805,11 @@ if (protectedMatch) {
       incomingName: row.name,
       existingName: protectedMatch.name,
       existingEmail: protectedMatch.email,
-      incomingEmail: row.email,
+      incomingEmail: mergedRow.email,
+      differences: getCoachDifferences(
+        protectedMatch,
+        mergedRow,
+      ),
     });
   }
 
@@ -609,6 +821,11 @@ const legacyMatch = legacyCoaches.find((coach) =>
 );
 
 if (legacyMatch) {
+  const mergedRow = mergeIncomingCoachData(
+    legacyMatch,
+    row,
+  );
+
   summary.updates += 1;
 
   if (!legacyMatch.isActive) {
@@ -617,7 +834,9 @@ if (legacyMatch) {
 
   updateActions.push({
     coachId: legacyMatch.id,
-    row,
+    programName: program.college.name,
+    existing: legacyMatch,
+    row: mergedRow,
     wasInactive: !legacyMatch.isActive,
     adoptLegacyRecord: true,
   });
@@ -629,12 +848,28 @@ summary.creates += 1;
 
 createActions.push({
   programId: program.id,
+  programName: program.college.name,
   row,
 });
     }
 
     const currentImportKeys = new Set(
-      validProgramRows.map((row) => row.importKey),
+      validProgramRows.flatMap((row) => {
+        const matchingExisting = program.coaches.find(
+          (coach) => matchesCoachByName(coach, row),
+        );
+
+        if (!matchingExisting) {
+          return [row.importKey];
+        }
+
+        const mergedRow = mergeIncomingCoachData(
+          matchingExisting,
+          row,
+        );
+
+        return [row.importKey, mergedRow.importKey];
+      }),
     );
 
     const currentNames = new Set(
@@ -663,22 +898,9 @@ createActions.push({
           coachId: coach.id,
           programName: program.college.name,
           coachName: coach.name,
-        });
-      }
-    }
-
-    for (const coach of legacyCoaches) {
-      const remainsCurrentByName = currentNames.has(
-        normalizeName(coach.name),
-      );
-
-      if (coach.isActive && !remainsCurrentByName) {
-        summary.deactivations += 1;
-
-        deactivateActions.push({
-          coachId: coach.id,
-          programName: program.college.name,
-          coachName: coach.name,
+          coachTitle: coach.title,
+          dataSource: coach.dataSource,
+          lastSeenAt: coach.lastSeenAt,
         });
       }
     }
@@ -727,7 +949,75 @@ createActions.push({
     }
   }
 
-    if (deactivateActions.length > 0) {
+  if (createActions.length > 0) {
+  console.log("");
+  console.log("RECORDS TO CREATE");
+  console.log("-".repeat(80));
+
+  for (const action of createActions) {
+    console.log(
+      `${action.programName} | ${action.row.name}`,
+    );
+    console.log(
+      `  Title: ${action.row.title ?? "(blank)"}`,
+    );
+    console.log(
+      `  Email: ${action.row.email ?? "(blank)"}`,
+    );
+    console.log(
+      `  Phone: ${action.row.phone ?? "(blank)"}`,
+    );
+    console.log(
+      `  Head coach: ${action.row.isHeadCoach}`,
+    );
+    console.log(
+      `  Review status: ${action.row.reviewStatus ?? "(blank)"}`,
+    );
+    console.log(
+      `  Data source: ${IMPORT_SOURCE}`,
+    );
+    console.log("");
+  }
+}
+
+  if (updateActions.length > 0) {
+    console.log("");
+    console.log("RECORDS TO UPDATE");
+    console.log("-".repeat(80));
+
+    for (const action of updateActions) {
+      const differences = getCoachDifferences(
+        action.existing,
+        action.row,
+      );
+
+      console.log(
+        `${action.programName} | ${action.row.name}`,
+      );
+
+      if (action.adoptLegacyRecord) {
+        console.log(
+          "  Record action: adopt legacy record into DOM enrichment",
+        );
+      }
+
+      if (action.wasInactive) {
+        console.log(
+          "  Record action: reactivate inactive record",
+        );
+      }
+
+      for (const difference of differences) {
+        console.log(
+          `  ${difference.field}: ${difference.existing} -> ${difference.incoming}`,
+        );
+      }
+
+      console.log("");
+    }
+  }
+
+  if (deactivateActions.length > 0) {
     console.log("");
     console.log("RECORDS TO DEACTIVATE");
     console.log("-".repeat(80));
@@ -736,6 +1026,18 @@ createActions.push({
       console.log(
         `${action.programName} | ${action.coachName}`,
       );
+      console.log(
+        `  Title: ${action.coachTitle ?? "(blank)"}`,
+      );
+      console.log(
+        `  Data source: ${action.dataSource ?? "(blank)"}`,
+      );
+      console.log(
+        `  Last seen: ${
+          action.lastSeenAt?.toISOString() ?? "(never)"
+        }`,
+      );
+      console.log("");
     }
   }
 
@@ -752,6 +1054,13 @@ createActions.push({
       console.log(
         `  Incoming: ${conflict.incomingName} | ${conflict.incomingEmail ?? "(no email)"}`,
       );
+
+      for (const difference of conflict.differences) {
+        console.log(
+          `  ${difference.field}: ${difference.existing} -> ${difference.incoming}`,
+        );
+      }
+
       console.log("");
     }
   }
@@ -767,16 +1076,15 @@ createActions.push({
     return;
   }
 
-  if (
-    summary.programsMissing > 0 ||
-    summary.skippedInvalid > 0 ||
-    summary.duplicateCsvRows > 0 ||
-    summary.manualConflicts > 0
-  ) {
-    throw new Error(
-      "Import blocked because validation or conflict issues remain.",
-    );
-  }
+if (
+  summary.programsMissing > 0 ||
+  summary.skippedInvalid > 0 ||
+  summary.duplicateCsvRows > 0
+) {
+  throw new Error(
+    "Import blocked because validation issues remain.",
+  );
+}
 
   await prisma.$transaction(
     async (transaction) => {

@@ -21,10 +21,18 @@ const ROLE_PRESETS = [
 
 type StaffTitle = (typeof ROLE_PRESETS)[number];
 
-function normalizeStaffTitle(v: any): StaffTitle {
-  const raw = String(v ?? "").trim();
-  const hit = ROLE_PRESETS.find((x) => x === raw);
-  return hit || "Assistant Coach";
+function normalizeStaffTitle(value: unknown): string {
+  const raw = String(value ?? "").trim();
+
+  return raw || "Assistant Coach";
+}
+
+function isPresetStaffTitle(
+  value: unknown
+): value is StaffTitle {
+  return ROLE_PRESETS.includes(
+    String(value ?? "").trim() as StaffTitle
+  );
 }
 
 const COLLEGE_DIVISION_OPTIONS = [
@@ -247,6 +255,7 @@ type ApiOk = {
       photoUrl: string | null;
       recruitingTargets: RecruitingTarget[];
       coachBio?: string | null;
+      isProgramAdmin?: boolean;
     };
     program: {
       collegeId: string | null;
@@ -766,7 +775,8 @@ export default function CoachProfilePage() {
   const [coachFirstName, setCoachFirstName] = useState("");
   const [coachLastName, setCoachLastName] = useState("");
   const coachName = useMemo(() => `${coachFirstName} ${coachLastName}`.trim(), [coachFirstName, coachLastName]);
-  const [coachRole, setCoachRole] = useState<StaffTitle>("Assistant Coach");
+  const [coachRole, setCoachRole] =
+    useState<string>("Assistant Coach");
   const [email, setEmail] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [coachXUrl, setCoachXUrl] = useState("");
@@ -1189,15 +1199,33 @@ const url = await uploadUserPhoto(file, uploadSlug);
                 </Field>
               </div>
 
-                <Field label="Role">
-                  <select value={coachRole} onChange={(e) => setCoachRole(e.target.value as any)} style={input}>
-                    {ROLE_PRESETS.map((r) => (
-                      <option key={r} value={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
+<Field
+  label="Role"
+  hint="Your detailed imported title is preserved unless you select a different role."
+>
+  <select
+    value={coachRole}
+    onChange={(event) =>
+      setCoachRole(event.target.value)
+    }
+    style={input}
+  >
+    {!isPresetStaffTitle(coachRole) ? (
+      <option value={coachRole}>
+        {coachRole}
+      </option>
+    ) : null}
+
+    {ROLE_PRESETS.map((roleOption) => (
+      <option
+        key={roleOption}
+        value={roleOption}
+      >
+        {roleOption}
+      </option>
+    ))}
+  </select>
+</Field>
 
                 <Field label="Username" hint="This is your login and cannot be edited here.">
                   <input value={email} disabled style={{ ...input, background: "#f8fafc" }} />

@@ -273,23 +273,63 @@ select: {
       | (typeof activeProgramCoaches)[number]
       | null = null;
 
-    if (requestedCoachRecordId) {
-      resolvedCoachRecord =
-        activeProgramCoaches.find(
-          (coach) => coach.id === requestedCoachRecordId
-        ) ?? null;
+if (requestedCoachRecordId) {
+  resolvedCoachRecord =
+    activeProgramCoaches.find(
+      (coach) =>
+        coach.id === requestedCoachRecordId
+    ) ?? null;
 
-      if (!resolvedCoachRecord) {
-        return NextResponse.json(
-          {
-            ok: false,
-            error:
-              "The selected coach record does not belong to this program or is no longer active.",
-          },
-          { status: 400 }
-        );
-      }
-    }
+  if (!resolvedCoachRecord) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "The selected coach record does not belong to this program or is no longer active.",
+      },
+      { status: 400 }
+    );
+  }
+
+  const importedEmail = normalizeEmail(
+    resolvedCoachRecord.email
+  );
+
+  const importedName = normalizeCoachName(
+    resolvedCoachRecord.name
+  );
+
+  const requestedName =
+    normalizeCoachName(name);
+
+  if (
+    importedEmail &&
+    importedEmail !== workEmail
+  ) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "The selected coach record is connected to a different email address. Use the listed work email or contact ScoutLine support.",
+      },
+      { status: 409 }
+    );
+  }
+
+  if (
+    !importedEmail &&
+    importedName !== requestedName
+  ) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "The entered coach name does not match the selected staff record.",
+      },
+      { status: 409 }
+    );
+  }
+}
 
     if (!resolvedCoachRecord && existingClaim) {
 resolvedCoachRecord = {
@@ -301,25 +341,58 @@ resolvedCoachRecord = {
 };
     }
 
-    if (!resolvedCoachRecord) {
-      resolvedCoachRecord =
-        activeProgramCoaches.find(
-          (coach) =>
-            normalizeEmail(coach.email) === workEmail
-        ) ?? null;
-    }
+if (!resolvedCoachRecord) {
+  const eligibleEmailMatches =
+    activeProgramCoaches.filter(
+      (coach) =>
+        normalizeEmail(coach.email) === workEmail
+    );
 
-    if (!resolvedCoachRecord) {
-      const normalizedRequestedName =
-        normalizeCoachName(name);
+  if (eligibleEmailMatches.length > 1) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Multiple active coach records use this email. Contact ScoutLine support before continuing.",
+      },
+      { status: 409 }
+    );
+  }
 
-      resolvedCoachRecord =
-        activeProgramCoaches.find(
-          (coach) =>
-            normalizeCoachName(coach.name) ===
-            normalizedRequestedName
-        ) ?? null;
-    }
+  resolvedCoachRecord =
+    eligibleEmailMatches.length === 1
+      ? eligibleEmailMatches[0]
+      : null;
+}
+
+if (!resolvedCoachRecord) {
+  const normalizedRequestedName =
+    normalizeCoachName(name);
+
+  const eligibleNameMatches =
+    activeProgramCoaches.filter(
+      (coach) =>
+        !normalizeEmail(coach.email) &&
+        normalizeCoachName(coach.name) ===
+          normalizedRequestedName
+    );
+
+  if (eligibleNameMatches.length > 1) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "Multiple active coach records match this name. Contact ScoutLine support before continuing.",
+      },
+      { status: 409 }
+    );
+  }
+
+  resolvedCoachRecord =
+    eligibleNameMatches.length === 1
+      ? eligibleNameMatches[0]
+      : null;
+}
 
     if (
       resolvedCoachRecord?.claimedByUserId &&
@@ -354,11 +427,29 @@ const verifiedStaffTitle =
   normalizeText(resolvedCoachRecord?.title) ||
   staffTitle;
 
+const isVerifiedHeadCoach =
+  isHeadCoachTitle(staffTitle) ||
+  isHeadCoachTitle(verifiedStaffTitle);
+
     stage = "upsert-user-and-coach-profile";
 
-    const result = await prisma.$transaction(
-      async (tx) => {
-        const user = await tx.user.upsert({
+const result = await prisma.$transaction(
+  async (tx) => {
+    const existingProgramAdminCount =
+      await tx.coachProfile.count({
+        where: {
+          isProgramAdmin: true,
+          user: {
+            collegeId: college.id,
+          },
+        },
+      });
+
+    const shouldBeProgramAdmin =
+      isVerifiedHeadCoach ||
+      existingProgramAdminCount === 0;
+
+    const user = await tx.user.upsert({
           where: {
             email: workEmail,
           },
@@ -402,32 +493,43 @@ const verifiedStaffTitle =
           },
         });
 
-        const coachProfile =
-          await tx.coachProfile.upsert({
-            where: {
-              userId: user.id,
-            },
-create: {
-  userId: user.id,
-  staffTitle: verifiedStaffTitle,
-  coachAccountType:
-    "COLLEGE_COACH" as any,
-  coachBillingStatus: "NONE" as any,
-  contactEmail: workEmail,
-  recruitingTargets: [],
-},
-update: {
-  staffTitle: verifiedStaffTitle,
-  coachAccountType:
-    "COLLEGE_COACH" as any,
-  coachBillingStatus: "NONE" as any,
-  contactEmail: workEmail,
-  updatedAt: new Date(),
-},
-            select: {
-              id: true,
-            },
-          });
+const coachProfile =
+  await tx.coachProfile.upsert({
+    where: {
+      userId: user.id,
+    },
+    create: {
+      userId: user.id,
+      staffTitle: verifiedStaffTitle,
+      isProgramAdmin: shouldBeProgramAdmin,
+      coachAccountType:
+        "COLLEGE_COACH" as any,
+      coachBillingStatus: "NONE" as any,
+      contactEmail: workEmail,
+      recruitingTargets: [],
+    },
+    update: {
+      staffTitle: verifiedStaffTitle,
+
+      // Never remove existing admin access during onboarding.
+      // Head coaches and the first coach at a program receive it.
+      ...(shouldBeProgramAdmin
+        ? {
+            isProgramAdmin: true,
+          }
+        : {}),
+
+      coachAccountType:
+        "COLLEGE_COACH" as any,
+      coachBillingStatus: "NONE" as any,
+      contactEmail: workEmail,
+      updatedAt: new Date(),
+    },
+    select: {
+      id: true,
+      isProgramAdmin: true,
+    },
+  });
 
         const verifiedAt = new Date();
 
@@ -445,9 +547,7 @@ data: {
   email: workEmail,
   phone: workPhone || null,
 
-  isHeadCoach:
-    isHeadCoachTitle(staffTitle) ||
-    isHeadCoachTitle(verifiedStaffTitle),
+isHeadCoach: isVerifiedHeadCoach,
 
                 claimedByUserId: user.id,
                 claimedAt: verifiedAt,
@@ -474,9 +574,7 @@ data: {
   email: workEmail,
   phone: workPhone || null,
 
-  isHeadCoach:
-    isHeadCoachTitle(staffTitle) ||
-    isHeadCoachTitle(verifiedStaffTitle),
+isHeadCoach: isVerifiedHeadCoach,
 
                 dataSource: "COACH_VERIFIED",
                 reviewStatus: "MANUAL_VERIFIED",
@@ -555,6 +653,8 @@ data: {
           phonePrivate,
         },
         coachProfileId: result.coachProfile.id,
+        isProgramAdmin:
+          result.coachProfile.isProgramAdmin,
         claimedCoachRecordId:
           result.claimedCoachRecordId,
         needsSetPassword,
