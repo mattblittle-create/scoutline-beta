@@ -787,13 +787,31 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
             <Info label="Acceptance Rate" value={formatPercentWithTier(college.acceptanceRate)} />
             <Info label="Graduation Rate" value={formatPercent(college.graduationRate)} />
 
-            <div style={buttonRowStyle}>
-              {college.websiteUrl ? <ExternalButton href={college.websiteUrl}>School Website</ExternalButton> : null}
-              {college.admissionsUrl ? <ExternalButton href={college.admissionsUrl}>Admissions</ExternalButton> : null}
-              {college.applicationUrl ? <ExternalButton href={college.applicationUrl}>Apply</ExternalButton> : null}
-              {college.financialAidUrl ? <ExternalButton href={college.financialAidUrl}>Financial Aid</ExternalButton> : null}
-              {college.majorsUrl ? <ExternalButton href={college.majorsUrl}>Majors</ExternalButton> : null}
-            </div>
+<div style={buttonRowStyle}>
+  {college.websiteUrl ? (
+    <ExternalButton href={college.websiteUrl}>School Website</ExternalButton>
+  ) : null}
+
+  {college.admissionsUrl ? (
+    <ExternalButton href={college.admissionsUrl}>Admissions</ExternalButton>
+  ) : null}
+
+  {college.academicsUrl || college.majorsUrl ? (
+    <ExternalButton href={college.majorsUrl || college.academicsUrl || ""}>
+      Academics & Majors
+    </ExternalButton>
+  ) : null}
+
+  {college.applicationUrl ? (
+    <ExternalButton href={college.applicationUrl}>Apply</ExternalButton>
+  ) : null}
+
+  {college.financialAidUrl ? (
+    <ExternalButton href={college.financialAidUrl}>
+      Financial Aid
+    </ExternalButton>
+  ) : null}
+</div>
           </section>
 
           <section style={cardStyle}>
@@ -826,7 +844,6 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
               </div>
             ) : null}
 
-            <div style={buttonRowStyle}>
 <div style={buttonRowStyle}>
 {college.programXUrl ? (
   <a
@@ -861,21 +878,33 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
 ) : null}
 
   {baseball?.baseballWebsiteUrl ? (
-    <ExternalButton href={baseball.baseballWebsiteUrl}>Baseball Website</ExternalButton>
-  ) : null}
-
-  {(baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl) ? (
-    <ExternalButton href={baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl || ""}>
-      Recruiting Questionnaire
+    <ExternalButton href={baseball.baseballWebsiteUrl}>
+      Baseball Website
     </ExternalButton>
   ) : null}
 
   {baseball?.rosterUrl ? (
-    <ExternalButton href={baseball.rosterUrl}>Roster</ExternalButton>
+    <ExternalButton href={baseball.rosterUrl}>
+      Roster
+    </ExternalButton>
   ) : null}
 
   {baseball?.scheduleUrl ? (
-    <ExternalButton href={baseball.scheduleUrl}>Schedule</ExternalButton>
+    <ExternalButton href={baseball.scheduleUrl}>
+      Schedule
+    </ExternalButton>
+  ) : null}
+
+  {baseball?.questionnaireUrl || college.recruitingQuestionnaireUrl ? (
+    <ExternalButton
+      href={
+        baseball?.questionnaireUrl ||
+        college.recruitingQuestionnaireUrl ||
+        ""
+      }
+    >
+      Recruiting Questionnaire
+    </ExternalButton>
   ) : null}
 
   {baseball?.campsUrl ? (
@@ -883,10 +912,11 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
   ) : null}
 
   {baseball?.scholarshipInfoUrl ? (
-    <ExternalButton href={baseball.scholarshipInfoUrl}>Scholarship Info</ExternalButton>
+    <ExternalButton href={baseball.scholarshipInfoUrl}>
+      Scholarship Info
+    </ExternalButton>
   ) : null}
 </div>
-            </div>
           </section>
         </div>
 
@@ -1533,9 +1563,20 @@ const displayCoaches = Array.from(mergedCoachMap.values()).sort((a, b) => {
                 <div style={{ marginTop: 14, display: "grid", gap: 10 }}>
                   {nilCollectives.map((collective) => (
                     <div key={collective.id} style={miniInfoBoxStyle}>
-                      <div style={{ fontWeight: 900 }}>
-                        {collective.name}
-                      </div>
+{collective.websiteUrl ? (
+  <a
+    href={collective.websiteUrl}
+    target="_blank"
+    rel="noreferrer"
+    style={nilCollectiveLinkStyle}
+  >
+    {collective.name}
+  </a>
+) : (
+  <div style={{ fontWeight: 900 }}>
+    {collective.name}
+  </div>
+)}
 
                       <div
                         style={{
@@ -2083,6 +2124,17 @@ const buttonRowStyle: React.CSSProperties = {
   gap: 10,
   flexWrap: "wrap",
   marginTop: 14,
+};
+
+const nilCollectiveLinkStyle: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  width: "fit-content",
+  color: "#0f172a",
+  fontWeight: 900,
+  textDecoration: "underline",
+  textDecorationColor: "#caa042",
+  textUnderlineOffset: 3,
 };
 
 const buttonStyle: React.CSSProperties = {
