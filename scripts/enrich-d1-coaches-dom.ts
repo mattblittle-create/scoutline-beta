@@ -244,6 +244,13 @@ type RunStats = {
   cachedPatternsLoaded: number;
   cachedPatternsLearned: number;
   urlAttempts: number;
+
+  bioPagesAttempted: number;
+  bioPagesFetched: number;
+  bioRecordsEnriched: number;
+  bioEmailsFound: number;
+  bioPhonesFound: number;
+  bioSocialsFound: number;
 };
 
 function csvEscape(value: unknown) {
@@ -484,80 +491,282 @@ function normalizeSocialUrl(
   }
 }
 
-function socialUrlMatchesCoach(socialUrl: string, coachName: string) {
-  if (!socialUrl) return false;
+function socialUrlMatchesCoach(
+  socialUrl: string,
+  coachName: string,
+): boolean {
+  if (!socialUrl) {
+    return false;
+  }
 
   let handle = "";
 
   try {
-    const parsed = new URL(socialUrl);
+    const parsed =
+      new URL(socialUrl);
 
-    handle = parsed.pathname.split("/").filter(Boolean)[0] ?? "";
+    handle =
+      parsed.pathname
+        .split("/")
+        .filter(Boolean)[0] ?? "";
   } catch {
     return false;
   }
 
-  const normalizedHandle = handle
-    .toLowerCase()
-    .replace(/^@/, "")
-    .replace(/[^a-z0-9]/g, "");
+  const normalizedHandle =
+    handle
+      .toLowerCase()
+      .replace(/^@/, "")
+      .replace(/[^a-z0-9]/g, "");
 
-  if (!normalizedHandle) return false;
+  const lettersOnlyHandle =
+    normalizedHandle.replace(
+      /\d+/g,
+      "",
+    );
 
-  const nameParts = cleanText(coachName)
-    .toLowerCase()
-    .replace(/[^a-z0-9\s'-]/g, "")
-    .split(/\s+/)
-    .filter(Boolean)
-    .filter((part) => !["jr", "sr", "ii", "iii", "iv"].includes(part));
+  if (!normalizedHandle) {
+    return false;
+  }
 
-  if (nameParts.length < 2) return false;
+  /*
+   * Reject obvious team, department, or sport accounts.
+   *
+   * These can accidentally match a coach whose first
+   * or last name appears inside the team handle.
+   *
+   * Examples:
+   * Dan Roszel   -> ukdanceteam
+   * Mickey Beach -> gamecockbeachvb
+   */
+  const blockedTeamHandleTerms = [
+    "danceteam",
+    "beachvb",
+    "volleyball",
+    "softball",
+    "basketball",
+    "football",
+    "soccer",
+    "lacrosse",
+    "wrestling",
+    "athletics",
+    "tickets",
+  ];
 
-  const firstName = nameParts[0].replace(/[^a-z0-9]/g, "");
-  const lastName = nameParts[nameParts.length - 1].replace(/[^a-z0-9]/g, "");
+  if (
+    blockedTeamHandleTerms.some(
+      (term) =>
+        lettersOnlyHandle.includes(
+          term,
+        ),
+    )
+  ) {
+    return false;
+  }
 
-  const firstInitial = firstName[0] ?? "";
-  const lastInitial = lastName[0] ?? "";
+  const nameParts =
+    cleanText(coachName)
+      .toLowerCase()
+      .replace(
+        /[^a-z0-9\s'-]/g,
+        "",
+      )
+      .split(/\s+/)
+      .filter(Boolean)
+      .filter(
+        (part) =>
+          ![
+            "jr",
+            "sr",
+            "ii",
+            "iii",
+            "iv",
+          ].includes(part),
+      );
 
-  const expectedFragments = [
-    firstName,
-    lastName,
+  if (nameParts.length < 2) {
+    return false;
+  }
+
+  const firstName =
+    nameParts[0].replace(
+      /[^a-z0-9]/g,
+      "",
+    );
+
+  const lastName =
+    nameParts[
+      nameParts.length - 1
+    ].replace(
+      /[^a-z0-9]/g,
+      "",
+    );
+
+  const firstInitial =
+    firstName[0] ?? "";
+
+  const lastInitial =
+    lastName[0] ?? "";
+
+  if (
+    !firstName ||
+    !lastName
+  ) {
+    return false;
+  }
+
+  /*
+   * Strong coach-specific handle formats.
+   *
+   * Examples:
+   * jamesramsey
+   * ramseyj
+   * jramsey
+   * coachramsey
+   * vtcoachszefc
+   * roszeld
+   * ggross
+   */
+  const strongCandidates = [
     `${firstName}${lastName}`,
     `${lastName}${firstName}`,
     `${firstInitial}${lastName}`,
     `${lastName}${firstInitial}`,
     `${firstName}${lastInitial}`,
-  ].filter((value) => value.length >= 3);
+    `coach${lastName}`,
+  ]
+    .map((value) =>
+      value.replace(
+        /[^a-z0-9]/g,
+        "",
+      ),
+    )
+    .filter(
+      (value) =>
+        value.length >= 4,
+    );
 
-  const directMatch = expectedFragments.some(
-    (fragment) =>
-      normalizedHandle.includes(fragment) ||
-      fragment.includes(normalizedHandle),
-  );
-
-  if (directMatch) {
+  if (
+    strongCandidates.some(
+      (candidate) =>
+        lettersOnlyHandle.includes(
+          candidate,
+        ),
+    )
+  ) {
     return true;
   }
 
   /*
-   * Allow common first-name variations and shortened surnames in
-   * handles, such as:
+   * Permit handles with one or two initials before
+   * the surname.
    *
-   * Steve Rodriguez -> stevierod
-   *
-   * Require both pieces to match so a broad first-name-only match does
-   * not assign another coach's account.
+   * Examples:
+   * jtSchulman
+   * maTaylor
    */
-  const firstNamePrefix =
-    firstName.length >= 4 ? firstName.slice(0, 4) : firstName;
+  const lastNameIndex =
+    lettersOnlyHandle.indexOf(
+      lastName,
+    );
 
-  const lastNamePrefix = lastName.length >= 3 ? lastName.slice(0, 3) : lastName;
+  if (
+    lastNameIndex >= 1 &&
+    lastNameIndex <= 3
+  ) {
+    const prefix =
+      lettersOnlyHandle.slice(
+        0,
+        lastNameIndex,
+      );
+
+    if (
+      prefix.startsWith(
+        firstInitial,
+      )
+    ) {
+      return true;
+    }
+  }
+
+  /*
+   * Permit surname-first handles when followed by
+   * the coach's first initial.
+   *
+   * Example:
+   * roszeld
+   */
+  if (
+    lettersOnlyHandle.startsWith(
+      lastName,
+    )
+  ) {
+    const suffix =
+      lettersOnlyHandle.slice(
+        lastName.length,
+      );
+
+    if (
+      !suffix ||
+      suffix.startsWith(
+        firstInitial,
+      )
+    ) {
+      return true;
+    }
+  }
+
+  /*
+   * Permit coach-prefixed and school-prefixed handles
+   * when they end with the full surname.
+   *
+   * Examples:
+   * coachdrye
+   * vtcoachszefc
+   */
+  if (
+    lettersOnlyHandle.endsWith(
+      lastName,
+    ) &&
+    (
+      lettersOnlyHandle.includes(
+        "coach",
+      ) ||
+      lettersOnlyHandle.startsWith(
+        firstInitial,
+      )
+    )
+  ) {
+    return true;
+  }
+
+  /*
+   * Support shortened first and last names only when
+   * both fragments appear. Never accept first-name-only
+   * or surname-only containment.
+   *
+   * Example:
+   * Steve Rodriguez -> stevierod
+   */
+  const firstPrefix =
+    firstName.length >= 4
+      ? firstName.slice(0, 4)
+      : firstName;
+
+  const lastPrefix =
+    lastName.length >= 3
+      ? lastName.slice(0, 3)
+      : lastName;
 
   return (
-    Boolean(firstNamePrefix) &&
-    Boolean(lastNamePrefix) &&
-    normalizedHandle.includes(firstNamePrefix) &&
-    normalizedHandle.includes(lastNamePrefix)
+    firstPrefix.length >= 3 &&
+    lastPrefix.length >= 3 &&
+    lettersOnlyHandle.includes(
+      firstPrefix,
+    ) &&
+    lettersOnlyHandle.includes(
+      lastPrefix,
+    )
   );
 }
 
@@ -841,6 +1050,14 @@ function isProbablyBadCoachName(value: string) {
 
   if (!name) return true;
 
+  if (
+  /^(?:vacant|tba|to be announced|to be determined)[.\s]*$/i.test(
+    name,
+  )
+) {
+  return true;
+}
+
   if (looksLikeCoachTitle(name)) {
     return true;
   }
@@ -864,6 +1081,11 @@ function isProbablyBadCoachName(value: string) {
     "additional links",
     "archived stories",
     "sport administrator",
+    "vacant",
+    "vacant .",
+    "tba",
+    "to be announced",
+    "to be determined",
     "view bio",
     "view full bio",
   ];
@@ -913,11 +1135,56 @@ function normalizeCoachKey(value: string) {
     .trim();
 }
 
-function cleanEmail(value: string | undefined) {
-  return String(value ?? "")
-    .replace(/^mailto:/i, "")
-    .split("?")[0]
-    .trim();
+function cleanEmail(
+  value: string | undefined,
+) {
+  const normalized =
+    String(value ?? "")
+      .replace(/^mailto:/i, "")
+      .split("?")[0]
+      .trim();
+
+  if (!normalized) {
+    return "";
+  }
+
+  const lower =
+    normalized.toLowerCase();
+
+const blockedDomains = [
+  "sentry.wmt.dev",
+  "sentry.io",
+];
+
+const blockedAddresses =
+  new Set([
+    "ath-news@hokiesports.com",
+  ]);
+
+if (
+  blockedAddresses.has(lower) ||
+  blockedDomains.some(
+    (domain) =>
+      lower.endsWith(
+        `@${domain}`,
+      ),
+  )
+) {
+  return "";
+}
+
+  if (
+    blockedDomains.some(
+      (domain) =>
+        lower.endsWith(
+          `@${domain}`,
+        ),
+    )
+  ) {
+    return "";
+  }
+
+  return normalized;
 }
 
 function cleanPhone(value: string | undefined) {
@@ -1843,6 +2110,233 @@ reviewStatus:
   return merged;
 }
 
+function emailStrictlyMatchesCoach(
+  email: string,
+  coachName: string,
+): boolean {
+  const normalizedEmail =
+    email.trim().toLowerCase();
+
+  const localPart =
+    normalizedEmail
+      .split("@")[0]
+      ?.replace(
+        /[^a-z0-9]/g,
+        "",
+      ) ?? "";
+
+  if (!localPart) {
+    return false;
+  }
+
+  const nameParts =
+    cleanText(coachName)
+      .toLowerCase()
+      .replace(
+        /[^a-z0-9\s'-]/g,
+        "",
+      )
+      .split(/\s+/)
+      .filter(Boolean)
+      .filter(
+        (part) =>
+          ![
+            "jr",
+            "sr",
+            "ii",
+            "iii",
+            "iv",
+          ].includes(part),
+      );
+
+  if (nameParts.length < 2) {
+    return false;
+  }
+
+  const firstName =
+    nameParts[0].replace(
+      /[^a-z0-9]/g,
+      "",
+    );
+
+  const lastName =
+    nameParts[
+      nameParts.length - 1
+    ].replace(
+      /[^a-z0-9]/g,
+      "",
+    );
+
+  const firstInitial =
+    firstName[0] ?? "";
+
+  const lastInitial =
+    lastName[0] ?? "";
+
+  const candidates = [
+    firstName,
+    lastName,
+    `${firstName}${lastName}`,
+    `${lastName}${firstName}`,
+    `${firstInitial}${lastName}`,
+    `${lastName}${firstInitial}`,
+    `${firstName}${lastInitial}`,
+  ]
+    .map((value) =>
+      value.replace(
+        /[^a-z0-9]/g,
+        "",
+      ),
+    )
+    .filter(
+      (value) =>
+        value.length >= 3,
+    );
+
+  return candidates.some(
+    (candidate) =>
+      localPart === candidate ||
+      localPart.includes(
+        candidate,
+      ) ||
+      candidate.includes(
+        localPart,
+      ),
+  );
+}
+
+function removeLikelyMisassignedDuplicateEmails(
+  records: CoachRecord[],
+): CoachRecord[] {
+  const grouped =
+    new Map<string, CoachRecord[]>();
+
+  for (const record of records) {
+    const email =
+      record.email.trim().toLowerCase();
+
+    if (!email) {
+      continue;
+    }
+
+    const group =
+      grouped.get(email) ?? [];
+
+    group.push(record);
+    grouped.set(email, group);
+  }
+
+const approvedSharedEmails =
+  new Set([
+    "csubsb@csuniv.edu",
+    "gjormandse@cofc.edu",
+    "franciscot25@ecu.edu",
+  ]);
+
+const knownEmailOwners =
+  new Map<string, string>([
+    [
+      "coachjarrett@fsu.edu",
+      normalizeCoachKey(
+        "Link Jarrett",
+      ),
+    ],
+  ]);
+
+  return records.map((record) => {
+    const email =
+      record.email.trim().toLowerCase();
+
+    if (
+      !email ||
+      approvedSharedEmails.has(email)
+    ) {
+      return record;
+    }
+
+    const duplicates =
+      grouped.get(email) ?? [];
+
+    if (duplicates.length < 2) {
+      return record;
+    }
+
+    const knownOwner =
+  knownEmailOwners.get(email);
+
+if (knownOwner) {
+  const isOwner =
+    normalizeCoachKey(
+      record.name,
+    ) === knownOwner;
+
+  if (isOwner) {
+    return record;
+  }
+
+  console.log(
+    `    ⚠️ duplicate person email removed: ${record.name} <- ${record.email}`,
+  );
+
+  return {
+    ...record,
+    email: "",
+    reviewStatus:
+      record.bioUrl ||
+      record.phone ||
+      record.xUrl ||
+      record.instagramUrl ||
+      record.linkedinUrl
+        ? record.reviewStatus
+        : "NEEDS_REVIEW",
+  };
+}
+
+const matchingRecords =
+  duplicates.filter(
+    (candidate) =>
+      emailStrictlyMatchesCoach(
+        email,
+        candidate.name,
+      ),
+  );
+
+    /*
+     * Keep a duplicated person-style email only when
+     * this coach is the sole name match.
+     */
+    if (
+      matchingRecords.length === 1 &&
+      matchingRecords[0] === record
+    ) {
+      return record;
+    }
+
+    if (
+      matchingRecords.length === 1
+    ) {
+      console.log(
+        `    ⚠️ duplicate person email removed: ${record.name} <- ${record.email}`,
+      );
+
+      return {
+        ...record,
+        email: "",
+        reviewStatus:
+          record.bioUrl ||
+          record.phone ||
+          record.xUrl ||
+          record.instagramUrl ||
+          record.linkedinUrl
+            ? record.reviewStatus
+            : "NEEDS_REVIEW",
+      };
+    }
+
+    return record;
+  });
+}
+
 function extractCoachRecord(
   $: cheerio.CheerioAPI,
   root: cheerio.Cheerio<any>,
@@ -2044,38 +2538,110 @@ if (rejectedMismatchedEmail) {
 
   const phone = cleanPhone(root.find('a[href^="tel:"]').first().attr("href"));
 
-  const normalizedName = normalizeNameForUrl(name);
-  const nameParts = normalizedName.split("-").filter(Boolean);
-  const lastName = nameParts[nameParts.length - 1] ?? "";
+const normalizedName =
+  normalizeNameForUrl(name);
 
-  let bioUrl = "";
+const nameParts =
+  normalizedName
+    .split("-")
+    .filter(Boolean);
 
-  root.find("a[href]").each((_, node) => {
-    if (bioUrl) return;
+const lastName =
+  nameParts[
+    nameParts.length - 1
+  ] ?? "";
 
-    const anchor = $(node);
-    const href = anchor.attr("href") ?? "";
-    const anchorText = cleanText(anchor.text()).toLowerCase();
-    const absoluteHref = absolutizeUrl(href, origin);
-    const normalizedHref = normalizeNameForUrl(absoluteHref);
+/*
+ * The actual person-name anchor is the strongest
+ * possible bio-link signal.
+ *
+ * Several WMT roster pages expose the correct profile
+ * URL on the coach's name, but do not use a separate
+ * "Full Bio" button inside the same card.
+ */
+const profileHref =
+  profileAnchor.attr("href") ?? "";
 
-  const isPossibleBio =
+let bioUrl =
+  profileHref &&
+  looksLikeCoachProfileHref(
+    profileHref,
+  )
+    ? absolutizeUrl(
+        profileHref,
+        origin,
+      )
+    : "";
+
+/*
+ * Fall back to other profile-looking links in the
+ * record container only when the name anchor did not
+ * already provide a usable bio URL.
+ */
+root.find("a[href]").each(
+  (_, node) => {
+    if (bioUrl) {
+      return;
+    }
+
+    const anchor =
+      $(node);
+
+    const href =
+      anchor.attr("href") ?? "";
+
+    const anchorText =
+      cleanText(
+        anchor.text(),
+      ).toLowerCase();
+
+    const absoluteHref =
+      absolutizeUrl(
+        href,
+        origin,
+      );
+
+    const normalizedHref =
+      normalizeNameForUrl(
+        absoluteHref,
+      );
+
+    const isPossibleBio =
+      href.includes("/coach/") ||
       href.includes("/staff/") ||
-      href.includes("/staff-directory/") ||
+      href.includes(
+        "/staff-directory/",
+      ) ||
       href.includes("/coaches/") ||
       href.includes("/bio/") ||
       href.includes("/coache/") ||
-      href.includes("/support-staff/") ||
-      href.includes("/roster/staff/");
+      href.includes(
+        "/support-staff/",
+      ) ||
+      href.includes(
+        "/roster/staff/",
+      );
 
     const matchesPerson =
       Boolean(lastName) &&
-      (normalizedHref.includes(lastName) || anchorText.includes(lastName));
+      (
+        normalizedHref.includes(
+          lastName,
+        ) ||
+        anchorText.includes(
+          lastName,
+        )
+      );
 
-    if (isPossibleBio && matchesPerson) {
-      bioUrl = absoluteHref;
+    if (
+      isPossibleBio &&
+      matchesPerson
+    ) {
+      bioUrl =
+        absoluteHref;
     }
-  });
+  },
+);
 
   const image =
     root.find("img").first().attr("src") ||
@@ -2178,6 +2744,24 @@ function printRunSummary(stats: RunStats) {
   console.log(`Success rate:                  ${successRate}%`);
   console.log(`Coach records parsed:          ${stats.coachRecordsParsed}`);
   console.log(`Possible email mismatches:     ${stats.emailWarnings}`);
+  console.log(
+  `Bio pages attempted:           ${stats.bioPagesAttempted}`,
+);
+console.log(
+  `Bio pages fetched:             ${stats.bioPagesFetched}`,
+);
+console.log(
+  `Coach records bio-enriched:    ${stats.bioRecordsEnriched}`,
+);
+console.log(
+  `Emails recovered from bios:    ${stats.bioEmailsFound}`,
+);
+console.log(
+  `Phones recovered from bios:    ${stats.bioPhonesFound}`,
+);
+console.log(
+  `Social profiles from bios:     ${stats.bioSocialsFound}`,
+);
   console.log(`Cached patterns loaded:        ${stats.cachedPatternsLoaded}`);
   console.log(`New cached patterns learned:   ${stats.cachedPatternsLearned}`);
   console.log(`Total URL attempts:            ${stats.urlAttempts}`);
@@ -2210,6 +2794,445 @@ async function fetchHtml(url: string) {
   } finally {
     clearTimeout(timeout);
   }
+}
+
+function isGenericContactEmail(
+  email: string,
+): boolean {
+  const localPart =
+    email
+      .trim()
+      .toLowerCase()
+      .split("@")[0] ?? "";
+
+  if (!localPart) {
+    return true;
+  }
+
+  return [
+    "baseball",
+    "athletics",
+    "athletic",
+    "recruiting",
+    "recruit",
+    "sports",
+    "tickets",
+    "ticketing",
+    "info",
+    "communications",
+    "marketing",
+  ].some((term) =>
+    localPart.includes(term),
+  );
+}
+
+function extractVisiblePhone(
+  $: cheerio.CheerioAPI,
+): string {
+  const mainRoot =
+    $("main").first().length > 0
+      ? $("main").first()
+      : $("body");
+
+  const telCandidates =
+    mainRoot
+      .find('a[href^="tel:"]')
+      .addBack('a[href^="tel:"]')
+      .map((_, node) =>
+        cleanPhone(
+          $(node).attr("href"),
+        ),
+      )
+      .get()
+      .filter(Boolean);
+
+  if (telCandidates.length === 1) {
+    return telCandidates[0];
+  }
+
+  const rawHtml =
+    mainRoot.html() ?? "";
+
+  const phonePattern =
+    /(?:\+?1[\s.-]*)?(?:\(\d{3}\)|\d{3})[\s.-]+\d{3}[\s.-]+\d{4}(?:\s*(?:ext\.?|x)\s*\d{1,6})?/gi;
+
+  const matches =
+    rawHtml.match(
+      phonePattern,
+    ) ?? [];
+
+  for (const candidate of matches) {
+    const phone =
+      cleanPhone(candidate);
+
+    if (!phone) {
+      continue;
+    }
+
+    const candidateIndex =
+      rawHtml.indexOf(candidate);
+
+    const nearbyHtml =
+      rawHtml
+        .slice(
+          Math.max(
+            0,
+            candidateIndex - 250,
+          ),
+          candidateIndex +
+            candidate.length +
+            250,
+        )
+        .toLowerCase();
+
+    if (
+      nearbyHtml.includes("phone") ||
+      nearbyHtml.includes("telephone")
+    ) {
+      return phone;
+    }
+  }
+
+  return "";
+}
+
+function extractCoachSocialFromBio(
+  $: cheerio.CheerioAPI,
+  bioUrl: string,
+  coachName: string,
+  platform:
+    | "x"
+    | "instagram"
+    | "linkedin",
+): string {
+  let result = "";
+
+  $("a[href]").each((_, node) => {
+    if (result) {
+      return;
+    }
+
+    const href =
+      $(node).attr("href") ?? "";
+
+    const lower =
+      href.toLowerCase();
+
+    const matchesPlatform =
+      platform === "x"
+        ? lower.includes("twitter.com") ||
+          lower.includes("x.com")
+        : platform === "instagram"
+          ? lower.includes("instagram.com")
+          : lower.includes("linkedin.com");
+
+    if (!matchesPlatform) {
+      return;
+    }
+
+    const candidate =
+      normalizeSocialUrl(
+        href,
+        bioUrl,
+        platform,
+      );
+
+    if (
+      candidate &&
+      socialUrlMatchesCoach(
+        candidate,
+        coachName,
+      )
+    ) {
+      result = candidate;
+    }
+  });
+
+  return result;
+}
+
+function extractVisibleCoachEmail(
+  $: cheerio.CheerioAPI,
+  coachName: string,
+): string {
+  const mainRoot =
+    $("main").first().length > 0
+      ? $("main").first()
+      : $("body");
+
+  const mailtoCandidates =
+    mainRoot
+      .find('a[href^="mailto:"]')
+      .addBack('a[href^="mailto:"]')
+      .map((_, node) =>
+        cleanEmail(
+          $(node).attr("href"),
+        ),
+      )
+      .get()
+      .filter(Boolean);
+
+  const rawHtml =
+    mainRoot.html() ?? "";
+
+  const visibleCandidates =
+    rawHtml.match(
+      /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi,
+    ) ?? [];
+
+  /*
+   * cleanEmail() already removes known telemetry
+   * and blocked addresses such as:
+   *
+   * - @sentry.wmt.dev
+   * - @sentry.io
+   * - ath-news@hokiesports.com
+   */
+  const candidates =
+    Array.from(
+      new Set([
+        ...mailtoCandidates,
+        ...visibleCandidates.map(
+          cleanEmail,
+        ),
+      ]),
+    ).filter(Boolean);
+
+  /*
+   * An individual coach bio containing exactly one
+   * usable email provides strong page-level attribution.
+   *
+   * This includes both person-specific addresses:
+   *   owens4@clemson.edu
+   *
+   * and an officially published shared program inbox:
+   *   vtbaseball@vt.edu
+   */
+  if (candidates.length === 1) {
+    return candidates[0];
+  }
+
+  /*
+   * When multiple addresses appear, prefer a
+   * person-specific address matching the coach.
+   */
+  const matchingSpecificEmail =
+    candidates.find(
+      (candidate) =>
+        !isGenericContactEmail(
+          candidate,
+        ) &&
+        emailMatchesCoachOrIsGeneric(
+          candidate,
+          coachName,
+        ),
+    );
+
+  if (matchingSpecificEmail) {
+    return matchingSpecificEmail;
+  }
+
+  /*
+   * If multiple addresses exist and exactly one is a
+   * generic baseball/recruiting inbox, retain that one.
+   */
+  const genericCandidates =
+    candidates.filter(
+      isGenericContactEmail,
+    );
+
+  if (
+    genericCandidates.length === 1
+  ) {
+    return genericCandidates[0];
+  }
+
+  return "";
+}
+
+async function enrichCoachRecordFromBio(
+  record: CoachRecord,
+  stats: RunStats,
+): Promise<CoachRecord> {
+  if (!record.bioUrl) {
+    return record;
+  }
+
+  const missingEmail =
+    !record.email;
+
+  const missingPhone =
+    !record.phone;
+
+  const missingX =
+    !record.xUrl;
+
+  const missingInstagram =
+    !record.instagramUrl;
+
+  const missingLinkedIn =
+    !record.linkedinUrl;
+
+  if (
+    !missingEmail &&
+    !missingPhone &&
+    !missingX &&
+    !missingInstagram &&
+    !missingLinkedIn
+  ) {
+    return record;
+  }
+
+  stats.bioPagesAttempted += 1;
+
+  const html =
+    await fetchHtml(
+      record.bioUrl,
+    );
+
+  if (!html) {
+    return record;
+  }
+
+  stats.bioPagesFetched += 1;
+
+  const $ =
+    cheerio.load(html);
+
+  let email = record.email;
+  let phone = record.phone;
+  let xUrl = record.xUrl;
+  let instagramUrl =
+    record.instagramUrl;
+  let linkedinUrl =
+    record.linkedinUrl;
+
+if (!email) {
+  email =
+    extractVisibleCoachEmail(
+      $,
+      record.name,
+    );
+}
+
+  if (!phone) {
+    phone =
+      extractVisiblePhone($);
+  }
+
+  if (!xUrl) {
+    xUrl =
+      extractCoachSocialFromBio(
+        $,
+        record.bioUrl,
+        record.name,
+        "x",
+      );
+  }
+
+  if (!instagramUrl) {
+    instagramUrl =
+      extractCoachSocialFromBio(
+        $,
+        record.bioUrl,
+        record.name,
+        "instagram",
+      );
+  }
+
+  if (!linkedinUrl) {
+    linkedinUrl =
+      extractCoachSocialFromBio(
+        $,
+        record.bioUrl,
+        record.name,
+        "linkedin",
+      );
+  }
+
+  const foundEmail =
+    !record.email &&
+    Boolean(email);
+
+  const foundPhone =
+    !record.phone &&
+    Boolean(phone);
+
+  const foundSocial =
+    (
+      !record.xUrl &&
+      Boolean(xUrl)
+    ) ||
+    (
+      !record.instagramUrl &&
+      Boolean(instagramUrl)
+    ) ||
+    (
+      !record.linkedinUrl &&
+      Boolean(linkedinUrl)
+    );
+
+  if (foundEmail) {
+    stats.bioEmailsFound += 1;
+  }
+
+  if (foundPhone) {
+    stats.bioPhonesFound += 1;
+  }
+
+  if (foundSocial) {
+    stats.bioSocialsFound += 1;
+  }
+
+  if (
+    foundEmail ||
+    foundPhone ||
+    foundSocial
+  ) {
+    stats.bioRecordsEnriched += 1;
+
+    console.log(
+      `    🔎 bio enriched: ${record.name}` +
+        `${foundEmail ? " [email]" : ""}` +
+        `${foundPhone ? " [phone]" : ""}` +
+        `${foundSocial ? " [social]" : ""}`,
+    );
+  }
+
+  return {
+    ...record,
+    email:
+      record.email ||
+      email,
+    phone:
+      record.phone ||
+      phone,
+    xUrl:
+      record.xUrl ||
+      xUrl,
+    instagramUrl:
+      record.instagramUrl ||
+      instagramUrl,
+    linkedinUrl:
+      record.linkedinUrl ||
+      linkedinUrl,
+
+    reviewStatus:
+      (
+        record.email ||
+        email ||
+        record.bioUrl ||
+        record.headshotUrl ||
+        record.xUrl ||
+        xUrl ||
+        record.instagramUrl ||
+        instagramUrl ||
+        record.linkedinUrl ||
+        linkedinUrl
+      )
+        ? "AUTO_IMPORTED"
+        : record.reviewStatus,
+  };
 }
 
 async function fetchRenderedHtml(
@@ -2416,16 +3439,23 @@ const programs =
     ...(LIMIT ? { take: LIMIT } : {}),
   });
 
-  const stats: RunStats = {
-    programsScanned: programs.length,
-    successfulPrograms: 0,
-    programsWithoutCoachCards: 0,
-    coachRecordsParsed: 0,
-    emailWarnings: 0,
-    cachedPatternsLoaded: initialCachedPatternCount,
-    cachedPatternsLearned: 0,
-    urlAttempts: 0,
-  };
+const stats: RunStats = {
+  programsScanned: programs.length,
+  successfulPrograms: 0,
+  programsWithoutCoachCards: 0,
+  coachRecordsParsed: 0,
+  emailWarnings: 0,
+  cachedPatternsLoaded: initialCachedPatternCount,
+  cachedPatternsLearned: 0,
+  urlAttempts: 0,
+
+  bioPagesAttempted: 0,
+  bioPagesFetched: 0,
+  bioRecordsEnriched: 0,
+  bioEmailsFound: 0,
+  bioPhonesFound: 0,
+  bioSocialsFound: 0,
+};
 
   console.log(`Scanning ${programs.length} D1 programs...`);
 
@@ -3311,11 +4341,119 @@ if (schoolRecords.size === 0) {
       );
     }
 
-for (const uncorrectedRecord of schoolRecords.values()) {
-  const record = applyKnownSchoolRecordCorrections(
-    slug,
-    uncorrectedRecord,
+const enrichedRecords:
+  CoachRecord[] = [];
+
+for (
+  const uncorrectedRecord
+  of schoolRecords.values()
+) {
+  const correctedRecord =
+    applyKnownSchoolRecordCorrections(
+      slug,
+      uncorrectedRecord,
+    );
+
+  const enrichedRecord =
+    await enrichCoachRecordFromBio(
+      correctedRecord,
+      stats,
+    );
+
+  enrichedRecords.push(
+    enrichedRecord,
   );
+}
+
+/*
+ * Run duplicate-email ownership cleanup only after
+ * every coach record has completed bio enrichment.
+ */
+const deduplicatedRecords =
+  removeLikelyMisassignedDuplicateEmails(
+    enrichedRecords,
+  );
+
+/*
+ * A phone repeated across most of a coaching staff is
+ * probably a site-wide help desk, ticket office, or
+ * athletics switchboard rather than a coach contact.
+ */
+const phoneCounts =
+  new Map<string, number>();
+
+for (
+  const record
+  of deduplicatedRecords
+) {
+  const normalizedPhone =
+    record.phone.replace(
+      /\D/g,
+      "",
+    );
+
+  if (!normalizedPhone) {
+    continue;
+  }
+
+  phoneCounts.set(
+    normalizedPhone,
+    (
+      phoneCounts.get(
+        normalizedPhone,
+      ) ?? 0
+    ) + 1,
+  );
+}
+
+const repeatedSharedPhones =
+  new Set(
+    Array.from(
+      phoneCounts.entries(),
+    )
+      .filter(
+        ([, count]) =>
+          count >= 3 &&
+          count >=
+            Math.ceil(
+              deduplicatedRecords.length /
+                2,
+            ),
+      )
+      .map(
+        ([phone]) =>
+          phone,
+      ),
+  );
+
+for (const originalRecord of deduplicatedRecords) {
+  const normalizedPhone =
+    originalRecord.phone.replace(
+      /\D/g,
+      "",
+    );
+
+  const record =
+    normalizedPhone &&
+    repeatedSharedPhones.has(
+      normalizedPhone,
+    )
+      ? {
+          ...originalRecord,
+          phone: "",
+        }
+      : originalRecord;
+
+  if (
+    normalizedPhone &&
+    repeatedSharedPhones.has(
+      normalizedPhone,
+    )
+  ) {
+    console.log(
+      `    ⚠️ shared program/site phone removed: ${record.name} <- ${originalRecord.phone}`,
+    );
+  }
 
   rows.push([
     slug,
@@ -3329,7 +4467,9 @@ for (const uncorrectedRecord of schoolRecords.values()) {
     record.xUrl,
     record.instagramUrl,
     record.linkedinUrl,
-    String(record.isHeadCoach),
+    String(
+      record.isHeadCoach,
+    ),
     record.reviewStatus,
   ]);
 }
