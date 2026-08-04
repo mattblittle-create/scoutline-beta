@@ -72,6 +72,37 @@ const SPECIAL_COACH_URLS: Record<string, CandidateUrl[]> = {
       url: "https://goredbirds.com/sports/baseball/coaches",
     },
   ],
+    /*
+   * Louisiana's current coaches page is the authoritative
+   * source for its active baseball staff.
+   *
+   * Prefer it over older roster/profile pages so Zach
+   * LaFleur is not confused with a prior graduate assistant
+   * or another staff member sharing the surname.
+   */
+  "university-of-louisiana-at-lafayette": [
+    {
+      pattern:
+        "current-coaches-page",
+      url:
+        "https://ragincajuns.com/sports/baseball/coaches",
+    },
+  ],
+    /*
+   * Presbyterian's current 2026 coaches page is the
+   * authoritative active-staff source.
+   *
+   * Other roster variants produced a stale Trey Polewski
+   * record and omitted current assistant O’Kevius Conway.
+   */
+  "presbyterian-college": [
+    {
+      pattern:
+        "current-coaches-year",
+      url:
+        "https://gobluehose.com/sports/baseball/coaches/2026",
+    },
+  ],
 };
 
 const stamp = new Date().toISOString().replace(/[:.]/g, "-");
@@ -1135,6 +1166,103 @@ function normalizeCoachKey(value: string) {
     .trim();
 }
 
+function getCoachNameParts(
+  value: string,
+): {
+  firstName: string;
+  lastName: string;
+  fullNameKey: string;
+} {
+  const parts =
+    cleanText(value)
+      .toLowerCase()
+      .replace(
+        /[^a-z0-9\s'-]/g,
+        "",
+      )
+      .split(/\s+/)
+      .filter(Boolean)
+      .filter(
+        (part) =>
+          ![
+            "jr",
+            "sr",
+            "ii",
+            "iii",
+            "iv",
+          ].includes(part),
+      )
+      .map((part) =>
+        part.replace(
+          /[^a-z0-9]/g,
+          "",
+        ),
+      )
+      .filter(Boolean);
+
+  const firstName =
+    parts[0] ?? "";
+
+  const lastName =
+    parts[
+      parts.length - 1
+    ] ?? "";
+
+  return {
+    firstName,
+    lastName,
+    fullNameKey:
+      `${firstName}${lastName}`,
+  };
+}
+
+function bioUrlMatchesFullCoachName(
+  bioUrl: string,
+  coachName: string,
+): boolean {
+  if (!bioUrl) {
+    return false;
+  }
+
+  const {
+    firstName,
+    lastName,
+    fullNameKey,
+  } =
+    getCoachNameParts(
+      coachName,
+    );
+
+  if (
+    !firstName ||
+    !lastName
+  ) {
+    return false;
+  }
+
+  const normalizedBioUrl =
+    bioUrl
+      .toLowerCase()
+      .replace(
+        /[^a-z0-9]/g,
+        "",
+      );
+
+  return (
+    normalizedBioUrl.includes(
+      fullNameKey,
+    ) ||
+    (
+      normalizedBioUrl.includes(
+        firstName,
+      ) &&
+      normalizedBioUrl.includes(
+        lastName,
+      )
+    )
+  );
+}
+
 function cleanEmail(
   value: string | undefined,
 ) {
@@ -1142,6 +1270,21 @@ function cleanEmail(
     String(value ?? "")
       .replace(/^mailto:/i, "")
       .split("?")[0]
+      /*
+       * Remove HTML/markup punctuation that sometimes
+       * survives inside malformed mailto attributes.
+       *
+       * Example:
+       * tpolewski@presby.edu>
+       */
+      .replace(
+        /^[\s"'<>()[\]{}]+/,
+        "",
+      )
+      .replace(
+        /[\s"'<>()[\]{}.,;:]+$/,
+        "",
+      )
       .trim();
 
   if (!normalized) {
@@ -1151,29 +1294,18 @@ function cleanEmail(
   const lower =
     normalized.toLowerCase();
 
-const blockedDomains = [
-  "sentry.wmt.dev",
-  "sentry.io",
-];
+  const blockedDomains = [
+    "sentry.wmt.dev",
+    "sentry.io",
+  ];
 
-const blockedAddresses =
-  new Set([
-    "ath-news@hokiesports.com",
-  ]);
-
-if (
-  blockedAddresses.has(lower) ||
-  blockedDomains.some(
-    (domain) =>
-      lower.endsWith(
-        `@${domain}`,
-      ),
-  )
-) {
-  return "";
-}
+  const blockedAddresses =
+    new Set([
+      "ath-news@hokiesports.com",
+    ]);
 
   if (
+    blockedAddresses.has(lower) ||
     blockedDomains.some(
       (domain) =>
         lower.endsWith(
@@ -1184,7 +1316,14 @@ if (
     return "";
   }
 
-  return normalized;
+  const isValidEmail =
+    /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+      normalized,
+    );
+
+  return isValidEmail
+    ? normalized
+    : "";
 }
 
 function cleanPhone(value: string | undefined) {
@@ -2026,11 +2165,69 @@ function titleQualityScore(title: string) {
   return score;
 }
 
+function shouldExcludeKnownSchoolRecord(
+  slug: string,
+  record: CoachRecord,
+): boolean {
+  const coachKey =
+    normalizeCoachKey(
+      record.name,
+    );
+
+  /*
+   * Louisiana's current staff lists Zach LaFleur as
+   * Assistant Coach / Recruiting Coordinator.
+   *
+   * Do not retain a stale Trey LaFleur graduate-assistant
+   * record from an older roster or profile page.
+   */
+  if (
+    slug ===
+      "university-of-louisiana-at-lafayette" &&
+    coachKey ===
+      normalizeCoachKey(
+        "Trey LaFleur",
+      )
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 function applyKnownSchoolRecordCorrections(
   slug: string,
   record: CoachRecord,
 ): CoachRecord {
   const coachKey = normalizeCoachKey(record.name);
+
+  /*
+ * Western Kentucky's Marc Rardin bio does not publish
+ * an email for him. The page contains
+ * will.gerber637@topper.wku.edu in unrelated page
+ * context, so do not attach it to Marc Rardin.
+ */
+if (
+  slug ===
+    "western-kentucky-university" &&
+  coachKey ===
+    normalizeCoachKey(
+      "Marc Rardin",
+    ) &&
+  record.email
+    .trim()
+    .toLowerCase() ===
+    "will.gerber637@topper.wku.edu"
+) {
+  return {
+    ...record,
+    email: "",
+    isHeadCoach:
+      isHeadCoachTitle(
+        record.title,
+      ),
+  };
+}
 
   /*
    * Le Moyne's staff page exposes a section heading where the first
@@ -2202,6 +2399,152 @@ function emailStrictlyMatchesCoach(
       candidate.includes(
         localPart,
       ),
+  );
+}
+
+function enforceStaffContactAttribution(
+  records: CoachRecord[],
+): CoachRecord[] {
+  const surnameCounts =
+    new Map<string, number>();
+
+  for (const record of records) {
+    const {
+      lastName,
+    } =
+      getCoachNameParts(
+        record.name,
+      );
+
+    if (!lastName) {
+      continue;
+    }
+
+    surnameCounts.set(
+      lastName,
+      (
+        surnameCounts.get(
+          lastName,
+        ) ?? 0
+      ) + 1,
+    );
+  }
+
+  return records.map(
+    (record) => {
+      const {
+        firstName,
+        lastName,
+        fullNameKey,
+      } =
+        getCoachNameParts(
+          record.name,
+        );
+
+      if (
+        !firstName ||
+        !lastName
+      ) {
+        return record;
+      }
+
+      const surnameIsUnique =
+        (
+          surnameCounts.get(
+            lastName,
+          ) ?? 0
+        ) === 1;
+
+      const bioMatchesFullName =
+        bioUrlMatchesFullCoachName(
+          record.bioUrl,
+          record.name,
+        );
+
+      const validateSocial =
+        (
+          value: string,
+        ): string => {
+          if (!value) {
+            return "";
+          }
+
+          let handle = "";
+
+          try {
+            handle =
+              new URL(value)
+                .pathname
+                .split("/")
+                .filter(Boolean)[0]
+                ?.toLowerCase()
+                .replace(
+                  /[^a-z0-9]/g,
+                  "",
+                ) ?? "";
+          } catch {
+            return "";
+          }
+
+          const fullNameMatch =
+            handle.includes(
+              fullNameKey,
+            ) ||
+            (
+              handle.includes(
+                firstName,
+              ) &&
+              handle.includes(
+                lastName,
+              )
+            );
+
+          const strongInitialMatch =
+            handle.includes(
+              `${firstName[0] ?? ""}${lastName}`,
+            ) ||
+            handle.includes(
+              `${lastName}${firstName[0] ?? ""}`,
+            );
+
+          const lastNameOnlyMatch =
+            surnameIsUnique &&
+            handle.includes(
+              lastName,
+            );
+
+          if (
+            fullNameMatch ||
+            strongInitialMatch ||
+            lastNameOnlyMatch ||
+            bioMatchesFullName
+          ) {
+            return value;
+          }
+
+          console.log(
+            `    ⚠️ ambiguous staff social removed: ${record.name} <- ${value}`,
+          );
+
+          return "";
+        };
+
+      return {
+        ...record,
+        xUrl:
+          validateSocial(
+            record.xUrl,
+          ),
+        instagramUrl:
+          validateSocial(
+            record.instagramUrl,
+          ),
+        linkedinUrl:
+          validateSocial(
+            record.linkedinUrl,
+          ),
+      };
+    },
   );
 }
 
@@ -3099,20 +3442,38 @@ async function enrichCoachRecordFromBio(
   const $ =
     cheerio.load(html);
 
-  let email = record.email;
-  let phone = record.phone;
+let email =
+  record.email;
+
+let bioEmail = "";
+
+let phone =
+  record.phone;
   let xUrl = record.xUrl;
   let instagramUrl =
     record.instagramUrl;
   let linkedinUrl =
     record.linkedinUrl;
 
-if (!email) {
+/*
+ * The individual official bio is the highest-confidence
+ * source for email attribution.
+ *
+ * Trust an email explicitly published on that coach's bio
+ * even when its username does not resemble the coach's name.
+ *
+ * If the roster card attached another person's email, the
+ * bio-page email replaces it.
+ */
+bioEmail =
+  extractVisibleCoachEmail(
+    $,
+    record.name,
+  );
+
+if (bioEmail) {
   email =
-    extractVisibleCoachEmail(
-      $,
-      record.name,
-    );
+    bioEmail;
 }
 
   if (!phone) {
@@ -3150,9 +3511,17 @@ if (!email) {
       );
   }
 
-  const foundEmail =
-    !record.email &&
-    Boolean(email);
+const foundEmail =
+  Boolean(bioEmail) &&
+  (
+    !record.email ||
+    record.email
+      .trim()
+      .toLowerCase() !==
+      bioEmail
+        .trim()
+        .toLowerCase()
+  );
 
   const foundPhone =
     !record.phone &&
@@ -4348,30 +4717,66 @@ for (
   const uncorrectedRecord
   of schoolRecords.values()
 ) {
-  const correctedRecord =
-    applyKnownSchoolRecordCorrections(
+  if (
+    shouldExcludeKnownSchoolRecord(
       slug,
       uncorrectedRecord,
+    )
+  ) {
+    console.log(
+      `    ⚠️ stale or excluded staff record skipped: ${uncorrectedRecord.name}`,
     );
 
-  const enrichedRecord =
-    await enrichCoachRecordFromBio(
-      correctedRecord,
-      stats,
-    );
+    continue;
+  }
 
-  enrichedRecords.push(
-    enrichedRecord,
+const correctedRecord =
+  applyKnownSchoolRecordCorrections(
+    slug,
+    uncorrectedRecord,
   );
+
+const bioEnrichedRecord =
+  await enrichCoachRecordFromBio(
+    correctedRecord,
+    stats,
+  );
+
+/*
+ * Apply known corrections again after bio enrichment.
+ *
+ * This prevents an individual bio page from restoring a
+ * manually verified bad attribution, such as:
+ *
+ * Marc Rardin <- will.gerber637@topper.wku.edu
+ */
+const enrichedRecord =
+  applyKnownSchoolRecordCorrections(
+    slug,
+    bioEnrichedRecord,
+  );
+
+enrichedRecords.push(
+  enrichedRecord,
+);
 }
 
 /*
  * Run duplicate-email ownership cleanup only after
  * every coach record has completed bio enrichment.
  */
+/*
+ * Resolve full-name and shared-surname attribution
+ * before duplicate-email ownership is evaluated.
+ */
+const attributedRecords =
+  enforceStaffContactAttribution(
+    enrichedRecords,
+  );
+
 const deduplicatedRecords =
   removeLikelyMisassignedDuplicateEmails(
-    enrichedRecords,
+    attributedRecords,
   );
 
 /*
