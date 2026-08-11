@@ -422,25 +422,67 @@ function buildCandidateUrls(
       allCandidates.findIndex((other) => other.url === candidate.url) === index,
   );
 
-  if (!preferredPattern) {
-    return uniqueCandidates;
-  }
+if (!preferredPattern) {
+  return uniqueCandidates;
+}
 
-  /*
-   * Stable-sort the previously successful pattern to the front.
-   *
-   * A generic pattern is cached rather than the exact URL, so a school
-   * that previously succeeded at /roster/2026 can automatically try
-   * /roster/2027 first during the next season.
-   */
-  return [
-    ...uniqueCandidates.filter(
-      (candidate) => candidate.pattern === preferredPattern,
-    ),
-    ...uniqueCandidates.filter(
-      (candidate) => candidate.pattern !== preferredPattern,
-    ),
-  ];
+/*
+ * Keep all current-season and unversioned sources ahead of
+ * prior-season fallbacks, even when the cached pattern is a
+ * year-based roster pattern.
+ *
+ * The old sorting could move a prior-year URL near the front simply
+ * because it shared the cached pattern name with the current-year URL.
+ */
+const isPriorSeasonCandidate = (
+  candidate: CandidateUrl,
+) =>
+  priorYears.some(
+    (year) =>
+      candidate.url.includes(
+        `/roster/${year}`,
+      ) ||
+      candidate.url.includes(
+        `/coaches/${year}`,
+      ),
+  );
+
+const currentCandidates =
+  uniqueCandidates.filter(
+    (candidate) =>
+      !isPriorSeasonCandidate(
+        candidate,
+      ),
+  );
+
+const priorSeasonCandidates =
+  uniqueCandidates.filter(
+    isPriorSeasonCandidate,
+  );
+
+const prioritizeCachedPattern = (
+  list: CandidateUrl[],
+) => [
+  ...list.filter(
+    (candidate) =>
+      candidate.pattern ===
+      preferredPattern,
+  ),
+  ...list.filter(
+    (candidate) =>
+      candidate.pattern !==
+      preferredPattern,
+  ),
+];
+
+return [
+  ...prioritizeCachedPattern(
+    currentCandidates,
+  ),
+  ...prioritizeCachedPattern(
+    priorSeasonCandidates,
+  ),
+];
 }
 
 function absolutizeUrl(url: string, origin: string) {
@@ -1785,16 +1827,29 @@ function findCoachingStaffRegions(
         break;
       }
 
+      /*
+       * Once another unrelated heading begins after we have
+       * collected coaching-staff content, stop the region.
+       *
+       * This prevents broader page sections from leaking into
+       * coach extraction.
+       */
       if (
         isHeading &&
         collected.length > 0 &&
-        !isCoachingStaffHeading(sibling.text())
+        !isCoachingStaffHeading(
+          sibling.text(),
+        )
       ) {
         break;
       }
 
-      collected.push(...sibling.toArray());
-      sibling = sibling.next();
+      collected.push(
+        ...sibling.toArray(),
+      );
+
+      sibling =
+        sibling.next();
     }
 
     if (collected.length === 0) return;
@@ -2192,6 +2247,27 @@ function shouldExcludeKnownSchoolRecord(
     return true;
   }
 
+  /*
+   * Arizona State's 2027 baseball roster lists Jesse Lowman
+   * as Athletic Trainer, not as a baseball coaching or
+   * player-development staff member.
+   *
+   * The generic extraction incorrectly attributed the
+   * neighboring "Graduate Assistant, Sports Performance"
+   * title to Lowman. Billy Wurch is the person who holds
+   * that role.
+   */
+  if (
+    slug ===
+      "arizona-state-university" &&
+    coachKey ===
+      normalizeCoachKey(
+        "Jesse Lowman",
+      )
+  ) {
+    return true;
+  }
+
   return false;
 }
 
@@ -2245,6 +2321,30 @@ if (
     };
   }
 
+    /*
+   * Cincinnati's current staff lists Kyle Schroeder as
+   * Director of Program Development.
+   *
+   * Chris Krepline holds the Director of Pitching
+   * Development role, so correct Schroeder's title when
+   * the page structure assigns the neighboring title.
+   */
+  if (
+    slug ===
+      "university-of-cincinnati" &&
+    coachKey ===
+      normalizeCoachKey(
+        "Kyle Schroeder",
+      )
+  ) {
+    return {
+      ...record,
+      title:
+        "Director of Program Development",
+      isHeadCoach: false,
+    };
+  }
+  
   return {
     ...record,
     isHeadCoach: isHeadCoachTitle(record.title),
@@ -2747,21 +2847,21 @@ let name = normalizeExtractedCoachName(
     }
   }
 
-  for (const selector of titleSelectors) {
-    const candidates = root.find(selector).addBack(selector);
+for (const selector of titleSelectors) {
+  const candidates = root.find(selector).addBack(selector);
 
-    candidates.each((_, node) => {
-      if (title) return;
+  candidates.each((_, node) => {
+    if (title) return;
 
-      const value = normalizeTitle($(node).text());
+    const value = normalizeTitle($(node).text());
 
-      if (looksLikeCoachTitle(value) && value.length <= 180) {
-        title = value;
-      }
-    });
+    if (looksLikeCoachTitle(value) && value.length <= 180) {
+      title = value;
+    }
+  });
 
-    if (title) break;
-  }
+  if (title) break;
+}
 
 /*
  * Sidearm staff tables commonly place the person's name in a <th>
@@ -2796,36 +2896,43 @@ if (root.is("tr") && (!name || !title)) {
   }
 }
 
-  if (!name || !title) {
-    const directPieces: string[] = [];
+if (!name || !title) {
+  const directPieces: string[] = [];
 
-    root
-      .children("td, th, div, span, p, h2, h3, h4, strong")
-      .each((_, node) => {
-        const value = normalizeTitle(
-          $(node).clone().children().remove().end().text(),
-        );
+  root
+    .children("td, th, div, span, p, h2, h3, h4, strong")
+    .each((_, node) => {
+      const value = normalizeTitle(
+        $(node).clone().children().remove().end().text(),
+      );
 
-        if (value && value.length <= 180 && !directPieces.includes(value)) {
-          directPieces.push(value);
-        }
-      });
+      if (
+        value &&
+        value.length <= 180 &&
+        !directPieces.includes(value)
+      ) {
+        directPieces.push(value);
+      }
+    });
 
-    if (!name) {
-      name =
-  directPieces
-    .map(normalizeExtractedCoachName)
-    .find((value) => looksLikePersonName(value)) ?? "";
-    }
-
-    if (!title) {
-      title = directPieces.find((value) => looksLikeCoachTitle(value)) ?? "";
-    }
+  if (!name) {
+    name =
+      directPieces
+        .map(normalizeExtractedCoachName)
+        .find((value) => looksLikePersonName(value)) ?? "";
   }
 
-  name = normalizeExtractedCoachName(name);
+  if (!title) {
+    title =
+      directPieces.find((value) =>
+        looksLikeCoachTitle(value),
+      ) ?? "";
+  }
+}
 
-  title = normalizeTitle(title);
+name = normalizeExtractedCoachName(name);
+
+title = normalizeTitle(title);
 
 if (
   !name ||
@@ -3968,18 +4075,30 @@ const candidates =
       )
     : rawCandidates;
 
-const schoolRecords = new Map<string, CoachRecord>();
+const schoolRecords =
+  new Map<
+    string,
+    CoachRecord
+  >();
+
 let found = false;
 
 if (slug !== "gardner-webb-university") {
   for (const candidate of candidates) {
-    const { url, pattern } = candidate;
+    const {
+      url,
+      pattern,
+    } = candidate;
 
     stats.urlAttempts += 1;
 
     console.log(
       `  trying: ${url}` +
-        (pattern === preferredPattern ? " [cached pattern]" : ""),
+        (
+          pattern === preferredPattern
+            ? " [cached pattern]"
+            : ""
+        ),
     );
 
       const html = await fetchHtml(url);
@@ -4077,94 +4196,122 @@ if (pageRecords.size > MAX_COACH_RECORDS_PER_PAGE) {
   continue;
 }
 
-const pageHasHeadCoach = Array.from(
-  pageRecords.values(),
-).some((record) => record.isHeadCoach);
+const pageHasHeadCoach =
+  Array.from(
+    pageRecords.values(),
+  ).some(
+    (record) =>
+      record.isHeadCoach,
+  );
+
+if (pageRecords.size === 0) {
+  continue;
+}
 
 /*
- * Houston's year-specific roster currently contains its outgoing staff,
- * while the unversioned roster contains the incoming staff led by the
- * new head coach. Once a page containing the actual head coach is found,
- * replace the previously accumulated Houston records instead of merging
- * the two staff versions together.
+ * Keep an incomplete page only as a temporary fallback.
+ * A later complete source replaces it rather than adding
+ * new staff members to it.
  */
 if (
-  slug === "university-of-houston" &&
-  pageHasHeadCoach
+  pageRecords.size <
+  MIN_EXPECTED_COACH_RECORDS
 ) {
-  schoolRecords.clear();
+  for (
+    const [key, record]
+    of pageRecords
+  ) {
+    schoolRecords.set(
+      key,
+      mergeCoachRecords(
+        schoolRecords.get(key),
+        record,
+      ),
+    );
+  }
 
   console.log(
-    "  🔄 Houston head coach found; replacing previously accumulated staff records",
+    `  ⚠️ parsed only ${pageRecords.size} coach record(s); continuing fallback URLs`,
   );
+
+  continue;
 }
 
-for (const [key, record] of pageRecords) {
+/*
+ * Houston requires a source containing the current head coach.
+ * Do not accept a roster that contains only the remainder
+ * of the staff.
+ */
+if (
+  slug ===
+    "university-of-houston" &&
+  !pageHasHeadCoach
+) {
+  console.log(
+    `  ⚠️ parsed ${pageRecords.size} Houston staff record(s), but no head coach yet; continuing fallback URLs`,
+  );
+
+  continue;
+}
+
+/*
+ * This page is now the authoritative active staff source.
+ *
+ * Do not union different current staff surfaces. Secondary
+ * pages can contain stale or broader personnel and caused
+ * weekly refreshes to inflate staff counts.
+ */
+schoolRecords.clear();
+
+for (
+  const [key, record]
+  of pageRecords
+) {
   schoolRecords.set(
     key,
-    mergeCoachRecords(
-      schoolRecords.get(key),
-      record,
-    ),
+    record,
   );
 }
 
-if (pageRecords.size > 0) {
-  const hasHeadCoach = Array.from(
-    schoolRecords.values(),
-  ).some((record) => record.isHeadCoach);
+console.log(
+  `  ✅ parsed ${schoolRecords.size} unique coach record(s) from ${url}`,
+);
 
-  if (schoolRecords.size < MIN_EXPECTED_COACH_RECORDS) {
-    console.log(
-      `  ⚠️ parsed only ${schoolRecords.size} unique coach record(s) so far; retaining partial result and continuing fallback URLs`,
+if (
+  successfulPatternCache[slug] !==
+    pattern
+) {
+  const previouslyCached =
+    Boolean(
+      successfulPatternCache[
+        slug
+      ],
     );
 
-    continue;
-  }
+  successfulPatternCache[
+    slug
+  ] =
+    pattern;
 
-  /*
-   * Houston's roster page contains the rest of the baseball staff but
-   * currently omits the head coach. Keep trying the coaches-page
-   * candidates and merge any missing records before declaring success.
-   */
-  if (
-    slug === "university-of-houston" &&
-    !hasHeadCoach
-  ) {
-    console.log(
-      `  ⚠️ parsed ${schoolRecords.size} Houston staff record(s), but no head coach yet; continuing fallback URLs`,
-    );
-
-    continue;
+  if (!previouslyCached) {
+    stats.cachedPatternsLearned +=
+      1;
   }
 
   console.log(
-    `  ✅ parsed ${schoolRecords.size} unique coach record(s) from ${url}`,
+    `  💾 cached successful pattern: ${pattern}`,
   );
-
-  stats.successfulPrograms += 1;
-  stats.coachRecordsParsed += schoolRecords.size;
-
-  if (successfulPatternCache[slug] !== pattern) {
-    const previouslyCached = Boolean(
-      successfulPatternCache[slug],
-    );
-
-    successfulPatternCache[slug] = pattern;
-
-    if (!previouslyCached) {
-      stats.cachedPatternsLearned += 1;
-    }
-
-    console.log(
-      `  💾 cached successful pattern: ${pattern}`,
-    );
-  }
-
-  found = true;
-  break;
 }
-    }
+
+stats.successfulPrograms += 1;
+
+stats.coachRecordsParsed +=
+  schoolRecords.size;
+
+found = true;
+
+break;
+  }
 }
 
 /*
