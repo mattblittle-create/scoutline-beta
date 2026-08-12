@@ -509,9 +509,9 @@ model TeamInvoice {
 }
 
 model PlayerBillingProfile {
-  id                 String        @id @default(cuid())
-  playerProfileId    String        @unique
-  provider           String        @default("VALOR")
+  id                 String  @id @default(cuid())
+  playerProfileId    String  @unique
+  provider           String  @default("VALOR")
   providerCustomerId String?
   providerPaymentRef String?
   paymentType        String?
@@ -520,12 +520,12 @@ model PlayerBillingProfile {
 
   // ACH display and recurring-payment metadata.
   // Never store a routing number or bank account number.
-  accountHolderName  String?
-  accountType        String?
+  accountHolderName String?
+  accountType       String?
 
-  updatedAt          DateTime      @updatedAt
-  createdAt          DateTime      @default(now())
-  playerProfile      PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+  updatedAt     DateTime      @updatedAt
+  createdAt     DateTime      @default(now())
+  playerProfile PlayerProfile @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
 
   @@index([playerProfileId])
 }
@@ -1464,6 +1464,7 @@ model CollegeBaseballProgram {
   rosterNeeds      CollegeBaseballRosterNeed[]
   metricAverages   CollegeBaseballMetricAverage[]
   rosterSnapshots  CollegeBaseballRosterSnapshot[]
+  rosterPlayers    CollegeBaseballRosterPlayer[]
   portalActivities CollegeBaseballPortalActivity[]
   programOutcomes  CollegeBaseballProgramOutcome[]
 
@@ -1956,6 +1957,110 @@ model CollegeBaseballRosterSnapshot {
   @@unique([programId, season])
   @@index([programId])
   @@index([season])
+}
+
+model CollegeBaseballRosterPlayer {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  programId String
+  program   CollegeBaseballProgram @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  /**
+   * Official roster season this player record belongs to.
+   * Examples:
+   * 2026
+   * 2027
+   */
+  season String
+
+  /**
+   * Player name exactly as published on the official roster.
+   */
+  name String
+
+  /**
+   * Position string exactly as published by the school.
+   * Examples:
+   * RHP
+   * INF
+   * 3B/1B
+   * RHP/INF
+   */
+  positionRaw String?
+
+  /**
+   * ScoutLine-normalized primary position.
+   * Examples:
+   * RHP
+   * LHP
+   * C
+   * 1B
+   * 2B
+   * 3B
+   * SS
+   * INF
+   * OF
+   * UTIL
+   */
+  primaryPosition String?
+
+  /**
+   * Class/year exactly as published by the school.
+   * Examples:
+   * Fr.
+   * R-Fr.
+   * So.
+   * Jr.
+   * Sr.
+   * Gr.
+   */
+  classYearRaw String?
+
+  /**
+   * ScoutLine-normalized class bucket.
+   * Examples:
+   * FRESHMAN
+   * SOPHOMORE
+   * JUNIOR
+   * SENIOR
+   * GRADUATE
+   */
+  classBucket String?
+
+  /**
+   * Height exactly as published by the school plus
+   * normalized inches for calculations.
+   */
+  heightRaw    String?
+  heightInches Int?
+
+  /**
+   * Weight exactly as published by the school plus
+   * normalized pounds for calculations.
+   */
+  weightRaw String?
+  weightLb  Int?
+
+  /**
+   * Individual official roster/profile URL when available.
+   */
+  rosterProfileUrl String?
+
+  /**
+   * Provenance for the roster record.
+   */
+  sourceUrl  String?
+  sourceType DataSourceType?
+  confidence DataConfidence  @default(UNKNOWN)
+  verifiedAt DateTime?
+
+  @@unique([programId, season, name])
+  @@index([programId, season])
+  @@index([season])
+  @@index([primaryPosition])
+  @@index([classBucket])
 }
 
 model CollegeBaseballPortalActivity {
