@@ -392,6 +392,11 @@ function loadState(email?: string | null): VideoSocialState {
 function saveState(email: string | null | undefined, state: VideoSocialState) {
   if (typeof window === "undefined") return;
 
+  const safeEmail = String(email ?? "").trim().toLowerCase();
+
+  // Never persist Video/Social state without a real player identity.
+  if (!safeEmail || !safeEmail.includes("@")) return;
+
   const safeState: VideoSocialState = {
     externalVideos: Array.isArray(state.externalVideos) ? state.externalVideos : [],
     localVideos: Array.isArray(state.localVideos)
@@ -415,7 +420,7 @@ function saveState(email: string | null | undefined, state: VideoSocialState) {
     primary: state.primary ?? null,
   };
 
-  localStorage.setItem(storageKey(email), JSON.stringify(safeState));
+  localStorage.setItem(storageKey(safeEmail), JSON.stringify(safeState));
 }
 
 // ---------- Component ----------
@@ -428,9 +433,13 @@ const TabVideoSocial = React.forwardRef<
     const PLAN = PLAN_RULES[planTier];
     const isTeamAdminMode = !!props.readOnlyTeamAdmin;
 
-    // ---- Stable storage key ----
-    const storageEmail = (props.email ?? "").trim().toLowerCase() || "anon";
-    const [hydrated, setHydrated] = useState(false);
+// ---- Stable storage key ----
+// IMPORTANT:
+// Never use an "anon" fallback here. Video/Social data must always belong
+// to a real player identity before it can hydrate or become saveable.
+const storageEmail = (props.email ?? "").trim().toLowerCase();
+
+const [hydrated, setHydrated] = useState(false);
 
     const [state, setState] = useState<VideoSocialState>({
       externalVideos: [],
@@ -440,64 +449,154 @@ const TabVideoSocial = React.forwardRef<
     });
 
 useEffect(() => {
+  let cancelled = false;
+  const controller = new AbortController();
+
   async function load() {
-    try {
-      const res = await fetch(`/api/player/profile?email=${encodeURIComponent(storageEmail)}`);
-      const json = await res.json();
+    // Every identity change starts in a NON-hydrated state.
+    // Until a successful response arrives for this exact email,
+    // PlayerProfileEditor must not be allowed to save Video/Social data.
+    setHydrated(false);
 
-const norm = json?.normalized || {};
-
-const vs =
-  norm?.videoSocial ||
-  {
-    externalVideos: norm?.externalVideos || [],
-    localVideos: norm?.localVideos || [],
-    social: norm?.social || {},
-    primary: norm?.primary || null,
-  };
-
-      if (vs) {
-        setState({
-          externalVideos: vs.externalVideos || [],
-          localVideos: (vs.localVideos || []).map((v: any) => ({
-            id: v.id,
-            title: v.title,
-            fileName: v.title || "video",
-            fileSize: v.fileSize || 0,
-            fileType: v.fileType || "video/mp4",
-            publicUrl: v.publicUrl,
-            progress: 100,
-            status: "done",
-            addedAt: v.addedAt || Date.now(),
-            category:
-              v?.category === "Hitting" ||
-              v?.category === "Fielding" ||
-              v?.category === "Pitching" ||
-              v?.category === "Baserunning"
-                ? v.category
-                : null,
-          })),
-          social: vs.social || {},
-          primary: vs.primary || null,
-        });
-      } else {
-        // fallback to localStorage
-        setState(loadState(storageEmail));
-      }
-    } catch {
-      setState(loadState(storageEmail));
+    // Do not fetch or hydrate against a placeholder / missing identity.
+    if (!storageEmail || !storageEmail.includes("@")) {
+      setState({
+        externalVideos: [],
+        localVideos: [],
+        social: {},
+        primary: null,
+      });
+      return;
     }
 
-    setHydrated(true);
+    try {
+      const res = await fetch(
+        `/api/player/profile?email=${encodeURIComponent(storageEmail)}`,
+        {
+          cache: "no-store",
+          signal: controller.signal,
+        }
+      );
+
+      const raw = await res.text();
+
+      let json: any = null;
+      try {
+        json = raw ? JSON.parse(raw) : null;
+      } catch {
+        json = null;
+      }
+
+      // A failed request must NEVER be interpreted as a valid empty profile.
+      if (!res.ok || !json?.ok) {
+        throw new Error(
+          json?.error ||
+            raw ||
+            `Failed to load Video / Social Media (${res.status})`
+        );
+      }
+
+      // This request became stale while it was in flight.
+      if (cancelled || controller.signal.aborted) return;
+
+      const norm = json?.normalized ?? {};
+
+      const vs =
+        norm?.videoSocial && typeof norm.videoSocial === "object"
+          ? norm.videoSocial
+          : {
+              externalVideos: Array.isArray(norm?.externalVideos)
+                ? norm.externalVideos
+                : [],
+              localVideos: Array.isArray(norm?.localVideos)
+                ? norm.localVideos
+                : [],
+              social:
+                norm?.social &&
+                typeof norm.social === "object" &&
+                !Array.isArray(norm.social)
+                  ? norm.social
+                  : {},
+              primary: norm?.primary ?? null,
+            };
+
+      const nextState: VideoSocialState = {
+        externalVideos: Array.isArray(vs.externalVideos)
+          ? vs.externalVideos
+          : [],
+
+        localVideos: Array.isArray(vs.localVideos)
+          ? vs.localVideos.map((v: any) => ({
+              id: v.id,
+              title: v.title,
+              fileName: v.title || "video",
+              fileSize: v.fileSize || 0,
+              fileType: v.fileType || "video/mp4",
+              publicUrl: v.publicUrl,
+              progress: 100,
+              status: "done" as UploadStatus,
+              addedAt: v.addedAt || Date.now(),
+              category:
+                v?.category === "Hitting" ||
+                v?.category === "Fielding" ||
+                v?.category === "Pitching" ||
+                v?.category === "Baserunning"
+                  ? v.category
+                  : null,
+            }))
+          : [],
+
+        social:
+          vs?.social &&
+          typeof vs.social === "object" &&
+          !Array.isArray(vs.social)
+            ? vs.social
+            : {},
+
+        primary: vs?.primary ?? null,
+      };
+
+      // Check again immediately before committing the response.
+      if (cancelled || controller.signal.aborted) return;
+
+      setState(nextState);
+
+      // Only a confirmed successful response for this identity
+      // is allowed to mark Video/Social as hydrated/saveable.
+      setHydrated(true);
+    } catch (e: any) {
+      if (cancelled || controller.signal.aborted) return;
+
+      console.error("Failed to load Video / Social Media:", e);
+
+      /**
+       * Optional UI fallback:
+       * Show this player's browser-cached state if we have one,
+       * but DO NOT mark it hydrated.
+       *
+       * That distinction is critical:
+       * cached/fallback data may be displayed, but cannot overwrite
+       * the database through the parent profile Save operation.
+       */
+      setState(loadState(storageEmail));
+      setHydrated(false);
+    }
   }
 
   load();
+
+  return () => {
+    cancelled = true;
+    controller.abort();
+  };
 }, [storageEmail]);
 
-    useEffect(() => {
-      if (!hydrated) return;
-      saveState(storageEmail, state);
-    }, [state, hydrated, storageEmail]);
+useEffect(() => {
+  if (!hydrated) return;
+  if (!storageEmail || !storageEmail.includes("@")) return;
+
+  saveState(storageEmail, state);
+}, [state, hydrated, storageEmail]);
 
     // ----- UI messaging -----
     const [msg, setMsg] = useState<string | null>(null);

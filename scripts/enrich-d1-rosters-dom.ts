@@ -3,11 +3,19 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
 import { PrismaClient } from "@prisma/client";
 import * as cheerio from "cheerio";
 
 const prisma =
   new PrismaClient();
+
+const execFileAsync =
+  promisify(
+    execFile,
+  );
 
 const OUT_DIR =
   path.join(
@@ -196,6 +204,58 @@ const REGRESSION_CASES:
     "2026",
   minimumPlayers:
     38,
+},
+
+{
+  name:
+    "William & Mary",
+  slug:
+    "william-mary",
+  baseRosterUrl:
+    "https://tribeathletics.com/sports/baseball/roster",
+  expectedSeason:
+    "2027",
+  minimumPlayers:
+    21,
+},
+
+{
+  name:
+    "Dallas Baptist University",
+  slug:
+    "dallas-baptist-university",
+  baseRosterUrl:
+    "https://dbupatriots.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    38,
+},
+
+{
+  name:
+    "Columbia University",
+  slug:
+    "columbia-university",
+  baseRosterUrl:
+    "https://gocolumbialions.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    37,
+},
+
+{
+  name:
+    "Dartmouth College",
+  slug:
+    "dartmouth-college",
+  baseRosterUrl:
+    "https://dartmouthsports.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    33,
 },
   ];
 
@@ -470,6 +530,9 @@ function normalizeClassBucket(
       "freshman",
     ) ||
     v === "fr" ||
+    v === "fy" ||
+    v === "first year" ||
+    v === "first-year" ||
     v === "r-fr" ||
     v === "rs-fr" ||
     v === "rfr" ||
@@ -843,9 +906,91 @@ async function fetchHtml(
         )}`
       : "";
 
-  throw new Error(
-    `fetch failed after ${MAX_ATTEMPTS} attempts for ${url}: ${message}${cause}`,
+const certificateFailure =
+  /unable to verify the first certificate/i.test(
+    `${message}${cause}`,
   );
+
+if (
+  certificateFailure
+) {
+  if (
+    VERBOSE
+  ) {
+    console.log(
+      `  ⚠️ Node TLS validation failed for ${url}. Trying curl.exe fallback...`,
+    );
+  }
+
+  try {
+    return await fetchHtmlWithCurl(
+      url,
+    );
+  } catch (
+    curlError
+  ) {
+    const curlMessage =
+      curlError instanceof Error
+        ? curlError.message
+        : String(
+            curlError,
+          );
+
+    throw new Error(
+      `fetch failed after ${MAX_ATTEMPTS} Node attempts and curl.exe fallback for ${url}: ${message}${cause} | curl: ${curlMessage}`,
+    );
+  }
+}
+
+throw new Error(
+  `fetch failed after ${MAX_ATTEMPTS} attempts for ${url}: ${message}${cause}`,
+);
+}
+
+async function fetchHtmlWithCurl(
+  url: string,
+) {
+  const {
+    stdout,
+  } =
+    await execFileAsync(
+      "curl.exe",
+      [
+        "--location",
+        "--fail",
+        "--silent",
+        "--show-error",
+        "--max-time",
+        "30",
+        "--user-agent",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+          "AppleWebKit/537.36 (KHTML, like Gecko) " +
+          "Chrome/131.0.0.0 Safari/537.36",
+        url,
+      ],
+      {
+        maxBuffer:
+          15 *
+          1024 *
+          1024,
+      },
+    );
+
+  if (
+    !stdout
+  ) {
+    throw new Error(
+      `curl.exe returned empty HTML for ${url}`,
+    );
+  }
+
+  return {
+    html:
+      stdout,
+
+    finalUrl:
+      url,
+  };
 }
 
 function extractPublishedRosterSeasons(
@@ -1277,45 +1422,105 @@ function detectSeasonFromPage(
       bodyAcademic[2];
   }
 
-  /*
-   * 2026 Fall Baseball Roster
-   * 2026 Baseball Roster
-   */
+/*
+ * FALL ROSTER
+ *
+ * College baseball fall rosters belong to the following
+ * spring season.
+ *
+ * Examples:
+ *
+ * 2026 Fall Baseball Roster -> 2027 baseball season
+ * Fall Baseball 2026 Roster -> 2027 baseball season
+ *
+ * William & Mary is the regression example:
+ *
+ * Page title:
+ * 2027 Baseball Roster
+ *
+ * Visible heading:
+ * 2026 Fall Baseball Roster
+ *
+ * These are not contradictory. They identify the same
+ * baseball cycle.
+ */
+if (
+  !bodySeason
+) {
+  const fallLeadingYear =
+    bodyText.match(
+      /\b(20\d{2})\s+Fall\s+Baseball\s+Roster\b/i,
+    );
+
   if (
-    !bodySeason
+    fallLeadingYear?.[1]
   ) {
-    const bodyLeadingYear =
-      bodyText.match(
-        /\b(20\d{2})\s+(?:Fall\s+)?Baseball\s+Roster\b/i,
+    bodySeason =
+      String(
+        Number(
+          fallLeadingYear[1],
+        ) + 1,
       );
-
-    if (
-      bodyLeadingYear?.[1]
-    ) {
-      bodySeason =
-        bodyLeadingYear[1];
-    }
   }
+}
 
-  /*
-   * Fall Baseball 2026 Roster
-   * Baseball 2026 Roster
-   */
+if (
+  !bodySeason
+) {
+  const fallTrailingYear =
+    bodyText.match(
+      /\bFall\s+Baseball\s+(20\d{2})\s+Roster\b/i,
+    );
+
   if (
-    !bodySeason
+    fallTrailingYear?.[1]
   ) {
-    const bodyTrailingYear =
-      bodyText.match(
-        /\b(?:Fall\s+)?Baseball\s+(20\d{2})\s+Roster\b/i,
+    bodySeason =
+      String(
+        Number(
+          fallTrailingYear[1],
+        ) + 1,
       );
-
-    if (
-      bodyTrailingYear?.[1]
-    ) {
-      bodySeason =
-        bodyTrailingYear[1];
-    }
   }
+}
+
+/*
+ * STANDARD SEASON ROSTER
+ *
+ * 2026 Baseball Roster
+ * Baseball 2026 Roster
+ */
+if (
+  !bodySeason
+) {
+  const bodyLeadingYear =
+    bodyText.match(
+      /\b(20\d{2})\s+Baseball\s+Roster\b/i,
+    );
+
+  if (
+    bodyLeadingYear?.[1]
+  ) {
+    bodySeason =
+      bodyLeadingYear[1];
+  }
+}
+
+if (
+  !bodySeason
+) {
+  const bodyTrailingYear =
+    bodyText.match(
+      /\bBaseball\s+(20\d{2})\s+Roster\b/i,
+    );
+
+  if (
+    bodyTrailingYear?.[1]
+  ) {
+    bodySeason =
+      bodyTrailingYear[1];
+  }
+}
 
   /*
    * 2026 Clemson Roster
@@ -2754,10 +2959,10 @@ function extractClassYear(
    * Academic Year Sr.
    * Class Junior
    */
-  const labeledClass =
-    normalized.match(
-      /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)\b/i,
-    );
+const labeledClass =
+  normalized.match(
+    /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Fifth Year|5th Year|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|$)/i,
+  );
 
   if (
     labeledClass?.[1]

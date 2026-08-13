@@ -1860,19 +1860,59 @@ const otherAcademicDocsPayload =
 
       const ageComputed = isDobValid(dob) ? computeAgeFromDob(dob) : null;
 
-      // NEW: collect atomic payloads from Tab 6 & Tab 7
+// NEW: collect atomic payloads from Tab 6 & Tab 7
 const vs = videoSocialRef.current?.getPayload();
 const cr = coachesRef.current?.getPayload();
 
-const videoSocialPatch =
-  vs?.hydrated
+/**
+ * VIDEO / SOCIAL SAVE SAFETY
+ *
+ * Only allow Video/Social fields into this save when:
+ * 1) TabVideoSocial successfully hydrated from the server.
+ * 2) The parent editor itself has hydrated this same canonical email.
+ * 3) The email currently being passed to TabVideoSocial is the same
+ *    player identity we're about to save.
+ *
+ * If any of those checks fail, OMIT Video/Social entirely.
+ *
+ * The API's hasOwn(...) protection will then preserve the existing
+ * database values instead of interpreting an empty payload as deletion.
+ */
+const videoSocialIdentityReady =
+  !!vs?.hydrated &&
+  !!canonicalEmail &&
+  profileEmail.trim().toLowerCase() === canonicalEmail &&
+  loadedEmail?.trim().toLowerCase() === canonicalEmail;
+
+const videoSocialPatch: Partial<PlayerProfilePayload> =
+  videoSocialIdentityReady
     ? {
-        externalVideos: vs.externalVideos ?? [],
-        localVideos: vs.localVideos ?? [],
-        social: vs.social ?? {},
+        externalVideos: Array.isArray(vs.externalVideos)
+          ? vs.externalVideos
+          : [],
+        localVideos: Array.isArray(vs.localVideos)
+          ? vs.localVideos
+          : [],
+        social:
+          vs.social && typeof vs.social === "object"
+            ? vs.social
+            : {},
         primary: vs.primary ?? null,
       }
     : {};
+
+  if (
+  process.env.NODE_ENV !== "production" &&
+  vs &&
+  !videoSocialIdentityReady
+) {
+  console.warn("[PlayerProfileEditor] Video/Social omitted from save for safety.", {
+    canonicalEmail,
+    profileEmail,
+    loadedEmail,
+    videoSocialHydrated: vs.hydrated,
+  });
+}
 
       const payload: PlayerProfilePayload = {
         email: canonicalEmail,
