@@ -100,6 +100,10 @@ type ProgramResult = {
   selectedRosterUrl: string;
 
   playersParsed: number;
+
+  rosterReadyPlayers: number;
+  rosterReadyRate: number;
+
   completePlayers: number;
   completionRate: number;
 
@@ -124,6 +128,8 @@ type RegressionCase = {
 
   expectedSeason: string;
   minimumPlayers: number;
+
+  minimumRosterReady?: number;
 };
 
 const REGRESSION_CASES:
@@ -255,6 +261,118 @@ const REGRESSION_CASES:
   expectedSeason:
     "2026",
   minimumPlayers:
+    33,
+},
+
+{
+  name:
+    "Yale University",
+  slug:
+    "yale-university",
+  baseRosterUrl:
+    "https://yalebulldogs.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    28,
+},
+
+{
+  name:
+    "Eastern Michigan University",
+  slug:
+    "eastern-michigan-university",
+  baseRosterUrl:
+    "https://emueagles.com/sports/baseball/roster",
+  expectedSeason:
+    "2027",
+  minimumPlayers:
+    15,
+},
+
+{
+  name:
+    "University of Arkansas at Little Rock",
+  slug:
+    "university-of-arkansas-at-little-rock",
+  baseRosterUrl:
+    "https://lrtrojans.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    38,
+},
+
+{
+  name:
+    "Washington State University",
+  slug:
+    "washington-state-university",
+  baseRosterUrl:
+    "https://wsucougars.com/sports/baseball/roster",
+  expectedSeason:
+    "2027",
+  minimumPlayers:
+    21,
+},
+
+{
+  name:
+    "Western Michigan University",
+  slug:
+    "western-michigan-university",
+  baseRosterUrl:
+    "https://wmubroncos.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    30,
+  minimumRosterReady:
+    29,
+},
+
+{
+  name:
+    "Fairleigh Dickinson University",
+  slug:
+    "fairleigh-dickinson-university",
+  baseRosterUrl:
+    "https://fduknights.com/sports/baseball/roster",
+  expectedSeason:
+    "2027",
+  minimumPlayers:
+    17,
+  minimumRosterReady:
+    16,
+},
+
+{
+  name:
+    "Eastern Illinois University",
+  slug:
+    "eastern-illinois-university",
+  baseRosterUrl:
+    "https://eiupanthers.com/sports/baseball/roster",
+  expectedSeason:
+    "2027",
+  minimumPlayers:
+    39,
+  minimumRosterReady:
+    38,
+},
+
+{
+  name:
+    "Western Illinois University",
+  slug:
+    "western-illinois-university",
+  baseRosterUrl:
+    "https://goleathernecks.com/sports/baseball/roster",
+  expectedSeason:
+    "2026",
+  minimumPlayers:
+    34,
+  minimumRosterReady:
     33,
 },
   ];
@@ -474,6 +592,7 @@ function normalizePrimaryPosition(
       IF: "INF",
       INF: "INF",
       MIF: "INF",
+      CIF: "1B",
 
       OF: "OF",
 
@@ -525,23 +644,24 @@ function normalizeClassBucket(
     return "GRADUATE";
   }
 
-  if (
-    v.includes(
-      "freshman",
-    ) ||
-    v === "fr" ||
-    v === "fy" ||
-    v === "first year" ||
-    v === "first-year" ||
-    v === "r-fr" ||
-    v === "rs-fr" ||
-    v === "rfr" ||
-    v === "rsfr" ||
-    v ===
-      "redshirt freshman"
-  ) {
-    return "FRESHMAN";
-  }
+if (
+  v.includes(
+    "freshman",
+  ) ||
+  v === "fr" ||
+  v === "fy" ||
+  v === "rf" ||
+  v === "first year" ||
+  v === "first-year" ||
+  v === "r-fr" ||
+  v === "rs-fr" ||
+  v === "rfr" ||
+  v === "rsfr" ||
+  v ===
+    "redshirt freshman"
+) {
+  return "FRESHMAN";
+}
 
   if (
     v.includes(
@@ -1289,8 +1409,162 @@ function cleanRosterPlayerName(
   return cleaned;
 }
 
+function extractJsonLdRosterPlayerLinks(
+  $: cheerio.CheerioAPI,
+  sourceUrl: string,
+): PlayerLink[] {
+  const origin =
+    new URL(
+      sourceUrl,
+    ).origin;
+
+  const links:
+    PlayerLink[] = [];
+
+  const seen =
+    new Set<string>();
+
+  $('script[type="application/ld+json"], script').each(
+    (
+      _,
+      node,
+    ) => {
+      const raw =
+        cleanText(
+          $(node).html(),
+        );
+
+if (
+  !raw ||
+  !/"@type"\s*:\s*"Person"/i.test(
+    raw,
+  )
+) {
+  return;
+}
+
+      let parsed:
+        unknown;
+
+      try {
+        parsed =
+          JSON.parse(
+            raw,
+          );
+      } catch {
+        return;
+      }
+
+      const walk =
+        (
+          value: unknown,
+        ) => {
+          if (
+            !value ||
+            typeof value !==
+              "object"
+          ) {
+            return;
+          }
+
+          if (
+            Array.isArray(
+              value,
+            )
+          ) {
+            for (
+              const item
+              of value
+            ) {
+              walk(
+                item,
+              );
+            }
+
+            return;
+          }
+
+          const record =
+            value as Record<
+              string,
+              unknown
+            >;
+
+          if (
+            record["@type"] ===
+              "Person" &&
+            typeof record.name ===
+              "string" &&
+            typeof record.url ===
+              "string"
+          ) {
+            const name =
+              isPlausibleRosterPlayerName(
+                record.name,
+              );
+
+            const rawUrl =
+              cleanText(
+                record.url,
+              );
+
+            if (
+              name &&
+              /\/roster\.aspx\?rp_id=\d+/i.test(
+                rawUrl,
+              )
+            ) {
+              const url =
+                absolutizeUrl(
+                  rawUrl,
+                  origin,
+                );
+
+              const key =
+                `${name}|${url}`;
+
+              if (
+                url &&
+                !seen.has(
+                  key,
+                )
+              ) {
+                seen.add(
+                  key,
+                );
+
+                links.push({
+                  name,
+                  url,
+                });
+              }
+            }
+          }
+
+          for (
+            const child
+            of Object.values(
+              record,
+            )
+          ) {
+            walk(
+              child,
+            );
+          }
+        };
+
+      walk(
+        parsed,
+      );
+    },
+  );
+
+  return links;
+}
+
 function countPlayerProfileLinks(
   $: cheerio.CheerioAPI,
+  sourceUrl = "",
 ) {
   const hrefs =
     $("a[href]")
@@ -1310,9 +1584,22 @@ function countPlayerProfileLinks(
         isRosterPlayerHref,
       );
 
-  return new Set(
-    hrefs,
-  ).size;
+  const linkCount =
+    new Set(
+      hrefs,
+    ).size;
+
+  if (
+    linkCount > 0 ||
+    !sourceUrl
+  ) {
+    return linkCount;
+  }
+
+  return extractJsonLdRosterPlayerLinks(
+    $,
+    sourceUrl,
+  ).length;
 }
 
 type SeasonDetection = {
@@ -1618,27 +1905,169 @@ async function inspectRosterPage(
       schoolName,
     );
 
-  return {
-    html:
-      fetched.html,
+const playerLinkCount =
+  countPlayerProfileLinks(
+    $,
+    fetched.finalUrl,
+  );
 
-    finalUrl:
-      fetched.finalUrl,
+const scriptText =
+  $("script")
+    .map(
+      (
+        _,
+        node,
+      ) =>
+        cleanText(
+          $(node).html(),
+        ),
+    )
+    .get()
+    .join(
+      "\n",
+    );
 
-    season:
-      seasonDetection.season,
+const rosterScriptMatches =
+  [
+    "roster",
+    "players",
+    "studentAthletes",
+    "student-athletes",
+    "sidearm",
+  ]
+    .filter(
+      (needle) =>
+        scriptText
+          .toLowerCase()
+          .includes(
+            needle.toLowerCase(),
+          ),
+    );
 
-    seasonConflict:
-      seasonDetection.conflict,
+if (
+  VERBOSE
+) {
+  const rosterOptionValues =
+    $("option[value]")
+      .map(
+        (
+          _,
+          node,
+        ) =>
+          cleanText(
+            $(node).attr(
+              "value",
+            ),
+          ),
+      )
+      .get()
+      .filter(
+        (value) =>
+          isRosterPlayerHref(
+            value,
+          ),
+      );
 
-    seasonAmbiguous:
-      seasonDetection.ambiguous,
+  console.log(
+    `  INSPECT ${fetched.finalUrl}`,
+  );
 
-    playerLinkCount:
-      countPlayerProfileLinks(
-        $,
-      ),
-  };
+  console.log(
+    `    script chars:    ${scriptText.length}`,
+  );
+
+  console.log(
+    `    script matches:  ${
+      rosterScriptMatches.length
+        ? rosterScriptMatches.join(", ")
+        : "(none)"
+    }`,
+  );
+
+  console.log(
+    `    detected season: ${seasonDetection.season || "(none)"}`,
+  );
+
+  console.log(
+    `    player links:    ${playerLinkCount}`,
+  );
+
+  console.log(
+    `    player options:  ${rosterOptionValues.length}`,
+  );
+
+  console.log(
+    `    title:           ${cleanText(
+      $("title").text(),
+    )}`,
+  );
+
+  if (
+    rosterOptionValues.length
+  ) {
+    console.log(
+      `    option samples: ${rosterOptionValues
+        .slice(
+          0,
+          5,
+        )
+        .join(
+          " | ",
+        )}`,
+    );
+  }
+
+  if (
+    rosterScriptMatches.length
+  ) {
+    $("script").each(
+      (
+        index,
+        node,
+      ) => {
+        const text =
+          cleanText(
+            $(node).html(),
+          );
+
+        if (
+          !text ||
+          !/roster|players|studentAthletes|student-athletes/i.test(
+            text,
+          )
+        ) {
+          return;
+        }
+
+        console.log(
+          `    SCRIPT ${index}: ${text.slice(
+            0,
+            800,
+          )}`,
+        );
+      },
+    );
+  }
+}
+
+return {
+  html:
+    fetched.html,
+
+  finalUrl:
+    fetched.finalUrl,
+
+  season:
+    seasonDetection.season,
+
+  seasonConflict:
+    seasonDetection.conflict,
+
+  seasonAmbiguous:
+    seasonDetection.ambiguous,
+
+  playerLinkCount,
+};
 }
 
 async function discoverLatestRosterSeason(
@@ -2212,34 +2641,6 @@ function extractTraditionalSidearmPlayerEvidence(
     return "";
   }
 
-  /*
-   * Traditional Sidearm roster cards can place the player
-   * profile link well before the physical-data portion of
-   * the same visible roster card.
-   *
-   * Butler example:
-   *
-   * Logan Crock So. Noblesville, Ind. Lawrence North
-   * Full Bio Sophomore ...
-   * Hide/Show Additional Information For Logan Crock
-   * UTL UTL 6'4" 195 lbs L/R
-   *
-   * We do NOT weaken the strict DOM validator.
-   *
-   * Instead, this is a separate Sidearm-specific fallback
-   * requiring:
-   *
-   * 1. this exact player's name
-   * 2. Sidearm's "Additional Information For <player>" marker
-   * 3. position
-   * 4. class
-   * 5. height
-   * 6. weight
-   *
-   * That keeps secondary / related player-profile links from
-   * being accepted merely because they exist on the page.
-   */
-
   const clone =
     $.root().clone();
 
@@ -2258,7 +2659,28 @@ function extractTraditionalSidearmPlayerEvidence(
         .text(),
     );
 
-  const additionalInfoPattern =
+  /*
+   * Traditional Sidearm relaxed evidence.
+   *
+   * This path is intentionally limited to roster-needs
+   * fields only:
+   *
+   * - position
+   * - class
+   *
+   * It must NEVER provide height or weight.
+   *
+   * Fairleigh Dickinson example:
+   *
+   * Chris Strout So. ...
+   * Hide/Show Additional Information For Chris Strout
+   * Outfield OF 35
+   *
+   * The exact Sidearm player marker gives us a safe anchor
+   * for the player's position without drifting into the next
+   * player's measurements.
+   */
+  const playerMarker =
     new RegExp(
       `(?:Hide\\/Show\\s+)?Additional Information For\\s+${escapeRegex(
         playerName,
@@ -2285,28 +2707,23 @@ function extractTraditionalSidearmPlayerEvidence(
     }
 
     /*
-     * Traditional Sidearm cards can be considerably longer
-     * than WMT cards because hometown, high school and
-     * previous-school data often come before measurements.
-     *
-     * 1200 chars remains small enough to stay within an
-     * individual roster-card-sized window.
+     * Find THIS player's Sidearm marker after this occurrence
+     * of the player's name.
      */
-    const evidenceText =
-      cleanText(
-        bodyText.slice(
-          nameIndex,
-          nameIndex + 1200,
-        ),
+    const textFromPlayer =
+      bodyText.slice(
+        nameIndex,
       );
 
-    /*
-     * Require Sidearm's player-specific roster-card marker.
-     */
+    const markerRelativeIndex =
+      textFromPlayer.search(
+        playerMarker,
+      );
+
     if (
-      !additionalInfoPattern.test(
-        evidenceText,
-      )
+      markerRelativeIndex < 0 ||
+      markerRelativeIndex >
+        1000
     ) {
       searchFrom =
         nameIndex +
@@ -2315,34 +2732,82 @@ function extractTraditionalSidearmPlayerEvidence(
       continue;
     }
 
-    const heightRaw =
-      extractHeight(
-        evidenceText,
-      );
+    const markerIndex =
+      nameIndex +
+      markerRelativeIndex;
 
-    const weightRaw =
-      extractWeight(
-        evidenceText,
-      );
-
-    const positionRaw =
-      extractPosition(
-        evidenceText,
+    /*
+     * Class information generally appears before the
+     * Additional Information marker.
+     *
+     * Keep this section bounded to THIS player.
+     */
+    const classEvidence =
+      cleanText(
+        bodyText.slice(
+          nameIndex,
+          markerIndex,
+        ),
       );
 
     const classYearRaw =
       extractClassYear(
-        evidenceText,
+        classEvidence,
         playerName,
       );
 
+    /*
+     * Read only a tight post-marker window.
+     *
+     * We need enough text for:
+     *
+     * Outfield OF 35
+     * Infielder INF 6'1"
+     * Right Handed Pitcher RHP ...
+     *
+     * but we do not want physical data from the next player.
+     */
+    const markerEvidence =
+      cleanText(
+        bodyText.slice(
+          markerIndex,
+          markerIndex + 220,
+        ),
+      );
+
+    const playerSpecificPositionPattern =
+      new RegExp(
+        `(?:Hide\\/Show\\s+)?Additional Information For\\s+${escapeRegex(
+          playerName,
+        )}\\s+(?:Outfield|Outfielder|Infield|Infielder|Catcher|Utility|First Base|Second Base|Third Base|Shortstop|Corner Infielder|Corner Infield|Right Handed Pitcher|Right Hand Pitcher|Left Handed Pitcher|Left Hand Pitcher)\\s+((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)`,
+        "i",
+      );
+
+    const playerSpecificPosition =
+      markerEvidence.match(
+        playerSpecificPositionPattern,
+      )?.[1] ?? "";
+
+    const positionRaw =
+      cleanText(
+        playerSpecificPosition,
+      ).toUpperCase();
+
+    /*
+     * Only return evidence when BOTH roster-needs fields are
+     * proven for this specific player.
+     *
+     * Return synthetic evidence containing only those fields.
+     * That prevents extractHeight()/extractWeight() elsewhere
+     * from ever seeing neighboring-player measurements.
+     */
     if (
-      heightRaw &&
-      weightRaw &&
       positionRaw &&
       classYearRaw
     ) {
-      return evidenceText;
+      return cleanText(
+        `${playerName} ${classYearRaw} Additional Information For ${playerName} ${positionRaw}`,
+      );
     }
 
     searchFrom =
@@ -2775,7 +3240,7 @@ function extractPosition(
      * Only accept recognized baseball position values.
      */
     if (
-      /^(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*$/i.test(
+      /^(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*$/i.test(
         position,
       )
     ) {
@@ -2783,6 +3248,153 @@ function extractPosition(
     }
   }
 
+  /*
+   * Long-form WMT / Sidearm position labels.
+   *
+   * Some WMT roster cards collapse adjacent fields without
+   * spaces:
+   *
+   * 210 lbsFirst BasePleasant Hill
+   * Ollie ObenourInfield6′0″
+   * Left Handed Pitcher/Outfield6′2″
+   *
+   * Because of that, ordinary word boundaries are unreliable.
+   *
+   * Instead, anchor long-form positions to the two physical
+   * roster fields that reliably surround them:
+   *
+   *   weight -> position
+   *   position -> height
+   */
+
+  const longFormPositionPart =
+    "(?:Right Handed Pitcher|Right Handedpitcher|Right Hand Pitcher|Left Handed Pitcher|Left Hand Pitcher|Left Handedpitcher|Corner Infielder|Corner Infield|First Base|Second Base|Third Base|Shortstop|Infielder|Infield|Outfielder|Outfield|Catcher|Utility)";
+
+  const longFormAfterWeight =
+    normalized.match(
+      new RegExp(
+        `\\d{2,3}\\s*lbs?\\.?\\s*(${longFormPositionPart}(?:/${longFormPositionPart})*)`,
+        "i",
+      ),
+    );
+
+  const longFormBeforeHeight =
+    normalized.match(
+      new RegExp(
+        `(${longFormPositionPart}(?:/${longFormPositionPart})*)\\s*(?=\\d\\s*(?:-|['′]))`,
+        "i",
+      ),
+    );
+
+  const longFormPosition =
+    longFormAfterWeight?.[1] ||
+    longFormBeforeHeight?.[1] ||
+    "";
+
+  if (
+    longFormPosition
+  ) {
+    const aliases:
+      Record<string, string> = {
+        "RIGHT HANDED PITCHER":
+          "RHP",
+
+        "RIGHT HANDEDPITCHER":
+          "RHP",
+
+        "RIGHT HAND PITCHER":
+          "RHP",
+
+        "LEFT HANDED PITCHER":
+          "LHP",
+
+        "LEFT HAND PITCHER":
+          "LHP",
+
+        "LEFT HANDEDPITCHER":
+          "LHP",
+
+        "CORNER INFIELDER":
+          "CIF",
+
+        "CORNER INFIELD":
+          "CIF",
+
+        "FIRST BASE":
+          "1B",
+
+        "SECOND BASE":
+          "2B",
+
+        "THIRD BASE":
+          "3B",
+
+        SHORTSTOP:
+          "SS",
+
+        INFIELDER:
+          "INF",
+
+        INFIELD:
+          "INF",
+
+        OUTFIELDER:
+          "OF",
+
+        OUTFIELD:
+          "OF",
+
+        CATCHER:
+          "C",
+
+        UTILITY:
+          "UTL",
+      };
+
+    return longFormPosition
+      .split("/")
+      .map(
+        (part) =>
+          aliases[
+            cleanText(
+              part,
+            ).toUpperCase()
+          ] ??
+          cleanText(
+            part,
+          ).toUpperCase(),
+      )
+      .join("/");
+  }
+
+    /*
+   * Relaxed traditional Sidearm marker position.
+   *
+   * Used for player-specific evidence where Sidearm publishes
+   * a position but no height/weight.
+   *
+   * Example:
+   *
+   * Additional Information For Chris Strout OF
+   *
+   * This intentionally requires the position abbreviation to
+   * appear immediately after the player-specific Sidearm
+   * marker. It therefore does not scan forward into another
+   * player's roster card.
+   */
+  const sidearmMarkerPosition =
+    normalized.match(
+      /Additional Information For\s+.+?\s+((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)(?=\s|$)/i,
+    );
+
+  if (
+    sidearmMarkerPosition?.[1]
+  ) {
+    return cleanText(
+      sidearmMarkerPosition[1],
+    ).toUpperCase();
+  }
+  
   /*
    * Traditional Sidearm single-position layout.
    *
@@ -2801,7 +3413,7 @@ function extractPosition(
    */
   const sidearmSingleBeforeHeight =
     normalized.match(
-      /Additional Information For\s+.+?\s+((?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)\s+(?=\d\s*(?:-|['′]))/i,
+      /Additional Information For\s+.+?\s+((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)\s+(?=\d\s*(?:-|['′]))/i,
     );
 
   if (
@@ -2827,7 +3439,7 @@ function extractPosition(
    */
   const duplicatedBeforeHeight =
     normalized.match(
-      /\b((?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)\s+\1\s+(?=\d\s*(?:-|['′]))/i,
+      /\b((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)\s+\1\s+(?=\d\s*(?:-|['′]))/i,
     );
 
   if (
@@ -2847,7 +3459,7 @@ function extractPosition(
    */
   const beforeHeight =
     normalized.match(
-      /(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*(?=\d\s*(?:-|['′]))/i,
+      /(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*(?=\d\s*(?:-|['′]))/i,
     );
 
   if (
@@ -2866,7 +3478,7 @@ function extractPosition(
    */
   const afterWeight =
     normalized.match(
-      /\d{2,3}\s*lbs?\.?\s*((?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)/i,
+      /\d{2,3}\s*lbs?\.?\s*((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)/i,
     );
 
   if (
@@ -2961,7 +3573,7 @@ function extractClassYear(
    */
 const labeledClass =
   normalized.match(
-    /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Fifth Year|5th Year|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|$)/i,
+    /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RF\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|$)/i,
   );
 
   if (
@@ -2990,13 +3602,13 @@ const labeledClass =
   if (
     playerName
   ) {
-    const leadingClassPattern =
-      new RegExp(
-        `^${escapeRegex(
-          playerName,
-        )}\\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior|RS-?Fr\\.?|R-?Fr\\.?|Fr\\.?|RS-?So\\.?|R-?So\\.?|So\\.?|RS-?Jr\\.?|R-?Jr\\.?|Jr\\.?|RS-?Sr\\.?|R-?Sr\\.?|Sr\\.?|Gr\\.?|Grad)(?=\\s|$)`,
-        "i",
-      );
+const leadingClassPattern =
+  new RegExp(
+    `^${escapeRegex(
+      playerName,
+    )}\\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|5th|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\\.?|RF\\.?|RS-?Fr\\.?|R-?Fr\\.?|Fr\\.?|RS-?So\\.?|R-?So\\.?|So\\.?|RS-?Jr\\.?|R-?Jr\\.?|Jr\\.?|RS-?Sr\\.?|R-?Sr\\.?|Sr\\.?|Gr\\.?|Grad)(?=\\s|$)`,
+    "i",
+  );
 
     const leadingClass =
       normalized.match(
@@ -3054,7 +3666,7 @@ const labeledClass =
 
       const trailingClassMatch =
         beforeRepeatedName.match(
-          /\*?(Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Graduate Student|Graduate|Fifth Year|5th Year|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)\s*$/i,
+          /\*?(Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Graduate Student|Graduate|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)\s*$/i,
         );
 
       if (
@@ -3073,7 +3685,7 @@ const labeledClass =
    */
   const beforeHeight =
     normalized.match(
-      /(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\d\s*(?:-|['′]))/i,
+      /(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\d\s*(?:-|['′]))/i,
     );
 
   if (
@@ -3090,7 +3702,7 @@ const labeledClass =
    */
   const afterWeight =
     normalized.match(
-      /\d{2,3}\s*lbs?\.?\s*(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)/i,
+      /\d{2,3}\s*lbs?\.?\s*(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)/i,
     );
 
   if (
@@ -4576,59 +5188,129 @@ if (
    * Traditional Sidearm fallback is player-marker scoped and
    * therefore safe for incomplete traditional Sidearm cards.
    */
-  const traditionalSidearmDomText =
-    domText
-      ? ""
-      : extractTraditionalSidearmPlayerDomText(
-          $,
-          link.url,
-          sourceUrl,
-          link.name,
-        );
-
-  const fallbackText =
-    domText ||
-    traditionalSidearmDomText;
-
-  if (
-    fallbackText
-  ) {
-    positionRaw =
-      positionRaw ||
-      extractPosition(
-        fallbackText,
-      );
-
-    classYearRaw =
-      classYearRaw ||
-      extractClassYear(
-        fallbackText,
+const traditionalSidearmDomText =
+  domText
+    ? ""
+    : extractTraditionalSidearmPlayerDomText(
+        $,
+        link.url,
+        sourceUrl,
         link.name,
       );
 
-    heightRaw =
-      heightRaw ||
-      extractHeight(
-        fallbackText,
+/*
+ * Final traditional Sidearm text fallback.
+ *
+ * Some valid roster cards publish enough information for
+ * roster-needs analysis but omit physical metrics.
+ *
+ * Fairleigh Dickinson example:
+ *
+ * Chris Strout ... Additional Information For Chris Strout
+ * Outfield OF 35
+ *
+ * The strict DOM paths correctly decline that card because
+ * height/weight are missing. This player-specific Sidearm
+ * evidence path can still safely recover position/class
+ * because it requires the exact player's
+ * "Additional Information For <player>" marker.
+ */
+const traditionalSidearmEvidence =
+  domText ||
+  traditionalSidearmDomText
+    ? ""
+    : extractTraditionalSidearmPlayerEvidence(
+        $,
+        link.name,
       );
 
-    weightRaw =
-      weightRaw ||
-      extractWeight(
-        fallbackText,
-      );
-  }
+/*
+ * Strict DOM evidence may safely populate every field.
+ *
+ * These paths are tied closely enough to the individual
+ * player's roster card that position/class/height/weight
+ * can all be trusted.
+ */
+const strictFallbackText =
+  domText ||
+  traditionalSidearmDomText;
+
+if (
+  strictFallbackText
+) {
+  positionRaw =
+    positionRaw ||
+    extractPosition(
+      strictFallbackText,
+    );
+
+  classYearRaw =
+    classYearRaw ||
+    extractClassYear(
+      strictFallbackText,
+      link.name,
+    );
+
+  heightRaw =
+    heightRaw ||
+    extractHeight(
+      strictFallbackText,
+    );
+
+  weightRaw =
+    weightRaw ||
+    extractWeight(
+      strictFallbackText,
+    );
 }
 
-    if (
-      VERBOSE &&
-      (
-        !positionRaw ||
-        !classYearRaw ||
-        !heightRaw ||
-        !weightRaw
-      )
-    ) {
+/*
+ * Relaxed traditional Sidearm evidence is PLAYER-SPECIFIC
+ * because it requires:
+ *
+ * "Additional Information For <player>"
+ *
+ * However, the flattened text window can extend far enough
+ * to encounter the next player's physical measurements.
+ *
+ * Therefore this path may recover ONLY roster-needs fields:
+ *
+ * - position
+ * - class
+ *
+ * Never use it to populate height or weight.
+ */
+if (
+  traditionalSidearmEvidence
+) {
+  positionRaw =
+    positionRaw ||
+    extractPosition(
+      traditionalSidearmEvidence,
+    );
+
+  classYearRaw =
+    classYearRaw ||
+    extractClassYear(
+      traditionalSidearmEvidence,
+      link.name,
+    );
+}
+
+/*
+ * End incomplete-field fallback.
+ */
+}
+
+if (
+  VERBOSE &&
+  (
+    !positionRaw ||
+    !classYearRaw ||
+    !heightRaw ||
+    !weightRaw
+  )
+) {
       console.log(
         `RAW BLOCK — ${link.name}: ${textBlock.slice(
           0,
@@ -4679,6 +5361,18 @@ if (
   return players;
 }
 
+function isRosterReadyPlayer(
+  player: RosterPlayer,
+) {
+  return Boolean(
+    player.positionRaw &&
+    player.classYearRaw &&
+    player.classBucket &&
+    player.classBucket !==
+      "UNKNOWN",
+  );
+}
+
 function isCompletePlayer(
   player: RosterPlayer,
 ) {
@@ -4698,6 +5392,11 @@ function isCompletePlayer(
 function summarizePlayers(
   players: RosterPlayer[],
 ) {
+  const rosterReadyPlayers =
+    players.filter(
+      isRosterReadyPlayer,
+    ).length;
+
   const completePlayers =
     players.filter(
       isCompletePlayer,
@@ -4714,6 +5413,14 @@ function summarizePlayers(
       ).length;
 
   return {
+    rosterReadyPlayers,
+
+    rosterReadyRate:
+      players.length
+        ? rosterReadyPlayers /
+          players.length
+        : 0,
+
     completePlayers,
 
     completionRate:
@@ -4849,7 +5556,7 @@ async function processTarget(
       status =
         "SEASON_AMBIGUOUS";
     } else if (
-      summary.completionRate >=
+      summary.rosterReadyRate >=
       SUCCESS_COMPLETION_RATE
     ) {
       status =
@@ -4879,6 +5586,12 @@ async function processTarget(
 
       playersParsed:
         players.length,
+
+      rosterReadyPlayers:
+        summary.rosterReadyPlayers,
+
+      rosterReadyRate:
+        summary.rosterReadyRate,
 
       completePlayers:
         summary.completePlayers,
@@ -4957,6 +5670,12 @@ function emptyResult(
       "",
 
     playersParsed:
+      0,
+
+    rosterReadyPlayers:
+      0,
+
+    rosterReadyRate:
       0,
 
     completePlayers:
@@ -5109,6 +5828,8 @@ function writeOutputs(
         "seasonConflict",
         "selectedRosterUrl",
         "playersParsed",
+        "rosterReadyPlayers",
+        "rosterReadyPct",
         "completePlayers",
         "completionPct",
         "freshmen",
@@ -5162,6 +5883,13 @@ function writeOutputs(
       result.seasonConflict,
       result.selectedRosterUrl,
       result.playersParsed,
+      result.rosterReadyPlayers,
+      (
+        result.rosterReadyRate *
+        100
+      ).toFixed(
+        1,
+      ),
       result.completePlayers,
       (
         result.completionRate *
@@ -5229,6 +5957,14 @@ function printProgramResult(
   index: number,
   total: number,
 ) {
+  const rosterReady =
+    (
+      result.rosterReadyRate *
+      100
+    ).toFixed(
+      1,
+    );
+
   const completion =
     (
       result.completionRate *
@@ -5254,7 +5990,11 @@ function printProgramResult(
   );
 
   console.log(
-    `  complete:    ${result.completePlayers}/${result.playersParsed} (${completion}%)`,
+    `  roster ready: ${result.rosterReadyPlayers}/${result.playersParsed} (${rosterReady}%)`,
+  );
+
+  console.log(
+    `  complete:     ${result.completePlayers}/${result.playersParsed} (${completion}%)`,
   );
 
   if (
@@ -5332,6 +6072,17 @@ function printFinalSummary(
       0,
     );
 
+  const rosterReady =
+    results.reduce(
+      (
+        sum,
+        result,
+      ) =>
+        sum +
+        result.rosterReadyPlayers,
+      0,
+    );
+
   const complete =
     results.reduce(
       (
@@ -5380,11 +6131,31 @@ function printFinalSummary(
   );
 
   console.log(
-    `Complete player records:       ${complete}`,
+    `Roster-ready player records:   ${rosterReady}`,
   );
 
   console.log(
-    `Overall player completeness:   ${
+    `Roster readiness:              ${
+      players
+        ? (
+            (
+              rosterReady /
+              players
+            ) *
+            100
+          ).toFixed(
+            1,
+          )
+        : "0.0"
+    }%`,
+  );
+
+  console.log(
+    `Complete metric records:       ${complete}`,
+  );
+
+  console.log(
+    `Metric completeness:           ${
       players
         ? (
             (
@@ -5416,7 +6187,7 @@ function printFinalSummary(
       of partial
     ) {
       console.log(
-        `  ${result.collegeName}: ${result.completePlayers}/${result.playersParsed} complete`,
+        `${result.collegeName}: ${result.rosterReadyPlayers}/${result.playersParsed} roster ready; ${result.completePlayers}/${result.playersParsed} metric complete`,
       );
     }
   }
@@ -5520,15 +6291,19 @@ async function runRegressionSuite() {
       result,
     );
 
-    const pass =
-      result.status ===
-        "SUCCESS" &&
-      result.season ===
-        test.expectedSeason &&
-      result.playersParsed >=
-        test.minimumPlayers &&
-      result.completePlayers ===
-        result.playersParsed;
+const requiredRosterReady =
+  test.minimumRosterReady ??
+  test.minimumPlayers;
+
+const pass =
+  result.status ===
+    "SUCCESS" &&
+  result.season ===
+    test.expectedSeason &&
+  result.playersParsed >=
+    test.minimumPlayers &&
+  result.rosterReadyPlayers >=
+    requiredRosterReady;
 
     if (pass) {
       passed += 1;
@@ -5556,6 +6331,14 @@ async function runRegressionSuite() {
 
     console.log(
       `  complete:        ${result.completePlayers}/${result.playersParsed}`,
+    );
+
+    console.log(
+      `  roster ready:    ${result.rosterReadyPlayers}/${result.playersParsed}`,
+    );
+
+    console.log(
+      `  minimum ready:   ${requiredRosterReady}`,
     );
 
     if (
