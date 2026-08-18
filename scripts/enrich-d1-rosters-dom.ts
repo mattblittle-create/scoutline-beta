@@ -3700,10 +3700,10 @@ const hasPlayerFieldEvidence =
     ),
   ) ||
   Boolean(
-    extractClassYear(
-      evidenceText,
-      candidate.name,
-    ),
+extractClassYear(
+  evidenceText,
+  candidate.names[0] ?? "",
+),
   ) ||
   Boolean(
     extractHeight(
