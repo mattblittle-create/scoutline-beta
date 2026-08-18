@@ -1693,8 +1693,13 @@ if (
 
             if (
               name &&
-              /\/roster\.aspx\?rp_id=\d+/i.test(
-                rawUrl,
+              (
+                /\/roster\.aspx\?rp_id=\d+/i.test(
+                  rawUrl,
+                ) ||
+                isRosterPlayerHref(
+                  rawUrl,
+                )
               )
             ) {
               const url =
@@ -1887,6 +1892,33 @@ if (
           titleFallTrailingYear[1],
         ) + 1,
       );
+  }
+}
+
+/*
+ * Modern roster-page title without the word "Roster".
+ *
+ * Penn State regression:
+ *
+ * 2027 Baseball - Penn State - Official Athletics Website
+ *
+ * This function is only called while inspecting baseball
+ * roster candidates, so a leading four-digit year followed
+ * by "Baseball" is valid season evidence here.
+ */
+if (
+  !titleSeason
+) {
+  const titleLeadingBaseballYear =
+    pageTitle.match(
+      /^\s*(20\d{2})\s+Baseball\b/i,
+    );
+
+  if (
+    titleLeadingBaseballYear?.[1]
+  ) {
+    titleSeason =
+      titleLeadingBaseballYear[1];
   }
 }
 
@@ -2192,6 +2224,48 @@ if (
   };
 }
 
+function isNonPlayingRosterPageTitle(
+  pageTitle: string,
+) {
+  const normalized =
+    cleanText(
+      pageTitle,
+    );
+
+  if (!normalized) {
+    return false;
+  }
+
+  /*
+   * Recruiting/signing pages can contain legitimate player
+   * profile links but are not the active college roster.
+   *
+   * Penn State regression:
+   *
+   * 2026 Baseball Signing Day Roster
+   *
+   * Keep this intentionally title-based and narrow so normal
+   * roster pages are unaffected.
+   */
+  return (
+    /\bSigning Day\b/i.test(
+      normalized,
+    ) ||
+    /\bSigning Class\b/i.test(
+      normalized,
+    ) ||
+    /\bSigning Roster\b/i.test(
+      normalized,
+    ) ||
+    /\bSignees?\b/i.test(
+      normalized,
+    ) ||
+    /\bRecruiting Class\b/i.test(
+      normalized,
+    )
+  );
+}
+
 async function inspectRosterPage(
   url: string,
   schoolName: string,
@@ -2206,11 +2280,16 @@ async function inspectRosterPage(
       fetched.html,
     );
 
-  const seasonDetection =
-    detectSeasonFromPage(
-      $,
-      schoolName,
-    );
+const pageTitle =
+  cleanText(
+    $("title").text(),
+  );
+
+const seasonDetection =
+  detectSeasonFromPage(
+    $,
+    schoolName,
+  );
 
 const playerLinkCount =
   countPlayerProfileLinks(
@@ -2303,11 +2382,9 @@ if (
     `    player options:  ${rosterOptionValues.length}`,
   );
 
-  console.log(
-    `    title:           ${cleanText(
-      $("title").text(),
-    )}`,
-  );
+console.log(
+  `    title:           ${pageTitle}`,
+);
 
   /*
  * Temporary page-structure diagnostics.
@@ -2538,6 +2615,8 @@ return {
   finalUrl:
     fetched.finalUrl,
 
+  pageTitle,
+
   season:
     seasonDetection.season,
 
@@ -2564,11 +2643,14 @@ async function discoverLatestRosterSeason(
   const viable:
     DiscoveredRosterSeason[] = [];
 
-  if (
-    base.playerLinkCount >=
-      MIN_POPULATED_ROSTER_SIZE &&
-    base.season
-  ) {
+if (
+  base.playerLinkCount >=
+    MIN_POPULATED_ROSTER_SIZE &&
+  base.season &&
+  !isNonPlayingRosterPageTitle(
+    base.pageTitle,
+  )
+) {
     viable.push({
       season:
         base.season,
@@ -2845,19 +2927,45 @@ for (
           schoolName,
         );
 
-      /*
-       * A page merely existing is not enough.
-       *
-       * Texas A&M 2027 and Jacksonville State's current
-       * base roster demonstrate why: a roster shell can
-       * exist while containing only coaches.
-       */
-      if (
-        inspected.playerLinkCount <
-        MIN_POPULATED_ROSTER_SIZE
-      ) {
-        continue;
-      }
+/*
+ * A page merely existing is not enough.
+ *
+ * Texas A&M 2027 and Jacksonville State's current
+ * base roster demonstrate why: a roster shell can
+ * exist while containing only coaches.
+ *
+ * A page can also contain enough legitimate player links
+ * while representing a signing/recruiting class rather
+ * than the active playing roster.
+ *
+ * Penn State regression:
+ *
+ * 2026 Baseball Signing Day Roster
+ */
+if (
+  inspected.playerLinkCount <
+    MIN_POPULATED_ROSTER_SIZE ||
+  isNonPlayingRosterPageTitle(
+    inspected.pageTitle,
+  )
+) {
+  if (
+    VERBOSE &&
+    isNonPlayingRosterPageTitle(
+      inspected.pageTitle,
+    )
+  ) {
+    console.log(
+      `  SKIP NON-ROSTER PAGE ${inspected.finalUrl}`,
+    );
+
+    console.log(
+      `    title: ${inspected.pageTitle}`,
+    );
+  }
+
+  continue;
+}
 
       const season =
         inspected.season ||
@@ -3849,6 +3957,58 @@ if (
   ).toUpperCase();
 }
 
+/*
+ * Modern Sidearm / Nuxt cards where Academic Year is
+ * omitted from the individual roster card.
+ *
+ * Troy examples:
+ *
+ * Position OF Height 6' 0''
+ * Position INF/RHP Height 6' 1''
+ * Position C/UTL Height 6' 0''
+ *
+ * Keep this ahead of the more permissive fallback parsers
+ * so a later isolated "C" cannot be mistaken for position.
+ */
+const labeledBeforeHeight =
+  normalized.match(
+    /Position\s+((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)\s+Height\b/i,
+  );
+
+if (
+  labeledBeforeHeight?.[1]
+) {
+  return cleanText(
+    labeledBeforeHeight[1],
+  ).toUpperCase();
+}
+
+/*
+ * Traditional Sidearm bio-page labeled position.
+ *
+ * Stetson example:
+ *
+ * Position Left Handed Pitcher
+ * Ht./Wt. 6-0 / 195
+ * Major Business Administration
+ * Class Sophomore
+ *
+ * The roster card may expose only the abbreviated position,
+ * while the bio page exposes the long-form value.
+ */
+const labeledLongFormPosition =
+  normalized.match(
+    /\bPosition\s+(Right[- ]Handed Pitcher|Right Hand Pitcher|Left[- ]Handed Pitcher|Left Hand Pitcher|Corner Infielder|Corner Infield|First Base|Second Base|Third Base|Shortstop|Infielder|Infield|Outfielder|Outfield|Catcher|Utility)(?=\s+(?:Ht\.?\s*\/\s*Wt\.?|Height|Class|Major|Hometown|Highschool)\b)/i,
+  );
+
+if (
+  labeledLongFormPosition?.[1]
+) {
+  return normalizeCompactWmtPosition(
+    labeledLongFormPosition[1],
+  );
+}
+
   /*
    * Modern labeled Sidearm layout.
    *
@@ -4149,6 +4309,30 @@ function extractHeight(
       text,
     );
 
+      /*
+   * Combined traditional Sidearm bio metric.
+   *
+   * Stetson regression example:
+   *
+   * Ht./Wt. 6-0 / 195
+   *
+   * This must run BEFORE the generic feet-inches parser.
+   * Player bio pages can contain unrelated dash-separated
+   * numeric values elsewhere in the page, which must not be
+   * mistaken for height.
+   */
+  const combinedHeightWeight =
+    normalized.match(
+      /\bHt\.?\s*\/\s*Wt\.?\s+(\d)\s*-\s*(\d{1,2})\s*\/\s*\d{2,3}\b/i,
+    );
+
+  if (
+    combinedHeightWeight?.[1] &&
+    combinedHeightWeight?.[2]
+  ) {
+    return `${combinedHeightWeight[1]}'${combinedHeightWeight[2]}"`;
+  }
+  
     const valueBeforeHeightLabel =
   normalized.match(
     /(\d)\s*(?:-|['′])\s*(\d{1,2})\s*(?:["″])?\s+Height\b/i,
@@ -4195,6 +4379,28 @@ function extractWeight(
     cleanText(
       text,
     );
+
+      /*
+   * Combined traditional Sidearm bio metric.
+   *
+   * Stetson example:
+   *
+   * Ht./Wt. 6-0 / 195
+   *
+   * Height is already handled by extractHeight()'s generic
+   * feet-inches parser. Recover the unlabeled trailing
+   * weight here.
+   */
+  const combinedHeightWeight =
+    normalized.match(
+      /\bHt\.?\s*\/\s*Wt\.?\s+(\d)\s*-\s*(\d{1,2})\s*\/\s*(\d{2,3})\b/i,
+    );
+
+  if (
+    combinedHeightWeight?.[3]
+  ) {
+    return `${combinedHeightWeight[3]} lbs`;
+  }
 
     const valueBeforeWeightLabel =
   normalized.match(
@@ -4258,7 +4464,7 @@ if (
    */
 const labeledClass =
   normalized.match(
-    /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RF\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|$)/i,
+    /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|5th|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RF\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|$)/i,
   );
 
   if (
@@ -6038,13 +6244,68 @@ if (
   return;
 }
 
-const positionText =
+const beforeMetricsText =
   cleanText(
-    details.slice(
-      0,
-      metricIndex,
-    ),
+    details
+      .slice(
+        0,
+        metricIndex,
+      )
+      .replace(
+        new RegExp(
+          `^\\s*-?\\s*(?:${escapedName}\\s*)+`,
+          "i",
+        ),
+        "",
+      ),
   );
+
+/*
+ * Compact WMT / Nuxt cards normally use:
+ *
+ * position + height + weight + class
+ *
+ * LSU example:
+ *
+ * Right-Handed Pitcher6-2184Redshirt Junior
+ *
+ * Penn State reverses the first portion:
+ *
+ * SENIORIFL/R6-2205...
+ * REDSHIRT FRESHMANRHPR/R6-2195...
+ *
+ * where the compact text before the measurements is:
+ *
+ * class + position + bats/throws
+ *
+ * Detect that Penn State-style prefix first and split the
+ * class from the baseball position. Bats/throws is ignored.
+ */
+const leadingClassCompactPrefix =
+  beforeMetricsText.match(
+    /^(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Fifth Year|5th Year|First Year|Freshman|Sophomore|Junior|Senior|R-?FR\.?|FR\.?|R-?SO\.?|SO\.?|R-?JR\.?|JR\.?|R-?SR\.?|SR\.?|GR\.?|GRAD\.?)\s*\.?\s*((?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*)(?:[LR]\/[LR])?$/i,
+  );
+
+let compactLeadingClass =
+  "";
+
+let positionText =
+  beforeMetricsText;
+
+if (
+  leadingClassCompactPrefix?.[1] &&
+  leadingClassCompactPrefix?.[2]
+) {
+  compactLeadingClass =
+    cleanText(
+      leadingClassCompactPrefix[1],
+    );
+
+  positionText =
+    cleanText(
+      leadingClassCompactPrefix[2],
+    );
+}
 
 /*
  * Defensive cleanup in case a WMT theme duplicates the
@@ -6101,7 +6362,14 @@ const classStart =
   metricIndex +
   metricMatch[0].length;
 
+/*
+ * Normal compact WMT cards place class after the metrics.
+ *
+ * Penn State places class BEFORE position/metrics, which was
+ * captured above as compactLeadingClass.
+ */
 const classYearRaw =
+  compactLeadingClass ||
   cleanText(
     details.slice(
       classStart,
@@ -7234,10 +7502,611 @@ players.push({
   return players;
 }
 
+function extractModernSidearmBioJsonLd(
+  $: cheerio.CheerioAPI,
+  playerName: string,
+) {
+  let result = "";
+
+  $('script[type="application/ld+json"]').each(
+    (
+      _,
+      node,
+    ) => {
+      if (result) {
+        return;
+      }
+
+      const raw =
+        $(node).html();
+
+      if (!raw) {
+        return;
+      }
+
+      try {
+        const parsed =
+          JSON.parse(
+            raw,
+          );
+
+        const candidates =
+          Array.isArray(parsed)
+            ? parsed
+            : [parsed];
+
+        for (
+          const candidate
+          of candidates
+        ) {
+          const entity =
+            candidate?.mainEntity;
+
+          if (
+            candidate?.["@type"] !==
+              "ProfilePage" ||
+            entity?.["@type"] !==
+              "Person"
+          ) {
+            continue;
+          }
+
+          const name =
+            cleanText(
+              entity.name,
+            );
+
+          if (
+            name.toLowerCase() !==
+            playerName
+              .toLowerCase()
+          ) {
+            continue;
+          }
+
+          const height =
+            cleanText(
+              entity.height,
+            );
+
+          const weight =
+            cleanText(
+              entity.weight,
+            );
+
+          const description =
+            cleanText(
+              entity.description,
+            );
+
+            /*
+ * Modern Sidearm stores position outside the ProfilePage
+ * Person object in its serialized page state.
+ *
+ * Georgia Southern example:
+ *
+ * Jayden White (47) RHP - REDSHIRT FRESHMAN (2026): ...
+ *
+ * It may also publish:
+ *
+ * Jayden White - RHP
+ */
+const allScriptText =
+  $("script")
+    .map(
+      (
+        _,
+        scriptNode,
+      ) =>
+        cleanText(
+          $(scriptNode).html(),
+        ),
+    )
+    .get()
+    .join(
+      " ",
+    );
+
+const escapedPlayerName =
+  escapeRegex(
+    playerName,
+  );
+
+const positionPattern =
+  "(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL)(?:\\/(?:RHP|LHP|P|C|IF|INF|MIF|CIF|OF|1B|2B|3B|SS|UT|UTL|UTIL))*";
+
+const positionFromDescription =
+  allScriptText.match(
+    new RegExp(
+      `${escapedPlayerName}\\s*\\([^)]*\\)\\s*(${positionPattern})\\s*-`,
+      "i",
+    ),
+  )?.[1] ?? "";
+
+const positionFromTitle =
+  allScriptText.match(
+    new RegExp(
+      `${escapedPlayerName}\\s*-\\s*(${positionPattern})\\b`,
+      "i",
+    ),
+  )?.[1] ?? "";
+
+  /*
+ * Modern Sidearm visible player-profile header.
+ *
+ * Georgia Southern example:
+ *
+ * Jack Myers Position: INF Ht./Wt.: 5-11 / 177
+ * Class: Sophomore
+ *
+ * Anchor to the exact player name + Position label so roster
+ * navigation or another player's profile cannot leak in.
+ */
+const pageText =
+  cleanText(
+    $("body").text(),
+  );
+
+const visibleProfileHeader =
+  pageText.match(
+    new RegExp(
+      `${escapedPlayerName}\\s*Position\\s*:?\\s*(${positionPattern})[\\s\\S]{0,250}?\\bClass\\s*:?\\s*(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior)\\b`,
+      "i",
+    ),
+  );
+
+const positionFromVisibleProfile =
+  visibleProfileHeader?.[1] ??
+  "";
+
+const position =
+  cleanText(
+    positionFromDescription ||
+      positionFromTitle ||
+      positionFromVisibleProfile,
+  ).toUpperCase();
+
+          /*
+           * Modern Sidearm ProfilePage JSON-LD.
+           *
+           * Georgia Southern regression example:
+           *
+           * name: Jayden White
+           * height: 5ft 11in
+           * weight: 193 lbs
+           * description:
+           * REDSHIRT FRESHMAN (2026): ...
+           *
+           * Convert these fields into text our existing
+           * roster parsers can safely consume.
+           */
+let classYear = "";
+
+const classPattern =
+  "(?:Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior)";
+
+/*
+ * Highest-confidence source:
+ *
+ * Modern Sidearm often publishes an explicit player-profile
+ * field in the serialized page state:
+ *
+ * Class: Redshirt Freshman
+ *
+ * Search all script text, but anchor it to this exact player
+ * name and a nearby Class label.
+ */
+const classFromPlayerScript =
+  allScriptText.match(
+    new RegExp(
+      `${escapedPlayerName}[\\s\\S]{0,800}?\\bClass\\s*:?\\s*(${classPattern})\\b`,
+      "i",
+    ),
+  )?.[1] ?? "";
+
+  /*
+ * Modern Sidearm may render Class only in the visible
+ * player-profile header rather than serialized script data.
+ *
+ * Georgia Southern example:
+ *
+ * Jack Myers
+ * Position: INF
+ * Ht./Wt.: 5-11 / 177
+ * Class: Sophomore
+ *
+ * Keep this player-specific and tightly bounded so class
+ * text from another roster player cannot leak in.
+ */
+const classFromVisibleProfile =
+  cleanText(
+    visibleProfileHeader?.[2] ??
+      "",
+  );
+
+/*
+ * Some Sidearm bio descriptions begin directly with the
+ * player's current class:
+ *
+ * REDSHIRT FRESHMAN (2026): ...
+ */
+/*
+ * Class published directly at the beginning of the bio.
+ *
+ * Example:
+ *
+ * REDSHIRT FRESHMAN (2026): ...
+ */
+const classFromDescription =
+  description.match(
+    new RegExp(
+      `^(${classPattern})\\b`,
+      "i",
+    ),
+  )?.[1] ?? "";
+
+/*
+ * Modern Sidearm bios may place honors, transfer-school text,
+ * or other material before the player's season-by-season
+ * class history.
+ *
+ * Georgia Southern example:
+ *
+ * Jack Myers:
+ * "... Academic Honor Roll ... SOPHOMORE (2026): ..."
+ *
+ * On the 2027 roster that means Junior.
+ *
+ * Find the most recent explicit CLASS (YEAR) marker and
+ * advance it to the current roster season.
+ */
+const historicalClassMatches =
+  [
+    ...description.matchAll(
+      new RegExp(
+        `\\b(${classPattern})\\s*\\((20\\d{2})\\)\\s*:`,
+        "gi",
+      ),
+    ),
+  ];
+
+let classFromHistory = "";
+
+if (
+  historicalClassMatches.length
+) {
+  const latest =
+    historicalClassMatches
+      .map(
+        (match) => ({
+          className:
+            cleanText(
+              match[1],
+            ),
+
+          season:
+            Number(
+              match[2],
+            ),
+        }),
+      )
+      .sort(
+        (
+          a,
+          b,
+        ) =>
+          b.season -
+          a.season,
+      )[0];
+
+  const rosterSeasonMatch =
+    cleanText(
+      $("title").text(),
+    ).match(
+      /\b(20\d{2})\b/,
+    );
+
+  const rosterSeason =
+    Number(
+      rosterSeasonMatch?.[1] ||
+      0,
+    );
+
+  if (
+    latest &&
+    rosterSeason >=
+      latest.season
+  ) {
+    const classOrder =
+      [
+        "Freshman",
+        "Sophomore",
+        "Junior",
+        "Senior",
+        "Fifth Year",
+      ];
+
+    const normalized =
+      latest.className
+        .replace(
+          /^Redshirt\s+/i,
+          "",
+        );
+
+    const startingIndex =
+      classOrder.findIndex(
+        (value) =>
+          value.toLowerCase() ===
+          normalized.toLowerCase(),
+      );
+
+    const yearsForward =
+      rosterSeason -
+      latest.season;
+
+    if (
+      startingIndex >= 0 &&
+      yearsForward >= 0
+    ) {
+      classFromHistory =
+        classOrder[
+          Math.min(
+            startingIndex +
+              yearsForward,
+            classOrder.length -
+              1,
+          )
+        ];
+    }
+  }
+}
+
+/*
+ * Another serialized form can place class before the player
+ * name, so allow a tightly bounded reverse lookup too.
+ *
+ * Keep the window small enough that another roster player's
+ * class cannot leak into this record.
+ */
+const classBeforePlayer =
+  allScriptText.match(
+    new RegExp(
+      `\\bClass\\s*:?\\s*(${classPattern})[\\s\\S]{0,500}?${escapedPlayerName}`,
+      "i",
+    ),
+  )?.[1] ?? "";
+
+const priorSeasonClassMatch =
+  description.match(
+    new RegExp(
+      `\\bas\\s+(?:a|an)\\s+(${classPattern})\\s+in\\s+(20\\d{2})\\b`,
+      "i",
+    ),
+  );
+
+let priorSeasonClass = "";
+
+if (
+  priorSeasonClassMatch?.[1] &&
+  priorSeasonClassMatch?.[2]
+) {
+  const describedClass =
+    cleanText(
+      priorSeasonClassMatch[1],
+    );
+
+  const describedSeason =
+    Number(
+      priorSeasonClassMatch[2],
+    );
+
+  /*
+   * Modern Sidearm's ProfilePage also publishes the current
+   * roster season in serialized page state.
+   *
+   * Example:
+   *
+   * Brian Kendall
+   * 2027 roster
+   * "As a sophomore in 2026..."
+   *
+   * => Junior for 2027.
+   */
+  const seasonMatch =
+    allScriptText.match(
+      new RegExp(
+        `${escapedPlayerName}[\\s\\S]{0,500}?"(20\\d{2})"`,
+        "i",
+      ),
+    );
+
+  const currentSeason =
+    Number(
+      seasonMatch?.[1] || 0,
+    );
+
+  if (
+    currentSeason ===
+    describedSeason + 1
+  ) {
+    const normalized =
+      describedClass
+        .toLowerCase();
+
+    const nextClass:
+      Record<string, string> =
+        {
+          freshman:
+            "Sophomore",
+          sophomore:
+            "Junior",
+          junior:
+            "Senior",
+          senior:
+            "Fifth Year",
+        };
+
+    priorSeasonClass =
+      nextClass[
+        normalized
+      ] || "";
+  }
+}
+
+classYear =
+  cleanText(
+    classFromVisibleProfile ||
+    classFromPlayerScript ||
+    classFromDescription ||
+    classFromHistory ||
+    classBeforePlayer ||
+    priorSeasonClass,
+  );
+
+          let normalizedHeight =
+            "";
+
+          const heightMatch =
+            height.match(
+              /(\d)\s*ft\s*(\d{1,2})\s*in/i,
+            );
+
+          if (
+            heightMatch
+          ) {
+            normalizedHeight =
+              `${heightMatch[1]}'${heightMatch[2]}"`;
+          }
+
+result =
+  cleanText(
+    [
+      playerName,
+
+      position
+        ? `Position ${position}`
+        : "",
+
+      classYear
+        ? `Class ${classYear}`
+        : "",
+
+      normalizedHeight
+        ? `Height ${normalizedHeight}`
+        : "",
+
+      weight
+        ? `Weight ${weight}`
+        : "",
+    ]
+                .filter(
+                  Boolean,
+                )
+                .join(
+                  " ",
+                ),
+            );
+
+          return;
+        }
+      } catch {
+        /*
+         * Ignore malformed JSON-LD.
+         */
+      }
+    },
+  );
+
+  return result;
+}
+
 function extractSidearmBioProfileText(
   $: cheerio.CheerioAPI,
   playerName: string,
 ) {
+  const modernJsonLdText =
+    extractModernSidearmBioJsonLd(
+      $,
+      playerName,
+    );
+
+    /*
+ * Modern Sidearm visible bio header fallback.
+ *
+ * Georgia Southern:
+ *
+ * Jack Myers Position: INF Ht./Wt.: 5-11 / 177
+ * Class: Sophomore Hometown: ...
+ *
+ * Restrict the match to this player and stop at common
+ * profile-section labels so another player's data cannot
+ * bleed into the result.
+ */
+const bodyText =
+  cleanText(
+    $("body").text(),
+  );
+
+const escapedPlayerName =
+  escapeRegex(
+    playerName,
+  );
+
+const visibleProfileMatch =
+  bodyText.match(
+    new RegExp(
+      `${escapedPlayerName}[\\s\\S]{0,500}?(?=Bio\\b|Stats\\b|Media\\b|Skip Ad|$)`,
+      "i",
+    ),
+  );
+
+const visibleProfileText =
+  cleanText(
+    visibleProfileMatch?.[0] ||
+      "",
+  );
+
+  /*
+   * Modern Sidearm ProfilePage JSON-LD is the cleanest
+   * available source when present.
+   *
+   * Georgia Southern regression example:
+   *
+   * Jayden White
+   * Position RHP
+   * Class Redshirt Freshman
+   * Height 5'11"
+   * Weight 193 lbs
+   */
+/*
+ * Only accept modern JSON-LD immediately when it already
+ * contains both roster-critical fields.
+ *
+ * Otherwise continue into the visible bio DOM so a missing
+ * Class or Position can be recovered there.
+ */
+if (
+  modernJsonLdText
+) {
+  const modernPosition =
+    extractPosition(
+      modernJsonLdText,
+    );
+
+  const modernClass =
+    extractClassYear(
+      modernJsonLdText,
+      playerName,
+    );
+
+  if (
+    modernPosition &&
+    modernClass
+  ) {
+    return modernJsonLdText;
+  }
+}
+
   /*
    * Modern Sidearm player bio pages expose a dedicated
    * player-profile area containing:
@@ -7327,21 +8196,77 @@ function extractSidearmBioProfileText(
           text,
         );
 
-      if (
-        hasPositionLabel &&
-        hasClassLabel &&
-        (
-          hasHeightLabel ||
-          hasWeightLabel
-        )
-      ) {
-        return text;
-      }
+      /*
+       * Traditional Sidearm bio pages may combine the two
+       * physical fields under a single label:
+       *
+       * Ht./Wt. 6-0 / 195
+       *
+       * Stetson 2027 is the regression case.
+       */
+      const hasCombinedHeightWeightLabel =
+        /\bHt\.?\s*\/\s*Wt\.?/i.test(
+          text,
+        );
+
+if (
+  hasPositionLabel &&
+  hasClassLabel &&
+  (
+    hasHeightLabel ||
+    hasWeightLabel ||
+    hasCombinedHeightWeightLabel
+  )
+) {
+  /*
+   * Prefer JSON-LD metrics, but supplement missing roster
+   * fields from the visible player header.
+   */
+  if (
+    modernJsonLdText
+  ) {
+    const visiblePosition =
+      extractPosition(
+        text,
+      );
+
+    const visibleClass =
+      extractClassYear(
+        text,
+        playerName,
+      );
+
+    return cleanText(
+      [
+        modernJsonLdText,
+
+        !extractPosition(
+          modernJsonLdText,
+        ) &&
+        visiblePosition
+          ? `Position ${visiblePosition}`
+          : "",
+
+        !extractClassYear(
+          modernJsonLdText,
+          playerName,
+        ) &&
+        visibleClass
+          ? `Class ${visibleClass}`
+          : "",
+      ]
+        .filter(Boolean)
+        .join(" "),
+    );
+  }
+
+  return text;
+}
     }
   }
 
-  return "";
-} 
+return modernJsonLdText || "";
+}
 
 async function extractJsonLdRosterPlayersFromBioPages(
   html: string,
@@ -7353,18 +8278,54 @@ async function extractJsonLdRosterPlayersFromBioPages(
       html,
     );
 
-  const links =
-    extractJsonLdRosterPlayerLinks(
-      $,
-      sourceUrl,
-    );
+/*
+ * Bio-page player-link discovery.
+ *
+ * Prefer JSON-LD when the roster publishes structured
+ * Person records.
+ *
+ * Some traditional Sidearm sites publish normal roster
+ * profile anchors but no JSON-LD Person records at all.
+ *
+ * Georgia Southern 2027 is the regression example:
+ *
+ * /sports/baseball/roster/jayden-white/7353
+ *
+ * The roster card omits Academic Year / Class, while the
+ * individual bio page contains:
+ *
+ * Class: Redshirt Freshman
+ *
+ * Reuse the normal validated DOM player-link extractor as
+ * the fallback rather than weakening JSON-LD parsing.
+ */
+const jsonLdLinks =
+  extractJsonLdRosterPlayerLinks(
+    $,
+    sourceUrl,
+  );
 
-  if (
-    links.length <
-    MIN_POPULATED_ROSTER_SIZE
-  ) {
-    return [];
-  }
+const domLinks =
+  jsonLdLinks.length >=
+  MIN_POPULATED_ROSTER_SIZE
+    ? []
+    : extractPlayerLinks(
+        $,
+        sourceUrl,
+      );
+
+const links =
+  jsonLdLinks.length >=
+  MIN_POPULATED_ROSTER_SIZE
+    ? jsonLdLinks
+    : domLinks;
+
+if (
+  links.length <
+  MIN_POPULATED_ROSTER_SIZE
+) {
+  return [];
+}
 
   const players:
     RosterPlayer[] = [];
@@ -7415,15 +8376,47 @@ const classYearRaw =
     link.name,
   );
 
-const heightRaw =
-  extractHeight(
-    profileText,
-  );
-
+/*
+ * JSON-LD bio metric safety.
+ *
+ * These fallback bio pages can contain unrelated
+ * dash-separated numeric values elsewhere in the profile.
+ *
+ * Stetson regression examples when no physical metrics are
+ * published:
+ *
+ * 8-8
+ * 4-4
+ * 0-36
+ * 5-4
+ * 6-90
+ *
+ * Require a valid published weight before trusting height
+ * from this fallback path. The normal roster parsers remain
+ * unchanged.
+ */
 const weightRaw =
   extractWeight(
     profileText,
   );
+
+const extractedHeightRaw =
+  extractHeight(
+    profileText,
+  );
+
+const extractedHeightInches =
+  parseHeightInches(
+    extractedHeightRaw,
+  );
+
+const heightRaw =
+  weightRaw &&
+  extractedHeightInches !== null &&
+  extractedHeightInches >= 54 &&
+  extractedHeightInches <= 90
+    ? extractedHeightRaw
+    : "";
 
       if (
         VERBOSE
@@ -7668,20 +8661,73 @@ let players =
   );
 
 /*
- * Client-rendered Sidearm fallback.
+ * Client-rendered / incomplete Sidearm fallback.
  *
- * Some Sidearm roster pages expose the roster only through
- * JSON-LD and render the actual player cards with Vue.
+ * Some Sidearm roster pages expose a trustworthy player list
+ * through JSON-LD while the visible roster cards either:
  *
- * Bradley is the regression example.
+ * - are client rendered,
+ * - omit class year,
+ * - merge neighboring player cards, or
+ * - expose fewer usable players than JSON-LD.
  *
- * Normal DOM parsing remains authoritative. Only activate
- * this path when the normal roster parser did not find a
- * populated roster.
+ * Bradley is the client-rendered regression case.
+ * Stetson is the incomplete-card regression case.
+ *
+ * Normal DOM parsing remains authoritative whenever it
+ * produces the stronger result.
  */
-if (
-  players.length <
+const initialSummary =
+  summarizePlayers(
+    players,
+  );
+
+const page$ =
+  cheerio.load(
+    fetched.html,
+  );
+
+/*
+ * Determine whether this roster has enough player profile
+ * links to support bio-page enrichment.
+ *
+ * Structured JSON-LD remains preferred, but traditional
+ * Sidearm rosters such as Georgia Southern can expose the
+ * same player profiles only through ordinary DOM anchors.
+ */
+const jsonLdRosterLinks =
+  extractJsonLdRosterPlayerLinks(
+    page$,
+    fetched.finalUrl,
+  );
+
+const domRosterLinks =
+  jsonLdRosterLinks.length >=
   MIN_POPULATED_ROSTER_SIZE
+    ? []
+    : extractPlayerLinks(
+        page$,
+        fetched.finalUrl,
+      );
+
+const bioRosterLinkCount =
+  Math.max(
+    jsonLdRosterLinks.length,
+    domRosterLinks.length,
+  );
+
+const shouldTryJsonLdBioFallback =
+  players.length <
+    MIN_POPULATED_ROSTER_SIZE ||
+  initialSummary.rosterReadyRate <
+    SUCCESS_COMPLETION_RATE ||
+  bioRosterLinkCount >
+    players.length;
+
+if (
+  shouldTryJsonLdBioFallback &&
+  bioRosterLinkCount >=
+    MIN_POPULATED_ROSTER_SIZE
 ) {
   const jsonLdPlayers =
     await extractJsonLdRosterPlayersFromBioPages(
@@ -7694,15 +8740,220 @@ if (
     jsonLdPlayers.length >=
     MIN_POPULATED_ROSTER_SIZE
   ) {
-    players =
-      jsonLdPlayers;
+    /*
+     * Merge bio-backed data into the normal roster result.
+     *
+     * Modern Sidearm can split useful player data across two
+     * different representations:
+     *
+     * roster page:
+     *   Jayden White | RHP | ? | 5'11" | 193 lbs
+     *
+     * bio page:
+     *   Jayden White | ? | Redshirt Freshman | 5'11" | 193 lbs
+     *
+     * Neither representation is independently complete, but
+     * together they contain the authoritative record.
+     *
+     * Georgia Southern is the regression case.
+     *
+     * The normal roster parser remains authoritative for every
+     * field it successfully extracted. Bio data only fills
+     * missing values.
+     */
+    const bioPlayersByName =
+      new Map<
+        string,
+        RosterPlayer
+      >();
+
+    for (
+      const bioPlayer
+      of jsonLdPlayers
+    ) {
+      bioPlayersByName.set(
+        cleanText(
+          bioPlayer.name,
+        ).toLowerCase(),
+        bioPlayer,
+      );
+    }
+
+    const mergedPlayers =
+      players.map(
+        (
+          player,
+        ) => {
+          const bioPlayer =
+            bioPlayersByName.get(
+              cleanText(
+                player.name,
+              ).toLowerCase(),
+            );
+
+          if (!bioPlayer) {
+            return player;
+          }
+
+          const positionRaw =
+            player.positionRaw ||
+            bioPlayer.positionRaw;
+
+          const classYearRaw =
+            player.classYearRaw ||
+            bioPlayer.classYearRaw;
+
+          const heightRaw =
+            player.heightRaw ||
+            bioPlayer.heightRaw;
+
+          const weightRaw =
+            player.weightRaw ||
+            bioPlayer.weightRaw;
+
+          return {
+            ...player,
+
+            positionRaw,
+
+            primaryPosition:
+              player.primaryPosition ||
+              bioPlayer.primaryPosition ||
+              normalizePrimaryPosition(
+                positionRaw,
+              ),
+
+            classYearRaw,
+
+            classBucket:
+              (
+                player.classBucket &&
+                player.classBucket !==
+                  "UNKNOWN"
+              )
+                ? player.classBucket
+                : (
+                    bioPlayer.classBucket &&
+                    bioPlayer.classBucket !==
+                      "UNKNOWN"
+                  )
+                  ? bioPlayer.classBucket
+                  : normalizeClassBucket(
+                      classYearRaw,
+                    ),
+
+            heightRaw,
+
+            heightInches:
+              player.heightInches ??
+              bioPlayer.heightInches ??
+              parseHeightInches(
+                heightRaw,
+              ),
+
+            weightRaw,
+
+            weightLb:
+              player.weightLb ??
+              bioPlayer.weightLb ??
+              parseWeightLb(
+                weightRaw,
+              ),
+
+            rosterProfileUrl:
+              player.rosterProfileUrl ||
+              bioPlayer.rosterProfileUrl,
+          };
+        },
+      );
+
+    /*
+     * Bio discovery can occasionally find a legitimate roster
+     * player that the normal card parser missed entirely.
+     *
+     * Add only bio records that do not already correspond to
+     * an existing player name.
+     */
+    const existingNames =
+      new Set(
+        mergedPlayers.map(
+          (
+            player,
+          ) =>
+            cleanText(
+              player.name,
+            ).toLowerCase(),
+        ),
+      );
+
+    for (
+      const bioPlayer
+      of jsonLdPlayers
+    ) {
+      const key =
+        cleanText(
+          bioPlayer.name,
+        ).toLowerCase();
+
+      if (
+        !existingNames.has(
+          key,
+        )
+      ) {
+        mergedPlayers.push(
+          bioPlayer,
+        );
+
+        existingNames.add(
+          key,
+        );
+      }
+    }
+
+    const mergedSummary =
+      summarizePlayers(
+        mergedPlayers,
+      );
+
+    const bioResultIsBetter =
+      mergedSummary.rosterReadyPlayers >
+        initialSummary.rosterReadyPlayers ||
+      (
+        mergedSummary.rosterReadyPlayers ===
+          initialSummary.rosterReadyPlayers &&
+        mergedSummary.completePlayers >
+          initialSummary.completePlayers
+      ) ||
+      (
+        mergedSummary.rosterReadyPlayers ===
+          initialSummary.rosterReadyPlayers &&
+        mergedSummary.completePlayers ===
+          initialSummary.completePlayers &&
+        mergedPlayers.length >
+          players.length
+      );
 
     if (
-      VERBOSE
+      bioResultIsBetter
     ) {
-      console.log(
-        `JSON-LD BIO FALLBACK — ${players.length} players`,
-      );
+      players =
+        mergedPlayers;
+
+      if (
+        VERBOSE
+      ) {
+        console.log(
+          `BIO MERGE FALLBACK — ${players.length} players`,
+        );
+
+        console.log(
+          `  improved roster ready: ${initialSummary.rosterReadyPlayers} -> ${mergedSummary.rosterReadyPlayers}`,
+        );
+
+        console.log(
+          `  improved complete:     ${initialSummary.completePlayers} -> ${mergedSummary.completePlayers}`,
+        );
+      }
     }
   }
 }
