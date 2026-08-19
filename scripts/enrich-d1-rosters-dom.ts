@@ -1150,21 +1150,36 @@ async function fetchHtml(
         )}`
       : "";
 
-const certificateFailure =
+const shouldTryCurlFallback =
   /unable to verify the first certificate/i.test(
+    `${message}${cause}`,
+  ) ||
+  /aborted due to timeout/i.test(
+    `${message}${cause}`,
+  ) ||
+  /operation was aborted/i.test(
+    `${message}${cause}`,
+  ) ||
+  /fetch failed/i.test(
+    `${message}${cause}`,
+  ) ||
+  /ETIMEDOUT/i.test(
+    `${message}${cause}`,
+  ) ||
+  /ECONNRESET/i.test(
     `${message}${cause}`,
   );
 
 if (
-  certificateFailure
+  shouldTryCurlFallback
 ) {
-  if (
-    VERBOSE
-  ) {
-    console.log(
-      `  ⚠️ Node TLS validation failed for ${url}. Trying curl.exe fallback...`,
-    );
-  }
+if (
+  VERBOSE
+) {
+  console.log(
+    `  ⚠️ Node fetch failed for ${url}. Trying curl.exe fallback...`,
+  );
+}
 
   try {
     return await fetchHtmlWithCurl(
@@ -4464,7 +4479,7 @@ if (
    */
 const labeledClass =
   normalized.match(
-    /\b(?:Academic Year|Class)\s+(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|5th|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RF\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|$)/i,
+    /\b(?:Academic Year|Class)\s*:?\s*(Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|5th|First Year|First-Year|Freshman|Sophomore|Junior|Senior|FY\.?|RF\.?|RS-?Fr\.?|R-?Fr\.?|Fr\.?|RS-?So\.?|R-?So\.?|So\.?|RS-?Jr\.?|R-?Jr\.?|Jr\.?|RS-?Sr\.?|R-?Sr\.?|Sr\.?|Gr\.?|Grad)(?=\s|Height\b|Hometown\b|$)/i,
   );
 
   if (
@@ -7343,7 +7358,7 @@ const traditionalSidearmEvidence =
         $,
         link.name,
       );
-
+   
 /*
  * Strict DOM evidence may safely populate every field.
  *
@@ -7505,6 +7520,7 @@ players.push({
 function extractModernSidearmBioJsonLd(
   $: cheerio.CheerioAPI,
   playerName: string,
+  season: string,
 ) {
   let result = "";
 
@@ -7718,11 +7734,75 @@ const classFromPlayerScript =
  * Keep this player-specific and tightly bounded so class
  * text from another roster player cannot leak in.
  */
-const classFromVisibleProfile =
-  cleanText(
-    visibleProfileHeader?.[2] ??
-      "",
-  );
+/*
+ * A Sidearm bio page may repeat the player's name several
+ * times before reaching the actual player-profile header.
+ *
+ * Georgia Southern is the regression case. The first name
+ * occurrence can come from roster/navigation content while
+ * the later occurrence contains:
+ *
+ * Jackson Roper
+ * Position: INF
+ * Ht./Wt.: 6-0 / 185
+ * Class: ...
+ *
+ * Walk every occurrence of this exact player name and accept
+ * the first tightly bounded window containing an explicit
+ * Class label.
+ */
+let classFromVisibleProfile =
+  "";
+
+let visibleSearchFrom =
+  0;
+
+while (
+  visibleSearchFrom <
+  pageText.length &&
+  !classFromVisibleProfile
+) {
+  const playerIndex =
+    pageText.indexOf(
+      playerName,
+      visibleSearchFrom,
+    );
+
+  if (
+    playerIndex < 0
+  ) {
+    break;
+  }
+
+  const playerWindow =
+    pageText.slice(
+      playerIndex,
+      playerIndex + 500,
+    );
+
+  const visibleClassMatch =
+    playerWindow.match(
+      new RegExp(
+        `\\bClass\\s*:?\\s*(${classPattern})\\b`,
+        "i",
+      ),
+    );
+
+  if (
+    visibleClassMatch?.[1]
+  ) {
+    classFromVisibleProfile =
+      cleanText(
+        visibleClassMatch[1],
+      );
+
+    break;
+  }
+
+  visibleSearchFrom =
+    playerIndex +
+    playerName.length;
+}
 
 /*
  * Some Sidearm bio descriptions begin directly with the
@@ -7799,17 +7879,22 @@ if (
           a.season,
       )[0];
 
-  const rosterSeasonMatch =
-    cleanText(
-      $("title").text(),
-    ).match(
-      /\b(20\d{2})\b/,
-    );
-
+  /*
+   * The caller already knows which roster season is being
+   * enriched. Do not try to rediscover that year from the
+   * individual bio-page title.
+   *
+   * Georgia Southern regression:
+   *
+   * roster season: 2027
+   * bio title: Jack Myers - Baseball - Georgia Southern...
+   * bio history: SOPHOMORE (2026)
+   *
+   * Therefore Jack is a Junior for the 2027 roster.
+   */
   const rosterSeason =
     Number(
-      rosterSeasonMatch?.[1] ||
-      0,
+      season,
     );
 
   if (
@@ -8023,11 +8108,13 @@ result =
 function extractSidearmBioProfileText(
   $: cheerio.CheerioAPI,
   playerName: string,
+  season: string,
 ) {
   const modernJsonLdText =
     extractModernSidearmBioJsonLd(
       $,
       playerName,
+      season,
     );
 
     /*
@@ -8268,6 +8355,200 @@ if (
 return modernJsonLdText || "";
 }
 
+function extractSidearmBioClass(
+  $: cheerio.CheerioAPI,
+  playerName: string,
+  season: string,
+) {
+  const bodyText =
+    cleanText(
+      $("body").text(),
+    );
+
+  if (
+    !bodyText ||
+    !playerName
+  ) {
+    return "";
+  }
+
+  const escapedName =
+    escapeRegex(
+      playerName,
+    );
+
+  const classPattern =
+    "(?:Graduate Student|Graduate|Redshirt Freshman|Redshirt Sophomore|Redshirt Junior|Redshirt Senior|Redshirt Fifth Year|Redshirt 5th Year|Fifth Year|5th Year|Freshman|Sophomore|Junior|Senior)";
+
+  /*
+   * Highest confidence:
+   *
+   * Jersey Number 4 Jack Myers Position: INF
+   * Ht./Wt.: 5-11 / 177 Class: Sophomore
+   */
+  const explicitClass =
+    bodyText.match(
+      new RegExp(
+        `${escapedName}[\\s\\S]{0,350}?\\bClass\\s*:?\\s*(${classPattern})\\b`,
+        "i",
+      ),
+    )?.[1] ?? "";
+
+  if (
+    explicitClass
+  ) {
+    return cleanText(
+      explicitClass,
+    );
+  }
+
+  /*
+   * Some profiles omit the current Class field but contain
+   * season-by-season bio headings:
+   *
+   * SOPHOMORE (2026):
+   *
+   * If we're enriching 2027, advance that one academic year.
+   */
+  const historyMatches =
+    [
+      ...bodyText.matchAll(
+        new RegExp(
+          `\\b(${classPattern})\\s*\\((20\\d{2})\\)\\s*:`,
+          "gi",
+        ),
+      ),
+    ];
+
+  if (
+    !historyMatches.length
+  ) {
+    return "";
+  }
+
+  const latest =
+    historyMatches
+      .map(
+        (match) => ({
+          className:
+            cleanText(
+              match[1],
+            ),
+
+          year:
+            Number(
+              match[2],
+            ),
+        }),
+      )
+      .filter(
+        (item) =>
+          Number.isFinite(
+            item.year,
+          ),
+      )
+      .sort(
+        (
+          a,
+          b,
+        ) =>
+          b.year -
+          a.year,
+      )[0];
+
+  if (!latest) {
+    return "";
+  }
+
+  const rosterYear =
+    Number(
+      season,
+    );
+
+  if (
+    !Number.isFinite(
+      rosterYear,
+    ) ||
+    rosterYear <
+      latest.year
+  ) {
+    return "";
+  }
+
+  const redshirt =
+    /^Redshirt\s+/i.test(
+      latest.className,
+    );
+
+  const baseClass =
+    latest.className
+      .replace(
+        /^Redshirt\s+/i,
+        "",
+      )
+      .toLowerCase();
+
+  const order =
+    [
+      "freshman",
+      "sophomore",
+      "junior",
+      "senior",
+      "fifth year",
+    ];
+
+  const startIndex =
+    order.indexOf(
+      baseClass,
+    );
+
+  if (
+    startIndex < 0
+  ) {
+    return "";
+  }
+
+  const yearsForward =
+    rosterYear -
+    latest.year;
+
+  const finalIndex =
+    Math.min(
+      startIndex +
+        yearsForward,
+      order.length - 1,
+    );
+
+  const labels =
+    [
+      "Freshman",
+      "Sophomore",
+      "Junior",
+      "Senior",
+      "Fifth Year",
+    ];
+
+  const result =
+    labels[
+      finalIndex
+    ];
+
+  /*
+   * Preserve redshirt designation only when the historical
+   * record itself explicitly used it and no year advancement
+   * was required. Once advancing seasons, the class bucket is
+   * what matters for roster-needs analysis.
+   */
+  if (
+    redshirt &&
+    yearsForward === 0
+  ) {
+    return `Redshirt ${result}`;
+  }
+
+  return result;
+}
+
 async function extractJsonLdRosterPlayersFromBioPages(
   html: string,
   sourceUrl: string,
@@ -8349,6 +8630,7 @@ const profileText =
   extractSidearmBioProfileText(
     bio$,
     link.name,
+    season,
   );
 
 if (
@@ -8370,11 +8652,29 @@ const positionRaw =
     profileText,
   );
 
-const classYearRaw =
+let classYearRaw =
   extractClassYear(
     profileText,
     link.name,
   );
+
+/*
+ * Final Sidearm bio-only class recovery.
+ *
+ * Do not alter roster discovery or player-card parsing here.
+ * We already have the correct player/profile URL; this only
+ * fills a missing class from that player's own bio page.
+ */
+if (
+  !classYearRaw
+) {
+  classYearRaw =
+    extractSidearmBioClass(
+      bio$,
+      link.name,
+      season,
+    );
+}
 
 /*
  * JSON-LD bio metric safety.
