@@ -3263,6 +3263,37 @@ if (
     );
   }
 
+  /*
+   * Canonical active-season exception.
+   *
+   * Radford currently exposes a partially populated 2027
+   * roster route, but its official active roster remains the
+   * complete 2026 roster.
+   *
+   * Do not weaken the generic newest-season preference for
+   * other schools that legitimately publish partial future
+   * rosters.
+   */
+  if (
+    schoolName ===
+    "Radford University"
+  ) {
+    const radford2026 =
+      viable.find(
+        (candidate) =>
+          candidate.season ===
+            "2026" &&
+          candidate.playerLinkCount >=
+            33,
+      );
+
+    if (
+      radford2026
+    ) {
+      return radford2026;
+    }
+  }
+
   viable.sort(
     (
       a,
@@ -3356,10 +3387,28 @@ function buildRosterBaseCandidates(
   /*
    * Known canonical roster-route exceptions.
    *
-   * Keep these ahead of DB/generic candidates so unusual
-   * athletics CMS sport slugs do not get rewritten into the
-   * standard /sports/baseball/roster path.
+   * Keep these ahead of DB/generic candidates when a school's
+   * stored athletics URL is stale or its current roster route
+   * cannot be derived safely from the stored website.
    */
+
+  /*
+   * Lindenwood moved from the legacy
+   * lindenwoodsl-sports.com athletics domain to
+   * lindenwoodlions.com.
+   *
+   * The legacy source was still serving a 2024 roster and
+   * caused the approved D1 baseline to select stale data.
+   */
+  if (
+    target.collegeName ===
+    "Lindenwood University"
+  ) {
+    add(
+      "https://lindenwoodlions.com/sports/baseball/roster",
+    );
+  }
+
   if (
     target.collegeName ===
     "Georgia Tech"
