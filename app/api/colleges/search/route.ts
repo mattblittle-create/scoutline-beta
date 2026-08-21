@@ -216,7 +216,10 @@ function normalizeSingleRosterPosition(
 function normalizeRosterPositionValue(
   value: unknown
 ): string[] {
-  const raw = compactRosterPosition(value);
+  const raw =
+    compactRosterPosition(
+      value
+    );
 
   if (!raw) return [];
 
@@ -224,28 +227,74 @@ function normalizeRosterPositionValue(
     raw.replace(/\s+/g, "");
 
   /*
-   * ScoutLine combination buckets.
+   * -------------------------------------------------------
+   * SCOUTLINE COMBINATION BUCKETS
+   * -------------------------------------------------------
+   *
+   * School feeds frequently publish both a descriptive label
+   * and the abbreviated position:
+   *
+   *   First Base / Third Base 1B/3B
+   *   Third Base / First Base 3B/1B
+   *   Shortstop / Second Base SS/2B
+   *   Second Base / Shortstop 2B/SS
+   *
+   * Detect the actual position tokens anywhere in the raw
+   * value instead of requiring the whole field to equal the
+   * abbreviation.
    */
+
+  const has1B =
+    /\b1B\b/.test(raw);
+
+  const has2B =
+    /\b2B\b/.test(raw);
+
+  const has3B =
+    /\b3B\b/.test(raw);
+
+  const hasSS =
+    /\bSS\b/.test(raw);
+
   if (
-    compact === "3B/1B" ||
-    compact === "1B/3B" ||
-    compact === "3B-1B" ||
-    compact === "1B-3B"
+    has1B &&
+    has3B
   ) {
     return ["CIF"];
   }
 
   if (
-    compact === "SS/2B" ||
-    compact === "2B/SS" ||
-    compact === "SS-2B" ||
-    compact === "2B-SS"
+    has2B &&
+    hasSS
   ) {
     return ["MIF"];
   }
 
   /*
-   * Split true multi-position values.
+   * Retain the compact-form checks as additional protection
+   * for unusually formatted school feeds.
+   */
+  if (
+    compact.includes("3B/1B") ||
+    compact.includes("1B/3B") ||
+    compact.includes("3B-1B") ||
+    compact.includes("1B-3B")
+  ) {
+    return ["CIF"];
+  }
+
+  if (
+    compact.includes("SS/2B") ||
+    compact.includes("2B/SS") ||
+    compact.includes("SS-2B") ||
+    compact.includes("2B-SS")
+  ) {
+    return ["MIF"];
+  }
+
+  /*
+   * Split true multi-position values only after checking
+   * ScoutLine's CIF/MIF combination buckets.
    */
   const pieces = raw
     .split(/[\/,&+]/)
