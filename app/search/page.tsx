@@ -252,6 +252,7 @@ programCompleteness?: {
 
     classBreakdown: {
       freshman: number;
+      redshirtFreshman: number;
       sophomore: number;
       junior: number;
       senior: number;
@@ -263,6 +264,7 @@ programCompleteness?: {
       position: string;
       total: number;
       freshman: number;
+      redshirtFreshman: number;
       sophomore: number;
       junior: number;
       senior: number;
@@ -1401,6 +1403,12 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
                 {item.freshman ? (
                   <span style={smallPillStyle}>
                     Fr {item.freshman}
+                  </span>
+                ) : null}
+
+                {item.redshirtFreshman ? (
+                  <span style={smallPillStyle}>
+                    R-Fr {item.redshirtFreshman}
                   </span>
                 ) : null}
 
