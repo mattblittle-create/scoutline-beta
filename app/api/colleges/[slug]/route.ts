@@ -20,6 +20,205 @@ function asString(value: unknown): string | null {
   return s ? s : null;
 }
 
+function normalizeRosterPosition(value: unknown): string {
+  const v = String(value ?? "")
+    .trim()
+    .toUpperCase();
+
+  if (!v) return "";
+
+  if (v === "P") return "P";
+  if (v === "RHP") return "RHP";
+  if (v === "LHP") return "LHP";
+  if (v === "C") return "C";
+  if (v === "1B") return "1B";
+  if (v === "2B") return "2B";
+  if (v === "3B") return "3B";
+  if (v === "SS") return "SS";
+  if (v === "OF") return "OF";
+
+  if (
+    v === "INF" ||
+    v === "IF" ||
+    v === "MIF" ||
+    v === "CIF"
+  ) {
+    return "INF";
+  }
+
+  if (
+    v === "UTIL" ||
+    v === "UTL" ||
+    v === "UT"
+  ) {
+    return "UTIL";
+  }
+
+  return v;
+}
+
+function splitRosterPositions(
+  positionRaw: string | null,
+  primaryPosition: string | null
+): string[] {
+  const raw =
+    String(positionRaw || primaryPosition || "")
+      .toUpperCase()
+      .trim();
+
+  if (!raw) return [];
+
+  return Array.from(
+    new Set(
+      raw
+        .split(/[\/,&+]/)
+        .map((value) => normalizeRosterPosition(value))
+        .filter(Boolean)
+    )
+  );
+}
+
+function buildRosterIntelligence(
+  snapshot: any,
+  players: any[]
+) {
+  if (!snapshot) return null;
+
+  const classBreakdown = {
+    freshman: 0,
+    sophomore: 0,
+    junior: 0,
+    senior: 0,
+    graduate: 0,
+    unknown: 0,
+  };
+
+  const positionMap = new Map<
+    string,
+    {
+      total: number;
+      freshman: number;
+      sophomore: number;
+      junior: number;
+      senior: number;
+      graduate: number;
+      unknown: number;
+    }
+  >();
+
+  for (const player of players) {
+    const classBucket =
+      String(player.classBucket || "")
+        .trim()
+        .toUpperCase();
+
+    let classKey:
+      | "freshman"
+      | "sophomore"
+      | "junior"
+      | "senior"
+      | "graduate"
+      | "unknown" = "unknown";
+
+    if (classBucket === "FRESHMAN") {
+      classKey = "freshman";
+    } else if (classBucket === "SOPHOMORE") {
+      classKey = "sophomore";
+    } else if (classBucket === "JUNIOR") {
+      classKey = "junior";
+    } else if (classBucket === "SENIOR") {
+      classKey = "senior";
+    } else if (classBucket === "GRADUATE") {
+      classKey = "graduate";
+    }
+
+    classBreakdown[classKey] += 1;
+
+    const positions =
+      splitRosterPositions(
+        player.positionRaw,
+        player.primaryPosition
+      );
+
+    for (const position of positions) {
+      const existing =
+        positionMap.get(position) || {
+          total: 0,
+          freshman: 0,
+          sophomore: 0,
+          junior: 0,
+          senior: 0,
+          graduate: 0,
+          unknown: 0,
+        };
+
+      existing.total += 1;
+      existing[classKey] += 1;
+
+      positionMap.set(
+        position,
+        existing
+      );
+    }
+  }
+
+  const positions = Array.from(
+    positionMap.entries()
+  )
+    .map(([position, counts]) => ({
+      position,
+      ...counts,
+      departing:
+        counts.senior +
+        counts.graduate,
+    }))
+    .sort(
+      (a, b) =>
+        b.total - a.total ||
+        a.position.localeCompare(b.position)
+    );
+
+  return {
+    season: snapshot.season,
+    rosterSize:
+      snapshot.rosterSize ??
+      players.length,
+
+    sourceUrl:
+      snapshot.sourceUrl || null,
+
+    verifiedAt:
+      snapshot.verifiedAt || null,
+
+    classBreakdown,
+
+    positions,
+
+    players: players.map((player) => ({
+      id: player.id,
+      name: player.name,
+      positionRaw:
+        player.positionRaw,
+      primaryPosition:
+        player.primaryPosition,
+      classYearRaw:
+        player.classYearRaw,
+      classBucket:
+        player.classBucket,
+      heightRaw:
+        player.heightRaw,
+      heightInches:
+        player.heightInches,
+      weightRaw:
+        player.weightRaw,
+      weightLb:
+        player.weightLb,
+      rosterProfileUrl:
+        player.rosterProfileUrl,
+    })),
+  };
+}
+
 function extractAcademicAreasFromProfileData(data: any): string[] {
   const normalized = data?.normalized || {};
   const academics = data?.academics || {};
@@ -289,6 +488,51 @@ export async function GET(
     const profile = await getCurrentPlayerProfile();
     const baseball = college.baseballProgram;
 
+    /*
+     * Imported official roster intelligence.
+     *
+     * Use the newest imported season for this program.
+     * Northwestern safely returns null because it has no
+     * approved imported roster snapshot.
+     */
+    let rosterIntelligence = null;
+
+    if (baseball) {
+      const latestRosterSnapshot =
+        await prisma.collegeBaseballRosterSnapshot.findFirst({
+          where: {
+            programId: baseball.id,
+          },
+          orderBy: {
+            season: "desc",
+          },
+        });
+
+      if (latestRosterSnapshot) {
+        const rosterPlayers =
+          await prisma.collegeBaseballRosterPlayer.findMany({
+            where: {
+              programId: baseball.id,
+              season: latestRosterSnapshot.season,
+            },
+            orderBy: [
+              {
+                primaryPosition: "asc",
+              },
+              {
+                name: "asc",
+              },
+            ],
+          });
+
+        rosterIntelligence =
+          buildRosterIntelligence(
+            latestRosterSnapshot,
+            rosterPlayers
+          );
+      }
+    }
+
     let truthFit = null;
 
     if (profile && baseball) {
@@ -341,9 +585,19 @@ truthFit = scoreCollegeFit({
       ok: true,
       college: {
         ...college,
-      truthFit,
-      similarSchools,
-      programCompleteness,
+
+        /*
+         * Official imported roster data.
+         *
+         * This is intentionally separate from the legacy
+         * baseballProgram.rosterNeeds records until derived
+         * need-level logic is finalized.
+         */
+        rosterIntelligence,
+
+        truthFit,
+        similarSchools,
+        programCompleteness,
       },
     });
   } catch (err) {

@@ -1,7 +1,5 @@
 // app/dashboard/admin/program-verifications/page.tsx
 
-// app/dashboard/admin/program-verifications/page.tsx
-
 "use client";
 
 import React, { useEffect, useState } from "react";

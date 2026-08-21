@@ -243,6 +243,35 @@ programCompleteness?: {
   schoolType?: string | null;
   tuitionInState?: number | null;
   tuitionOutOfState?: number | null;
+
+  rosterIntelligence?: {
+    season: string;
+    rosterSize: number;
+    sourceUrl?: string | null;
+    verifiedAt?: string | null;
+
+    classBreakdown: {
+      freshman: number;
+      sophomore: number;
+      junior: number;
+      senior: number;
+      graduate: number;
+      unknown: number;
+    };
+
+    positions: Array<{
+      position: string;
+      total: number;
+      freshman: number;
+      sophomore: number;
+      junior: number;
+      senior: number;
+      graduate: number;
+      unknown: number;
+      departing: number;
+    }>;
+  } | null;
+
 baseballProgram?: {
   division?: string | null;
   conference?: string | null;
@@ -1119,13 +1148,30 @@ const remainingResults = Math.max(0, sortedResults.length - visibleResults.lengt
 />
 ) : null}
 
-{baseball?.currentRosterSize ? (
-  <Info label="Roster Size" value={String(baseball.currentRosterSize)} />
+{college.rosterIntelligence?.rosterSize ? (
+  <Info
+    label="Roster Size"
+    value={String(college.rosterIntelligence.rosterSize)}
+    tip={`Official ${college.rosterIntelligence.season} roster imported by ScoutLine.`}
+  />
+) : baseball?.currentRosterSize ? (
+  <Info
+    label="Roster Size"
+    value={String(baseball.currentRosterSize)}
+  />
+) : null}
+
+{college.rosterIntelligence?.season ? (
+  <Info
+    label="Roster Year"
+    value={college.rosterIntelligence.season}
+    tip="Official roster season used for ScoutLine roster composition and roster-need intelligence."
+  />
 ) : null}
 
 {Array.isArray(baseball?.rosterNeeds) && baseball.rosterNeeds.length ? (
   <Info
-    label="Roster Need"
+    label="Verified Recruiting Need"
     value={
       baseball.rosterNeeds.some(
         (need: any) => String(need?.needLevel || "").toUpperCase() === "HIGH"
@@ -1148,6 +1194,26 @@ const remainingResults = Math.max(0, sortedResults.length - visibleResults.lengt
           .join(" • ")
       )
       .join("\n")}
+  />
+) : null}
+
+{college.rosterIntelligence?.positions?.length ? (
+  <Info
+    label="Roster Turnover"
+    value={`${
+      college.rosterIntelligence.classBreakdown.senior +
+      college.rosterIntelligence.classBreakdown.graduate
+    } departing`}
+    tip={[
+      `Roster Year: ${college.rosterIntelligence.season}`,
+      `Roster Size: ${college.rosterIntelligence.rosterSize}`,
+      "",
+      `Freshmen: ${college.rosterIntelligence.classBreakdown.freshman}`,
+      `Sophomores: ${college.rosterIntelligence.classBreakdown.sophomore}`,
+      `Juniors: ${college.rosterIntelligence.classBreakdown.junior}`,
+      `Seniors: ${college.rosterIntelligence.classBreakdown.senior}`,
+      `Graduate: ${college.rosterIntelligence.classBreakdown.graduate}`,
+    ].join("\n")}
   />
 ) : null}
 
@@ -1248,7 +1314,11 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
   ) : null}
 </div>
 
-{(baseball?.rosterNeeds?.length || college.academicAreas?.length) ? (
+{(
+  baseball?.rosterNeeds?.length ||
+  college.rosterIntelligence?.positions?.length ||
+  college.academicAreas?.length
+) ? (
   <div
     style={{
       marginTop: 12,
@@ -1288,6 +1358,94 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
                 </div>
               </div>
             ))}
+        </div>
+      </div>
+    ) : null}
+
+    {college.rosterIntelligence?.positions?.length ? (
+      <div style={miniPanelStyle}>
+        <div style={miniPanelTitleStyle}>
+          <TooltipLabel
+            label={`Roster Composition • ${college.rosterIntelligence.season}`}
+            tip="ScoutLine-derived roster composition from the program's official published roster."
+          />
+        </div>
+
+        <div
+          style={{
+            marginTop: 8,
+            display: "grid",
+            gap: 8,
+          }}
+        >
+          {college.rosterIntelligence.positions.map((item) => (
+            <div
+              key={item.position}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "52px 1fr",
+                gap: 8,
+                alignItems: "start",
+                fontSize: 13,
+              }}
+            >
+              <strong>{item.position}</strong>
+
+              <div
+                style={{
+                  display: "flex",
+                  gap: 6,
+                  flexWrap: "wrap",
+                }}
+              >
+                <span style={smallPillStyle}>
+                  Total {item.total}
+                </span>
+
+                {item.freshman ? (
+                  <span style={smallPillStyle}>
+                    Fr {item.freshman}
+                  </span>
+                ) : null}
+
+                {item.sophomore ? (
+                  <span style={smallPillStyle}>
+                    So {item.sophomore}
+                  </span>
+                ) : null}
+
+                {item.junior ? (
+                  <span style={smallPillStyle}>
+                    Jr {item.junior}
+                  </span>
+                ) : null}
+
+                {item.senior ? (
+                  <span style={smallPillStyle}>
+                    Sr {item.senior}
+                  </span>
+                ) : null}
+
+                {item.graduate ? (
+                  <span style={smallPillStyle}>
+                    Gr {item.graduate}
+                  </span>
+                ) : null}
+
+                {item.departing ? (
+                  <span
+                    style={{
+                      ...smallPillStyle,
+                      border: "1px solid #f59e0b",
+                      background: "#fffbeb",
+                    }}
+                  >
+                    Departing {item.departing}
+                  </span>
+                ) : null}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     ) : null}
