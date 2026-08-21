@@ -515,20 +515,20 @@ function buildRosterIntelligence(
       | "unknown" =
       "unknown";
 
-    if (
-      isRedshirtFreshmanClass(
-        player.classYearRaw,
-        player.classBucket
-      )
-    ) {
-      classKey =
-        "redshirtFreshman";
-    } else if (
-      classBucket ===
-      "FRESHMAN"
-    ) {
-      classKey =
-        "freshman";
+if (
+  isRedshirtFreshmanClass(
+    player.classYearRaw,
+    player.classBucket
+  )
+) {
+  classKey =
+    "redshirtFreshman";
+} else if (
+  classBucket ===
+  "FRESHMAN"
+) {
+  classKey =
+    "freshman";
     } else if (
       classBucket ===
       "SOPHOMORE"
@@ -988,14 +988,14 @@ export async function GET(req: NextRequest) {
                 season: snapshot.season,
               })),
             },
-            select: {
-              programId: true,
-              season: true,
-              positionRaw: true,
-              primaryPosition: true,
-              classYearRaw: true,
-              classBucket: true,
-            },
+select: {
+  programId: true,
+  season: true,
+  positionRaw: true,
+  primaryPosition: true,
+  classYearRaw: true,
+  classBucket: true,
+},
           })
         : [];
 
