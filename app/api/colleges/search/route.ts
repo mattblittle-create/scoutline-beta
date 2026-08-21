@@ -20,71 +20,412 @@ function asString(value: unknown): string | null {
   return s ? s : null;
 }
 
-function normalizeRosterPosition(value: unknown): string {
-  const v = String(value ?? "")
+const ROSTER_POSITION_ORDER = [
+  "INF",
+  "MIF",
+  "CIF",
+  "1B",
+  "2B",
+  "SS",
+  "3B",
+  "C",
+  "OF",
+  "LF",
+  "CF",
+  "RF",
+  "UTL",
+  "RHP",
+  "LHP",
+] as const;
+
+function compactRosterPosition(value: unknown): string {
+  return String(value ?? "")
     .trim()
-    .toUpperCase();
+    .toUpperCase()
+    .replace(/\./g, "")
+    .replace(/\s+/g, " ");
+}
 
-  if (!v) return "";
+function normalizeSingleRosterPosition(
+  value: unknown
+): string {
+  const raw = compactRosterPosition(value);
 
-  if (v === "P") return "P";
-  if (v === "RHP") return "RHP";
-  if (v === "LHP") return "LHP";
-  if (v === "C") return "C";
-  if (v === "1B") return "1B";
-  if (v === "2B") return "2B";
-  if (v === "3B") return "3B";
-  if (v === "SS") return "SS";
-  if (v === "OF") return "OF";
+  if (!raw) return "";
+
+  /*
+   * Pitchers.
+   */
+  if (
+    raw === "RHP" ||
+    raw === "RIGHT HANDED PITCHER" ||
+    raw === "RIGHT-HANDED PITCHER" ||
+    raw.includes("RIGHT-HANDED PITCHER")
+  ) {
+    return "RHP";
+  }
 
   if (
-    v === "INF" ||
-    v === "IF" ||
-    v === "MIF" ||
-    v === "CIF"
+    raw === "LHP" ||
+    raw === "LEFT HANDED PITCHER" ||
+    raw === "LEFT-HANDED PITCHER" ||
+    raw.includes("LEFT-HANDED PITCHER")
+  ) {
+    return "LHP";
+  }
+
+  /*
+   * Catcher.
+   */
+  if (
+    raw === "C" ||
+    raw === "CATCHER" ||
+    raw === "CATCHER C" ||
+    raw === "CATCHER/C"
+  ) {
+    return "C";
+  }
+
+  /*
+   * Exact infield positions.
+   */
+  if (
+    raw === "1B" ||
+    raw === "FIRST BASE" ||
+    raw === "FIRST BASEMAN"
+  ) {
+    return "1B";
+  }
+
+  if (
+    raw === "2B" ||
+    raw === "SECOND BASE" ||
+    raw === "SECOND BASEMAN"
+  ) {
+    return "2B";
+  }
+
+  if (
+    raw === "SS" ||
+    raw === "SHORTSTOP"
+  ) {
+    return "SS";
+  }
+
+  if (
+    raw === "3B" ||
+    raw === "THIRD BASE" ||
+    raw === "THIRD BASEMAN"
+  ) {
+    return "3B";
+  }
+
+  /*
+   * ScoutLine infield groups.
+   */
+  if (
+    raw === "MIF" ||
+    raw === "MIDDLE INFIELD" ||
+    raw === "MIDDLE INFIELDER"
+  ) {
+    return "MIF";
+  }
+
+  if (
+    raw === "CIF" ||
+    raw === "CORNER INFIELD" ||
+    raw === "CORNER INFIELDER"
+  ) {
+    return "CIF";
+  }
+
+  if (
+    raw === "INF" ||
+    raw === "IF" ||
+    raw === "INFIELD" ||
+    raw === "INFIELDER" ||
+    raw === "INFIELD INF" ||
+    raw === "INFIELDER INF"
   ) {
     return "INF";
   }
 
+  /*
+   * Exact outfield positions.
+   */
   if (
-    v === "UTIL" ||
-    v === "UTL" ||
-    v === "UT"
+    raw === "LF" ||
+    raw === "LEFT FIELD" ||
+    raw === "LEFT FIELDER"
   ) {
-    return "UTIL";
+    return "LF";
   }
 
-  return v;
+  if (
+    raw === "CF" ||
+    raw === "CENTER FIELD" ||
+    raw === "CENTER FIELDER"
+  ) {
+    return "CF";
+  }
+
+  if (
+    raw === "RF" ||
+    raw === "RIGHT FIELD" ||
+    raw === "RIGHT FIELDER"
+  ) {
+    return "RF";
+  }
+
+  if (
+    raw === "OF" ||
+    raw === "OUTFIELD" ||
+    raw === "OUTFIELDER" ||
+    raw === "OUTFIELD OF" ||
+    raw === "OUTFIELDER OF"
+  ) {
+    return "OF";
+  }
+
+  /*
+   * Utility.
+   */
+  if (
+    raw === "UTL" ||
+    raw === "UTIL" ||
+    raw === "UTILITY" ||
+    raw === "UTILITY PLAYER"
+  ) {
+    return "UTL";
+  }
+
+  /*
+   * Generic P/PITCHER does not tell us handedness.
+   */
+  if (
+    raw === "P" ||
+    raw === "PITCHER"
+  ) {
+    return "";
+  }
+
+  return "";
 }
 
-function splitRosterPositions(
-  positionRaw: string | null,
-  primaryPosition: string | null
+function normalizeRosterPositionValue(
+  value: unknown
 ): string[] {
-  const raw = String(positionRaw || primaryPosition || "")
-    .toUpperCase()
-    .trim();
+  const raw = compactRosterPosition(value);
 
   if (!raw) return [];
 
-  return Array.from(
-    new Set(
-      raw
-        .split(/[\/,&+]/)
-        .map((value) => normalizeRosterPosition(value))
-        .filter(Boolean)
+  const compact =
+    raw.replace(/\s+/g, "");
+
+  /*
+   * ScoutLine combination buckets.
+   */
+  if (
+    compact === "3B/1B" ||
+    compact === "1B/3B" ||
+    compact === "3B-1B" ||
+    compact === "1B-3B"
+  ) {
+    return ["CIF"];
+  }
+
+  if (
+    compact === "SS/2B" ||
+    compact === "2B/SS" ||
+    compact === "SS-2B" ||
+    compact === "2B-SS"
+  ) {
+    return ["MIF"];
+  }
+
+  /*
+   * Split true multi-position values.
+   */
+  const pieces = raw
+    .split(/[\/,&+]/)
+    .map((piece) =>
+      normalizeSingleRosterPosition(piece)
+    )
+    .filter(Boolean);
+
+  if (pieces.length) {
+    return Array.from(
+      new Set(pieces)
+    );
+  }
+
+  const single =
+    normalizeSingleRosterPosition(raw);
+
+  return single
+    ? [single]
+    : [];
+}
+
+function normalizePlayerPreferencePosition(
+  value: unknown
+): string {
+  const positions =
+    normalizeRosterPositionValue(value);
+
+  return positions[0] || "";
+}
+
+function isPitcherPreference(
+  value: unknown
+): boolean {
+  const raw =
+    compactRosterPosition(value);
+
+  return (
+    raw === "P" ||
+    raw === "RHP" ||
+    raw === "LHP" ||
+    raw.includes("PITCHER") ||
+    normalizeRosterPositionValue(raw).some(
+      (position) =>
+        position === "RHP" ||
+        position === "LHP"
+    )
+  );
+}
+
+function buildPlayerRosterPositionOrder(player: {
+  primaryPos?: string | null;
+  secondaryPos?: string | null;
+  throws?: string | null;
+} | null) {
+  const ordered: string[] = [];
+
+  function add(position: string) {
+    if (
+      position &&
+      !ordered.includes(position)
+    ) {
+      ordered.push(position);
+    }
+  }
+
+  if (player) {
+    /*
+     * 1. Player primary position.
+     */
+    add(
+      normalizePlayerPreferencePosition(
+        player.primaryPos
+      )
+    );
+
+    /*
+     * 2. Player secondary position.
+     */
+    add(
+      normalizePlayerPreferencePosition(
+        player.secondaryPos
+      )
+    );
+
+    /*
+     * 3. Pitcher handedness, but only if the player's
+     * primary/secondary position identifies him as a pitcher.
+     */
+    if (
+      isPitcherPreference(
+        player.primaryPos
+      ) ||
+      isPitcherPreference(
+        player.secondaryPos
+      )
+    ) {
+      const throws =
+        compactRosterPosition(
+          player.throws
+        );
+
+      if (
+        throws === "R" ||
+        throws === "RIGHT" ||
+        throws === "RHP"
+      ) {
+        add("RHP");
+      }
+
+      if (
+        throws === "L" ||
+        throws === "LEFT" ||
+        throws === "LHP"
+      ) {
+        add("LHP");
+      }
+    }
+  }
+
+  /*
+   * Standard ScoutLine roster-composition order.
+   */
+  for (
+    const position
+    of ROSTER_POSITION_ORDER
+  ) {
+    add(position);
+  }
+
+  return ordered;
+}
+
+function isRedshirtFreshmanClass(
+  classYearRaw: unknown,
+  classBucket: unknown
+): boolean {
+  if (
+    String(classBucket || "")
+      .trim()
+      .toUpperCase() !==
+    "FRESHMAN"
+  ) {
+    return false;
+  }
+
+  const raw =
+    String(classYearRaw || "")
+      .trim()
+      .toUpperCase()
+      .replace(/\./g, "")
+      .replace(/\s+/g, " ");
+
+  return (
+    raw === "R-FR" ||
+    raw === "RS-FR" ||
+    raw === "RFR" ||
+    raw === "RSFR" ||
+    raw === "R FR" ||
+    raw === "RS FR" ||
+    raw === "REDSHIRT FRESHMAN" ||
+    raw.includes(
+      "REDSHIRT FRESHMAN"
     )
   );
 }
 
 function buildRosterIntelligence(
   snapshot: any,
-  players: any[]
+  players: any[],
+  playerProfile: {
+    primaryPos?: string | null;
+    secondaryPos?: string | null;
+    throws?: string | null;
+  } | null
 ) {
   if (!snapshot) return null;
 
   const classBreakdown = {
     freshman: 0,
+    redshirtFreshman: 0,
     sophomore: 0,
     junior: 0,
     senior: 0,
@@ -92,56 +433,99 @@ function buildRosterIntelligence(
     unknown: 0,
   };
 
-  const positionMap = new Map<
-    string,
-    {
-      total: number;
-      freshman: number;
-      sophomore: number;
-      junior: number;
-      senior: number;
-      graduate: number;
-      unknown: number;
-    }
-  >();
+  type PositionCounts = {
+    total: number;
+    freshman: number;
+    redshirtFreshman: number;
+    sophomore: number;
+    junior: number;
+    senior: number;
+    graduate: number;
+    unknown: number;
+  };
+
+  const positionMap =
+    new Map<
+      string,
+      PositionCounts
+    >();
 
   for (const player of players) {
-    const classBucket = String(player.classBucket || "")
-      .trim()
-      .toUpperCase();
+    const classBucket =
+      String(
+        player.classBucket || ""
+      )
+        .trim()
+        .toUpperCase();
 
     let classKey:
       | "freshman"
+      | "redshirtFreshman"
       | "sophomore"
       | "junior"
       | "senior"
       | "graduate"
-      | "unknown" = "unknown";
+      | "unknown" =
+      "unknown";
 
-    if (classBucket === "FRESHMAN") {
-      classKey = "freshman";
-    } else if (classBucket === "SOPHOMORE") {
-      classKey = "sophomore";
-    } else if (classBucket === "JUNIOR") {
-      classKey = "junior";
-    } else if (classBucket === "SENIOR") {
-      classKey = "senior";
-    } else if (classBucket === "GRADUATE") {
-      classKey = "graduate";
+    if (
+      isRedshirtFreshmanClass(
+        player.classYearRaw,
+        player.classBucket
+      )
+    ) {
+      classKey =
+        "redshirtFreshman";
+    } else if (
+      classBucket ===
+      "FRESHMAN"
+    ) {
+      classKey =
+        "freshman";
+    } else if (
+      classBucket ===
+      "SOPHOMORE"
+    ) {
+      classKey =
+        "sophomore";
+    } else if (
+      classBucket ===
+      "JUNIOR"
+    ) {
+      classKey =
+        "junior";
+    } else if (
+      classBucket ===
+      "SENIOR"
+    ) {
+      classKey =
+        "senior";
+    } else if (
+      classBucket ===
+      "GRADUATE"
+    ) {
+      classKey =
+        "graduate";
     }
 
-    classBreakdown[classKey] += 1;
+    classBreakdown[classKey] +=
+      1;
 
-    const positions = splitRosterPositions(
-      player.positionRaw,
-      player.primaryPosition
-    );
+    const positions =
+      normalizeRosterPositionValue(
+        player.positionRaw ||
+        player.primaryPosition
+      );
 
-    for (const position of positions) {
+    for (
+      const position
+      of positions
+    ) {
       const existing =
         positionMap.get(position) || {
           total: 0,
           freshman: 0,
+          redshirtFreshman: 0,
           sophomore: 0,
           junior: 0,
           senior: 0,
@@ -152,36 +536,98 @@ function buildRosterIntelligence(
       existing.total += 1;
       existing[classKey] += 1;
 
-      positionMap.set(position, existing);
+      positionMap.set(
+        position,
+        existing
+      );
     }
   }
 
-  const positions = Array.from(positionMap.entries())
-    .map(([position, counts]) => ({
-      position,
-      ...counts,
-      departing:
-        counts.senior +
-        counts.graduate,
-    }))
-    .sort(
-      (a, b) =>
-        b.total - a.total ||
-        a.position.localeCompare(b.position)
+  const orderedPositions =
+    buildPlayerRosterPositionOrder(
+      playerProfile
     );
 
+  const positionRank =
+    new Map(
+      orderedPositions.map(
+        (
+          position,
+          index
+        ) => [
+          position,
+          index,
+        ]
+      )
+    );
+
+  const positions =
+    Array.from(
+      positionMap.entries()
+    )
+      .map(
+        (
+          [
+            position,
+            counts,
+          ]
+        ) => ({
+          position,
+          ...counts,
+
+          departing:
+            counts.senior +
+            counts.graduate,
+        })
+      )
+      .sort(
+        (
+          a,
+          b
+        ) => {
+          const aRank =
+            positionRank.get(
+              a.position
+            ) ??
+            Number.MAX_SAFE_INTEGER;
+
+          const bRank =
+            positionRank.get(
+              b.position
+            ) ??
+            Number.MAX_SAFE_INTEGER;
+
+          if (
+            aRank !==
+            bRank
+          ) {
+            return (
+              aRank -
+              bRank
+            );
+          }
+
+          return a.position.localeCompare(
+            b.position
+          );
+        }
+      );
+
   return {
-    season: snapshot.season,
+    season:
+      snapshot.season,
 
     rosterSize:
       snapshot.rosterSize ??
       players.length,
 
     sourceUrl:
-      snapshot.sourceUrl || null,
+      snapshot.sourceUrl ||
+      null,
 
     verifiedAt:
-      snapshot.verifiedAt || null,
+      snapshot.verifiedAt ||
+      null,
 
     classBreakdown,
 
@@ -270,6 +716,7 @@ async function getCurrentPlayerProfile() {
           gradYear: true,
           primaryPos: true,
           secondaryPos: true,
+          throws: true,
           heightIn: true,
           weightLb: true,
         },
@@ -324,6 +771,9 @@ async function getCurrentPlayerProfile() {
       secondaryPos:
         asString(user.Player?.secondaryPos) ??
         asString(normalized?.secondaryPos),
+      throws:
+        asString(user.Player?.throws) ??
+        asString(normalized?.throws),
       heightIn: totalHeightIn,
       weightLb:
         asNumber(user.Player?.weightLb) ??
@@ -487,6 +937,7 @@ export async function GET(req: NextRequest) {
               season: true,
               positionRaw: true,
               primaryPosition: true,
+              classYearRaw: true,
               classBucket: true,
             },
           })
@@ -546,7 +997,8 @@ export async function GET(req: NextRequest) {
             rosterIntelligence =
               buildRosterIntelligence(
                 latestSnapshot,
-                rosterPlayersByScope.get(scopeKey) || []
+                rosterPlayersByScope.get(scopeKey) || [],
+                profile?.player || null
               );
           }
         }
