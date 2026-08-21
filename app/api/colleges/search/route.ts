@@ -49,7 +49,10 @@ function compactRosterPosition(value: unknown): string {
 function normalizeSingleRosterPosition(
   value: unknown
 ): string {
-  const raw = compactRosterPosition(value);
+  const raw =
+    compactRosterPosition(
+      value
+    );
 
   if (!raw) return "";
 
@@ -57,19 +60,25 @@ function normalizeSingleRosterPosition(
    * Pitchers.
    */
   if (
-    raw === "RHP" ||
-    raw === "RIGHT HANDED PITCHER" ||
-    raw === "RIGHT-HANDED PITCHER" ||
-    raw.includes("RIGHT-HANDED PITCHER")
+    /\bRHP\b/.test(raw) ||
+    raw.includes(
+      "RIGHT-HANDED PITCHER"
+    ) ||
+    raw.includes(
+      "RIGHT HANDED PITCHER"
+    )
   ) {
     return "RHP";
   }
 
   if (
-    raw === "LHP" ||
-    raw === "LEFT HANDED PITCHER" ||
-    raw === "LEFT-HANDED PITCHER" ||
-    raw.includes("LEFT-HANDED PITCHER")
+    /\bLHP\b/.test(raw) ||
+    raw.includes(
+      "LEFT-HANDED PITCHER"
+    ) ||
+    raw.includes(
+      "LEFT HANDED PITCHER"
+    )
   ) {
     return "LHP";
   }
@@ -79,73 +88,72 @@ function normalizeSingleRosterPosition(
    */
   if (
     raw === "C" ||
-    raw === "CATCHER" ||
-    raw === "CATCHER C" ||
-    raw === "CATCHER/C"
+    /\bCATCHER\b/.test(raw)
   ) {
     return "C";
   }
 
   /*
    * Exact infield positions.
+   *
+   * Supports both:
+   *   3B
+   *   Third Base 3B
    */
   if (
-    raw === "1B" ||
-    raw === "FIRST BASE" ||
-    raw === "FIRST BASEMAN"
+    /\b1B\b/.test(raw) ||
+    raw.includes("FIRST BASE")
   ) {
     return "1B";
   }
 
   if (
-    raw === "2B" ||
-    raw === "SECOND BASE" ||
-    raw === "SECOND BASEMAN"
+    /\b2B\b/.test(raw) ||
+    raw.includes("SECOND BASE")
   ) {
     return "2B";
   }
 
   if (
-    raw === "SS" ||
-    raw === "SHORTSTOP"
+    /\bSS\b/.test(raw) ||
+    raw.includes("SHORTSTOP")
   ) {
     return "SS";
   }
 
   if (
-    raw === "3B" ||
-    raw === "THIRD BASE" ||
-    raw === "THIRD BASEMAN"
+    /\b3B\b/.test(raw) ||
+    raw.includes("THIRD BASE")
   ) {
     return "3B";
   }
 
   /*
-   * ScoutLine infield groups.
+   * ScoutLine grouped infield positions.
    */
   if (
-    raw === "MIF" ||
-    raw === "MIDDLE INFIELD" ||
-    raw === "MIDDLE INFIELDER"
+    /\bMIF\b/.test(raw) ||
+    raw.includes(
+      "MIDDLE INFIELD"
+    )
   ) {
     return "MIF";
   }
 
   if (
-    raw === "CIF" ||
-    raw === "CORNER INFIELD" ||
-    raw === "CORNER INFIELDER"
+    /\bCIF\b/.test(raw) ||
+    raw.includes(
+      "CORNER INFIELD"
+    )
   ) {
     return "CIF";
   }
 
   if (
-    raw === "INF" ||
+    /\bINF\b/.test(raw) ||
     raw === "IF" ||
-    raw === "INFIELD" ||
-    raw === "INFIELDER" ||
-    raw === "INFIELD INF" ||
-    raw === "INFIELDER INF"
+    raw.includes("INFIELDER") ||
+    raw.includes("INFIELD")
   ) {
     return "INF";
   }
@@ -154,35 +162,29 @@ function normalizeSingleRosterPosition(
    * Exact outfield positions.
    */
   if (
-    raw === "LF" ||
-    raw === "LEFT FIELD" ||
-    raw === "LEFT FIELDER"
+    /\bLF\b/.test(raw) ||
+    raw.includes("LEFT FIELD")
   ) {
     return "LF";
   }
 
   if (
-    raw === "CF" ||
-    raw === "CENTER FIELD" ||
-    raw === "CENTER FIELDER"
+    /\bCF\b/.test(raw) ||
+    raw.includes("CENTER FIELD")
   ) {
     return "CF";
   }
 
   if (
-    raw === "RF" ||
-    raw === "RIGHT FIELD" ||
-    raw === "RIGHT FIELDER"
+    /\bRF\b/.test(raw) ||
+    raw.includes("RIGHT FIELD")
   ) {
     return "RF";
   }
 
   if (
-    raw === "OF" ||
-    raw === "OUTFIELD" ||
-    raw === "OUTFIELDER" ||
-    raw === "OUTFIELD OF" ||
-    raw === "OUTFIELDER OF"
+    /\bOF\b/.test(raw) ||
+    raw.includes("OUTFIELD")
   ) {
     return "OF";
   }
@@ -191,16 +193,15 @@ function normalizeSingleRosterPosition(
    * Utility.
    */
   if (
-    raw === "UTL" ||
-    raw === "UTIL" ||
-    raw === "UTILITY" ||
-    raw === "UTILITY PLAYER"
+    /\bUTL\b/.test(raw) ||
+    /\bUTIL\b/.test(raw) ||
+    raw.includes("UTILITY")
   ) {
     return "UTL";
   }
 
   /*
-   * Generic P/PITCHER does not tell us handedness.
+   * Generic pitcher without handedness.
    */
   if (
     raw === "P" ||
@@ -298,7 +299,7 @@ function isPitcherPreference(
 function buildPlayerRosterPositionOrder(player: {
   primaryPos?: string | null;
   secondaryPos?: string | null;
-  throws?: string | null;
+  pitcherHand?: string | null;
 } | null) {
   const ordered: string[] = [];
 
@@ -331,37 +332,34 @@ function buildPlayerRosterPositionOrder(player: {
     );
 
     /*
-     * 3. Pitcher handedness, but only if the player's
-     * primary/secondary position identifies him as a pitcher.
+     * 3. Player pitching handedness.
+     *
+     * Pitcher handedness is stored separately from primary
+     * and secondary defensive position on the player profile.
+     *
+     * Example:
+     *   Primary:   3B
+     *   Secondary: 1B
+     *   Pitching:  RHP
+     *
+     * Expected roster-composition order:
+     *   3B -> 1B -> RHP -> remaining canonical positions.
      */
+    const pitcherHand =
+      compactRosterPosition(
+        player.pitcherHand
+      );
+
     if (
-      isPitcherPreference(
-        player.primaryPos
-      ) ||
-      isPitcherPreference(
-        player.secondaryPos
-      )
+      pitcherHand === "RHP"
     ) {
-      const throws =
-        compactRosterPosition(
-          player.throws
-        );
+      add("RHP");
+    }
 
-      if (
-        throws === "R" ||
-        throws === "RIGHT" ||
-        throws === "RHP"
-      ) {
-        add("RHP");
-      }
-
-      if (
-        throws === "L" ||
-        throws === "LEFT" ||
-        throws === "LHP"
-      ) {
-        add("LHP");
-      }
+    if (
+      pitcherHand === "LHP"
+    ) {
+      add("LHP");
     }
   }
 
@@ -418,7 +416,7 @@ function buildRosterIntelligence(
   playerProfile: {
     primaryPos?: string | null;
     secondaryPos?: string | null;
-    throws?: string | null;
+    pitcherHand?: string | null;
   } | null
 ) {
   if (!snapshot) return null;
@@ -771,9 +769,18 @@ async function getCurrentPlayerProfile() {
       secondaryPos:
         asString(user.Player?.secondaryPos) ??
         asString(normalized?.secondaryPos),
-      throws:
-        asString(user.Player?.throws) ??
-        asString(normalized?.throws),
+
+      /*
+       * Pitcher handedness is a separate recruiting/profile
+       * field from ordinary throwing hand.
+       *
+       * Examples:
+       * RHP
+       * LHP
+       */
+      pitcherHand:
+        asString(normalized?.pitcherHand),
+
       heightIn: totalHeightIn,
       weightLb:
         asNumber(user.Player?.weightLb) ??

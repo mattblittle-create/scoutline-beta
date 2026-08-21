@@ -1365,10 +1365,10 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
     {college.rosterIntelligence?.positions?.length ? (
       <div style={miniPanelStyle}>
         <div style={miniPanelTitleStyle}>
-          <TooltipLabel
-            label={`Roster Composition • ${college.rosterIntelligence.season}`}
-            tip="ScoutLine-derived roster composition from the program's official published roster."
-          />
+<TooltipLabel
+  label={`Roster Composition • ${college.rosterIntelligence.rosterSize} • ${college.rosterIntelligence.season}`}
+  tip="ScoutLine-derived roster composition from the program's official published roster."
+/>
         </div>
 
         <div
@@ -1398,10 +1398,6 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
                   flexWrap: "wrap",
                 }}
               >
-                <span style={smallPillStyle}>
-                  Total {item.total}
-                </span>
-
                 {item.freshman ? (
                   <span style={smallPillStyle}>
                     Fr {item.freshman}
