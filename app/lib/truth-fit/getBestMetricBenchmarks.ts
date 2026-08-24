@@ -26,43 +26,242 @@ export type BestMetricBenchmarkResult = {
   benchmarks: BestMetricBenchmark[];
 };
 
+type BenchmarkRow = {
+  position: string;
+  metricKey: string;
+  metricLabel?: string | null;
+  averageValue?: unknown;
+  minValue?: unknown;
+  maxValue?: unknown;
+  unit?: string | null;
+};
+
 function asNumber(value: unknown): number | null {
   if (value == null) return null;
+
   const n = Number(value);
-  return Number.isFinite(n) ? n : null;
+
+  return Number.isFinite(n)
+    ? n
+    : null;
 }
 
-function normalizeDivision(value?: string | null) {
-  return String(value || "").trim().toUpperCase();
+function normalizeDivision(
+  value?: string | null
+) {
+  return String(value || "")
+    .trim()
+    .toUpperCase();
 }
 
-function formatDivisionLabel(value?: string | null) {
+function formatDivisionLabel(
+  value?: string | null
+) {
   return String(value || "")
     .trim()
     .toUpperCase()
     .replace(/_/g, " ");
 }
 
-function normalizeConference(value?: string | null) {
-  return String(value || "").trim();
+function normalizeConference(
+  value?: string | null
+) {
+  return String(value || "")
+    .trim();
 }
 
-function confidenceForLevel(level: BenchmarkSourceLevel): "HIGH" | "MEDIUM" | "LOW" {
-  if (level === "SCHOOL") return "HIGH";
-  if (level === "CONFERENCE") return "MEDIUM";
+function normalizePosition(
+  value?: string | null
+) {
+  return String(value || "")
+    .trim()
+    .toUpperCase();
+}
+
+function normalizeMetricKey(
+  value?: string | null
+) {
+  return String(value || "")
+    .trim();
+}
+
+function confidenceForLevel(
+  level: BenchmarkSourceLevel
+): "HIGH" | "MEDIUM" | "LOW" {
+  if (level === "SCHOOL") {
+    return "HIGH";
+  }
+
+  if (level === "CONFERENCE") {
+    return "MEDIUM";
+  }
+
   return "LOW";
 }
 
-function mapBenchmarkRows(rows: any[]): BestMetricBenchmark[] {
-  return rows.map((row) => ({
-    position: row.position,
-    metricKey: row.metricKey,
-    metricLabel: row.metricLabel,
-    averageValue: asNumber(row.averageValue),
-    minValue: asNumber(row.minValue),
-    maxValue: asNumber(row.maxValue),
-    unit: row.unit,
-  }));
+function mapBenchmarkRow(
+  row: BenchmarkRow
+): BestMetricBenchmark {
+  return {
+    position:
+      normalizePosition(
+        row.position
+      ),
+
+    metricKey:
+      normalizeMetricKey(
+        row.metricKey
+      ),
+
+    metricLabel:
+      row.metricLabel ?? null,
+
+    averageValue:
+      asNumber(
+        row.averageValue
+      ),
+
+    minValue:
+      asNumber(
+        row.minValue
+      ),
+
+    maxValue:
+      asNumber(
+        row.maxValue
+      ),
+
+    unit:
+      row.unit ?? null,
+  };
+}
+
+function benchmarkIdentity(
+  row: {
+    position?: string | null;
+    metricKey?: string | null;
+  }
+) {
+  return [
+    normalizePosition(
+      row.position
+    ),
+
+    normalizeMetricKey(
+      row.metricKey
+    ),
+  ].join("::");
+}
+
+/*
+ * Merge benchmark scopes one metric at a time.
+ *
+ * Rows passed earlier have higher priority.
+ *
+ * Priority:
+ *
+ * SCHOOL
+ *   ↓
+ * CONFERENCE
+ *   ↓
+ * DIVISION
+ *   ↓
+ * GLOBAL
+ *
+ * Example:
+ *
+ * SCHOOL:
+ *   3B heightIn
+ *   3B weightLb
+ *
+ * DIVISION:
+ *   3B exitVelo
+ *   3B sixtyYdDash
+ *   3B infieldThrowVelo
+ *
+ * Result:
+ *   SCHOOL height / weight
+ *   DIVISION performance metrics
+ *
+ * A higher-priority scope therefore overrides only the
+ * specific position + metric combinations it actually has.
+ */
+function mergeBenchmarkRows(
+  ...groups: BenchmarkRow[][]
+): BestMetricBenchmark[] {
+  const merged =
+    new Map<
+      string,
+      BestMetricBenchmark
+    >();
+
+  for (
+    const group
+    of groups
+  ) {
+    for (
+      const rawRow
+      of group
+    ) {
+      const row =
+        mapBenchmarkRow(
+          rawRow
+        );
+
+      if (
+        !row.position ||
+        !row.metricKey
+      ) {
+        continue;
+      }
+
+      const key =
+        benchmarkIdentity(
+          row
+        );
+
+      /*
+       * First row wins because groups are supplied in
+       * descending priority order.
+       */
+      if (
+        merged.has(
+          key
+        )
+      ) {
+        continue;
+      }
+
+      merged.set(
+        key,
+        row
+      );
+    }
+  }
+
+  return Array.from(
+    merged.values()
+  ).sort(
+    (
+      a,
+      b
+    ) => {
+      const positionCompare =
+        a.position.localeCompare(
+          b.position
+        );
+
+      if (
+        positionCompare !== 0
+      ) {
+        return positionCompare;
+      }
+
+      return a.metricKey.localeCompare(
+        b.metricKey
+      );
+    }
+  );
 }
 
 export async function getBestMetricBenchmarks({
@@ -76,84 +275,184 @@ export async function getBestMetricBenchmarks({
   conference?: string | null;
   division?: string | null;
 }): Promise<BestMetricBenchmarkResult> {
-  if (programId) {
-    const schoolRows = await prisma.baseballMetricBenchmark.findMany({
-      where: {
-        scope: "SCHOOL",
-        sourceKey: programId,
-      },
-    });
+  const conferenceKey =
+    normalizeConference(
+      conference
+    );
 
-    if (schoolRows.length > 0) {
-      return {
-        level: "SCHOOL",
-        label: `${collegeName || "School"} program benchmark`,
-        confidence: confidenceForLevel("SCHOOL"),
-        benchmarks: mapBenchmarkRows(schoolRows),
-      };
-    }
-  }
+  const divisionKey =
+    normalizeDivision(
+      division
+    );
 
-  const conferenceKey = normalizeConference(conference);
+  /*
+   * Load every available scope instead of returning as soon
+   * as one scope contains rows.
+   *
+   * This allows fallback to happen per position + metric.
+   */
+  const [
+    schoolRows,
+    conferenceRows,
+    divisionRows,
+    globalRows,
+  ] =
+    await Promise.all([
+      programId
+        ? prisma.baseballMetricBenchmark.findMany({
+            where: {
+              scope:
+                "SCHOOL",
 
-  if (conferenceKey) {
-    const conferenceRows = await prisma.baseballMetricBenchmark.findMany({
-      where: {
-        scope: "CONFERENCE",
-        sourceKey: conferenceKey,
-      },
-    });
+              sourceKey:
+                programId,
+            },
+          })
+        : Promise.resolve([]),
 
-    if (conferenceRows.length > 0) {
-      return {
-        level: "CONFERENCE",
-        label: `${conferenceKey} conference benchmark`,
-        confidence: confidenceForLevel("CONFERENCE"),
-        benchmarks: mapBenchmarkRows(conferenceRows),
-      };
-    }
-  }
+      conferenceKey
+        ? prisma.baseballMetricBenchmark.findMany({
+            where: {
+              scope:
+                "CONFERENCE",
 
-  const divisionKey = normalizeDivision(division);
+              sourceKey:
+                conferenceKey,
+            },
+          })
+        : Promise.resolve([]),
 
-  if (divisionKey) {
-    const divisionRows = await prisma.baseballMetricBenchmark.findMany({
-      where: {
-        scope: "DIVISION",
-        sourceKey: divisionKey,
-      },
-    });
+      divisionKey
+        ? prisma.baseballMetricBenchmark.findMany({
+            where: {
+              scope:
+                "DIVISION",
 
-    if (divisionRows.length > 0) {
-      return {
-        level: "DIVISION",
-        label: `${formatDivisionLabel(divisionKey)} division benchmark`,
-        confidence: confidenceForLevel("DIVISION"),
-        benchmarks: mapBenchmarkRows(divisionRows),
-      };
-    }
-  }
+              sourceKey:
+                divisionKey,
+            },
+          })
+        : Promise.resolve([]),
 
-  const globalRows = await prisma.baseballMetricBenchmark.findMany({
-    where: {
-      scope: "GLOBAL",
-      sourceKey: "GLOBAL",
-    },
-  });
+      prisma.baseballMetricBenchmark.findMany({
+        where: {
+          scope:
+            "GLOBAL",
 
-  if (globalRows.length > 0) {
+          sourceKey:
+            "GLOBAL",
+        },
+      }),
+    ]);
+
+  const benchmarks =
+    mergeBenchmarkRows(
+      schoolRows,
+      conferenceRows,
+      divisionRows,
+      globalRows
+    );
+
+  if (
+    benchmarks.length === 0
+  ) {
     return {
-      level: "GLOBAL",
-      label: "Global position benchmark",
-      confidence: confidenceForLevel("GLOBAL"),
-      benchmarks: mapBenchmarkRows(globalRows),
+      level:
+        "ESTIMATED",
+
+      label:
+        "Estimated - benchmark data not available yet",
+
+      confidence:
+        confidenceForLevel(
+          "ESTIMATED"
+        ),
+
+      benchmarks:
+        [],
+    };
+  }
+
+  /*
+   * Keep the existing result contract intact.
+   *
+   * The overall source level represents the highest-priority
+   * benchmark scope contributing data to the result.
+   *
+   * Individual position + metric combinations may still use
+   * lower-level fallback data.
+   */
+  if (
+    schoolRows.length > 0
+  ) {
+    return {
+      level:
+        "SCHOOL",
+
+      label:
+        `${collegeName || "School"} program benchmark with conference / division fallback`,
+
+      confidence:
+        confidenceForLevel(
+          "SCHOOL"
+        ),
+
+      benchmarks,
+    };
+  }
+
+  if (
+    conferenceRows.length > 0
+  ) {
+    return {
+      level:
+        "CONFERENCE",
+
+      label:
+        `${conferenceKey} conference benchmark with division fallback`,
+
+      confidence:
+        confidenceForLevel(
+          "CONFERENCE"
+        ),
+
+      benchmarks,
+    };
+  }
+
+  if (
+    divisionRows.length > 0
+  ) {
+    return {
+      level:
+        "DIVISION",
+
+      label:
+        `${formatDivisionLabel(
+          divisionKey
+        )} division benchmark`,
+
+      confidence:
+        confidenceForLevel(
+          "DIVISION"
+        ),
+
+      benchmarks,
     };
   }
 
   return {
-    level: "ESTIMATED",
-    label: "Estimated - benchmark data not available yet",
-    confidence: confidenceForLevel("ESTIMATED"),
-    benchmarks: [],
+    level:
+      "GLOBAL",
+
+    label:
+      "Global position benchmark",
+
+    confidence:
+      confidenceForLevel(
+        "GLOBAL"
+      ),
+
+    benchmarks,
   };
 }
