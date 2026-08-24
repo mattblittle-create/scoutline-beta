@@ -1444,7 +1444,7 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
                 fontWeight: 700,
               }}
             >
-              Roster:{" "}
+              Roster Year:{" "}
               {college.rosterOpportunity.rosterSeason || "—"} •
               Recruiting Class:{" "}
               {college.rosterOpportunity.recruitingClass || "—"}
@@ -1488,6 +1488,9 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
                       : opportunity.level === "MODERATE"
                       ? "#fde68a"
                       : "#cbd5e1";
+
+                  const hasPositionSpecificData =
+                    opportunity.level !== "UNKNOWN";
 
                   return (
                     <div
@@ -1540,17 +1543,26 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
                           marginTop: 8,
                         }}
                       >
-                        <span style={smallPillStyle}>
-                          Current {opportunity.currentDepth}
-                        </span>
+<span style={smallPillStyle}>
+  Current{" "}
+  {hasPositionSpecificData
+    ? opportunity.currentDepth
+    : "—"}
+</span>
 
-                        <span style={smallPillStyle}>
-                          Remaining {opportunity.projectedRemaining}
-                        </span>
+<span style={smallPillStyle}>
+  Remaining{" "}
+  {hasPositionSpecificData
+    ? opportunity.projectedRemaining
+    : "—"}
+</span>
 
-                        <span style={smallPillStyle}>
-                          Departing {opportunity.projectedDepartures}
-                        </span>
+<span style={smallPillStyle}>
+  Departing{" "}
+  {hasPositionSpecificData
+    ? opportunity.projectedDepartures
+    : "—"}
+</span>
                       </div>
 
                       <div
@@ -1576,7 +1588,7 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
           <div style={miniPanelStyle}>
             <div style={miniPanelTitleStyle}>
               <TooltipLabel
-                label={`Roster Composition • ${college.rosterIntelligence.rosterSize} • ${college.rosterIntelligence.season}`}
+                label={`Roster Composition • ${college.rosterIntelligence.season} roster season • ${college.rosterIntelligence.rosterSize} rostered players `}
                 tip="ScoutLine-derived roster composition from the program's official published roster."
               />
             </div>
