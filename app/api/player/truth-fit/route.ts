@@ -641,18 +641,13 @@ const fitType =
     r.includes("HIGH roster need")
   );
 
-const academicFitScore =
-  typeof fit.academicFit?.score === "number"
-    ? fit.academicFit.score
-    : null;
-
 const hasStrongAcademicFit =
-  academicFitScore != null &&
-  academicFitScore >= 80;
+  fit.academicFit?.label ===
+  "Strong Academic Match";
 
 const hasPartialAcademicFit =
-  academicFitScore != null &&
-  academicFitScore >= 50;
+  fit.academicFit?.label ===
+    "Partial Academic Match";
 
 const metricComparisons =
   Array.isArray(
@@ -661,15 +656,21 @@ const metricComparisons =
     ? fit.metricComparisons
     : [];
 
-const strongMetricCount =
+const aboveMetricCount =
   metricComparisons.filter(
     (metric) =>
-      metric.status === "ABOVE" ||
-      metric.status === "IN_RANGE"
+      metric.status === "ABOVE"
+  ).length;
+
+const belowMetricCount =
+  metricComparisons.filter(
+    (metric) =>
+      metric.status === "BELOW"
   ).length;
 
 const hasMetricStrength =
-  strongMetricCount >= 2;
+  aboveMetricCount >= 2 &&
+  aboveMetricCount > belowMetricCount;
 
 const topGap =
   Array.isArray(fit.gaps)

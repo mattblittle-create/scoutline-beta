@@ -16,12 +16,14 @@ export type TruthFitBenchmarkSourceLevel =
   | "ESTIMATED";
 
 export type TruthFitInput = {
-  player: {
-    gpa?: number | null;
-    gradYear?: number | null;
-    primaryPos?: string | null;
-    secondaryPos?: string | null;
-    homeState?: string | null;
+player: {
+  gpa?: number | null;
+  gradYear?: number | null;
+  primaryPos?: string | null;
+  secondaryPos?: string | null;
+  isPitcher?: string | null;
+  pitcherHand?: string | null;
+  homeState?: string | null;
     homeZip?: string | null;
     heightIn?: number | null;
     weightLb?: number | null;
@@ -554,12 +556,46 @@ if (playerGpa == null && collegeGpa == null) {
 // Position / grad-year need fit: 30 points
 possible += 30;
 
-  const playerGradYear = input.player.gradYear ?? null;
-  const positions = expandedPositions(input.player.primaryPos, input.player.secondaryPos);
-  const displayPositions = [
-    normalizePos(input.player.primaryPos),
-    normalizePos(input.player.secondaryPos),
-  ].filter(Boolean);
+const playerGradYear = input.player.gradYear ?? null;
+
+const positions = expandedPositions(
+  input.player.primaryPos,
+  input.player.secondaryPos
+);
+
+const pitcherHand = normalizePos(
+  input.player.pitcherHand
+);
+
+const isPitcher = String(
+  input.player.isPitcher || ""
+)
+  .trim()
+  .toLowerCase();
+
+const hasPitcherProfile =
+  isPitcher === "yes" ||
+  isPitcher === "true" ||
+  pitcherHand === "RHP" ||
+  pitcherHand === "LHP";
+
+if (hasPitcherProfile) {
+  if (
+    pitcherHand &&
+    !positions.includes(pitcherHand)
+  ) {
+    positions.push(pitcherHand);
+  }
+
+  if (!positions.includes("P")) {
+    positions.push("P");
+  }
+}
+
+const displayPositions = [
+  normalizePos(input.player.primaryPos),
+  normalizePos(input.player.secondaryPos),
+].filter(Boolean);
 
   const needs = input.college.rosterNeeds || [];
 
@@ -789,16 +825,31 @@ const benchmark =
           }
         };
 
-        /*
-         * Exact player positions first.
-         */
-        addPosition(primaryPos);
-        addPosition(secondaryPos);
+/*
+ * Exact player positions first.
+ */
+addPosition(primaryPos);
+addPosition(secondaryPos);
 
-        /*
-         * Position-group fallbacks.
-         */
-        for (const pos of [primaryPos, secondaryPos]) {
+/*
+ * If the player also pitches, include the pitching hand
+ * as an exact recruiting position.
+ */
+if (hasPitcherProfile) {
+  addPosition(pitcherHand);
+  addPosition("P");
+}
+
+/*
+ * Position-group fallbacks.
+ */
+for (const pos of [
+  primaryPos,
+  secondaryPos,
+  ...(hasPitcherProfile
+    ? [pitcherHand, "P"]
+    : []),
+]) {
           if (pos === "1B" || pos === "3B") {
             addPosition("CIF");
             addPosition("INF");
@@ -1060,13 +1111,12 @@ development.push(
 if (
   avgFbVelo != null &&
   avgFbVelo < 82 &&
-  (
-    ["P", "RHP", "LHP"].includes(primaryPos) ||
-    ["P", "RHP", "LHP"].includes(secondaryPos)
-  )
+  hasPitcherProfile
 ) {
   development.push(
-    `Increasing average fastball velocity will improve your pitching fit against ${divisionLabel(input.college.division)} benchmarks.`
+    `Increasing average fastball velocity will improve your pitching fit against ${divisionLabel(
+      input.college.division
+    )} benchmarks.`
   );
 }
 
