@@ -17,6 +17,10 @@ export type BestMetricBenchmark = {
   minValue?: number | null;
   maxValue?: number | null;
   unit?: string | null;
+
+  sourceLevel?: BenchmarkSourceLevel;
+  sourceLabel?: string | null;
+  sourceConfidence?: "HIGH" | "MEDIUM" | "LOW";
 };
 
 export type BestMetricBenchmarkResult = {
@@ -34,6 +38,10 @@ type BenchmarkRow = {
   minValue?: unknown;
   maxValue?: unknown;
   unit?: string | null;
+
+  sourceLevel?: BenchmarkSourceLevel;
+  sourceLabel?: string | null;
+  sourceConfidence?: "HIGH" | "MEDIUM" | "LOW";
 };
 
 function asNumber(value: unknown): number | null {
@@ -131,8 +139,17 @@ function mapBenchmarkRow(
         row.maxValue
       ),
 
-    unit:
-      row.unit ?? null,
+unit:
+  row.unit ?? null,
+
+sourceLevel:
+  row.sourceLevel,
+
+sourceLabel:
+  row.sourceLabel ?? null,
+
+sourceConfidence:
+  row.sourceConfidence,
   };
 }
 
@@ -298,17 +315,23 @@ export async function getBestMetricBenchmarks({
     globalRows,
   ] =
     await Promise.all([
-      programId
-        ? prisma.baseballMetricBenchmark.findMany({
-            where: {
-              scope:
-                "SCHOOL",
+programId
+  ? prisma.collegeBaseballMetricAverage.findMany({
+      where: {
+        programId,
+      },
 
-              sourceKey:
-                programId,
-            },
-          })
-        : Promise.resolve([]),
+      select: {
+        position: true,
+        metricKey: true,
+        metricLabel: true,
+        averageValue: true,
+        minValue: true,
+        maxValue: true,
+        unit: true,
+      },
+    })
+  : Promise.resolve([]),
 
       conferenceKey
         ? prisma.baseballMetricBenchmark.findMany({
@@ -345,13 +368,71 @@ export async function getBestMetricBenchmarks({
       }),
     ]);
 
-  const benchmarks =
-    mergeBenchmarkRows(
-      schoolRows,
-      conferenceRows,
-      divisionRows,
-      globalRows
-    );
+const schoolBenchmarkRows: BenchmarkRow[] =
+  schoolRows.map((row) => ({
+    ...row,
+
+    sourceLevel:
+      "SCHOOL",
+
+    sourceLabel:
+      `${collegeName || "School"} program benchmark`,
+
+    sourceConfidence:
+      "HIGH",
+  }));
+
+const conferenceBenchmarkRows: BenchmarkRow[] =
+  conferenceRows.map((row) => ({
+    ...row,
+
+    sourceLevel:
+      "CONFERENCE",
+
+    sourceLabel:
+      `${conferenceKey} conference benchmark`,
+
+    sourceConfidence:
+      "MEDIUM",
+  }));
+
+const divisionBenchmarkRows: BenchmarkRow[] =
+  divisionRows.map((row) => ({
+    ...row,
+
+    sourceLevel:
+      "DIVISION",
+
+    sourceLabel:
+      `${formatDivisionLabel(
+        divisionKey
+      )} division benchmark`,
+
+    sourceConfidence:
+      "LOW",
+  }));
+
+const globalBenchmarkRows: BenchmarkRow[] =
+  globalRows.map((row) => ({
+    ...row,
+
+    sourceLevel:
+      "GLOBAL",
+
+    sourceLabel:
+      "Global position benchmark",
+
+    sourceConfidence:
+      "LOW",
+  }));
+
+const benchmarks =
+  mergeBenchmarkRows(
+    schoolBenchmarkRows,
+    conferenceBenchmarkRows,
+    divisionBenchmarkRows,
+    globalBenchmarkRows
+  );
 
   if (
     benchmarks.length === 0

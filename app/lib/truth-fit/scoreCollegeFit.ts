@@ -47,6 +47,9 @@ export type TruthFitInput = {
       minValue?: number | string | null;
       maxValue?: number | string | null;
       unit?: string | null;
+      sourceLevel?: TruthFitBenchmarkSourceLevel;
+      sourceLabel?: string | null;
+      sourceConfidence?: "HIGH" | "MEDIUM" | "LOW";
     }>;
     metricBenchmarkSource?: {
       level: TruthFitBenchmarkSourceLevel;
@@ -81,6 +84,9 @@ metricComparisons: Array<{
   delta: number;
   percentDelta: number;
   status: "ABOVE" | "IN_RANGE" | "BELOW";
+  sourceLevel?: TruthFitBenchmarkSourceLevel;
+  sourceLabel?: string | null;
+  sourceConfidence?: "HIGH" | "MEDIUM" | "LOW";
 }>;
   benchmarkSource: {
     metrics: {
@@ -630,22 +636,119 @@ if (academicMatches.length === playerAcademicAreas.length) {
 
     if (playerValue == null) continue;
 
-    const benchmark =
-      key === "gpa" && collegeGpa != null
-        ? {
-            position: "",
-            metricKey: "gpa",
-            averageValue: collegeGpa,
-            minValue: null,
-            maxValue: null,
-            unit: "",
-          }
-        : metricAverages.find((metric) => {
-            const metricKey = String(metric.metricKey || "").trim();
-            const metricPos = normalizePos(metric.position);
+const benchmark =
+  key === "gpa" && collegeGpa != null
+    ? {
+        position: "",
+        metricKey: "gpa",
+        averageValue: collegeGpa,
+        minValue: null,
+        maxValue: null,
+        unit: "",
+        sourceLevel: "SCHOOL" as TruthFitBenchmarkSourceLevel,
+        sourceLabel: "Program GPA benchmark",
+        sourceConfidence: "HIGH" as const,
+      }
+    : (() => {
+        const candidates = metricAverages.filter((metric) => {
+          const metricKey = String(metric.metricKey || "").trim();
+          return metricKey === key;
+        });
 
-            return metricKey === key && (!metricPos || positions.includes(metricPos));
-          });
+        if (!candidates.length) {
+          return undefined;
+        }
+
+        const primaryPos = normalizePos(input.player.primaryPos);
+        const secondaryPos = normalizePos(input.player.secondaryPos);
+
+        const positionPriority: string[] = [];
+
+        const addPosition = (pos: string) => {
+          if (pos && !positionPriority.includes(pos)) {
+            positionPriority.push(pos);
+          }
+        };
+
+        /*
+         * Exact player positions first.
+         */
+        addPosition(primaryPos);
+        addPosition(secondaryPos);
+
+        /*
+         * Position-group fallbacks.
+         */
+        for (const pos of [primaryPos, secondaryPos]) {
+          if (pos === "1B" || pos === "3B") {
+            addPosition("CIF");
+            addPosition("INF");
+          }
+
+          if (pos === "2B" || pos === "SS") {
+            addPosition("MIF");
+            addPosition("INF");
+          }
+
+          if (pos === "LF" || pos === "CF" || pos === "RF") {
+            addPosition("OF");
+          }
+
+          if (pos === "RHP" || pos === "LHP" || pos === "P") {
+            addPosition(pos);
+            addPosition("P");
+          }
+        }
+
+        /*
+         * Generic utility fallback last.
+         */
+        addPosition("UTILITY");
+        addPosition("UTL");
+
+        const sourceRank = (
+          level?: TruthFitBenchmarkSourceLevel
+        ) => {
+          if (level === "SCHOOL") return 5;
+          if (level === "CONFERENCE") return 4;
+          if (level === "DIVISION") return 3;
+          if (level === "GLOBAL") return 2;
+          return 1;
+        };
+
+        return [...candidates].sort((a, b) => {
+          const aPos = normalizePos(a.position);
+          const bPos = normalizePos(b.position);
+
+          const aPosRank = positionPriority.includes(aPos)
+            ? positionPriority.indexOf(aPos)
+            : Number.MAX_SAFE_INTEGER;
+
+          const bPosRank = positionPriority.includes(bPos)
+            ? positionPriority.indexOf(bPos)
+            : Number.MAX_SAFE_INTEGER;
+
+          /*
+           * Prefer the most specific relevant position first.
+           */
+          if (aPosRank !== bPosRank) {
+            return aPosRank - bPosRank;
+          }
+
+          /*
+           * For the same positional fit, prefer better source data.
+           */
+          const aSourceRank = sourceRank(
+            (a as any).sourceLevel
+          );
+
+          const bSourceRank = sourceRank(
+            (b as any).sourceLevel
+          );
+
+          return bSourceRank - aSourceRank;
+        })[0];
+      })();
 
     if (!benchmark) continue;
 
@@ -717,6 +820,18 @@ metricComparisons.push({
       : metricScore === 0.7
       ? "IN_RANGE"
       : "BELOW",
+      
+  sourceLevel:
+  (benchmark as any).sourceLevel ||
+  metricsBenchmarkSource.level,
+
+sourceLabel:
+  (benchmark as any).sourceLabel ||
+  metricsBenchmarkSource.label,
+
+sourceConfidence:
+  (benchmark as any).sourceConfidence ||
+  metricsBenchmarkSource.confidence,
 });
 
     if (metricScore === 1 && reasons.length < 5) {
