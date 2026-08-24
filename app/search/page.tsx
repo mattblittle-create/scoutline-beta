@@ -274,6 +274,22 @@ programCompleteness?: {
     }>;
   } | null;
 
+  rosterOpportunity?: {
+    rosterSeason: string | null;
+    recruitingClass: number | null;
+    yearsForward: number | null;
+
+    opportunities: Array<{
+      position: string;
+      level: "STRONG" | "MODERATE" | "LIMITED" | "UNKNOWN";
+      currentDepth: number;
+      projectedDepartures: number;
+      projectedRemaining: number;
+      projectedUpperclass: number;
+      explanation: string;
+    }>;
+  } | null;
+
 baseballProgram?: {
   division?: string | null;
   conference?: string | null;
@@ -1318,6 +1334,7 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
 
 {(
   baseball?.rosterNeeds?.length ||
+  college.rosterOpportunity?.opportunities?.length ||
   college.rosterIntelligence?.positions?.length ||
   college.academicAreas?.length
 ) ? (
@@ -1329,14 +1346,163 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
       gap: 10,
     }}
   >
+    {college.rosterOpportunity?.opportunities?.length ? (
+      <div style={miniPanelStyle}>
+        <div style={miniPanelTitleStyle}>
+          <TooltipLabel
+            label={`Roster Needs • Class of ${
+              college.rosterOpportunity.recruitingClass || "—"
+            }`}
+            tip="ScoutLine projection based on the program's official roster and the player's recruiting class. This is projected opportunity, not a confirmed coaching-staff recruiting need."
+          />
+        </div>
+
+        <div
+          style={{
+            marginTop: 6,
+            color: "#64748b",
+            fontSize: 12,
+            fontWeight: 700,
+          }}
+        >
+          Roster: {college.rosterOpportunity.rosterSeason || "—"} • Recruiting Class:{" "}
+          {college.rosterOpportunity.recruitingClass || "—"}
+        </div>
+
+        <div
+          style={{
+            display: "grid",
+            gap: 10,
+            marginTop: 10,
+          }}
+        >
+          {college.rosterOpportunity.opportunities.map((opportunity) => {
+            const opportunityLabel =
+              opportunity.level === "STRONG"
+                ? "Strong Opportunity"
+                : opportunity.level === "MODERATE"
+                ? "Moderate Opportunity"
+                : opportunity.level === "LIMITED"
+                ? "Limited Opportunity"
+                : "Opportunity Unknown";
+
+            const opportunityColor =
+              opportunity.level === "STRONG"
+                ? "#15803d"
+                : opportunity.level === "MODERATE"
+                ? "#b45309"
+                : opportunity.level === "LIMITED"
+                ? "#64748b"
+                : "#64748b";
+
+            const opportunityBackground =
+              opportunity.level === "STRONG"
+                ? "#f0fdf4"
+                : opportunity.level === "MODERATE"
+                ? "#fffbeb"
+                : opportunity.level === "LIMITED"
+                ? "#f8fafc"
+                : "#f8fafc";
+
+            const opportunityBorder =
+              opportunity.level === "STRONG"
+                ? "#bbf7d0"
+                : opportunity.level === "MODERATE"
+                ? "#fde68a"
+                : opportunity.level === "LIMITED"
+                ? "#cbd5e1"
+                : "#cbd5e1";
+
+            return (
+              <div
+                key={opportunity.position}
+                style={{
+                  border: `1px solid ${opportunityBorder}`,
+                  background: opportunityBackground,
+                  borderRadius: 12,
+                  padding: "10px 11px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    gap: 8,
+                    flexWrap: "wrap",
+                  }}
+                >
+                  <strong
+                    style={{
+                      fontSize: 14,
+                      color: "#0f172a",
+                    }}
+                  >
+                    {opportunity.position}
+                  </strong>
+
+                  <span
+                    style={{
+                      border: `1px solid ${opportunityBorder}`,
+                      background: "#ffffff",
+                      color: opportunityColor,
+                      borderRadius: 999,
+                      padding: "4px 8px",
+                      fontSize: 11,
+                      fontWeight: 900,
+                    }}
+                  >
+                    {opportunityLabel}
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 6,
+                    flexWrap: "wrap",
+                    marginTop: 8,
+                  }}
+                >
+                  <span style={smallPillStyle}>
+                    Current {opportunity.currentDepth}
+                  </span>
+
+                  <span style={smallPillStyle}>
+                    Remaining {opportunity.projectedRemaining}
+                  </span>
+
+                  <span style={smallPillStyle}>
+                    Departing {opportunity.projectedDepartures}
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    marginTop: 8,
+                    color: "#475569",
+                    fontSize: 12,
+                    lineHeight: 1.45,
+                    fontWeight: 700,
+                  }}
+                >
+                  {opportunity.explanation}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ) : null}
+
     {baseball?.rosterNeeds?.length ? (
       <div style={miniPanelStyle}>
         <div style={miniPanelTitleStyle}>
-  <TooltipLabel
-    label="Roster Needs"
-    tip="Verified recruiting needs submitted by the program. Needs may change throughout the recruiting cycle."
-  />
-</div>
+          <TooltipLabel
+            label="Verified Recruiting Needs"
+            tip="Confirmed recruiting needs submitted by the program. Needs may change throughout the recruiting cycle."
+          />
+        </div>
 
         <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
           {Object.entries(
