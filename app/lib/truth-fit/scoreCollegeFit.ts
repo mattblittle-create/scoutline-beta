@@ -468,6 +468,7 @@ function projectionFromFit({
 }
 
 const TRUSTED_TRUTH_FIT_METRIC_KEYS = new Set([
+  "exitVelo",
   "avgFbVelo",
   "popTime",
   "sixtyYdDash",
