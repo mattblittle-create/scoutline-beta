@@ -289,6 +289,111 @@ function benchmarkConfidenceMultiplier(level?: TruthFitBenchmarkSourceLevel) {
   return 0.88;
 }
 
+function summarizeMetricBenchmarkConfidence(
+  comparisons: TruthFitResult["metricComparisons"],
+  fallback: TruthFitResult["benchmarkSource"]["metrics"]
+) {
+  if (!comparisons.length) {
+    return fallback;
+  }
+
+  let weightedConfidence = 0;
+  let weightTotal = 0;
+
+  let schoolCount = 0;
+  let conferenceCount = 0;
+  let divisionCount = 0;
+  let globalCount = 0;
+  let estimatedCount = 0;
+
+  for (const comparison of comparisons) {
+    const weight =
+      metricWeight(
+        comparison.key
+      );
+
+    const confidence =
+      comparison.sourceConfidence === "HIGH"
+        ? 3
+        : comparison.sourceConfidence === "MEDIUM"
+        ? 2
+        : 1;
+
+    weightedConfidence +=
+      confidence *
+      weight;
+
+    weightTotal +=
+      weight;
+
+    if (
+      comparison.sourceLevel ===
+      "SCHOOL"
+    ) {
+      schoolCount += 1;
+    } else if (
+      comparison.sourceLevel ===
+      "CONFERENCE"
+    ) {
+      conferenceCount += 1;
+    } else if (
+      comparison.sourceLevel ===
+      "DIVISION"
+    ) {
+      divisionCount += 1;
+    } else if (
+      comparison.sourceLevel ===
+      "GLOBAL"
+    ) {
+      globalCount += 1;
+    } else {
+      estimatedCount += 1;
+    }
+  }
+
+  const averageConfidence =
+    weightTotal > 0
+      ? weightedConfidence /
+        weightTotal
+      : 1;
+
+  const confidence:
+    | "HIGH"
+    | "MEDIUM"
+    | "LOW" =
+    averageConfidence >= 2.5
+      ? "HIGH"
+      : averageConfidence >= 1.7
+      ? "MEDIUM"
+      : "LOW";
+
+  /*
+   * Keep SCHOOL as the overall level whenever school-specific
+   * data actually contributes to the comparison package.
+   *
+   * Confidence tells us how much of the complete metric
+   * comparison is truly school-specific versus fallback data.
+   */
+  const level: TruthFitBenchmarkSourceLevel =
+    schoolCount > 0
+      ? "SCHOOL"
+      : conferenceCount > 0
+      ? "CONFERENCE"
+      : divisionCount > 0
+      ? "DIVISION"
+      : globalCount > 0
+      ? "GLOBAL"
+      : estimatedCount > 0
+      ? "ESTIMATED"
+      : fallback.level;
+
+  return {
+    ...fallback,
+    level,
+    confidence,
+  };
+}
+
 function projectionFromFit({
   score,
   label,
@@ -885,6 +990,12 @@ development.push(
     }
   }
 
+  const effectiveMetricsBenchmarkSource =
+  summarizeMetricBenchmarkConfidence(
+    metricComparisons,
+    metricsBenchmarkSource
+  );
+
   // Targeted development suggestions based on current player metrics
   const exitVelo = latestMetricValue(input.player.metrics, "exitVelo");
   const sixty = latestMetricValue(input.player.metrics, "sixtyYdDash");
@@ -1020,7 +1131,12 @@ const hasEstimatedSections =
   needs.length === 0 ||
   matchedMetricScores.length === 0;
 
-const confidenceMultiplier = benchmarkConfidenceMultiplier(metricsBenchmarkSource.level);
+const confidenceMultiplier =
+  effectiveMetricsBenchmarkSource.confidence === "HIGH"
+    ? 1
+    : effectiveMetricsBenchmarkSource.confidence === "MEDIUM"
+    ? 0.98
+    : 0.96;
 
 const score = Math.max(
   0,
@@ -1029,7 +1145,7 @@ const score = Math.max(
 
 if (confidenceMultiplier < 1) {
   reasons.push(
-    `Truth Fit confidence is adjusted because this result uses ${metricsBenchmarkSource.label.toLowerCase()}.`
+    `Truth Fit confidence is adjusted because the available metric comparisons use a mix of school, conference, and division benchmark data.`
   );
 }
 
@@ -1070,10 +1186,35 @@ const confidenceMissing: string[] = [];
 if (verificationStatus === "VERIFIED") confidenceReasons.push("Verified program data");
 else confidenceMissing.push("Program verification");
 
-if (metricsBenchmarkSource.level === "SCHOOL") confidenceReasons.push("School-specific benchmarks");
-else if (metricsBenchmarkSource.level === "CONFERENCE") confidenceReasons.push("Conference benchmark fallback");
-else if (metricsBenchmarkSource.level === "DIVISION") confidenceReasons.push("Division benchmark fallback");
-else confidenceMissing.push("School / conference metric benchmarks");
+if (
+  effectiveMetricsBenchmarkSource.level ===
+  "SCHOOL"
+) {
+  confidenceReasons.push(
+    effectiveMetricsBenchmarkSource.confidence ===
+      "HIGH"
+      ? "Strong school-specific benchmark coverage"
+      : "Some school-specific benchmarks with fallback data"
+  );
+} else if (
+  effectiveMetricsBenchmarkSource.level ===
+  "CONFERENCE"
+) {
+  confidenceReasons.push(
+    "Conference benchmark coverage"
+  );
+} else if (
+  effectiveMetricsBenchmarkSource.level ===
+  "DIVISION"
+) {
+  confidenceReasons.push(
+    "Division benchmark fallback"
+  );
+} else {
+  confidenceMissing.push(
+    "School / conference metric benchmarks"
+  );
+}
 
 if (needs.length > 0) confidenceReasons.push("Roster needs available");
 else confidenceMissing.push("Roster needs");
@@ -1115,8 +1256,9 @@ return {
   gaps: Array.from(new Set(gaps)).slice(0, 5),
   development: uniqueDevelopment.slice(0, 4),
   metricComparisons: sortedComparisons.slice(0, 5),
-  benchmarkSource: {
-    metrics: metricsBenchmarkSource,
+benchmarkSource: {
+    metrics:
+      effectiveMetricsBenchmarkSource,
   },
   academicFit,
   projectionTag: projection.projectionTag,
