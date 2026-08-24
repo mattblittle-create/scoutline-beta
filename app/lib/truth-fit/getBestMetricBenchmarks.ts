@@ -153,6 +153,99 @@ sourceConfidence:
   };
 }
 
+/*
+ * ------------------------------------------------------------
+ * POSITION FAMILY FALLBACK
+ * ------------------------------------------------------------
+ *
+ * Official roster feeds often provide grouped positions rather
+ * than exact defensive positions.
+ *
+ * Examples:
+ *
+ *   INF can support:
+ *     1B / 2B / SS / 3B / MIF / CIF
+ *
+ *   CIF can support:
+ *     1B / 3B
+ *
+ *   MIF can support:
+ *     2B / SS
+ *
+ *   OF can support:
+ *     LF / CF / RF
+ *
+ *   P can support:
+ *     RHP / LHP
+ *
+ * These are fallbacks only.
+ *
+ * An exact-position benchmark from the same source level always
+ * wins over a grouped-position fallback.
+ */
+function fallbackTargetPositions(
+  sourcePosition?: string | null
+): string[] {
+  const position =
+    normalizePosition(
+      sourcePosition
+    );
+
+  switch (position) {
+    case "INF":
+      return [
+        "1B",
+        "2B",
+        "SS",
+        "3B",
+        "MIF",
+        "CIF",
+      ];
+
+    case "CIF":
+      return [
+        "1B",
+        "3B",
+      ];
+
+    case "MIF":
+      return [
+        "2B",
+        "SS",
+      ];
+
+    case "OF":
+      return [
+        "LF",
+        "CF",
+        "RF",
+      ];
+
+    case "P":
+      return [
+        "RHP",
+        "LHP",
+      ];
+
+    default:
+      return [];
+  }
+}
+
+function fallbackConfidence(
+  level?: BenchmarkSourceLevel
+): "HIGH" | "MEDIUM" | "LOW" {
+  /*
+   * The underlying data may be highly trustworthy, but using
+   * a grouped position introduces some positional uncertainty.
+   */
+  if (level === "SCHOOL") {
+    return "MEDIUM";
+  }
+
+  return "LOW";
+}
+
 function benchmarkIdentity(
   row: {
     position?: string | null;
@@ -212,10 +305,45 @@ function mergeBenchmarkRows(
       BestMetricBenchmark
     >();
 
+  /*
+   * Each group represents one source level.
+   *
+   * Groups arrive in priority order:
+   *
+   * SCHOOL
+   * CONFERENCE
+   * DIVISION
+   * GLOBAL
+   *
+   * Within each source level:
+   *
+   * 1. exact position rows are added first
+   * 2. positional-family fallbacks fill remaining gaps
+   *
+   * This means:
+   *
+   * SCHOOL exact 3B
+   *   beats
+   * SCHOOL INF -> 3B fallback
+   *
+   * But:
+   *
+   * SCHOOL INF -> 3B fallback
+   *   beats
+   * CONFERENCE / DIVISION 3B
+   *
+   * because school-specific observed data is still the
+   * higher-priority source.
+   */
   for (
     const group
     of groups
   ) {
+    /*
+     * --------------------------------------------------------
+     * PASS 1 — EXACT POSITION ROWS
+     * --------------------------------------------------------
+     */
     for (
       const rawRow
       of group
@@ -238,8 +366,8 @@ function mergeBenchmarkRows(
         );
 
       /*
-       * First row wins because groups are supplied in
-       * descending priority order.
+       * First row wins because higher-priority source groups
+       * were processed earlier.
        */
       if (
         merged.has(
@@ -253,6 +381,83 @@ function mergeBenchmarkRows(
         key,
         row
       );
+    }
+
+    /*
+     * --------------------------------------------------------
+     * PASS 2 — POSITION FAMILY FALLBACKS
+     * --------------------------------------------------------
+     *
+     * These only fill a position + metric combination that
+     * does not already exist.
+     */
+    for (
+      const rawRow
+      of group
+    ) {
+      const sourceRow =
+        mapBenchmarkRow(
+          rawRow
+        );
+
+      if (
+        !sourceRow.position ||
+        !sourceRow.metricKey
+      ) {
+        continue;
+      }
+
+      const fallbackPositions =
+        fallbackTargetPositions(
+          sourceRow.position
+        );
+
+      for (
+        const targetPosition
+        of fallbackPositions
+      ) {
+        const fallbackRow:
+          BestMetricBenchmark = {
+          ...sourceRow,
+
+          position:
+            targetPosition,
+
+          sourceLabel:
+            sourceRow.sourceLabel
+              ? `${sourceRow.sourceLabel} (${sourceRow.position} positional fallback)`
+              : `${sourceRow.position} positional fallback`,
+
+          sourceConfidence:
+            fallbackConfidence(
+              sourceRow.sourceLevel
+            ),
+        };
+
+        const key =
+          benchmarkIdentity(
+            fallbackRow
+          );
+
+        /*
+         * Never overwrite:
+         *
+         * - an exact row from this source level
+         * - a row from a higher-priority source level
+         */
+        if (
+          merged.has(
+            key
+          )
+        ) {
+          continue;
+        }
+
+        merged.set(
+          key,
+          fallbackRow
+        );
+      }
     }
   }
 
