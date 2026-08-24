@@ -733,7 +733,13 @@ const topResults = enrichedResults.slice(0, 25);
 
 const divisionCounts: Record<string, number> = {};
 const labelCounts: Record<string, number> = {};
-const gapCounts: Record<string, number> = {};
+const gapCounts: Record<
+  string,
+  {
+    count: number;
+    label: string;
+  }
+> = {};
 
 for (const r of topResults) {
   const division = r.college?.baseballProgram?.division || "UNKNOWN";
@@ -742,12 +748,29 @@ for (const r of topResults) {
   divisionCounts[division] = (divisionCounts[division] || 0) + 1;
   labelCounts[label] = (labelCounts[label] || 0) + 1;
 
-  const gaps = Array.isArray(r.truthFit?.gaps) ? r.truthFit.gaps : [];
-  for (const gap of gaps) {
-    const key = String(gap || "").trim();
-    if (!key) continue;
-    gapCounts[key] = (gapCounts[key] || 0) + 1;
+const metricComparisons = Array.isArray(
+  r.truthFit?.metricComparisons
+)
+  ? r.truthFit.metricComparisons
+  : [];
+
+for (const metric of metricComparisons) {
+  if (metric.status !== "BELOW") continue;
+
+  const key = String(metric.key || "").trim();
+  const label = String(metric.label || key).trim();
+
+  if (!key) continue;
+
+  if (!gapCounts[key]) {
+    gapCounts[key] = {
+      count: 0,
+      label,
+    };
   }
+
+  gapCounts[key].count += 1;
+}
 }
 
 function topKey(obj: Record<string, number>) {
@@ -1048,9 +1071,9 @@ const finalResults = recommendedDivisionResults.map((item, index) => {
 const projectionTier = projectionTierFromLane(dominantDivision, dominantFit);
 
 const topGaps = Object.entries(gapCounts)
-  .sort((a, b) => b[1] - a[1])
+  .sort((a, b) => b[1].count - a[1].count)
   .slice(0, 2)
-  .map(([gap]) => gap);
+  .map(([, gap]) => gap.label);
 
 let outlook = "Balanced recruiting opportunity across multiple levels.";
 
