@@ -1070,15 +1070,33 @@ development.push(
   const primaryPos = normalizePos(input.player.primaryPos);
   const secondaryPos = normalizePos(input.player.secondaryPos);
 
-  if (sixty != null && sixty > 7.0) {
-    const targetSixty = sixty > 7.25 ? 6.95 : 6.9;
+const sixtyComparison =
+  metricComparisons.find(
+    (comparison) =>
+      comparison.key === "sixtyYdDash"
+  );
 
-    development.push(
-      `Improving 60-yard from ${sixty.toFixed(2)} to ${targetSixty.toFixed(
-        2
-      )} would increase ${divisionLabel(input.college.division)} fit scores substantially, especially for infield and outfield opportunities.`
+if (
+  sixty != null &&
+  sixtyComparison?.status === "BELOW"
+) {
+  const benchmark =
+    sixtyComparison.benchmarkValue;
+
+  const targetSixty =
+    Number(
+      Math.max(
+        benchmark - 0.1,
+        6.5
+      ).toFixed(2)
     );
-  }
+
+  development.push(
+    `Improving 60-yard from ${sixty.toFixed(2)} to ${targetSixty.toFixed(
+      2
+    )} would increase ${divisionLabel(input.college.division)} fit scores substantially, especially for infield and outfield opportunities.`
+  );
+}
 
   if (
     infieldThrowVelo != null &&
