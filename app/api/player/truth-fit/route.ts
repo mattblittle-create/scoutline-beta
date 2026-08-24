@@ -641,33 +641,83 @@ const fitType =
     r.includes("HIGH roster need")
   );
 
-  const hasAcademicFit = fit.reasons?.some((r) =>
-    r.toLowerCase().includes("gpa")
-  );
+const academicFitScore =
+  typeof fit.academicFit?.score === "number"
+    ? fit.academicFit.score
+    : null;
 
-  const hasMetricStrength =
-    fit.reasons?.some((r) => r.toLowerCase().includes("metrics")) ||
-    fit.metricComparisons?.some((m) => m.status === "ABOVE");
+const hasStrongAcademicFit =
+  academicFitScore != null &&
+  academicFitScore >= 80;
 
-  const topGap = Array.isArray(fit.gaps) ? fit.gaps[0] : null;
+const hasPartialAcademicFit =
+  academicFitScore != null &&
+  academicFitScore >= 50;
 
-  let priorityReason = "";
+const metricComparisons =
+  Array.isArray(
+    fit.metricComparisons
+  )
+    ? fit.metricComparisons
+    : [];
 
-  if (hasHighRosterNeed) {
-    priorityReason = `${fitLabel} • ${division || "College"} program • immediate roster need for your profile.`;
-  } else if (hasMetricStrength && hasAcademicFit) {
-    priorityReason = `${fitLabel} • strong academic and athletic alignment with this program.`;
-  } else if (hasMetricStrength) {
-    priorityReason = `${fitLabel} • your metrics compare well with this program's benchmark data.`;
-  } else if (hasAcademicFit) {
-    priorityReason = `${fitLabel} • your academic profile strengthens this match.`;
-  } else if (topGap) {
-    priorityReason = `${fitLabel} • good school to track while improving: ${topGap}`;
-  } else {
-    priorityReason = `${fitLabel} • ${[division, conference, state]
-      .filter(Boolean)
-      .join(" • ") || "program fit based on your current profile"}.`;
-  }
+const strongMetricCount =
+  metricComparisons.filter(
+    (metric) =>
+      metric.status === "ABOVE" ||
+      metric.status === "IN_RANGE"
+  ).length;
+
+const hasMetricStrength =
+  strongMetricCount >= 2;
+
+const topGap =
+  Array.isArray(fit.gaps)
+    ? fit.gaps[0]
+    : null;
+
+let priorityReason = "";
+
+if (hasHighRosterNeed) {
+  priorityReason =
+    `${fitLabel} • ${division || "College"} program • immediate roster need for your profile.`;
+} else if (
+  hasMetricStrength &&
+  hasStrongAcademicFit
+) {
+  priorityReason =
+    `${fitLabel} • strong academic and athletic alignment with this program.`;
+} else if (
+  hasStrongAcademicFit
+) {
+  priorityReason =
+    `${fitLabel} • your academic profile strengthens this match.`;
+} else if (
+  hasMetricStrength
+) {
+  priorityReason =
+    `${fitLabel} • your available metrics show athletic alignment with this program.`;
+} else if (
+  hasPartialAcademicFit
+) {
+  priorityReason =
+    `${fitLabel} • partial academic alignment with this program.`;
+} else if (topGap) {
+  priorityReason =
+    `${fitLabel} • good school to track while improving: ${topGap}`;
+} else {
+  priorityReason =
+    `${fitLabel} • ${
+      [
+        division,
+        conference,
+        state,
+      ]
+        .filter(Boolean)
+        .join(" • ") ||
+      "program fit based on your current profile"
+    }.`;
+}
 
   return {
     ...item,
