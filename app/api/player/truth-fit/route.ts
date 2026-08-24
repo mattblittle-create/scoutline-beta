@@ -925,8 +925,19 @@ const orderedDivisionFits = ALL_DIVISIONS.map((division) => {
   };
 }).filter(Boolean);
 
-const dominantDivision = rankedDivisionFits[0]?.division || topKey(divisionCounts);
-const dominantFit = rankedDivisionFits[0]?.fitTier || topKey(labelCounts);
+const dominantDivision =
+  recommendedLaneDivision ||
+  rankedDivisionFits[0]?.division ||
+  topKey(divisionCounts);
+
+const dominantFit =
+  divisionFits.find(
+    (item) =>
+      item.division ===
+      dominantDivision
+  )?.fitTier ||
+  rankedDivisionFits[0]?.fitTier ||
+  topKey(labelCounts);
 
 function projectionTierFromLane(division?: string | null, fit?: string | null) {
   const d = String(division || "");
@@ -950,11 +961,32 @@ function projectionTierFromLane(division?: string | null, fit?: string | null) {
     return "D3 / JUCO Development Fit";
   }
 
-  if (f === "Possible Match") {
-    return "Emerging College Prospect";
-  }
+if (
+  d === "NCAA_D1" &&
+  f === "Possible Match"
+) {
+  return "Emerging D1 Prospect";
+}
 
-  return "Developmental Prospect";
+if (
+  (d === "NCAA_D2" ||
+    d === "NAIA" ||
+    d === "NJCAA_D1") &&
+  f === "Possible Match"
+) {
+  return "D2 / NAIA / JUCO Track";
+}
+
+if (
+  (d === "NCAA_D3" ||
+    d === "NJCAA_D2" ||
+    d === "NJCAA_D3") &&
+  f === "Possible Match"
+) {
+  return "D3 / JUCO Development Fit";
+}
+
+return "Developmental Prospect";
 }
 
 const recommendedDivisionResults = [...enrichedResults].sort((a, b) => {
