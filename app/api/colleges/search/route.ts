@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 import { prisma } from "@/lib/prisma";
 import { scoreCollegeFit } from "@/app/lib/truth-fit/scoreCollegeFit";
 import { getBestMetricBenchmarks } from "@/app/lib/truth-fit/getBestMetricBenchmarks";
+import { getRosterOpportunity } from "@/app/lib/truth-fit/getRosterOpportunity";
 import { getDistanceResult } from "@/lib/recommendations/distance";
 
 export const dynamic = "force-dynamic";
@@ -1039,6 +1040,7 @@ select: {
          * snapshot, so it safely receives null.
          */
         let rosterIntelligence = null;
+        let rosterOpportunity = null;
 
         if (baseball) {
           const latestSnapshot =
@@ -1056,6 +1058,28 @@ select: {
                 rosterPlayersByScope.get(scopeKey) || [],
                 profile?.player || null
               );
+
+            if (profile?.player) {
+              rosterOpportunity =
+                getRosterOpportunity({
+                  player: {
+                    gradYear:
+                      profile.player.gradYear,
+
+                    primaryPos:
+                      profile.player.primaryPos,
+
+                    secondaryPos:
+                      profile.player.secondaryPos,
+
+                    pitcherHand:
+                      profile.player.pitcherHand,
+                  },
+
+                  roster:
+                    rosterIntelligence,
+                });
+            }
           }
         }
 
@@ -1064,6 +1088,7 @@ select: {
             ...college,
             distance,
             rosterIntelligence,
+            rosterOpportunity,
             truthFit: null,
           };
         }
@@ -1111,6 +1136,7 @@ college: {
           ...college,
           distance,
           rosterIntelligence,
+          rosterOpportunity,
           truthFit,
         };
       })
