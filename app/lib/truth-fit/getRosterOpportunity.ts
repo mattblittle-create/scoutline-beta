@@ -591,7 +591,7 @@ function explanationForOpportunity({
     if (
       projectedDepartures > 0
     ) {
-      return "Current depth is healthy, but projected turnover creates an opening.";
+      return "Some positional depth is projected to remain, but turnover creates a reasonable path to opportunity.";
     }
 
     return "Some positional depth is projected to remain, but there is still a reasonable path to opportunity.";
