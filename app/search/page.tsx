@@ -1342,159 +1342,332 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
     style={{
       marginTop: 12,
       display: "grid",
-      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
       gap: 10,
     }}
   >
-    {college.rosterOpportunity?.opportunities?.length ? (
+    {/* -------------------------------------------------------
+        ACADEMIC AREAS — FULL WIDTH
+       ------------------------------------------------------- */}
+    {college.academicAreas?.length ? (
       <div style={miniPanelStyle}>
         <div style={miniPanelTitleStyle}>
           <TooltipLabel
-            label={`Roster Needs • Class of ${
-              college.rosterOpportunity.recruitingClass || "—"
-            }`}
-            tip="ScoutLine projection based on the program's official roster and the player's recruiting class. This is projected opportunity, not a confirmed coaching-staff recruiting need."
+            label="Academic Areas"
+            tip="Academic programs offered or emphasized by the institution."
           />
         </div>
 
         <div
           style={{
-            marginTop: 6,
-            color: "#64748b",
-            fontSize: 12,
-            fontWeight: 700,
+            display: "flex",
+            gap: 6,
+            flexWrap: "wrap",
+            marginTop: 8,
           }}
         >
-          Roster: {college.rosterOpportunity.rosterSeason || "—"} • Recruiting Class:{" "}
-          {college.rosterOpportunity.recruitingClass || "—"}
-        </div>
+          {[...college.academicAreas]
+            .filter((area) => area.name)
+            .sort((a, b) =>
+              String(a.name).localeCompare(String(b.name))
+            )
+            .map((area) => {
+              const areaName = String(area.name || "").trim();
 
-        <div
-          style={{
-            display: "grid",
-            gap: 10,
-            marginTop: 10,
-          }}
-        >
-          {college.rosterOpportunity.opportunities.map((opportunity) => {
-            const opportunityLabel =
-              opportunity.level === "STRONG"
-                ? "Strong Opportunity"
-                : opportunity.level === "MODERATE"
-                ? "Moderate Opportunity"
-                : opportunity.level === "LIMITED"
-                ? "Limited Opportunity"
-                : "Opportunity Unknown";
+              const isMatch = academicMatch.matches.some(
+                (match) =>
+                  match.toLowerCase() === areaName.toLowerCase()
+              );
 
-            const opportunityColor =
-              opportunity.level === "STRONG"
-                ? "#15803d"
-                : opportunity.level === "MODERATE"
-                ? "#b45309"
-                : opportunity.level === "LIMITED"
-                ? "#64748b"
-                : "#64748b";
-
-            const opportunityBackground =
-              opportunity.level === "STRONG"
-                ? "#f0fdf4"
-                : opportunity.level === "MODERATE"
-                ? "#fffbeb"
-                : opportunity.level === "LIMITED"
-                ? "#f8fafc"
-                : "#f8fafc";
-
-            const opportunityBorder =
-              opportunity.level === "STRONG"
-                ? "#bbf7d0"
-                : opportunity.level === "MODERATE"
-                ? "#fde68a"
-                : opportunity.level === "LIMITED"
-                ? "#cbd5e1"
-                : "#cbd5e1";
-
-            return (
-              <div
-                key={opportunity.position}
-                style={{
-                  border: `1px solid ${opportunityBorder}`,
-                  background: opportunityBackground,
-                  borderRadius: 12,
-                  padding: "10px 11px",
-                }}
-              >
-                <div
+              return (
+                <span
+                  key={area.id || area.name}
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    gap: 8,
-                    flexWrap: "wrap",
+                    ...smallPillStyle,
+                    border: isMatch
+                      ? "1px solid rgba(202,160,66,0.65)"
+                      : smallPillStyle.border,
+                    background: isMatch
+                      ? "rgba(202,160,66,0.18)"
+                      : smallPillStyle.background,
+                    color: isMatch
+                      ? "#7c5a12"
+                      : smallPillStyle.color,
                   }}
+                  title={
+                    isMatch
+                      ? "Matches player intended major(s)"
+                      : areaName
+                  }
                 >
-                  <strong
-                    style={{
-                      fontSize: 14,
-                      color: "#0f172a",
-                    }}
-                  >
-                    {opportunity.position}
-                  </strong>
-
-                  <span
-                    style={{
-                      border: `1px solid ${opportunityBorder}`,
-                      background: "#ffffff",
-                      color: opportunityColor,
-                      borderRadius: 999,
-                      padding: "4px 8px",
-                      fontSize: 11,
-                      fontWeight: 900,
-                    }}
-                  >
-                    {opportunityLabel}
-                  </span>
-                </div>
-
-                <div
-                  style={{
-                    display: "flex",
-                    gap: 6,
-                    flexWrap: "wrap",
-                    marginTop: 8,
-                  }}
-                >
-                  <span style={smallPillStyle}>
-                    Current {opportunity.currentDepth}
-                  </span>
-
-                  <span style={smallPillStyle}>
-                    Remaining {opportunity.projectedRemaining}
-                  </span>
-
-                  <span style={smallPillStyle}>
-                    Departing {opportunity.projectedDepartures}
-                  </span>
-                </div>
-
-                <div
-                  style={{
-                    marginTop: 8,
-                    color: "#475569",
-                    fontSize: 12,
-                    lineHeight: 1.45,
-                    fontWeight: 700,
-                  }}
-                >
-                  {opportunity.explanation}
-                </div>
-              </div>
-            );
-          })}
+                  {isMatch ? "✓ " : ""}
+                  {areaName}
+                </span>
+              );
+            })}
         </div>
       </div>
     ) : null}
 
+    {/* -------------------------------------------------------
+        ROSTER NEEDS + ROSTER COMPOSITION
+        TWO COLUMNS WHEN SPACE ALLOWS
+       ------------------------------------------------------- */}
+    {(
+      college.rosterOpportunity?.opportunities?.length ||
+      college.rosterIntelligence?.positions?.length
+    ) ? (
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns:
+            "repeat(auto-fit, minmax(320px, 1fr))",
+          gap: 10,
+          alignItems: "start",
+        }}
+      >
+        {college.rosterOpportunity?.opportunities?.length ? (
+          <div style={miniPanelStyle}>
+            <div style={miniPanelTitleStyle}>
+              <TooltipLabel
+                label={`Roster Needs • Class of ${
+                  college.rosterOpportunity.recruitingClass || "—"
+                }`}
+                tip="ScoutLine projection based on the program's official roster and the player's recruiting class. This is projected opportunity, not a confirmed coaching-staff recruiting need."
+              />
+            </div>
+
+            <div
+              style={{
+                marginTop: 6,
+                color: "#64748b",
+                fontSize: 12,
+                fontWeight: 700,
+              }}
+            >
+              Roster:{" "}
+              {college.rosterOpportunity.rosterSeason || "—"} •
+              Recruiting Class:{" "}
+              {college.rosterOpportunity.recruitingClass || "—"}
+            </div>
+
+            <div
+              style={{
+                display: "grid",
+                gap: 10,
+                marginTop: 10,
+              }}
+            >
+              {college.rosterOpportunity.opportunities.map(
+                (opportunity) => {
+                  const opportunityLabel =
+                    opportunity.level === "STRONG"
+                      ? "Strong Opportunity"
+                      : opportunity.level === "MODERATE"
+                      ? "Moderate Opportunity"
+                      : opportunity.level === "LIMITED"
+                      ? "Limited Opportunity"
+                      : "Opportunity Unknown";
+
+                  const opportunityColor =
+                    opportunity.level === "STRONG"
+                      ? "#15803d"
+                      : opportunity.level === "MODERATE"
+                      ? "#b45309"
+                      : "#64748b";
+
+                  const opportunityBackground =
+                    opportunity.level === "STRONG"
+                      ? "#f0fdf4"
+                      : opportunity.level === "MODERATE"
+                      ? "#fffbeb"
+                      : "#f8fafc";
+
+                  const opportunityBorder =
+                    opportunity.level === "STRONG"
+                      ? "#bbf7d0"
+                      : opportunity.level === "MODERATE"
+                      ? "#fde68a"
+                      : "#cbd5e1";
+
+                  return (
+                    <div
+                      key={opportunity.position}
+                      style={{
+                        border: `1px solid ${opportunityBorder}`,
+                        background: opportunityBackground,
+                        borderRadius: 12,
+                        padding: "10px 11px",
+                      }}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          alignItems: "center",
+                          gap: 8,
+                          flexWrap: "wrap",
+                        }}
+                      >
+                        <strong
+                          style={{
+                            fontSize: 14,
+                            color: "#0f172a",
+                          }}
+                        >
+                          {opportunity.position}
+                        </strong>
+
+                        <span
+                          style={{
+                            border: `1px solid ${opportunityBorder}`,
+                            background: "#ffffff",
+                            color: opportunityColor,
+                            borderRadius: 999,
+                            padding: "4px 8px",
+                            fontSize: 11,
+                            fontWeight: 900,
+                          }}
+                        >
+                          {opportunityLabel}
+                        </span>
+                      </div>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: 6,
+                          flexWrap: "wrap",
+                          marginTop: 8,
+                        }}
+                      >
+                        <span style={smallPillStyle}>
+                          Current {opportunity.currentDepth}
+                        </span>
+
+                        <span style={smallPillStyle}>
+                          Remaining {opportunity.projectedRemaining}
+                        </span>
+
+                        <span style={smallPillStyle}>
+                          Departing {opportunity.projectedDepartures}
+                        </span>
+                      </div>
+
+                      <div
+                        style={{
+                          marginTop: 8,
+                          color: "#475569",
+                          fontSize: 12,
+                          lineHeight: 1.45,
+                          fontWeight: 700,
+                        }}
+                      >
+                        {opportunity.explanation}
+                      </div>
+                    </div>
+                  );
+                }
+              )}
+            </div>
+          </div>
+        ) : null}
+
+        {college.rosterIntelligence?.positions?.length ? (
+          <div style={miniPanelStyle}>
+            <div style={miniPanelTitleStyle}>
+              <TooltipLabel
+                label={`Roster Composition • ${college.rosterIntelligence.rosterSize} • ${college.rosterIntelligence.season}`}
+                tip="ScoutLine-derived roster composition from the program's official published roster."
+              />
+            </div>
+
+            <div
+              style={{
+                marginTop: 8,
+                display: "grid",
+                gap: 8,
+              }}
+            >
+              {college.rosterIntelligence.positions.map((item) => (
+                <div
+                  key={item.position}
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "52px 1fr",
+                    gap: 8,
+                    alignItems: "start",
+                    fontSize: 13,
+                  }}
+                >
+                  <strong>{item.position}</strong>
+
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: 6,
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {item.freshman ? (
+                      <span style={smallPillStyle}>
+                        Fr {item.freshman}
+                      </span>
+                    ) : null}
+
+                    {item.redshirtFreshman ? (
+                      <span style={smallPillStyle}>
+                        R-Fr {item.redshirtFreshman}
+                      </span>
+                    ) : null}
+
+                    {item.sophomore ? (
+                      <span style={smallPillStyle}>
+                        So {item.sophomore}
+                      </span>
+                    ) : null}
+
+                    {item.junior ? (
+                      <span style={smallPillStyle}>
+                        Jr {item.junior}
+                      </span>
+                    ) : null}
+
+                    {item.senior ? (
+                      <span style={smallPillStyle}>
+                        Sr {item.senior}
+                      </span>
+                    ) : null}
+
+                    {item.graduate ? (
+                      <span style={smallPillStyle}>
+                        Gr {item.graduate}
+                      </span>
+                    ) : null}
+
+                    {item.departing ? (
+                      <span
+                        style={{
+                          ...smallPillStyle,
+                          border: "1px solid #f59e0b",
+                          background: "#fffbeb",
+                        }}
+                      >
+                        Departing {item.departing}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+      </div>
+    ) : null}
+
+    {/* -------------------------------------------------------
+        VERIFIED PROGRAM-ENTERED RECRUITING NEEDS
+        KEEP SEPARATE FROM SCOUTLINE PROJECTION
+       ------------------------------------------------------- */}
     {baseball?.rosterNeeds?.length ? (
       <div style={miniPanelStyle}>
         <div style={miniPanelTitleStyle}>
@@ -1504,20 +1677,45 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
           />
         </div>
 
-        <div style={{ display: "grid", gap: 8, marginTop: 8 }}>
+        <div
+          style={{
+            display: "grid",
+            gap: 8,
+            marginTop: 8,
+          }}
+        >
           {Object.entries(
-            baseball.rosterNeeds.reduce<Record<string, string[]>>((acc, need) => {
-              const year = String(need.gradYear || "Unknown");
-              if (!acc[year]) acc[year] = [];
-              if (need.position) acc[year].push(need.position);
-              return acc;
-            }, {})
+            baseball.rosterNeeds.reduce<Record<string, string[]>>(
+              (acc, need) => {
+                const year = String(
+                  need.gradYear || "Unknown"
+                );
+
+                if (!acc[year]) {
+                  acc[year] = [];
+                }
+
+                if (need.position) {
+                  acc[year].push(need.position);
+                }
+
+                return acc;
+              },
+              {}
+            )
           )
             .sort(([a], [b]) => Number(a) - Number(b))
             .map(([year, positions]) => (
               <div key={year} style={needLineStyle}>
                 <strong>{year}</strong>
-                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+
+                <div
+                  style={{
+                    display: "flex",
+                    gap: 6,
+                    flexWrap: "wrap",
+                  }}
+                >
                   {Array.from(new Set(positions)).map((pos) => (
                     <span key={pos} style={smallPillStyle}>
                       {pos}
@@ -1527,138 +1725,6 @@ college.nilProfile.baseballNilStrength !== "UNKNOWN" ? (
               </div>
             ))}
         </div>
-      </div>
-    ) : null}
-
-    {college.rosterIntelligence?.positions?.length ? (
-      <div style={miniPanelStyle}>
-        <div style={miniPanelTitleStyle}>
-<TooltipLabel
-  label={`Roster Composition • ${college.rosterIntelligence.rosterSize} • ${college.rosterIntelligence.season}`}
-  tip="ScoutLine-derived roster composition from the program's official published roster."
-/>
-        </div>
-
-        <div
-          style={{
-            marginTop: 8,
-            display: "grid",
-            gap: 8,
-          }}
-        >
-          {college.rosterIntelligence.positions.map((item) => (
-            <div
-              key={item.position}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "52px 1fr",
-                gap: 8,
-                alignItems: "start",
-                fontSize: 13,
-              }}
-            >
-              <strong>{item.position}</strong>
-
-              <div
-                style={{
-                  display: "flex",
-                  gap: 6,
-                  flexWrap: "wrap",
-                }}
-              >
-                {item.freshman ? (
-                  <span style={smallPillStyle}>
-                    Fr {item.freshman}
-                  </span>
-                ) : null}
-
-                {item.redshirtFreshman ? (
-                  <span style={smallPillStyle}>
-                    R-Fr {item.redshirtFreshman}
-                  </span>
-                ) : null}
-
-                {item.sophomore ? (
-                  <span style={smallPillStyle}>
-                    So {item.sophomore}
-                  </span>
-                ) : null}
-
-                {item.junior ? (
-                  <span style={smallPillStyle}>
-                    Jr {item.junior}
-                  </span>
-                ) : null}
-
-                {item.senior ? (
-                  <span style={smallPillStyle}>
-                    Sr {item.senior}
-                  </span>
-                ) : null}
-
-                {item.graduate ? (
-                  <span style={smallPillStyle}>
-                    Gr {item.graduate}
-                  </span>
-                ) : null}
-
-                {item.departing ? (
-                  <span
-                    style={{
-                      ...smallPillStyle,
-                      border: "1px solid #f59e0b",
-                      background: "#fffbeb",
-                    }}
-                  >
-                    Departing {item.departing}
-                  </span>
-                ) : null}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    ) : null}
-
-    {college.academicAreas?.length ? (
-      <div style={miniPanelStyle}>
-        <div style={miniPanelTitleStyle}>
-  <TooltipLabel
-    label="Academic Areas"
-    tip="Academic programs offered or emphasized by the institution."
-  />
-</div>
-
-<div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginTop: 8 }}>
-  {[...college.academicAreas]
-    .filter((area) => area.name)
-    .sort((a, b) => String(a.name).localeCompare(String(b.name)))
-    .map((area) => {
-      const areaName = String(area.name || "").trim();
-
-      const isMatch = academicMatch.matches.some(
-        (match) => match.toLowerCase() === areaName.toLowerCase()
-      );
-
-      return (
-        <span
-          key={area.id || area.name}
-          style={{
-            ...smallPillStyle,
-            border: isMatch
-              ? "1px solid rgba(202,160,66,0.65)"
-              : smallPillStyle.border,
-            background: isMatch ? "rgba(202,160,66,0.18)" : smallPillStyle.background,
-            color: isMatch ? "#7c5a12" : smallPillStyle.color,
-          }}
-          title={isMatch ? "Matches player intended major(s)" : areaName}
-        >
-          {isMatch ? "✓ " : ""}
-          {areaName}
-        </span>
-      );
-    })}
-</div>
       </div>
     ) : null}
   </div>
