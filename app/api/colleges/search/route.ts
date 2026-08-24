@@ -1119,10 +1119,11 @@ college: {
 
   academicAreas: college.academicAreas || [],
   metricAverages: bestMetrics.benchmarks,
-  metricBenchmarkSource: {
-    level: bestMetrics.level,
-    label: bestMetrics.label,
-  },
+metricBenchmarkSource: {
+  level: bestMetrics.level,
+  label: bestMetrics.label,
+  confidence: bestMetrics.confidence,
+},
   rosterNeeds:
     baseball.rosterNeeds?.map((need) => ({
       gradYear: need.gradYear,
