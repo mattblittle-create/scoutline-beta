@@ -1318,7 +1318,7 @@ return {
   reasons: Array.from(new Set(reasons)).slice(0, 6),
   gaps: Array.from(new Set(gaps)).slice(0, 5),
   development: uniqueDevelopment.slice(0, 4),
-  metricComparisons: sortedComparisons.slice(0, 5),
+  metricComparisons: sortedComparisons.slice(0, 6),
 benchmarkSource: {
     metrics:
       effectiveMetricsBenchmarkSource,
