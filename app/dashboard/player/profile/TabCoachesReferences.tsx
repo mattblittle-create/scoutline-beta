@@ -434,7 +434,13 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Email */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
                         <label
   style={{
     ...labelStyle,
@@ -455,7 +461,13 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Phone */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
                         <label
   style={{
     ...labelStyle,
@@ -473,7 +485,13 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Focus */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
                         <label
   style={{
     ...labelStyle,
