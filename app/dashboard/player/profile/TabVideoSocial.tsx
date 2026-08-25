@@ -73,9 +73,17 @@ type LocalVideo = {
   fileType: string;
   previewUrl?: string;
   publicUrl?: string;
+
+  originalPublicUrl?: string;
+
+  processingStatus?: "processing" | "ready" | "error";
+  optimized?: boolean;
+  processingError?: string | null;
+
   progress?: number;
   status?: UploadStatus;
   errorMsg?: string;
+
   addedAt: number;
   category?: VideoCategory | null;
 };
@@ -134,15 +142,13 @@ const MAX_VIDEO_BYTES = MAX_MB * 1024 * 1024;
 
 // Compatibility target for reliable ScoutLine playback.
 // Portrait 1080x1920 is also allowed because we compare long/short sides.
-const MAX_VIDEO_LONG_SIDE = 1920;
-const MAX_VIDEO_SHORT_SIDE = 1080;
 
 // Until automatic transcoding is live, keep uploads to the two formats
 // we can most reliably normalize/play across mobile + desktop.
 const ALLOWED_VIDEO_TYPES = ["video/mp4", "video/quicktime"];
 
 const VIDEO_REQUIREMENTS_TEXT =
-  `Uploaded videos must be MP4 or MOV, not exceed ${MAX_MB} MB, and be no larger than 1080p.`;
+  `Uploaded videos must be MP4 or MOV and not exceed ${MAX_MB} MB.`;
 
 function normalizeHandle(handle?: string) {
   if (!handle) return "";
@@ -497,13 +503,14 @@ function saveState(email: string | null | undefined, state: VideoSocialState) {
 // ---------- Component ----------
 const TabVideoSocial = React.forwardRef<
   VideoSocialHandle,
-  {
-    email?: string | null;
-    planTier?: PlanTier;
-    readOnlyTeamAdmin?: boolean;
-    isMobile?: boolean;
-    onUploadError?: (message: string | null) => void;
-  }
+{
+  email?: string | null;
+  planTier?: PlanTier;
+  readOnlyTeamAdmin?: boolean;
+  isMobile?: boolean;
+  uploadError?: string | null;
+  onUploadError?: (message: string | null) => void;
+}
 >(
   function TabVideoSocial(props, ref) {
     const planTier: PlanTier = props.planTier ?? "All-American";
@@ -610,10 +617,42 @@ useEffect(() => {
               fileName: v.title || "video",
               fileSize: v.fileSize || 0,
               fileType: v.fileType || "video/mp4",
-              publicUrl: v.publicUrl,
-              progress: 100,
-              status: "done" as UploadStatus,
-              addedAt: v.addedAt || Date.now(),
+publicUrl: v.publicUrl,
+
+originalPublicUrl:
+  typeof v?.originalPublicUrl === "string"
+    ? v.originalPublicUrl
+    : undefined,
+
+processingStatus:
+  v?.processingStatus === "processing" ||
+  v?.processingStatus === "ready" ||
+  v?.processingStatus === "error"
+    ? v.processingStatus
+    : "ready",
+
+optimized: Boolean(v?.optimized),
+
+processingError:
+  typeof v?.processingError === "string"
+    ? v.processingError
+    : null,
+
+progress: 100,
+
+status:
+  v?.processingStatus === "error"
+    ? ("error" as UploadStatus)
+    : v?.processingStatus === "processing"
+    ? ("uploading" as UploadStatus)
+    : ("done" as UploadStatus),
+
+errorMsg:
+  typeof v?.processingError === "string"
+    ? v.processingError
+    : undefined,
+
+addedAt: v.addedAt || Date.now(),
               category:
                 v?.category === "Hitting" ||
                 v?.category === "Fielding" ||
@@ -675,6 +714,128 @@ useEffect(() => {
 
   saveState(storageEmail, state);
 }, [state, hydrated, storageEmail]);
+
+useEffect(() => {
+  if (!hydrated) return;
+  if (!storageEmail || !storageEmail.includes("@")) return;
+
+  const hasProcessing = state.localVideos.some(
+    (v) => v.processingStatus === "processing"
+  );
+
+  if (!hasProcessing) return;
+
+  let cancelled = false;
+
+  const timer = window.setInterval(async () => {
+    try {
+      const res = await fetch(
+        `/api/player/profile?email=${encodeURIComponent(storageEmail)}`,
+        { cache: "no-store" }
+      );
+
+      const json = await res.json();
+
+      if (cancelled || !res.ok || !json?.ok) return;
+
+      const norm = json?.normalized ?? {};
+
+      const serverVideos = Array.isArray(norm?.localVideos)
+        ? norm.localVideos
+        : Array.isArray(norm?.videoSocial?.localVideos)
+        ? norm.videoSocial.localVideos
+        : [];
+
+      if (!Array.isArray(serverVideos)) return;
+
+      let processingFailure: string | null = null;
+
+      setState((current) => ({
+        ...current,
+
+        localVideos: current.localVideos.map((local) => {
+          const server = serverVideos.find(
+            (v: any) =>
+              String(v?.id || "").trim() ===
+              String(local.id || "").trim()
+          );
+
+          if (!server) return local;
+
+          const processingStatus =
+            server?.processingStatus === "processing" ||
+            server?.processingStatus === "ready" ||
+            server?.processingStatus === "error"
+              ? server.processingStatus
+              : local.processingStatus;
+
+          if (
+            processingStatus === "error" &&
+            typeof server?.processingError === "string"
+          ) {
+            processingFailure = server.processingError;
+          }
+
+          return {
+            ...local,
+
+            publicUrl:
+              typeof server?.publicUrl === "string"
+                ? server.publicUrl
+                : local.publicUrl,
+
+            originalPublicUrl:
+              typeof server?.originalPublicUrl === "string"
+                ? server.originalPublicUrl
+                : local.originalPublicUrl,
+
+            fileType:
+              typeof server?.fileType === "string"
+                ? server.fileType
+                : local.fileType,
+
+            fileSize: Number.isFinite(Number(server?.fileSize))
+              ? Number(server.fileSize)
+              : local.fileSize,
+
+            optimized: Boolean(server?.optimized),
+
+            processingStatus,
+
+            processingError:
+              typeof server?.processingError === "string"
+                ? server.processingError
+                : null,
+
+            status:
+              processingStatus === "error"
+                ? "error"
+                : processingStatus === "ready"
+                ? "done"
+                : "uploading",
+
+            errorMsg:
+              processingStatus === "error"
+                ? server?.processingError ||
+                  "Video optimization failed."
+                : undefined,
+          };
+        }),
+      }));
+
+      if (processingFailure) {
+        reportUploadError(processingFailure);
+      }
+    } catch {
+      // Silent retry on next poll.
+    }
+  }, 4000);
+
+  return () => {
+    cancelled = true;
+    window.clearInterval(timer);
+  };
+}, [hydrated, storageEmail, state.localVideos]);
 
     // ----- UI messaging -----
     const [msg, setMsg] = useState<string | null>(null);
@@ -769,11 +930,18 @@ async function uploadLocalVideo(file: File, draftId: string) {
         lv.id === draftId
           ? {
               ...lv,
-              publicUrl: blobUrl,
-              previewUrl: undefined,
-              progress: 100,
-              status: "done",
-              errorMsg: undefined,
+publicUrl: blobUrl,
+originalPublicUrl: blobUrl,
+
+previewUrl: undefined,
+progress: 100,
+
+processingStatus: "processing",
+optimized: false,
+processingError: null,
+
+status: "uploading",
+errorMsg: undefined,
             }
           : lv
       ),
@@ -838,24 +1006,9 @@ async function onChooseLocalVideos(files: FileList | null) {
     }
 
     // Resolution / readable-metadata check
-    try {
-      const meta = await inspectVideoMetadata(file);
-
-      const longSide = Math.max(meta.width, meta.height);
-      const shortSide = Math.min(meta.width, meta.height);
-
-      if (
-        longSide > MAX_VIDEO_LONG_SIDE ||
-        shortSide > MAX_VIDEO_SHORT_SIDE
-      ) {
-        rejectedMessages.push(
-          `${file.name}: ${meta.width}×${meta.height} video detected. ` +
-          `ScoutLine currently supports videos up to 1080p for reliable playback. ` +
-          `${VIDEO_REQUIREMENTS_TEXT}`
-        );
-        continue;
-      }
-    } catch {
+try {
+  await inspectVideoMetadata(file);
+} catch {
       rejectedMessages.push(
         `${file.name}: ScoutLine could not verify this video for reliable playback. ` +
         VIDEO_REQUIREMENTS_TEXT
@@ -924,7 +1077,7 @@ async function onChooseLocalVideos(files: FileList | null) {
 
       await uploadLocalVideo(file, draft.id);
 
-      flashMsg(`Uploaded: ${draft.fileName}`);
+flashMsg(`Uploaded: ${draft.fileName}. Optimizing for playback…`);
     } catch (e: any) {
       setState((s) => ({
         ...s,
@@ -1188,7 +1341,12 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
         getPayload: () => {
           // Only persist local videos that have a resolvable URL (upload completed)
           const locals = state.localVideos
-            .filter((v) => !!v.publicUrl)
+            .filter(
+  (v) =>
+    !!v.publicUrl &&
+    v.processingStatus !== "processing" &&
+    v.processingStatus !== "error"
+)
             .map((v) => ({
               id: v.id,
               title: v.title,
@@ -1369,9 +1527,31 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                       : "Select videos"
                   }
                 >
-                  Upload Videos
-                </button>
-              </div>
+Upload Videos
+</button>
+
+{props.uploadError ? (
+  <div
+    role="alert"
+    style={{
+      flex: "1 1 320px",
+      minWidth: isMobile ? "100%" : 280,
+      padding: "9px 12px",
+      borderRadius: 8,
+      border: "1px solid #fecaca",
+      background: "#fef2f2",
+      color: "#b91c1c",
+      fontWeight: 700,
+      lineHeight: 1.35,
+      fontSize: 13,
+    }}
+  >
+    <strong>Video upload issue:</strong>{" "}
+    {props.uploadError}
+  </div>
+) : null}
+
+</div>
 
               {state.localVideos.length > 0 ? (
                 <div
@@ -1409,39 +1589,76 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
                           </div>
                         )}
 
-                        {v.publicUrl ? (
-                          <video
-                            controls
-                            preload="metadata"
-                            style={{
-                              width: "100%",
-                              aspectRatio: "16 / 9",
-                              height: "auto",
-                              borderRadius: 12,
-                              background: "#111",
-                              display: "block",
-                            }}
-                            src={v.publicUrl}
-                            aria-label={`${titleText} video`}
-                          />
-                        ) : v.previewUrl ? (
-                          <video
-                            controls
-                            preload="metadata"
-                            style={{
-                              width: "100%",
-                              aspectRatio: "16 / 9",
-                              height: "auto",
-                              borderRadius: 12,
-                              background: "#111",
-                              display: "block",
-                            }}
-                            src={v.previewUrl}
-                            aria-label={`${titleText} preview`}
-                          />
-                        ) : (
-                          <div style={emptyStyle}>Preparing preview…</div>
-                        )}
+{v.processingStatus === "processing" ? (
+  <div
+    style={{
+      ...emptyStyle,
+      marginTop: 0,
+      minHeight: 180,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      padding: 20,
+      background: "#f8fafc",
+      borderRadius: 12,
+    }}
+  >
+    Optimizing video for reliable playback…
+  </div>
+) : v.processingStatus === "error" ? (
+  <div
+    style={{
+      minHeight: 180,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      textAlign: "center",
+      padding: 20,
+      background: "#fef2f2",
+      color: "#b91c1c",
+      borderRadius: 12,
+      fontWeight: 700,
+    }}
+  >
+    {v.processingError ||
+      "ScoutLine could not optimize this video. Please remove it and try uploading again."}
+  </div>
+) : v.publicUrl ? (
+  <video
+    controls
+    preload="metadata"
+    playsInline
+    style={{
+      width: "100%",
+      aspectRatio: "16 / 9",
+      height: "auto",
+      borderRadius: 12,
+      background: "#111",
+      display: "block",
+    }}
+    src={v.publicUrl}
+    aria-label={`${titleText} video`}
+  />
+) : v.previewUrl ? (
+  <video
+    controls
+    preload="metadata"
+    playsInline
+    style={{
+      width: "100%",
+      aspectRatio: "16 / 9",
+      height: "auto",
+      borderRadius: 12,
+      background: "#111",
+      display: "block",
+    }}
+    src={v.previewUrl}
+    aria-label={`${titleText} preview`}
+  />
+) : (
+  <div style={emptyStyle}>Preparing preview…</div>
+)}
 
                         <div style={{ marginTop: 8 }}>
                           <div id={titleId} style={{ fontWeight: 700 }}>
@@ -1557,7 +1774,7 @@ style={{
                         </div>
 
                         {/* Open link (local dev) */}
-                        {v.publicUrl && (
+{v.publicUrl && v.processingStatus !== "processing" && v.processingStatus !== "error" && (
                           <div style={{ marginTop: 8 }}>
                             <a
                               href={`/view-video?src=${encodeURIComponent(v.publicUrl)}&type=${encodeURIComponent(

@@ -2760,6 +2760,7 @@ return (
   email={profileEmail}
   planTier="All-American"
   isMobile={isMobile}
+  uploadError={videoUploadErr}
   onUploadError={setVideoUploadErr}
 />
 </div>

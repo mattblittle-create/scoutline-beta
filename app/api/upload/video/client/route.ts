@@ -2,7 +2,10 @@
 
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
+
 import { prisma } from "@/lib/prisma";
+import { start } from "workflow/api";
+import { processVideoWorkflow } from "@/workflows/process-video";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -102,6 +105,12 @@ return {
                 ? parsed.originalName.replace(/\.[^.]+$/, "").trim()
                 : "video",
             publicUrl: String(blob.url || "").trim(),
+            originalPublicUrl: String(blob.url || "").trim(),
+
+            processingStatus: "processing",
+            optimized: false,
+            processingError: null,
+
             fileType:
               typeof parsed?.fileType === "string" && parsed.fileType.trim()
                 ? parsed.fileType.trim()
@@ -162,6 +171,55 @@ return {
               .delete({ where: { slug: user.slug } })
               .catch(() => {});
           }
+
+          try {
+  const run = await start(processVideoWorkflow, [
+    {
+      email,
+      videoId: newVideo.id,
+      sourceUrl: newVideo.publicUrl,
+      originalName:
+        typeof parsed?.originalName === "string"
+          ? parsed.originalName
+          : "",
+      title: newVideo.title,
+      category: newVideo.category,
+    },
+  ]);
+
+  console.log(
+    `[video upload] optimization workflow started: ${run.runId} (${newVideo.id})`
+  );
+} catch (workflowError) {
+  console.error(
+    "[video upload] failed to start optimization workflow:",
+    workflowError
+  );
+
+  const failedLocalVideos = deduped.map((video: any) => {
+    if (String(video?.id || "").trim() !== newVideo.id) {
+      return video;
+    }
+
+    return {
+      ...video,
+      processingStatus: "error",
+      optimized: false,
+      processingError:
+        "ScoutLine could not start video optimization. Please remove the video and try uploading it again.",
+    };
+  });
+
+  await prisma.playerProfile.update({
+    where: { email },
+    data: {
+      data: {
+        ...nextData,
+        localVideos: failedLocalVideos,
+      },
+    },
+  });
+}
         } catch (err) {
           console.error("[video upload] onUploadCompleted DB update failed:", err);
         }
