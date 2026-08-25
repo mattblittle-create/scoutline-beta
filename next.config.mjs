@@ -1,8 +1,27 @@
 // next.config.mjs
 
+import { withWorkflow } from "workflow/next";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+
+  // ✅ Force apex/root domain to redirect to www
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [
+          {
+            type: "host",
+            value: "myscoutline.com",
+          },
+        ],
+        destination: "https://www.myscoutline.com/:path*",
+        permanent: true,
+      },
+    ];
+  },
 
   // ✅ Use remotePatterns (domains is deprecated)
   images: {
@@ -37,21 +56,21 @@ const nextConfig = {
       "frame-ancestors 'none'",
 
       // Allow images from your storage, thumbnails, and local dev, plus data:/blob: for previews
-      "img-src 'self' data: blob: https://*.public.blob.vercel-storage.com https://i.ytimg.com https://i.vimeocdn.com http://localhost:3000 http://127.0.0.1:3000",
+      "img-src 'self' data: blob: https: http://localhost:3000 http://127.0.0.1:3000",
 
       // Allow iframes for YouTube/Vimeo embeds
-      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com",
+      "frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com https://js.valorpaytech.com https://gateway-sb.clearent.net https://gateway-int.clearent.net",
 
       // If you ever stream MP4s or HLS/DASH segments directly
       "media-src 'self' data: blob: https:",
 
       // Dev needs inline/eval for HMR
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-      "style-src 'self' 'unsafe-inline'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.valorpaytech.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com https://gateway-sb.clearent.net https://gateway-int.clearent.net",
+      "style-src 'self' 'unsafe-inline' https://gateway-sb.clearent.net https://gateway-int.clearent.net",
       "font-src 'self' data:",
 
       // Allow API/fetch/websocket connections (adjust as needed)
-      "connect-src 'self' https: http: ws: wss:",
+      "connect-src 'self' https: http: ws: wss: https://js.valorpaytech.com https://securelink-prod.valorpaytech.com https://securelink-staging.valorpaytech.com https://gateway-sb.clearent.net https://gateway-int.clearent.net",
     ].join("; ");
 
     const securityHeaders = [
@@ -75,4 +94,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withWorkflow(nextConfig);

@@ -4,6 +4,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import type { CSSProperties } from "react";
 import { QRCodeSVG } from "qrcode.react";
+import { ACADEMIC_AREA_OPTIONS } from "@/app/lib/academics/academicAreas";
 
 const ROLE_PRESETS = [
   "Head Coach",
@@ -20,10 +21,18 @@ const ROLE_PRESETS = [
 
 type StaffTitle = (typeof ROLE_PRESETS)[number];
 
-function normalizeStaffTitle(v: any): StaffTitle {
-  const raw = String(v ?? "").trim();
-  const hit = ROLE_PRESETS.find((x) => x === raw);
-  return hit || "Assistant Coach";
+function normalizeStaffTitle(value: unknown): string {
+  const raw = String(value ?? "").trim();
+
+  return raw || "Assistant Coach";
+}
+
+function isPresetStaffTitle(
+  value: unknown
+): value is StaffTitle {
+  return ROLE_PRESETS.includes(
+    String(value ?? "").trim() as StaffTitle
+  );
 }
 
 const COLLEGE_DIVISION_OPTIONS = [
@@ -183,6 +192,53 @@ const CONFERENCES_BY_DIVISION: Record<string, string[]> = {
 type RecruitingTarget = { gradYear: number; positions: string[] };
 const POSITION_OPTIONS = ["RHP", "LHP", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility"] as const;
 
+type ProgramCoachContact = {
+  id: string;
+  name: string | null;
+  email: string;
+  contactEmail?: string | null;
+  title?: string | null;
+  photoUrl?: string | null;
+  bio?: string | null;
+  coachXUrl?: string | null;
+  coachInstagramUrl?: string | null;
+  isProgramAdmin?: boolean;
+};
+
+type AcademicArea = {
+  id: string;
+  name: string | null;
+  category?: string | null;
+  verified?: boolean;
+};
+
+type NilProfile = {
+  strengthTier?: string | null;
+  collectiveName?: string | null;
+  estimatedValue?: number | string | null;
+  baseballAllocationPercent?: number | string | null;
+  updatedAt?: string | null;
+};
+
+type RosterNeed = {
+  id: string;
+  gradYear?: number | null;
+  position?: string | null;
+  priority?: string | null;
+  notes?: string | null;
+};
+
+type MetricBenchmark = {
+  id: string;
+  positionGroup?: string | null;
+  metricKey?: string | null;
+  label?: string | null;
+  value?: number | string | null;
+  unit?: string | null;
+  sourceLevel?: string | null;
+  confidence?: string | null;
+};
+
 type ApiOk = {
   ok: true;
   data: {
@@ -199,6 +255,7 @@ type ApiOk = {
       photoUrl: string | null;
       recruitingTargets: RecruitingTarget[];
       coachBio?: string | null;
+      isProgramAdmin?: boolean;
     };
     program: {
       collegeId: string | null;
@@ -206,25 +263,57 @@ type ApiOk = {
       logoUrl: string | null;
       websiteUrl: string | null;
       programWebsiteUrl: string | null;
+      recruitingQuestionnaireUrl?: string | null;
+      programXUrl?: string | null;
+      programInstagramUrl?: string | null;
       division: string | null;
       conference: string | null;
       programBio?: string | null;
       lastEditedAt?: string | null;
       lastEditedBy?: { id: string; name: string | null; email: string } | null;
+
+      verifiedStatus?: string | null;
+      lastVerifiedAt?: string | null;
+      lastVerifiedBy?: { id: string; name: string | null; email: string } | null;
+
+      recruitingCoordinator?: ProgramCoachContact | null;
+      coachContacts?: ProgramCoachContact[];
+      academicAreas?: AcademicArea[];
+      nilProfile?: NilProfile | null;
+      rosterNeeds?: RosterNeed[];
+      metricBenchmarks?: MetricBenchmark[];
     };
   };
 };
 
 type ApiErr = { ok: false; error: string };
 
-async function uploadImage(file: File, kind: "coach-photo" | "college-logo") {
+async function uploadUserPhoto(file: File, userSlug: string) {
   const fd = new FormData();
   fd.append("file", file);
-  fd.append("kind", kind);
+  fd.append("userSlug", userSlug);
 
-  const res = await fetch("/api/uploads/image", { method: "POST", body: fd });
+  const res = await fetch("/api/upload/photo", { method: "POST", body: fd });
   const json = await res.json();
-  if (!res.ok || !json?.ok || !json?.url) throw new Error(json?.error || `Upload failed (${res.status})`);
+
+  if (!res.ok || !json?.ok || !json?.url) {
+    throw new Error(json?.error || `Upload failed (${res.status})`);
+  }
+
+  return String(json.url);
+}
+
+async function uploadCollegeLogo(file: File) {
+  const fd = new FormData();
+  fd.append("file", file);
+
+  const res = await fetch("/api/upload/college-logo", { method: "POST", body: fd });
+  const json = await res.json();
+
+  if (!res.ok || !json?.ok || !json?.url) {
+    throw new Error(json?.error || `Upload failed (${res.status})`);
+  }
+
   return String(json.url);
 }
 
@@ -274,6 +363,329 @@ function Field(props: { label: string; hint?: string; children: React.ReactNode 
       <div style={{ fontWeight: 900, fontSize: 12, color: "#64748b" }}>{props.label}</div>
       {props.hint ? <div style={{ fontSize: 11, color: "#94a3b8" }}>{props.hint}</div> : null}
       {props.children}
+    </div>
+  );
+}
+
+function formatMoneyish(value: any) {
+  if (value === null || value === undefined || value === "") return "—";
+  const n = Number(value);
+  if (!Number.isFinite(n)) return String(value);
+  return n.toLocaleString(undefined, { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+}
+
+function formatPercentish(value: any) {
+  if (value === null || value === undefined || value === "") return "—";
+  const n = Number(value);
+  if (!Number.isFinite(n)) return String(value);
+  return `${n}%`;
+}
+
+function InfoPill(props: { children: React.ReactNode }) {
+  return <span style={infoPill}>{props.children}</span>;
+}
+
+function EmptyState(props: { children: React.ReactNode }) {
+  return <div style={emptyState}>{props.children}</div>;
+}
+
+function ProgramIntelligenceSection(props: {
+  verifiedStatus: string | null;
+  lastVerifiedAt: string | null;
+  lastVerifiedBy: { name: string | null; email: string } | null;
+  recruitingCoordinator: ProgramCoachContact | null;
+  coachContacts: ProgramCoachContact[];
+  academicAreas: AcademicArea[];
+  nilProfile: NilProfile | null;
+  rosterNeeds: RosterNeed[];
+  metricBenchmarks: MetricBenchmark[];
+  selectedAcademicAreas: string[];
+  academicAreaInput: string;
+  academicAreaMatches: string[];
+  setAcademicAreaInput: (value: string) => void;
+  addAcademicArea: (area: string) => void;
+  removeAcademicArea: (area: string) => void;
+  submitProgramVerification: () => void;
+  submittingVerification: boolean;
+}) {
+  const {
+    verifiedStatus,
+    lastVerifiedAt,
+    lastVerifiedBy,
+    recruitingCoordinator,
+    coachContacts,
+    academicAreas,
+    nilProfile,
+    rosterNeeds,
+    metricBenchmarks,
+    selectedAcademicAreas,
+    academicAreaInput,
+    academicAreaMatches,
+    setAcademicAreaInput,
+    addAcademicArea,
+    removeAcademicArea,
+    submitProgramVerification,
+    submittingVerification,
+  } = props;
+
+  const isVerified = String(verifiedStatus || "").toUpperCase() === "VERIFIED";
+
+  const needsByYear: Record<string, RosterNeed[]> = {};
+  rosterNeeds.forEach((need) => {
+    const key = need.gradYear ? String(need.gradYear) : "Unassigned";
+    if (!needsByYear[key]) needsByYear[key] = [];
+    needsByYear[key].push(need);
+  });
+
+  const metricsByGroup: Record<string, MetricBenchmark[]> = {};
+  metricBenchmarks.forEach((metric) => {
+    const key = metric.positionGroup || "General";
+    if (!metricsByGroup[key]) metricsByGroup[key] = [];
+    metricsByGroup[key].push(metric);
+  });
+
+  return (
+    <div style={card}>
+      <div style={cardTitle}>Verified Program Intelligence</div>
+
+      <div style={cardSub}>
+        Read-only program data used across ScoutLine for public profiles, Suggested Programs, College Search, Truth Fit, and Opportunity Score.
+      </div>
+
+      <div style={intelligenceGrid}>
+        <div style={intelBox}>
+          <div style={intelHeaderRow}>
+            <div style={intelTitle}>Program Verification</div>
+            <span style={isVerified ? verifiedBadge : unverifiedBadge}>
+              {isVerified ? "Verified Program" : "Not Verified Yet"}
+            </span>
+          </div>
+
+          {lastVerifiedAt ? (
+            <div style={intelText}>
+              Last verified {formatShortDateTime(lastVerifiedAt)}
+              {lastVerifiedBy ? ` by ${lastVerifiedBy.name || lastVerifiedBy.email}` : ""}
+            </div>
+          ) : (
+            <EmptyState>No verification date available yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelHeaderRow}>
+            <div style={intelTitle}>Academic Areas / Majors</div>
+
+            <button
+              type="button"
+              onClick={submitProgramVerification}
+              disabled={submittingVerification}
+              style={{
+                ...btnOutlineSmall,
+                opacity: submittingVerification ? 0.65 : 1,
+                cursor: submittingVerification ? "not-allowed" : "pointer",
+              }}
+            >
+              {submittingVerification ? "Submitting..." : "Submit Verification"}
+            </button>
+          </div>
+
+          <div style={intelText}>
+            Confirm, add, or remove academic areas offered by your school.
+          </div>
+
+          <div style={{ display: "grid", gap: 8, marginTop: 10 }}>
+            <input
+              value={academicAreaInput}
+              onChange={(e) => setAcademicAreaInput(e.target.value)}
+              style={input}
+              placeholder="Search majors / academic areas..."
+            />
+
+            {academicAreaInput.trim() ? (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 6,
+                  maxHeight: 110,
+                  overflowY: "auto",
+                  padding: 8,
+                  border: "1px solid #e2e8f0",
+                  borderRadius: 12,
+                  background: "#f8fafc",
+                }}
+              >
+                {academicAreaMatches.length ? (
+                  academicAreaMatches.map((area) => (
+                    <button
+                      key={area}
+                      type="button"
+                      onClick={() => addAcademicArea(area)}
+                      style={chipOff}
+                    >
+                      + {area}
+                    </button>
+                  ))
+                ) : (
+                  <span style={mutedSmall}>No matching academic areas found.</span>
+                )}
+              </div>
+            ) : null}
+
+            {selectedAcademicAreas.length ? (
+              <div style={chipsWrap}>
+                {selectedAcademicAreas.map((area) => (
+                  <button
+                    key={area}
+                    type="button"
+                    onClick={() => removeAcademicArea(area)}
+                    style={chipOn}
+                    title={`Remove ${area}`}
+                  >
+                    {area} ×
+                  </button>
+                ))}
+              </div>
+            ) : (
+              <EmptyState>No academic areas selected yet.</EmptyState>
+            )}
+          </div>
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Recruiting Coordinator</div>
+          {recruitingCoordinator ? (
+            <div style={intelText}>
+              <strong>{recruitingCoordinator.name || "Unnamed"}</strong>
+              <br />
+              {recruitingCoordinator.title || "Recruiting Contact"}
+              <br />
+              {recruitingCoordinator.contactEmail || recruitingCoordinator.email}
+            </div>
+          ) : (
+            <EmptyState>No recruiting coordinator identified yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Coach Contacts</div>
+          {coachContacts.length ? (
+            <div style={chipsWrap}>
+              {coachContacts.slice(0, 10).map((coach) => (
+                <InfoPill key={coach.id}>
+                  {coach.name || coach.email}
+                  {coach.title ? ` — ${coach.title}` : ""}
+                </InfoPill>
+              ))}
+            </div>
+          ) : (
+            <EmptyState>No coach contacts loaded yet.</EmptyState>
+          )}
+        </div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>NIL</div>
+          {nilProfile ? (
+            <div style={intelText}>
+              Strength: {nilProfile.strengthTier || "—"}
+              <br />
+              Collective: {nilProfile.collectiveName || "—"}
+              <br />
+              Est. Value: {formatMoneyish(nilProfile.estimatedValue)}
+              <br />
+              Baseball Allocation: {formatPercentish(nilProfile.baseballAllocationPercent)}
+            </div>
+          ) : (
+            <EmptyState>No NIL profile loaded yet.</EmptyState>
+          )}
+        </div>
+
+<div style={intelBox}>
+  <div style={intelTitle}>Roster Needs</div>
+
+  {rosterNeeds.length ? (
+    <div style={{ display: "grid", gap: 10 }}>
+      {Object.entries(
+        rosterNeeds.reduce((acc: any, need: any) => {
+          const year = String(need.gradYear || "Unknown");
+
+          if (!acc[year]) acc[year] = [];
+          acc[year].push(need);
+
+          return acc;
+        }, {})
+      )
+        .sort(([a], [b]) => Number(a) - Number(b))
+        .map(([year, needs]: any) => (
+          <div key={year}>
+            <div
+              style={{
+                fontWeight: 800,
+                color: "#0f172a",
+                marginBottom: 4,
+              }}
+            >
+              {year}
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 6,
+              }}
+            >
+              {needs.map((need: any, idx: number) => (
+                <span
+                  key={`${year}-${idx}`}
+                  style={{
+                    padding: "4px 8px",
+                    borderRadius: 999,
+                    background:
+                      need.priority === "HIGH"
+                        ? "#dcfce7"
+                        : need.priority === "MEDIUM"
+                        ? "#fef3c7"
+                        : "#f1f5f9",
+                    fontSize: 12,
+                    fontWeight: 700,
+                  }}
+                >
+                  {need.position} • {need.priority}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+    </div>
+  ) : (
+    "No roster needs verified."
+  )}
+</div>
+
+        <div style={intelBox}>
+          <div style={intelTitle}>Metric Benchmarks</div>
+          {Object.keys(metricsByGroup).length ? (
+            <div style={{ display: "grid", gap: 8 }}>
+              {Object.entries(metricsByGroup).map(([group, metrics]) => (
+                <div key={group} style={intelText}>
+                  <strong>{group}</strong>:{" "}
+                  {metrics
+                    .slice(0, 6)
+                    .map((metric) =>
+                      [metric.label || metric.metricKey, metric.value, metric.unit]
+                        .filter(Boolean)
+                        .join(" ")
+                    )
+                    .join(", ")}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState>No metric benchmarks loaded yet.</EmptyState>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
@@ -363,7 +775,8 @@ export default function CoachProfilePage() {
   const [coachFirstName, setCoachFirstName] = useState("");
   const [coachLastName, setCoachLastName] = useState("");
   const coachName = useMemo(() => `${coachFirstName} ${coachLastName}`.trim(), [coachFirstName, coachLastName]);
-  const [coachRole, setCoachRole] = useState<StaffTitle>("Assistant Coach");
+  const [coachRole, setCoachRole] =
+    useState<string>("Assistant Coach");
   const [email, setEmail] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [coachXUrl, setCoachXUrl] = useState("");
@@ -398,6 +811,20 @@ export default function CoachProfilePage() {
 
   const [programLastEditedAt, setProgramLastEditedAt] = useState<string | null>(null);
   const [programLastEditedBy, setProgramLastEditedBy] = useState<{ name: string | null; email: string } | null>(null);
+
+  const [verifiedStatus, setVerifiedStatus] = useState<string | null>(null);
+  const [lastVerifiedAt, setLastVerifiedAt] = useState<string | null>(null);
+  const [lastVerifiedBy, setLastVerifiedBy] = useState<{ name: string | null; email: string } | null>(null);
+
+  const [recruitingCoordinator, setRecruitingCoordinator] = useState<ProgramCoachContact | null>(null);
+  const [coachContacts, setCoachContacts] = useState<ProgramCoachContact[]>([]);
+  const [academicAreas, setAcademicAreas] = useState<AcademicArea[]>([]);
+  const [selectedAcademicAreas, setSelectedAcademicAreas] = useState<string[]>([]);
+  const [academicAreaInput, setAcademicAreaInput] = useState("");
+  const [submittingVerification, setSubmittingVerification] = useState(false);
+  const [nilProfile, setNilProfile] = useState<NilProfile | null>(null);
+  const [rosterNeeds, setRosterNeeds] = useState<RosterNeed[]>([]);
+  const [metricBenchmarks, setMetricBenchmarks] = useState<MetricBenchmark[]>([]);
 
   const conferenceOptions = useMemo(() => {
     const d = (division || "").trim();
@@ -490,6 +917,35 @@ export default function CoachProfilePage() {
             ? { name: lastEditedBy.name ?? null, email: String(lastEditedBy.email || "") }
             : null
         );
+                setVerifiedStatus((json.data.program as any)?.verifiedStatus ?? null);
+        setLastVerifiedAt((json.data.program as any)?.lastVerifiedAt ?? null);
+
+        const rawLastVerifiedBy = (json.data.program as any)?.lastVerifiedBy ?? null;
+        setLastVerifiedBy(
+          rawLastVerifiedBy && typeof rawLastVerifiedBy === "object"
+            ? { name: rawLastVerifiedBy.name ?? null, email: String(rawLastVerifiedBy.email || "") }
+            : null
+        );
+        
+        setRecruitingCoordinator((json.data.program as any)?.recruitingCoordinator ?? null);
+        setCoachContacts(Array.isArray((json.data.program as any)?.coachContacts) ? (json.data.program as any).coachContacts : []);
+        const loadedAcademicAreas = Array.isArray((json.data.program as any)?.academicAreas)
+  ? (json.data.program as any).academicAreas
+  : [];
+
+setAcademicAreas(loadedAcademicAreas);
+
+setSelectedAcademicAreas(
+  loadedAcademicAreas
+    .map((area: any) => String(area?.name || "").trim())
+    .filter(Boolean)
+    .sort((a: string, b: string) => a.localeCompare(b))
+);
+        setNilProfile((json.data.program as any)?.nilProfile ?? null);
+        setRosterNeeds(Array.isArray((json.data.program as any)?.rosterNeeds) ? (json.data.program as any).rosterNeeds : []);
+        setMetricBenchmarks(
+          Array.isArray((json.data.program as any)?.metricBenchmarks) ? (json.data.program as any).metricBenchmarks : []
+        );
       } catch (e: any) {
         setErr(e?.message || "Failed to load profile.");
       } finally {
@@ -502,6 +958,27 @@ export default function CoachProfilePage() {
       cancelled = true;
     };
   }, []);
+
+const academicAreaMatches = ACADEMIC_AREA_OPTIONS.filter(
+  (area) =>
+    area.toLowerCase().startsWith(academicAreaInput.toLowerCase()) &&
+    !selectedAcademicAreas.includes(area)
+).slice(0, 12);
+
+function addAcademicArea(area: string) {
+  const clean = String(area || "").trim();
+  if (!clean) return;
+
+  setSelectedAcademicAreas((prev) =>
+    Array.from(new Set([...prev, clean])).sort((a, b) => a.localeCompare(b))
+  );
+
+  setAcademicAreaInput("");
+}
+
+function removeAcademicArea(area: string) {
+  setSelectedAcademicAreas((prev) => prev.filter((item) => item !== area));
+}
 
   function toggleTargetPosition(gradYear: number, pos: string) {
     setRecruitingTargets((prev) =>
@@ -529,6 +1006,36 @@ export default function CoachProfilePage() {
     });
     setNewTargetYear("");
   }
+
+  async function submitProgramVerification() {
+  try {
+    setSubmittingVerification(true);
+    setErr(null);
+    setOkMsg(null);
+
+    const res = await fetch("/api/coach/program-verification", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        academicAreas: selectedAcademicAreas,
+      }),
+    });
+
+    const text = await res.text();
+    const json = text ? JSON.parse(text) : null;
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || `Program verification failed (${res.status})`);
+    }
+
+    setOkMsg("Program verification submitted.");
+  } catch (e: any) {
+    setErr(e?.message || "Failed to submit program verification.");
+  } finally {
+    setSubmittingVerification(false);
+    setTimeout(() => setOkMsg(null), 1800);
+  }
+}
 
   async function save() {
     try {
@@ -597,7 +1104,16 @@ export default function CoachProfilePage() {
     try {
       setErr(null);
       setUploadingCoachPhoto(true);
-      const url = await uploadImage(file, "coach-photo");
+      const uploadSlug =
+  (coachSlug || email.split("@")[0] || "")
+    .trim()
+    .toLowerCase();
+
+if (!uploadSlug) {
+  throw new Error("Missing coach slug/email for upload.");
+}
+
+const url = await uploadUserPhoto(file, uploadSlug);
       setPhotoUrl(url);
     } catch (e: any) {
       setErr(e?.message || "Failed to upload coach photo.");
@@ -611,7 +1127,7 @@ export default function CoachProfilePage() {
     try {
       setErr(null);
       setUploadingCollegeLogo(true);
-      const url = await uploadImage(file, "college-logo");
+      const url = await uploadCollegeLogo(file);
       setLogoUrl(url);
     } catch (e: any) {
       setErr(e?.message || "Failed to upload college logo.");
@@ -683,15 +1199,33 @@ export default function CoachProfilePage() {
                 </Field>
               </div>
 
-                <Field label="Role">
-                  <select value={coachRole} onChange={(e) => setCoachRole(e.target.value as any)} style={input}>
-                    {ROLE_PRESETS.map((r) => (
-                      <option key={r} value={r}>
-                        {r}
-                      </option>
-                    ))}
-                  </select>
-                </Field>
+<Field
+  label="Role"
+  hint="Your detailed imported title is preserved unless you select a different role."
+>
+  <select
+    value={coachRole}
+    onChange={(event) =>
+      setCoachRole(event.target.value)
+    }
+    style={input}
+  >
+    {!isPresetStaffTitle(coachRole) ? (
+      <option value={coachRole}>
+        {coachRole}
+      </option>
+    ) : null}
+
+    {ROLE_PRESETS.map((roleOption) => (
+      <option
+        key={roleOption}
+        value={roleOption}
+      >
+        {roleOption}
+      </option>
+    ))}
+  </select>
+</Field>
 
                 <Field label="Username" hint="This is your login and cannot be edited here.">
                   <input value={email} disabled style={{ ...input, background: "#f8fafc" }} />
@@ -970,6 +1504,26 @@ export default function CoachProfilePage() {
             addTargetYear={addTargetYear}
             removeTargetYear={removeTargetYear}
             toggleTargetPosition={toggleTargetPosition}
+          />
+
+          <ProgramIntelligenceSection
+            verifiedStatus={verifiedStatus}
+            lastVerifiedAt={lastVerifiedAt}
+            selectedAcademicAreas={selectedAcademicAreas}
+academicAreaInput={academicAreaInput}
+academicAreaMatches={academicAreaMatches}
+setAcademicAreaInput={setAcademicAreaInput}
+addAcademicArea={addAcademicArea}
+removeAcademicArea={removeAcademicArea}
+submitProgramVerification={submitProgramVerification}
+submittingVerification={submittingVerification}
+            lastVerifiedBy={lastVerifiedBy}
+            recruitingCoordinator={recruitingCoordinator}
+            coachContacts={coachContacts}
+            academicAreas={academicAreas}
+            nilProfile={nilProfile}
+            rosterNeeds={rosterNeeds}
+            metricBenchmarks={metricBenchmarks}
           />
 
           {/* Actions */}
@@ -1275,4 +1829,162 @@ const qrWrap: CSSProperties = {
   padding: 12,
   display: "grid",
   placeItems: "center",
+};
+
+const intelligenceGrid: CSSProperties = {
+  marginTop: 14,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+  gap: 12,
+};
+
+const intelBox: CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 14,
+  background: "#f8fafc",
+  padding: 14,
+  minWidth: 0,
+};
+
+const intelHeaderRow: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 10,
+  alignItems: "center",
+  flexWrap: "wrap",
+};
+
+const intelTitle: CSSProperties = {
+  fontWeight: 900,
+  fontSize: 14,
+  color: "#0f172a",
+};
+
+const intelText: CSSProperties = {
+  marginTop: 4,
+  color: "#64748b",
+  fontSize: 12,
+  lineHeight: 1.35,
+  wordBreak: "break-word",
+};
+
+const verifiedBadge: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "6px 10px",
+  background: "rgba(22,163,74,0.12)",
+  color: "#166534",
+  border: "1px solid rgba(22,163,74,0.25)",
+  fontSize: 12,
+  fontWeight: 900,
+};
+
+const unverifiedBadge: CSSProperties = {
+  ...verifiedBadge,
+  background: "rgba(100,116,139,0.12)",
+  color: "#475569",
+  border: "1px solid rgba(100,116,139,0.25)",
+};
+
+const contactRow: CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "44px 1fr",
+  gap: 10,
+  alignItems: "center",
+  minWidth: 0,
+};
+
+const contactAvatar: CSSProperties = {
+  width: 44,
+  height: 44,
+  borderRadius: 999,
+  objectFit: "cover",
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+};
+
+const contactAvatarFallback: CSSProperties = {
+  width: 44,
+  height: 44,
+  borderRadius: 999,
+  display: "grid",
+  placeItems: "center",
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+  color: "#0f172a",
+  fontWeight: 900,
+};
+
+const contactName: CSSProperties = {
+  fontWeight: 900,
+  color: "#0f172a",
+  fontSize: 13,
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+};
+
+const infoPill: CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  borderRadius: 999,
+  padding: "7px 10px",
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+  color: "#0f172a",
+  fontSize: 12,
+  fontWeight: 900,
+};
+
+const emptyState: CSSProperties = {
+  marginTop: 8,
+  color: "#94a3b8",
+  fontSize: 12,
+  lineHeight: 1.35,
+};
+
+const factGrid: CSSProperties = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))",
+  gap: 10,
+};
+
+const factLabel: CSSProperties = {
+  color: "#64748b",
+  fontSize: 11,
+  fontWeight: 900,
+  textTransform: "uppercase",
+  letterSpacing: 0.3,
+};
+
+const factValue: CSSProperties = {
+  marginTop: 3,
+  color: "#0f172a",
+  fontSize: 13,
+  fontWeight: 900,
+  wordBreak: "break-word",
+};
+
+const metricGrid: CSSProperties = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+  gap: 10,
+};
+
+const metricGroupBox: CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  background: "#fff",
+  padding: 12,
+};
+
+const metricRow: CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 10,
+  color: "#0f172a",
+  fontSize: 13,
 };

@@ -2,7 +2,11 @@
 "use client";
 
 import * as React from "react";
-import { BASELINES } from "@/app/lib/metrics-baselines";
+import {
+  BASELINES,
+  COLLEGE_BENCHMARKS,
+  type MetricKey,
+} from "@/app/lib/metrics-baselines";
 
 /** ---------- Types ---------- */
 export type MetricPoint = {
@@ -14,7 +18,8 @@ export type MetricPoint = {
 };
 
 export type MetricSeries = {
-  key: string; // e.g., "homeToFirst", "sixtyYdDash", "exitVelo"
+  // Accept correct internal keys *and* legacy aliases arriving from older payloads
+  key: MetricKey | string; // e.g., "homeToFirst", "sixtyYdDash", "exitVelo", "fbVelo" (alias)
   label: string;
   unit?: string | null; // "sec" | "mph" | "lbs" (may also arrive as "seconds")
   points: MetricPoint[];
@@ -58,8 +63,8 @@ function parseFlexibleDate(d?: string | null): Date | null {
   // MM/YYYY
   let m = s.match(/^(\d{1,2})\/(\d{4})$/);
   if (m) {
-    const mm = Number(m[1]),
-      yyyy = Number(m[2]);
+    const mm = Number(m[1]);
+    const yyyy = Number(m[2]);
     if (mm >= 1 && mm <= 12) return new Date(yyyy, mm - 1, 1);
     return null;
   }
@@ -67,8 +72,8 @@ function parseFlexibleDate(d?: string | null): Date | null {
   // YYYY-MM
   m = s.match(/^(\d{4})-(\d{1,2})$/);
   if (m) {
-    const yyyy = Number(m[1]),
-      mm = Number(m[2]);
+    const yyyy = Number(m[1]);
+    const mm = Number(m[2]);
     if (mm >= 1 && mm <= 12) return new Date(yyyy, mm - 1, 1);
     return null;
   }
@@ -76,16 +81,11 @@ function parseFlexibleDate(d?: string | null): Date | null {
   // MM/DD/YYYY
   m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
   if (m) {
-    const mm = Number(m[1]),
-      dd = Number(m[2]),
-      yyyy = Number(m[3]);
+    const mm = Number(m[1]);
+    const dd = Number(m[2]);
+    const yyyy = Number(m[3]);
     const dt = new Date(yyyy, mm - 1, dd);
-    if (
-      dt.getFullYear() === yyyy &&
-      dt.getMonth() === mm - 1 &&
-      dt.getDate() === dd
-    )
-      return dt;
+    if (dt.getFullYear() === yyyy && dt.getMonth() === mm - 1 && dt.getDate() === dd) return dt;
     return null;
   }
 
@@ -135,21 +135,49 @@ function fmt(value: number | null | undefined, unit?: string | null): string {
   return u ? `${v} ${u}` : v;
 }
 
+/** ---------- Baseline mapping ---------- */
+const BASELINE_ALIASES: Record<string, MetricKey> = {
+  // direct
+  homeToFirst: "homeToFirst",
+  sixtyYdDash: "sixtyYdDash",
+  exitVelo: "exitVelo",
+  rawThrowVelo: "rawThrowVelo",
+  infieldThrowVelo: "infieldThrowVelo",
+  outfieldThrowVelo: "outfieldThrowVelo",
+  catcherThrowVelo: "catcherThrowVelo",
+  avgFbVelo: "avgFbVelo",
+  avgChVelo: "avgChVelo",
+  avgBbVelo: "avgBbVelo",
+  popTime: "popTime",
+  benchPress: "benchPress",
+  squat: "squat",
+  deadLift: "deadLift",
+
+  // common legacy/alt keys
+  sixtyYd: "sixtyYdDash",
+  rawVelo: "rawThrowVelo",
+
+  fbVelo: "avgFbVelo",
+  avgFBVelo: "avgFbVelo",
+  chVelo: "avgChVelo",
+  bbVelo: "avgBbVelo",
+};
+
+function toMetricKey(k: string): MetricKey | null {
+  const key = String(k || "").trim();
+  if (!key) return null;
+
+  // If it exists as-is in BASELINES, it is a valid MetricKey
+  if ((BASELINES as any)[key]) return key as MetricKey;
+
+  const mapped = BASELINE_ALIASES[key];
+  return mapped ?? null;
+}
+
 function baselineTableFor(seriesKey: string): Record<number, number> | null {
-  const k = seriesKey.trim();
-  if ((BASELINES as any)[k]) return (BASELINES as any)[k] as Record<number, number>;
-
-  const alias: Record<string, keyof typeof BASELINES> = {
-    sixtyYd: "sixtyYdDash",
-    sixtyYdDash: "sixtyYdDash",
-    rawVelo: "rawThrowVelo",
-    fbVelo: "avgFbVelo",
-    chVelo: "avgChVelo",
-    bbVelo: "avgBbVelo",
-  };
-
-  const mapped = alias[k];
-  return mapped ? (BASELINES as any)[mapped] : null;
+  const mk = toMetricKey(seriesKey);
+  if (!mk) return null;
+  return BASELINES[mk] ?? null;
 }
 
 /** Normalize incoming points so we accept either `date` or `monthYear`, and carry `source`. */
@@ -169,10 +197,7 @@ function normalizePoints(
     .filter(Boolean) as Array<{ date: string; value: number | null; source?: string | null }>;
 }
 
-function avgSeriesFor(
-  series: MetricSeries,
-  dob: string | null | undefined
-): { date: string; value: number | null }[] {
+function avgSeriesFor(series: MetricSeries, dob: string | null | undefined): { date: string; value: number | null }[] {
   const normalized = normalizePoints(series.points);
 
   if (series.ageAverages && Object.keys(series.ageAverages).length > 0) {
@@ -183,17 +208,16 @@ function avgSeriesFor(
     });
   }
 
-  const table = baselineTableFor(series.key);
+  const table = baselineTableFor(String(series.key));
   if (!table) return [];
 
   return normalized.map((p) => {
     const age = ageOnDate(dob, p.date);
     if (age == null) return { date: p.date, value: null };
 
-    const ages = Object.keys(table)
-      .map(Number)
-      .sort((a, b) => a - b);
+    const ages = Object.keys(table).map(Number).sort((a, b) => a - b);
     if (!ages.length) return { date: p.date, value: null };
+
     let nearest = ages[0];
     let minDelta = Math.abs(age - nearest);
     for (let i = 1; i < ages.length; i++) {
@@ -221,6 +245,92 @@ function yStepForUnit(unit?: string | null): number {
   if (u === "sec" || u.includes("second")) return 0.5;
   if (u === "mph") return 5;
   return 1;
+}
+
+function metricImprovesWhenLower(seriesKey: string): boolean {
+  const k = String(seriesKey || "").trim();
+  return k === "homeToFirst" || k === "sixtyYdDash" || k === "popTime";
+}
+
+function getTrendInfo(
+  seriesKey: string,
+  pts: Array<{ date: string; value: number | null; source?: string | null }>
+): {
+  arrow: "↑" | "↓" | "→";
+  color: string;
+  label: "Improving" | "Declining" | "Steady";
+} {
+  const valid = pts.filter((p) => p.value != null && Number.isFinite(p.value as any));
+  if (valid.length < 2) {
+    return { arrow: "→", color: "#64748b", label: "Steady" };
+  }
+
+  const sorted = [...valid].sort((a, b) => {
+    const ad = parseFlexibleDate(a.date)?.getTime() ?? 0;
+    const bd = parseFlexibleDate(b.date)?.getTime() ?? 0;
+    return ad - bd;
+  });
+
+  const prev = sorted[sorted.length - 2]?.value ?? null;
+  const latest = sorted[sorted.length - 1]?.value ?? null;
+
+  if (prev == null || latest == null) {
+    return { arrow: "→", color: "#64748b", label: "Steady" };
+  }
+
+  const delta = latest - prev;
+  const lowerIsBetter = metricImprovesWhenLower(seriesKey);
+
+  if (Math.abs(delta) < 0.0001) {
+    return { arrow: "→", color: "#64748b", label: "Steady" };
+  }
+
+  const improving = lowerIsBetter ? delta < 0 : delta > 0;
+
+  return improving
+    ? { arrow: "↑", color: "#15803d", label: "Improving" }
+    : { arrow: "↓", color: "#b91c1c", label: "Declining" };
+}
+
+function getTrajectoryLabel(
+  seriesKey: string,
+  dob: string | null | undefined,
+  pts: Array<{ date: string; value: number | null; source?: string | null }>
+): "Strong" | "Rising" | "Steady" | "Early" | "Watch" {
+  const valid = pts.filter((p) => p.value != null && Number.isFinite(p.value as any));
+  if (valid.length < 2) return "Early";
+
+  const sorted = [...valid].sort((a, b) => {
+    const ad = parseFlexibleDate(a.date)?.getTime() ?? 0;
+    const bd = parseFlexibleDate(b.date)?.getTime() ?? 0;
+    return ad - bd;
+  });
+
+  const first = sorted[0];
+  const latest = sorted[sorted.length - 1];
+  if (!first || !latest || first.value == null || latest.value == null) return "Early";
+
+  const lowerIsBetter = metricImprovesWhenLower(seriesKey);
+  const netDelta = latest.value - first.value;
+  const improving = lowerIsBetter ? netDelta < 0 : netDelta > 0;
+  const flat = Math.abs(netDelta) < 0.0001;
+
+  const latestAge = ageOnDate(dob, latest.date);
+  const baselineTable = baselineTableFor(seriesKey);
+  const baselineLatest =
+    latestAge != null && baselineTable ? baselineTable[latestAge] ?? null : null;
+
+  const aheadOfAverage =
+    baselineLatest != null
+      ? lowerIsBetter
+        ? latest.value < baselineLatest
+        : latest.value > baselineLatest
+      : false;
+
+  if (improving && aheadOfAverage) return "Strong";
+  if (improving) return "Rising";
+  if (flat) return "Steady";
+  return "Watch";
 }
 
 /** Helper: latest (by date) non-null value's source */
@@ -268,15 +378,7 @@ function isCatcherMetric(key: string) {
 }
 function isPitchingMetric(key: string) {
   const k = key.trim();
-  return new Set([
-    "avgFbVelo",
-    "avgFBVelo",
-    "fbVelo",
-    "avgChVelo",
-    "chVelo",
-    "avgBbVelo",
-    "bbVelo",
-  ]).has(k);
+  return new Set(["avgFbVelo", "avgFBVelo", "fbVelo", "avgChVelo", "chVelo", "avgBbVelo", "bbVelo"]).has(k);
 }
 function isInfieldMetric(key: string) {
   return key.trim() === "infieldThrowVelo";
@@ -306,6 +408,7 @@ type MetricCardProps = {
 
   pill: React.CSSProperties;
   cardInner: React.CSSProperties;
+  isMobile: boolean;
 };
 
 function MetricCard({
@@ -322,13 +425,17 @@ function MetricCard({
 
   pill,
   cardInner,
+  isMobile,
 }: MetricCardProps) {
+  const [expanded, setExpanded] = React.useState(false);
+  const seriesKey = String(series.key);
+
   // If hints exist, enforce eligibility right away
-  if (isCatcherMetric(series.key) && hasAnyHints && !allowCatcher) return null;
-  if (isPitchingMetric(series.key) && hasAnyHints && !allowPitching) return null;
-  if (isInfieldMetric(series.key) && hasAnyHints && !allowInfield) return null;
-  if (isOutfieldMetric(series.key) && hasAnyHints && !allowOutfield) return null;
-  if (isRawThrowMetric(series.key) && hasAnyHints && !allowRawThrow) return null;
+  if (isCatcherMetric(seriesKey) && hasAnyHints && !allowCatcher) return null;
+  if (isPitchingMetric(seriesKey) && hasAnyHints && !allowPitching) return null;
+  if (isInfieldMetric(seriesKey) && hasAnyHints && !allowInfield) return null;
+  if (isOutfieldMetric(seriesKey) && hasAnyHints && !allowOutfield) return null;
+  if (isRawThrowMetric(seriesKey) && hasAnyHints && !allowRawThrow) return null;
 
   const ptsRaw = normalizePoints(series.points);
   const pts = ptsRaw.filter((p) => p && p.date);
@@ -336,30 +443,113 @@ function MetricCard({
 
   const latestSource = latestSourceFrom(pts);
   const avgPts = avgSeriesFor(series, dob);
+  const isCollapsedMobile = isMobile && !expanded;
+  const trend = getTrendInfo(seriesKey, pts);
+  const trajectory = getTrajectoryLabel(seriesKey, dob, pts);
+  const benchmarks = COLLEGE_BENCHMARKS[toMetricKey(seriesKey) ?? (seriesKey as MetricKey)] ?? null;
 
   // If we require data to show (pos-specific metrics), hide if empty
   const hasAnyPoint = pts.some((p) => p.value != null && Number.isFinite(p.value as any));
-  if (!hasAnyPoint && requiresDataToShow(series.key)) {
-    return null;
-  }
+  if (!hasAnyPoint && requiresDataToShow(seriesKey)) return null;
 
   // ---- If plan does NOT allow growth tracking, show ONLY header/pills (no chart) ----
   if (!showCharts) {
     return (
       <div style={cardInner}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-          <div style={{ fontWeight: 800, color: "#0f172a" }}>{series._display}</div>
-          <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
-            <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-            <span style={pill}>Source: {latestSource || "—"}</span>
+      <div
+        role={isMobile ? "button" : undefined}
+        tabIndex={isMobile ? 0 : undefined}
+        onClick={isMobile ? () => setExpanded((v) => !v) : undefined}
+        onKeyDown={
+          isMobile
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setExpanded((v) => !v);
+                }
+              }
+            : undefined
+        }
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "space-between",
+          alignItems: isMobile ? "stretch" : "flex-start",
+          gap: isMobile ? 8 : 12,
+          cursor: isMobile ? "pointer" : "default",
+          minWidth: 0,
+        }}
+      >
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontWeight: 800, color: "#0f172a" }}>
+              {series._display}
+              {isMobile ? (
+                <span style={{ marginLeft: 8, color: "#64748b", fontWeight: 900 }}>
+                  {expanded ? "−" : "+"}
+                </span>
+              ) : null}
+            </div>
+<span
+  title={trend.label}
+  style={{
+    color: trend.color,
+    fontWeight: 1200,
+    fontSize: 20,          // ⬅️ bigger
+    lineHeight: 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+    background: "#f1f5f9", // subtle badge background
+    border: `1px solid ${trend.color}30`, // soft tinted border
+    marginLeft: 4,
+  }}
+>
+  {trend.arrow}
+</span>
           </div>
+
+          {!isCollapsedMobile && benchmarks ? (
+            <div
+              style={{
+                color: "#caa042",
+                fontSize: 12,
+                fontWeight: 800,
+                lineHeight: 1.35,
+              }}
+            >
+              {benchmarks.D1 != null ? <div>D1 - {fmt(benchmarks.D1, series.unit)}</div> : null}
+              {benchmarks.D2 != null ? <div>D2 - {fmt(benchmarks.D2, series.unit)}</div> : null}
+              {benchmarks.D3 != null ? <div>D3 - {fmt(benchmarks.D3, series.unit)}</div> : null}
+              {benchmarks.JUCO != null ? <div>JUCO - {fmt(benchmarks.JUCO, series.unit)}</div> : null}
+            </div>
+          ) : null}
         </div>
 
-        {!hasAnyPoint && (
-          <div style={{ color: "#94a3b8", fontStyle: "italic" }}>
-            No Metrics available.
+        {!isCollapsedMobile ? (
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 6,
+              justifyContent: isMobile ? "flex-start" : "flex-end",
+              minWidth: 0,
+              maxWidth: "100%",
+            }}
+          >
+            <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
+            <span style={pill}>Source: {latestSource || "—"}</span>
+            <span style={pill}>Trajectory: {trajectory}</span>
           </div>
+        ) : (
+          <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
         )}
+      </div>
+
+        {!hasAnyPoint && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No Metrics available.</div>}
       </div>
     );
   }
@@ -421,13 +611,57 @@ function MetricCard({
   if (allDates.length === 0) {
     return (
       <div style={cardInner}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-          <div style={{ fontWeight: 800, color: "#0f172a" }}>{series._display}</div>
-          <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
-            <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-            <span style={pill}>Source: {latestSource || "—"}</span>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12 }}>
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontWeight: 800, color: "#0f172a" }}>
+              {series._display}
+            </div>
+<span
+  title={trend.label}
+  style={{
+    color: trend.color,
+    fontWeight: 1200,
+    fontSize: 20,          // ⬅️ bigger
+    lineHeight: 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+    background: "#f1f5f9", // subtle badge background
+    border: `1px solid ${trend.color}30`, // soft tinted border
+    marginLeft: 4,
+  }}
+>
+  {trend.arrow}
+</span>
           </div>
+
+          {!isCollapsedMobile && benchmarks ? (
+            <div
+              style={{
+                color: "#caa042",
+                fontSize: 12,
+                fontWeight: 800,
+                lineHeight: 1.35,
+              }}
+            >
+              {benchmarks.D1 != null ? <div>D1 - {fmt(benchmarks.D1, series.unit)}</div> : null}
+              {benchmarks.D2 != null ? <div>D2 - {fmt(benchmarks.D2, series.unit)}</div> : null}
+              {benchmarks.D3 != null ? <div>D3 - {fmt(benchmarks.D3, series.unit)}</div> : null}
+              {benchmarks.JUCO != null ? <div>JUCO - {fmt(benchmarks.JUCO, series.unit)}</div> : null}
+            </div>
+          ) : null}
         </div>
+
+        <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
+          <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
+          <span style={pill}>Source: {latestSource || "—"}</span>
+          <span style={pill}>Trajectory: {trajectory}</span>
+        </div>
+      </div>
         <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No Metrics available.</div>
       </div>
     );
@@ -514,15 +748,15 @@ function MetricCard({
       if (series.ageAverages && typeof series.ageAverages[age] !== "undefined") {
         avgAtAge = series.ageAverages[age] as number | null;
       } else {
-        const tbl = baselineTableFor(series.key);
+        const tbl = baselineTableFor(seriesKey);
         if (tbl) {
           const ages = Object.keys(tbl).map(Number).sort((a, b) => a - b);
           if (ages.length) {
             let nearest = ages[0];
             let min = Math.abs(age - nearest);
             for (let i = 1; i < ages.length; i++) {
-              const a2 = ages[i],
-                diff = Math.abs(age - a2);
+              const a2 = ages[i];
+              const diff = Math.abs(age - a2);
               if (diff < min || (diff === min && a2 < nearest)) {
                 nearest = a2;
                 min = diff;
@@ -547,14 +781,114 @@ function MetricCard({
   return (
     <div style={cardInner}>
       {/* Header pills */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: 8 }}>
-        <div style={{ fontWeight: 800, color: "#0f172a" }}>{series._display}</div>
-        <div style={{ display: "grid", gap: 6, justifyItems: "end" }}>
+      <div
+        role={isMobile ? "button" : undefined}
+        tabIndex={isMobile ? 0 : undefined}
+        onClick={isMobile ? () => setExpanded((v) => !v) : undefined}
+        onKeyDown={
+          isMobile
+            ? (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setExpanded((v) => !v);
+                }
+              }
+            : undefined
+        }
+        style={{
+          display: "flex",
+          flexDirection: isMobile ? "column" : "row",
+          justifyContent: "space-between",
+          alignItems: isMobile ? "stretch" : "flex-start",
+          gap: isMobile ? 8 : 12,
+          minWidth: 0,
+        }}
+      >
+        <div style={{ display: "grid", gap: 4 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+            <div style={{ fontWeight: 800, color: "#0f172a" }}>
+              {series._display}
+              {isMobile ? (
+                <span style={{ marginLeft: 8, color: "#64748b", fontWeight: 900 }}>
+                  {expanded ? "−" : "+"}
+                </span>
+              ) : null}
+            </div>
+<span
+  title={trend.label}
+  style={{
+    color: trend.color,
+    fontWeight: 1200,
+    fontSize: 20,          // ⬅️ bigger
+    lineHeight: 1,
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: 24,
+    height: 24,
+    borderRadius: 999,
+    background: "#f1f5f9", // subtle badge background
+    border: `1px solid ${trend.color}30`, // soft tinted border
+    marginLeft: 4,
+  }}
+>
+  {trend.arrow}
+</span>
+          </div>
+
+          {!isCollapsedMobile && benchmarks ? (
+            <div
+              style={{
+                color: "#caa042",
+                fontSize: 12,
+                fontWeight: 800,
+                lineHeight: 1.35,
+              }}
+            >
+              {benchmarks.D1 != null ? <div>D1 - {fmt(benchmarks.D1, series.unit)}</div> : null}
+              {benchmarks.D2 != null ? <div>D2 - {fmt(benchmarks.D2, series.unit)}</div> : null}
+              {benchmarks.D3 != null ? <div>D3 - {fmt(benchmarks.D3, series.unit)}</div> : null}
+              {benchmarks.JUCO != null ? <div>JUCO - {fmt(benchmarks.JUCO, series.unit)}</div> : null}
+            </div>
+          ) : null}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: 6,
+            justifyContent: isMobile ? "flex-start" : "flex-end",
+            minWidth: 0,
+            maxWidth: "100%",
+          }}
+        >
           <span style={pill}>Most Recent: {fmt(latest?.value ?? null, series.unit)}</span>
-          <span style={pill}>Source: {latestSource || "—"}</span>
+
+          {!isCollapsedMobile ? (
+            <>
+              <span style={pill}>Source: {latestSource || "—"}</span>
+              <span style={pill}>Trajectory: {trajectory}</span>
+            </>
+          ) : null}
         </div>
       </div>
 
+      {isCollapsedMobile ? (
+        <div
+          style={{
+            fontSize: 11,
+            color: "#64748b",
+            fontWeight: 800,
+            marginTop: 2,
+          }}
+        >
+          Click metric title to expand
+        </div>
+      ) : null}
+
+      {!isCollapsedMobile ? (
+        <>
       {/* Chart */}
       <div style={{ width: "100%", overflow: "hidden" }}>
         <svg
@@ -564,7 +898,7 @@ function MetricCard({
           style={{ width: "100%", height: "auto", display: "block" }}
         >
           <defs>
-            <clipPath id={`clip-${series.key}`}>
+            <clipPath id={`clip-${seriesKey}`}>
               <rect x={padLeft} y={padTop} width={innerW} height={innerH} />
             </clipPath>
           </defs>
@@ -600,13 +934,11 @@ function MetricCard({
           <line x1={padLeft} y1={padTop} x2={padLeft} y2={padTop + innerH} stroke="#cbd5e1" />
 
           {/* Lines + dots */}
-          <g clipPath={`url(#clip-${series.key})`}>
+          <g clipPath={`url(#clip-${seriesKey})`}>
             {avgXY.length > 0 && avgPath && (
               <path d={avgPath} fill="none" stroke={AVG_COLOR} strokeWidth="2" strokeDasharray="4 4" />
             )}
-            {playerXY.length > 0 && playerPath && (
-              <path d={playerPath} fill="none" stroke={PLAYER_COLOR} strokeWidth="2.5" />
-            )}
+            {playerXY.length > 0 && playerPath && <path d={playerPath} fill="none" stroke={PLAYER_COLOR} strokeWidth="2.5" />}
             {playerXY.map((p, i) => (
               <circle key={i} cx={p.x} cy={p.y} r={4.5} fill={PLAYER_COLOR} />
             ))}
@@ -670,9 +1002,9 @@ function MetricCard({
         </svg>
       </div>
 
-      {pts.length === 0 && (
-        <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No data yet for this metric.</div>
-      )}
+      {pts.length === 0 && <div style={{ color: "#94a3b8", fontStyle: "italic" }}>No data yet for this metric.</div>}
+        </>
+      ) : null}
     </div>
   );
 }
@@ -687,38 +1019,46 @@ export default function PublicMetrics({
   h2Style,
   pillStyle,
 }: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const { series = [], dob } = metrics || {};
 
   // Plan gating: only All-American + Teams show growth tracking charts
   const showCharts =
-    typeof canShowCharts === "boolean"
-      ? canShowCharts
-      : planTier === "All-American" || planTier === "Teams";
+    typeof canShowCharts === "boolean" ? canShowCharts : planTier === "All-American" || planTier === "Teams";
 
   /** ---- enforce requested order & display names ---- */
   const slotOrder: Array<{ keys: string[]; display: string }> = [
     { keys: ["homeToFirst"], display: "Home to 1B" },
     { keys: ["sixtyYdDash", "sixtyYd"], display: "60 Yard Dash" },
 
-    { keys: ["exitVelo"], display: "Exit Velocity" },
-    { keys: ["rawThrowVelo", "rawVelo"], display: "Raw Throwing Velocity" },
+    { keys: ["exitVelo"], display: "Exit Velo" },
+    { keys: ["rawThrowVelo", "rawVelo"], display: "Raw Throwing Velo" },
 
-    { keys: ["infieldThrowVelo"], display: "Infield Throwing Velocity" },
-    { keys: ["outfieldThrowVelo"], display: "Outfield Throwing Velocity" },
+    { keys: ["infieldThrowVelo"], display: "Infield Throwing Velo" },
+    { keys: ["outfieldThrowVelo"], display: "Outfield Throwing Velo" },
 
     { keys: ["benchPress"], display: "Bench Press" },
     { keys: ["squat"], display: "Squat" },
+    { keys: ["deadLift"], display: "Dead Lift" },
 
     { keys: ["popTime"], display: "Catcher Pop Time" },
-    { keys: ["catcherThrowVelo"], display: "Catcher Throwing Velocity" },
+    { keys: ["catcherThrowVelo"], display: "Catcher Throwing Veloc" },
 
-    { keys: ["avgFbVelo", "avgFBVelo", "fbVelo"], display: "Avg Fastball Velocity" },
-    { keys: ["avgChVelo", "chVelo"], display: "Avg Changeup Velocity" },
+    { keys: ["avgFbVelo", "avgFBVelo", "fbVelo"], display: "Avg Fastball Velo" },
+    { keys: ["avgChVelo", "chVelo"], display: "Avg Changeup Velo" },
 
-    { keys: ["avgBbVelo", "bbVelo"], display: "Avg Breaking Ball Velocity" },
+    { keys: ["avgBbVelo", "bbVelo"], display: "Avg Breaking Ball Velo" },
   ];
 
-  const byKey = new Map(series.map((s) => [s.key, s]));
+  const byKey = new Map(series.map((s) => [String(s.key), s]));
   const orderedSeries: Array<MetricSeries & { _display: string }> = [];
 
   for (const slot of slotOrder) {
@@ -735,7 +1075,7 @@ export default function PublicMetrics({
 
   // append any remaining series not explicitly slotted
   for (const s of series) {
-    if (!orderedSeries.find((os) => os.key === s.key)) {
+    if (!orderedSeries.find((os) => String(os.key) === String(s.key))) {
       orderedSeries.push({ ...s, _display: s.label });
     }
   }
@@ -750,11 +1090,7 @@ export default function PublicMetrics({
   const primaryPos: string | null = rawPositions?.primary ?? null;
 
   const secondaryRaw = rawPositions?.secondary ?? null;
-  const secondaryPos: string[] = Array.isArray(secondaryRaw)
-    ? secondaryRaw
-    : secondaryRaw
-    ? [secondaryRaw]
-    : [];
+  const secondaryPos: string[] = Array.isArray(secondaryRaw) ? secondaryRaw : secondaryRaw ? [secondaryRaw] : [];
 
   const hasPosHints = !!primaryPos || secondaryPos.length > 0;
 
@@ -793,16 +1129,20 @@ export default function PublicMetrics({
   const allowPitchingCharts = hasAnyHints ? hasPitcherPos || isPitcherYes : true;
   const allowInfieldVelo = hasAnyHints ? hasInfieldPos : true;
   const allowOutfieldVelo = hasAnyHints ? hasOutfieldPos : true;
-  const allowRawThrowVelo = hasAnyHints ? hasUtilityPos : true;
 
-  const safeCard: React.CSSProperties = {
-    marginTop: 16,
-    background: "#fff",
-    border: "1px solid #e5e7eb",
-    borderRadius: 12,
-    padding: 16,
-    ...(cardStyle || {}),
-  };
+  // 🔧 Raw throwing velo is useful for basically any position with hints (IF/OF/C/Utility),
+  // not just Utility.
+  const allowRawThrowVelo = hasAnyHints ? (hasUtilityPos || hasInfieldPos || hasOutfieldPos || hasCatcher) : true;
+
+const safeCard: React.CSSProperties = {
+  marginTop: 16,
+  background: "#fff",
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  padding: isMobile ? 12 : 16,
+  overflow: "hidden",
+  ...(cardStyle || {}),
+};
 
   const safeH2: React.CSSProperties = {
     margin: 0,
@@ -811,34 +1151,42 @@ export default function PublicMetrics({
     ...(h2Style || {}),
   };
 
-  const pill: React.CSSProperties = {
-    fontSize: 12,
-    fontWeight: 800,
-    color: "#0f172a",
-    background: "#f1f5f9",
-    border: "1px solid #e2e8f0",
-    borderRadius: 999,
-    padding: "4px 10px",
-    lineHeight: 1,
-    whiteSpace: "nowrap",
-    ...(pillStyle || {}),
-  };
+const pill: React.CSSProperties = {
+  fontSize: isMobile ? 11 : 12,
+  fontWeight: 800,
+  color: "#0f172a",
+  background: "#f1f5f9",
+  border: "1px solid #e2e8f0",
+  borderRadius: 999,
+  padding: isMobile ? "4px 8px" : "4px 10px",
+  lineHeight: 1.2,
+  whiteSpace: "normal",
+  maxWidth: "100%",
+  overflowWrap: "anywhere",
+  wordBreak: "break-word",
+  ...(pillStyle || {}),
+};
 
-  const grid: React.CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-    gap: 12,
-    marginTop: 8,
-  };
+const grid: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: isMobile ? "1fr" : "repeat(2, minmax(0, 1fr))",
+  gap: 12,
+  marginTop: 8,
+  minWidth: 0,
+  maxWidth: "100%",
+};
 
-  const cardInner: React.CSSProperties = {
-    border: "1px solid #e5e7eb",
-    borderRadius: 10,
-    padding: 12,
-    background: "#ffffff",
-    display: "grid",
-    gap: 8,
-  };
+const cardInner: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 10,
+  padding: isMobile ? 10 : 12,
+  background: "#ffffff",
+  display: "grid",
+  gap: 8,
+  minWidth: 0,
+  maxWidth: "100%",
+  overflow: "hidden",
+};
 
   return (
     <section style={safeCard}>
@@ -874,7 +1222,7 @@ export default function PublicMetrics({
         <div style={grid}>
           {orderedSeries.map((s) => (
             <MetricCard
-              key={s.key}
+              key={String(s.key)}
               series={s}
               dob={dob ?? null}
               showCharts={showCharts}
@@ -886,6 +1234,7 @@ export default function PublicMetrics({
               allowRawThrow={allowRawThrowVelo}
               pill={pill}
               cardInner={cardInner}
+              isMobile={isMobile}
             />
           ))}
         </div>

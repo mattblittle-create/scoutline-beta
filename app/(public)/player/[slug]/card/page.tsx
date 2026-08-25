@@ -4,6 +4,8 @@
 import * as React from "react";
 import { useSearchParams } from "next/navigation";
 import CoachTeaserCard from "@/app/components/public/CoachTeaserCard";
+import PublicMedia, { MediaData } from "@/app/components/public/PublicMedia";
+import { toPublicMedia } from "@/app/lib/publicMedia";
 
 function hasMeaningfulStats(obj: any): boolean {
   if (!obj || typeof obj !== "object") return false;
@@ -63,7 +65,6 @@ type PublicProfile = {
 
   seasons?: any[] | null;
 
-  // for hometown
   hometown?: string | null;
   homeTown?: string | null;
   state?: string | null;
@@ -75,12 +76,27 @@ type PublicPayload = {
   stats?: {
     seasons?: any[];
   } | null;
+  metrics?: any;
 };
 
-export default function PlayerCardPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+import { useParams } from "next/navigation";
+
+export default function PlayerCardPage() {
+  const params = useParams();
+  const slug = Array.isArray(params?.slug) ? params.slug[0] : params?.slug;
+
   const searchParams = useSearchParams();
   const fromTeaserCard = searchParams.get("from") === "teaser";
+
+  const prefillShareMode = searchParams.get("shareMode");
+  const prefillCoachEmail = searchParams.get("coachEmail") || "";
+  const prefillCoachName = searchParams.get("coachName") || "";
+
+  const prefillCoachLastName = prefillCoachName
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(-1)[0] || "";
 
   const [data, setData] = React.useState<PublicPayload | null>(null);
   const [loading, setLoading] = React.useState(true);
@@ -88,16 +104,72 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
   const [err, setErr] = React.useState<string | null>(null);
 
   const [toast, setToast] = React.useState<string | null>(null);
+  const [shareMode, setShareMode] = React.useState<"intro" | "followup">("intro");
+  const [viewerRole, setViewerRole] = React.useState<string | null>(null);
+
+  const normalizedViewerRole = String(viewerRole || "")
+    .trim()
+    .toUpperCase();
+
+const canUseCardTools =
+  normalizedViewerRole === "PLAYER" ||
+  normalizedViewerRole === "TEAM_ADMIN" ||
+  normalizedViewerRole === "TEAM";
+
   React.useEffect(() => {
     if (!toast) return;
     const t = window.setTimeout(() => setToast(null), 2200);
     return () => window.clearTimeout(t);
   }, [toast]);
 
+    React.useEffect(() => {
+    if (prefillShareMode === "intro" || prefillShareMode === "followup") {
+      setShareMode(prefillShareMode);
+    }
+  }, [prefillShareMode]);
+
+    React.useEffect(() => {
+    let cancelled = false;
+
+    async function loadViewerRole() {
+      try {
+        const res = await fetch("/api/auth/me", {
+          method: "GET",
+          cache: "no-store",
+        });
+
+        const json = await res.json().catch(() => null);
+
+        if (cancelled) return;
+
+        const role = String(json?.user?.role || json?.role || "")
+          .trim()
+          .toUpperCase();
+
+        setViewerRole(role || null);
+      } catch {
+        if (!cancelled) setViewerRole(null);
+      }
+    }
+
+    loadViewerRole();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   React.useEffect(() => {
     let cancelled = false;
 
     (async () => {
+      if (!slug) {
+        setLoading(false);
+        setNotFound(false);
+        setErr("Invalid player URL.");
+        return;
+      }
+
       setLoading(true);
       setErr(null);
       setNotFound(false);
@@ -139,51 +211,35 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
     if (typeof window !== "undefined") window.print();
   }, []);
 
-  // ✅ Share should share the CARD link (this page), ideally with from=teaser
   const getCardShareUrl = React.useCallback(() => {
     if (typeof window === "undefined") return "";
+
     const u = new URL(window.location.href);
 
-    // If we arrived from teaser, guarantee the param exists in what we share/copy
-    if (fromTeaserCard) u.searchParams.set("from", "teaser");
+    u.searchParams.delete("shareMode");
+    u.searchParams.delete("college");
+    u.searchParams.delete("coachId");
+    u.searchParams.delete("coachName");
+    u.searchParams.delete("coachEmail");
+
+    if (fromTeaserCard) {
+      u.searchParams.set("from", "teaser");
+    } else {
+      u.searchParams.delete("from");
+    }
 
     return u.toString();
   }, [fromTeaserCard]);
 
-  const handleSend = React.useCallback(async () => {
-    if (typeof window === "undefined") return;
+    if (!slug) {
+    return (
+      <main style={wrap}>
+        <h1 style={h1}>Player Card</h1>
+        <p>Invalid player URL.</p>
+      </main>
+    );
+  }
 
-    const url = getCardShareUrl();
-
-    // 1) Web Share API (mobile friendly)
-    try {
-      const navAny = navigator as any;
-      if (navAny.share) {
-        await navAny.share({
-          title: "ScoutLine Player Card",
-          text: "ScoutLine Player Card",
-          url,
-        });
-        return;
-      }
-    } catch {
-      // fall through
-    }
-
-    // 2) Copy to clipboard / prompt fallback
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(url);
-        setToast("Link copied. Paste into email or a DM.");
-      } else {
-        window.prompt("Copy this link and paste it into an email or social message:", url);
-      }
-    } catch {
-      window.prompt("Copy this link and paste it into an email or social message:", url);
-    }
-  }, [getCardShareUrl]);
-
-  // ---------------- Early returns (no hooks below this line) ----------------
   if (loading) {
     return (
       <main style={wrap}>
@@ -272,7 +328,10 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
 
   const positionsForCard = {
     primary: derivedPositions.primary ?? profile.primaryPos ?? "",
-    secondary: (Array.isArray(derivedPositions.secondary) && derivedPositions.secondary[0]) || profile.secondaryPos || null,
+    secondary:
+      Array.isArray(derivedPositions.secondary) && derivedPositions.secondary.length > 0
+        ? derivedPositions.secondary.join("/")
+        : profile.secondaryPos || null,
     pitcherHand: showPitcherHandPill ? (hand as "RHP" | "LHP" | null) : null,
   };
 
@@ -413,7 +472,6 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
   /** ---------- URLs ---------- */
   const fullProfileUrl = `/player/${encodeURIComponent(slug)}`;
 
-  // ✅ QR should send coaches to FULL PROFILE (not card) with from=teaser
   const baseForQr =
     (process.env.NEXT_PUBLIC_BASE_URL || "").trim().replace(/\/+$/, "") ||
     (typeof window !== "undefined" ? window.location.origin : "");
@@ -422,9 +480,311 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
     ? `${baseForQr}/player/${encodeURIComponent(slug)}?from=teaser`
     : `/player/${encodeURIComponent(slug)}?from=teaser`;
 
+      /** ---------- Primary video for card-only section ---------- */
+  const vsRaw = ((profile as any).videoSocial ?? (profile as any).videos ?? {}) as any;
+
+  const mediaDataForCard: MediaData = toPublicMedia(vsRaw, {
+    email: profile.email ?? profile.contact?.email ?? null,
+    phone: profile.phone ?? profile.contact?.phone ?? null,
+    chatUrl: vsRaw?.chatUrl ?? null,
+  });
+
+  const primaryUrlForCard: string | null = (() => {
+    if (vsRaw?.primary && vsRaw?.primary?.id) {
+      if (vsRaw.primary.kind === "local" && Array.isArray(vsRaw.localVideos)) {
+        const match = vsRaw.localVideos.find(
+          (lv: any) => String(lv?.id || "") === String(vsRaw.primary.id)
+        );
+        if (match?.publicUrl) return String(match.publicUrl);
+      }
+
+      if (vsRaw.primary.kind === "external" && Array.isArray(vsRaw.externalVideos)) {
+        const match = vsRaw.externalVideos.find(
+          (ev: any) => String(ev?.id || "") === String(vsRaw.primary.id)
+        );
+        if (match?.url) return String(match.url);
+      }
+    }
+
+    return null;
+  })();
+
+  /** ---------- Recruit-share subject/body helpers ---------- */
+  function getLatestMetric(metrics: any, key: string): number | null {
+    if (!metrics) return null;
+
+    const arr = metrics?.[key];
+    if (!Array.isArray(arr) || !arr.length) return null;
+
+    let latestValue: number | null = null;
+    let latestTs = -Infinity;
+
+    for (const m of arr) {
+      if (!m) continue;
+
+      const val = Number(m.value);
+      if (!Number.isFinite(val)) continue;
+
+      const rawDate = String(m.monthYear || m.date || "").trim();
+      let ts = -Infinity;
+
+      const mmYyyy = rawDate.match(/^(\d{1,2})\/(\d{4})$/);
+      if (mmYyyy) {
+        const mm = Number(mmYyyy[1]);
+        const yyyy = Number(mmYyyy[2]);
+        ts = new Date(yyyy, mm - 1, 1).getTime();
+      } else {
+        const parsed = new Date(rawDate).getTime();
+        ts = Number.isFinite(parsed) ? parsed : -Infinity;
+      }
+
+      if (ts > latestTs) {
+        latestTs = ts;
+        latestValue = val;
+      }
+    }
+
+    return latestValue;
+  }
+
+  function buildRecruitMessage() {
+    const name = fullNameForCard || "Player";
+    const grad = gradYear ? `${gradYear}` : "";
+
+    const rawPrimary = String(positionsForCard?.primary || "").trim();
+    const rawSecondary = String(positionsForCard?.secondary || "").trim();
+
+    const secondaryParts = rawSecondary
+      ? rawSecondary.split("/").map((p) => p.trim()).filter(Boolean)
+      : [];
+
+    const isPitcherPos = (p: string) => ["P", "RHP", "LHP"].includes(p);
+
+    const pitcherLabel =
+      positionsForCard?.pitcherHand === "RHP" || positionsForCard?.pitcherHand === "LHP"
+        ? positionsForCard.pitcherHand
+        : rawPrimary === "RHP" || rawPrimary === "LHP"
+        ? rawPrimary
+        : secondaryParts.includes("RHP")
+        ? "RHP"
+        : secondaryParts.includes("LHP")
+        ? "LHP"
+        : rawPrimary === "P" || secondaryParts.includes("P")
+        ? "P"
+        : null;
+
+    const fieldPositions = [
+      rawPrimary && !isPitcherPos(rawPrimary) ? rawPrimary : null,
+      ...secondaryParts.filter((p) => !isPitcherPos(p)),
+    ].filter(Boolean) as string[];
+
+    const posParts = [...fieldPositions];
+    if (pitcherLabel) posParts.push(pitcherLabel);
+
+    const posString = posParts.join("/").trim();
+
+    const isPitcherOnly = !!pitcherLabel && fieldPositions.length === 0;
+    const isTwoWay = !!pitcherLabel && fieldPositions.length > 0;
+
+    const metrics = (data as any)?.metrics || null;
+
+    const sixty = getLatestMetric(metrics, "sixtyYdDash");
+    const ev = getLatestMetric(metrics, "exitVelo");
+    const fb = getLatestMetric(metrics, "avgFbVelo");
+    const ch = getLatestMetric(metrics, "avgChVelo");
+    const br = getLatestMetric(metrics, "avgBbVelo");
+
+    const gpaStr =
+      gpa && Number.isFinite(Number(gpa)) ? `${Number(gpa).toFixed(2)} GPA` : null;
+
+    const sixtyStr = sixty != null ? `${sixty.toFixed(2)} 60` : null;
+    const evStr = ev != null ? `${Math.round(ev)} EV` : null;
+    const fbStr = fb != null ? `${Math.round(fb)} FB` : null;
+    const chStr = ch != null ? `${Math.round(ch)} CH` : null;
+    const brStr = br != null ? `${Math.round(br)} BR` : null;
+
+    const introSubject = [
+      name,
+      grad && posString ? `${grad} ${posString}` : grad || posString || null,
+      gpaStr,
+      sixtyStr,
+      evStr,
+      fbStr,
+      chStr,
+      brStr,
+      "ScoutLine Profile",
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    const followUpSubject = [
+      "Updated ScoutLine Profile:",
+      name,
+      grad && posString ? `${grad} ${posString}` : grad || posString || null,
+      "New Stats / Metrics / Video",
+    ]
+      .filter(Boolean)
+      .join(" | ");
+
+    let introBody = "";
+    let followUpBody = "";
+
+    if (fromTeaserCard) {
+      introBody = `Coach${prefillCoachLastName ? ` ${prefillCoachLastName}` : ""},
+
+I wanted to share one of our players with you:
+
+${name}
+${grad ? `Class of ${grad}` : ""}
+${posString}
+
+You can view his full ScoutLine player card here:
+${getCardShareUrl()}
+
+Would love your feedback.
+
+Thanks,
+`;
+
+      followUpBody = `Coach,
+
+I wanted to send along updated information for one of our players:
+
+${name}
+${grad ? `Class of ${grad}` : ""}
+${posString}
+
+We’ve recently added updated stats, metrics, and video here:
+${getCardShareUrl()}
+
+Would love your feedback.
+
+Thanks,
+`;
+    } else {
+      introBody = `Coach${prefillCoachLastName ? ` ${prefillCoachLastName}` : ""},
+
+My name is ${name}, and I’m a ${grad} ${posString}.
+
+I wanted to share my ScoutLine player card with you:
+${getCardShareUrl()}
+
+I’d really appreciate you taking a look. Looking forward to connecting.
+
+Thank you,
+${name}
+`;
+
+      followUpBody = `Coach,
+
+I wanted to follow up and share updated information on my ScoutLine player card.
+
+${name}
+${grad ? `Class of ${grad}` : ""}
+${posString}
+
+I’ve recently added updated stats, metrics, and video here:
+${getCardShareUrl()}
+
+Thank you for your time and consideration.
+
+${name}
+`;
+    }
+
+    return {
+      introSubject,
+      followUpSubject,
+      introBody,
+      followUpBody,
+    };
+  }
+
+  const metricsForCard = (data as any)?.metrics || null;
+
+  const benchValue = getLatestMetric(metricsForCard, "benchPress");
+  const squatValue = getLatestMetric(metricsForCard, "squat");
+  const deadLiftValue = getLatestMetric(metricsForCard, "deadLift");
+
+  const benchForCard = benchValue != null ? `${Math.round(benchValue)} lb` : undefined;
+  const squatForCard = squatValue != null ? `${Math.round(squatValue)} lb` : undefined;
+  const deadLiftForCard = deadLiftValue != null ? `${Math.round(deadLiftValue)} lb` : undefined;
+
+  const handleSend = () => {
+    if (typeof window === "undefined") return;
+
+    const { introSubject, followUpSubject, introBody, followUpBody } = buildRecruitMessage();
+
+    const subject = shareMode === "followup" ? followUpSubject : introSubject;
+    const body = shareMode === "followup" ? followUpBody : introBody;
+
+    const to = prefillCoachEmail ? encodeURIComponent(prefillCoachEmail) : "";
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  };
+
+  const handleOpenDraft = () => {
+    if (typeof window === "undefined") return;
+
+    const { introSubject, followUpSubject, introBody, followUpBody } = buildRecruitMessage();
+
+    const subject = shareMode === "followup" ? followUpSubject : introSubject;
+    const body = shareMode === "followup" ? followUpBody : introBody;
+
+    const to = prefillCoachEmail ? encodeURIComponent(prefillCoachEmail) : "";
+    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+  };
+
+  const handleCopySubjectOnly = async () => {
+    if (typeof window === "undefined") return;
+
+    const { introSubject, followUpSubject } = buildRecruitMessage();
+    const subject = shareMode === "followup" ? followUpSubject : introSubject;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(subject);
+        setToast(
+          shareMode === "followup"
+            ? "Follow-up subject copied."
+            : "Intro subject copied."
+        );
+      } else {
+        window.prompt("Copy this subject:", subject);
+      }
+    } catch {
+      window.prompt("Copy this subject:", subject);
+    }
+  };
+
+  const handleCopyFullEmail = async () => {
+    if (typeof window === "undefined") return;
+
+    const { introSubject, followUpSubject, introBody, followUpBody } = buildRecruitMessage();
+
+    const subject = shareMode === "followup" ? followUpSubject : introSubject;
+    const body = shareMode === "followup" ? followUpBody : introBody;
+    const fullMessage = `Subject: ${subject}\n\n${body}`;
+
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(fullMessage);
+        setToast(
+          shareMode === "followup"
+            ? "Follow-up full email copied."
+            : "Intro full email copied."
+        );
+      } else {
+        window.prompt("Copy this email:", fullMessage);
+      }
+    } catch {
+      window.prompt("Copy this email:", fullMessage);
+    }
+  };
+
   return (
     <main style={wrap}>
-      {/* tiny toast */}
       {toast ? (
         <div style={toastStyle} role="status" aria-live="polite">
           {toast}
@@ -445,14 +805,86 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
           ← Back to full profile
         </a>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "flex-end" }}>
-          <button type="button" onClick={handleSend} style={primaryButton}>
-            Share Player Card
-          </button>
-          <button type="button" onClick={handlePrint} style={secondaryButton}>
-            Print Player Card
-          </button>
-        </div>
+        {canUseCardTools ? (
+          <div style={{ display: "grid", gap: 8 }}>
+            {prefillCoachName || prefillCoachEmail ? (
+              <div style={prefillBannerStyle}>
+                Sending email to{" "}
+                <strong>
+                  {prefillCoachName || "selected coach"}
+                  {prefillCoachEmail ? ` • ${prefillCoachEmail}` : ""}
+                </strong>
+              </div>
+            ) : null}
+
+            <div
+            style={{
+              display: "flex",
+              flexWrap: "nowrap",
+              gap: 8,
+              justifyContent: "flex-end",
+              alignItems: "center",
+              overflowX: "auto",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <div style={modeToggleWrap}>
+              <button
+                type="button"
+                onClick={() => setShareMode("intro")}
+                style={{
+                  ...modeToggleBtn,
+                  minWidth: 120,
+                  justifyContent: "center",
+                  ...(shareMode === "intro" ? modeToggleBtnActive : {}),
+                }}
+              >
+                Introduction
+              </button>
+              <button
+                type="button"
+                onClick={() => setShareMode("followup")}
+                style={{
+                  ...modeToggleBtn,
+                  minWidth: 170,
+                  justifyContent: "center",
+                  ...(shareMode === "followup" ? modeToggleBtnActive : {}),
+                }}
+              >
+                Follow Up / Updated
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleSend}
+              style={{ ...primaryButton, minWidth: 135, whiteSpace: "nowrap" }}
+            >
+              {shareMode === "followup" ? "Send Follow Up" : "Send Intro"}
+            </button>
+
+            <button type="button" onClick={handleOpenDraft} style={secondaryButton}>
+              Open Email Draft
+            </button>
+
+            <button type="button" onClick={handleCopySubjectOnly} style={secondaryButton}>
+              Copy Subject Only
+            </button>
+
+            <button type="button" onClick={handleCopyFullEmail} style={secondaryButton}>
+              Copy Full Email
+            </button>
+
+            <button
+              type="button"
+              onClick={handlePrint}
+              style={{ ...secondaryButton, minWidth: 135, whiteSpace: "nowrap" }}
+            >
+              Print Player Card
+            </button>
+            </div>
+          </div>
+        ) : null}
       </header>
 
       <section style={card} className="print-area">
@@ -465,6 +897,9 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
           weight={weightForCard || undefined}
           dob={profile.dob || undefined}
           gpa={gpa || undefined}
+          bench={benchForCard}
+          squat={squatForCard}
+          deadLift={deadLiftForCard}
           bats={batsLabel}
           throws={throwsLabel}
           hometownCity={hometownCityForCard || undefined}
@@ -482,14 +917,30 @@ export default function PlayerCardPage({ params }: { params: { slug: string } })
         />
       </section>
 
-      <style>{`
-        @media print {
-          body * { visibility: hidden !important; }
-          .print-area, .print-area * { visibility: visible !important; }
-          .print-area { position: absolute; left: 0; top: 0; width: 100%; }
-          @page { margin: 0; }
-        }
-      `}</style>
+{primaryUrlForCard ? (
+  <section style={card} className="no-print">
+    <PublicMedia
+      media={mediaDataForCard}
+      title="Primary Video"
+      primaryUrl={primaryUrlForCard}
+      hidePrimaryInGrid={true}
+      showOnlyPrimary={true}
+      hideConnectRow={true}
+      cardStyle={{ marginTop: 0 }}
+      h2Style={h2}
+    />
+  </section>
+) : null}
+
+<style>{`
+  @media print {
+    body * { visibility: hidden !important; }
+    .print-area, .print-area * { visibility: visible !important; }
+    .print-area { position: absolute; left: 0; top: 0; width: 100%; }
+    .no-print, .no-print * { display: none !important; }
+    @page { margin: 0; }
+  }
+`}</style>
     </main>
   );
 }
@@ -570,4 +1021,40 @@ const toastStyle: React.CSSProperties = {
   fontWeight: 900,
   fontSize: 12,
   boxShadow: "0 10px 24px rgba(15,23,42,0.12)",
+};
+
+const modeToggleWrap: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  border: "1px solid #e5e7eb",
+  borderRadius: 999,
+  background: "#ffffff",
+  padding: 3,
+  gap: 4,
+};
+
+const modeToggleBtn: React.CSSProperties = {
+  padding: "7px 12px",
+  borderRadius: 999,
+  border: "none",
+  background: "transparent",
+  color: "#475569",
+  fontSize: 12,
+  fontWeight: 800,
+  cursor: "pointer",
+};
+
+const modeToggleBtnActive: React.CSSProperties = {
+  background: "#e0f2fe",
+  color: "#0f172a",
+};
+
+const prefillBannerStyle: React.CSSProperties = {
+  padding: "8px 10px",
+  borderRadius: 12,
+  border: "1px solid #fde68a",
+  background: "#fffbeb",
+  color: "#92400e",
+  fontSize: 12,
+  fontWeight: 800,
 };

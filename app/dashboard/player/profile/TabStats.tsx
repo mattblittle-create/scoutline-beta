@@ -129,19 +129,18 @@ export type TabStatsProps = {
   removeStatsSeason: (id: string) => void;
   updateStatsSeason: (id: string, patch: Partial<StatsSeason>) => void;
 
-  /** files – parent handles upload + state */
-  onPickStatFiles: (seasonId: string, files: FileList | null) => void;
-  removeStatFile: (seasonId: string, fileIndex: number) => void;
-
   /** options */
   teamOptions: string[];
-  seasonTerms: string[];
-  pitchTypes: string[];
+  seasonTerms: readonly string[];
+  pitchTypes: readonly string[];
   yearOptions: number[];
 
   /** misc feedback (optional) */
   setErr?: (msg: string) => void;
   transientSaved?: () => void;
+
+  /** optional slug passed from parent */
+  playerSlug?: string;
 
   /** shared inline styles */
   styles: Styles;
@@ -450,8 +449,6 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
     addStatsSeason,
     removeStatsSeason,
     updateStatsSeason,
-    onPickStatFiles,
-    removeStatFile,
     teamOptions,
     seasonTerms,
     pitchTypes,
@@ -462,7 +459,16 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
   },
   ref
 ) {
-  /** Expose atomic payload to parent Save button */
+  const [expandedSeasons, setExpandedSeasons] = useState<
+  Record<string, boolean>
+>({});
+
+function toggleSeasonExpanded(id: string) {
+  setExpandedSeasons((prev) => ({
+    ...prev,
+    [id]: !prev[id],
+  }));
+}
   useImperativeHandle(
     ref,
     (): StatsHandle => ({
@@ -487,29 +493,6 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
     [statsPublic, statsSeasons]
   );
 
-  /** helper to get a readable filename from a URL or /uploads/... path */
-  const prettyNameFromUrl = (u?: string) => {
-    if (!u) return "";
-    try {
-      const path = new URL(
-        u,
-        typeof window !== "undefined"
-          ? window.location.origin
-          : "http://localhost"
-      ).pathname;
-      const seg = path.split("/").filter(Boolean).pop() || "";
-      return decodeURIComponent(seg);
-    } catch {
-      // likely a site-relative path (e.g., /uploads/abc.pdf) — just take last segment
-      const seg = u.split("/").filter(Boolean).pop() || u;
-      try {
-        return decodeURIComponent(seg);
-      } catch {
-        return seg;
-      }
-    }
-  };
-
   return (
     <>
       <div
@@ -532,10 +515,8 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
         <div style={{ marginTop: 6 }}>
           <strong>Plan Features:</strong>{" "}
           All plans can manually input stats. Stats are publicly visible with
-          the Walk-On, All-American, and Teams plans only. Link to Stats
-          (upload) of CSV, XLSX, or PDF file(s) (ex. GameChanger) is available
-          with Walk-On, All-American, and Teams plans. Quick Map &amp; Apply of
-          CSV/XLSX file(s) (ex. GameChanger) is only available with All-American
+          the Walk-On, All-American, and Teams plans only. Quick Map &amp; Apply of
+          CSV/XLSX file(s) (ex. GameChanger) is available with All-American
           and Teams plans.
         </div>
 
@@ -693,7 +674,7 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
 
           const toNum = (v: any): number | null => {
             if (v == null || v === "") return null;
-            const s = String(v).trim().replaceAll(",", "");
+            const s = String(v).trim().replace(/,/g, "");
             const n = Number(s);
             return Number.isFinite(n) ? n : null;
           };
@@ -855,17 +836,59 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
           transientSaved?.();
         };
 
-        return (
-          <section
-            key={s.id}
-            style={{
-              marginTop: 12,
-              border: "1px solid #e5e7eb",
-              borderRadius: 12,
-              padding: 12,
-              background: "#ffffff",
-            }}
-          >
+const expanded = expandedSeasons[s.id] ?? false;
+
+return (
+  <section
+    key={s.id}
+    style={{
+      marginTop: 12,
+      border: "1px solid #e5e7eb",
+      borderRadius: 12,
+      background: "#ffffff",
+      overflow: "hidden",
+    }}
+  >
+    <button
+      type="button"
+      onClick={() => toggleSeasonExpanded(s.id)}
+      style={{
+        width: "100%",
+        border: "none",
+        background: "#f8fafc",
+        padding: "14px 16px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        cursor: "pointer",
+      }}
+    >
+      <div
+        style={{
+          fontWeight: 900,
+          color: "#0f172a",
+          fontSize: 15,
+          textAlign: "left",
+        }}
+      >
+        {[s.seasonTerm, s.seasonYear, s.team]
+          .filter(Boolean)
+          .join(" ")}
+      </div>
+
+      <div
+        style={{
+          fontSize: 18,
+          fontWeight: 900,
+          color: "#64748b",
+        }}
+      >
+        {expanded ? "−" : "+"}
+      </div>
+    </button>
+
+    {expanded ? (
+      <div style={{ padding: 12 }}>
             {/* Top bar: Season + Year on the left, Remove on the right */}
             <div
               style={{
@@ -996,35 +1019,6 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
               <div style={{ display: "grid", gap: 8 }}>
                 <label style={labelStyle}>
                   <span style={labelText}>
-                    Link to Stats (upload)
-                  </span>
-                  <input
-                    type="file"
-                    accept=".csv,.xls,.xlsx,.pdf"
-                    onChange={(e) => {
-                      const files = e.target.files;
-                      if (files && files.length > 0) {
-                        onPickStatFiles(s.id, files);
-                      }
-                      // allow re-selecting the same file
-                      e.currentTarget.value = "";
-                    }}
-                    style={inputStyle}
-                  />
-                  <div
-                    style={{
-                      color: "#64748b",
-                      fontSize: 12,
-                      marginTop: 4,
-                    }}
-                  >
-                    CSV, XLSX, or PDF formats from a source such as
-                    GameChanger.
-                  </div>
-                </label>
-
-                <label style={labelStyle}>
-                  <span style={labelText}>
                     Quick Map &amp; Apply (CSV/XLSX)
                   </span>
                   <input
@@ -1062,90 +1056,6 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
                 )}
               </div>
             </div>
-
-            {/* Attached / Linked stat files chips (persisted URLs drive everything) */}
-            {Array.isArray(s.statsFileUrls) &&
-              s.statsFileUrls.length > 0 && (
-                <div style={{ marginTop: 10 }}>
-                  <div
-                    style={{
-                      color: "#0f172a",
-                      fontWeight: 700,
-                      marginBottom: 6,
-                    }}
-                  >
-                    Attached Stat Files
-                  </div>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      flexWrap: "wrap",
-                      gap: 8,
-                    }}
-                  >
-                    {s.statsFileUrls.map((url, idx) => {
-                      const label = prettyNameFromUrl(url);
-                      return (
-                        <span
-                          key={`${idx}-${label}`}
-                          style={{
-                            display: "inline-flex",
-                            alignItems: "center",
-                            gap: 8,
-                            padding: "6px 8px",
-                            border:
-                              "1px solid #e5e7eb",
-                            borderRadius: 8,
-                            background: "#fff",
-                            maxWidth: "100%",
-                          }}
-                        >
-                          <a
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              textDecoration:
-                                "underline",
-                              color: "#0f172a",
-                              overflow: "hidden",
-                              textOverflow:
-                                "ellipsis",
-                              whiteSpace: "nowrap",
-                              maxWidth: 260,
-                            }}
-                            title={url}
-                          >
-                            {label}
-                          </a>
-                          <button
-                            type="button"
-                            onClick={() =>
-                              removeStatFile(
-                                s.id,
-                                idx
-                              )
-                            }
-                            title="Remove"
-                            style={{
-                              border: "none",
-                              background:
-                                "transparent",
-                              cursor: "pointer",
-                              color: "#64748b",
-                              fontWeight: 800,
-                              lineHeight: 1,
-                            }}
-                          >
-                            ×
-                          </button>
-                        </span>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
 
             <hr style={hrStyle} />
 
@@ -2236,8 +2146,10 @@ const TabStats = React.forwardRef<StatsHandle, TabStatsProps>(function TabStats(
                 </section>
               )}
             </div>
-          </section>
-        );
+</div>
+    ) : null}
+  </section>
+);
       })}
     </>
   );

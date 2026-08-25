@@ -1,3 +1,5 @@
+// app/api/colleges/suggest/route.ts
+
 import { NextResponse } from "next/server";
 
 // Minimal placeholder autocomplete endpoint.

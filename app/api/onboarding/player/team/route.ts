@@ -1,3 +1,5 @@
+// app/api/onboarding/player/team/route.ts
+
 import { NextResponse } from "next/server";
 
 type Body = {

@@ -1,8 +1,43 @@
-// /app/api/public/player/[slug]/route.ts
+// app/api/public/player/[slug]/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { getBySlug, toPublicPayload } from "@/lib/devStore";
-import type { AtomicProfile, PublicPayload, PlanTier, VideoSocialPayload } from "@/lib/types/player";
+
+/**
+ * NOTE:
+ * Vercel build failed because "@/lib/types/player" was missing.
+ * Keep this route self-contained so deploys never break on type-path issues.
+ */
+type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
+type AtomicProfile = any;
+
+type VideoSocialPayload = {
+  externalVideos?: Array<{
+    id: string;
+    title?: string;
+    url: string;
+    source?: string;
+    addedAt?: number;
+  }>;
+  localVideos?: Array<{
+    id: string;
+    title?: string;
+    publicUrl: string;
+    fileType?: string;
+    fileSize?: number;
+    addedAt?: number;
+  }>;
+  social?: any;
+  primary?: any;
+};
+
+type PublicPayload = {
+  profile?: any;
+  metrics?: any;
+  stats?: any;
+  demoMode?: "global" | "allowlist" | "query" | null;
+  planTier?: PlanTier;
+  debug?: any;
+};
 
 function planToTier(plan: any): PlanTier {
   const p = String(plan || "").toUpperCase();
@@ -43,7 +78,6 @@ const pruneEmptyStatsMap = (m: any) => {
 const pruneSeasonStats = (s: any) => {
   if (!s || typeof s !== "object") return s;
 
-  // support both flat + nested "stats" shapes
   const flat = {
     hitting: pruneEmptyStatsMap(s.hitting),
     fielding: pruneEmptyStatsMap(s.fielding),
@@ -75,7 +109,6 @@ const pickFirstId = (
   value: string | null;
   trace: Array<{ path: string; raw: unknown; coerced: string | null }>;
 } => {
-  // To make the trace useful, we expect callers to pass tuples: [path, value]
   const values = vals as any[];
   const outTrace: Array<{ path: string; raw: unknown; coerced: string | null }> = [];
   let resolved: string | null = null;
@@ -95,7 +128,6 @@ const pickFirstId = (
   return { value: resolved, trace: outTrace };
 };
 
-// safer id generator (prevents Date.now() collisions in a tight map)
 const mkId = (prefix: string) => `${prefix}_${Math.random().toString(36).slice(2)}_${Date.now()}`;
 
 export async function GET(req: Request, { params }: { params: { slug: string } }) {
@@ -106,97 +138,109 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
   const slug = String(params.slug || "").trim().toLowerCase();
   if (!slug) return NextResponse.json({ ok: false, error: "Missing slug" }, { status: 400 });
 
-  // 1) Cached payload (fast path) — only if not bypassing cache
-  if (!skipCache) {
-    try {
-      const cached = await prisma.publicProfileCache.findUnique({
-        where: { slug },
-        select: { data: true },
-      });
-      const cdata = cached?.data as any;
+  try {
+    // 1) Cached payload (fast path)
+    if (!skipCache) {
+      try {
+        const cached = await prisma.publicProfileCache.findUnique({
+          where: { slug },
+          select: { data: true },
+        });
 
-      if (cdata?.profile) {
-        const patched: any = { ...cdata };
+        const cdata = cached?.data as any;
 
-        // ✅ default plan/status if missing (prevents PUBLIC from falling back to REDSHIRT)
-        patched.planTier = patched.planTier ?? patched.profile?.planTier ?? "Teams";
-        patched.profile.planTier = patched.profile.planTier ?? patched.planTier;
+        if (cdata?.profile) {
+          const patched: any = { ...cdata };
 
-        patched.profile.status = patched.profile.status ?? patched.profile.activityStatus ?? "Active";
-        patched.profile.activityStatus = patched.profile.activityStatus ?? patched.profile.status;
+          // ✅ default plan/status
+          patched.planTier = patched.planTier ?? patched.profile?.planTier ?? "Teams";
+          patched.profile.planTier = patched.profile.planTier ?? patched.planTier;
 
-        // ✅ coach team field compatibility (teamOrOrg <-> team)
-        if (Array.isArray(patched.profile.coaches)) {
-          patched.profile.coaches = patched.profile.coaches.map((c: any) => {
-            const teamVal = c?.team ?? c?.teamOrOrg ?? null;
-            return { ...c, team: teamVal, teamOrOrg: teamVal };
-          });
-          patched.profile.references = patched.profile.coaches;
-          patched.profile.coachesReferences = patched.profile.coaches;
-        }
+          patched.profile.status = patched.profile.status ?? patched.profile.activityStatus ?? "Active";
+          patched.profile.activityStatus = patched.profile.activityStatus ?? patched.profile.status;
 
-        // ✅ local videos compatibility (url/label <-> publicUrl/title)
-        if (patched.profile?.videoSocial) {
-          const vs = patched.profile.videoSocial;
-          if (Array.isArray(vs.localVideos)) {
-            vs.localVideos = vs.localVideos
-              .map((v: any) => {
-                const publicUrl =
-                  typeof v?.publicUrl === "string"
-                    ? v.publicUrl.trim()
-                    : typeof v?.url === "string"
-                    ? v.url.trim()
-                    : "";
-                if (!publicUrl) return null;
+          // ✅ coach compatibility
+          if (Array.isArray(patched.profile.coaches)) {
+            patched.profile.coaches = patched.profile.coaches.map((c: any) => {
+              const teamVal =
+                c?.teamOrOrg ||
+                c?.organization ||
+                c?.team ||
+                c?.org ||
+                null;
 
-                return {
-                  ...v,
-                  id: typeof v?.id === "string" && v.id.trim() ? v.id.trim() : mkId("loc"),
-                  title:
-                    typeof v?.title === "string"
-                      ? v.title.trim()
-                      : typeof v?.label === "string"
-                      ? v.label.trim()
-                      : v?.title,
-                  publicUrl,
-                };
-              })
-              .filter(Boolean);
-          }
-        }
-
-                // ✅ Ensure playerProfileId exists (older cached payloads may not have it)
-        if (!patched.profile?.playerProfileId) {
-          try {
-            const u2 = await prisma.user.findUnique({
-              where: { slug },
-              select: { email: true },
+              return {
+                ...c,
+                team: teamVal,
+                teamOrOrg: teamVal,
+                organization: teamVal,
+                org: teamVal,
+              };
             });
+            patched.profile.references = patched.profile.coaches;
+            patched.profile.coachesReferences = patched.profile.coaches;
+          }
 
-            if (u2?.email) {
-              const pr2 = await prisma.playerProfile.findUnique({
-                where: { email: u2.email.toLowerCase() },
-                select: { id: true },
+          // ✅ local videos compatibility
+          if (patched.profile?.videoSocial) {
+            const vs = patched.profile.videoSocial;
+            if (Array.isArray(vs.localVideos)) {
+              vs.localVideos = vs.localVideos
+                .map((v: any) => {
+                  const publicUrl =
+                    typeof v?.publicUrl === "string"
+                      ? v.publicUrl.trim()
+                      : typeof v?.url === "string"
+                      ? v.url.trim()
+                      : "";
+                  if (!publicUrl) return null;
+
+                  return {
+                    ...v,
+                    id: typeof v?.id === "string" && v.id.trim() ? v.id.trim() : mkId("loc"),
+                    title:
+                      typeof v?.title === "string"
+                        ? v.title.trim()
+                        : typeof v?.label === "string"
+                        ? v.label.trim()
+                        : v?.title,
+                    publicUrl,
+                  };
+                })
+                .filter(Boolean);
+            }
+          }
+
+          // ✅ Ensure playerProfileId exists for coach-only tools
+          if (!patched.profile?.playerProfileId) {
+            try {
+              const u2 = await prisma.user.findUnique({
+                where: { slug },
+                select: { email: true },
               });
 
-              patched.profile.playerProfileId = pr2?.id ?? null;
-            } else {
+              if (u2?.email) {
+                const pr2 = await prisma.playerProfile.findUnique({
+                  where: { email: u2.email.toLowerCase() },
+                  select: { id: true },
+                });
+                patched.profile.playerProfileId = pr2?.id ?? null;
+              } else {
+                patched.profile.playerProfileId = null;
+              }
+            } catch {
               patched.profile.playerProfileId = null;
             }
-          } catch {
-            patched.profile.playerProfileId = null;
           }
+
+          return NextResponse.json({ ok: true, data: patched as PublicPayload });
         }
-
-        return NextResponse.json({ ok: true, data: patched as PublicPayload });
+      } catch {
+        // ignore cache errors
       }
-    } catch {
-      // ignore cache errors
     }
-  }
 
-  // 2) Build from relational tables
-  try {
+    // 2) Build from relational tables
     const user = await prisma.user.findUnique({
       where: { slug },
       select: { id: true, email: true, photoUrl: true },
@@ -210,25 +254,25 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
 
       const row = await prisma.playerProfile.findUnique({
         where: { email: user.email.toLowerCase() },
-        select: { id: true, data: true },
+        select: { id: true, email: true, data: true },
       });
 
       const atomic = (row?.data || {}) as AtomicProfile;
 
-      // ----- Video / Social (normalize mixed legacy/new shapes) -----
+      // ----- Video / Social normalization -----
       const vs = (atomic as any).videoSocial ?? {};
 
-      const rawExternal = Array.isArray(vs.externalVideos)
-        ? vs.externalVideos
-        : Array.isArray((atomic as any).externalVideos)
-        ? (atomic as any).externalVideos
-        : [];
+const rawExternal = Array.isArray((atomic as any).externalVideos)
+  ? (atomic as any).externalVideos
+  : Array.isArray(vs.externalVideos)
+  ? vs.externalVideos
+  : [];
 
-      const rawLocal = Array.isArray(vs.localVideos)
-        ? vs.localVideos
-        : Array.isArray((atomic as any).localVideos)
-        ? (atomic as any).localVideos
-        : [];
+const rawLocal = Array.isArray((atomic as any).localVideos)
+  ? (atomic as any).localVideos
+  : Array.isArray(vs.localVideos)
+  ? vs.localVideos
+  : [];
 
       const videoSocial: VideoSocialPayload = {
         externalVideos: rawExternal
@@ -251,8 +295,6 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
           })
           .filter(Boolean) as any,
 
-        // NEW Tab stores { publicUrl, fileType, fileSize }
-        // legacy may have { url, label }
         localVideos: rawLocal
           .map((v: any) => {
             const publicUrl =
@@ -264,28 +306,37 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
 
             if (!publicUrl) return null;
 
-            return {
-              id: typeof v?.id === "string" && v.id.trim() ? v.id.trim() : mkId("loc"),
-              title:
-                typeof v?.title === "string"
-                  ? v.title.trim()
-                  : typeof v?.label === "string"
-                  ? v.label.trim()
-                  : undefined,
-              publicUrl,
-              fileType:
-                typeof v?.fileType === "string"
-                  ? v.fileType.trim()
-                  : typeof v?.type === "string"
-                  ? v.type
-                  : "",
-              fileSize: Number.isFinite(Number(v?.fileSize))
-                ? Number(v.fileSize)
-                : Number.isFinite(Number(v?.size))
-                ? Number(v.size)
-                : 0,
-              addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
-            };
+return {
+  id: typeof v?.id === "string" && v.id.trim() ? v.id.trim() : mkId("loc"),
+  title:
+    typeof v?.title === "string"
+      ? v.title.trim()
+      : typeof v?.label === "string"
+      ? v.label.trim()
+      : undefined,
+  publicUrl,
+  fileType:
+    typeof v?.fileType === "string"
+      ? v.fileType.trim()
+      : typeof v?.type === "string"
+      ? v.type
+      : "",
+  fileSize: Number.isFinite(Number(v?.fileSize))
+    ? Number(v.fileSize)
+    : Number.isFinite(Number(v?.size))
+    ? Number(v.size)
+    : 0,
+  addedAt: Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now(),
+
+  // ✅ ADD THIS LINE
+  category:
+    v?.category === "Hitting" ||
+    v?.category === "Fielding" ||
+    v?.category === "Pitching" ||
+    v?.category === "Baserunning"
+      ? v.category
+      : null,
+};
           })
           .filter(Boolean) as any,
 
@@ -294,8 +345,7 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
       };
 
       // ----- Teams (Athletics) -----
-      const teams: NonNullable<PublicPayload["profile"]>["athletics"]["teams"] = [
-        // High School team (from Athletics tab)
+      const teams = [
         ...((atomic as any).hsName || (atomic as any).hsScheduleUrl || (atomic as any).hsWebsiteUrl
           ? [
               {
@@ -312,7 +362,6 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             ]
           : []),
 
-        // Travel team (from Athletics tab)
         ...((atomic as any).travelTeamName || (atomic as any).travelTeamScheduleUrl || (atomic as any).travelTeamWebsiteUrl
           ? [
               {
@@ -329,7 +378,6 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             ]
           : []),
 
-        // Other Teams array (already supports website links correctly)
         ...(Array.isArray((atomic as any).otherTeams)
           ? (atomic as any).otherTeams.map((t: any) => {
               const kind =
@@ -352,9 +400,9 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
               };
             })
           : []),
-      ].filter(Boolean) as any[];
+      ].filter(Boolean);
 
-      // ----- Academics normalization (majors + docs) -----
+      // ----- Academics normalization -----
       const ac = (atomic as any).academics ?? {};
       const sel = ac.selectedDocs ?? {};
 
@@ -412,10 +460,10 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         .map(mapDoc)
         .filter((d) => !!d.url);
 
-      // ----- Gather all plausible places for IDs and build a detailed trace -----
-      const athletics = (atomic as any).athletics ?? {};
-      const eligibility = (atomic as any).eligibility ?? {};
-      const academics = (atomic as any).academics ?? {};
+      // ----- IDs with trace -----
+      const athleticsNS = (atomic as any).athletics ?? {};
+      const eligibilityNS = (atomic as any).eligibility ?? {};
+      const academicsNS = (atomic as any).academics ?? {};
 
       const ncaaScan = pickFirstId(
         ["atomic.ncaaId", (atomic as any).ncaaId],
@@ -424,25 +472,19 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         ["atomic.ncaaEligibilityId", (atomic as any).ncaaEligibilityId],
         ["atomic.ncaaEligibilityCenterId", (atomic as any).ncaaEligibilityCenterId],
 
-        ["athletics.ncaaId", athletics?.ncaaId],
-        ["athletics.NCAAId", athletics?.NCAAId],
-        ["athletics.ncaaEligibilityId", athletics?.ncaaEligibilityId],
-        ["athletics.ncaaEligibilityCenterId", athletics?.ncaaEligibilityCenterId],
+        ["athletics.ncaaId", athleticsNS?.ncaaId],
+        ["athletics.NCAAId", athleticsNS?.NCAAId],
+        ["athletics.ncaaEligibilityId", athleticsNS?.ncaaEligibilityId],
+        ["athletics.ncaaEligibilityCenterId", athleticsNS?.ncaaEligibilityCenterId],
 
-        ["athletics.eligibility.ncaaId", (athletics as any)?.eligibility?.ncaaId],
-        ["athletics.eligibility.NCAAId", (athletics as any)?.eligibility?.NCAAId],
-        ["athletics.eligibility.ncaaEligibilityId", (athletics as any)?.eligibility?.ncaaEligibilityId],
-        ["athletics.eligibility.ncaaEligibilityCenterId", (athletics as any)?.eligibility?.ncaaEligibilityCenterId],
+        ["athletics.eligibility.ncaaId", (athleticsNS as any)?.eligibility?.ncaaId],
+        ["athletics.eligibility.NCAAId", (athleticsNS as any)?.eligibility?.NCAAId],
 
-        ["eligibility.ncaaId", eligibility?.ncaaId],
-        ["eligibility.NCAAId", eligibility?.NCAAId],
-        ["eligibility.ncaaEligibilityId", eligibility?.ncaaEligibilityId],
-        ["eligibility.ncaaEligibilityCenterId", eligibility?.ncaaEligibilityCenterId],
+        ["eligibility.ncaaId", eligibilityNS?.ncaaId],
+        ["eligibility.NCAAId", eligibilityNS?.NCAAId],
 
-        ["academics.ncaaId", academics?.ncaaId],
-        ["academics.NCAAId", academics?.NCAAId],
-        ["academics.ncaaEligibilityId", academics?.ncaaEligibilityId],
-        ["academics.ncaaEligibilityCenterId", academics?.ncaaEligibilityCenterId]
+        ["academics.ncaaId", academicsNS?.ncaaId],
+        ["academics.NCAAId", academicsNS?.NCAAId]
       );
 
       const naiaScan = pickFirstId(
@@ -450,65 +492,41 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         ["atomic.naiaEcId", (atomic as any).naiaEcId],
         ["atomic.NAIAEcid", (atomic as any).NAIAEcid],
         ["atomic.naiaId", (atomic as any).naiaId],
-        ["atomic.naiaEligibilityId", (atomic as any).naiaEligibilityId],
-        ["atomic.naiaEligibilityCenterId", (atomic as any).naiaEligibilityCenterId],
-        ["atomic.ecid", (atomic as any).ecid], // super-legacy
+        ["atomic.ecid", (atomic as any).ecid],
 
-        ["athletics.naiaEcid", athletics?.naiaEcid],
-        ["athletics.naiaEcId", athletics?.naiaEcId],
-        ["athletics.NAIAEcid", athletics?.NAIAEcid],
-        ["athletics.naiaId", athletics?.naiaId],
-        ["athletics.naiaEligibilityId", athletics?.naiaEligibilityId],
-        ["athletics.naiaEligibilityCenterId", athletics?.naiaEligibilityCenterId],
-        ["athletics.ecid", (athletics as any)?.ecid],
+        ["athletics.naiaEcid", athleticsNS?.naiaEcid],
+        ["athletics.naiaEcId", athleticsNS?.naiaEcId],
+        ["athletics.NAIAEcid", athleticsNS?.NAIAEcid],
+        ["athletics.naiaId", athleticsNS?.naiaId],
+        ["athletics.ecid", (athleticsNS as any)?.ecid],
 
-        ["athletics.eligibility.naiaEcid", (athletics as any)?.eligibility?.naiaEcid],
-        ["athletics.eligibility.naiaEcId", (athletics as any)?.eligibility?.naiaEcId],
+        ["eligibility.naiaEcid", eligibilityNS?.naiaEcid],
+        ["eligibility.naiaEcId", eligibilityNS?.naiaEcId],
+        ["eligibility.NAIAEcid", eligibilityNS?.NAIAEcid],
+        ["eligibility.naiaId", eligibilityNS?.naiaId],
+        ["eligibility.ecid", (eligibilityNS as any)?.ecid],
 
-        ["eligibility.naiaEcid", eligibility?.naiaEcid],
-        ["eligibility.naiaEcId", eligibility?.naiaEcId],
-        ["eligibility.NAIAEcid", eligibility?.NAIAEcid],
-        ["eligibility.naiaId", eligibility?.naiaId],
-        ["eligibility.naiaEligibilityId", eligibility?.naiaEligibilityId],
-        ["eligibility.naiaEligibilityCenterId", eligibility?.naiaEligibilityCenterId],
-        ["eligibility.ecid", (eligibility as any)?.ecid],
-
-        ["academics.naiaEcid", academics?.naiaEcid],
-        ["academics.naiaEcId", academics?.naiaEcId],
-        ["academics.NAIAEcid", academics?.NAIAEcid],
-        ["academics.naiaId", academics?.naiaId],
-        ["academics.naiaEligibilityId", academics?.naiaEligibilityId],
-        ["academics.naiaEligibilityCenterId", academics?.naiaEligibilityCenterId],
-        ["academics.ecid", (academics as any)?.ecid]
+        ["academics.naiaEcid", academicsNS?.naiaEcid],
+        ["academics.naiaEcId", academicsNS?.naiaEcId],
+        ["academics.NAIAEcid", academicsNS?.NAIAEcid],
+        ["academics.naiaId", academicsNS?.naiaId],
+        ["academics.ecid", (academicsNS as any)?.ecid]
       );
 
       const computedPlanTier: PlanTier =
         ((atomic as any).planTier as PlanTier) ?? (player?.plan ? planToTier(player.plan) : "Teams");
 
-      // Default to Active unless explicitly disabled
       const computedStatus = player?.publicEnabled === false ? "Inactive" : "Active";
 
       const data: PublicPayload & {
-        debug?: {
-          idsTrace: {
-            ncaa: typeof ncaaScan.trace;
-            naia: typeof naiaScan.trace;
-          };
-          rawNamespaces: {
-            has_atomic_keys: string[];
-            has_academics_keys: string[];
-            has_athletics_keys: string[];
-            has_eligibility_keys: string[];
-          };
-          planDebug?: any;
-        };
+        debug?: any;
       } = {
         profile: {
           planTier: computedPlanTier,
           activityStatus: computedStatus,
           status: computedStatus,
 
-          // ✅ Needed for coach-only tools (rating/notes/lists) when viewing /player/[slug] as a coach
+          // needed for coach-only tools
           playerProfileId: row?.id ?? null,
 
           firstName: (atomic as any).firstName ?? null,
@@ -525,12 +543,13 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
           dob: (atomic as any).dobPrivate ? null : (atomic as any).dob ?? null,
           gender: (atomic as any).gender ?? null,
 
-          // Core hometown (from Core tab)
           hometown: (atomic as any).hometown ?? null,
           state: (atomic as any).state ?? null,
 
-          // contact (honor privacy)
-          email: (atomic as any).emailPrivate ? null : (atomic as any).email ?? null,
+          email:
+            (atomic as any).emailPrivate
+              ? null
+              : row?.email ?? user?.email ?? (atomic as any).email ?? null,
           phone: (atomic as any).phonePrivate ? null : (atomic as any).phone ?? null,
 
           primaryPos: (atomic as any).primaryPos ?? null,
@@ -549,7 +568,6 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             ? { isCommitted: true, program: (atomic as any).committedProgram ?? null }
             : { isCommitted: false, program: null },
 
-          // Final resolved IDs
           ncaaId: ncaaScan.value,
           naiaEcid: naiaScan.value,
 
@@ -561,6 +579,7 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             sat: (atomic as any).sat ?? null,
             act: (atomic as any).act ?? null,
             highSchool: (atomic as any).hsName ?? null,
+            highSchoolWebsite: (atomic as any).hsGeneralWebsiteUrl ?? null,
             city: (atomic as any).hsCity ?? null,
             state: (atomic as any).hsState ?? null,
 
@@ -575,7 +594,6 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
           athletics: {
             playerBio: (atomic as any).playerBio ?? null,
             eligibilityRegistered: !!(atomic as any).eligibilityRegistered,
-            // mirror for convenience
             ncaaId: ncaaScan.value,
             naiaEcid: naiaScan.value,
             teams,
@@ -583,14 +601,14 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
 
           videoSocial,
 
-          coaches: [], // filled below
+          coaches: [],
           references: [],
           coachesReferences: [],
 
           seasons: Array.isArray((atomic as any).statsSeasons) ? (atomic as any).statsSeasons.map(pruneSeasonStats) : [],
         },
 
-        metrics: ((atomic as any).metrics as any) ?? null,
+        metrics: ((atomic as any).metrics as any) ?? {},
         stats: {
           seasons: Array.isArray((atomic as any).statsSeasons) ? (atomic as any).statsSeasons.map(pruneSeasonStats) : [],
         },
@@ -598,7 +616,7 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         planTier: computedPlanTier,
       };
 
-      // Coaches / references merged (normalize + dedupe + emit team AND teamOrOrg)
+      // Coaches / references merged + compatibility
       const rawCoaches = (() => {
         const arr = [
           ...toArr((atomic as any).coaches),
@@ -614,26 +632,45 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         for (const it of arr) {
           if (!it) continue;
 
-          // Accept both new and legacy shapes:
-          // new: { firstName, lastName, team, email, phone, focus }
-          // old: { name, teamOrOrg/team, email, phone, role }
           const fn = str(it.firstName ?? it.first).trim();
           const ln = str(it.lastName ?? it.last).trim();
+          const nameLegacy = str(it.name ?? it.fullName ?? "").trim();
 
-          const nameLegacy = str(it.name ?? "").trim();
           const email = str(it.email ?? it.coachEmail).trim().toLowerCase();
           const phone = str(it.phone ?? it.coachPhone).trim();
 
-          const teamVal = str(it.team ?? it.teamOrOrg ?? it.organization ?? it.org ?? "").trim() || null;
-          const focusVal = str(it.focus ?? it.coachingFocus ?? it.role ?? it.position ?? "").trim() || null;
+          const rawTeamVal =
+            it.teamOrOrg ||
+            it.organization ||
+            it.team ||
+            it.org ||
+            it.teamOrganization ||
+            it.teamName ||
+            it.school ||
+            it.program ||
+            "";
 
-          // If only legacy name exists, attempt to split once
+          const teamVal = str(rawTeamVal).trim() || null;
+
+          const focusVal =
+            str(it.focus ?? it.coachingFocus ?? it.role ?? it.position ?? "").trim() || null;
+
           let first = fn || null;
           let last = ln || null;
+
           if ((!first || !last) && nameLegacy) {
             const parts = nameLegacy.split(/\s+/).filter(Boolean);
             if (!first && parts.length > 0) first = parts[0];
             if (!last && parts.length > 1) last = parts.slice(1).join(" ");
+          }
+
+          // If firstName already contains the full name and lastName is separately present,
+          // avoid rendering "Tom Ras Ras" by removing the trailing duplicate last name.
+          if (first && last) {
+            const suffix = new RegExp(`\\s+${last.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i");
+            if (suffix.test(first)) {
+              first = first.replace(suffix, "").trim() || first;
+            }
           }
 
           const dedupeKey = [first ?? "", last ?? "", email ?? "", phone ?? ""].join("|");
@@ -644,7 +681,9 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             firstName: first,
             lastName: last,
             team: teamVal,
-            teamOrOrg: teamVal, // ✅ compatibility
+            teamOrOrg: teamVal,
+            organization: teamVal,
+            org: teamVal,
             focus: focusVal,
             email: email || null,
             phone: phone || null,
@@ -654,16 +693,13 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
         return out;
       })();
 
-      data.profile.coaches = rawCoaches;
-      data.profile.references = rawCoaches;
-      data.profile.coachesReferences = rawCoaches;
+      (data.profile as any).coaches = rawCoaches;
+      (data.profile as any).references = rawCoaches;
+      (data.profile as any).coachesReferences = rawCoaches;
 
       if (debug) {
         data.debug = {
-          idsTrace: {
-            ncaa: ncaaScan.trace,
-            naia: naiaScan.trace,
-          },
+          idsTrace: { ncaa: ncaaScan.trace, naia: naiaScan.trace },
           planDebug: {
             playerPlanRaw: player?.plan ?? null,
             atomicPlanTierRaw: (atomic as any)?.planTier ?? null,
@@ -672,10 +708,10 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
             computedActivityStatus: computedStatus,
           },
           rawNamespaces: {
-            has_atomic_keys: Object.keys(atomic || {}),
-            has_academics_keys: Object.keys(academics || {}),
-            has_athletics_keys: Object.keys(athletics || {}),
-            has_eligibility_keys: Object.keys(eligibility || {}),
+            has_atomic_keys: Object.keys((atomic as any) || {}),
+            has_academics_keys: Object.keys((academicsNS as any) || {}),
+            has_athletics_keys: Object.keys((athleticsNS as any) || {}),
+            has_eligibility_keys: Object.keys((eligibilityNS as any) || {}),
           },
         };
       }
@@ -691,15 +727,32 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
 
       return NextResponse.json({ ok: true, data });
     }
-  } catch {
-    // fall through
+
+    // 3) Dev fallback (LAZY IMPORT to avoid server crash if devStore is clienty)
+    try {
+      const devStore = await import("@/lib/devStore");
+      const dev = await devStore.getBySlug(slug);
+      if (dev) return NextResponse.json(devStore.toPublicPayload(dev));
+    } catch (e: any) {
+      // if debug, expose that dev fallback failed (still continue to 404)
+      if (debug) {
+        return NextResponse.json(
+          { ok: false, error: "Dev fallback failed", detail: String(e?.message || e) },
+          { status: 500 }
+        );
+      }
+    }
+
+    return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
+  } catch (e: any) {
+    // ✅ FINAL GUARD: if anything blows up, return a JSON 500
+    return NextResponse.json(
+      {
+        ok: false,
+        error: debug ? String(e?.message || e) : "Failed to load player.",
+        ...(debug ? { stack: String(e?.stack || "") } : {}),
+      },
+      { status: 500 }
+    );
   }
-
-  // 3) Dev fallback
-  try {
-    const dev = await getBySlug(slug);
-    if (dev) return NextResponse.json(toPublicPayload(dev));
-  } catch {}
-
-  return NextResponse.json({ ok: false, error: "Not found" }, { status: 404 });
 }

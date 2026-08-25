@@ -1,3 +1,5 @@
+// app/api/notifications/route.ts
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { listNotificationsForUser } from "@/lib/notifications";

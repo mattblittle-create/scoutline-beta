@@ -42,6 +42,23 @@ export default function CoachDashboardHome() {
         />
 
         <Card
+          title="ScoutLine Chat"
+          subtitle="Coach-initiated conversations with players"
+          body={
+            <>
+              <p style={p}>
+                Manage your ScoutLine Chat conversations with players. Coaches open the first thread, and players can reply after the conversation starts.
+              </p>
+              <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <Link href="/dashboard/coach/chat" style={btnGold}>
+                  Open Chat
+                </Link>
+              </div>
+            </>
+          }
+        />
+
+        <Card
           title="Invites"
           subtitle="Invite your program staff to ScoutLine"
           body={
@@ -70,6 +87,50 @@ export default function CoachDashboardHome() {
                 <Link href="/dashboard/coach/directory" style={btnGold}>
                   Go to Directory
                 </Link>
+              </div>
+            </>
+          }
+        />
+
+        <Card
+  title="Program Verification"
+  subtitle="Review and submit baseball program updates"
+  body={
+    <>
+      <p style={p}>
+        Confirm recruiting links, roster needs, contact information, roster size,
+        GPA expectations, recruiting preferences, and other baseball-specific
+        program intelligence.
+      </p>
+
+      <div style={actions}>
+        <Link
+          href="/dashboard/coach/program-verification"
+          style={btnGold}
+        >
+          Open Program Verification
+        </Link>
+      </div>
+    </>
+  }
+/>
+
+                <Card
+          title="Support"
+          subtitle="Need help or have a question?"
+          body={
+            <>
+              <p style={p}>
+                Contact ScoutLine support for coach profile, recruiting board, player search, notes, lists, staff access, or chat help.
+              </p>
+
+              <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <a
+                  href="mailto:matt.b.little@gmail.com?subject=ScoutLine%20Coach%20Dashboard%20Support"
+                  style={btnGold}
+                >
+                  Email Support
+                </a>
               </div>
             </>
           }
@@ -145,4 +206,11 @@ const btnGold: CSSProperties = {
   color: "#0f182a",
   fontWeight: 900,
   textDecoration: "none",
+};
+
+const actions: CSSProperties = {
+  marginTop: 10,
+  display: "flex",
+  gap: 10,
+  flexWrap: "wrap",
 };

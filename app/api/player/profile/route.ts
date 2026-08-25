@@ -3,12 +3,14 @@ import { NextResponse } from "next/server";
 import { getByEmail, saveUser, StoredUser } from "@/lib/devStore"; // dev fallback
 import { prisma } from "@/lib/prisma";
 import { slugifyName, generateUniqueSlug } from "@/lib/slug";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
 /** ================================
  *  Enumerations / options (keep in sync with client)
  * ================================= */
-const POS_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility"]);
-const SECONDARY_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "none"]);
+const POS_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "CIF", "MIF", "OF"]);
+
+const SECONDARY_OPTIONS = new Set(["P", "C", "1B", "2B", "SS", "3B", "LF", "CF", "RF", "Utility", "CIF", "MIF", "OF", "none"]);
 const THROWS_OPTIONS = new Set(["R", "L", "S"]);
 const BATS_OPTIONS = new Set(["R", "L", "S"]);
 const YES_NO = new Set(["Yes", "No"]);
@@ -28,6 +30,7 @@ type MetricKey =
   | "popTime"
   | "benchPress"
   | "squat"
+  | "deadLift"
   // position-specific throwing velocities
   | "infieldThrowVelo"
   | "outfieldThrowVelo"
@@ -46,6 +49,7 @@ const METRIC_UNIT: Record<MetricKey, "sec" | "mph" | "lbs"> = {
   popTime: "sec",
   benchPress: "lbs",
   squat: "lbs",
+  deadLift: "lbs",
 
   // position-specific throwing velocities
   infieldThrowVelo: "mph",
@@ -326,6 +330,7 @@ async function ensureUserRowAndSlug(email: string, firstName?: string | null, la
   if (!user) {
     const uniqueSlug = await generateUniqueSlug(prisma as any, desiredBase);
     const fullName = [firstName || "", lastName || ""].filter(Boolean).join(" ").trim() || null;
+
     user = await prisma.user.create({
       data: {
         email,
@@ -334,8 +339,10 @@ async function ensureUserRowAndSlug(email: string, firstName?: string | null, la
         phonePrivate: true,
         emailPrivate: true,
       },
-      select: { id: true, email: true, slug: true, name: true },
+      // ✅ FIX: include phonePrivate/emailPrivate to match the user type from findFirst select
+      select: { id: true, email: true, slug: true, name: true, phonePrivate: true, emailPrivate: true },
     });
+
     return user;
   }
 
@@ -492,6 +499,38 @@ const trimOrNull = (v: any): string | null => {
   return s ? s : null;
 };
 
+async function assertEmailAvailableForUser(nextEmail: string, currentUserId: string | null) {
+  const existingUser = await prisma.user.findFirst({
+    where: {
+      email: { equals: nextEmail, mode: "insensitive" },
+      ...(currentUserId ? { NOT: { id: currentUserId } } : {}),
+    },
+    select: { id: true },
+  });
+
+  if (existingUser) {
+    return "That email address is already in use by another ScoutLine account.";
+  }
+
+  const existingProfile = await prisma.playerProfile.findFirst({
+    where: {
+      email: { equals: nextEmail, mode: "insensitive" },
+      ...(currentUserId ? { NOT: { userId: currentUserId } } : {}),
+    },
+    select: { id: true },
+  });
+
+  if (existingProfile) {
+    return "That email address is already in use by another player profile.";
+  }
+
+  return null;
+}
+
+function uid() {
+  return Math.random().toString(36).slice(2) + "-" + Date.now().toString(36);
+}
+
 /** ================================
  *  GET /api/player/profile?email=...
  * ================================= */
@@ -504,22 +543,22 @@ export async function GET(req: Request) {
     }
 
     // ✅ Cancellation access cutoff (effective end-of-period)
-const gate = await enforcePlayerCancellationGate(email);
-if (!gate.allowed) {
-  return NextResponse.json(
-    {
-      ok: false,
-      error:
-        "This ScoutLine account has been canceled. Access to the player profile is no longer available.",
-    },
-    { status: 403 }
-  );
-}
+    const gate = await enforcePlayerCancellationGate(email);
+    if (!gate.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "This ScoutLine account has been canceled. Access to the player profile is no longer available.",
+        },
+        { status: 403 }
+      );
+    }
 
-    const row = await prisma.playerProfile.findUnique({
-      where: { email },
-      select: { data: true, schemaVersion: true, updatedAt: true },
-    });
+const row = await prisma.playerProfile.findUnique({
+  where: { email },
+  select: { id: true, data: true, schemaVersion: true, updatedAt: true },
+});
 
     if (row?.data) {
       const fn = (row.data as any)?.firstName || null;
@@ -545,15 +584,31 @@ if (!gate.allowed) {
         photoUrl: userForGet?.photoUrl ?? null,
 
         // ---- Compatibility shim: always provide videoSocial for clients ----
-        videoSocial: isObj((norm as any).videoSocial)
-          ? (norm as any).videoSocial
-          : {
-              externalVideos: Array.isArray((norm as any).externalVideos) ? (norm as any).externalVideos : [],
-              localVideos: Array.isArray((norm as any).localVideos) ? (norm as any).localVideos : [],
-              social: isObj((norm as any).social) ? (norm as any).social : {},
-              primary: (norm as any).primary ?? null,
-              chatUrl: (norm as any).chatUrl ?? null,
-            },
+        videoSocial: {
+          externalVideos: Array.isArray((norm as any).externalVideos)
+            ? (norm as any).externalVideos
+            : Array.isArray((norm as any).videoSocial?.externalVideos)
+            ? (norm as any).videoSocial.externalVideos
+            : [],
+          localVideos: Array.isArray((norm as any).localVideos)
+            ? (norm as any).localVideos
+            : Array.isArray((norm as any).videoSocial?.localVideos)
+            ? (norm as any).videoSocial.localVideos
+            : [],
+          social: isObj((norm as any).social)
+            ? (norm as any).social
+            : isObj((norm as any).videoSocial?.social)
+            ? (norm as any).videoSocial.social
+            : {},
+          primary:
+            (norm as any).primary !== undefined
+              ? (norm as any).primary
+              : (norm as any).videoSocial?.primary ?? null,
+          chatUrl:
+            (norm as any).chatUrl !== undefined
+              ? (norm as any).chatUrl
+              : (norm as any).videoSocial?.chatUrl ?? null,
+        },
 
         // academics docs (accept either canonical or legacy keys)
         transcriptUrls: resolveDocUrls(norm.transcriptUrls ?? norm.transcripts ?? [], base),
@@ -564,17 +619,18 @@ if (!gate.allowed) {
         statsSeasons: resolveStatsSeasonsAbs(norm.statsSeasons ?? norm.seasons ?? [], base),
       };
 
-      return NextResponse.json({
-        ok: true,
-        user: {
-          email: userForGet?.email ?? email,
-          slug: userForGet?.slug ?? null,
-          photoUrl: userForGet?.photoUrl ?? null,
-        },
-        normalized: normalizedResolved,
-        schemaVersion: row.schemaVersion ?? 1,
-        updatedAt: row.updatedAt ?? null,
-      });
+return NextResponse.json({
+  ok: true,
+  playerProfileId: row.id,
+  user: {
+    email: userForGet?.email ?? email,
+    slug: userForGet?.slug ?? null,
+    photoUrl: userForGet?.photoUrl ?? null,
+  },
+  normalized: normalizedResolved,
+  schemaVersion: row.schemaVersion ?? 1,
+  updatedAt: row.updatedAt ?? null,
+});
     }
 
     const dev = await getByEmail(email);
@@ -615,30 +671,82 @@ export async function POST(req: Request) {
   try {
     const body = await req.json();
 
-    const email: string = String(body.email ?? "").trim().toLowerCase();
-    if (!email) {
-      return NextResponse.json({ ok: false, error: "Email is required." }, { status: 400 });
-    }
-
-    // ✅ Cancellation access cutoff (effective end-of-period)
-const gate = await enforcePlayerCancellationGate(email);
-if (!gate.allowed) {
-  return NextResponse.json(
-    {
-      ok: false,
-      error:
-        "This ScoutLine account has been canceled. You can no longer access or edit this player profile.",
-    },
-    { status: 403 }
-  );
+const requestedEmail: string = String(body.email ?? "").trim().toLowerCase();
+if (!requestedEmail) {
+  return NextResponse.json({ ok: false, error: "Email is required." }, { status: 400 });
 }
 
+const currentUser = await getCurrentUser().catch(() => null);
+const currentUserId = String((currentUser as any)?.id || "").trim() || null;
+const currentUserEmail = String((currentUser as any)?.email || "").trim().toLowerCase() || null;
+
+const email = requestedEmail;
+const oldEmail = currentUserEmail || email;
+const emailChanged = !!currentUserEmail && currentUserEmail !== email;
+
+if (emailChanged) {
+  const emailError = await assertEmailAvailableForUser(email, currentUserId);
+  if (emailError) {
+    return NextResponse.json({ ok: false, error: emailError }, { status: 409 });
+  }
+}
+
+    // ✅ Cancellation access cutoff (effective end-of-period)
+    const gate = await enforcePlayerCancellationGate(oldEmail);
+    if (!gate.allowed) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            "This ScoutLine account has been canceled. You can no longer access or edit this player profile.",
+        },
+        { status: 403 }
+      );
+    }
+
     // Load existing profile so we can preserve docs when not re-sent
-    const existing = await prisma.playerProfile.findUnique({
-      where: { email },
-      select: { data: true },
-    });
+const existing = await prisma.playerProfile.findFirst({
+  where: currentUserId
+    ? { userId: currentUserId }
+    : { email: { equals: oldEmail, mode: "insensitive" } },
+  select: { id: true, email: true, userId: true, data: true },
+});
     const existingData = (existing?.data as any) || {};
+
+    // Canonical Video / Social fallback.
+    // Older profiles may store these fields inside data.videoSocial,
+    // while newer saves use top-level fields.
+    const existingVideoSocial = isObj(existingData.videoSocial)
+      ? existingData.videoSocial
+      : {};
+
+    const existingExternalVideos = Array.isArray(existingData.externalVideos)
+      ? existingData.externalVideos
+      : Array.isArray(existingVideoSocial.externalVideos)
+      ? existingVideoSocial.externalVideos
+      : [];
+
+    const existingLocalVideos = Array.isArray(existingData.localVideos)
+      ? existingData.localVideos
+      : Array.isArray(existingVideoSocial.localVideos)
+      ? existingVideoSocial.localVideos
+      : [];
+
+    const existingSocial = isObj(existingData.social)
+      ? existingData.social
+      : isObj(existingVideoSocial.social)
+      ? existingVideoSocial.social
+      : {};
+
+    const existingPrimary =
+      existingData.primary !== undefined
+        ? existingData.primary
+        : existingVideoSocial.primary ?? null;
+
+    const existingChatUrl =
+      existingData.chatUrl !== undefined
+        ? existingData.chatUrl
+        : existingVideoSocial.chatUrl ?? null;
 
     /** ---------- Normalize core/athletics ---------- */
     const firstName = safeTrim(body.firstName || "");
@@ -671,8 +779,11 @@ if (!gate.allowed) {
     const hsName = safeTrim(body.hsName || "");
     const hsCity = safeTrim(body.hsCity || "");
     const hsState = safeTrim(body.hsState || "");
+    const hsGeneralWebsiteUrl = safeTrim(body.hsGeneralWebsiteUrl || "");
     const hometown = safeTrim(body.hometown || "");
     const state = safeTrim(body.state || "");
+    const hometownZip = safeTrim(body.hometownZip || "");
+    const zip = String(body.zip ?? body.hometownZip ?? "").replace(/\D/g, "").slice(0, 5);
     const hsScheduleUrl = safeTrim(body.hsScheduleUrl || "");
     const hsSchedulePrivate = !!body.hsSchedulePrivate;
     const hsWebsiteUrl = safeTrim(body.hsWebsiteUrl || "");                      // ✅ NEW
@@ -697,6 +808,14 @@ if (!gate.allowed) {
     const travelTeamScheduleUrl = safeTrim(body.travelTeamScheduleUrl || "");
     const travelTeamSchedulePrivate = !!body.travelTeamSchedulePrivate;
     const travelTeamWebsiteUrl = safeTrim(body.travelTeamWebsiteUrl || "");      // ✅ NEW
+
+    type OtherTeam = {
+      name: string;
+      city: string;
+      state: string;
+      scheduleUrl: string;
+      websiteUrl: string;
+    };
 
     const otherTeams = Array.isArray(body.otherTeams)
       ? body.otherTeams.map((t: any) => ({
@@ -782,7 +901,7 @@ if (!gate.allowed) {
     /** ---------- Merge strategy (delete-safe) ---------- */
     // If the client INCLUDED the field (even as empty), we respect it (this is how deletes persist).
     // Only fall back to existing when the field was OMITTED entirely.
-    const transcriptUrls =
+    const transcriptUrls: string[] =
       transcriptKeyPresent
         ? (strictTranscriptArr.length > 0
             ? strictTranscriptArr
@@ -797,7 +916,7 @@ if (!gate.allowed) {
         ? existingData.transcripts
         : [];
 
-    const reportCardUrls =
+    const reportCardUrls: string[] =
       reportKeyPresent
         ? (strictReportArr.length > 0
             ? strictReportArr
@@ -812,7 +931,7 @@ if (!gate.allowed) {
         ? existingData.reportCards
         : [];
 
-    const otherAcademicDocs =
+    const otherAcademicDocs: { url: string; label?: string | null }[] =
       otherDocsKeyPresent
         ? [...strictOtherDocs, ...looseOtherDocs, ...topLevelAdditionalDocs]
         : Array.isArray(existingData.otherAcademicDocs)
@@ -846,19 +965,24 @@ if (!gate.allowed) {
     });
 
     // ---------- Stats seasons (from Stats tab) ----------
+    const statsKeyPresent =
+      hasOwn(body, "statsSeasons") || hasOwn(body, "seasons");
+
     const incomingSeasonsRaw =
       Array.isArray(body.statsSeasons) ? body.statsSeasons :
       Array.isArray(body.seasons) ? body.seasons :
-      null;
+      [];
 
-    const cleanedIncomingSeasons = incomingSeasonsRaw ? cleanSeasonsArray(incomingSeasonsRaw) : [];
+    const cleanedIncomingSeasons = statsKeyPresent
+      ? cleanSeasonsArray(incomingSeasonsRaw)
+      : [];
 
     const existingSeasons =
       Array.isArray(existingData?.statsSeasons) ? existingData.statsSeasons :
       Array.isArray(existingData?.seasons) ? existingData.seasons :
       [];
 
-    const statsSeasons = cleanedIncomingSeasons.length > 0
+    const statsSeasons = statsKeyPresent
       ? cleanedIncomingSeasons
       : existingSeasons;
 
@@ -867,12 +991,14 @@ if (!gate.allowed) {
     if (hsScheduleUrl && !isLikelyUrl(hsScheduleUrl)) errors.hsScheduleUrl = "Enter a valid URL (http/https)";
     if (travelTeamScheduleUrl && !isLikelyUrl(travelTeamScheduleUrl))
       errors.travelTeamScheduleUrl = "Enter a valid URL (http/https)";
+    if (hsGeneralWebsiteUrl && !isLikelyUrl(hsGeneralWebsiteUrl))
+      errors.hsGeneralWebsiteUrl = "Enter a valid URL (http/https)";
     if (hsWebsiteUrl && !isLikelyUrl(hsWebsiteUrl))                                      // ✅ NEW
       errors.hsWebsiteUrl = "Enter a valid URL (http/https)";
     if (travelTeamWebsiteUrl && !isLikelyUrl(travelTeamWebsiteUrl))                      // ✅ NEW
       errors.travelTeamWebsiteUrl = "Enter a valid URL (http/https)";
 
-    otherTeams.forEach((t, i) => {
+    otherTeams.forEach((t: OtherTeam, i: number) => {
       if (t.scheduleUrl && !isLikelyUrl(t.scheduleUrl)) {
         errors[`otherTeams.${i}.scheduleUrl`] = "Enter a valid URL (http/https)";
       }
@@ -882,14 +1008,15 @@ if (!gate.allowed) {
       // }
     });
 
-    transcriptUrls.forEach((u, i) => {
+    transcriptUrls.forEach((u: string, i: number) => {
       if (!isAcceptableDocUrl(u)) errors[`transcriptUrls.${i}`] = "Enter a valid URL (http/https or /uploads/...)";
     });
-    reportCardUrls.forEach((u, i) => {
+    reportCardUrls.forEach((u: string, i: number) => {
       if (!isAcceptableDocUrl(u)) errors[`reportCardUrls.${i}`] = "Enter a valid URL (http/https or /uploads/...)";
     });
-    otherAcademicDocs.forEach((d, i) => {
-      if (!isAcceptableDocUrl(d.url)) errors[`otherAcademicDocs.${i}.url`] = "Enter a valid URL (http/https or /uploads/...)";
+    otherAcademicDocs.forEach((d: { url: string; label?: string | null }, i: number) => {
+      if (!isAcceptableDocUrl(d.url))
+        errors[`otherAcademicDocs.${i}.url`] = "Enter a valid URL (http/https or /uploads/...)";
     });
     // Validate season-level stats file URLs
     (cleanedIncomingSeasons || []).forEach((season, i) => {
@@ -950,8 +1077,11 @@ if (!gate.allowed) {
       hsName,
       hsCity,
       hsState,
+      hsGeneralWebsiteUrl,
       hometown,
       state,
+      zip,
+      hometownZip: zip,
       gpa,
       gpaScale,
       sat,
@@ -1010,38 +1140,60 @@ if (!gate.allowed) {
       playerBio,
       playerBioPrivate,
 
-      // --- Video / Social (Tab 6) (delete-safe) ---
-      // Accept either:
-      //  A) atomic payload at body.videoSocial
-      //  B) legacy top-level keys body.externalVideos/body.localVideos/body.social/body.primary
+            // --- Video / Social (Tab 6) (delete-safe) ---
       externalVideos: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
-        if (!hasOwn(src, "externalVideos")) return existingData.externalVideos ?? undefined;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
+
+        if (!hasOwn(src, "externalVideos")) {
+          return existingExternalVideos;
+        }
 
         const list = Array.isArray(src.externalVideos) ? src.externalVideos : [];
+
         return list
           .map((v: any) => {
+            const id = typeof v?.id === "string" ? v.id.trim() : "";
             const url = typeof v?.url === "string" ? v.url.trim() : "";
-            if (!url) return null;
+            if (!id || !url) return null;
+
             const title = typeof v?.title === "string" ? v.title.trim() : undefined;
+            const source =
+              typeof v?.source === "string" && v.source.trim()
+                ? v.source.trim()
+                : "unknown";
+            const addedAt = Number.isFinite(Number(v?.addedAt))
+              ? Number(v.addedAt)
+              : Date.now();
 
-            // keep source/addedAt if provided
-            const source = typeof v?.source === "string" ? v.source.trim() : undefined;
-            const addedAt = Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now();
+            const category =
+              v?.category === "Hitting" ||
+              v?.category === "Fielding" ||
+              v?.category === "Pitching" ||
+              v?.category === "Baserunning"
+                ? v.category
+                : null;
 
-            return { ...v, url, title, source, addedAt };
+          return { id, title, url, source, addedAt, category };
           })
           .filter(Boolean);
       })(),
 
       localVideos: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
-        if (!hasOwn(src, "localVideos")) return existingData.localVideos ?? undefined;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
+
+        if (!hasOwn(src, "localVideos")) {
+          return existingLocalVideos;
+        }
 
         const list = Array.isArray(src.localVideos) ? src.localVideos : [];
+
         return list
           .map((v: any) => {
-            // NEW tab uses publicUrl; legacy may use url
+            const id = typeof v?.id === "string" ? v.id.trim() : "";
             const publicUrl =
               typeof v?.publicUrl === "string"
                 ? v.publicUrl.trim()
@@ -1049,35 +1201,77 @@ if (!gate.allowed) {
                 ? v.url.trim()
                 : "";
 
-            if (!publicUrl) return null;
+            if (!id || !publicUrl) return null;
 
             const title = typeof v?.title === "string" ? v.title.trim() : undefined;
-            const fileType = typeof v?.fileType === "string" ? v.fileType.trim() : undefined;
-            const fileSize = Number.isFinite(Number(v?.fileSize)) ? Number(v.fileSize) : undefined;
-            const addedAt = Number.isFinite(Number(v?.addedAt)) ? Number(v.addedAt) : Date.now();
+            const fileType =
+              typeof v?.fileType === "string" ? v.fileType.trim() : undefined;
+            const fileSize = Number.isFinite(Number(v?.fileSize))
+              ? Number(v.fileSize)
+              : undefined;
+            const addedAt = Number.isFinite(Number(v?.addedAt))
+              ? Number(v.addedAt)
+              : Date.now();
 
-            // Store in the shape your Tab expects later
-            return { ...v, title, publicUrl, fileType, fileSize, addedAt };
+            const category =
+              v?.category === "Hitting" ||
+              v?.category === "Fielding" ||
+              v?.category === "Pitching" ||
+              v?.category === "Baserunning"
+                ? v.category
+                : null;
+
+            return { id, title, publicUrl, fileType, fileSize, addedAt, category };
           })
           .filter(Boolean);
       })(),
 
       social: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
 
-        if (!hasOwn(src, "social")) return existingData.social ?? undefined;
+        if (!hasOwn(src, "social")) {
+          return existingSocial;
+        }
 
         if (!isObj(src.social)) return {};
-        // merge for forwards compatibility, but allow clears by sending empty strings/undefined
-        return { ...(existingData.social ?? {}), ...(src.social as any) };
+
+        return {
+          xHandle: safeTrim(src.social.xHandle || "") || undefined,
+          instagramHandle: safeTrim(src.social.instagramHandle || "") || undefined,
+          youtubeChannelUrl: safeTrim(src.social.youtubeChannelUrl || "") || undefined,
+          gameChangerUrl: safeTrim(src.social.gameChangerUrl || "") || undefined,
+          maxPrepsUrl: safeTrim(src.social.maxPrepsUrl || "") || undefined,
+          rapsodoUrl: safeTrim(src.social.rapsodoUrl || "") || undefined,
+          trackmanUrl: safeTrim(src.social.trackmanUrl || "") || undefined,
+          pocketRadarUrl: safeTrim(src.social.pocketRadarUrl || "") || undefined,
+        };
       })(),
 
       primary: (() => {
-        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial) ? (body.videoSocial as any) : body;
+        const src = hasOwn(body, "videoSocial") && isObj(body.videoSocial)
+          ? (body.videoSocial as any)
+          : body;
 
-        if (!hasOwn(src, "primary")) return existingData.primary ?? null;
+        if (!hasOwn(src, "primary")) {
+          return existingPrimary;
+        }
 
-        return (isObj(src.primary) || src.primary == null) ? (src.primary ?? null) : null;
+        if (src.primary == null) return null;
+        if (!isObj(src.primary)) return null;
+
+        const kind =
+          src.primary.kind === "local" || src.primary.kind === "external"
+            ? src.primary.kind
+            : null;
+
+        const id =
+          typeof src.primary.id === "string" ? src.primary.id.trim() : "";
+
+        if (!kind || !id) return null;
+
+        return { kind, id };
       })(),
 
       // --- Coaches / References (Tab 7) (delete-safe) ---
@@ -1085,7 +1279,6 @@ if (!gate.allowed) {
         ? (Array.isArray(body.coaches)
             ? body.coaches
                 .map((c: any) => {
-                  // NEW tab shape: { firstName, lastName, team, email, phone, focus, addedAt, id }
                   const firstName = typeof c?.firstName === "string" ? c.firstName.trim() : "";
                   const lastName  = typeof c?.lastName === "string" ? c.lastName.trim() : "";
                   const team      = typeof c?.team === "string" ? c.team.trim() : "";
@@ -1104,12 +1297,10 @@ if (!gate.allowed) {
                   const addedAt =
                     Number.isFinite(Number(c?.addedAt)) ? Number(c.addedAt) : Date.now();
 
-                  // LEGACY fallback: if they sent { name, role, notes } etc.
                   const legacyName = typeof c?.name === "string" ? c.name.trim() : "";
                   const legacyRole = typeof c?.role === "string" ? c.role.trim() : "";
                   const legacyNotes = typeof c?.notes === "string" ? c.notes.trim() : "";
 
-                  // If no first/last provided but legacy name exists, keep it in firstName for display
                   const finalFirst = firstName || (legacyName ? legacyName : "");
                   const finalFocus = focus || legacyRole || legacyNotes || "";
 
@@ -1142,29 +1333,217 @@ if (!gate.allowed) {
       statsSeasons,
     };
 
-    // ✅ Only set these if the request included a governing-ID key; otherwise preserve existing
-    if (hasNcaaKey) normalized.ncaaId = ncaaIdNormalized;      // may be null to clear
-    if (hasNaiaKey) normalized.naiaEcid = naiaEcidNormalized;   // may be null to clear
+    /**
+     * ---------- Partial-update safety ----------
+     * Every profile tab POSTs only the fields it owns. Missing fields therefore
+     * mean "preserve existing", while fields explicitly sent as empty/null/false
+     * retain their normal clear/delete behavior.
+     */
+    const preserveOmitted = (keys: string[], fieldWasProvided: boolean) => {
+      if (fieldWasProvided) return;
 
-    /** ---------- Persist ---------- */
-    const stored = await saveUser(normalized);
-    const schemaVersion = 1;
-
-    // Ensure User + slug exists and is upgraded if we have names
-    const userRow = await ensureUserRowAndSlug(email, firstName ?? undefined, lastName ?? undefined);
-
-    await prisma.playerProfile.upsert({
-      where: { email },
-      create: { email, userId: userRow?.id ?? null, schemaVersion, data: normalized },
-      update: { userId: userRow?.id ?? null, schemaVersion, data: normalized },
-    });
-
-    /** ---------- BUST public cache so /api/public/... recomputes ---------- */
-    try {
-      if (userRow?.slug) {
-        await prisma.publicProfileCache.delete({ where: { slug: userRow.slug } }).catch(() => {});
+      for (const key of keys) {
+        if (hasOwn(existingData, key)) {
+          (normalized as any)[key] = existingData[key];
+        } else {
+          delete (normalized as any)[key];
+        }
       }
-    } catch {}
+    };
+
+    // Contact / identity
+    preserveOmitted(["firstName"], hasOwn(body, "firstName"));
+    preserveOmitted(["lastName"], hasOwn(body, "lastName"));
+    preserveOmitted(["emailPrivate"], hasOwn(body, "emailPrivate"));
+    preserveOmitted(["phone"], hasOwn(body, "phone"));
+    preserveOmitted(["phonePrivate"], hasOwn(body, "phonePrivate"));
+
+    // Academic / school information
+    preserveOmitted(["gradYear"], hasOwn(body, "gradYear"));
+    preserveOmitted(["hsName"], hasOwn(body, "hsName"));
+    preserveOmitted(["hsCity"], hasOwn(body, "hsCity"));
+    preserveOmitted(["hsState"], hasOwn(body, "hsState"));
+    preserveOmitted(["hsGeneralWebsiteUrl"], hasOwn(body, "hsGeneralWebsiteUrl"));
+    preserveOmitted(["hometown"], hasOwn(body, "hometown"));
+    preserveOmitted(["state"], hasOwn(body, "state"));
+
+    const zipWasProvided = hasOwn(body, "zip") || hasOwn(body, "hometownZip");
+    preserveOmitted(["zip", "hometownZip"], zipWasProvided);
+
+    preserveOmitted(["gpa"], hasOwn(body, "gpa"));
+    preserveOmitted(["gpaScale"], hasOwn(body, "gpaScale"));
+    preserveOmitted(["sat"], hasOwn(body, "sat"));
+    preserveOmitted(["act"], hasOwn(body, "act"));
+    preserveOmitted(["academicBio"], hasOwn(body, "academicBio"));
+    preserveOmitted(["academicBioPrivate"], hasOwn(body, "academicBioPrivate"));
+
+    const areasOfStudyWasProvided =
+      hasOwn(body, "areasOfStudy") ||
+      hasOwn(body, "areasOfStudyInput") ||
+      hasOwn(body, "intendedMajors");
+    preserveOmitted(["areasOfStudy", "areasOfStudyInput"], areasOfStudyWasProvided);
+
+    // Core / athletics
+    preserveOmitted(["primaryPos"], hasOwn(body, "primaryPos"));
+    preserveOmitted(["secondaryPos"], hasOwn(body, "secondaryPos"));
+    preserveOmitted(["isPitcher"], hasOwn(body, "isPitcher"));
+
+    const pitcherHandWasAffected =
+      hasOwn(body, "pitcherHand") ||
+      hasOwn(body, "isPitcher") ||
+      hasOwn(body, "primaryPos") ||
+      hasOwn(body, "secondaryPos");
+    preserveOmitted(["pitcherHand"], pitcherHandWasAffected);
+
+    preserveOmitted(["throws"], hasOwn(body, "throws"));
+    preserveOmitted(["bats"], hasOwn(body, "bats"));
+    preserveOmitted(["heightFt"], hasOwn(body, "heightFt"));
+    preserveOmitted(["heightIn"], hasOwn(body, "heightIn"));
+    preserveOmitted(["weightLb"], hasOwn(body, "weightLb"));
+
+    const dobOrAgeWasProvided = hasOwn(body, "dob") || hasOwn(body, "age");
+    preserveOmitted(["dob", "age"], dobOrAgeWasProvided);
+    preserveOmitted(["dobPrivate"], hasOwn(body, "dobPrivate"));
+    preserveOmitted(["gender"], hasOwn(body, "gender"));
+
+    // Eligibility / commitment
+    preserveOmitted(["eligibilityRegistered"], hasOwn(body, "eligibilityRegistered"));
+
+    const commitmentToggleWasProvided = hasOwn(body, "isCommitted");
+    preserveOmitted(["isCommitted"], commitmentToggleWasProvided);
+
+    if (!commitmentToggleWasProvided) {
+      preserveOmitted(["committedProgram"], hasOwn(body, "committedProgram"));
+      preserveOmitted(["committedProgramId"], hasOwn(body, "committedProgramId"));
+    } else if (!!body.isCommitted) {
+      // Turning commitment on should not erase an existing program merely
+      // because this particular request omitted the program fields.
+      preserveOmitted(["committedProgram"], hasOwn(body, "committedProgram"));
+      preserveOmitted(["committedProgramId"], hasOwn(body, "committedProgramId"));
+    }
+    // When isCommitted is explicitly false, the normalized nulls intentionally clear both.
+
+    // High-school / travel-team links and privacy
+    preserveOmitted(["hsScheduleUrl"], hasOwn(body, "hsScheduleUrl"));
+    preserveOmitted(["hsSchedulePrivate"], hasOwn(body, "hsSchedulePrivate"));
+    preserveOmitted(["hsWebsiteUrl"], hasOwn(body, "hsWebsiteUrl"));
+
+    preserveOmitted(["travelTeamName"], hasOwn(body, "travelTeamName"));
+    preserveOmitted(["travelTeamCity"], hasOwn(body, "travelTeamCity"));
+    preserveOmitted(["travelTeamState"], hasOwn(body, "travelTeamState"));
+    preserveOmitted(["travelTeamScheduleUrl"], hasOwn(body, "travelTeamScheduleUrl"));
+    preserveOmitted(["travelTeamSchedulePrivate"], hasOwn(body, "travelTeamSchedulePrivate"));
+    preserveOmitted(["travelTeamWebsiteUrl"], hasOwn(body, "travelTeamWebsiteUrl"));
+
+    preserveOmitted(["otherTeams"], hasOwn(body, "otherTeams"));
+    preserveOmitted(["playerBio"], hasOwn(body, "playerBio"));
+    preserveOmitted(["playerBioPrivate"], hasOwn(body, "playerBioPrivate"));
+
+    // Performance data
+    preserveOmitted(["metrics"], hasOwn(body, "metrics"));
+    preserveOmitted(["metricsPrivate"], hasOwn(body, "metricsPrivate"));
+    preserveOmitted(
+      ["statsSeasons"],
+      hasOwn(body, "statsSeasons") || hasOwn(body, "seasons")
+    );
+
+    // Keep legacy/nested and canonical/top-level Video / Social shapes synchronized.
+    (normalized as any).videoSocial = {
+      externalVideos: Array.isArray((normalized as any).externalVideos)
+        ? (normalized as any).externalVideos
+        : existingExternalVideos,
+      localVideos: Array.isArray((normalized as any).localVideos)
+        ? (normalized as any).localVideos
+        : existingLocalVideos,
+      social: isObj((normalized as any).social)
+        ? (normalized as any).social
+        : existingSocial,
+      primary:
+        (normalized as any).primary !== undefined
+          ? (normalized as any).primary
+          : existingPrimary,
+      chatUrl:
+        (normalized as any).chatUrl !== undefined
+          ? (normalized as any).chatUrl
+          : existingChatUrl,
+    };
+
+    // ✅ Only set these if the request included a governing-ID key; otherwise preserve existing
+    if (hasNcaaKey) (normalized as any).ncaaId = ncaaIdNormalized;      // may be null to clear
+    if (hasNaiaKey) (normalized as any).naiaEcid = naiaEcidNormalized;   // may be null to clear
+
+/** ---------- Persist ---------- */
+const stored = await saveUser(normalized);
+const schemaVersion = 1;
+
+// Ensure User + slug exists and is upgraded if we have names
+let userRow = currentUserId
+  ? await prisma.user.findUnique({
+      where: { id: currentUserId },
+      select: { id: true, email: true, slug: true, name: true, phonePrivate: true, emailPrivate: true },
+    })
+  : null;
+
+if (!userRow) {
+  userRow = await ensureUserRowAndSlug(oldEmail, firstName ?? undefined, lastName ?? undefined);
+}
+
+if (!userRow) {
+  return NextResponse.json({ ok: false, error: "Could not resolve user account." }, { status: 400 });
+}
+
+const oldSlug = userRow.slug;
+
+if (userRow.email.toLowerCase() !== email) {
+  userRow = await prisma.user.update({
+    where: { id: userRow.id },
+    data: { email },
+    select: { id: true, email: true, slug: true, name: true, phonePrivate: true, emailPrivate: true },
+  });
+}
+
+const normalizedWithCanonicalEmail = {
+  ...(normalized as any),
+  email,
+  contact: {
+    ...((normalized as any).contact || {}),
+    email,
+  },
+};
+
+if (existing?.id) {
+  await prisma.playerProfile.update({
+    where: { id: existing.id },
+    data: {
+      email,
+      userId: userRow.id,
+      schemaVersion,
+      data: normalizedWithCanonicalEmail,
+    },
+  });
+} else {
+  await prisma.playerProfile.create({
+    data: {
+      email,
+      userId: userRow.id,
+      schemaVersion,
+      data: normalizedWithCanonicalEmail,
+    },
+  });
+}
+
+/** ---------- BUST public cache so /api/public/... recomputes ---------- */
+try {
+  await prisma.publicProfileCache.deleteMany({
+    where: {
+      OR: [
+        { userId: userRow.id },
+        ...(oldSlug ? [{ slug: oldSlug }] : []),
+        ...(userRow.slug ? [{ slug: userRow.slug }] : []),
+      ],
+    },
+  });
+} catch {}
 
     // Keep Player row in sync (best-effort)
     try {
@@ -1188,6 +1567,7 @@ if (!gate.allowed) {
             weightLb: weightLb ?? undefined,
             hometown: hometown ?? undefined,
             state: state ?? undefined,
+            hometownZip: zip || undefined,
             gpa: (gpa as any) ?? undefined,
             sat: sat ?? undefined,
             act: act ?? undefined,
@@ -1210,6 +1590,7 @@ if (!gate.allowed) {
             weightLb: weightLb ?? null,
             hometown: hometown ?? null,
             state: state ?? null,
+            hometownZip: zip || null,
             gpa: (gpa as any) ?? null,
             sat: sat ?? null,
             act: act ?? null,
@@ -1223,8 +1604,20 @@ if (!gate.allowed) {
     return NextResponse.json(
       {
         ok: true,
-        normalized: { ...stored, slug: userRow?.slug ?? null },
-        user: { ...stored, slug: userRow?.slug ?? null },
+        normalized: {
+          ...stored,
+          zip,
+          hometownZip: zip,
+          email,
+          slug: userRow?.slug ?? null,
+        },
+        user: {
+          ...stored,
+          zip,
+          hometownZip: zip,
+          email,
+          slug: userRow?.slug ?? null,
+        },
       },
       { status: 200 }
     );

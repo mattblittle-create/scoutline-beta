@@ -113,7 +113,7 @@ export default async function AdminSearchPage({
 }: {
   searchParams: { q?: string };
 }) {
-  await requireAdmin({ redirectTo: "/staff" });
+  await requireAdmin("/staff");
 
   const q = norm(String(searchParams?.q ?? ""));
   const hasQ = q.length >= 2;
@@ -139,17 +139,15 @@ export default async function AdminSearchPage({
             slug: true,
             createdAt: true,
 
-            PlayerProfile: {
-              select: {
-                id: true,
-                playerPlanTier: true,
-                playerBillingStatus: true,
-                playerBillingCadence: true,
-                hasActivePlayerBilling: true,
-              },
-              orderBy: { createdAt: "desc" },
-              take: 1,
-            },
+PlayerProfile: {
+  select: {
+    id: true,
+    playerPlanTier: true,
+    playerBillingStatus: true,
+    playerBillingCadence: true,
+    hasActivePlayerBilling: true,
+  },
+},
           },
           take: 20,
           orderBy: { createdAt: "desc" },
@@ -283,7 +281,7 @@ export default async function AdminSearchPage({
                 </thead>
                 <tbody>
                   {(users as any[]).map((u) => {
-                    const latest = u.PlayerProfile?.[0] ?? null;
+                    const latest = u.PlayerProfile ?? null;
 
                     const publicSlug = u.slug ? u.slug : localPart(u.email);
                     const publicHref = publicSlug ? `/player/${encodeURIComponent(publicSlug)}` : null;
