@@ -59,31 +59,48 @@ async function transcodeVideoStep(
 ): Promise<ProcessedVideo> {
   "use step";
 
-  const sandbox = await Sandbox.create({
-    persistent: false,
+const sandbox = await Sandbox.create({
+  persistent: false,
 
-    timeout: 30 * 60 * 1000,
+  timeout: 30 * 60 * 1000,
 
-    resources: {
-      vcpus: 4,
-    },
-  });
+  resources: {
+    vcpus: 4,
+  },
+
+  networkPolicy: "allow-all",
+});
 
   try {
-    // Install FFmpeg inside the Sandbox.
-    const install = await sandbox.runCommand({
-      cmd: "dnf",
-      args: ["install", "-y", "ffmpeg"],
-      sudo: true,
-    });
+// Prepare static FFmpeg / FFprobe binaries inside the Sandbox.
+// This follows Vercel's current Sandbox pattern rather than relying
+// on ffmpeg being available in the default Amazon Linux dnf repos.
+const prepare = await sandbox.runCommand(
+  "bash",
+  [
+    "-lc",
+    [
+      "mkdir -p /tmp/scoutline-video-tools",
+      "cd /tmp/scoutline-video-tools",
+      "npm init -y >/dev/null 2>&1",
+      "npm install ffmpeg-static ffprobe-static >/dev/null 2>&1",
+      `FFMPEG_PATH=$(node -p "require('ffmpeg-static')")`,
+      `FFPROBE_PATH=$(node -p "require('ffprobe-static').path")`,
+      `ln -sf "$FFMPEG_PATH" /tmp/scoutline-ffmpeg`,
+      `ln -sf "$FFPROBE_PATH" /tmp/scoutline-ffprobe`,
+      "chmod +x /tmp/scoutline-ffmpeg /tmp/scoutline-ffprobe",
+      "/tmp/scoutline-ffmpeg -version",
+    ].join(" && "),
+  ]
+);
 
-    if (install.exitCode !== 0) {
-      const stderr = await install.stderr();
+if (prepare.exitCode !== 0) {
+  const stderr = await prepare.stderr();
 
-      throw new Error(
-        `Failed to install FFmpeg: ${stderr.trim()}`
-      );
-    }
+  throw new Error(
+    `Failed to prepare FFmpeg: ${stderr.trim()}`
+  );
+}
 
     // Download original video from Blob.
     const download = await sandbox.runCommand(
@@ -121,9 +138,9 @@ async function transcodeVideoStep(
      * - MP4
      * - fast-start enabled
      */
-    const transcode = await sandbox.runCommand(
-      "ffmpeg",
-      [
+const transcode = await sandbox.runCommand(
+  "/tmp/scoutline-ffmpeg",
+  [
         "-y",
 
         "-i",
