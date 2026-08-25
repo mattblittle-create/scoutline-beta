@@ -1891,13 +1891,24 @@ const videoSocialPatch: Partial<PlayerProfilePayload> =
         externalVideos: Array.isArray(vs.externalVideos)
           ? vs.externalVideos
           : [],
-        localVideos: Array.isArray(vs.localVideos)
-          ? vs.localVideos
-          : [],
+
+        // CRITICAL:
+        // While any local video is uploading/processing, OMIT localVideos
+        // entirely so the profile Save cannot overwrite the DB copy that
+        // the upload/transcoding pipeline owns.
+        ...(vs.hasProcessingLocalVideos
+          ? {}
+          : {
+              localVideos: Array.isArray(vs.localVideos)
+                ? vs.localVideos
+                : [],
+            }),
+
         social:
           vs.social && typeof vs.social === "object"
             ? vs.social
             : {},
+
         primary: vs.primary ?? null,
       }
     : {};

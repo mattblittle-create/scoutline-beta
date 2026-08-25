@@ -9,6 +9,7 @@ export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
 
 export type VideoSocialPayload = {
   hydrated: boolean;
+  hasProcessingLocalVideos: boolean;
   externalVideos: {
     id: string;
     title?: string;
@@ -1388,8 +1389,14 @@ setPocketRadarUrl(next.pocketRadarUrl ?? "");
             }
           })();
 
-          return {
+return {
   hydrated,
+  hasProcessingLocalVideos: state.localVideos.some(
+    (v) =>
+      v.processingStatus === "processing" ||
+      v.status === "queued" ||
+      v.status === "uploading"
+  ),
   externalVideos: externals,
   localVideos: locals,
   social,
