@@ -682,8 +682,7 @@ useEffect(() => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [activeUploadCategory, setActiveUploadCategory] = useState<VideoCategory>("Hitting");
 
-    function reportUploadError(message: string | null) {
-  setErr(message);
+function reportUploadError(message: string | null) {
   props.onUploadError?.(message);
 }
 
