@@ -48,6 +48,7 @@ type Props = {
   email?: string | null;
   planTier?: PlanTier;
   knownTeams?: string[];
+  isMobile?: boolean;
 };
 
 // ---------- Helpers ----------
@@ -135,7 +136,7 @@ const PLAN_RULES: Record<PlanTier, { enabled: boolean }> = {
 
 // ---------- Component ----------
 const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function TabCoachesReferences(
-  { email: emailProp, planTier = "All-American", knownTeams = [] },
+  { email: emailProp, planTier = "All-American", knownTeams = [], isMobile = false },
   ref
 ) {
   const PLAN = PLAN_RULES[planTier];
@@ -357,9 +358,26 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                     {/* Fields grid */}
                     <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
                       {/* Name */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr 1fr" }}>
-                        <label style={labelStyle}>Coach Name</label>
-                        <div style={{ display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr" }}>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coach Name</label>
+                        <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+  }}
+>
                           <input
                             placeholder="First name"
                             value={c.firstName}
@@ -376,8 +394,19 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Team / Organization */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Team / Organization</label>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Team / Organization</label>
                         <div>
                           <input
                             list={teamListId}
@@ -406,7 +435,12 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
 
                       {/* Email */}
                       <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Coach Email</label>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coach Email</label>
                         <input
                           type="email"
                           placeholder="coach@team.org"
@@ -422,7 +456,12 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
 
                       {/* Phone */}
                       <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Coach Phone</label>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coach Phone</label>
                         <input
                           type="tel"
                           placeholder="(555) 123-4567"
@@ -435,7 +474,12 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
 
                       {/* Focus */}
                       <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Coaching Focus</label>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coaching Focus</label>
                         <div>
                           <input
                             list={focusListId}

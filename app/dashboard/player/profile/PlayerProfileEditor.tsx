@@ -2763,12 +2763,13 @@ return (
 
         {/* ========= TAB 7: COACHES / REFERENCES ========= */}
         <div style={{ display: activeTab === "References" ? "block" : "none" }}>
-          <TabCoachesReferences
-            ref={coachesRef}
-            email={profileEmail}
-            planTier="Walk-On"
-            knownTeams={teamOptions}
-          />
+<TabCoachesReferences
+  ref={coachesRef}
+  email={profileEmail}
+  planTier="Walk-On"
+  knownTeams={teamOptions}
+  isMobile={isMobile}
+/>
         </div>
 
         {/* Actions / messages */}
