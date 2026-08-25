@@ -2410,8 +2410,8 @@ return (
           border: "1px solid #e5e7eb",
           borderRadius: 12,
           padding: 16,
-          position: "relative",   // anchor absolutely-positioned children to THIS form
-          paddingBottom: 88,      // room so bottom buttons don’t overlap content
+          position: "relative",
+          paddingBottom: isMobile ? 16 : 88,
         }}
       >
 
@@ -2773,7 +2773,14 @@ return (
 
         {/* Actions / messages */}
         <div style={{ marginTop: 16 }}>
-          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              gap: 12,
+              alignItems: "center",
+              flexWrap: "wrap",
+            }}
+          >
             <button
               type="submit"
               disabled={submitting}
@@ -2866,15 +2873,19 @@ return (
       : "Manage Plan";
 
     return (
-      <div
-        style={{
-          position: "absolute",
-          right: 16,
-          bottom: 88,
-          textAlign: "right",
-          pointerEvents: "auto",
-        }}
-      >
+<div
+  style={{
+    position: isMobile ? "static" : "absolute",
+    right: isMobile ? undefined : 16,
+    bottom: isMobile ? undefined : 88,
+    marginTop: isMobile ? 24 : 0,
+    paddingTop: isMobile ? 16 : 0,
+    borderTop: isMobile ? "1px solid #e5e7eb" : "none",
+    textAlign: isMobile ? "left" : "right",
+    pointerEvents: "auto",
+    width: isMobile ? "100%" : "auto",
+  }}
+>
         <a
           href={billingHref}
           title="Manage your plan"
@@ -2899,12 +2910,13 @@ return (
         </a>
 
         <div
-          style={{
-            marginTop: 10,
-            fontSize: 15,
-            color: "#64748b",
-            maxWidth: 360,
-          }}
+style={{
+  marginTop: 10,
+  fontSize: 15,
+  color: "#64748b",
+  maxWidth: isMobile ? "100%" : 360,
+  lineHeight: 1.4,
+}}
         >
           Manage your plan and update billing/payment info.
         </div>
