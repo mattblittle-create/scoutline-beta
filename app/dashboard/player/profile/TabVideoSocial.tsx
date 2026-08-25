@@ -426,12 +426,18 @@ function saveState(email: string | null | undefined, state: VideoSocialState) {
 // ---------- Component ----------
 const TabVideoSocial = React.forwardRef<
   VideoSocialHandle,
-  { email?: string | null; planTier?: PlanTier; readOnlyTeamAdmin?: boolean }
+  {
+    email?: string | null;
+    planTier?: PlanTier;
+    readOnlyTeamAdmin?: boolean;
+    isMobile?: boolean;
+  }
 >(
   function TabVideoSocial(props, ref) {
     const planTier: PlanTier = props.planTier ?? "All-American";
     const PLAN = PLAN_RULES[planTier];
     const isTeamAdminMode = !!props.readOnlyTeamAdmin;
+    const isMobile = !!props.isMobile;
 
 // ---- Stable storage key ----
 // IMPORTANT:
@@ -1582,8 +1588,19 @@ style={{
               </div>
 
               <div style={{ display: "grid", gap: 12 }}>
-                <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                  <label style={labelStyle}>X (Twitter) Handle</label>
+                <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>X (Twitter) Handle</label>
                   <input
                     placeholder="@firstlast"
                     value={xHandle}
@@ -1592,8 +1609,19 @@ style={{
                     disabled={isTeamAdminMode || !PLAN.canSocial}
                   />
                 </div>
-                <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                  <label style={labelStyle}>Instagram Handle</label>
+                <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Instagram Handle</label>
                   <input
                     placeholder="@firstlast"
                     value={igHandle}
@@ -1602,8 +1630,19 @@ style={{
                     disabled={isTeamAdminMode || !PLAN.canSocial}
                   />
                 </div>
-                <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                  <label style={labelStyle}>YouTube Channel URL</label>
+                <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>YouTube Channel URL</label>
                   <input
                     placeholder="https://youtube.com/@yourchannel"
                     value={ytUrl}
@@ -1613,8 +1652,19 @@ style={{
                   />
                 </div>
 
-<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-  <label style={labelStyle}>GameChanger URL</label>
+<div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>GameChanger URL</label>
   <input
     placeholder="https://gc.com/..."
     value={gameChangerUrl}
@@ -1624,8 +1674,19 @@ style={{
   />
 </div>
 
-<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-  <label style={labelStyle}>MaxPreps URL</label>
+<div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>MaxPreps URL</label>
   <input
     placeholder="https://www.maxpreps.com/..."
     value={maxPrepsUrl}
@@ -1635,8 +1696,19 @@ style={{
   />
 </div>
 
-<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-  <label style={labelStyle}>Rapsodo URL</label>
+<div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Rapsodo URL</label>
   <input
     placeholder="https://..."
     value={rapsodoUrl}
@@ -1646,8 +1718,19 @@ style={{
   />
 </div>
 
-<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-  <label style={labelStyle}>TrackMan URL</label>
+<div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>TrackMan URL</label>
   <input
     placeholder="https://..."
     value={trackmanUrl}
@@ -1657,8 +1740,19 @@ style={{
   />
 </div>
 
-<div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-  <label style={labelStyle}>Pocket Radar URL</label>
+<div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+  <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Pocket Radar URL</label>
   <input
     placeholder="https://..."
     value={pocketRadarUrl}

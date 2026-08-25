@@ -2753,12 +2753,13 @@ return (
 
         {/* ========= TAB 6: VIDEO / SOCIAL ========= */}
 <div style={{ display: activeTab === "Video / Social Media" ? "block" : "none" }}>
-  <TabVideoSocial
-      ref={videoSocialRef}
-      readOnlyTeamAdmin={isTeamAdminMode}
-    email={profileEmail}
-    planTier="All-American"
-  />
+<TabVideoSocial
+  ref={videoSocialRef}
+  readOnlyTeamAdmin={isTeamAdminMode}
+  email={profileEmail}
+  planTier="All-American"
+  isMobile={isMobile}
+/>
 </div>
 
         {/* ========= TAB 7: COACHES / REFERENCES ========= */}
