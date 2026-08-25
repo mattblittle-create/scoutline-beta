@@ -130,7 +130,19 @@ function uid() {
 }
 
 const MAX_MB = 500;
-const ALLOWED_VIDEO_TYPES = ["video/mp4", "video/quicktime", "video/webm", "video/ogg"];
+const MAX_VIDEO_BYTES = MAX_MB * 1024 * 1024;
+
+// Compatibility target for reliable ScoutLine playback.
+// Portrait 1080x1920 is also allowed because we compare long/short sides.
+const MAX_VIDEO_LONG_SIDE = 1920;
+const MAX_VIDEO_SHORT_SIDE = 1080;
+
+// Until automatic transcoding is live, keep uploads to the two formats
+// we can most reliably normalize/play across mobile + desktop.
+const ALLOWED_VIDEO_TYPES = ["video/mp4", "video/quicktime"];
+
+const VIDEO_REQUIREMENTS_TEXT =
+  `Uploaded videos must be MP4 or MOV, not exceed ${MAX_MB} MB, and be no larger than 1080p.`;
 
 function normalizeHandle(handle?: string) {
   if (!handle) return "";
@@ -144,6 +156,65 @@ function isValidUrlMaybe(u: string) {
   } catch {
     return false;
   }
+}
+
+type VideoMetadata = {
+  width: number;
+  height: number;
+  duration: number;
+};
+
+function inspectVideoMetadata(file: File): Promise<VideoMetadata> {
+  return new Promise((resolve, reject) => {
+    const objectUrl = URL.createObjectURL(file);
+    const video = document.createElement("video");
+
+    let settled = false;
+
+    const cleanup = () => {
+      URL.revokeObjectURL(objectUrl);
+      video.removeAttribute("src");
+      video.load();
+    };
+
+    const finishWithError = (message: string) => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      reject(new Error(message));
+    };
+
+    const timer = window.setTimeout(() => {
+      finishWithError("ScoutLine could not read this video's metadata.");
+    }, 10000);
+
+    video.preload = "metadata";
+    video.muted = true;
+    video.playsInline = true;
+
+    video.onloadedmetadata = () => {
+      if (settled) return;
+
+      settled = true;
+      window.clearTimeout(timer);
+
+      const result = {
+        width: Number(video.videoWidth || 0),
+        height: Number(video.videoHeight || 0),
+        duration: Number(video.duration || 0),
+      };
+
+      cleanup();
+      resolve(result);
+    };
+
+    video.onerror = () => {
+      window.clearTimeout(timer);
+      finishWithError("ScoutLine could not read or verify this video file.");
+    };
+
+    video.src = objectUrl;
+  });
 }
 
 function classifyExternal(url: string): ExternalVideo["source"] {
@@ -431,6 +502,7 @@ const TabVideoSocial = React.forwardRef<
     planTier?: PlanTier;
     readOnlyTeamAdmin?: boolean;
     isMobile?: boolean;
+    onUploadError?: (message: string | null) => void;
   }
 >(
   function TabVideoSocial(props, ref) {
@@ -610,6 +682,11 @@ useEffect(() => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [activeUploadCategory, setActiveUploadCategory] = useState<VideoCategory>("Hitting");
 
+    function reportUploadError(message: string | null) {
+  setErr(message);
+  props.onUploadError?.(message);
+}
+
     // ----- External Videos -----
     const [extUrl, setExtUrl] = useState("");
     const [extTitle, setExtTitle] = useState("");
@@ -710,90 +787,170 @@ async function uploadLocalVideo(file: File, draftId: string) {
 }
 
     // Entire choose→validate→draft→upload flow
-    async function onChooseLocalVideos(files: FileList | null) {
-      if (!files || files.length === 0) return;
-      if (!PLAN.canUploadLocal) {
-        setErr(`${planTier} plan cannot upload local videos.`);
-        return;
-      }
+async function onChooseLocalVideos(files: FileList | null) {
+  if (!files || files.length === 0) return;
 
-      // enforce plan limit
-      const existing = state.localVideos.length;
-      const max = PLAN.maxLocal === "unlimited" ? Number.POSITIVE_INFINITY : PLAN.maxLocal;
-      const remainingSlots = Math.max(0, max - existing);
+  if (!PLAN.canUploadLocal) {
+    const message = `${planTier} plan cannot upload local videos.`;
+    reportUploadError(message);
+    return;
+  }
 
-      const rejected: string[] = [];
-      const pickedAll = Array.from(files).filter((f) => {
-        const sizeMB = f.size / (1024 * 1024);
-        const okType = ALLOWED_VIDEO_TYPES.includes(f.type);
-        const okSize = sizeMB <= MAX_MB;
-        if (!okType || !okSize) {
-          rejected.push(`${f.name} (${okType ? `${sizeMB.toFixed(1)}MB > ${MAX_MB}MB` : f.type || "unknown type"})`);
-          return false;
-        }
-        return true;
-      });
+  // New selection = clear any previous upload warning.
+  reportUploadError(null);
 
-      const picked = pickedAll.slice(0, remainingSlots || pickedAll.length);
+  const existing = state.localVideos.length;
+  const max =
+    PLAN.maxLocal === "unlimited"
+      ? Number.POSITIVE_INFINITY
+      : PLAN.maxLocal;
 
-      // Drafts for optimistic UI
-      const drafts: LocalVideo[] = picked
-        .filter((f) => f.type.startsWith("video/"))
-        .map((f) => ({
-          id: uid(),
-          title: f.name.replace(/\.[^.]+$/, ""),
-          fileName: f.name,
-          fileSize: f.size,
-          fileType: f.type,
-          previewUrl: URL.createObjectURL(f),
-          progress: 0,
-          status: "queued",
-          addedAt: Date.now(),
-          category: activeUploadCategory,
-        }));
+  const remainingSlots = Math.max(0, max - existing);
 
-      const skippedCount = pickedAll.length - picked.length;
-      const messages: string[] = [];
-      if (rejected.length) messages.push(`Skipped (type/size): ${rejected.join("; ")}`);
-      if (skippedCount > 0) messages.push(`Limit reached: only ${remainingSlots} slot(s) available for ${planTier}`);
-      if (messages.length) {
-        setErr(messages.join(" | "));
-        setTimeout(() => setErr(null), 4000);
-      }
+  if (remainingSlots <= 0) {
+    const message = `Video upload limit reached for the ${planTier} plan.`;
+    reportUploadError(message);
+    return;
+  }
 
-      if (!drafts.length) return;
+  const allFiles = Array.from(files);
+  const acceptedFiles: File[] = [];
+  const rejectedMessages: string[] = [];
 
-      setState((s) => ({ ...s, localVideos: [...drafts, ...s.localVideos] }));
+  for (const file of allFiles) {
+    const type = String(file.type || "").toLowerCase();
 
-      // Upload sequentially
-      for (const draft of drafts) {
-        const file = Array.from(files).find((f) => f.name === draft.fileName && f.size === draft.fileSize);
-        if (!file) continue;
-
-        try {
-          setState((s) => ({
-            ...s,
-            localVideos: s.localVideos.map((lv) => (lv.id === draft.id ? { ...lv, status: "uploading" } : lv)),
-          }));
-          await uploadLocalVideo(file, draft.id);
-          flashMsg(`Uploaded: ${draft.fileName}`);
-        } catch (e: any) {
-          setState((s) => ({
-            ...s,
-            localVideos: s.localVideos.map((lv) =>
-              lv.id === draft.id ? { ...lv, status: "error", errorMsg: e?.message || "Upload failed" } : lv
-            ),
-          }));
-          const msg = String(e?.message || "");
-
-if (msg.toLowerCase().includes("storage quota exceeded")) {
-  setErr("Upload storage is full. Use External Video Links or remove older uploaded videos.");
-} else {
-  setErr(`Upload failed for ${draft.fileName}: ${msg || "Unknown error"}`);
-}
-        }
-      }
+    // Type check
+    if (!ALLOWED_VIDEO_TYPES.includes(type)) {
+      rejectedMessages.push(
+        `${file.name}: unsupported file format. ${VIDEO_REQUIREMENTS_TEXT}`
+      );
+      continue;
     }
+
+    // Size check
+    if (file.size > MAX_VIDEO_BYTES) {
+      const sizeMb = (file.size / (1024 * 1024)).toFixed(1);
+
+      rejectedMessages.push(
+        `${file.name}: file is ${sizeMb} MB. ${VIDEO_REQUIREMENTS_TEXT}`
+      );
+      continue;
+    }
+
+    // Resolution / readable-metadata check
+    try {
+      const meta = await inspectVideoMetadata(file);
+
+      const longSide = Math.max(meta.width, meta.height);
+      const shortSide = Math.min(meta.width, meta.height);
+
+      if (
+        longSide > MAX_VIDEO_LONG_SIDE ||
+        shortSide > MAX_VIDEO_SHORT_SIDE
+      ) {
+        rejectedMessages.push(
+          `${file.name}: ${meta.width}×${meta.height} video detected. ` +
+          `ScoutLine currently supports videos up to 1080p for reliable playback. ` +
+          `${VIDEO_REQUIREMENTS_TEXT}`
+        );
+        continue;
+      }
+    } catch {
+      rejectedMessages.push(
+        `${file.name}: ScoutLine could not verify this video for reliable playback. ` +
+        VIDEO_REQUIREMENTS_TEXT
+      );
+      continue;
+    }
+
+    acceptedFiles.push(file);
+  }
+
+  const picked = acceptedFiles.slice(0, remainingSlots);
+
+  if (acceptedFiles.length > picked.length) {
+    rejectedMessages.push(
+      `Only ${remainingSlots} additional video${
+        remainingSlots === 1 ? "" : "s"
+      } can be uploaded on the ${planTier} plan.`
+    );
+  }
+
+  if (rejectedMessages.length > 0) {
+    reportUploadError(rejectedMessages.join(" "));
+  }
+
+  if (picked.length === 0) {
+    return;
+  }
+
+  const drafts: LocalVideo[] = picked.map((file) => ({
+    id: uid(),
+    title: file.name.replace(/\.[^.]+$/, ""),
+    fileName: file.name,
+    fileSize: file.size,
+    fileType: file.type,
+    previewUrl: URL.createObjectURL(file),
+    progress: 0,
+    status: "queued",
+    addedAt: Date.now(),
+    category: activeUploadCategory,
+  }));
+
+  setState((s) => ({
+    ...s,
+    localVideos: [...drafts, ...s.localVideos],
+  }));
+
+  // Upload sequentially
+  for (const draft of drafts) {
+    const file = picked.find(
+      (f) =>
+        f.name === draft.fileName &&
+        f.size === draft.fileSize
+    );
+
+    if (!file) continue;
+
+    try {
+      setState((s) => ({
+        ...s,
+        localVideos: s.localVideos.map((lv) =>
+          lv.id === draft.id
+            ? { ...lv, status: "uploading" }
+            : lv
+        ),
+      }));
+
+      await uploadLocalVideo(file, draft.id);
+
+      flashMsg(`Uploaded: ${draft.fileName}`);
+    } catch (e: any) {
+      setState((s) => ({
+        ...s,
+        localVideos: s.localVideos.map((lv) =>
+          lv.id === draft.id
+            ? {
+                ...lv,
+                status: "error",
+                errorMsg: e?.message || "Upload failed",
+              }
+            : lv
+        ),
+      }));
+
+      const rawMessage = String(e?.message || "");
+
+      const friendlyMessage =
+        rawMessage.toLowerCase().includes("storage quota exceeded")
+          ? "Video upload storage is currently full. Please try again later or use an External Video Link."
+          : `Upload failed for ${draft.fileName}. ${VIDEO_REQUIREMENTS_TEXT}`;
+
+      reportUploadError(friendlyMessage);
+    }
+  }
+}
 
     async function removeLocal(id: string) {
       setState((s) => {

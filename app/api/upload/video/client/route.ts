@@ -10,8 +10,6 @@ export const dynamic = "force-dynamic";
 const ALLOWED_VIDEO_TYPES = [
   "video/mp4",
   "video/quicktime",
-  "video/webm",
-  "video/ogg",
 ];
 
 function safeSlug(v: string) {
@@ -54,9 +52,10 @@ export async function POST(request: Request): Promise<Response> {
             .replace(/-+/g, "-")
             .replace(/^-+|-+$/g, "") || "video";
 
-        return {
-          allowedContentTypes: ALLOWED_VIDEO_TYPES,
-          addRandomSuffix: true,
+return {
+  allowedContentTypes: ALLOWED_VIDEO_TYPES,
+  maximumSizeInBytes: 500 * 1024 * 1024,
+  addRandomSuffix: true,
           tokenPayload: JSON.stringify({
             email: (parsed.email || "").trim().toLowerCase(),
             userSlug,

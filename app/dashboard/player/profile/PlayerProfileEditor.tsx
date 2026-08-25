@@ -573,6 +573,7 @@ const [naiaEcid, setNaiaEcid] = React.useState<string>("");
   // Notices
   const [msg, setMsg] = useState<string | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [videoUploadErr, setVideoUploadErr] = useState<string | null>(null);
   const [photoInfoMsg, setPhotoInfoMsg] = useState<string | null>(null);
 // ===== ANCHOR: GLOBAL ERROR STATE =====
   const [globalErr, setGlobalErr] = useState<string | null>(null);
@@ -2759,6 +2760,7 @@ return (
   email={profileEmail}
   planTier="All-American"
   isMobile={isMobile}
+  onUploadError={setVideoUploadErr}
 />
 </div>
 
@@ -2817,6 +2819,28 @@ return (
               </div>
             ) : null}
           </div>
+
+{videoUploadErr ? (
+  <div
+    role="alert"
+    style={{
+      marginTop: 10,
+      padding: "10px 12px",
+      borderRadius: 8,
+      border: "1px solid #fecaca",
+      background: "#fef2f2",
+      color: "#b91c1c",
+      fontWeight: 700,
+      lineHeight: 1.4,
+      fontSize: 14,
+    }}
+  >
+    <div style={{ fontWeight: 900, marginBottom: 4 }}>
+      Video upload issue
+    </div>
+    <div>{videoUploadErr}</div>
+  </div>
+) : null}
 
 {/* Optional: link to public profile */}
 {!isTeamAdminMode ? (
