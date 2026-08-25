@@ -515,10 +515,69 @@ const jumpSections = React.useMemo(() => {
   const [mediaDataView, setMediaDataView] = React.useState<MediaData>(mediaDataFromApi);
   const [primaryUrlView, setPrimaryUrlView] = React.useState<string | null>(primaryUrlFromApi);
 
-React.useEffect(() => {
-  setMediaDataView(mediaDataFromApi);
-  setPrimaryUrlView(primaryUrlFromApi);
-}, [mediaDataFromApi, primaryUrlFromApi]);
+  React.useEffect(() => {
+    try {
+      const emailKey = (coreEmail ?? "anon").toLowerCase().trim();
+      const tryKeys = [`scoutlineVideoSocial:${emailKey}`, `scoutlineVideoSocial:anon`];
+      let raw: string | null = null;
+      for (const k of tryKeys) {
+        raw = typeof window !== "undefined" ? localStorage.getItem(k) : null;
+        if (raw) break;
+      }
+
+      if (!raw) {
+        setMediaDataView(mediaDataFromApi);
+        setPrimaryUrlView(primaryUrlFromApi);
+        return;
+      }
+
+      const s = JSON.parse(raw) || {};
+      const lsUploads = Array.isArray(s.localVideos)
+        ? s.localVideos
+            .filter((v: any) => !!v?.publicUrl)
+            .map((v: any) => ({ url: String(v.publicUrl), title: v?.title ?? null }))
+        : [];
+      const lsLinks = Array.isArray(s.externalVideos)
+        ? s.externalVideos
+            .filter((v: any) => !!v?.url)
+            .map((v: any) => ({ url: String(v.url), title: v?.title ?? null }))
+        : [];
+
+      const dedupe = (arr: { url: string; title?: string | null }[]) => {
+        const seen = new Set<string>();
+        return arr.filter((it) => (seen.has(it.url) ? false : (seen.add(it.url), true)));
+      };
+
+      const mergedUploads = dedupe([...(mediaDataFromApi.uploadedVideos ?? []), ...lsUploads]);
+      const mergedLinks = dedupe([...(mediaDataFromApi.externalVideos ?? []), ...lsLinks]);
+
+      const merged: MediaData = {
+        ...mediaDataFromApi,
+        uploadedVideos: mergedUploads,
+        externalVideos: mergedLinks,
+        xUrl: mediaDataFromApi.xUrl || null,
+        instagramUrl: mediaDataFromApi.instagramUrl || null,
+        youtubeUrl: mediaDataFromApi.youtubeUrl || null,
+      };
+
+      let primaryFromLS: string | null = primaryUrlFromApi;
+      if (!primaryFromLS && s?.primary?.id && s?.primary?.kind) {
+        if (s.primary.kind === "local" && Array.isArray(s.localVideos)) {
+          const m = s.localVideos.find((v: any) => String(v?.id || "") === String(s.primary.id));
+          primaryFromLS = m?.publicUrl || (lsUploads.length === 1 ? lsUploads[0]?.url : null);
+        } else if (s.primary.kind === "external" && Array.isArray(s.externalVideos)) {
+          const m = s.externalVideos.find((v: any) => String(v?.id || "") === String(s.primary.id));
+          primaryFromLS = m?.url || (lsLinks.length === 1 ? lsLinks[0]?.url : null);
+        }
+      }
+
+      setMediaDataView(merged);
+      setPrimaryUrlView(primaryFromLS ?? null);
+    } catch {
+      setMediaDataView(mediaDataFromApi);
+      setPrimaryUrlView(primaryUrlFromApi);
+    }
+  }, [slug, coreEmail, mediaDataFromApi, primaryUrlFromApi]);
 
 React.useEffect(() => {
   console.log("SCOUTLINE_TRACKING_EFFECT_REACHED");

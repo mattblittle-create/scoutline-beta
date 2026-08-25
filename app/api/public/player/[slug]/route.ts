@@ -262,17 +262,17 @@ export async function GET(req: Request, { params }: { params: { slug: string } }
       // ----- Video / Social normalization -----
       const vs = (atomic as any).videoSocial ?? {};
 
-      const rawExternal = Array.isArray(vs.externalVideos)
-        ? vs.externalVideos
-        : Array.isArray((atomic as any).externalVideos)
-        ? (atomic as any).externalVideos
-        : [];
+const rawExternal = Array.isArray((atomic as any).externalVideos)
+  ? (atomic as any).externalVideos
+  : Array.isArray(vs.externalVideos)
+  ? vs.externalVideos
+  : [];
 
-      const rawLocal = Array.isArray(vs.localVideos)
-        ? vs.localVideos
-        : Array.isArray((atomic as any).localVideos)
-        ? (atomic as any).localVideos
-        : [];
+const rawLocal = Array.isArray((atomic as any).localVideos)
+  ? (atomic as any).localVideos
+  : Array.isArray(vs.localVideos)
+  ? vs.localVideos
+  : [];
 
       const videoSocial: VideoSocialPayload = {
         externalVideos: rawExternal
