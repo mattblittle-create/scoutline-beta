@@ -172,17 +172,16 @@ export const clearentAchProvider:
         `${environment.baseUrl}/rest/v2/ach/mobile/transactions/debit`,
         {
           method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type":
-              "application/json",
+headers: {
+  Accept: "application/json",
+  "Content-Type": "application/json",
 
-            "api-key":
-              environment.apiKey,
+  AccessKey:
+    environment.apiKey,
 
-            achmobilejwt:
-              input.mobileJwt.trim(),
-          },
+  Achmobilejwt:
+    input.mobileJwt.trim(),
+},
           body:
             JSON.stringify(requestBody),
           cache: "no-store",
