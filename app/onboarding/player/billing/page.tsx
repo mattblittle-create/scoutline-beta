@@ -14,6 +14,13 @@ type ClearentPaymentTokenResponse = {
   message?: string;
   error?: string;
   payload?: {
+    "ach-jwt"?: {
+      jwt?: string;
+      "account-type"?: string;
+      "individual-name"?: string;
+      "routing-number-last-four"?: string;
+      "account-number-last-four"?: string;
+    };
     "mobile-jwt"?: {
       jwt?: string;
       "last-four"?: string;
@@ -368,8 +375,10 @@ const handleAchCheckout = async () => {
     const tokenResult =
       await window.ClearentSDK.getPaymentToken();
 
-    const mobileJwt =
-      tokenResult?.payload?.["mobile-jwt"]?.jwt || "";
+const mobileJwt =
+  tokenResult?.payload?.["ach-jwt"]?.jwt ||
+  tokenResult?.payload?.["mobile-jwt"]?.jwt ||
+  "";
 
     if (!mobileJwt) {
       throw new Error(
