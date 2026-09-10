@@ -75,7 +75,7 @@ const nextConfig = {
 
     const securityHeaders = [
       { key: "Content-Security-Policy", value: csp },
-      { key: "Referrer-Policy", value: "no-referrer" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
       { key: "X-Content-Type-Options", value: "nosniff" },
       // This controls *your* pages being embedded elsewhere; fine to keep DENY
       { key: "X-Frame-Options", value: "DENY" },
