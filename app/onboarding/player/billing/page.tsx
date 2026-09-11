@@ -96,10 +96,6 @@ function PlayerBillingPageInner() {
   const [xplorFormReady, setXplorFormReady] = useState(false);
   const [achSubmitting, setAchSubmitting] = useState(false);
 
-  const [accountHolderName, setAccountHolderName] = useState("");
-  const [achAccountType, setAchAccountType] =
-    useState<"Checking" | "Savings">("Checking");
-
   const paymentState = searchParams.get("payment") || "";
   const paymentMessage = searchParams.get("message") || "";
   const paymentRef = searchParams.get("ref") || "";
@@ -340,13 +336,6 @@ const handleAchCheckout = async () => {
       return;
     }
 
-    if (!accountHolderName.trim()) {
-      setPageError(
-        "Enter the name shown on the bank account."
-      );
-      return;
-    }
-
     if (!XPLOR_PUBLIC_KEY) {
       setPageError(
         "Xplor ACH is missing its browser public key."
@@ -370,21 +359,47 @@ const handleAchCheckout = async () => {
     /*
      * Bank account and routing details remain
      * inside Xplor's hosted form. ScoutLine
-     * receives only the short-lived mobile JWT.
+     * receives only the short-lived ACH JWT
+     * plus safe account metadata.
      */
     const tokenResult =
       await window.ClearentSDK.getPaymentToken();
 
-const mobileJwt =
-  tokenResult?.payload?.["ach-jwt"]?.jwt ||
-  tokenResult?.payload?.["mobile-jwt"]?.jwt ||
-  "";
+    const achJwt =
+      tokenResult?.payload?.["ach-jwt"];
+
+    const mobileJwt =
+      achJwt?.jwt ||
+      tokenResult?.payload?.["mobile-jwt"]?.jwt ||
+      "";
+
+    const tokenAccountHolderName =
+      String(
+        achJwt?.["individual-name"] || ""
+      ).trim();
+
+    const tokenAccountType =
+      String(
+        achJwt?.["account-type"] || ""
+      ).trim();
 
     if (!mobileJwt) {
       throw new Error(
         tokenResult?.message ||
           tokenResult?.error ||
           "Xplor did not return an ACH payment token."
+      );
+    }
+
+    if (!tokenAccountHolderName) {
+      throw new Error(
+        "Xplor did not return the ACH account holder name."
+      );
+    }
+
+    if (!tokenAccountType) {
+      throw new Error(
+        "Xplor did not return the ACH account type."
       );
     }
 
@@ -400,12 +415,11 @@ const mobileJwt =
           plan,
           cadence,
           discountCode,
-
           mobileJwt,
           accountHolderName:
-            accountHolderName.trim(),
+            tokenAccountHolderName,
           accountType:
-            achAccountType,
+            tokenAccountType,
         }),
       }
     );
@@ -675,77 +689,6 @@ return (
       Bank Account
     </h2>
 
-    <div style={{ marginBottom: 12 }}>
-      <label
-        htmlFor="ach-account-holder-name"
-        style={{
-          display: "block",
-          marginBottom: 6,
-          fontWeight: 700,
-        }}
-      >
-        Name on Account
-      </label>
-
-      <input
-        id="ach-account-holder-name"
-        value={accountHolderName}
-        onChange={(event) =>
-          setAccountHolderName(event.target.value)
-        }
-        autoComplete="name"
-        placeholder="Account holder name"
-        disabled={achSubmitting}
-        style={{
-          width: "100%",
-          boxSizing: "border-box",
-          minHeight: 42,
-          padding: "9px 10px",
-          border: "1px solid #d1d5db",
-          borderRadius: 8,
-          fontSize: 15,
-        }}
-      />
-    </div>
-
-    <div style={{ marginBottom: 14 }}>
-      <label
-        htmlFor="ach-account-type"
-        style={{
-          display: "block",
-          marginBottom: 6,
-          fontWeight: 700,
-        }}
-      >
-        Account Type
-      </label>
-
-      <select
-        id="ach-account-type"
-        value={achAccountType}
-        onChange={(event) =>
-          setAchAccountType(
-            event.target.value as
-              | "Checking"
-              | "Savings"
-          )
-        }
-        disabled={achSubmitting}
-        style={{
-          width: "100%",
-          minHeight: 42,
-          padding: "9px 10px",
-          border: "1px solid #d1d5db",
-          borderRadius: 8,
-          background: "#ffffff",
-          fontSize: 15,
-        }}
-      >
-        <option value="Checking">Checking</option>
-        <option value="Savings">Savings</option>
-      </select>
-    </div>
-
     {!xplorScriptReady ? (
       <div
         style={{
@@ -821,10 +764,9 @@ return (
     checkoutLoading ||
     achSubmitting ||
     !playerProfileId ||
-    (paymentMethod === PaymentMethod.ACH &&
-      (!xplorScriptReady ||
-        !xplorFormReady ||
-        !accountHolderName.trim()))
+(paymentMethod === PaymentMethod.ACH &&
+  (!xplorScriptReady ||
+    !xplorFormReady))
   }
   style={{
     marginTop: 20,
@@ -835,10 +777,9 @@ return (
       checkoutLoading ||
       achSubmitting ||
       !playerProfileId ||
-      (paymentMethod === PaymentMethod.ACH &&
-        (!xplorScriptReady ||
-          !xplorFormReady ||
-          !accountHolderName.trim()))
+(paymentMethod === PaymentMethod.ACH &&
+  (!xplorScriptReady ||
+    !xplorFormReady))
         ? "not-allowed"
         : "pointer",
     opacity:
@@ -846,10 +787,9 @@ return (
       checkoutLoading ||
       achSubmitting ||
       !playerProfileId ||
-      (paymentMethod === PaymentMethod.ACH &&
-        (!xplorScriptReady ||
-          !xplorFormReady ||
-          !accountHolderName.trim()))
+(paymentMethod === PaymentMethod.ACH &&
+  (!xplorScriptReady ||
+    !xplorFormReady))
         ? 0.6
         : 1,
   }}
