@@ -176,10 +176,10 @@ headers: {
   Accept: "application/json",
   "Content-Type": "application/json",
 
-  AccessKey:
+  "api-key":
     environment.apiKey,
 
-  Achmobilejwt:
+  achmobilejwt:
     input.mobileJwt.trim(),
 },
           body:
