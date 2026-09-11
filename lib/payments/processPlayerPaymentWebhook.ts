@@ -53,6 +53,23 @@ function addYears(date: Date, years: number) {
   return next;
 }
 
+export function getFailedInvoiceStatus(
+  status: string
+): InvoiceStatus {
+  const normalized = String(status || "")
+    .trim()
+    .toUpperCase();
+
+  if (
+    normalized === "VOID" ||
+    normalized === "VOIDED"
+  ) {
+    return InvoiceStatus.VOID;
+  }
+
+  return InvoiceStatus.PAST_DUE;
+}
+
 type ProcessPlayerPaymentWebhookInput = {
   provider: PaymentProviderCode;
   normalized: NormalizedPaymentWebhook;
@@ -314,73 +331,155 @@ export async function applyFailedPlayerPayment({
   provider,
   normalized,
 }: ProcessPlayerPaymentWebhookInput) {
-  const invoice =
-    await prisma.playerInvoice.findFirst({
+  return prisma.$transaction(async (tx) => {
+    const invoice =
+      await tx.playerInvoice.findFirst({
+        where: {
+          externalId:
+            normalized.reference,
+        },
+        include: {
+          playerProfile: true,
+        },
+      });
+
+    if (!invoice) {
+      return {
+        found: false,
+      };
+    }
+
+    const invoiceStatus =
+      getFailedInvoiceStatus(
+        normalized.status
+      );
+
+    /*
+     * ACH transactions may first SETTLE and
+     * later be RETURNED or CHARGEBACK.
+     *
+     * In that case the invoice may already
+     * be PAID. Reverse the paid accounting
+     * state so ScoutLine no longer treats
+     * the payment as collected.
+     */
+    await tx.playerInvoice.update({
       where: {
-        externalId: normalized.reference,
+        id: invoice.id,
       },
-      include: {
-        playerProfile: true,
+      data: {
+        status:
+          invoiceStatus,
+
+        amountPaidCents: 0,
+
+        paidAt: null,
+
+        processorTransactionId:
+          normalized.transactionId ||
+          invoice.processorTransactionId,
+
+        processorResponseCode:
+          normalized.status ||
+          invoice.processorResponseCode,
       },
     });
 
-  if (!invoice) {
+    /*
+     * A SETTLED payment creates the next
+     * UPCOMING invoice. If that settled ACH
+     * later returns or becomes a chargeback,
+     * cancel that future billing cycle until
+     * the payment issue is resolved.
+     */
+    await tx.playerInvoice.updateMany({
+      where: {
+        playerProfileId:
+          invoice.playerProfileId,
+
+        status:
+          InvoiceStatus.UPCOMING,
+      },
+      data: {
+        status:
+          InvoiceStatus.VOID,
+      },
+    });
+
+    await tx.playerProfile.update({
+      where: {
+        id:
+          invoice.playerProfileId,
+      },
+      data: {
+        hasActivePlayerBilling:
+          false,
+
+        playerBillingStatus:
+          PLAYER_BILLING_STATUS.PAST_DUE,
+      },
+    });
+
+    await createBillingAuditLog({
+      actorType: "SYSTEM",
+
+      targetType:
+        "PLAYER_PROFILE",
+
+      targetId:
+        invoice.playerProfileId,
+
+      eventType:
+        normalized.rawEvent
+          .toUpperCase()
+          .includes("RECURRING")
+          ? "RECURRING_PAYMENT_FAILED"
+          : "PAYMENT_FAILED",
+
+      message:
+        `Payment failed for invoice ${normalized.reference}.`,
+
+      metadata: {
+        provider,
+
+        invoiceId:
+          invoice.id,
+
+        externalId:
+          normalized.reference,
+
+        amount:
+          normalized.amount,
+
+        surcharge:
+          normalized.surcharge,
+
+        paymentType:
+          normalized.paymentType,
+
+        brand:
+          normalized.brand,
+
+        last4:
+          normalized.last4,
+
+        transactionId:
+          normalized.transactionId,
+
+        responseStatus:
+          normalized.status,
+
+        invoiceStatus,
+      },
+    });
+
     return {
-      found: false,
+      found: true,
+
+      playerProfileId:
+        invoice.playerProfileId,
+
+      invoiceStatus,
     };
-  }
-
-  await prisma.playerProfile.update({
-    where: {
-      id: invoice.playerProfileId,
-    },
-    data: {
-      hasActivePlayerBilling: false,
-      playerBillingStatus:
-        PLAYER_BILLING_STATUS.PAST_DUE,
-    },
   });
-
-  await createBillingAuditLog({
-    actorType: "SYSTEM",
-
-    targetType: "PLAYER_PROFILE",
-    targetId: invoice.playerProfileId,
-
-    eventType:
-      normalized.rawEvent
-        .toUpperCase()
-        .includes("RECURRING")
-        ? "RECURRING_PAYMENT_FAILED"
-        : "PAYMENT_FAILED",
-
-    message:
-      `Payment failed for invoice ${normalized.reference}.`,
-
-    metadata: {
-      provider,
-
-      invoiceId: invoice.id,
-      externalId: normalized.reference,
-
-      amount: normalized.amount,
-      surcharge: normalized.surcharge,
-
-      paymentType: normalized.paymentType,
-      brand: normalized.brand,
-      last4: normalized.last4,
-
-      transactionId:
-        normalized.transactionId,
-
-      responseStatus:
-        normalized.status,
-    },
-  });
-
-  return {
-    found: true,
-    playerProfileId:
-      invoice.playerProfileId,
-  };
 }
