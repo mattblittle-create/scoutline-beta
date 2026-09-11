@@ -143,10 +143,11 @@ export function normalizeClearentAchStatus(
   }
 }
 
-export function extractClearentTransactionId(
+function getClearentAchTransaction(
   payload: unknown
-): string | null {
+): any {
   const value = payload as any;
+
   const data =
     value?.payload ??
     value?.data ??
@@ -154,14 +155,28 @@ export function extractClearentTransactionId(
     value;
 
   return (
+    data?.["ach-transaction"] ??
+    data?.achTransaction ??
+    data?.transaction ??
+    data
+  );
+}
+
+export function extractClearentTransactionId(
+  payload: unknown
+): string | null {
+  const value = payload as any;
+  const transaction =
+    getClearentAchTransaction(payload);
+
+  return (
     firstString(
-      data?.id,
-      data?.transactionId,
-      data?.transaction_id,
-      data?.["transaction-id"],
-      data?.providerTransactionId,
-      data?.["provider-transaction-id"],
-      data?.transaction?.id,
+      transaction?.id,
+      transaction?.transactionId,
+      transaction?.transaction_id,
+      transaction?.["transaction-id"],
+      transaction?.providerTransactionId,
+      transaction?.["provider-transaction-id"],
       value?.id
     ) || null
   );
@@ -170,25 +185,24 @@ export function extractClearentTransactionId(
 export function extractClearentTokenId(
   payload: unknown
 ): string | null {
-  const value = payload as any;
-  const data =
-    value?.payload ??
-    value?.data ??
-    value?.object ??
-    value;
+  const transaction =
+    getClearentAchTransaction(payload);
 
   return (
     firstString(
-      data?.tokenId,
-      data?.token_id,
-      data?.["token-id"],
-      data?.token?.id,
-      data?.achToken?.tokenId,
-      data?.achToken?.["token-id"],
-      data?.["ach-token"]?.tokenId,
-      data?.["ach-token"]?.["token-id"],
-      data?.account?.tokenId,
-      data?.account?.["token-id"]
+      transaction?.tokenId,
+      transaction?.token_id,
+      transaction?.["token-id"],
+      transaction?.token?.id,
+
+      transaction?.achToken?.tokenId,
+      transaction?.achToken?.["token-id"],
+
+      transaction?.["ach-token"]?.tokenId,
+      transaction?.["ach-token"]?.["token-id"],
+
+      transaction?.account?.tokenId,
+      transaction?.account?.["token-id"]
     ) || null
   );
 }
@@ -196,35 +210,38 @@ export function extractClearentTokenId(
 export function extractClearentLast4(
   payload: unknown
 ): string | null {
-  const value = payload as any;
-  const data =
-    value?.payload ??
-    value?.data ??
-    value?.object ??
-    value;
+  const transaction =
+    getClearentAchTransaction(payload);
 
   const explicit = firstString(
-    data?.last4,
-    data?.["last-four"],
-    data?.accountLast4,
-    data?.account?.last4,
-    data?.achToken?.accountNumber,
-    data?.achToken?.["account-number"],
-    data?.["ach-token"]?.accountNumber,
-    data?.["ach-token"]?.["account-number"]
+    transaction?.last4,
+    transaction?.["last-four"],
+    transaction?.accountLast4,
+
+    transaction?.account?.last4,
+
+    transaction?.achToken?.accountNumber,
+    transaction?.achToken?.["account-number"],
+
+    transaction?.["ach-token"]?.accountNumber,
+    transaction?.["ach-token"]?.["account-number"],
+
+    transaction?.accountNumber,
+    transaction?.["account-number"]
   );
 
   if (explicit) {
-    const digits = explicit.replace(/\D+/g, "");
+    const digits =
+      explicit.replace(/\D+/g, "");
 
     return digits.slice(-4) || null;
   }
 
   const masked = firstString(
-    data?.maskedAccountNumber,
-    data?.masked_account_number,
-    data?.["masked-account-number"],
-    data?.account?.maskedAccountNumber
+    transaction?.maskedAccountNumber,
+    transaction?.masked_account_number,
+    transaction?.["masked-account-number"],
+    transaction?.account?.maskedAccountNumber
   );
 
   return masked
@@ -236,19 +253,17 @@ export function extractClearentStatus(
   payload: unknown
 ): AchTransactionStatus {
   const value = payload as any;
-  const data =
-    value?.payload ??
-    value?.data ??
-    value?.object ??
-    value;
+
+  const transaction =
+    getClearentAchTransaction(payload);
 
   return normalizeClearentAchStatus(
     firstString(
-      data?.status,
-      data?.transactionStatus,
-      data?.transaction_status,
-      data?.["transaction-status"],
-      data?.result,
+      transaction?.status,
+      transaction?.transactionStatus,
+      transaction?.transaction_status,
+      transaction?.["transaction-status"],
+      transaction?.result,
       value?.status
     )
   );
@@ -258,21 +273,19 @@ export function extractClearentResponseMessage(
   payload: unknown
 ): string | null {
   const value = payload as any;
-  const data =
-    value?.payload ??
-    value?.data ??
-    value?.object ??
-    value;
+
+  const transaction =
+    getClearentAchTransaction(payload);
 
   return (
     firstString(
-      data?.displayMessage,
-      data?.["display-message"],
-      data?.responseMessage,
-      data?.response_message,
-      data?.["response-message"],
-      data?.returnedMessage,
-      data?.["returned-message"],
+      transaction?.displayMessage,
+      transaction?.["display-message"],
+      transaction?.responseMessage,
+      transaction?.response_message,
+      transaction?.["response-message"],
+      transaction?.returnedMessage,
+      transaction?.["returned-message"],
       value?.message,
       value?.error
     ) || null
