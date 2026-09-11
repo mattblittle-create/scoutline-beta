@@ -18,13 +18,16 @@ function fmtDate(d: string | Date | null | undefined) {
 export default function PlayerBillingInvoices(props: {
   invoices: Array<{
     id: string;
+    externalId: string | null;
     status: string;
     invoiceDate: string | Date;
     dueDate: string | Date;
-    amountCents: number;
-    amountPaidCents: number;
+amountCents: number;
+cardFeeCents?: number | null;
+amountPaidCents: number;
     paidAt: string | Date | null;
     hostedUrl: string | null;
+    processorReceiptUrl?: string | null;
   }>;
 }) {
   const invoices = props.invoices || [];
@@ -40,7 +43,7 @@ export default function PlayerBillingInvoices(props: {
           <table style={{ width: "100%", borderCollapse: "separate", borderSpacing: 0 }}>
             <thead>
               <tr>
-                {["Invoice Date", "Amount Due", "Payment Due Date", "Amount Paid", "Paid Date", "Status", ""].map((h) => (
+                {["Invoice #", "Invoice Date", "Amount Due", "Card Processing Fee", "Payment Draft Date", "Amount Paid", "Paid Date", "Status"].map((h) => (
                   <th
                     key={h}
                     style={{
@@ -60,34 +63,45 @@ export default function PlayerBillingInvoices(props: {
             </thead>
             <tbody>
               {invoices.map((inv) => (
-                <tr key={inv.id}>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
-                    {fmtDate(inv.invoiceDate)}
-                  </td>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800 }}>
-                    {formatUSD(inv.amountCents)}
-                  </td>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>{fmtDate(inv.dueDate)}</td>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>{formatUSD(inv.amountPaidCents)}</td>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>{fmtDate(inv.paidAt)}</td>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
-                    {inv.status}
-                  </td>
-                  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", textAlign: "right" }}>
-                    {inv.hostedUrl ? (
-                      <a
-                        href={inv.hostedUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ color: "#0ea5e9", fontWeight: 800, textDecoration: "underline", whiteSpace: "nowrap" }}
-                      >
-                        View / Pay
-                      </a>
-                    ) : (
-                      <span style={{ color: "#94a3b8", fontWeight: 700 }}>—</span>
-                    )}
-                  </td>
-                </tr>
+<tr key={inv.id}>
+  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a", whiteSpace: "nowrap" }}>
+    <a
+      href={`/dashboard/player/profile/billing/invoices/${encodeURIComponent(inv.id)}`}
+      style={{ color: "#0ea5e9", fontWeight: 900, textDecoration: "underline" }}
+      title={inv.status === "PAID" ? "View receipt" : "View invoice"}
+    >
+      {inv.externalId || "View Invoice"}
+    </a>
+  </td>
+
+  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
+    {fmtDate(inv.invoiceDate)}
+  </td>
+
+  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800 }}>
+    {formatUSD(inv.amountCents)}
+  </td>
+
+<td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800 }}>
+  {inv.cardFeeCents && inv.cardFeeCents > 0 ? formatUSD(inv.cardFeeCents) : "—"}
+</td>
+
+  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
+    {fmtDate(inv.dueDate)}
+  </td>
+
+<td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
+  {formatUSD(inv.amountPaidCents)}
+</td>
+
+  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9" }}>
+    {fmtDate(inv.paidAt)}
+  </td>
+
+  <td style={{ padding: "10px 10px", borderBottom: "1px solid #f1f5f9", fontWeight: 800, color: "#0f172a" }}>
+    {inv.status}
+  </td>
+</tr>
               ))}
             </tbody>
           </table>

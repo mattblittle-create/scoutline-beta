@@ -1,0 +1,1331 @@
+// app/lib/truth-fit/scoreCollegeFit.ts
+
+import { getAcademicAreaMatches } from "@/app/lib/academics/getAcademicAreaMatches";
+
+export type TruthFitLabel =
+  | "Strong Fit"
+  | "Match"
+  | "Possible Match"
+  | "Reach / Not Yet";
+
+export type TruthFitBenchmarkSourceLevel =
+  | "SCHOOL"
+  | "CONFERENCE"
+  | "DIVISION"
+  | "GLOBAL"
+  | "ESTIMATED";
+
+export type TruthFitInput = {
+player: {
+  gpa?: number | null;
+  gradYear?: number | null;
+  primaryPos?: string | null;
+  secondaryPos?: string | null;
+  isPitcher?: string | null;
+  pitcherHand?: string | null;
+  homeState?: string | null;
+    homeZip?: string | null;
+    heightIn?: number | null;
+    weightLb?: number | null;
+    metrics?: Record<string, Array<{ value?: number | null }>>;
+    academicAreas?: string[];
+  };
+  college: {
+    averageGpa?: number | null;
+    division?: string | null;
+    verificationStatus?: string | null;
+    transferHeavy?: boolean | null;
+    jucoFriendly?: boolean | null;
+    recruitingAggressiveness?: string | null;
+    regionalRecruitingBias?: string | null;
+    rosterTurnoverLevel?: string | null;
+    currentRosterSize?: number | null;
+    nilAvailable?: boolean | null;
+    baseballNilStrength?: string | null;
+    metricAverages?: Array<{
+      position?: string | null;
+      metricKey?: string | null;
+      averageValue?: number | string | null;
+      minValue?: number | string | null;
+      maxValue?: number | string | null;
+      unit?: string | null;
+      sourceLevel?: TruthFitBenchmarkSourceLevel;
+      sourceLabel?: string | null;
+      sourceConfidence?: "HIGH" | "MEDIUM" | "LOW";
+    }>;
+    metricBenchmarkSource?: {
+      level: TruthFitBenchmarkSourceLevel;
+      label: string;
+      confidence?: "HIGH" | "MEDIUM" | "LOW";
+    };
+    rosterNeeds?: Array<{
+      gradYear?: number | null;
+      position?: string | null;
+      needLevel?: string | null;
+    }>;
+    academicAreas?: Array<{
+      name?: string | null;
+    }>;
+  };
+};
+
+export type TruthFitResult = {
+  score: number;
+  label: TruthFitLabel;
+  priority: "HIGH" | "MEDIUM" | "LOW";
+  reasons: string[];
+  gaps: string[];
+  development: string[];
+metricComparisons: Array<{
+  key: string;
+  label: string;
+  playerValue: number;
+  benchmarkValue: number;
+  unit?: string | null;
+  lowerIsBetter: boolean;
+  delta: number;
+  percentDelta: number;
+  status: "ABOVE" | "IN_RANGE" | "BELOW";
+  sourceLevel?: TruthFitBenchmarkSourceLevel;
+  sourceLabel?: string | null;
+  sourceConfidence?: "HIGH" | "MEDIUM" | "LOW";
+}>;
+  benchmarkSource: {
+    metrics: {
+      level: TruthFitBenchmarkSourceLevel;
+      label: string;
+      confidence: "HIGH" | "MEDIUM" | "LOW";
+    };
+  };
+
+confidenceBreakdown: {
+  score: number;
+  label: "High Confidence" | "Medium Confidence" | "Limited Data";
+  reasons: string[];
+  missing: string[];
+};
+
+  projectionTag: string;
+  academicFit: {
+  score: number | null;
+  label: string;
+  playerAreas: string[];
+  schoolAreas: string[];
+  matchingAreas: string[];
+  missingAreas: string[];
+  relatedAreas: string[];
+};
+  projectionSummary: string;
+};
+
+function priorityFromScore(score: number): "HIGH" | "MEDIUM" | "LOW" {
+  if (score >= 75) return "HIGH";
+  if (score >= 60) return "MEDIUM";
+  return "LOW";
+}
+
+function labelFromScore(score: number, hasEstimatedSections = false): TruthFitLabel {
+  if (score >= 90) return "Strong Fit";
+  if (score >= 75) return "Match";
+  if (score >= 60) return "Possible Match";
+
+  // During beta, avoid overly harsh labels when major data sections are incomplete.
+  if (hasEstimatedSections && score >= 50) return "Possible Match";
+
+  return "Reach / Not Yet";
+}
+
+function normalizePos(value?: string | null) {
+  return String(value || "").trim().toUpperCase();
+}
+
+function expandedPositions(primary?: string | null, secondary?: string | null) {
+  const raw = [normalizePos(primary), normalizePos(secondary)].filter(Boolean);
+  const out = new Set<string>();
+
+  for (const pos of raw) {
+    out.add(pos);
+
+    if (pos === "LF" || pos === "CF" || pos === "RF") out.add("OF");
+    if (pos === "2B" || pos === "SS") out.add("MIF");
+    if (pos === "1B" || pos === "3B") out.add("CIF");
+    if (pos !== "P") out.add("UTILITY");
+  }
+
+  return Array.from(out);
+}
+
+function formatGpa(value: number) {
+  return value.toFixed(2).replace(/\.00$/, "");
+}
+
+function formatPositions(positions: string[]) {
+  return positions.length ? positions.join("/") : "position";
+}
+
+function latestMetricValue(
+  metrics: Record<string, Array<{ value?: number | null }>> | undefined,
+  key: string
+) {
+  const entries = metrics?.[key];
+  if (!Array.isArray(entries) || entries.length === 0) return null;
+
+  const last = entries[entries.length - 1];
+  const value = Number(last?.value);
+
+  return Number.isFinite(value) ? value : null;
+}
+
+function toNumber(value: number | string | null | undefined) {
+  if (value == null) return null;
+  const n = Number(value);
+  return Number.isFinite(n) ? n : null;
+}
+
+function needLevel(value?: string | null) {
+  return String(value || "").trim().toUpperCase();
+}
+
+function divisionLabel(value?: string | null) {
+  const raw = String(value || "").replace(/_/g, " ").trim();
+  return raw || "this level";
+}
+
+function formatMetricComparisonValue(value: number, unit?: string | null) {
+  const rounded = Number.isInteger(value) ? value : Number(value.toFixed(2));
+  return unit ? `${rounded} ${unit}` : String(rounded);
+}
+
+function metricLabel(key: string) {
+  if (key === "exitVelo") return "Exit Velocity";
+  if (key === "sixtyYdDash") return "60-Yard Dash";
+  if (key === "homeToFirst") return "Home-to-First";
+  if (key === "rawThrowVelo") return "Raw Throwing Velocity";
+  if (key === "infieldThrowVelo") return "Infield Throwing Velocity";
+  if (key === "outfieldThrowVelo") return "Outfield Throwing Velocity";
+  if (key === "catcherThrowVelo") return "Catcher Throwing Velocity";
+  if (key === "avgFbVelo") return "Average Fastball Velocity";
+  if (key === "avgChVelo") return "Average Changeup Velocity";
+  if (key === "avgBbVelo") return "Average Breaking Ball Velocity";
+  if (key === "popTime") return "Pop Time";
+  if (key === "heightIn") return "Height";
+  if (key === "weightLb") return "Weight";
+  if (key === "gpa") return "GPA";
+  return key;
+}
+
+function positionMetricKeys(positions: string[]) {
+  const set = new Set<string>();
+
+  const has = (pos: string) => positions.includes(pos);
+
+  // Universal athletic / recruiting profile metrics
+  set.add("exitVelo");
+  set.add("sixtyYdDash");
+  set.add("homeToFirst");
+  set.add("heightIn");
+  set.add("weightLb");
+
+  // Strength / explosiveness metrics
+  set.add("benchPress");
+  set.add("squat");
+  set.add("deadlift");
+
+  // Academic profile
+  set.add("gpa");
+
+  // Pitchers
+  if (has("P")) {
+    set.add("avgFbVelo");
+    set.add("avgChVelo");
+    set.add("avgBbVelo");
+    set.add("heightIn");
+    set.add("weightLb");
+    set.add("deadlift");
+    set.add("squat");
+  }
+
+  // Catchers
+  if (has("C")) {
+    set.add("popTime");
+    set.add("catcherThrowVelo");
+    set.add("exitVelo");
+    set.add("benchPress");
+  }
+
+  // Middle infield
+  if (has("SS") || has("2B") || has("MIF")) {
+    set.add("infieldThrowVelo");
+    set.add("sixtyYdDash");
+    set.add("homeToFirst");
+    set.add("squat");
+  }
+
+  // Corner infield
+  if (has("3B") || has("1B") || has("CIF")) {
+    set.add("infieldThrowVelo");
+    set.add("rawThrowVelo");
+    set.add("exitVelo");
+    set.add("heightIn");
+    set.add("weightLb");
+    set.add("benchPress");
+  }
+
+  // Outfield
+  if (has("LF") || has("CF") || has("RF") || has("OF")) {
+    set.add("outfieldThrowVelo");
+    set.add("sixtyYdDash");
+    set.add("homeToFirst");
+    set.add("exitVelo");
+    set.add("deadlift");
+  }
+
+  return Array.from(set);
+}
+
+function benchmarkConfidenceMultiplier(level?: TruthFitBenchmarkSourceLevel) {
+  if (level === "SCHOOL") return 1;
+  if (level === "CONFERENCE") return 0.98;
+  if (level === "DIVISION") return 0.96;
+  if (level === "GLOBAL") return 0.93;
+  return 0.88;
+}
+
+function summarizeMetricBenchmarkConfidence(
+  comparisons: TruthFitResult["metricComparisons"],
+  fallback: TruthFitResult["benchmarkSource"]["metrics"]
+) {
+  if (!comparisons.length) {
+    return fallback;
+  }
+
+  let weightedConfidence = 0;
+  let weightTotal = 0;
+
+  let schoolCount = 0;
+  let conferenceCount = 0;
+  let divisionCount = 0;
+  let globalCount = 0;
+  let estimatedCount = 0;
+
+  for (const comparison of comparisons) {
+    const weight =
+      metricWeight(
+        comparison.key
+      );
+
+    const confidence =
+      comparison.sourceConfidence === "HIGH"
+        ? 3
+        : comparison.sourceConfidence === "MEDIUM"
+        ? 2
+        : 1;
+
+    weightedConfidence +=
+      confidence *
+      weight;
+
+    weightTotal +=
+      weight;
+
+    if (
+      comparison.sourceLevel ===
+      "SCHOOL"
+    ) {
+      schoolCount += 1;
+    } else if (
+      comparison.sourceLevel ===
+      "CONFERENCE"
+    ) {
+      conferenceCount += 1;
+    } else if (
+      comparison.sourceLevel ===
+      "DIVISION"
+    ) {
+      divisionCount += 1;
+    } else if (
+      comparison.sourceLevel ===
+      "GLOBAL"
+    ) {
+      globalCount += 1;
+    } else {
+      estimatedCount += 1;
+    }
+  }
+
+  const averageConfidence =
+    weightTotal > 0
+      ? weightedConfidence /
+        weightTotal
+      : 1;
+
+  const confidence:
+    | "HIGH"
+    | "MEDIUM"
+    | "LOW" =
+    averageConfidence >= 2.5
+      ? "HIGH"
+      : averageConfidence >= 1.7
+      ? "MEDIUM"
+      : "LOW";
+
+  /*
+   * Keep SCHOOL as the overall level whenever school-specific
+   * data actually contributes to the comparison package.
+   *
+   * Confidence tells us how much of the complete metric
+   * comparison is truly school-specific versus fallback data.
+   */
+  const level: TruthFitBenchmarkSourceLevel =
+    schoolCount > 0
+      ? "SCHOOL"
+      : conferenceCount > 0
+      ? "CONFERENCE"
+      : divisionCount > 0
+      ? "DIVISION"
+      : globalCount > 0
+      ? "GLOBAL"
+      : estimatedCount > 0
+      ? "ESTIMATED"
+      : fallback.level;
+
+  return {
+    ...fallback,
+    level,
+    confidence,
+  };
+}
+
+function projectionFromFit({
+  score,
+  label,
+  reasons,
+  gaps,
+  development,
+  metricComparisons,
+}: {
+  score: number;
+  label: TruthFitLabel;
+  reasons: string[];
+  gaps: string[];
+  development: string[];
+  metricComparisons: TruthFitResult["metricComparisons"];
+}) {
+  const hasStrongMetric = metricComparisons.some((item) => item.status === "ABOVE");
+  const hasMetricGap = metricComparisons.some((item) => item.status === "BELOW");
+  const hasAcademicStrength = reasons.some((reason) =>
+    reason.toLowerCase().includes("gpa")
+  );
+  const hasRosterNeed = reasons.some((reason) =>
+    reason.toLowerCase().includes("roster need")
+  );
+
+  if (score >= 88 && hasRosterNeed && hasStrongMetric) {
+    return {
+      projectionTag: "Immediate Impact Prospect",
+      projectionSummary:
+        "Your profile shows strong alignment with this program’s roster need and available benchmark data.",
+    };
+  }
+
+  if (score >= 78 && (label === "Strong Fit" || label === "Match")) {
+    return {
+      projectionTag: "Strong Division Fit",
+      projectionSummary:
+        "Your current profile is tracking well for this program’s competitive level.",
+    };
+  }
+
+  if (hasAcademicStrength && score >= 65) {
+    return {
+      projectionTag: "High Academic Fit",
+      projectionSummary:
+        "Your academic profile appears to strengthen this recruiting fit.",
+    };
+  }
+
+  if (score >= 58 && hasMetricGap && development.length > 0) {
+    return {
+      projectionTag: "Developmental Upside",
+      projectionSummary:
+        "You are close enough to track this program, but your development areas should guide your next training focus.",
+    };
+  }
+
+  if (score < 58 && gaps.length > 0) {
+    return {
+      projectionTag: "Stretch Opportunity",
+      projectionSummary:
+        "This program is currently more of a reach based on available profile and benchmark data.",
+    };
+  }
+
+  return {
+    projectionTag: "Emerging College Prospect",
+    projectionSummary:
+      "This fit is still developing as ScoutLine collects more profile, roster, and benchmark data.",
+  };
+}
+
+const TRUSTED_TRUTH_FIT_METRIC_KEYS = new Set([
+  "exitVelo",
+  "avgFbVelo",
+  "popTime",
+  "sixtyYdDash",
+  "infieldThrowVelo",
+  "outfieldThrowVelo",
+  "heightIn",
+  "weightLb",
+  "gpa",
+]);
+
+function metricWeight(key: string) {
+  if (key === "avgFbVelo") return 1.35;
+  if (key === "exitVelo") return 1.25;
+  if (key === "popTime") return 1.2;
+  if (
+    key === "infieldThrowVelo" ||
+    key === "outfieldThrowVelo" ||
+    key === "catcherThrowVelo"
+  ) {
+    return 1.15;
+  }
+  if (key === "sixtyYdDash" || key === "homeToFirst") return 1.1;
+  if (key === "avgChVelo" || key === "avgBbVelo") return 0.9;
+  if (key === "heightIn" || key === "weightLb") return 0.55;
+  return 1;
+}
+
+export function scoreCollegeFit(input: TruthFitInput): TruthFitResult {
+  const reasons: string[] = [];
+  const gaps: string[] = [];
+  const development: string[] = [];
+
+  let academicFit: TruthFitResult["academicFit"] = {
+  score: null,
+  label: "No Major Preference",
+  playerAreas: [],
+  schoolAreas: [],
+  matchingAreas: [],
+  missingAreas: [],
+  relatedAreas: [],
+};
+
+  let earned = 0;
+  let possible = 0;
+
+  const playerGpa = input.player.gpa ?? null;
+  const collegeGpa = input.college.averageGpa ?? null;
+
+// GPA fit: 25 points
+possible += 25;
+
+if (playerGpa == null && collegeGpa == null) {
+  earned += 10;
+  reasons.push("Academic fit is estimated because player GPA and program GPA benchmark data are incomplete.");
+  development.push("Adding your GPA will make Truth Fit more accurate.");
+} else if (playerGpa == null) {
+  earned += 10;
+  reasons.push("Academic fit is estimated because player GPA is incomplete.");
+  development.push("Adding your GPA will make Truth Fit more accurate.");
+} else if (collegeGpa == null) {
+  earned += 13;
+  reasons.push("Academic fit is estimated because this program does not have GPA benchmark data yet.");
+} else if (playerGpa >= collegeGpa) {
+    earned += 25;
+    reasons.push(
+      `Your GPA (${formatGpa(playerGpa)}) meets or exceeds this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
+} else if (playerGpa >= collegeGpa - 0.25) {
+    earned += 20;
+    reasons.push(
+      `Your GPA (${formatGpa(playerGpa)}) is within 0.25 of this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
+    gaps.push("A small GPA bump could strengthen this academic fit.");
+} else if (playerGpa >= collegeGpa - 0.5) {
+    earned += 13;
+    gaps.push(
+      `Your GPA (${formatGpa(playerGpa)}) is below this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
+  } else {
+    earned += 6;
+    gaps.push(
+      `Your GPA (${formatGpa(playerGpa)}) is significantly below this program's average GPA (${formatGpa(collegeGpa)}).`
+    );
+  }
+
+// Position / grad-year need fit: 30 points
+possible += 30;
+
+const playerGradYear = input.player.gradYear ?? null;
+
+const positions = expandedPositions(
+  input.player.primaryPos,
+  input.player.secondaryPos
+);
+
+const pitcherHand = normalizePos(
+  input.player.pitcherHand
+);
+
+const isPitcher = String(
+  input.player.isPitcher || ""
+)
+  .trim()
+  .toLowerCase();
+
+const hasPitcherProfile =
+  isPitcher === "yes" ||
+  isPitcher === "true" ||
+  pitcherHand === "RHP" ||
+  pitcherHand === "LHP";
+
+if (hasPitcherProfile) {
+  if (
+    pitcherHand &&
+    !positions.includes(pitcherHand)
+  ) {
+    positions.push(pitcherHand);
+  }
+
+  if (!positions.includes("P")) {
+    positions.push("P");
+  }
+}
+
+const displayPositions = [
+  normalizePos(input.player.primaryPos),
+  normalizePos(input.player.secondaryPos),
+].filter(Boolean);
+
+  const needs = input.college.rosterNeeds || [];
+
+  const matchingNeeds = needs.filter((need) => {
+    const needYear = need.gradYear ?? null;
+    const needPos = normalizePos(need.position);
+
+    return (
+      playerGradYear != null &&
+      needYear === playerGradYear &&
+      positions.includes(needPos)
+    );
+  });
+
+  const highNeed = matchingNeeds.some((n) => needLevel(n.needLevel) === "HIGH");
+  const mediumNeed = matchingNeeds.some((n) => needLevel(n.needLevel) === "MEDIUM");
+  const lowNeed = matchingNeeds.some((n) => needLevel(n.needLevel) === "LOW");
+
+  const posLabel = formatPositions(displayPositions);
+
+  if (highNeed) {
+    earned += 30;
+    reasons.push(
+      `This program has a HIGH roster need matching your ${playerGradYear} class and ${posLabel} position profile.`
+    );
+  } else if (mediumNeed) {
+    earned += 23;
+    reasons.push(
+      `This program has a MEDIUM roster need matching your ${playerGradYear} class and ${posLabel} position profile.`
+    );
+  } else if (lowNeed) {
+    earned += 15;
+    reasons.push(
+      `This program has a LOW roster need match for your ${playerGradYear} class and ${posLabel} position profile.`
+    );
+  } else if (needs.length === 0) {
+    earned += 10;
+    reasons.push("Roster need fit is estimated because program need data is not available yet.");
+  } else {
+    earned += 6;
+    gaps.push(
+      `No confirmed roster need currently matches your ${playerGradYear || "grad year"} class and ${posLabel} position profile.`
+    );
+  }
+
+  // Academic area / intended major fit: 15 points
+  possible += 15;
+
+  const playerAcademicAreas = (input.player.academicAreas || [])
+    .map((area) => String(area || "").trim())
+    .filter(Boolean);
+
+  const collegeAcademicAreas = (input.college.academicAreas || [])
+    .map((area) => String(area?.name || "").trim())
+    .filter(Boolean);
+
+  academicFit = {
+    score: null,
+    label: "No Major Preference",
+    playerAreas: playerAcademicAreas,
+    schoolAreas: collegeAcademicAreas,
+    matchingAreas: [],
+    missingAreas: [],
+    relatedAreas: [],
+  };
+
+  if (!playerAcademicAreas.length) {
+    earned += 6;
+    reasons.push(
+      "Academic major fit is estimated because the player has not added intended major(s) yet."
+    );
+    development.push("Adding intended major(s) will improve academic fit accuracy.");
+  } else if (!collegeAcademicAreas.length) {
+    earned += 6;
+    academicFit = {
+      ...academicFit,
+      label: "Academic Data Pending",
+      missingAreas: playerAcademicAreas,
+    };
+    reasons.push(
+      "Academic major fit is estimated because this school does not have academic area data yet."
+    );
+  } else {
+    const academicMatches = getAcademicAreaMatches(
+      playerAcademicAreas,
+      collegeAcademicAreas
+    );
+
+    const collegeAreaSet = new Set(
+  collegeAcademicAreas.map((area) => area.toLowerCase())
+);
+
+const exactAcademicMatches = playerAcademicAreas.filter((area) =>
+  collegeAreaSet.has(area.toLowerCase())
+);
+
+const relatedAcademicMatches = academicMatches.filter(
+  (area) => !exactAcademicMatches.some((exact) => exact.toLowerCase() === area.toLowerCase())
+);
+
+    const matchSet = new Set(academicMatches.map((area) => area.toLowerCase()));
+
+    const missingAreas = playerAcademicAreas.filter(
+      (area) => !matchSet.has(area.toLowerCase())
+    );
+
+    const academicScore = Math.round(
+      (academicMatches.length / playerAcademicAreas.length) * 100
+    );
+
+    const academicPoints = Math.round((academicScore / 100) * 15);
+
+    earned += academicPoints > 0 ? academicPoints : 2;
+
+    let academicLabel = "Low Academic Match";
+    if (academicScore === 100) academicLabel = "Strong Academic Match";
+    else if (academicScore >= 50) academicLabel = "Partial Academic Match";
+
+    academicFit = {
+      score: academicScore,
+      label: academicLabel,
+      playerAreas: playerAcademicAreas,
+      schoolAreas: collegeAcademicAreas,
+      matchingAreas: exactAcademicMatches,
+      relatedAreas: relatedAcademicMatches,
+      missingAreas,
+    };
+
+if (academicMatches.length === playerAcademicAreas.length) {
+  if (exactAcademicMatches.length) {
+    reasons.push(
+      `Strong academic match: this school has confirmed academic area(s) matching your intended major(s): ${exactAcademicMatches.join(", ")}.`
+    );
+  } else {
+    reasons.push(
+      `Strong academic match: this school has related academic area(s) aligned with your intended major(s).`
+    );
+  }
+} else if (academicMatches.length > 0) {
+  if (exactAcademicMatches.length) {
+    reasons.push(
+      `Partial academic match: this school has confirmed academic area(s) matching ${exactAcademicMatches.join(", ")}.`
+    );
+  } else {
+    reasons.push(
+      `Partial academic match: this school has related academic area(s) aligned with your intended major(s).`
+    );
+  }
+
+      if (missingAreas.length) {
+        gaps.push(
+          `Academic gap: no confirmed match yet for ${missingAreas.join(", ")}.`
+        );
+      }
+    } else {
+      gaps.push(
+        `No confirmed academic match yet for your intended major(s): ${playerAcademicAreas.join(", ")}.`
+      );
+    }
+  }
+
+  // Metrics fit: 30 points
+  possible += 30;
+
+  const metricAverages = input.college.metricAverages || [];
+
+const metricKeysToCheck =
+  positionMetricKeys(positions).filter((key) =>
+    TRUSTED_TRUTH_FIT_METRIC_KEYS.has(key)
+  );
+
+  const matchedMetricScores: Array<{ score: number; weight: number }> = [];
+
+  const metricComparisons: TruthFitResult["metricComparisons"] = [];
+
+  const metricsBenchmarkSource: TruthFitResult["benchmarkSource"]["metrics"] = {
+    level: input.college.metricBenchmarkSource?.level || "ESTIMATED",
+    label:
+      input.college.metricBenchmarkSource?.label ||
+      "Estimated - benchmark data not available yet",
+    confidence: input.college.metricBenchmarkSource?.confidence || "LOW",
+  };
+
+  for (const key of metricKeysToCheck) {
+    const playerValue =
+      key === "heightIn"
+        ? input.player.heightIn ?? null
+        : key === "weightLb"
+        ? input.player.weightLb ?? null
+        : key === "gpa"
+        ? input.player.gpa ?? null
+        : latestMetricValue(input.player.metrics, key);
+
+    if (playerValue == null) continue;
+
+const benchmark =
+  key === "gpa" && collegeGpa != null
+    ? {
+        position: "",
+        metricKey: "gpa",
+        averageValue: collegeGpa,
+        minValue: null,
+        maxValue: null,
+        unit: "",
+        sourceLevel: "SCHOOL" as TruthFitBenchmarkSourceLevel,
+        sourceLabel: "Program GPA benchmark",
+        sourceConfidence: "HIGH" as const,
+      }
+    : (() => {
+        const candidates = metricAverages.filter((metric) => {
+          const metricKey = String(metric.metricKey || "").trim();
+          return metricKey === key;
+        });
+
+        if (!candidates.length) {
+          return undefined;
+        }
+
+        const primaryPos = normalizePos(input.player.primaryPos);
+        const secondaryPos = normalizePos(input.player.secondaryPos);
+
+        const positionPriority: string[] = [];
+
+        const addPosition = (pos: string) => {
+          if (pos && !positionPriority.includes(pos)) {
+            positionPriority.push(pos);
+          }
+        };
+
+/*
+ * Exact player positions first.
+ */
+addPosition(primaryPos);
+addPosition(secondaryPos);
+
+/*
+ * If the player also pitches, include the pitching hand
+ * as an exact recruiting position.
+ */
+if (hasPitcherProfile) {
+  addPosition(pitcherHand);
+  addPosition("P");
+}
+
+/*
+ * Position-group fallbacks.
+ */
+for (const pos of [
+  primaryPos,
+  secondaryPos,
+  ...(hasPitcherProfile
+    ? [pitcherHand, "P"]
+    : []),
+]) {
+          if (pos === "1B" || pos === "3B") {
+            addPosition("CIF");
+            addPosition("INF");
+          }
+
+          if (pos === "2B" || pos === "SS") {
+            addPosition("MIF");
+            addPosition("INF");
+          }
+
+          if (pos === "LF" || pos === "CF" || pos === "RF") {
+            addPosition("OF");
+          }
+
+          if (pos === "RHP" || pos === "LHP" || pos === "P") {
+            addPosition(pos);
+            addPosition("P");
+          }
+        }
+
+        /*
+         * Generic utility fallback last.
+         */
+        addPosition("UTILITY");
+        addPosition("UTL");
+
+        const sourceRank = (
+          level?: TruthFitBenchmarkSourceLevel
+        ) => {
+          if (level === "SCHOOL") return 5;
+          if (level === "CONFERENCE") return 4;
+          if (level === "DIVISION") return 3;
+          if (level === "GLOBAL") return 2;
+          return 1;
+        };
+
+        return [...candidates].sort((a, b) => {
+          const aPos = normalizePos(a.position);
+          const bPos = normalizePos(b.position);
+
+          const aPosRank = positionPriority.includes(aPos)
+            ? positionPriority.indexOf(aPos)
+            : Number.MAX_SAFE_INTEGER;
+
+          const bPosRank = positionPriority.includes(bPos)
+            ? positionPriority.indexOf(bPos)
+            : Number.MAX_SAFE_INTEGER;
+
+          /*
+           * Prefer the most specific relevant position first.
+           */
+          if (aPosRank !== bPosRank) {
+            return aPosRank - bPosRank;
+          }
+
+          /*
+           * For the same positional fit, prefer better source data.
+           */
+          const aSourceRank = sourceRank(
+            (a as any).sourceLevel
+          );
+
+          const bSourceRank = sourceRank(
+            (b as any).sourceLevel
+          );
+
+          return bSourceRank - aSourceRank;
+        })[0];
+      })();
+
+    if (!benchmark) continue;
+
+    const avg = toNumber(benchmark.averageValue);
+    const min = toNumber(benchmark.minValue);
+    const max = toNumber(benchmark.maxValue);
+
+    if (avg == null) continue;
+
+    const lowerIsBetter =
+      key === "sixtyYdDash" ||
+      key === "homeToFirst" ||
+      key === "popTime";
+
+let metricScore = 0;
+
+if (key === "gpa") {
+  if (playerValue >= avg) {
+    metricScore = 1;
+  } else if (playerValue >= avg - 0.25) {
+    metricScore = 0.7;
+  } else {
+    metricScore = 0.35;
+  }
+} else if (lowerIsBetter) {
+      if (playerValue <= avg) {
+        metricScore = 1;
+      } else if (max != null && playerValue <= max) {
+        metricScore = 0.7;
+      } else {
+        metricScore = 0.35;
+      }
+    } else {
+      if (playerValue >= avg) {
+        metricScore = 1;
+      } else if (min != null && playerValue >= min) {
+        metricScore = 0.7;
+      } else {
+        metricScore = 0.35;
+      }
+    }
+
+    matchedMetricScores.push({
+      score: metricScore,
+      weight: metricWeight(key),
+    });
+
+const delta = lowerIsBetter
+  ? avg - playerValue
+  : playerValue - avg;
+
+const percentDelta =
+  avg !== 0
+    ? Math.abs(delta / avg)
+    : Math.abs(delta);
+
+metricComparisons.push({
+  key,
+  label: metricLabel(key),
+  playerValue,
+  benchmarkValue: avg,
+  unit: benchmark.unit || null,
+  lowerIsBetter,
+  delta,
+  percentDelta,
+  status:
+    metricScore === 1
+      ? "ABOVE"
+      : metricScore === 0.7
+      ? "IN_RANGE"
+      : "BELOW",
+      
+  sourceLevel:
+  (benchmark as any).sourceLevel ||
+  metricsBenchmarkSource.level,
+
+sourceLabel:
+  (benchmark as any).sourceLabel ||
+  metricsBenchmarkSource.label,
+
+sourceConfidence:
+  (benchmark as any).sourceConfidence ||
+  metricsBenchmarkSource.confidence,
+});
+
+    if (metricScore === 1 && reasons.length < 5) {
+      reasons.push(`${metricLabel(key)} is at or above the benchmark range for this fit.`);
+    }
+
+    if (metricScore === 0.35 && gaps.length < 5) {
+      gaps.push(
+        `${metricLabel(key)} is below benchmark: you are at ${formatMetricComparisonValue(
+          playerValue,
+          benchmark.unit
+        )} vs benchmark ${formatMetricComparisonValue(avg, benchmark.unit)}.`
+      );
+    }
+  }
+
+  if (matchedMetricScores.length === 0) {
+    earned += 10;
+    reasons.push(
+      "Metrics fit is estimated because matching player metrics or program benchmark data is not available yet."
+    );
+    development.push("Adding verified metrics will make your Truth Fit results more accurate and actionable.");
+  } else {
+    const weightedScoreTotal = matchedMetricScores.reduce(
+      (sum, item) => sum + item.score * item.weight,
+      0
+    );
+
+    const weightTotal = matchedMetricScores.reduce(
+      (sum, item) => sum + item.weight,
+      0
+    );
+
+    const metricAverage = weightTotal > 0 ? weightedScoreTotal / weightTotal : 0;
+
+    const metricPoints = Math.round(metricAverage * 30);
+    earned += metricPoints;
+
+    if (metricAverage >= 0.9) {
+      reasons.push(`Your available metrics compare strongly against ${metricsBenchmarkSource.label}.`);
+    } else if (metricAverage >= 0.7) {
+      reasons.push(`Your available metrics are within range of ${metricsBenchmarkSource.label}.`);
+    } else {
+      gaps.push(
+        `Your overall metric profile is currently below the ${metricsBenchmarkSource.label}.`
+      );
+
+development.push(
+  `Improving your core athletic metrics will significantly increase your recruiting fit for ${divisionLabel(input.college.division)} programs.`
+);
+    }
+  }
+
+  const effectiveMetricsBenchmarkSource =
+  summarizeMetricBenchmarkConfidence(
+    metricComparisons,
+    metricsBenchmarkSource
+  );
+
+  // Targeted development suggestions based on current player metrics
+  const sixty = latestMetricValue(input.player.metrics, "sixtyYdDash");
+  const infieldThrowVelo = latestMetricValue(input.player.metrics, "infieldThrowVelo");
+  const outfieldThrowVelo = latestMetricValue(input.player.metrics, "outfieldThrowVelo");
+  const avgFbVelo = latestMetricValue(input.player.metrics, "avgFbVelo");
+
+  const primaryPos = normalizePos(input.player.primaryPos);
+  const secondaryPos = normalizePos(input.player.secondaryPos);
+
+const sixtyComparison =
+  metricComparisons.find(
+    (comparison) =>
+      comparison.key === "sixtyYdDash"
+  );
+
+if (
+  sixty != null &&
+  sixtyComparison?.status === "BELOW"
+) {
+  const benchmark =
+    sixtyComparison.benchmarkValue;
+
+  const targetSixty =
+    Number(
+      Math.max(
+        benchmark - 0.1,
+        6.5
+      ).toFixed(2)
+    );
+
+  development.push(
+    `Improving 60-yard from ${sixty.toFixed(2)} to ${targetSixty.toFixed(
+      2
+    )} would increase ${divisionLabel(input.college.division)} fit scores substantially, especially for infield and outfield opportunities.`
+  );
+}
+
+  if (
+    infieldThrowVelo != null &&
+    infieldThrowVelo < 85 &&
+    (primaryPos === "1B" ||
+      primaryPos === "2B" ||
+      primaryPos === "SS" ||
+      primaryPos === "3B" ||
+      secondaryPos === "1B" ||
+      secondaryPos === "2B" ||
+      secondaryPos === "SS" ||
+      secondaryPos === "3B")
+  ) {
+    development.push("Adding infield throwing velocity will improve your defensive value on the left side or corner infield.");
+  }
+
+  if (
+    outfieldThrowVelo != null &&
+    outfieldThrowVelo < 88 &&
+    (primaryPos === "LF" ||
+      primaryPos === "CF" ||
+      primaryPos === "RF" ||
+      secondaryPos === "LF" ||
+      secondaryPos === "CF" ||
+      secondaryPos === "RF")
+  ) {
+    development.push("Improving outfield throwing velocity will strengthen your profile for college outfield roles.");
+  }
+
+if (
+  avgFbVelo != null &&
+  avgFbVelo < 82 &&
+  hasPitcherProfile
+) {
+  development.push(
+    `Increasing average fastball velocity will improve your pitching fit against ${divisionLabel(
+      input.college.division
+    )} benchmarks.`
+  );
+}
+
+const rawScore = Math.round((earned / possible) * 100);
+
+let programContextAdjustment = 0;
+
+const verificationStatus = String(input.college.verificationStatus || "").toUpperCase();
+const recruitingAggressiveness = String(input.college.recruitingAggressiveness || "").toUpperCase();
+const rosterTurnoverLevel = String(input.college.rosterTurnoverLevel || "").toUpperCase();
+const baseballNilStrength = String(input.college.baseballNilStrength || "").toUpperCase();
+
+if (verificationStatus === "VERIFIED") {
+  programContextAdjustment += 2;
+  reasons.push("This program has verified recruiting intelligence, improving confidence in this fit.");
+}
+
+if (
+  recruitingAggressiveness.includes("HIGH") ||
+  recruitingAggressiveness.includes("AGGRESSIVE")
+) {
+  programContextAdjustment += 2;
+  reasons.push("This program appears to be actively recruiting, which improves opportunity fit.");
+} else if (
+  recruitingAggressiveness.includes("MEDIUM") ||
+  recruitingAggressiveness.includes("MODERATE")
+) {
+  programContextAdjustment += 1;
+}
+
+if (
+  rosterTurnoverLevel.includes("HIGH") ||
+  rosterTurnoverLevel.includes("ELEVATED")
+) {
+  programContextAdjustment += 2;
+  reasons.push("Roster turnover may create additional opportunity at this program.");
+} else if (
+  rosterTurnoverLevel.includes("MEDIUM") ||
+  rosterTurnoverLevel.includes("MODERATE")
+) {
+  programContextAdjustment += 1;
+}
+
+if (
+  baseballNilStrength === "ELITE" ||
+  baseballNilStrength === "STRONG"
+) {
+  reasons.push("This program has notable baseball NIL opportunity.");
+}
+
+programContextAdjustment = Math.min(programContextAdjustment, 6);
+
+const hasEstimatedSections =
+  playerGpa == null ||
+  collegeGpa == null ||
+  needs.length === 0 ||
+  matchedMetricScores.length === 0;
+
+const confidenceMultiplier =
+  effectiveMetricsBenchmarkSource.confidence === "HIGH"
+    ? 1
+    : effectiveMetricsBenchmarkSource.confidence === "MEDIUM"
+    ? 0.98
+    : 0.96;
+
+const score = Math.max(
+  0,
+  Math.min(100, Math.round(rawScore * confidenceMultiplier) + programContextAdjustment)
+);
+
+if (confidenceMultiplier < 1) {
+  reasons.push(
+    `Truth Fit confidence is adjusted because the available metric comparisons use a mix of school, conference, and division benchmark data.`
+  );
+}
+
+const uniqueDevelopment = Array.from(new Set(development));
+
+if (score >= 75 && gaps.length <= 1) {
+  uniqueDevelopment.unshift("Next best action: add this school to Target Programs and prepare a personalized coach outreach email.");
+} else if (score >= 60) {
+  uniqueDevelopment.unshift("Next best action: track this school while improving the gaps listed above.");
+} else {
+  uniqueDevelopment.unshift("Next best action: keep this school on your radar, but prioritize stronger current-fit programs first.");
+}
+
+const sortedComparisons = [...metricComparisons].sort((a, b) => {
+  const priority = (m: any) => {
+    if (m.status === "BELOW") return 3;
+    if (m.status === "IN_RANGE") return 2;
+    return 1;
+  };
+
+  return priority(b) - priority(a);
+});
+
+const label = labelFromScore(score, hasEstimatedSections);
+
+const projection = projectionFromFit({
+  score,
+  label,
+  reasons: Array.from(new Set(reasons)),
+  gaps: Array.from(new Set(gaps)),
+  development: uniqueDevelopment,
+  metricComparisons: sortedComparisons,
+});
+
+const confidenceReasons: string[] = [];
+const confidenceMissing: string[] = [];
+
+if (verificationStatus === "VERIFIED") confidenceReasons.push("Verified program data");
+else confidenceMissing.push("Program verification");
+
+if (
+  effectiveMetricsBenchmarkSource.level ===
+  "SCHOOL"
+) {
+  confidenceReasons.push(
+    effectiveMetricsBenchmarkSource.confidence ===
+      "HIGH"
+      ? "Strong school-specific benchmark coverage"
+      : "Some school-specific benchmarks with fallback data"
+  );
+} else if (
+  effectiveMetricsBenchmarkSource.level ===
+  "CONFERENCE"
+) {
+  confidenceReasons.push(
+    "Conference benchmark coverage"
+  );
+} else if (
+  effectiveMetricsBenchmarkSource.level ===
+  "DIVISION"
+) {
+  confidenceReasons.push(
+    "Division benchmark fallback"
+  );
+} else {
+  confidenceMissing.push(
+    "School / conference metric benchmarks"
+  );
+}
+
+if (needs.length > 0) confidenceReasons.push("Roster needs available");
+else confidenceMissing.push("Roster needs");
+
+if (collegeAcademicAreas.length > 0) confidenceReasons.push("Academic areas available");
+else confidenceMissing.push("Academic areas");
+
+if (matchedMetricScores.length > 0) confidenceReasons.push("Player metrics matched to benchmarks");
+else confidenceMissing.push("Player metrics or benchmark comparisons");
+
+if (input.college.currentRosterSize != null) confidenceReasons.push("Roster size available");
+else confidenceMissing.push("Roster size");
+
+if (input.college.baseballNilStrength && input.college.baseballNilStrength !== "UNKNOWN") {
+  confidenceReasons.push("NIL signal available");
+}
+
+const confidenceScore = Math.round(
+  (confidenceReasons.length / (confidenceReasons.length + confidenceMissing.length || 1)) * 100
+);
+
+const confidenceBreakdown = {
+  score: confidenceScore,
+  label:
+    confidenceScore >= 75
+      ? "High Confidence"
+      : confidenceScore >= 45
+      ? "Medium Confidence"
+      : "Limited Data",
+  reasons: confidenceReasons.slice(0, 6),
+  missing: confidenceMissing.slice(0, 6),
+} as const;
+
+return {
+  score,
+  label,
+  priority: priorityFromScore(score),
+  reasons: Array.from(new Set(reasons)).slice(0, 6),
+  gaps: Array.from(new Set(gaps)).slice(0, 5),
+  development: uniqueDevelopment.slice(0, 4),
+  metricComparisons: sortedComparisons.slice(0, 6),
+benchmarkSource: {
+    metrics:
+      effectiveMetricsBenchmarkSource,
+  },
+  academicFit,
+  projectionTag: projection.projectionTag,
+  projectionSummary: projection.projectionSummary,
+  confidenceBreakdown,
+};
+}

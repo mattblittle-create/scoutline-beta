@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-07-24T13:41:13.221Z",
+  "expectedExternalD1Inventory": 308,
+  "totalCollegeRecords": 1566,
+  "totalBaseballProgramRecords": 1547,
+  "canonicalD1Programs": 208,
+  "legacyD1Colleges": 37,
+  "eitherFieldD1Colleges": 209,
+  "canonicalGapVersus308": 100,
+  "eitherFieldGapVersus308": 99,
+  "divisionMismatches": {
+    "legacyD1MissingProgram": 0,
+    "legacyD1ButProgramNotD1": 1,
+    "programD1ButLegacyNotD1": 172,
+    "legacyD1WithNullProgramDivision": 1
+  },
+  "duplicateCandidates": {
+    "normalizedNameRows": 100,
+    "normalizedNameGroups": 50,
+    "websiteHostnameRows": 585,
+    "websiteHostnameGroups": 2
+  },
+  "canonicalD1DataQuality": {
+    "missingBaseballWebsite": 1,
+    "zeroCoaches": 44,
+    "noMarkedHeadCoach": 45,
+    "multipleMarkedHeadCoaches": 2
+  }
+}

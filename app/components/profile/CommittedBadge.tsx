@@ -35,7 +35,7 @@ export default function CommittedBadge({
     ? showCollege && hasCollege
       ? `Committed — ${committed!.college}`
       : "Committed"
-    : "Not Committed";
+    : "Uncommitted";
 
   const pad = size === "sm" ? "3px 8px" : "5px 10px";
   const fontSize = size === "sm" ? 12 : 13;

@@ -6,7 +6,7 @@ import sharp from "sharp";
 
 // 🔄 Dev store sync so public route (which uses devStore) sees photoUrl
 // If you don't have these, add them to /lib/devStore.ts
-import { getByEmail as devGetByEmail, saveByEmail as devSaveByEmail } from "@/lib/devStore";
+import { getByEmail as devGetByEmail, saveUser as devSaveUser } from "@/lib/devStore";
 
 export const runtime = "nodejs"; // Blob SDK + sharp require Node.js runtime
 
@@ -181,8 +181,8 @@ export async function POST(req: Request) {
     // Create deterministic-ish path (no PII)
     const key = `user-photos/${user.id}-${Date.now()}.${processed.ext}`;
 
-    // Upload to Vercel Blob (public by default)
-    const { url } = await put(key, new Blob([processed.data], { type: processed.contentType }), {
+    // ✅ Upload to Vercel Blob using Buffer directly (Node runtime)
+    const { url } = await put(key, processed.data, {
       access: "public",
       contentType: processed.contentType,
     });
@@ -197,7 +197,7 @@ export async function POST(req: Request) {
     try {
       const existing = (await devGetByEmail(email)) || { email };
       const updated = { ...existing, photoUrl: url };
-      await devSaveByEmail(email, updated);
+      await devSaveUser(updated as any);
     } catch {
       // Non-fatal in dev; ignore
     }
@@ -239,7 +239,7 @@ export async function DELETE(req: Request) {
       const existing = await devGetByEmail(email);
       if (existing) {
         const { photoUrl: _omit, ...rest } = existing;
-        await devSaveByEmail(email, rest);
+        await devSaveUser(rest as any);
       }
     } catch {
       // Non-fatal

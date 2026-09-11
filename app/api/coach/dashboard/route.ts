@@ -140,29 +140,29 @@ export async function GET() {
         })
       : [];
 
-    const teamPlayers = playerMemberships.map((m) => {
-      const u = m.user;
-      const player = u?.Player ?? null;
-      const profile = u?.PlayerProfile?.[0] ?? null;
+const teamPlayers = playerMemberships.map((m) => {
+  const u = m.user;
+  const player = u?.Player ?? null;
+  const profile = u?.PlayerProfile ?? null;
 
-      return {
-        teamId: m.teamId,
-        teamName: m.team.name,
-        teamType: m.team.teamType,
-        playerUserId: u?.id ?? "",
-        playerName: u?.name ?? null,
-        playerEmail: u?.email ?? null,
-        playerProfileId: profile?.id ?? null,
-        profileState: profile?.profileState ?? null,
-        ownershipMode: profile?.ownershipMode ?? null,
-        isPrimaryTeamForProfile: m.isPrimaryForProfile,
-        gradYear: player?.gradYear ?? null,
-        primaryPos: player?.primaryPos ?? null,
-        secondaryPos: player?.secondaryPos ?? null,
-        bats: player?.bats ?? null,
-        throws: player?.throws ?? null,
-      };
-    });
+  return {
+    teamId: m.teamId,
+    teamName: m.team.name,
+    teamType: m.team.teamType,
+    playerUserId: u?.id ?? "",
+    playerName: u?.name ?? null,
+    playerEmail: u?.email ?? null,
+    playerProfileId: profile?.id ?? null,
+    profileState: profile?.profileState ?? null,
+    ownershipMode: profile?.ownershipMode ?? null,
+    isPrimaryTeamForProfile: m.isPrimaryForProfile,
+    gradYear: player?.gradYear ?? null,
+    primaryPos: player?.primaryPos ?? null,
+    secondaryPos: player?.secondaryPos ?? null,
+    bats: player?.bats ?? null,
+    throws: player?.throws ?? null,
+  };
+});
 
     // Recruiting board only for entitled accounts AND if collegeId exists
     let recruitingBoard: CoachDashboardResponse["data"]["recruitingBoard"] = [];

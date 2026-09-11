@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
+import type { CoachRef as PlayerCoachRef } from "@/app/lib/types/player";
 
 /**
  * Tab 7: Coaches / References
@@ -16,6 +17,10 @@ import React, { useEffect, useMemo, useState } from "react";
 // ---------- Types ----------
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
 
+/**
+ * UI/local-storage shape (what this component edits)
+ * This is intentionally NOT the same as the canonical payload shape.
+ */
 export type CoachRef = {
   id: string;
   firstName: string;
@@ -31,14 +36,19 @@ type CoachesState = {
   coaches: CoachRef[];
 };
 
+/**
+ * Payload handle exposed to parent.
+ * IMPORTANT: This returns the canonical CoachRef type used by PlayerProfilePayload.
+ */
 export type CoachesHandle = {
-  getPayload: () => { coaches: CoachRef[] };
+  getPayload: () => { coaches: PlayerCoachRef[] };
 };
 
 type Props = {
   email?: string | null;
   planTier?: PlanTier;
   knownTeams?: string[];
+  isMobile?: boolean;
 };
 
 // ---------- Helpers ----------
@@ -67,6 +77,7 @@ const FOCUS_SUGGESTIONS = [
 function uid() {
   return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
+
 function loadState(email?: string | null): CoachesState {
   if (typeof window === "undefined") return { coaches: [] };
   const raw = localStorage.getItem(storageKey(email));
@@ -78,18 +89,41 @@ function loadState(email?: string | null): CoachesState {
     return { coaches: [] };
   }
 }
+
 function saveState(email?: string | null, state?: CoachesState) {
   if (typeof window === "undefined" || !state) return;
   localStorage.setItem(storageKey(email), JSON.stringify(state));
 }
+
 function normalizePhone(v: string) {
   const digits = v.replace(/\D+/g, "").slice(0, 15);
   if (digits.length <= 3) return digits;
   if (digits.length <= 6) return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
   return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
 }
+
 function looksLikeEmail(v: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim());
+}
+
+/**
+ * Map the UI shape -> canonical payload CoachRef.
+ * Canonical type requires at least `name`, and may allow additional optional fields.
+ */
+function toPayloadCoach(c: CoachRef): PlayerCoachRef {
+  const name = `${c.firstName || ""} ${c.lastName || ""}`.trim();
+
+  // We keep it conservative + compatible:
+  // - name is required
+  // - pass through what we can reasonably map
+  // - use `as any` so we don't have to perfectly match optional fields in the canonical type
+  return {
+    name,
+    email: c.email?.trim() ? c.email.trim() : null,
+    phone: c.phone?.trim() ? c.phone.trim() : null,
+    role: c.focus?.trim() ? c.focus.trim() : null,
+    organization: c.team?.trim() ? c.team.trim() : null,
+  } as any;
 }
 
 // ---------- Plan rules ----------
@@ -102,52 +136,89 @@ const PLAN_RULES: Record<PlanTier, { enabled: boolean }> = {
 
 // ---------- Component ----------
 const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function TabCoachesReferences(
-  { email: emailProp, planTier = "All-American", knownTeams = [] },
+  { email: emailProp, planTier = "All-American", knownTeams = [], isMobile = false },
   ref
 ) {
   const PLAN = PLAN_RULES[planTier];
 
-  // ---- Stable storage key + hydration guard + anon→email migration ----
-  const [resolvedEmail, setResolvedEmail] = useState<string | null>(null);
-  const [hydrated, setHydrated] = useState(false);
-  const prevKeyRef = React.useRef<string | null>(null);
-
-  // decide which email key to use (prop → LS → anon)
-  useEffect(() => {
-    const fromProp = (emailProp ?? "").trim() || null;
-    const fromLS = typeof window !== "undefined" ? (localStorage.getItem("scoutlineEmail") || "").trim() || null : null;
-    const key = fromProp ?? fromLS ?? "anon";
-    setResolvedEmail(key);
+  // ---- DB-first hydration; localStorage is only fallback/cache ----
+  const resolvedEmail = useMemo(() => {
+    return (emailProp ?? "").trim().toLowerCase();
   }, [emailProp]);
 
-  // migrate anon → email (if new key is empty)
-  useEffect(() => {
-    if (!resolvedEmail) return;
-    const prevKey = prevKeyRef.current;
-    if (prevKey && prevKey !== resolvedEmail) {
-      const prevState = loadState(prevKey);
-      const newState = loadState(resolvedEmail);
-      const newIsEmpty = newState.coaches.length === 0;
-
-      if (newIsEmpty && prevState.coaches.length > 0) {
-        saveState(resolvedEmail, prevState);
-      }
-    }
-    prevKeyRef.current = resolvedEmail;
-  }, [resolvedEmail]);
-
-  // actual local state
+  const [hydrated, setHydrated] = useState(false);
   const [state, setState] = useState<CoachesState>({ coaches: [] });
 
-  // load once we know the key
   useEffect(() => {
-    if (!resolvedEmail) return;
-    const loaded = loadState(resolvedEmail);
-    setState(loaded);
-    setHydrated(true);
+    let cancelled = false;
+
+    async function hydrate() {
+      if (!resolvedEmail) {
+        setState({ coaches: [] });
+        setHydrated(true);
+        return;
+      }
+
+      setHydrated(false);
+
+      try {
+        const res = await fetch(
+          `/api/player/profile?email=${encodeURIComponent(resolvedEmail)}`,
+          { cache: "no-store" }
+        );
+
+        const json = await res.json();
+
+        if (cancelled) return;
+
+        const dbCoaches = Array.isArray(json?.normalized?.coaches)
+          ? json.normalized.coaches
+          : [];
+
+        if (dbCoaches.length > 0) {
+          const mapped = dbCoaches.map((c: any) => {
+            const fullName = String(c?.name || "").trim();
+            const parts = fullName ? fullName.split(/\s+/) : [];
+
+            return {
+              id: String(c?.id || uid()),
+              firstName: parts[0] || "",
+              lastName: parts.slice(1).join(" ") || "",
+              team: String(c?.organization || "").trim(),
+              email: String(c?.email || "").trim(),
+              phone: String(c?.phone || "").trim(),
+              focus: String(c?.role || "").trim(),
+              addedAt: Number(c?.addedAt || Date.now()),
+            };
+          });
+
+          const nextState = { coaches: mapped };
+          setState(nextState);
+          saveState(resolvedEmail, nextState);
+          setHydrated(true);
+          return;
+        }
+
+        // fallback only if DB has none
+        const local = loadState(resolvedEmail);
+        setState(local);
+        setHydrated(true);
+      } catch {
+        if (cancelled) return;
+
+        const local = loadState(resolvedEmail);
+        setState(local);
+        setHydrated(true);
+      }
+    }
+
+    hydrate();
+
+    return () => {
+      cancelled = true;
+    };
   }, [resolvedEmail]);
 
-  // save after hydration (avoid blowing away storage on first mount)
   useEffect(() => {
     if (!hydrated || !resolvedEmail) return;
     saveState(resolvedEmail, state);
@@ -157,7 +228,12 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
   const [err, setErr] = useState<string | null>(null);
 
   React.useImperativeHandle(ref, () => ({
-    getPayload: () => ({ coaches: state.coaches }),
+    getPayload: () => ({
+      // Only include entries that have a name (prevents empty rows from polluting payload)
+      coaches: (state.coaches || [])
+        .map(toPayloadCoach)
+        .filter((c: any) => typeof c?.name === "string" && c.name.trim().length > 0),
+    }),
   }));
 
   function flashMsg(text: string) {
@@ -203,6 +279,14 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [knownTeams]);
 
+  if (!hydrated) {
+    return (
+      <section style={{ maxWidth: 900, margin: "0 auto", padding: "8px 0 32px" }}>
+        <div style={{ color: "#64748b" }}>Loading references…</div>
+      </section>
+    );
+  }
+
   return (
     <section style={{ maxWidth: 900, margin: "0 auto", padding: "8px 0 32px" }}>
       {/* Info header */}
@@ -236,8 +320,8 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
             <span style={pillStyle}>Redshirt</span>
           </div>
           <p style={{ margin: 0, color: "#4b5563" }}>
-            The Redshirt plan doesn’t include References. Upgrade to Walk-On, All-American, or Teams to enable
-            these features.
+            The Redshirt plan doesn’t include References. Upgrade to Walk-On, All-American, or Teams to enable these
+            features.
           </p>
         </div>
       ) : (
@@ -274,9 +358,26 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                     {/* Fields grid */}
                     <div style={{ display: "grid", gap: 12, marginTop: 12 }}>
                       {/* Name */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr 1fr" }}>
-                        <label style={labelStyle}>Coach Name</label>
-                        <div style={{ display: "grid", gap: 8, gridTemplateColumns: "1fr 1fr" }}>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coach Name</label>
+                        <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+  }}
+>
                           <input
                             placeholder="First name"
                             value={c.firstName}
@@ -293,8 +394,19 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Team / Organization */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Team / Organization</label>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Team / Organization</label>
                         <div>
                           <input
                             list={teamListId}
@@ -322,8 +434,19 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Email */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Coach Email</label>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coach Email</label>
                         <input
                           type="email"
                           placeholder="coach@team.org"
@@ -338,8 +461,19 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Phone */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Coach Phone</label>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coach Phone</label>
                         <input
                           type="tel"
                           placeholder="(555) 123-4567"
@@ -351,8 +485,19 @@ const TabCoachesReferences = React.forwardRef<CoachesHandle, Props>(function Tab
                       </div>
 
                       {/* Focus */}
-                      <div style={{ display: "grid", gap: 8, gridTemplateColumns: "180px 1fr" }}>
-                        <label style={labelStyle}>Coaching Focus</label>
+                      <div
+  style={{
+    display: "grid",
+    gap: 8,
+    gridTemplateColumns: isMobile ? "1fr" : "180px 1fr",
+  }}
+>
+                        <label
+  style={{
+    ...labelStyle,
+    paddingTop: isMobile ? 0 : 8,
+  }}
+>Coaching Focus</label>
                         <div>
                           <input
                             list={focusListId}

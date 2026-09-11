@@ -49,7 +49,7 @@ export default async function AdminAuditLogPage({
     take?: string;
   };
 }) {
-  await requireAdmin({ redirectTo: "/staff" });
+  await requireAdmin("/staff");
 
   const q = safeStr(searchParams.q);
   const action = safeStr(searchParams.action);

@@ -7,7 +7,10 @@ import {
   RecruitingBoardError,
   NotifyPlayerAddedToBoardFn,
 } from "@/lib/recruitingBoard";
-// import { getCurrentUser } from "@/lib/auth"; // TODO: real auth
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type AddRequestBody = {
   playerProfileId?: string;
@@ -49,48 +52,47 @@ This means their coaches are tracking your profile and may continue to follow yo
     subject: "A college program is tracking your ScoutLine profile",
     body,
   });
-
-  // Example when you wire your mailer:
-  // await sendEmail({
-  //   to: playerEmail,
-  //   subject: "A college program is tracking your ScoutLine profile",
-  //   text: body,
-  // });
 };
 
+async function requireActingUser() {
+  const sessionUser = await getCurrentUser();
+  if (!sessionUser?.id) return null;
+
+  const actingUser = await prisma.user.findUnique({
+    where: { id: sessionUser.id },
+    include: {
+      coachProfile: true,
+      college: true,
+    },
+  });
+
+  return actingUser;
+}
+
 export async function POST(req: Request) {
-  // 🔐 Auth
-  const coachUser = await getCurrentUserMock();
-  if (!coachUser) {
-    return NextResponse.json<AddResponse>(
-      { ok: false, error: "Unauthorized" },
-      { status: 401 }
-    );
+  // 🔐 Auth + full user hydration (matches helper expectations)
+  const actingUser = await requireActingUser();
+  if (!actingUser) {
+    return NextResponse.json<AddResponse>({ ok: false, error: "Unauthorized" }, { status: 401 });
   }
 
   let body: AddRequestBody;
   try {
     body = await req.json();
   } catch {
-    return NextResponse.json<AddResponse>(
-      { ok: false, error: "Invalid JSON body" },
-      { status: 400 }
-    );
+    return NextResponse.json<AddResponse>({ ok: false, error: "Invalid JSON body" }, { status: 400 });
   }
 
   const { playerProfileId, label, notifyPlayer = false } = body;
 
   if (!playerProfileId) {
-    return NextResponse.json<AddResponse>(
-      { ok: false, error: "playerProfileId is required" },
-      { status: 400 }
-    );
+    return NextResponse.json<AddResponse>({ ok: false, error: "playerProfileId is required" }, { status: 400 });
   }
 
   try {
     const entry = await addToRecruitingBoard({
       prisma,
-      actingUser: coachUser,
+      actingUser,
       playerProfileId,
       label: label ?? undefined,
       notifyPlayer,
@@ -103,36 +105,10 @@ export async function POST(req: Request) {
     });
   } catch (err: any) {
     if (err instanceof RecruitingBoardError) {
-      return NextResponse.json<AddResponse>(
-        { ok: false, error: err.message },
-        { status: err.status }
-      );
+      return NextResponse.json<AddResponse>({ ok: false, error: err.message }, { status: err.status });
     }
 
     console.error("Unexpected error adding to recruiting board", err);
-    return NextResponse.json<AddResponse>(
-      { ok: false, error: "Internal server error" },
-      { status: 500 }
-    );
+    return NextResponse.json<AddResponse>({ ok: false, error: "Internal server error" }, { status: 500 });
   }
-}
-
-/**
- * TEMP MOCK for getCurrentUser so this file is paste-able.
- *
- * Replace this with your real auth integration.
- */
-async function getCurrentUserMock() {
-  // TODO: replace with real implementation
-  // e.g. const session = await getServerSession(authOptions);
-  //       return session?.user ?? null;
-
-  // For now, return null to force 401 if you accidentally hit this.
-  return null as unknown as {
-    id: string;
-    email: string | null;
-    name: string | null;
-    role: string | null;
-    collegeId: string | null;
-  } | null;
 }

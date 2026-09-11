@@ -19,7 +19,14 @@ export type MediaData = {
   instagramUrl?: string | null;
   youtubeUrl?: string | null;
   chatUrl?: string | null;
-  uploadedVideos?: { url: string; title?: string | null }[];
+
+  gameChangerUrl?: string | null;
+  maxPrepsUrl?: string | null;
+  rapsodoUrl?: string | null;
+  trackmanUrl?: string | null;
+  pocketRadarUrl?: string | null;
+
+  uploadedVideos?: { url: string; title?: string | null; category?: string | null }[];
   externalVideos?: { url: string; title?: string | null }[];
 };
 
@@ -31,13 +38,21 @@ function normArray<T = any>(x: any): T[] {
   return [x].filter(Boolean);
 }
 
-function toEntry(x: any): { url: string; title?: string | null } | null {
+function toEntry(x: any): { url: string; title?: string | null; category?: string | null } | null {
   if (!x) return null;
   if (typeof x === "string") return x.trim() ? { url: x.trim(), title: null } : null;
   const url = String(x?.url || x?.publicUrl || "").trim();
   if (!url) return null;
   const title = x?.title ?? x?.name ?? null;
-  return { url, title };
+    const category =
+    x?.category === "Hitting" ||
+    x?.category === "Fielding" ||
+    x?.category === "Pitching" ||
+    x?.category === "Baserunning"
+      ? x.category
+      : null;
+
+  return { url, title, category };
 }
 
 function dedupeByUrl(list: { url: string; title?: string | null }[]) {
@@ -67,19 +82,55 @@ export function toPublicMedia(
     payload?.xUrl?.trim?.() ||
     payload?.twitter?.trim?.() ||
     payload?.x?.trim?.() ||
+    payload?.social?.xUrl?.trim?.() ||
     xFromHandle ||
     null;
 
   const instagramUrl: string | null =
     payload?.instagramUrl?.trim?.() ||
     payload?.instagram?.trim?.() ||
+    payload?.social?.instagramUrl?.trim?.() ||
     igFromHandle ||
     null;
 
   const youtubeUrl: string | null =
     payload?.youtubeUrl?.trim?.() ||
     payload?.youtubeChannel?.trim?.() ||
+    payload?.social?.youtubeUrl?.trim?.() ||
     ytFromHandle ||
+    null;
+
+  const gameChangerUrl: string | null =
+    payload?.gameChangerUrl?.trim?.() ||
+    payload?.gamechangerUrl?.trim?.() ||
+    payload?.social?.gameChangerUrl?.trim?.() ||
+    payload?.social?.gamechangerUrl?.trim?.() ||
+    null;
+
+  const maxPrepsUrl: string | null =
+    payload?.maxPrepsUrl?.trim?.() ||
+    payload?.maxprepsUrl?.trim?.() ||
+    payload?.social?.maxPrepsUrl?.trim?.() ||
+    payload?.social?.maxprepsUrl?.trim?.() ||
+    null;
+
+  const rapsodoUrl: string | null =
+    payload?.rapsodoUrl?.trim?.() ||
+    payload?.social?.rapsodoUrl?.trim?.() ||
+    null;
+
+  const trackmanUrl: string | null =
+    payload?.trackmanUrl?.trim?.() ||
+    payload?.trackManUrl?.trim?.() ||
+    payload?.social?.trackmanUrl?.trim?.() ||
+    payload?.social?.trackManUrl?.trim?.() ||
+    null;
+
+  const pocketRadarUrl: string | null =
+    payload?.pocketRadarUrl?.trim?.() ||
+    payload?.pocketradarUrl?.trim?.() ||
+    payload?.social?.pocketRadarUrl?.trim?.() ||
+    payload?.social?.pocketradarUrl?.trim?.() ||
     null;
 
   // ---- UPLOADED / LOCAL ----
@@ -113,10 +164,15 @@ export function toPublicMedia(
   return {
     email: opts?.email ?? null,
     phone: opts?.phone ?? null,
-    chatUrl: (opts?.chatUrl ?? payload?.chatUrl ?? null) || null,
+    chatUrl: (opts?.chatUrl ?? payload?.chatUrl ?? payload?.social?.chatUrl ?? null) || null,
     xUrl,
     instagramUrl,
     youtubeUrl,
+    gameChangerUrl,
+    maxPrepsUrl,
+    rapsodoUrl,
+    trackmanUrl,
+    pocketRadarUrl,
     uploadedVideos,
     externalVideos,
   };

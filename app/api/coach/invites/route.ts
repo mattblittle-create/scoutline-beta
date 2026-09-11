@@ -56,6 +56,10 @@ function requireCollegeCoach(user: any) {
   return { ok: true as const, collegeId: user.collegeId as string, userId: user.id as string };
 }
 
+function invitePublicToken(invite: any): string | null {
+  return invite?.rawToken ? String(invite.rawToken) : null;
+}
+
 export async function GET(_req: Request) {
   const user = await getCurrentUser();
   const gate = requireCollegeCoach(user);
@@ -70,7 +74,6 @@ export async function GET(_req: Request) {
     },
   });
 
-  // Mark expired (idempotent)
   const now = new Date();
   const expiredIds = invites
     .filter((i) => i.status === "PENDING" && i.expiresAt && i.expiresAt.getTime() < now.getTime())
@@ -100,16 +103,23 @@ export async function GET(_req: Request) {
         invitedEmail: i.invitedEmail,
         status: i.status,
         canEditLists: i.canEditLists,
-
-        // ✅ coach job title
         staffTitle: normalizeTitle(i.staffTitle),
+
+        // IMPORTANT:
+        // Existing invite links cannot be reconstructed from tokenHash.
+        // A fresh rawToken is only available immediately after POST/resend.
+        inviteToken: invitePublicToken(i),
 
         createdAt: i.createdAt.toISOString(),
         updatedAt: i.updatedAt.toISOString(),
         expiresAt: i.expiresAt ? i.expiresAt.toISOString() : null,
         acceptedAt: i.acceptedAt ? i.acceptedAt.toISOString() : null,
-        createdBy: i.createdByUser ? { name: i.createdByUser.name ?? null, email: i.createdByUser.email } : null,
-        acceptedUser: i.acceptedUser ? { name: i.acceptedUser.name ?? null, email: i.acceptedUser.email } : null,
+        createdBy: i.createdByUser
+          ? { name: i.createdByUser.name ?? null, email: i.createdByUser.email }
+          : null,
+        acceptedUser: i.acceptedUser
+          ? { name: i.acceptedUser.name ?? null, email: i.acceptedUser.email }
+          : null,
       })),
     },
   });
@@ -133,7 +143,6 @@ export async function POST(req: Request) {
   const tokenHash = sha256(token);
   const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
 
-  // If there's already a pending invite for this email+college, "resend" by replacing token
   const existing = await prisma.coachInvite.findFirst({
     where: {
       collegeId: gate.collegeId,
@@ -151,6 +160,7 @@ export async function POST(req: Request) {
           expiresAt,
           canEditLists,
           staffTitle,
+          status: "PENDING" as any,
         },
       })
     : await prisma.coachInvite.create({
@@ -175,8 +185,11 @@ export async function POST(req: Request) {
         status: invite.status,
         canEditLists: invite.canEditLists,
         staffTitle: normalizeTitle(invite.staffTitle),
+        inviteToken: token,
         createdAt: invite.createdAt.toISOString(),
+        updatedAt: invite.updatedAt.toISOString(),
         expiresAt: invite.expiresAt ? invite.expiresAt.toISOString() : null,
+        acceptedAt: invite.acceptedAt ? invite.acceptedAt.toISOString() : null,
       },
       rawToken: token,
     },

@@ -157,7 +157,7 @@ const sections: Section[] = [
         q: "How do I know metrics are accurate?",
         a: (
           <>
-            Verified stats are marked as such. Non-verified entries are clearly labeled so coaches know the source.
+            Metrics are labeled so coaches know the source.
             
           </>
         ),

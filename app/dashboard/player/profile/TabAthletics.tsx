@@ -54,6 +54,8 @@ export type AthleticsHandle = { getPayload: () => AthleticsPayload };
 
 /** ---------- Props ---------- */
 type Props = {
+  readOnlyTeamAdmin?: boolean;
+
   // values
   eligibilityRegistered: boolean;
 
@@ -96,6 +98,8 @@ type Props = {
   // UI / validation
   fieldErr: Record<string, string>;
   showPitcherHand: boolean;
+  commitmentReadOnly?: boolean;
+  playerBioReadOnly?: boolean;
 
   // handlers
   setEligibilityRegistered: (v: boolean) => void;
@@ -203,6 +207,9 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
     // UI / validation
     fieldErr,
     showPitcherHand,
+    commitmentReadOnly = false,
+    playerBioReadOnly = false,
+    readOnlyTeamAdmin = false,
 
     // handlers
     setEligibilityRegistered,
@@ -256,6 +263,15 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
     errText,
     qMark,
   } = props;
+
+  const editableByTeamAdminFields = {
+  primaryPosition: true,
+  secondaryPosition: true,
+  pitcher: true,
+  pitcherHandedness: true,
+  throws: true,
+  bats: true,
+};
 
   // Expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
@@ -352,6 +368,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
 
   const hsWebsiteSafe = hsWebsiteUrl ?? "";
   const travelWebsiteSafe = travelTeamWebsiteUrl ?? "";
+  const athleticsLocked = readOnlyTeamAdmin;
 
   return (
     <>
@@ -361,6 +378,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             type="checkbox"
             checked={eligibilityRegistered}
+            disabled={athleticsLocked}
             onChange={(e) => setEligibilityRegistered(e.target.checked)}
           />
           <span style={{ color: "#0f172a", fontWeight: 700 }}>
@@ -402,6 +420,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                   inputMode="numeric"
                   pattern="\d*"
                   value={ncaaIdSafe}
+                  disabled={athleticsLocked}
                   onChange={(e) => {
                     const digits = onlyDigits(e.target.value).slice(0, 10);
                     setNcaaId(digits);
@@ -425,6 +444,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <span style={labelText}>NAIA ECID#</span>
                 <input
                   value={naiaEcidSafe}
+                  disabled={athleticsLocked}
                   onChange={(e) => setNaiaEcid(e.target.value)}
                   placeholder="Input NAIA Eligibility Center ID"
                   style={inputStyle}
@@ -438,14 +458,34 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
       <div></div>
 
       {/* College commitment */}
+      {commitmentReadOnly && (
+        <div
+          style={{
+            marginBottom: 12,
+            padding: "10px 12px",
+            borderRadius: 10,
+            background: "#f8fafc",
+            border: "1px solid #e2e8f0",
+            color: "#FF0000",
+            fontSize: 13,
+            fontWeight: 600,
+          }}
+        >
+          Commitment status is a player-controlled field and cannot be edited from the parent account.
+        </div>
+      )}
       <section style={{ margin: "8px 0 0 0" }}>
         <label style={{ display: "flex", alignItems: "center", gap: 10 }}>
           <input
             type="checkbox"
             checked={isCommitted}
+            disabled={athleticsLocked || commitmentReadOnly}
             onChange={(e) => {
+              if (commitmentReadOnly) return;
+
               const checked = e.target.checked;
               setIsCommitted(checked);
+
               if (!checked) {
                 setCommittedProgram("");
                 setCommittedProgramId(null);
@@ -466,9 +506,10 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
               {/* Free-text input + optional suggestion menu */}
               <div style={{ position: "relative" }}>
                 <input
+                  disabled={athleticsLocked || commitmentReadOnly}
                   value={committedProgram}
                   onChange={(e) => {
-                    // Always allow free typing; clear prior selected ID until user picks again
+                    if (commitmentReadOnly) return;
                     setCommittedProgram(e.target.value);
                     setCommittedProgramId(null);
                   }}
@@ -502,17 +543,20 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                       </div>
                     )}
 
-                    {!collegeSearching &&
-                      (collegeOptions || []).map((opt) => (
-                        <button
-                          key={opt.id}
-                          type="button"
-                          role="option"
-                          aria-selected={false}
-                          onClick={() => {
-                            setCommittedProgram(opt.name);
-                            setCommittedProgramId(opt.id);
-                          }}
+                      {!collegeSearching &&
+                        (collegeOptions || []).map((opt) => (
+                          <button
+                            key={opt.id}
+                            type="button"
+                            role="option"
+                            aria-selected={false}
+                            disabled={commitmentReadOnly}
+                            onClick={() => {
+                              if (commitmentReadOnly) return;
+
+                              setCommittedProgram(opt.name);
+                              setCommittedProgramId(opt.id);
+                            }}
                           style={{
                             display: "block",
                             width: "100%",
@@ -678,6 +722,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <span style={labelText}>High School Team Name</span>
           <input
             value={hsName}
+            disabled={athleticsLocked}
             onChange={(e) => setHsName(e.target.value)}
             placeholder="Jefferson High School"
             style={inputStyle}
@@ -688,6 +733,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <span style={labelText}>City</span>
           <input
             value={hsCity}
+            disabled={athleticsLocked}
             onChange={(e) => setHsCity(e.target.value)}
             placeholder="Nashville"
             style={inputStyle}
@@ -699,6 +745,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             list="state-abbrs-ath-hs"
             value={hsState}
+            disabled={athleticsLocked}
             onChange={(e) => setHsState(e.target.value.toUpperCase().slice(0, 2))}
             placeholder="State"
             style={inputStyle}
@@ -719,6 +766,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
             <input
               type="url"
               value={hsScheduleUrl}
+              disabled={athleticsLocked}
               onChange={(e) => setHsScheduleUrl(e.target.value)}
               placeholder="https://example.com/your-team/schedule"
               style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -764,11 +812,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove schedule link"
-                  onClick={() => setHsScheduleUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setHsScheduleUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -790,6 +843,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             type="url"
             value={hsWebsiteSafe}
+            disabled={athleticsLocked}
             onChange={(e) => setHsWebsiteUrl(e.target.value)}
             placeholder="https://example.com/your-team"
             style={inputStyle}
@@ -832,11 +886,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove HS website link"
-                  onClick={() => setHsWebsiteUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setHsWebsiteUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -866,6 +925,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <span style={labelText}>Travel Team Name</span>
           <input
             value={travelTeamName}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamName(e.target.value)}
             placeholder="Example Baseball Club 17U"
             style={inputStyle}
@@ -876,6 +936,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <span style={labelText}>City</span>
           <input
             value={travelTeamCity}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamCity(e.target.value)}
             placeholder="Nashville"
             style={inputStyle}
@@ -887,6 +948,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             list="state-abbrs-ath"
             value={travelTeamState}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamState(e.target.value.toUpperCase().slice(0, 2))}
             placeholder="State"
             style={inputStyle}
@@ -907,6 +969,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
             <input
               type="url"
               value={travelTeamScheduleUrl}
+              disabled={athleticsLocked}
               onChange={(e) => setTravelTeamScheduleUrl(e.target.value)}
               placeholder="https://example.com/travel-team/schedule"
               style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -952,11 +1015,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove travel team schedule link"
-                  onClick={() => setTravelTeamScheduleUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setTravelTeamScheduleUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -978,6 +1046,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
           <input
             type="url"
             value={travelWebsiteSafe}
+            disabled={athleticsLocked}
             onChange={(e) => setTravelTeamWebsiteUrl(e.target.value)}
             placeholder="https://example.com/travel-team"
             style={inputStyle}
@@ -1020,11 +1089,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                 <button
                   type="button"
                   aria-label="Remove travel team website link"
-                  onClick={() => setTravelTeamWebsiteUrl("")}
+                  disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  setTravelTeamWebsiteUrl("");
+}}
                   style={{
                     border: "none",
                     background: "transparent",
-                    cursor: "pointer",
+                    cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                     color: "#64748b",
                     fontWeight: 700,
                     lineHeight: 1,
@@ -1045,7 +1119,11 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
       <div style={{ marginTop: 12 }}>
         <button
           type="button"
-          onClick={addOtherTeam}
+          disabled={athleticsLocked}
+          onClick={() => {
+  if (athleticsLocked) return;
+  addOtherTeam();
+}}
           style={{
             padding: "10px 14px",
             borderRadius: 8,
@@ -1107,6 +1185,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                     <span style={labelText}>Other Team Name</span>
                     <input
                       value={team.name}
+                      disabled={athleticsLocked}
                       onChange={(e) => updateOtherTeam(team.id, { name: e.target.value })}
                       placeholder="Another Organization 17U"
                       style={inputStyle}
@@ -1117,6 +1196,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                     <span style={labelText}>City</span>
                     <input
                       value={team.city}
+                      disabled={athleticsLocked}
                       onChange={(e) => updateOtherTeam(team.id, { city: e.target.value })}
                       placeholder="Memphis"
                       style={inputStyle}
@@ -1128,6 +1208,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                     <input
                       list="state-abbrs-ath-other"
                       value={team.state}
+                      disabled={athleticsLocked}
                       onChange={(e) =>
                         updateOtherTeam(team.id, {
                           state: e.target.value.toUpperCase().slice(0, 2),
@@ -1150,6 +1231,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                     <input
                       type="url"
                       value={team.scheduleUrl}
+                      disabled={athleticsLocked}
                       onChange={(e) => updateOtherTeam(team.id, { scheduleUrl: e.target.value })}
                       placeholder="https://example.com/other-team/schedule"
                       style={inputStyle}
@@ -1195,11 +1277,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                           <button
                             type="button"
                             aria-label="Remove other team schedule link"
-                            onClick={() => updateOtherTeam(team.id, { scheduleUrl: "" })}
+                            disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  updateOtherTeam(team.id, { scheduleUrl: "" });
+}}
                             style={{
                               border: "none",
                               background: "transparent",
-                              cursor: "pointer",
+                              cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                               color: "#64748b",
                               fontWeight: 700,
                               lineHeight: 1,
@@ -1220,6 +1307,7 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                     <input
                       type="url"
                       value={websiteSafe}
+                      disabled={athleticsLocked}
                       onChange={(e) =>
                         updateOtherTeam(team.id, { websiteUrl: e.target.value })
                       }
@@ -1266,11 +1354,16 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
                           <button
                             type="button"
                             aria-label="Remove other team website link"
-                            onClick={() => updateOtherTeam(team.id, { websiteUrl: "" })}
+                            disabled={athleticsLocked}
+onClick={() => {
+  if (athleticsLocked) return;
+  updateOtherTeam(team.id, { websiteUrl: "" });
+}}
                             style={{
                               border: "none",
                               background: "transparent",
-                              cursor: "pointer",
+                              cursor: athleticsLocked ? "not-allowed" : "pointer",
+opacity: athleticsLocked ? 0.6 : 1,
                               color: "#64748b",
                               fontWeight: 700,
                               lineHeight: 1,
@@ -1292,6 +1385,24 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
 
       {/* Player Bio */}
       <hr style={hrStyle} />
+
+      {playerBioReadOnly && (
+        <div
+          style={{
+            marginBottom: 12,
+            padding: "10px 12px",
+            borderRadius: 10,
+            background: "#f8fafc",
+            border: "1px solid #e2e8f0",
+            color: "#FF0000",
+            fontSize: 13,
+            fontWeight: 600,
+          }}
+        >
+          Player Bio is a player-controlled field and cannot be edited from the parent account.
+        </div>
+      )}
+
       <section>
         <div
           style={{
@@ -1303,22 +1414,30 @@ const TabAthletics = React.forwardRef<AthleticsHandle, Props>(function TabAthlet
         >
           <h3 style={{ ...labelText, margin: 0 }}>Player Bio</h3>
         </div>
+
         <p style={{ color: "#475569", marginTop: 4, marginBottom: 6 }}>
           Share athletic accolades, training/workout habits, nutrition, leadership, and
           anything else that helps coaches get to know you. (max {MAX_BIO_CHARS}{" "}
           characters)
         </p>
+
         <div>
           <textarea
+            disabled={athleticsLocked || playerBioReadOnly}
             value={playerBio}
             onChange={(e) => {
               const v = e.target.value;
-              setPlayerBio(v.length <= MAX_BIO_CHARS ? v : v.slice(0, MAX_BIO_CHARS));
+              setPlayerBio(
+                v.length <= MAX_BIO_CHARS
+                  ? v
+                  : v.slice(0, MAX_BIO_CHARS)
+              );
             }}
             placeholder="Tell coaches about your athletic journey…"
             style={{ ...textareaStyle, width: "100%" }}
             maxLength={MAX_BIO_CHARS}
           />
+
           <div
             style={{
               marginTop: 4,

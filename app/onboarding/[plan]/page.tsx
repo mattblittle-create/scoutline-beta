@@ -1,3 +1,5 @@
+// app/onboarding/[plan]/page.tsx
+
 "use client";
 
 import * as React from "react";
@@ -14,84 +16,24 @@ type PlayerCoreForm = {
   parentEmail: string;
 };
 
-const US_STATES = [
-  { abbr: "AL" },
-  { abbr: "AK" },
-  { abbr: "AZ" },
-  { abbr: "AR" },
-  { abbr: "CA" },
-  { abbr: "CO" },
-  { abbr: "CT" },
-  { abbr: "DE" },
-  { abbr: "FL" },
-  { abbr: "GA" },
-  { abbr: "HI" },
-  { abbr: "ID" },
-  { abbr: "IL" },
-  { abbr: "IN" },
-  { abbr: "IA" },
-  { abbr: "KS" },
-  { abbr: "KY" },
-  { abbr: "LA" },
-  { abbr: "ME" },
-  { abbr: "MD" },
-  { abbr: "MA" },
-  { abbr: "MI" },
-  { abbr: "MN" },
-  { abbr: "MS" },
-  { abbr: "MO" },
-  { abbr: "MT" },
-  { abbr: "NE" },
-  { abbr: "NV" },
-  { abbr: "NH" },
-  { abbr: "NJ" },
-  { abbr: "NM" },
-  { abbr: "NY" },
-  { abbr: "NC" },
-  { abbr: "ND" },
-  { abbr: "OH" },
-  { abbr: "OK" },
-  { abbr: "OR" },
-  { abbr: "PA" },
-  { abbr: "RI" },
-  { abbr: "SC" },
-  { abbr: "SD" },
-  { abbr: "TN" },
-  { abbr: "TX" },
-  { abbr: "UT" },
-  { abbr: "VT" },
-  { abbr: "VA" },
-  { abbr: "WA" },
-  { abbr: "WV" },
-  { abbr: "WI" },
-  { abbr: "WY" },
-];
-
 function normalizePlanSlug(raw: string): string {
   const s = String(raw || "").trim().toLowerCase();
   const base = s.replace(/[_\s]+/g, "-");
 
   const alias: Record<string, string> = {
-    // player plans
     red: "redshirt",
     redshirt: "redshirt",
-
     walkon: "walk-on",
     "walk-on": "walk-on",
     "walk-on-plan": "walk-on",
-
     allamerican: "all-american",
     "all-american": "all-american",
     "all-american-plan": "all-american",
     all_american: "all-american" as any,
-
-    // teams (legacy)
     team: "team",
     teams: "team",
     "team-plan": "team",
     "teams-plan": "team",
-
-    // coach (legacy)
     coach: "coach",
     coaches: "coach",
   };
@@ -106,6 +48,25 @@ function classifyPlan(planSlug: string): "PLAYER" | "TEAM" | "COACH" | "UNKNOWN"
   return "UNKNOWN";
 }
 
+function isEmail(v: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+}
+
+function digitsOnly(v: any) {
+  return String(v ?? "").replace(/\D+/g, "");
+}
+
+function formatPhoneNumber(v: any) {
+  const digits = digitsOnly(v).slice(0, 10);
+
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) {
+    return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+  }
+
+  return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+}
+
 export default function OnboardingPlanPage({ params }: PageProps) {
   const router = useRouter();
   const search = useSearchParams();
@@ -113,11 +74,9 @@ export default function OnboardingPlanPage({ params }: PageProps) {
   const plan = normalizePlanSlug(params?.plan);
   const kind = classifyPlan(plan);
 
-  // Preserve billing query when we redirect legacy routes
-  const billing = (search.get("billing") || "").trim().toLowerCase();
-  const billingQs = billing ? `?billing=${encodeURIComponent(billing)}` : "";
+  const billing = "monthly";
+  const billingQs = `?billing=${encodeURIComponent(billing)}`;
 
-  // ✅ Redirect legacy routes to new dedicated pages
   React.useEffect(() => {
     if (kind === "COACH") router.replace(`/onboarding/coach${billingQs}`);
     if (kind === "TEAM") router.replace(`/onboarding/teams${billingQs}`);
@@ -155,20 +114,12 @@ export default function OnboardingPlanPage({ params }: PageProps) {
   );
 }
 
-/* =========================
-   PLAYER ONBOARDING
-========================= */
-
 function PlayerOnboarding({ plan }: { plan: string }) {
   const router = useRouter();
   const search = useSearchParams();
 
-  // accept either ?email= or ?username=
   const prefillEmail = (search.get("email") || search.get("username") || "").trim();
-
-  // carry billing forward (monthly | annual)
-  const billing = (search.get("billing") || "").trim().toLowerCase();
-  const billingQs = billing ? `&billing=${encodeURIComponent(billing)}` : "";
+  const billing = "monthly";
 
   const [form, setForm] = React.useState<PlayerCoreForm>({
     email: prefillEmail,
@@ -180,6 +131,8 @@ function PlayerOnboarding({ plan }: { plan: string }) {
 
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [okMsg, setOkMsg] = React.useState<string | null>(null);
+  const [needsSetPassword, setNeedsSetPassword] = React.useState(false);
 
   const planLabel =
     plan === "redshirt"
@@ -190,45 +143,111 @@ function PlayerOnboarding({ plan }: { plan: string }) {
       ? "All-American"
       : "Player";
 
+  const canSubmit =
+    Boolean(form.email.trim()) &&
+    Boolean(form.phone.trim()) &&
+    Boolean(form.firstName.trim()) &&
+    Boolean(form.lastName.trim()) &&
+    Boolean(form.parentEmail.trim()) &&
+    isEmail(form.email.trim().toLowerCase()) &&
+    isEmail(form.parentEmail.trim().toLowerCase()) &&
+    digitsOnly(form.phone).length === 10;
+
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (submitting) return;
-    setError(null);
 
-    if (!form.email.trim()) return setError("Player email is required.");
-    if (!form.phone.trim()) return setError("Phone is required.");
-    if (!form.firstName.trim()) return setError("First name is required.");
-    if (!form.lastName.trim()) return setError("Last name is required.");
-    if (!form.parentEmail.trim()) return setError("Parent email is required.");
+    setError(null);
+    setOkMsg(null);
+    setNeedsSetPassword(false);
+
+    const email = form.email.trim().toLowerCase();
+    const parentEmail = form.parentEmail.trim().toLowerCase();
+    const phone = form.phone.trim();
+    const firstName = form.firstName.trim();
+    const lastName = form.lastName.trim();
+
+    if (!email) return setError("Player email is required.");
+    if (!isEmail(email)) return setError("Player email is invalid.");
+    if (!phone) return setError("Phone is required.");
+    if (!firstName) return setError("First name is required.");
+    if (!lastName) return setError("Last name is required.");
+    if (!parentEmail) return setError("Parent email is required.");
+    if (!isEmail(parentEmail)) return setError("Parent email is invalid.");
 
     setSubmitting(true);
-    try {
-      const email = form.email.trim().toLowerCase();
-      const parentEmail = form.parentEmail.trim().toLowerCase();
 
+    try {
       const res = await fetch("/api/onboarding/player", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        cache: "no-store",
         body: JSON.stringify({
           plan,
           email,
-          phone: form.phone.trim(),
-          firstName: form.firstName.trim(),
-          lastName: form.lastName.trim(),
+          phone,
+          firstName,
+          lastName,
           parentEmail,
         }),
       });
 
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.ok) throw new Error(json?.error || "Failed to save onboarding info.");
 
-      fetch("/api/onboarding/player/parent-invite", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ playerEmail: email, parentEmail }),
-      }).catch(() => {});
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || `Failed (${res.status})`);
+      }
 
-      router.push(`/onboarding/${encodeURIComponent(plan)}/password?email=${encodeURIComponent(email)}${billingQs}`);
+      const needs = Boolean(json?.data?.needsSetPassword);
+      const tokenFromApi = String(
+        json?.data?.setPasswordToken ||
+          json?.data?.setPasswordJwt ||
+          json?.data?.token ||
+          ""
+      ).trim();
+
+      if (needs) {
+        const url = tokenFromApi
+          ? `${window.location.origin}/set-password?token=${encodeURIComponent(tokenFromApi)}`
+          : null;
+
+        setNeedsSetPassword(true);
+
+        const parentSetupUrl =
+          `${window.location.origin}/onboarding/parent/password` +
+          `?email=${encodeURIComponent(parentEmail)}` +
+          `&playerEmail=${encodeURIComponent(email)}` +
+          `&playerFirstName=${encodeURIComponent(firstName)}` +
+          `&playerLastName=${encodeURIComponent(lastName)}` +
+          `&plan=${encodeURIComponent(plan)}` +
+          `&billing=${encodeURIComponent("monthly")}`;
+
+        fetch("/api/onboarding/player/parent-invite", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            playerEmail: email,
+            parentEmail,
+            playerFirstName: firstName,
+            playerLastName: lastName,
+            plan,
+            billing: "monthly",
+            setupUrl: parentSetupUrl,
+          }),
+        }).catch((err) => {
+          console.error("Parent invite send failed:", err);
+        });
+
+      setOkMsg(
+        `You’re almost done — set your password using the link we sent to ${email}. Your parent/secondary contact will also receive a setup email.`
+      );
+        return;
+      }
+
+      setOkMsg("Saved! Redirecting…");
+      window.setTimeout(() => {
+        router.push("/dashboard/player/profile");
+      }, 600);
     } catch (err: any) {
       setError(err?.message || "Something went wrong.");
     } finally {
@@ -240,8 +259,11 @@ function PlayerOnboarding({ plan }: { plan: string }) {
     <main style={{ maxWidth: 820, margin: "0 auto", padding: "24px 16px", color: "#0f172a" }}>
       <h1 style={{ margin: 0, fontSize: "1.75rem", fontWeight: 800 }}>{planLabel} — Player Onboarding</h1>
       <p style={{ marginTop: 6, color: "#475569" }}>
-        Step 1: Required core info. Next you’ll set your password, then input payment.
+        Step 1: Required core info. We’ll email you a secure password setup link after you continue.
       </p>
+
+      {error ? <div className="error">{error}</div> : null}
+      {okMsg ? <div className="ok">{okMsg}</div> : null}
 
       <form onSubmit={onSubmit} style={{ marginTop: 16 }}>
         <div className="grid">
@@ -267,8 +289,11 @@ function PlayerOnboarding({ plan }: { plan: string }) {
               className="input"
               type="tel"
               value={form.phone}
-              onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
+              onChange={(e) =>
+                setForm((f) => ({ ...f, phone: formatPhoneNumber(e.target.value) }))
+              }
               placeholder="(555) 555-5555"
+              maxLength={14}
               required
             />
           </div>
@@ -313,16 +338,17 @@ function PlayerOnboarding({ plan }: { plan: string }) {
               placeholder="parent@email.com"
               required
             />
-            <p className="hint">We’ll email this address a link to set up a parent password after you continue.</p>
+            <p className="hint">
+              We’ll email this address a link to set up a parent password after you continue.
+            </p>
           </div>
         </div>
 
-        {error && <div className="error">{error}</div>}
-
-        <div style={{ display: "flex", gap: 12, marginTop: 12 }}>
-          <button type="submit" className="primary-btn" disabled={submitting}>
-            {submitting ? "Saving…" : "Next Step"}
+        <div style={{ display: "flex", gap: 12, marginTop: 12, flexWrap: "wrap" }}>
+          <button type="submit" className="primary-btn" disabled={submitting || !canSubmit}>
+            {submitting ? "Saving…" : "Save and Continue"}
           </button>
+
           <Link href="/pricing" className="sl-link-btn">
             Back to Pricing
           </Link>
@@ -333,10 +359,6 @@ function PlayerOnboarding({ plan }: { plan: string }) {
     </main>
   );
 }
-
-/* =========================
-   Shared styles
-========================= */
 
 function StyleBlock() {
   return (
@@ -353,9 +375,15 @@ function StyleBlock() {
         outline:none;
         background:#fff;
       }
-      .input:focus { border-color:#caa042; box-shadow:0 0 0 3px rgba(202,160,66,0.2); }
-      .hint { margin:6px 0 0; font-size:0.9rem; color:#64748b; }
-
+      .input:focus {
+        border-color:#caa042;
+        box-shadow:0 0 0 3px rgba(202,160,66,0.2);
+      }
+      .hint {
+        margin:6px 0 0;
+        font-size:0.9rem;
+        color:#64748b;
+      }
       .primary-btn {
         padding:10px 16px;
         border-radius:10px;
@@ -366,9 +394,14 @@ function StyleBlock() {
         cursor:pointer;
         transition:transform .15s ease, box-shadow .15s ease;
       }
-      .primary-btn:hover { transform: translateY(-2px); box-shadow:0 6px 16px rgba(0,0,0,0.18); }
-      .primary-btn:disabled { opacity:.6; cursor:not-allowed; }
-
+      .primary-btn:hover {
+        transform: translateY(-2px);
+        box-shadow:0 6px 16px rgba(0,0,0,0.18);
+      }
+      .primary-btn:disabled {
+        opacity:.6;
+        cursor:not-allowed;
+      }
       .sl-link-btn {
         display:inline-block;
         padding:10px 14px;
@@ -387,15 +420,33 @@ function StyleBlock() {
         text-decoration: underline;
         text-underline-offset: 3px;
       }
-
+      .sl-link-btn.solid {
+        background:#f8fafc;
+      }
       .error {
-        margin-top: 10px;
+        margin-top: 12px;
         padding: 10px 12px;
         border: 1px solid #fecaca;
         background: #fff1f2;
         color: #7f1d1d;
         border-radius: 10px;
         font-weight: 700;
+      }
+      .ok {
+        margin-top: 12px;
+        padding: 10px 12px;
+        border: 1px solid #bbf7d0;
+        background: #f0fdf4;
+        color: #14532d;
+        border-radius: 10px;
+        font-weight: 700;
+      }
+      .setpw {
+        margin-top: 12px;
+        padding: 12px 12px;
+        border: 1px solid #e5e7eb;
+        background: #f8fafc;
+        border-radius: 12px;
       }
     `}</style>
   );

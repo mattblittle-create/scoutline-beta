@@ -16,7 +16,8 @@ export type MetricKey =
   | "avgBbVelo"          // "BB Velo" — mph (pitchers)
   | "popTime"            // "Pop Time" — seconds (catchers)
   | "benchPress"         // "Bench Press" — lbs
-  | "squat";             // "Squat" — lbs
+  | "squat"              // "Squat" — lbs
+  | "deadLift";          // "Dead Lift" — lbs
 
 export type BaselineTable = Record<number /* age */, number /* avg value */>;
 export type BaselineData = Record<MetricKey, BaselineTable>;
@@ -147,6 +148,46 @@ export const BASELINES: BaselineData = {
     17: 250,
     18: 285,
   },
+
+  deadLift: {
+    13: 155,
+    14: 185,
+    15: 225,
+    16: 275,
+    17: 315,
+    18: 365,
+  },
+};
+
+export const COLLEGE_BENCHMARKS: Partial<
+  Record<
+    MetricKey,
+    {
+      D1?: number;
+      D2?: number;
+      D3?: number;
+      JUCO?: number;
+    }
+  >
+> = {
+  homeToFirst: { D1: 4.45, D2: 4.60, D3: 4.75, JUCO: 4.60 },
+  sixtyYdDash: { D1: 6.80, D2: 7.00, D3: 7.20, JUCO: 7.00 },
+
+  exitVelo: { D1: 95, D2: 90, D3: 85, JUCO: 88 },
+  rawThrowVelo: { D1: 92, D2: 87, D3: 82, JUCO: 86 },
+  infieldThrowVelo: { D1: 88, D2: 84, D3: 80, JUCO: 83 },
+  outfieldThrowVelo: { D1: 92, D2: 88, D3: 84, JUCO: 87 },
+  catcherThrowVelo: { D1: 84, D2: 80, D3: 76, JUCO: 79 },
+
+  avgFbVelo: { D1: 88, D2: 84, D3: 80, JUCO: 83 },
+  avgChVelo: { D1: 78, D2: 74, D3: 70, JUCO: 73 },
+  avgBbVelo: { D1: 76, D2: 72, D3: 68, JUCO: 71 },
+
+  popTime: { D1: 1.95, D2: 2.00, D3: 2.08, JUCO: 2.02 },
+
+  benchPress: { D1: 225, D2: 205, D3: 185, JUCO: 200 },
+  squat: { D1: 365, D2: 315, D3: 275, JUCO: 305 },
+  deadLift: { D1: 455, D2: 405, D3: 365, JUCO: 395 },
 };
 
 // Reuse the mm/yyyy month input format you use in the UI

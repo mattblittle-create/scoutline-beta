@@ -1,3 +1,5 @@
+// app/get-started/page.tsx
+
 import { redirect } from "next/navigation";
 
 export const metadata = {

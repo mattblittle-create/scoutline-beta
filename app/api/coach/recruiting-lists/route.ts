@@ -1,3 +1,5 @@
+// app/api/coach/recruiting-lists/route.ts
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
@@ -22,18 +24,31 @@ function requireCollegeCoach(user: any) {
   return { ok: true as const, collegeId: user.collegeId as string };
 }
 
-export async function GET() {
+export async function GET(req: Request) {
   const user = await getCurrentUser();
   if (!user) return NextResponse.json<Err>({ ok: false, error: "Unauthorized" }, { status: 401 });
 
   const gate = requireCollegeCoach(user);
   if (!gate.ok) return NextResponse.json<Err>({ ok: false, error: gate.error }, { status: 403 });
 
+  const { searchParams } = new URL(req.url);
+  const playerProfileId = String(searchParams.get("playerProfileId") || "").trim();
+
   const lists = await prisma.recruitingList.findMany({
     where: { collegeId: gate.collegeId },
     orderBy: { updatedAt: "desc" },
     include: {
       _count: { select: { members: true } },
+      members: playerProfileId
+        ? {
+            where: { playerProfileId },
+            select: {
+              playerProfileId: true,
+              createdAt: true,
+              label: true,
+            },
+          }
+        : false,
     },
   });
 
@@ -47,6 +62,16 @@ export async function GET() {
         createdAt: l.createdAt.toISOString(),
         updatedAt: l.updatedAt.toISOString(),
         memberCount: (l as any)._count?.members ?? 0,
+        containsPlayer: playerProfileId
+          ? Array.isArray((l as any).members) && (l as any).members.length > 0
+          : false,
+        matchingMembers: playerProfileId && Array.isArray((l as any).members)
+          ? (l as any).members.map((m: any) => ({
+              playerProfileId: m.playerProfileId,
+              label: m.label ?? null,
+              addedAt: m.createdAt.toISOString(),
+            }))
+          : [],
       })),
     },
   });

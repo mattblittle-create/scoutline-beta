@@ -1,64 +1,31 @@
 // app/dashboard/coach/layout.tsx
 import type { ReactNode, CSSProperties } from "react";
-import { prisma } from "@/lib/prisma";
-import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import CoachHeaderActions from "./CoachHeaderActions";
 import CoachProgramBrand from "./coachProgramBrand";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
 export const metadata = {
   title: "Coach Dashboard • ScoutLine",
   description: "College coach dashboard for recruiting and program profile.",
 };
 
-function normalizeEmail(v: any) {
-  return String(v ?? "").trim().toLowerCase();
-}
-
-async function getCurrentUser(): Promise<{ collegeName: string; logoUrl: string }> {
-  const jar = cookies();
-
-  const uid = jar.get("scoutline_uid")?.value?.trim() || "";
-  const devEmailCookie = normalizeEmail(jar.get("scoutline_dev_email")?.value || "");
-  const devEmailEnv = normalizeEmail(process.env.DEV_USER_EMAIL || "");
-
-  // 1) Prefer real uid cookie
-  if (uid) {
-    const user = await prisma.user.findUnique({
-      where: { id: uid },
-      include: { college: true },
-    });
-    const collegeName = user?.college?.name || "Your Program";
-    const logoUrl = user?.college?.logoUrl || "";
-    return { collegeName, logoUrl };
-  }
-
-  // 2) Dev fallback by email (cookie or env)
-  if (process.env.NODE_ENV !== "production") {
-    const email = devEmailCookie || devEmailEnv;
-    if (email) {
-      const user = await prisma.user.findUnique({
-        where: { email },
-        include: { college: true },
-      });
-      const collegeName = user?.college?.name || "Your Program";
-      const logoUrl = user?.college?.logoUrl || "";
-      return { collegeName, logoUrl };
-    }
-  }
-
-  return { collegeName: "Your Program", logoUrl: "" };
-}
-
 export default async function CoachDashboardLayout({ children }: { children: ReactNode }) {
-  const { collegeName, logoUrl } = await getCurrentUser();
+  const user = await getCurrentUser();
+
+  // No more silent fallback into coach pages.
+  // Must be a real authenticated user.
+  if (!user) {
+    redirect("/login?next=%2Fdashboard%2Fcoach");
+  }
+
+  const collegeName = user.college?.name || "Your Program";
+  const logoUrl = user.college?.logoUrl || "";
 
   return (
     <section style={wrap}>
       <div style={headerRow}>
-        {/* ✅ Client component handles img onError */}
         <CoachProgramBrand collegeName={collegeName} logoUrl={logoUrl} />
-
-        {/* ✅ Client-side: hides on /dashboard/coach, highlights active link, shows Back button only on sub-pages */}
         <CoachHeaderActions />
       </div>
 
