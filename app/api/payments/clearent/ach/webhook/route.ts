@@ -61,6 +61,10 @@ export async function POST(
         .catch(() => null);
 
     if (!payload) {
+      console.warn(
+        "CLEARENT_ACH_WEBHOOK_INVALID_JSON"
+      );
+
       return NextResponse.json(
         {
           ok: false,
@@ -73,14 +77,126 @@ export async function POST(
       );
     }
 
+    const payloadValue =
+      payload as Record<string, any>;
+
+    const nestedPayload =
+      payloadValue?.Payload ??
+      payloadValue?.payload ??
+      payloadValue?.data ??
+      null;
+
+    const metadata =
+      payloadValue?.metadata ??
+      payloadValue?.Metadata ??
+      null;
+
+    /*
+     * Temporary sanitized diagnostics.
+     *
+     * We intentionally log field names /
+     * structure only, not banking values,
+     * tokens, credentials, or the full
+     * webhook payload.
+     */
+    console.info(
+      "CLEARENT_ACH_WEBHOOK_DIAGNOSTIC",
+      {
+        topLevelKeys:
+          Object.keys(
+            payloadValue || {}
+          ),
+
+        nestedPayloadKeys:
+          nestedPayload &&
+          typeof nestedPayload === "object"
+            ? Object.keys(
+                nestedPayload
+              )
+            : [],
+
+        metadataKeys:
+          metadata &&
+          typeof metadata === "object"
+            ? Object.keys(
+                metadata
+              )
+            : [],
+
+        topLevelType:
+          typeof payload,
+
+        hasPayload:
+          Boolean(
+            payloadValue?.Payload ||
+            payloadValue?.payload ||
+            payloadValue?.data
+          ),
+
+        hasMetadata:
+          Boolean(metadata),
+      }
+    );
+
     const normalized =
       normalizeClearentAchWebhook(
         payload
       );
 
+    console.info(
+      "CLEARENT_ACH_WEBHOOK_NORMALIZED",
+      {
+        rawEvent:
+          normalized.rawEvent,
+
+        status:
+          normalized.status,
+
+        hasTransactionId:
+          Boolean(
+            normalized.transactionId
+          ),
+
+        hasReference:
+          Boolean(
+            normalized.reference
+          ),
+
+        amount:
+          normalized.amount,
+
+        paymentType:
+          normalized.paymentType,
+      }
+    );
+
     if (
       !normalized.transactionId
     ) {
+      console.warn(
+        "CLEARENT_ACH_WEBHOOK_TRANSACTION_ID_MISSING",
+        {
+          rawEvent:
+            normalized.rawEvent,
+
+          status:
+            normalized.status,
+
+          topLevelKeys:
+            Object.keys(
+              payloadValue || {}
+            ),
+
+          nestedPayloadKeys:
+            nestedPayload &&
+            typeof nestedPayload === "object"
+              ? Object.keys(
+                  nestedPayload
+                )
+              : [],
+        }
+      );
+
       return NextResponse.json(
         {
           ok: false,
@@ -125,9 +241,12 @@ export async function POST(
       );
 
       /*
-       * Return 200 so Xplor does not
-       * endlessly retry a webhook that
-       * ScoutLine cannot currently match.
+       * INT sends dummy webhook data that
+       * may not correspond to a ScoutLine
+       * transaction.
+       *
+       * Return 200 so Xplor knows the
+       * webhook was received successfully.
        */
       return NextResponse.json({
         ok: true,

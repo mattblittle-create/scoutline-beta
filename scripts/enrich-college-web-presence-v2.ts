@@ -43,6 +43,31 @@ type DiscoveryStatus =
   | "NEEDS_REVIEW"
   | "FAILED";
 
+type SearchProvider =
+  | "DUCKDUCKGO"
+  | "BING";
+
+type SearchResult = {
+  title: string;
+  url: string;
+  snippet: string;
+  provider: SearchProvider;
+  query: string;
+};
+
+type SearchResponse = {
+  provider: SearchProvider;
+  query: string;
+  results: SearchResult[];
+  throttled: boolean;
+};
+
+type IdentityValidation = {
+  validated: boolean;
+  score: number;
+  reasons: string[];
+};
+
 type OutputRow = {
   slug: string;
   name: string;
@@ -93,6 +118,85 @@ const OUTPUT_HEADERS: Array<keyof OutputRow> = [
   "sourceUrl",
   "discoveryStatus",
   "discoveryNotes",
+];
+
+/*
+ * Search recovery is LAST-RESORT discovery only.
+ *
+ * Search results never become trusted baseball
+ * URLs directly. Every candidate must still pass:
+ *
+ *   1. fetchHtml()
+ *   2. looksLikeBaseballPage()
+ *   3. validateSchoolIdentity()
+ *
+ * before enrichment continues.
+ */
+const SEARCH_RECOVERY_BLOCKED_HOSTS = [
+  "facebook.com",
+  "instagram.com",
+  "x.com",
+  "twitter.com",
+  "youtube.com",
+  "youtu.be",
+  "linkedin.com",
+
+  "wikipedia.org",
+  "wikimedia.org",
+
+  "niche.com",
+  "usnews.com",
+  "princetonreview.com",
+  "collegeboard.org",
+  "collegesimply.com",
+  "universities.com",
+
+  "ncaa.com",
+  "ncaa.org",
+  "naia.org",
+  "njcaa.org",
+
+  "maxpreps.com",
+  "perfectgame.org",
+  "prepbaseballreport.com",
+  "baseball-reference.com",
+  "d2baseball.com",
+  "d3baseball.com",
+  "hudl.com",
+
+  "history.com",
+  "worldatlas.com",
+  "expedia.com",
+  "tripadvisor.com",
+  "travelocity.com",
+  "kayak.com",
+  "booking.com",
+  "hotels.com",
+  "heyexplorer.com",
+
+  "yelp.com",
+  "mapquest.com",
+
+  "amazon.com",
+  "ebay.com",
+
+  "bing.com",
+  "duckduckgo.com",
+];
+
+const SEARCH_RECOVERY_BLOCKED_PATH_TERMS = [
+  "/news/",
+  "/article/",
+  "/story/",
+  "/tickets/",
+  "/ticketing/",
+  "/shop/",
+  "/store/",
+  "/donate/",
+  "/giving/",
+  "/foundation/",
+  "/campaign/",
+  "/events/",
 ];
 
 const ATHLETICS_TEXT_TERMS = [
@@ -1337,67 +1441,118 @@ function extractSocialUrl(
     text: string;
   }>,
   platform: "x" | "instagram" | "youtube",
+  baseballHost?: string,
 ): string {
-  const patterns = {
-    x: [
-      "x.com",
-      "twitter.com",
-    ],
-    instagram: [
-      "instagram.com",
-    ],
-    youtube: [
-      "youtube.com",
-      "youtu.be",
-    ],
+  const platformHosts = {
+    x: ["x.com", "twitter.com"],
+    instagram: ["instagram.com"],
+    youtube: ["youtube.com", "youtu.be"],
   };
 
-const blockedPaths = [
-  "/share",
-  "/intent",
-  "/home",
+  const blockedFragments = [
+    "/share",
+    "/intent",
+    "/home",
+    "/p/",
+    "/reel/",
+    "/reels/",
+    "/tv/",
+  ];
 
-  // Instagram content URLs
-  "/p/",
-  "/reel/",
-  "/reels/",
-  "/tv/",
-];
+  const otherSportTerms = [
+    "football",
+    "basketball",
+    "softball",
+    "soccer",
+    "volleyball",
+    "lacrosse",
+    "wrestling",
+    "tennis",
+    "golf",
+    "track",
+    "swimming",
+    "hockey",
+  ];
 
-const match = links.find((link) => {
-  const normalized = link.url.toLowerCase();
+  const candidates = links
+    .map((link) => {
+      const normalizedUrl = link.url.toLowerCase();
+      const normalizedText = normalizeText(link.text);
+      const combined = `${normalizedText} ${normalizedUrl}`;
 
-  const platformMatches =
-    patterns[platform].some(
-      (pattern) =>
-        normalized.includes(pattern),
-    );
+      const platformMatches =
+        platformHosts[platform].some((host) =>
+          hostnameWithoutWww(link.url) === host ||
+          hostnameWithoutWww(link.url).endsWith(`.${host}`),
+        );
 
-  const blocked =
-    blockedPaths.some(
-      (pathValue) =>
-        normalized.includes(pathValue),
-    );
+      if (!platformMatches) {
+        return { ...link, score: -1_000 };
+      }
 
-  const isValidYoutubeProfile =
-    platform !== "youtube" ||
-    [
-      "/channel/",
-      "/@",
-      "/c/",
-      "/user/",
-    ].some((pathValue) =>
-      normalized.includes(pathValue),
-    );
+      if (
+        blockedFragments.some((fragment) =>
+          normalizedUrl.includes(fragment),
+        )
+      ) {
+        return { ...link, score: -1_000 };
+      }
 
-  return (
-    platformMatches &&
-    !blocked &&
-    isValidYoutubeProfile
-  );
-});
+      if (
+        platform === "youtube" &&
+        !["/channel/", "/@", "/c/", "/user/"].some(
+          (fragment) => normalizedUrl.includes(fragment),
+        )
+      ) {
+        return { ...link, score: -1_000 };
+      }
 
-return match?.url ?? "";
+      let score = 10;
+
+      if (/\bbaseball\b/i.test(combined)) {
+        score += 200;
+      }
+
+      if (
+        /\b(bsball|baseballteam|baseballprogram)\b/i.test(
+          combined.replace(/[^a-z0-9]+/g, ""),
+        )
+      ) {
+        score += 100;
+      }
+
+      if (
+        normalizedText.includes("follow") ||
+        normalizedText.includes("instagram") ||
+        normalizedText.includes("twitter") ||
+        normalizedText.includes("youtube")
+      ) {
+        score += 15;
+      }
+
+      if (
+        otherSportTerms.some((term) =>
+          combined.includes(term),
+        )
+      ) {
+        score -= 500;
+      }
+
+      // A same-site redirect wrapper is useful context, but never enough
+      // to outweigh another sport or a content/share URL.
+      if (
+        baseballHost &&
+        normalizedText.includes(baseballHost)
+      ) {
+        score += 5;
+      }
+
+      return { ...link, score };
+    })
+    .filter((candidate) => candidate.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  return candidates[0]?.url ?? "";
 }
 
 async function fetchHtml(
@@ -1452,6 +1607,613 @@ async function fetchHtml(
   } finally {
     clearTimeout(timeout);
   }
+}
+
+function sleep(
+  milliseconds: number,
+): Promise<void> {
+  return new Promise(
+    (resolve) =>
+      setTimeout(
+        resolve,
+        milliseconds,
+      ),
+  );
+}
+
+function randomDelay(
+  min: number,
+  max: number,
+): number {
+  return (
+    min +
+    Math.floor(
+      Math.random() *
+        (max - min + 1),
+    )
+  );
+}
+
+function isSearchRecoveryBlockedUrl(
+  value: string,
+): boolean {
+  let parsed: URL;
+
+  try {
+    parsed = new URL(value);
+  } catch {
+    return true;
+  }
+
+  const host =
+    parsed.hostname
+      .replace(/^www\./i, "")
+      .toLowerCase();
+
+  if (
+    SEARCH_RECOVERY_BLOCKED_HOSTS.some(
+      (blockedHost) =>
+        host === blockedHost ||
+        host.endsWith(
+          `.${blockedHost}`,
+        ),
+    )
+  ) {
+    return true;
+  }
+
+  const lowerUrl =
+    parsed.toString().toLowerCase();
+
+  return SEARCH_RECOVERY_BLOCKED_PATH_TERMS.some(
+    (term) =>
+      lowerUrl.includes(term),
+  );
+}
+
+function looksSearchThrottled(
+  html: string,
+): boolean {
+  const body =
+    normalizeText(
+      cheerio
+        .load(html)("body")
+        .text(),
+    );
+
+  const signals = [
+    "unusual traffic",
+    "automated queries",
+    "verify you are human",
+    "captcha",
+    "access denied",
+    "too many requests",
+    "temporarily blocked",
+    "rate limit",
+    "rate exceeded",
+    "robot check",
+  ];
+
+  return signals.some(
+    (signal) =>
+      body.includes(signal),
+  );
+}
+
+async function fetchSearchHtml(
+  url: string,
+): Promise<{
+  finalUrl: string;
+  html: string;
+} | null> {
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(
+      () =>
+        controller.abort(),
+      20_000,
+    );
+
+  try {
+    const response =
+      await fetch(url, {
+        redirect: "follow",
+
+        signal:
+          controller.signal,
+
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+
+          Accept:
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+
+          "Accept-Language":
+            "en-US,en;q=0.9",
+
+          "Cache-Control":
+            "no-cache",
+        },
+      });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const contentType =
+      response.headers.get(
+        "content-type",
+      ) ?? "";
+
+    if (
+      !contentType
+        .toLowerCase()
+        .includes("text/html")
+    ) {
+      return null;
+    }
+
+    return {
+      finalUrl:
+        response.url,
+
+      html:
+        await response.text(),
+    };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+function unwrapDuckDuckGoUrl(
+  rawHref: string,
+): string | null {
+  const normalized =
+    normalizeUrl(
+      rawHref,
+      "https://html.duckduckgo.com",
+    );
+
+  if (!normalized) {
+    return null;
+  }
+
+  try {
+    const parsed =
+      new URL(normalized);
+
+    if (
+      parsed.hostname.includes(
+        "duckduckgo.com",
+      )
+    ) {
+      const redirect =
+        parsed.searchParams.get(
+          "uddg",
+        );
+
+      if (redirect) {
+        return normalizeUrl(
+          decodeURIComponent(
+            redirect,
+          ),
+        );
+      }
+    }
+
+    return normalized;
+  } catch {
+    return null;
+  }
+}
+
+function unwrapBingUrl(
+  rawHref: string,
+): string | null {
+  const normalized =
+    normalizeUrl(rawHref);
+
+  if (!normalized) {
+    return null;
+  }
+
+  try {
+    const parsed =
+      new URL(normalized);
+
+    const host =
+      parsed.hostname
+        .replace(/^www\./i, "")
+        .toLowerCase();
+
+    if (
+      host !== "bing.com"
+    ) {
+      return normalized;
+    }
+
+    const encoded =
+      parsed.searchParams.get(
+        "u",
+      );
+
+    if (!encoded) {
+      return null;
+    }
+
+    let payload =
+      encoded;
+
+    if (
+      payload.startsWith("a1")
+    ) {
+      payload =
+        payload.slice(2);
+    }
+
+    payload =
+      payload
+        .replace(/-/g, "+")
+        .replace(/_/g, "/");
+
+    while (
+      payload.length % 4 !== 0
+    ) {
+      payload += "=";
+    }
+
+    const decoded =
+      Buffer.from(
+        payload,
+        "base64",
+      )
+        .toString("utf8")
+        .trim();
+
+    return normalizeUrl(
+      decoded,
+    );
+  } catch {
+    return null;
+  }
+}
+
+function cleanSearchRecoveryResults(
+  results: SearchResult[],
+): SearchResult[] {
+  const seen =
+    new Set<string>();
+
+  return results
+    .filter(
+      (result) => {
+        const normalized =
+          normalizeUrl(
+            result.url,
+          );
+
+        if (
+          !normalized ||
+          isSearchRecoveryBlockedUrl(
+            normalized,
+          )
+        ) {
+          return false;
+        }
+
+        const key =
+          normalized
+            .replace(/\/+$/, "")
+            .toLowerCase();
+
+        if (
+          seen.has(key)
+        ) {
+          return false;
+        }
+
+        seen.add(key);
+
+        result.url =
+          normalized;
+
+        return true;
+      },
+    )
+    .slice(0, 15);
+}
+
+async function searchDuckDuckGo(
+  query: string,
+): Promise<SearchResponse> {
+  const url =
+    `https://html.duckduckgo.com/html/?q=${encodeURIComponent(
+      query,
+    )}`;
+
+  const fetched =
+    await fetchSearchHtml(url);
+
+  if (!fetched) {
+    return {
+      provider: "DUCKDUCKGO",
+      query,
+      results: [],
+      throttled: false,
+    };
+  }
+
+  if (
+    looksSearchThrottled(
+      fetched.html,
+    )
+  ) {
+    return {
+      provider: "DUCKDUCKGO",
+      query,
+      results: [],
+      throttled: true,
+    };
+  }
+
+  const $ =
+    cheerio.load(
+      fetched.html,
+    );
+
+  const results:
+    SearchResult[] = [];
+
+  $(
+    ".result, .web-result",
+  ).each(
+    (_, element) => {
+      const anchor =
+        $(element)
+          .find(
+            "a.result__a, a.result-link",
+          )
+          .first();
+
+      const href =
+        anchor.attr("href");
+
+      const resultUrl =
+        href
+          ? unwrapDuckDuckGoUrl(
+              href,
+            )
+          : null;
+
+      if (!resultUrl) {
+        return;
+      }
+
+      results.push({
+        title:
+          cleanString(
+            anchor.text(),
+          ),
+
+        url:
+          resultUrl,
+
+        snippet:
+          cleanString(
+            $(element)
+              .find(
+                ".result__snippet, .result-snippet",
+              )
+              .first()
+              .text(),
+          ),
+
+        provider:
+          "DUCKDUCKGO",
+
+        query,
+      });
+    },
+  );
+
+  return {
+    provider:
+      "DUCKDUCKGO",
+
+    query,
+
+    results:
+      cleanSearchRecoveryResults(
+        results,
+      ),
+
+    throttled:
+      false,
+  };
+}
+
+async function searchBing(
+  query: string,
+): Promise<SearchResponse> {
+  const url =
+    `https://www.bing.com/search?q=${encodeURIComponent(
+      query,
+    )}&count=20`;
+
+  const fetched =
+    await fetchSearchHtml(url);
+
+  if (!fetched) {
+    return {
+      provider: "BING",
+      query,
+      results: [],
+      throttled: false,
+    };
+  }
+
+  if (
+    looksSearchThrottled(
+      fetched.html,
+    )
+  ) {
+    return {
+      provider: "BING",
+      query,
+      results: [],
+      throttled: true,
+    };
+  }
+
+  const $ =
+    cheerio.load(
+      fetched.html,
+    );
+
+  const results:
+    SearchResult[] = [];
+
+  $("li.b_algo").each(
+    (_, element) => {
+      const anchor =
+        $(element)
+          .find("h2 a")
+          .first();
+
+      const href =
+        anchor.attr("href");
+
+      const resultUrl =
+        href
+          ? unwrapBingUrl(href)
+          : null;
+
+      if (!resultUrl) {
+        return;
+      }
+
+      results.push({
+        title:
+          cleanString(
+            anchor.text(),
+          ),
+
+        url:
+          resultUrl,
+
+        snippet:
+          cleanString(
+            $(element)
+              .find(
+                ".b_caption p, .b_snippet",
+              )
+              .first()
+              .text(),
+          ),
+
+        provider:
+          "BING",
+
+        query,
+      });
+    },
+  );
+
+  /*
+   * Keep the same fallback selector that is
+   * already working in seed discovery.
+   */
+  if (
+    results.length === 0
+  ) {
+    $("#b_results h2 a").each(
+      (_, element) => {
+        const href =
+          $(element).attr(
+            "href",
+          );
+
+        const resultUrl =
+          href
+            ? unwrapBingUrl(href)
+            : null;
+
+        if (!resultUrl) {
+          return;
+        }
+
+        results.push({
+          title:
+            cleanString(
+              $(element).text(),
+            ),
+
+          url:
+            resultUrl,
+
+          snippet: "",
+
+          provider:
+            "BING",
+
+          query,
+        });
+      },
+    );
+  }
+
+  return {
+    provider:
+      "BING",
+
+    query,
+
+    results:
+      cleanSearchRecoveryResults(
+        results,
+      ),
+
+    throttled:
+      false,
+  };
+}
+
+async function searchForBaseballRecovery(
+  query: string,
+): Promise<SearchResult[]> {
+  const ddg =
+    await searchDuckDuckGo(
+      query,
+    );
+
+  if (
+    ddg.results.length >= 4 &&
+    !ddg.throttled
+  ) {
+    return ddg.results;
+  }
+
+  await sleep(
+    randomDelay(
+      500,
+      900,
+    ),
+  );
+
+  const bing =
+    await searchBing(
+      query,
+    );
+
+  return cleanSearchRecoveryResults([
+    ...ddg.results,
+    ...bing.results,
+  ]);
 }
 
 function looksLikeCampPage(
@@ -2074,6 +2836,252 @@ if (fetchedLooksLikeHub) {
   };
 }
 
+const IDENTITY_STOP_WORDS = new Set([
+  "the",
+  "of",
+  "at",
+  "and",
+  "university",
+  "college",
+  "campus",
+  "system",
+]);
+
+function identityTokens(value: string): string[] {
+  return normalizeText(value)
+    .replace(/[–—-]/g, " ")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter((token) => !IDENTITY_STOP_WORDS.has(token));
+}
+
+function normalizeIdentityPhrase(value: string): string {
+  return normalizeText(value)
+    .replace(/[–—-]/g, " ")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function stateIdentityTerms(state: string): string[] {
+  const normalized = normalizeText(state);
+
+  const stateNames: Record<string, string> = {
+    AL: "alabama", AK: "alaska", AZ: "arizona", AR: "arkansas",
+    CA: "california", CO: "colorado", CT: "connecticut", DE: "delaware",
+    FL: "florida", GA: "georgia", HI: "hawaii", ID: "idaho",
+    IL: "illinois", IN: "indiana", IA: "iowa", KS: "kansas",
+    KY: "kentucky", LA: "louisiana", ME: "maine", MD: "maryland",
+    MA: "massachusetts", MI: "michigan", MN: "minnesota", MS: "mississippi",
+    MO: "missouri", MT: "montana", NE: "nebraska", NV: "nevada",
+    NH: "new hampshire", NJ: "new jersey", NM: "new mexico", NY: "new york",
+    NC: "north carolina", ND: "north dakota", OH: "ohio", OK: "oklahoma",
+    OR: "oregon", PA: "pennsylvania", RI: "rhode island", SC: "south carolina",
+    SD: "south dakota", TN: "tennessee", TX: "texas", UT: "utah",
+    VT: "vermont", VA: "virginia", WA: "washington", WV: "west virginia",
+    WI: "wisconsin", WY: "wyoming", DC: "district of columbia",
+  };
+
+  if (!normalized) {
+    return [];
+  }
+
+  const upper = state.trim().toUpperCase();
+  const full = stateNames[upper];
+
+  if (full) {
+    return [full, upper.toLowerCase()];
+  }
+
+  const matchingAbbreviation = Object.entries(stateNames)
+    .find(([, fullName]) => fullName === normalized)?.[0]
+    ?.toLowerCase();
+
+  return uniqueStrings([
+    normalized,
+    matchingAbbreviation,
+  ]);
+}
+
+function validateSchoolIdentity(
+  html: string,
+  pageUrl: string,
+  input: CsvRow,
+): IdentityValidation {
+  const $ = cheerio.load(html);
+
+  const rawName = cleanString(input.name);
+  const nickname = cleanString(
+    input.baseballNickname || input.nickname,
+  );
+  const city = cleanString(input.city);
+  const state = cleanString(input.state);
+
+  const title = normalizeIdentityPhrase(
+    $("title").first().text(),
+  );
+  const heading = normalizeIdentityPhrase(
+    $("h1").first().text(),
+  );
+  const titleHeading = `${title} ${heading}`.trim();
+  const body = normalizeIdentityPhrase(
+    $("body").text().slice(0, 80_000),
+  );
+
+  let pathname = "";
+  try {
+    pathname = new URL(pageUrl).pathname.toLowerCase();
+  } catch {
+    // Keep blank pathname; URL validity is handled elsewhere.
+  }
+
+  const nameWithoutParenthetical = rawName
+    .replace(/\([^)]*\)/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const normalizedName = normalizeIdentityPhrase(
+    nameWithoutParenthetical,
+  );
+  const tokens = identityTokens(nameWithoutParenthetical);
+  const distinctiveTokens = tokens.filter((token) => token.length >= 3);
+
+  const titleTokenMatches = distinctiveTokens.filter((token) =>
+    new RegExp(`\\b${token}\\b`, "i").test(titleHeading),
+  ).length;
+
+  const bodyTokenMatches = distinctiveTokens.filter((token) =>
+    new RegExp(`\\b${token}\\b`, "i").test(body),
+  ).length;
+
+  const titleTokenRatio = distinctiveTokens.length
+    ? titleTokenMatches / distinctiveTokens.length
+    : 0;
+
+  const bodyTokenRatio = distinctiveTokens.length
+    ? bodyTokenMatches / distinctiveTokens.length
+    : 0;
+
+  const exactNameInTitle =
+    Boolean(normalizedName) && titleHeading.includes(normalizedName);
+  const exactNameInBody =
+    Boolean(normalizedName) && body.includes(normalizedName);
+
+  const normalizedNickname = normalizeIdentityPhrase(nickname);
+  const nicknameMatch =
+    Boolean(normalizedNickname) &&
+    (titleHeading.includes(normalizedNickname) ||
+      body.includes(normalizedNickname));
+
+  const normalizedCity = normalizeIdentityPhrase(city);
+  const cityMatch =
+    Boolean(normalizedCity) &&
+    (titleHeading.includes(normalizedCity) || body.includes(normalizedCity));
+
+  const stateTerms = stateIdentityTerms(state);
+  const stateMatch = stateTerms.some((term) => {
+    if (term.length <= 2) {
+      return new RegExp(`\\b${term}\\b`, "i").test(titleHeading);
+    }
+    return titleHeading.includes(term) || body.includes(term);
+  });
+
+  const baseballSignal =
+    pathname.includes("baseball") ||
+    titleHeading.includes("baseball") ||
+    body.includes("baseball");
+
+  const canonicalBaseballPath =
+    /^\/(sports?\/)?baseball\/?$/i.test(pathname);
+
+  let score = 0;
+  const reasons: string[] = [];
+
+  if (exactNameInTitle) {
+    score += 220;
+    reasons.push("exact school identity in title/heading");
+  } else if (exactNameInBody) {
+    score += 80;
+    reasons.push("exact school identity in page body");
+  }
+
+  if (distinctiveTokens.length > 0) {
+    score += Math.round(titleTokenRatio * 120);
+    score += Math.round(bodyTokenRatio * 40);
+    reasons.push(
+      `school tokens title ${titleTokenMatches}/${distinctiveTokens.length}, body ${bodyTokenMatches}/${distinctiveTokens.length}`,
+    );
+  }
+
+  if (nicknameMatch) {
+    score += 90;
+    reasons.push("nickname match");
+  }
+
+  if (cityMatch) {
+    score += 35;
+    reasons.push("city match");
+  }
+
+  if (stateMatch) {
+    score += 60;
+    reasons.push("state match");
+  }
+
+  if (baseballSignal) {
+    score += 35;
+    reasons.push("baseball page signal");
+  }
+
+  if (canonicalBaseballPath) {
+    score += 40;
+    reasons.push("canonical baseball path");
+  }
+
+  const parentheticalMatch = rawName.match(/\(([^)]+)\)/);
+  const parentheticalTerms = parentheticalMatch
+    ? stateIdentityTerms(parentheticalMatch[1])
+    : [];
+  const parentheticalGeoMatch = parentheticalTerms.some((term) =>
+    term.length <= 2
+      ? new RegExp(`\\b${term}\\b`, "i").test(titleHeading)
+      : titleHeading.includes(term) || body.includes(term),
+  );
+
+  const ambiguousShortIdentity =
+    distinctiveTokens.length <= 1 || Boolean(parentheticalMatch);
+
+  const strongNameEvidence =
+    exactNameInTitle ||
+    titleTokenRatio >= 0.75 ||
+    (nicknameMatch && titleTokenRatio >= 0.5);
+
+  const geographicEvidence =
+    stateMatch || parentheticalGeoMatch || cityMatch;
+
+  const validated =
+    baseballSignal &&
+    score >= 150 &&
+    strongNameEvidence &&
+    (!ambiguousShortIdentity || geographicEvidence || exactNameInTitle);
+
+  if (!validated) {
+    if (!baseballSignal) reasons.push("REJECT: missing baseball signal");
+    if (!strongNameEvidence) reasons.push("REJECT: weak school-name evidence");
+    if (ambiguousShortIdentity && !geographicEvidence && !exactNameInTitle) {
+      reasons.push("REJECT: ambiguous school identity lacks geographic confirmation");
+    }
+    if (score < 150) reasons.push(`REJECT: identity score ${score} < 150`);
+  }
+
+  return {
+    validated,
+    score,
+    reasons,
+  };
+}
+
 function looksLikeBaseballPage(
   html: string,
   pageUrl: string,
@@ -2106,18 +3114,83 @@ function looksLikeBaseballPage(
       pageUrl,
     );
 
+  /*
+   * A baseball-related article, press release, story,
+   * or institutional news page is useful as a discovery
+   * clue, but it must never become the trusted
+   * baseballWebsiteUrl.
+   */
+  const blockedBaseballPagePatterns = [
+    /\/news\//i,
+    /\/article\//i,
+    /\/articles\//i,
+    /\/story\//i,
+    /\/stories\//i,
+    /\/press-release\//i,
+    /\/press-releases\//i,
+  ];
+
+  if (
+    blockedBaseballPagePatterns.some(
+      (pattern) =>
+        pattern.test(pathname),
+    )
+  ) {
+    return false;
+  }
+
+  /*
+   * Institutional CMS sites often publish news articles
+   * directly from the root with descriptive slugs rather
+   * than /news/ or /article/ paths.
+   *
+   * A non-athletics root-level URL containing "baseball"
+   * is therefore not enough to establish that the page is
+   * the official baseball program hub.
+   *
+   * Examples:
+   *   /baseballs-kyle-richards-signs-pro-contract-...
+   *   /baseball-announces-2026-schedule/
+   *
+   * Legitimate program landing pages are handled below by
+   * recognized athletics/baseball path structures.
+   */
+  const pathSegments =
+    pathname
+      .split("/")
+      .filter(Boolean);
+
+  const looksLikeRootLevelBaseballArticle =
+    pathSegments.length === 1 &&
+    pathSegments[0].includes("baseball") &&
+    pathSegments[0] !== "baseball";
+
+  if (
+    looksLikeRootLevelBaseballArticle
+  ) {
+    return false;
+  }
+
   const hasStrongBaseballPath =
     pathname === "/sports/baseball" ||
     pathname === "/sports/baseball/" ||
     pathname === "/sport/baseball" ||
     pathname === "/sport/baseball/" ||
     pathname === "/baseball" ||
-    pathname === "/baseball/";
+    pathname === "/baseball/" ||
+    pathname === "/sports/bsb" ||
+    pathname === "/sports/bsb/" ||
+    pathname === "/bsb" ||
+    pathname === "/bsb/";
 
+  /*
+   * Institutional article slugs frequently contain
+   * "baseball" even though they are not program landing
+   * pages. Therefore pathname.includes("baseball") alone
+   * is intentionally NOT enough.
+   */
   const hasBaseballIdentity =
     hasStrongBaseballPath ||
-    pathname.includes("/baseball") ||
-    pathname.includes("baseball") ||
     title.includes("baseball") ||
     heading.includes("baseball");
 
@@ -2144,7 +3217,6 @@ function looksLikeBaseballPage(
     "schedule",
     "coach",
     "staff",
-    "news",
   ].filter(
     (term) =>
       body.includes(term),
@@ -2154,11 +3226,10 @@ function looksLikeBaseballPage(
     navigationTermCount >= 2;
 
   /*
-   * A canonical athletics URL such as
-   * /sports/baseball is already a strong signal.
-   * Some Sidearm pages render most navigation
-   * client-side, so the fetched HTML may not expose
-   * every expected roster/schedule/coaches term.
+   * A canonical athletics baseball path is already a
+   * strong program-page signal. Some Sidearm pages render
+   * navigation client-side, so the raw HTML may not expose
+   * every roster/schedule/coaches link.
    */
   if (
     hasStrongBaseballPath &&
@@ -2171,6 +3242,11 @@ function looksLikeBaseballPage(
     return true;
   }
 
+  /*
+   * For a noncanonical URL, require evidence that this is
+   * an actual program hub rather than merely content about
+   * baseball.
+   */
   return (
     hasBaseballIdentity &&
     (
@@ -2251,6 +3327,10 @@ async function discoverBaseballPage(
       `${athleticsOrigin}/sports/baseball/`,
       `${athleticsOrigin}/sport/baseball`,
       `${athleticsOrigin}/baseball`,
+      `${athleticsOrigin}/sports/bsb`,
+      `${athleticsOrigin}/sports/bsb/`,
+      `${athleticsOrigin}/sports/bsb/index`,
+      `${athleticsOrigin}/bsb`,
     ]);
 
   for (
@@ -2287,6 +3367,288 @@ async function discoverBaseballPage(
   };
 }
 
+async function recoverBaseballPageBySearch(
+  input: CsvRow,
+): Promise<{
+  baseballUrl: string;
+  baseballHtml: string;
+  provider: SearchProvider | "";
+  query: string;
+}> {
+  const name =
+    cleanString(
+      input.name,
+    );
+
+  const city =
+    cleanString(
+      input.city,
+    );
+
+  const state =
+    cleanString(
+      input.state,
+    );
+
+  if (!name) {
+    return {
+      baseballUrl: "",
+      baseballHtml: "",
+      provider: "",
+      query: "",
+    };
+  }
+
+  /*
+   * Intentionally small query set.
+   *
+   * Search recovery is expensive and is only
+   * reached after normal deterministic discovery
+   * has already failed.
+   */
+  const queries =
+    uniqueStrings([
+      state
+        ? `${name} baseball athletics ${state}`
+        : `${name} baseball athletics`,
+
+      `${name} baseball roster`,
+
+      `"${name}" baseball`,
+
+      `"${name}" baseball athletics`,
+
+      city || state
+        ? `"${name}" ${city} ${state} baseball`
+            .replace(/\s+/g, " ")
+            .trim()
+        : "",
+    ]);
+
+  const collected:
+    SearchResult[] = [];
+
+  for (
+    const query of queries
+  ) {
+    const results =
+      await searchForBaseballRecovery(
+        query,
+      );
+
+    collected.push(
+      ...results,
+    );
+
+    /*
+     * Once search has produced a reasonable
+     * candidate pool, stop spending requests.
+     */
+    if (
+      collected.length >= 10
+    ) {
+      break;
+    }
+
+    await sleep(
+      randomDelay(
+        500,
+        850,
+      ),
+    );
+  }
+
+  const deduped =
+    cleanSearchRecoveryResults(
+      collected,
+    );
+
+  /*
+   * Search result ranking is intentionally
+   * lightweight.
+   *
+   * Search discovers possibilities.
+   * V2 validation determines truth.
+   */
+  const ranked =
+    deduped
+      .map((result) => {
+        const combined =
+          normalizeText(
+            `${result.title} ${result.snippet} ${result.url}`,
+          );
+
+        let score = 0;
+
+        if (
+          combined.includes(
+            normalizeText(name),
+          )
+        ) {
+          score += 100;
+        }
+
+        if (
+          combined.includes(
+            "baseball",
+          )
+        ) {
+          score += 75;
+        }
+
+        if (
+          combined.includes(
+            "athletics",
+          )
+        ) {
+          score += 30;
+        }
+
+        if (
+          combined.includes(
+            "roster",
+          )
+        ) {
+          score += 20;
+        }
+
+        try {
+          const pathname =
+            new URL(
+              result.url,
+            )
+              .pathname
+              .replace(/\/+$/, "")
+              .toLowerCase();
+
+          if (
+            pathname ===
+              "/sports/baseball" ||
+            pathname ===
+              "/sport/baseball" ||
+            pathname ===
+              "/baseball"
+          ) {
+            score += 150;
+          } else if (
+            pathname.includes(
+              "/baseball",
+            )
+          ) {
+            score += 75;
+          }
+        } catch {
+          score -= 1_000;
+        }
+
+        return {
+          result,
+          score,
+        };
+      })
+      .sort(
+        (a, b) =>
+          b.score - a.score,
+      );
+
+  const visitedHosts =
+    new Map<string, number>();
+
+  for (
+    const { result } of
+      ranked.slice(0, 12)
+  ) {
+    const host =
+      hostnameWithoutWww(
+        result.url,
+      );
+
+    const hostVisits =
+      visitedHosts.get(host) ??
+      0;
+
+    if (
+      hostVisits >= 2
+    ) {
+      continue;
+    }
+
+    visitedHosts.set(
+      host,
+      hostVisits + 1,
+    );
+
+    const fetched =
+      await fetchHtml(
+        result.url,
+      );
+
+    if (
+      !fetched ||
+      isSearchRecoveryBlockedUrl(
+        fetched.finalUrl,
+      )
+    ) {
+      continue;
+    }
+
+    /*
+     * First gate:
+     * this must actually behave like a baseball
+     * program page, not merely mention baseball.
+     */
+    if (
+      !looksLikeBaseballPage(
+        fetched.html,
+        fetched.finalUrl,
+      )
+    ) {
+      continue;
+    }
+
+    /*
+     * Second and decisive gate:
+     * reuse V2's current school identity validator.
+     *
+     * This is what protects Caldwell and similar
+     * ambiguous-name cases.
+     */
+    const identity =
+      validateSchoolIdentity(
+        fetched.html,
+        fetched.finalUrl,
+        input,
+      );
+
+    if (
+      !identity.validated
+    ) {
+      continue;
+    }
+
+    return {
+      baseballUrl:
+        fetched.finalUrl,
+
+      baseballHtml:
+        fetched.html,
+
+      provider:
+        result.provider,
+
+      query:
+        result.query,
+    };
+  }
+
+  return {
+    baseballUrl: "",
+    baseballHtml: "",
+    provider: "",
+    query: "",
+  };
+}
+
 function determineStatus(
   row: OutputRow,
 ): DiscoveryStatus {
@@ -2294,25 +3656,10 @@ function determineStatus(
     return "FAILED";
   }
 
-  const populatedCoreFields = [
-    row.rosterUrl,
-    row.scheduleUrl,
-    row.campsUrl,
-    row.questionnaireUrl,
-    row.generalContactUrl,
-    row.programXUrl,
-    row.programInstagramUrl,
-  ].filter(Boolean).length;
-
-  if (populatedCoreFields >= 4) {
-    return "FOUND";
-  }
-
-  if (populatedCoreFields >= 1) {
-    return "PARTIAL";
-  }
-
-  return "NEEDS_REVIEW";
+  // Identity validation happens before this function is called.
+  // Once the official baseball program is validated, missing secondary
+  // links are treated as missing data rather than a weaker program match.
+  return "FOUND";
 }
 
 async function enrichRow(
@@ -2649,40 +3996,205 @@ if (!fetchedExisting) {
         fetchedOverride.html,
     };
   } else {
-    const athletics =
-      await discoverAthleticsSite(
+    /*
+     * The seed-discovery layer may already have
+     * identified the official baseball page and
+     * placed it in websiteUrl.
+     *
+     * Example:
+     *   https://asugrizzlies.com/sports/baseball
+     *
+     * Check the incoming seed itself before
+     * assuming it is an institutional homepage
+     * that needs athletics-site discovery.
+     */
+    const fetchedSeed =
+      await fetchHtml(
         websiteUrl,
       );
 
-    if (!athletics.athleticsUrl) {
-      baseRow.discoveryStatus =
-        "FAILED";
+    if (
+      fetchedSeed &&
+      looksLikeBaseballPage(
+        fetchedSeed.html,
+        fetchedSeed.finalUrl,
+      )
+    ) {
+      baseball = {
+        baseballUrl:
+          fetchedSeed.finalUrl,
+        baseballHtml:
+          fetchedSeed.html,
+      };
+    } else {
+      const athletics =
+        await discoverAthleticsSite(
+          websiteUrl,
+        );
 
-      baseRow.discoveryNotes =
-        "Could not discover an official athletics website from the institutional website.";
+if (!athletics.athleticsUrl) {
+  const recovered =
+    await recoverBaseballPageBySearch(
+      input,
+    );
 
-      return baseRow;
-    }
+  if (
+    !recovered.baseballUrl
+  ) {
+    baseRow.discoveryStatus =
+      "FAILED";
 
-    baseball =
-      await discoverBaseballPage(
-        athletics.athleticsUrl,
-        athletics.sourceHtml,
-      );
+    baseRow.discoveryNotes =
+      "Seed was not a baseball page, athletics-site discovery failed, and search recovery found no school-identity-validated baseball program page.";
 
-    if (!baseball.baseballUrl) {
-      baseRow.sourceUrl =
-        athletics.athleticsUrl;
+    return baseRow;
+  }
 
-      baseRow.discoveryStatus =
-        "NEEDS_REVIEW";
+  baseball = {
+    baseballUrl:
+      recovered.baseballUrl,
 
-      baseRow.discoveryNotes =
-        "Athletics website found, but baseball page was not confidently identified.";
+    baseballHtml:
+      recovered.baseballHtml,
+  };
 
-      return baseRow;
+  baseRow.discoveryNotes =
+    `Recovered official baseball program through ${recovered.provider} search fallback. Query: ${recovered.query}`;
+} else {
+
+      /*
+       * The seed may itself already be the
+       * athletics homepage. discoverAthleticsSite()
+       * handles that case and returns it here.
+       */
+      baseball =
+        await discoverBaseballPage(
+          athletics.athleticsUrl,
+          athletics.sourceHtml,
+        );
+
+if (!baseball.baseballUrl) {
+  const recovered =
+    await recoverBaseballPageBySearch(
+      input,
+    );
+
+  if (
+    !recovered.baseballUrl
+  ) {
+    baseRow.sourceUrl =
+      athletics.athleticsUrl;
+
+    baseRow.discoveryStatus =
+      "NEEDS_REVIEW";
+
+    baseRow.discoveryNotes =
+      "Athletics website found, but baseball page was not confidently identified and search recovery found no school-identity-validated baseball program page.";
+
+    return baseRow;
+  }
+
+  baseball = {
+    baseballUrl:
+      recovered.baseballUrl,
+
+    baseballHtml:
+      recovered.baseballHtml,
+  };
+
+  baseRow.discoveryNotes =
+    `Athletics site was found but normal baseball discovery failed. Recovered official baseball program through ${recovered.provider} search fallback. Query: ${recovered.query}`;
+}
     }
   }
+  }
+
+  /*
+   * Final URL-shape safety check before identity validation.
+   * School identity validation answers "is this the right
+   * school?" It does NOT by itself answer "is this the
+   * official baseball program landing page?"
+   */
+  let baseballPathname = "";
+
+  try {
+    baseballPathname =
+      new URL(
+        baseball.baseballUrl,
+      ).pathname.toLowerCase();
+  } catch {
+    baseballPathname = "";
+  }
+
+  const baseballPathSegments =
+    baseballPathname
+      .split("/")
+      .filter(Boolean);
+
+  const obviousArticlePath =
+    [
+      /\/news\//i,
+      /\/article\//i,
+      /\/articles\//i,
+      /\/story\//i,
+      /\/stories\//i,
+      /\/press-release\//i,
+      /\/press-releases\//i,
+    ].some(
+      (pattern) =>
+        pattern.test(
+          baseballPathname,
+        ),
+    ) ||
+    (
+      baseballPathSegments.length === 1 &&
+      baseballPathSegments[0].includes(
+        "baseball",
+      ) &&
+      baseballPathSegments[0] !==
+        "baseball"
+    );
+
+  if (obviousArticlePath) {
+    baseRow.sourceUrl =
+      baseball.baseballUrl;
+
+    baseRow.baseballWebsiteUrl =
+      "";
+
+    baseRow.discoveryStatus =
+      "NEEDS_REVIEW";
+
+    baseRow.discoveryNotes =
+      `Rejected baseball candidate because the URL appears to be an article/news page rather than the official baseball program landing page. Candidate: ${baseball.baseballUrl}`;
+
+    return baseRow;
+  }
+  
+  const identityValidation =
+    validateSchoolIdentity(
+      baseball.baseballHtml,
+      baseball.baseballUrl,
+      input,
+    );
+
+  if (!identityValidation.validated) {
+    baseRow.sourceUrl =
+      baseball.baseballUrl;
+
+    // Never preserve an unvalidated baseball URL as trusted output.
+    baseRow.baseballWebsiteUrl = "";
+    baseRow.discoveryStatus =
+      "NEEDS_REVIEW";
+    baseRow.discoveryNotes =
+      `Rejected baseball candidate because school identity was not validated (score ${identityValidation.score}). ${identityValidation.reasons.join("; ")}. Candidate: ${baseball.baseballUrl}`;
+
+    return baseRow;
+  }
+
+  // From this point forward the baseball program identity is trusted.
+  baseRow.baseballWebsiteUrl =
+    baseball.baseballUrl;
 
   const links =
     extractLinks(
@@ -2694,10 +4206,6 @@ if (!fetchedExisting) {
     hostnameWithoutWww(
       baseball.baseballUrl,
     );
-
-  baseRow.baseballWebsiteUrl =
-    baseRow.baseballWebsiteUrl ||
-    baseball.baseballUrl;
 
 baseRow.rosterUrl =
   baseRow.rosterUrl ||
@@ -2782,6 +4290,7 @@ baseRow.programXUrl =
   extractSocialUrl(
     links,
     "x",
+    preferredHost,
   );
 
   baseRow.programInstagramUrl =
@@ -2789,6 +4298,7 @@ baseRow.programXUrl =
     extractSocialUrl(
       links,
       "instagram",
+      preferredHost,
     );
 
   baseRow.programYoutubeUrl =
@@ -2796,6 +4306,7 @@ baseRow.programXUrl =
     extractSocialUrl(
       links,
       "youtube",
+      preferredHost,
     );
 
 baseRow.sourceUrl =
@@ -2833,12 +4344,60 @@ baseRow.discoveryStatus =
       "YouTube",
   ].filter(Boolean);
 
+  const identityNote =
+    `Identity validated (score ${identityValidation.score}): ${identityValidation.reasons.join("; ")}.`;
+
   baseRow.discoveryNotes =
     foundFields.length > 0
-      ? `Discovered: ${foundFields.join(", ")}.`
-      : "Baseball page found, but no secondary links were confidently identified.";
+      ? `${identityNote} Discovered: ${foundFields.join(", ")}.`
+      : `${identityNote} Baseball page found, but no secondary links were confidently identified.`;
 
   return baseRow;
+}
+
+function applyCrossRecordCollisionQa(rows: OutputRow[]): void {
+  const byHost = new Map<string, OutputRow[]>();
+
+  for (const row of rows) {
+    if (!row.baseballWebsiteUrl) {
+      continue;
+    }
+
+    const host = hostnameWithoutWww(row.baseballWebsiteUrl);
+    if (!host) {
+      continue;
+    }
+
+    const existing = byHost.get(host) ?? [];
+    existing.push(row);
+    byHost.set(host, existing);
+  }
+
+  for (const [host, hostRows] of byHost.entries()) {
+    if (hostRows.length < 2) {
+      continue;
+    }
+
+    const uniqueSchoolNames = uniqueStrings(
+      hostRows.map((row) => row.name),
+    );
+
+    if (uniqueSchoolNames.length < 2) {
+      continue;
+    }
+
+    for (const row of hostRows) {
+      row.discoveryStatus = "NEEDS_REVIEW";
+      row.discoveryNotes = [
+        row.discoveryNotes,
+        `Identity collision: baseball host ${host} was also assigned to ${uniqueSchoolNames
+          .filter((name) => name !== row.name)
+          .join(", ")}.`,
+      ]
+        .filter(Boolean)
+        .join(" ");
+    }
+  }
 }
 
 function findNewestWebPresenceInputCsv(): string {
@@ -3090,6 +4649,10 @@ async function main(): Promise<void> {
       );
     }
   }
+
+  applyCrossRecordCollisionQa(
+    outputRows,
+  );
 
   const outputPath =
     writeOutputCsv(
