@@ -164,6 +164,16 @@ const SEARCH_RECOVERY_BLOCKED_HOSTS = [
   "d3baseball.com",
   "hudl.com",
 
+  // Third-party college/program databases, analytics,
+  // encyclopedias, and athletics-platform corporate sites
+  // are discovery clues only, never trusted program URLs.
+  "collegefactual.com",
+  "64analytics.com",
+  "indyencyclopedia.org",
+  "sidearmsports.com",
+  "prestosports.com",
+  "stretchinternet.com",
+
   "history.com",
   "worldatlas.com",
   "expedia.com",
@@ -506,6 +516,19 @@ const OFFICIAL_BASEBALL_URL_OVERRIDES: Record<
 
   "University of New Haven":
     "https://newhavenchargers.com/sports/baseball",
+
+  /*
+   * Verified D2 fallback.
+   * Generic discovery/search remains primary for programs
+   * without an entry here. Bentley repeatedly failed to
+   * surface its official athletics host through the search
+   * providers even though the official program page is known.
+   */
+  "Bentley":
+    "https://bentleyfalcons.com/sports/baseball",
+
+  "Bentley University":
+    "https://bentleyfalcons.com/sports/baseball",
 };
 
 const PROGRAM_FIELD_OVERRIDES: Record<
@@ -1671,6 +1694,229 @@ function isSearchRecoveryBlockedUrl(
   );
 }
 
+const UNTRUSTED_PROGRAM_HOSTS = uniqueStrings([
+  ...SEARCH_RECOVERY_BLOCKED_HOSTS,
+  "collegefactual.com",
+  "64analytics.com",
+  "indyencyclopedia.org",
+  "sidearmsports.com",
+  "prestosports.com",
+  "stretchinternet.com",
+]);
+
+function isKnownUntrustedProgramUrl(
+  value: string,
+): boolean {
+  try {
+    const host =
+      new URL(value).hostname
+        .replace(/^www\./i, "")
+        .toLowerCase();
+
+    return UNTRUSTED_PROGRAM_HOSTS.some(
+      (blockedHost) =>
+        host === blockedHost ||
+        host.endsWith(`.${blockedHost}`),
+    );
+  } catch {
+    return true;
+  }
+}
+
+function sameOrSubdomainHost(
+  candidateUrl: string,
+  referenceUrl: string,
+): boolean {
+  const candidateHost =
+    hostnameWithoutWww(candidateUrl);
+  const referenceHost =
+    hostnameWithoutWww(referenceUrl);
+
+  if (!candidateHost || !referenceHost) {
+    return false;
+  }
+
+  return (
+    candidateHost === referenceHost ||
+    candidateHost.endsWith(`.${referenceHost}`) ||
+    referenceHost.endsWith(`.${candidateHost}`)
+  );
+}
+
+function hasCanonicalAthleticsBaseballPath(
+  value: string,
+): boolean {
+  try {
+    const pathname =
+      new URL(value)
+        .pathname
+        .replace(/\/+$/, "")
+        .toLowerCase();
+
+    return (
+      /^\/sports\/baseball(?:\/|$)/i.test(pathname) ||
+      /^\/sport\/baseball(?:\/|$)/i.test(pathname) ||
+      /^\/sports\/bsb(?:\/|$)/i.test(pathname) ||
+      /^\/baseball(?:\/|$)/i.test(pathname) ||
+      /^\/bsb(?:\/|$)/i.test(pathname)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function pageLinksBackToInstitution(
+  html: string,
+  pageUrl: string,
+  websiteUrl: string,
+): boolean {
+  const institutionalHost =
+    hostnameWithoutWww(
+      websiteUrl,
+    );
+
+  if (!institutionalHost) {
+    return false;
+  }
+
+  const links =
+    extractLinks(
+      html,
+      pageUrl,
+    );
+
+  return links.some((link) => {
+    const linkHost =
+      hostnameWithoutWww(
+        link.url,
+      );
+
+    return (
+      linkHost === institutionalHost ||
+      linkHost.endsWith(
+        `.${institutionalHost}`,
+      ) ||
+      institutionalHost.endsWith(
+        `.${linkHost}`,
+      )
+    );
+  });
+}
+
+function looksLikeOfficialAthleticsHost(
+  pageUrl: string,
+  websiteUrl: string,
+  html: string,
+): boolean {
+  if (isKnownUntrustedProgramUrl(pageUrl)) {
+    return false;
+  }
+
+  /*
+   * Same-domain and institutional subdomain pages are
+   * trusted provenance because they remain inside the
+   * school's own web property.
+   */
+  if (sameOrSubdomainHost(pageUrl, websiteUrl)) {
+    return true;
+  }
+
+  /*
+   * Separate athletics domains are common, but content
+   * similarity alone is not proof that an external site
+   * is official.
+   *
+   * For an external domain, require at least one strong
+   * provenance signal:
+   *
+   *   1. canonical athletics baseball URL structure, or
+   *   2. an explicit link back to the institution.
+   *
+   * This rejects third-party college/program profile
+   * pages that merely contain the correct school,
+   * nickname, city/state, and baseball terminology.
+   */
+  const hasCanonicalBaseballPath =
+    hasCanonicalAthleticsBaseballPath(
+      pageUrl,
+    );
+
+  const linksBackToInstitution =
+    pageLinksBackToInstitution(
+      html,
+      pageUrl,
+      websiteUrl,
+    );
+
+  if (
+    !hasCanonicalBaseballPath &&
+    !linksBackToInstitution
+  ) {
+    return false;
+  }
+
+  const $ = cheerio.load(html);
+  const body =
+    normalizeText($("body").text());
+  const links =
+    extractLinks(html, pageUrl);
+
+  const sportsPathLinks =
+    links.filter((link) => {
+      try {
+        const pathname =
+          new URL(link.url).pathname.toLowerCase();
+
+        return (
+          pathname.includes("/sports/") ||
+          pathname.includes("/sport/")
+        );
+      } catch {
+        return false;
+      }
+    }).length;
+
+  const athleticsSignals = [
+    "roster",
+    "schedule",
+    "coaches",
+    "staff directory",
+    "athletics",
+  ].filter((term) =>
+    body.includes(term),
+  ).length;
+
+  /*
+   * Canonical baseball paths are themselves a strong
+   * athletics-platform signal. For noncanonical external
+   * URLs, the institutional backlink must be accompanied
+   * by normal athletics/program structure.
+   */
+  if (hasCanonicalBaseballPath) {
+    return looksLikeBaseballPage(
+      html,
+      pageUrl,
+    );
+  }
+
+  return (
+    linksBackToInstitution &&
+    (
+      looksLikeAthleticsHub(
+        html,
+        pageUrl,
+      ) ||
+      (
+        looksLikeBaseballPage(
+          html,
+          pageUrl,
+        ) &&
+        sportsPathLinks >= 2 &&
+        athleticsSignals >= 2
+      )
+    )
+  );
+}
 function looksSearchThrottled(
   html: string,
 ): boolean {
@@ -2309,6 +2555,78 @@ function looksLikeCampPage(
   );
 }
 
+async function promoteCanonicalBaseballRoot(
+  baseballUrl: string,
+  input: CsvRow,
+): Promise<{
+  baseballUrl: string;
+  baseballHtml: string;
+} | null> {
+  let parsed: URL;
+
+  try {
+    parsed = new URL(baseballUrl);
+  } catch {
+    return null;
+  }
+
+  const pathname =
+    parsed.pathname
+      .replace(/\/+$/, "")
+      .toLowerCase();
+
+  if (
+    [
+      "/sports/baseball",
+      "/sport/baseball",
+      "/baseball",
+      "/sports/bsb",
+      "/bsb",
+    ].includes(pathname)
+  ) {
+    return null;
+  }
+
+  const candidates = uniqueStrings([
+    `${parsed.origin}/sports/baseball`,
+    `${parsed.origin}/sport/baseball`,
+    `${parsed.origin}/baseball`,
+    `${parsed.origin}/sports/bsb`,
+    `${parsed.origin}/bsb`,
+  ]);
+
+  for (const candidateUrl of candidates) {
+    const fetched =
+      await fetchHtml(candidateUrl);
+
+    if (
+      !fetched ||
+      !looksLikeBaseballPage(
+        fetched.html,
+        fetched.finalUrl,
+      )
+    ) {
+      continue;
+    }
+
+    const identity =
+      validateSchoolIdentity(
+        fetched.html,
+        fetched.finalUrl,
+        input,
+      );
+
+    if (identity.validated) {
+      return {
+        baseballUrl: fetched.finalUrl,
+        baseballHtml: fetched.html,
+      };
+    }
+  }
+
+  return null;
+}
+
 async function discoverCanonicalBaseballPage(
   baseballUrl: string,
   pageType: "roster" | "schedule",
@@ -2908,6 +3226,9 @@ function validateSchoolIdentity(
   html: string,
   pageUrl: string,
   input: CsvRow,
+  options?: {
+    trustedOfficialOverrideUrl?: string;
+  },
 ): IdentityValidation {
   const $ = cheerio.load(html);
 
@@ -2917,6 +3238,33 @@ function validateSchoolIdentity(
   );
   const city = cleanString(input.city);
   const state = cleanString(input.state);
+
+    const trustedOfficialOverrideUrl =
+    normalizeUrl(
+      options?.trustedOfficialOverrideUrl,
+    );
+
+  const normalizedPageUrl =
+    normalizeUrl(pageUrl);
+
+  const isTrustedOfficialOverride =
+    Boolean(
+      trustedOfficialOverrideUrl &&
+      normalizedPageUrl &&
+      (
+        normalizedPageUrl.replace(/\/+$/, "") ===
+          trustedOfficialOverrideUrl.replace(/\/+$/, "") ||
+        (
+          sameOrSubdomainHost(
+            normalizedPageUrl,
+            trustedOfficialOverrideUrl,
+          ) &&
+          hasCanonicalAthleticsBaseballPath(
+            normalizedPageUrl,
+          )
+        )
+      ),
+    );
 
   const title = normalizeIdentityPhrase(
     $("title").first().text(),
@@ -3039,18 +3387,35 @@ function validateSchoolIdentity(
     reasons.push("canonical baseball path");
   }
 
-  const parentheticalMatch = rawName.match(/\(([^)]+)\)/);
-  const parentheticalTerms = parentheticalMatch
-    ? stateIdentityTerms(parentheticalMatch[1])
-    : [];
-  const parentheticalGeoMatch = parentheticalTerms.some((term) =>
-    term.length <= 2
-      ? new RegExp(`\\b${term}\\b`, "i").test(titleHeading)
-      : titleHeading.includes(term) || body.includes(term),
-  );
+  const parentheticalMatch =
+    rawName.match(/\(([^)]+)\)/);
+
+  const parentheticalTerms =
+    parentheticalMatch
+      ? uniqueStrings([
+          ...stateIdentityTerms(parentheticalMatch[1]),
+          normalizeIdentityPhrase(parentheticalMatch[1]),
+        ])
+      : [];
+
+  const parentheticalGeoMatch =
+    parentheticalTerms.some((term) =>
+      term.length <= 2
+        ? new RegExp(`\\b${term}\\b`, "i").test(titleHeading)
+        : titleHeading.includes(term) || body.includes(term),
+    );
+
+  if (parentheticalGeoMatch) {
+    score += 80;
+    reasons.push("parenthetical/geographic qualifier match");
+  }
+
+  const requiresParentheticalConfirmation =
+    parentheticalTerms.length > 0;
 
   const ambiguousShortIdentity =
-    distinctiveTokens.length <= 1 || Boolean(parentheticalMatch);
+    distinctiveTokens.length <= 1 ||
+    requiresParentheticalConfirmation;
 
   const strongNameEvidence =
     exactNameInTitle ||
@@ -3058,21 +3423,65 @@ function validateSchoolIdentity(
     (nicknameMatch && titleTokenRatio >= 0.5);
 
   const geographicEvidence =
-    stateMatch || parentheticalGeoMatch || cityMatch;
+    stateMatch ||
+    parentheticalGeoMatch ||
+    cityMatch;
+
+  const trustedOverrideIdentityEvidence =
+    isTrustedOfficialOverride &&
+    exactNameInTitle &&
+    nicknameMatch &&
+    canonicalBaseballPath;
+
+  if (trustedOverrideIdentityEvidence) {
+    reasons.push(
+      "verified official baseball URL override",
+    );
+  }
 
   const validated =
     baseballSignal &&
     score >= 150 &&
     strongNameEvidence &&
-    (!ambiguousShortIdentity || geographicEvidence || exactNameInTitle);
+    (
+      !requiresParentheticalConfirmation ||
+      parentheticalGeoMatch
+    ) &&
+    (
+      !ambiguousShortIdentity ||
+      geographicEvidence ||
+      trustedOverrideIdentityEvidence
+    );
 
   if (!validated) {
-    if (!baseballSignal) reasons.push("REJECT: missing baseball signal");
-    if (!strongNameEvidence) reasons.push("REJECT: weak school-name evidence");
-    if (ambiguousShortIdentity && !geographicEvidence && !exactNameInTitle) {
-      reasons.push("REJECT: ambiguous school identity lacks geographic confirmation");
+    if (!baseballSignal) {
+      reasons.push("REJECT: missing baseball signal");
     }
-    if (score < 150) reasons.push(`REJECT: identity score ${score} < 150`);
+
+    if (!strongNameEvidence) {
+      reasons.push("REJECT: weak school-name evidence");
+    }
+
+    if (
+      requiresParentheticalConfirmation &&
+      !parentheticalGeoMatch
+    ) {
+      reasons.push(
+        "REJECT: parenthetical school qualifier was not confirmed",
+      );
+    } else if (
+      ambiguousShortIdentity &&
+      !geographicEvidence &&
+      !trustedOverrideIdentityEvidence
+    ) {
+      reasons.push(
+        "REJECT: ambiguous school identity lacks geographic confirmation",
+      );
+    }
+
+    if (score < 150) {
+      reasons.push(`REJECT: identity score ${score} < 150`);
+    }
   }
 
   return {
@@ -3367,6 +3776,98 @@ async function discoverBaseballPage(
   };
 }
 
+async function probeCanonicalBaseballPathsFromSearchResult(
+  candidateUrl: string,
+  websiteUrl: string,
+  input: CsvRow,
+): Promise<{
+  baseballUrl: string;
+  baseballHtml: string;
+} | null> {
+  let origin = "";
+
+  try {
+    origin =
+      new URL(candidateUrl).origin;
+  } catch {
+    return null;
+  }
+
+  const probeUrls =
+    uniqueStrings([
+      `${origin}/sports/baseball`,
+      `${origin}/sports/baseball/`,
+      `${origin}/sport/baseball`,
+      `${origin}/baseball`,
+      `${origin}/sports/bsb`,
+      `${origin}/sports/bsb/`,
+      `${origin}/sports/bsb/index`,
+      `${origin}/bsb`,
+    ]);
+
+  for (
+    const probeUrl of probeUrls
+  ) {
+    const fetched =
+      await fetchHtml(
+        probeUrl,
+      );
+
+    if (
+      !fetched ||
+      isSearchRecoveryBlockedUrl(
+        fetched.finalUrl,
+      ) ||
+      isKnownUntrustedProgramUrl(
+        fetched.finalUrl,
+      )
+    ) {
+      continue;
+    }
+
+    if (
+      !looksLikeBaseballPage(
+        fetched.html,
+        fetched.finalUrl,
+      )
+    ) {
+      continue;
+    }
+
+    const identity =
+      validateSchoolIdentity(
+        fetched.html,
+        fetched.finalUrl,
+        input,
+      );
+
+    if (
+      !identity.validated
+    ) {
+      continue;
+    }
+
+    if (
+      !looksLikeOfficialAthleticsHost(
+        fetched.finalUrl,
+        websiteUrl,
+        fetched.html,
+      )
+    ) {
+      continue;
+    }
+
+    return {
+      baseballUrl:
+        fetched.finalUrl,
+      baseballHtml:
+        fetched.html,
+    };
+  }
+
+  return null;
+}
+
 async function recoverBaseballPageBySearch(
   input: CsvRow,
 ): Promise<{
@@ -3593,6 +4094,43 @@ async function recoverBaseballPageBySearch(
     }
 
     /*
+     * Search may surface a roster, schedule,
+     * athletics homepage, or another page on the
+     * correct official host instead of the baseball
+     * landing page itself.
+     *
+     * Before judging the returned page, probe the
+     * standard baseball paths on that same origin.
+     * Every probed page must independently pass the
+     * baseball-page, school-identity, and official-
+     * athletics-host gates.
+     */
+    const canonicalProbe =
+      await probeCanonicalBaseballPathsFromSearchResult(
+        fetched.finalUrl,
+        normalizeUrl(
+          input.websiteUrl,
+        ) ?? "",
+        input,
+      );
+
+    if (canonicalProbe) {
+      return {
+        baseballUrl:
+          canonicalProbe.baseballUrl,
+
+        baseballHtml:
+          canonicalProbe.baseballHtml,
+
+        provider:
+          result.provider,
+
+        query:
+          result.query,
+      };
+    }
+
+    /*
      * First gate:
      * this must actually behave like a baseball
      * program page, not merely mention baseball.
@@ -3622,6 +4160,16 @@ async function recoverBaseballPageBySearch(
 
     if (
       !identity.validated
+    ) {
+      continue;
+    }
+
+    if (
+      !looksLikeOfficialAthleticsHost(
+        fetched.finalUrl,
+        normalizeUrl(input.websiteUrl) ?? "",
+        fetched.html,
+      )
     ) {
       continue;
     }
@@ -4110,6 +4658,22 @@ if (!baseball.baseballUrl) {
   }
 
   /*
+   * Search/seed discovery may land on a roster, schedule,
+   * archive, or other deep baseball page. Prefer a canonical
+   * baseball program root when that root independently
+   * validates as the same school.
+   */
+  const promotedBaseballRoot =
+    await promoteCanonicalBaseballRoot(
+      baseball.baseballUrl,
+      input,
+    );
+
+  if (promotedBaseballRoot) {
+    baseball = promotedBaseballRoot;
+  }
+
+  /*
    * Final URL-shape safety check before identity validation.
    * School identity validation answers "is this the right
    * school?" It does NOT by itself answer "is this the
@@ -4176,6 +4740,12 @@ if (!baseball.baseballUrl) {
       baseball.baseballHtml,
       baseball.baseballUrl,
       input,
+      officialBaseballOverride
+        ? {
+            trustedOfficialOverrideUrl:
+              officialBaseballOverride,
+          }
+        : undefined,
     );
 
   if (!identityValidation.validated) {
@@ -4188,6 +4758,25 @@ if (!baseball.baseballUrl) {
       "NEEDS_REVIEW";
     baseRow.discoveryNotes =
       `Rejected baseball candidate because school identity was not validated (score ${identityValidation.score}). ${identityValidation.reasons.join("; ")}. Candidate: ${baseball.baseballUrl}`;
+
+    return baseRow;
+  }
+
+  if (
+    !looksLikeOfficialAthleticsHost(
+      baseball.baseballUrl,
+      websiteUrl,
+      baseball.baseballHtml,
+    )
+  ) {
+    baseRow.sourceUrl =
+      baseball.baseballUrl;
+
+    baseRow.baseballWebsiteUrl = "";
+    baseRow.discoveryStatus =
+      "NEEDS_REVIEW";
+    baseRow.discoveryNotes =
+      `Rejected baseball candidate because it did not pass the official institutional/athletics-source gate. Candidate: ${baseball.baseballUrl}`;
 
     return baseRow;
   }
