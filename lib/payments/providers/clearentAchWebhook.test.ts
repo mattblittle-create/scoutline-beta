@@ -14,7 +14,402 @@ describe(
   "normalizeClearentAchWebhook",
   () => {
     it(
-      "normalizes a settled ACH webhook",
+      "normalizes the Xplor chargeback webhook",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.chargeback",
+
+            Payload: {
+              transaction_id:
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+              new_status:
+                "CHARGEBACK",
+
+              previous_status:
+                "SETTLED",
+
+              amount:
+                "11.01",
+
+              rejection_reason_code:
+                "R01",
+
+              rejection_reason_description:
+                "Insufficient Funds",
+
+              timestamp:
+                "2025-12-23T10:41:03Z",
+
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
+            },
+          });
+
+        expect(
+          normalized
+        ).toMatchObject({
+          rawEvent:
+            "ach.status.chargeback",
+
+          event:
+            "ACH.STATUS.CHARGEBACK",
+
+          status:
+            "CHARGEBACK",
+
+          approved:
+            false,
+
+          transactionId:
+            "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+          amount:
+            1101,
+
+          surcharge:
+            0,
+
+          paymentType:
+            "ACH",
+
+          reference:
+            "",
+        });
+
+        expect(
+          normalized.payload
+        ).toMatchObject({
+          responseCode:
+            "R01",
+
+          responseMessage:
+            "Insufficient Funds",
+        });
+      }
+    );
+
+    it(
+      "normalizes the Xplor returned webhook",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.returned",
+
+            Payload: {
+              transaction_id:
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+              new_status:
+                "RETURNED",
+
+              previous_status:
+                "CHARGEBACK",
+
+              amount:
+                "11.01",
+
+              return_reason_code:
+                "R06",
+
+              return_reason_description:
+                "Returned per ODFI Request",
+
+              timestamp:
+                "2025-12-23T10:41:03Z",
+
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
+            },
+          });
+
+        expect(
+          normalized.status
+        ).toBe(
+          "RETURNED"
+        );
+
+        expect(
+          normalized.approved
+        ).toBe(false);
+
+        expect(
+          normalized.transactionId
+        ).toBe(
+          "d55b1f6d-fa0e-4074-8053-f8ca490e0456"
+        );
+
+        expect(
+          normalized.amount
+        ).toBe(1101);
+
+        expect(
+          normalized.payload
+        ).toMatchObject({
+          responseCode:
+            "R06",
+
+          responseMessage:
+            "Returned per ODFI Request",
+        });
+      }
+    );
+
+    it(
+      "normalizes Xplor rejected authorization declined",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.rejectedauthorizationdeclined",
+
+            Payload: {
+              transaction_id:
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+              new_status:
+                "REJECTED: AUTHORIZATION DECLINED",
+
+              previous_status:
+                "RETURNED",
+
+              amount:
+                "11.01",
+
+              rejection_reason_code:
+                "R07",
+
+              rejection_reason_description:
+                "Authorization Revoked by Customer",
+
+              timestamp:
+                "2025-12-23T10:41:03Z",
+
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
+            },
+          });
+
+        expect(
+          normalized.status
+        ).toBe(
+          "REJECTED_AUTHORIZATION_DECLINED"
+        );
+
+        expect(
+          normalized.approved
+        ).toBe(false);
+
+        expect(
+          normalized.amount
+        ).toBe(1101);
+
+        expect(
+          normalized.payload
+        ).toMatchObject({
+          responseCode:
+            "R07",
+
+          responseMessage:
+            "Authorization Revoked by Customer",
+        });
+      }
+    );
+
+    it(
+      "normalizes Xplor rejected account invalid",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.rejectedaccountinvalid",
+
+            Payload: {
+              transaction_id:
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+              new_status:
+                "REJECTED: ACCOUNT IS INVALID",
+
+              previous_status:
+                "RETURNED",
+
+              amount:
+                "11.01",
+
+              rejection_reason_code:
+                "R04",
+
+              rejection_reason_description:
+                "Invalid Account Number",
+
+              timestamp:
+                "2025-12-23T10:41:03Z",
+
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
+            },
+          });
+
+        expect(
+          normalized.status
+        ).toBe(
+          "REJECTED_ACCOUNT_IS_INVALID"
+        );
+
+        expect(
+          normalized.approved
+        ).toBe(false);
+
+        expect(
+          normalized.payload
+        ).toMatchObject({
+          responseCode:
+            "R04",
+
+          responseMessage:
+            "Invalid Account Number",
+        });
+      }
+    );
+
+    it(
+      "normalizes Xplor rejected voiding",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.rejectedvoiding",
+
+            Payload: {
+              transaction_id:
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+              new_status:
+                "REJECTED: VOIDING",
+
+              previous_status:
+                "CHARGEBACK",
+
+              amount:
+                "11.01",
+
+              rejection_reason_code:
+                "",
+
+              rejection_reason_description:
+                "Testing Returned message",
+
+              timestamp:
+                "2025-12-23T10:41:03Z",
+
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
+            },
+          });
+
+        expect(
+          normalized.status
+        ).toBe(
+          "REJECTED_VOIDING"
+        );
+
+        expect(
+          normalized.approved
+        ).toBe(false);
+
+        expect(
+          normalized.payload
+        ).toMatchObject({
+          responseCode:
+            null,
+
+          responseMessage:
+            "Testing Returned message",
+        });
+      }
+    );
+
+    it(
+      "normalizes Xplor rejected voided",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.rejectedvoided",
+
+            Payload: {
+              transaction_id:
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0456",
+
+              new_status:
+                "REJECTED: VOIDED",
+
+              previous_status:
+                "CHARGEBACK",
+
+              amount:
+                "11.01",
+
+              rejection_reason_code:
+                "",
+
+              rejection_reason_description:
+                "Testing Returned message",
+
+              timestamp:
+                "2025-12-23T10:41:03Z",
+
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
+            },
+          });
+
+        expect(
+          normalized.status
+        ).toBe(
+          "REJECTED_VOIDED"
+        );
+
+        expect(
+          normalized.approved
+        ).toBe(false);
+
+        expect(
+          normalized.payload
+        ).toMatchObject({
+          responseCode:
+            null,
+
+          responseMessage:
+            "Testing Returned message",
+        });
+      }
+    );
+
+    it(
+      "normalizes the Xplor settled webhook",
       () => {
         const normalized =
           normalizeClearentAchWebhook({
@@ -23,22 +418,28 @@ describe(
 
             Payload: {
               transaction_id:
-                "ach_txn_123",
+                "0efb7431-092b-48d5-86e2-8ae7bd2ebcaa",
 
               new_status:
                 "SETTLED",
 
               previous_status:
-                "PENDING",
+                "RETURNED",
 
               amount:
-                "24.95",
+                "23.11",
+
+              timestamp:
+                "2026-01-08T13:05:32.9323063",
+
+              merchant_id:
+                "0000000007702147",
 
               currency:
                 "USD",
 
               settlement_date:
-                "2026-09-11",
+                "2026-01-08",
             },
           });
 
@@ -48,6 +449,9 @@ describe(
           rawEvent:
             "ach.status.settled",
 
+          event:
+            "ACH.STATUS.SETTLED",
+
           status:
             "SETTLED",
 
@@ -55,10 +459,10 @@ describe(
             true,
 
           transactionId:
-            "ach_txn_123",
+            "0efb7431-092b-48d5-86e2-8ae7bd2ebcaa",
 
           amount:
-            2495,
+            2311,
 
           surcharge:
             0,
@@ -73,37 +477,54 @@ describe(
     );
 
     it(
-      "normalizes a returned ACH webhook",
+      "uses new_status for the generic Xplor updated webhook",
       () => {
         const normalized =
           normalizeClearentAchWebhook({
             PayLoadType:
-              "ach.status.returned",
+              "ach.status.updated",
 
             Payload: {
               transaction_id:
-                "ach_txn_returned",
+                "d55b1f6d-fa0e-4074-8053-f8ca490e0756",
 
               new_status:
-                "RETURNED",
+                "REJECTED: VOIDING",
 
               previous_status:
-                "SETTLED",
+                "RETURNED",
 
               amount:
-                "24.95",
+                "11.01",
 
-              return_reason_code:
-                "R01",
+              timestamp:
+                "2025-12-23T10:41:03Z",
 
-              return_reason_description:
-                "Insufficient Funds",
+              merchant_id:
+                "6588000000994889",
+
+              currency:
+                "USD",
             },
           });
 
         expect(
+          normalized.rawEvent
+        ).toBe(
+          "ach.status.updated"
+        );
+
+        expect(
+          normalized.event
+        ).toBe(
+          "ACH.STATUS.UPDATED"
+        );
+
+        expect(
           normalized.status
-        ).toBe("RETURNED");
+        ).toBe(
+          "REJECTED_VOIDING"
+        );
 
         expect(
           normalized.approved
@@ -112,82 +533,82 @@ describe(
         expect(
           normalized.transactionId
         ).toBe(
-          "ach_txn_returned"
+          "d55b1f6d-fa0e-4074-8053-f8ca490e0756"
         );
 
         expect(
           normalized.amount
-        ).toBe(2495);
+        ).toBe(1101);
       }
     );
 
     it(
-      "normalizes a chargeback webhook",
+      "ignores INT-only metadata for transaction matching",
       () => {
         const normalized =
           normalizeClearentAchWebhook({
             PayLoadType:
-              "ach.status.chargeback",
+              "ach.status.settled",
 
             Payload: {
               transaction_id:
-                "ach_txn_chargeback",
+                "ach_txn_metadata_test",
 
               new_status:
-                "CHARGEBACK",
-
-              previous_status:
                 "SETTLED",
-
-              amount:
-                "24.95",
-            },
-          });
-
-        expect(
-          normalized.status
-        ).toBe(
-          "CHARGEBACK"
-        );
-
-        expect(
-          normalized.approved
-        ).toBe(false);
-      }
-    );
-
-    it(
-      "normalizes rejected statuses",
-      () => {
-        const normalized =
-          normalizeClearentAchWebhook({
-            PayLoadType:
-              "ach.status.rejectedauthorizationdeclined",
-
-            Payload: {
-              transaction_id:
-                "ach_txn_rejected",
-
-              new_status:
-                "REJECTED: AUTHORIZATION DECLINED",
 
               previous_status:
                 "PENDING",
 
               amount:
                 "24.95",
+
+              currency:
+                "USD",
+            },
+
+            metadata: {
+              environment:
+                "Test",
+
+              origin:
+                "Test",
+
+              reference:
+                "dummy-int-reference",
             },
           });
+
+        /*
+         * Xplor confirmed metadata exists in
+         * INT but will not be sent in
+         * production. ScoutLine therefore
+         * must not use metadata.reference as
+         * its billing reference.
+         */
+        expect(
+          normalized.reference
+        ).toBe("");
+
+        expect(
+          normalized.transactionId
+        ).toBe(
+          "ach_txn_metadata_test"
+        );
 
         expect(
           normalized.status
         ).toBe(
-          "REJECTED_AUTHORIZATION_DECLINED"
+          "SETTLED"
         );
 
         expect(
           normalized.approved
-        ).toBe(false);
+        ).toBe(true);
+
+        expect(
+          normalized.amount
+        ).toBe(2495);
       }
     );
   }
