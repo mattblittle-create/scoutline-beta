@@ -120,17 +120,35 @@ const cardFeeCents =
     };
   }
 
-  return {
-    ok: true,
-    skipped: false,
-    invoiceNumber: input.invoiceNumber,
-    amountPaidCents: input.amountCents + cardFeeCents,
-    cardFeeCents,
-    transactionId: String(json?.txnid || ""),
-    responseCode: String(json?.error_code || json?.error_no || "00"),
-    approvalCode: String(json?.approval_code || ""),
-    rrn: String(json?.rrn || ""),
-    receiptUrl: null,
-    raw: json,
-  };
+return {
+  ok: true,
+  skipped: false,
+  invoiceNumber: input.invoiceNumber,
+
+  status: "APPROVED",
+  paymentCompleted: true,
+
+  amountPaidCents:
+    input.amountCents + cardFeeCents,
+  cardFeeCents,
+
+  transactionId:
+    String(json?.txnid || ""),
+
+  responseCode:
+    String(
+      json?.error_code ||
+      json?.error_no ||
+      "00"
+    ),
+
+  approvalCode:
+    String(json?.approval_code || ""),
+
+  rrn:
+    String(json?.rrn || ""),
+
+  receiptUrl: null,
+  raw: json,
+};
 }

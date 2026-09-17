@@ -315,17 +315,234 @@ headers: {
     };
   },
 
-  async chargeStoredMethod(
-    input: StoredPaymentChargeInput
-  ): Promise<StoredPaymentChargeResult> {
+async chargeStoredMethod(
+  input: StoredPaymentChargeInput
+): Promise<StoredPaymentChargeResult> {
+  const environment =
+    getClearentAchEnvironment();
+
+  if (!environment.apiKey) {
     return {
       ok: false,
-      skipped: true,
+      skipped: false,
       reason:
-        "Clearent ACH recurring charges are not wired yet.",
+        "Missing Xplor ACH API key.",
       invoiceNumber:
         input.invoiceNumber,
+      status: "FAILED",
+      paymentCompleted: false,
       cardFeeCents: 0,
     };
-  },
+  }
+
+  const token =
+    String(input.token || "").trim();
+
+  if (!token) {
+    return {
+      ok: false,
+      skipped: false,
+      reason:
+        "Missing stored Xplor ACH token.",
+      invoiceNumber:
+        input.invoiceNumber,
+      status: "FAILED",
+      paymentCompleted: false,
+      cardFeeCents: 0,
+    };
+  }
+
+  const requestBody = {
+    type: "Debit",
+
+    amount:
+      centsToXplorAmount(
+        input.amountCents
+      ),
+
+    "standard-entry-class-code":
+      environment.standardEntryClassCode,
+
+    invoice:
+      input.invoiceNumber.slice(0, 100),
+
+    description:
+      input.description.slice(0, 255),
+
+    "software-type":
+      environment.softwareType,
+
+    "token-id":
+      token,
+  };
+
+  let response: Response;
+
+  try {
+    response = await fetch(
+      `${environment.baseUrl}/rest/v2/ach/transactions/debit`,
+      {
+        method: "POST",
+
+        headers: {
+          Accept: "application/json",
+          "Content-Type":
+            "application/json",
+          "api-key":
+            environment.apiKey,
+        },
+
+        body:
+          JSON.stringify(requestBody),
+
+        cache: "no-store",
+      }
+    );
+  } catch (error) {
+    console.error(
+      "CLEARENT_ACH_RECURRING_NETWORK_ERROR",
+      error
+    );
+
+    return {
+      ok: false,
+      skipped: false,
+      reason:
+        "Could not connect to Xplor ACH.",
+      invoiceNumber:
+        input.invoiceNumber,
+      status: "FAILED",
+      paymentCompleted: false,
+      cardFeeCents: 0,
+    };
+  }
+
+  const payload =
+    await parseResponseBody(response);
+
+  const status =
+    extractClearentStatus(payload);
+
+  const transactionId =
+    extractClearentTransactionId(
+      payload
+    );
+
+  const responseCode =
+    extractClearentResponseCode(
+      payload
+    );
+
+  const responseMessage =
+    extractClearentResponseMessage(
+      payload
+    );
+
+  if (!response.ok) {
+    console.error(
+      "CLEARENT_ACH_RECURRING_DEBIT_FAILED",
+      {
+        httpStatus:
+          response.status,
+        responseCode,
+        responseMessage,
+        payload,
+      }
+    );
+
+    return {
+      ok: false,
+      skipped: false,
+
+      reason:
+        responseMessage ||
+        "Xplor recurring ACH debit failed.",
+
+      invoiceNumber:
+        input.invoiceNumber,
+
+      status:
+        status === "UNKNOWN"
+          ? "FAILED"
+          : status,
+
+      paymentCompleted: false,
+
+      cardFeeCents: 0,
+
+      transactionId,
+
+      responseCode:
+        responseCode ||
+        String(response.status),
+
+      responseMessage,
+
+      raw: payload,
+    };
+  }
+
+  if (!transactionId) {
+    return {
+      ok: false,
+      skipped: false,
+
+      reason:
+        "Xplor did not return an ACH transaction ID.",
+
+      invoiceNumber:
+        input.invoiceNumber,
+
+      status,
+
+      paymentCompleted: false,
+
+      cardFeeCents: 0,
+
+      responseCode,
+      responseMessage,
+
+      raw: payload,
+    };
+  }
+
+  /*
+   * ACH submission is asynchronous.
+   *
+   * A successful API response means Xplor accepted
+   * the debit for processing. It does NOT mean the
+   * customer's invoice has been paid.
+   *
+   * The Xplor SETTLED webhook remains authoritative
+   * for payment completion.
+   */
+  return {
+    ok: true,
+    skipped: false,
+
+    invoiceNumber:
+      input.invoiceNumber,
+
+    status,
+
+    paymentCompleted:
+      status === "SETTLED",
+
+    amountPaidCents:
+      status === "SETTLED"
+        ? input.amountCents
+        : undefined,
+
+    cardFeeCents: 0,
+
+    transactionId,
+
+    responseCode,
+    responseMessage,
+
+    receiptUrl: null,
+
+    raw: payload,
+  };
+},
 };

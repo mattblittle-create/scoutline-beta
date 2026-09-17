@@ -139,11 +139,39 @@ export type StoredPaymentChargeResult = {
   reason?: string;
 
   invoiceNumber: string;
+
+  /**
+   * Provider transaction state.
+   *
+   * Valor card charges are normally APPROVED immediately.
+   * Xplor ACH charges are normally PENDING until a later
+   * SETTLED webhook confirms payment.
+   */
+  status?:
+    | "PENDING"
+    | "APPROVED"
+    | "SETTLING"
+    | "SETTLED"
+    | "RETURNED"
+    | "CHARGEBACK"
+    | "FAILED"
+    | "VOIDED"
+    | "UNKNOWN";
+
+  /**
+   * True only when the charge can be treated as paid immediately.
+   *
+   * Valor approved card charge: true
+   * Xplor ACH submitted/PENDING: false
+   */
+  paymentCompleted?: boolean;
+
   amountPaidCents?: number;
   cardFeeCents?: number;
 
   transactionId?: string | null;
   responseCode?: string | null;
+  responseMessage?: string | null;
   approvalCode?: string | null;
   rrn?: string | null;
   receiptUrl?: string | null;
