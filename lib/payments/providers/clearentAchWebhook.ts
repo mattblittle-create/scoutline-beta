@@ -38,13 +38,11 @@ function dollarsToCents(
   return Math.round(parsed * 100);
 }
 
-export function normalizeClearentAchWebhook(
-  payload: unknown
-): NormalizedPaymentWebhook {
-  const value = payload as any;
-
+function getPayloadObject(
+  value: any
+): any {
   /*
-   * Xplor's documented ACH webhook format:
+   * Xplor production/documented ACH webhook:
    *
    * {
    *   "PayLoadType": "ach.status.settled",
@@ -55,24 +53,119 @@ export function normalizeClearentAchWebhook(
    *   }
    * }
    *
-   * Keep the fallback names below so the
-   * normalizer remains tolerant of alternate
-   * casing / representations.
+   * Xplor's INT manual webhook sender has
+   * been observed wrapping that payload:
+   *
+   * {
+   *   "PayLoadType": "ach.status.updated",
+   *   "Payload": {
+   *     "PayLoadType": "ach.status.settled",
+   *     "Payload": {
+   *       "transaction_id": "...",
+   *       "new_status": "SETTLED",
+   *       ...
+   *     },
+   *     "metadata": {
+   *       ...
+   *     }
+   *   }
+   * }
+   *
+   * First resolve the normal outer payload.
    */
-  const data =
+  const outerData =
     value?.Payload ??
     value?.payload ??
     value?.data ??
     value;
 
-  const rawEvent =
-    clean(
-      value?.PayLoadType ??
-      value?.PayloadType ??
-      value?.payloadType ??
-      value?.event ??
-      value?.type
+  /*
+   * If the resolved payload is itself another
+   * Xplor webhook envelope, descend one more
+   * level to reach the ACH transaction data.
+   *
+   * We intentionally key this off the nested
+   * webhook-envelope shape rather than merely
+   * the existence of a Payload property.
+   */
+  const hasNestedWebhookEnvelope =
+    outerData &&
+    typeof outerData === "object" &&
+    (
+      outerData?.PayLoadType != null ||
+      outerData?.PayloadType != null ||
+      outerData?.payloadType != null
+    ) &&
+    (
+      outerData?.Payload != null ||
+      outerData?.payload != null ||
+      outerData?.data != null
     );
+
+  if (hasNestedWebhookEnvelope) {
+    return (
+      outerData?.Payload ??
+      outerData?.payload ??
+      outerData?.data ??
+      outerData
+    );
+  }
+
+  return outerData;
+}
+
+function getRawEvent(
+  value: any
+): string {
+  const outerData =
+    value?.Payload ??
+    value?.payload ??
+    value?.data;
+
+  /*
+   * Prefer the nested event type when Xplor's
+   * INT sender wraps the real webhook inside
+   * an outer ach.status.updated envelope.
+   *
+   * For the documented production structure,
+   * there is no nested PayLoadType, so this
+   * falls back to the top-level event.
+   */
+  return clean(
+    outerData?.PayLoadType ??
+    outerData?.PayloadType ??
+    outerData?.payloadType ??
+    outerData?.event ??
+    outerData?.type ??
+    value?.PayLoadType ??
+    value?.PayloadType ??
+    value?.payloadType ??
+    value?.event ??
+    value?.type
+  );
+}
+
+export function normalizeClearentAchWebhook(
+  payload: unknown
+): NormalizedPaymentWebhook {
+  const value = payload as any;
+
+  /*
+   * Resolve the actual ACH transaction object.
+   *
+   * This supports both:
+   *
+   * 1. Xplor's documented production webhook
+   *    structure.
+   *
+   * 2. The additional envelope currently used
+   *    by Xplor's INT manual webhook sender.
+   */
+  const data =
+    getPayloadObject(value);
+
+  const rawEvent =
+    getRawEvent(value);
 
   /*
    * The actual ACH transaction state comes
@@ -185,8 +278,8 @@ export function normalizeClearentAchWebhook(
     last4: null,
 
     /*
-     * Preserve the original provider payload
-     * for downstream audit/debug handling.
+     * Preserve the complete original provider
+     * payload for downstream audit/debugging.
      *
      * INT-only metadata is intentionally not
      * used for transaction matching because

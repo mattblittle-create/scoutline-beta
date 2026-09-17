@@ -579,13 +579,6 @@ describe(
             },
           });
 
-        /*
-         * Xplor confirmed metadata exists in
-         * INT but will not be sent in
-         * production. ScoutLine therefore
-         * must not use metadata.reference as
-         * its billing reference.
-         */
         expect(
           normalized.reference
         ).toBe("");
@@ -609,6 +602,174 @@ describe(
         expect(
           normalized.amount
         ).toBe(2495);
+      }
+    );
+
+    it(
+      "unwraps the Xplor INT manual webhook envelope",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.updated",
+
+            Payload: {
+              PayLoadType:
+                "ach.status.settled",
+
+              Payload: {
+                transaction_id:
+                  "int_manual_transaction_123",
+
+                new_status:
+                  "SETTLED",
+
+                previous_status:
+                  "PENDING",
+
+                amount:
+                  "24.95",
+
+                timestamp:
+                  "2026-09-17T09:05:00Z",
+
+                merchant_id:
+                  "test-merchant",
+
+                currency:
+                  "USD",
+
+                settlement_date:
+                  "2026-09-17",
+              },
+
+              metadata: {
+                environment:
+                  "Test",
+
+                origin:
+                  "Test",
+
+                reference:
+                  "dummy-int-reference",
+              },
+            },
+          });
+
+        expect(
+          normalized
+        ).toMatchObject({
+          rawEvent:
+            "ach.status.settled",
+
+          event:
+            "ACH.STATUS.SETTLED",
+
+          status:
+            "SETTLED",
+
+          approved:
+            true,
+
+          transactionId:
+            "int_manual_transaction_123",
+
+          amount:
+            2495,
+
+          paymentType:
+            "ACH",
+
+          reference:
+            "",
+        });
+      }
+    );
+
+    it(
+      "uses the inner new_status for an INT wrapped generic updated webhook",
+      () => {
+        const normalized =
+          normalizeClearentAchWebhook({
+            PayLoadType:
+              "ach.status.updated",
+
+            Payload: {
+              PayLoadType:
+                "ach.status.updated",
+
+              Payload: {
+                transaction_id:
+                  "int_updated_transaction_456",
+
+                new_status:
+                  "REJECTED: VOIDING",
+
+                previous_status:
+                  "RETURNED",
+
+                amount:
+                  "11.01",
+
+                timestamp:
+                  "2026-09-17T09:05:00Z",
+
+                merchant_id:
+                  "test-merchant",
+
+                currency:
+                  "USD",
+              },
+
+              metadata: {
+                environment:
+                  "Test",
+
+                origin:
+                  "Test",
+
+                reference:
+                  "dummy-int-reference",
+              },
+            },
+          });
+
+        expect(
+          normalized.rawEvent
+        ).toBe(
+          "ach.status.updated"
+        );
+
+        expect(
+          normalized.status
+        ).toBe(
+          "REJECTED_VOIDING"
+        );
+
+        expect(
+          normalized.approved
+        ).toBe(false);
+
+        expect(
+          normalized.transactionId
+        ).toBe(
+          "int_updated_transaction_456"
+        );
+
+        expect(
+          normalized.amount
+        ).toBe(1101);
+
+        /*
+         * Even though the INT envelope contains
+         * metadata.reference, ScoutLine must
+         * still resolve the real billing
+         * reference from BillingTransaction
+         * using transaction_id.
+         */
+        expect(
+          normalized.reference
+        ).toBe("");
       }
     );
   }
