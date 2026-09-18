@@ -73,13 +73,85 @@ export function getFailedInvoiceStatus(
 type ProcessPlayerPaymentWebhookInput = {
   provider: PaymentProviderCode;
   normalized: NormalizedPaymentWebhook;
+
+  /*
+   * ACH settlement webhooks may provide the
+   * matched BillingTransaction so the provider
+   * state transition and ScoutLine payment
+   * activation occur atomically.
+   *
+   * Other providers may omit this and retain
+   * the existing behavior.
+   */
+  billingTransactionId?: string;
+  rawPayload?: unknown;
 };
 
 export async function applySuccessfulPlayerPayment({
   provider,
   normalized,
+  billingTransactionId,
+  rawPayload,
 }: ProcessPlayerPaymentWebhookInput) {
   return prisma.$transaction(async (tx) => {
+        /*
+     * When processing an ACH SETTLED webhook,
+     * atomically claim the provider transition
+     * before applying ScoutLine's paid state.
+     *
+     * Only pre-terminal ACH states may settle.
+     * This prevents stale or replayed SETTLED
+     * webhooks from overwriting FAILED, VOIDED,
+     * RETURNED, or CHARGEBACK transactions.
+     *
+     * Because this transition occurs inside the
+     * same Prisma transaction as the invoice and
+     * profile updates below, a downstream failure
+     * rolls the provider transition back as well.
+     */
+    if (billingTransactionId) {
+      const transition =
+        await tx.billingTransaction.updateMany({
+          where: {
+            id:
+              billingTransactionId,
+
+            provider,
+
+            transactionStatus: {
+              in: [
+                "PENDING",
+                "APPROVED",
+                "SETTLING",
+                "UNKNOWN",
+              ],
+            },
+          },
+
+          data: {
+            transactionStatus:
+              "SETTLED",
+
+            responseMessage:
+              "SETTLED",
+
+            rawPayload:
+              rawPayload as any,
+          },
+        });
+
+      if (
+        transition.count !== 1
+      ) {
+        return {
+          alreadyProcessed:
+            true,
+
+          settlementApplied:
+            false,
+        };
+      }
+    }
     const invoice = await tx.playerInvoice.findFirst({
       where: {
         OR: [
@@ -335,11 +407,15 @@ if (!existingUpcoming) {
   });
 }
 
-    return {
-      alreadyProcessed: false,
-      playerProfileId:
-        invoice.playerProfileId,
-    };
+return {
+  alreadyProcessed: false,
+  settlementApplied:
+    billingTransactionId
+      ? true
+      : undefined,
+  playerProfileId:
+    invoice.playerProfileId,
+};
   });
 }
 
@@ -550,8 +626,12 @@ export async function applyFailedPlayerPaymentWithDunning({
             provider,
 
             transactionStatus: {
-              not:
-                "FAILED",
+              in: [
+                "PENDING",
+                "APPROVED",
+                "SETTLING",
+                "UNKNOWN",
+              ],
             },
           },
 
@@ -562,8 +642,8 @@ export async function applyFailedPlayerPaymentWithDunning({
             responseMessage:
               normalized.status,
 
-rawPayload:
-  rawPayload as any,
+            rawPayload:
+              rawPayload as any,
           },
         });
 
@@ -764,6 +844,239 @@ rawPayload:
 
         suspended:
           shouldSuspend,
+      };
+    }
+  );
+}
+
+type ApplyReversedPlayerAchPaymentInput = {
+  provider: PaymentProviderCode;
+  normalized: NormalizedPaymentWebhook;
+  billingTransactionId: string;
+  rawPayload: unknown;
+};
+
+export async function applyReversedPlayerAchPayment({
+  provider,
+  normalized,
+  billingTransactionId,
+  rawPayload,
+}: ApplyReversedPlayerAchPaymentInput) {
+  return prisma.$transaction(
+    async (tx) => {
+      const reversalStatus =
+        normalized.status ===
+        "CHARGEBACK"
+          ? "CHARGEBACK"
+          : "RETURNED";
+
+      /*
+       * ACH RETURNED / CHARGEBACK are
+       * post-settlement reversals.
+       *
+       * Only a transaction currently recorded
+       * as SETTLED may enter one of these states.
+       * The provider-state transition and all
+       * financial reversal side effects occur
+       * inside the same database transaction.
+       *
+       * This prevents replayed, concurrent, or
+       * stale webhooks from reversing payment
+       * state more than once.
+       */
+      const transition =
+        await tx.billingTransaction.updateMany({
+          where: {
+            id:
+              billingTransactionId,
+
+            provider,
+
+            transactionStatus:
+              "SETTLED",
+          },
+
+          data: {
+            transactionStatus:
+              reversalStatus,
+
+            responseMessage:
+              reversalStatus,
+
+            rawPayload:
+              rawPayload as any,
+          },
+        });
+
+      if (
+        transition.count !== 1
+      ) {
+        return {
+          alreadyProcessed:
+            true,
+
+          reversalApplied:
+            false,
+        };
+      }
+
+      const invoice =
+        await tx.playerInvoice.findFirst({
+          where: {
+            OR: [
+              {
+                externalId:
+                  normalized.reference,
+              },
+              {
+                id:
+                  normalized.reference,
+              },
+            ],
+          },
+
+          include: {
+            playerProfile:
+              true,
+          },
+        });
+
+      if (!invoice) {
+        throw new Error(
+          `No PlayerInvoice found for reference ${normalized.reference}`
+        );
+      }
+
+      await tx.playerInvoice.update({
+        where: {
+          id:
+            invoice.id,
+        },
+
+        data: {
+          status:
+            InvoiceStatus.PAST_DUE,
+
+          amountPaidCents:
+            0,
+
+          paidAt:
+            null,
+
+          paymentProcessingAt:
+            null,
+
+          processorTransactionId:
+            normalized.transactionId ||
+            invoice.processorTransactionId,
+
+          processorResponseCode:
+            reversalStatus,
+        },
+      });
+
+      /*
+       * Settlement creates the next UPCOMING
+       * invoice. A later ACH reversal invalidates
+       * that future billing cycle until the
+       * payment issue is resolved.
+       */
+      await tx.playerInvoice.updateMany({
+        where: {
+          playerProfileId:
+            invoice.playerProfileId,
+
+          status:
+            InvoiceStatus.UPCOMING,
+        },
+
+        data: {
+          status:
+            InvoiceStatus.VOID,
+        },
+      });
+
+      await tx.playerProfile.update({
+        where: {
+          id:
+            invoice.playerProfileId,
+        },
+
+        data: {
+          hasActivePlayerBilling:
+            false,
+
+          playerBillingStatus:
+            PLAYER_BILLING_STATUS.PAST_DUE,
+        },
+      });
+
+      /*
+       * Billing audit logging is intentionally
+       * best-effort and currently uses the global
+       * Prisma client. The authoritative financial
+       * state above remains atomic.
+       */
+      await createBillingAuditLog({
+        actorType:
+          "SYSTEM",
+
+        targetType:
+          "PLAYER_PROFILE",
+
+        targetId:
+          invoice.playerProfileId,
+
+        eventType:
+          normalized.rawEvent
+            .toUpperCase()
+            .includes(
+              "RECURRING"
+            )
+            ? "RECURRING_PAYMENT_FAILED"
+            : "PAYMENT_FAILED",
+
+        message:
+          `ACH payment ${reversalStatus.toLowerCase()} for invoice ${normalized.reference}.`,
+
+        metadata: {
+          provider,
+
+          invoiceId:
+            invoice.id,
+
+          externalId:
+            normalized.reference,
+
+          amount:
+            normalized.amount,
+
+          paymentType:
+            normalized.paymentType,
+
+          transactionId:
+            normalized.transactionId,
+
+          responseStatus:
+            reversalStatus,
+        },
+      });
+
+      return {
+        alreadyProcessed:
+          false,
+
+        reversalApplied:
+          true,
+
+        playerProfileId:
+          invoice.playerProfileId,
+
+        invoiceStatus:
+          InvoiceStatus.PAST_DUE,
+
+        transactionStatus:
+          reversalStatus,
       };
     }
   );

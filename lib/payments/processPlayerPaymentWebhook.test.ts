@@ -36,6 +36,7 @@ const txMock = {
     findFirst: vi.fn(),
     update: vi.fn(),
     updateMany: vi.fn(),
+    create: vi.fn(),
   },
 
   playerProfile: {
@@ -83,6 +84,7 @@ vi.mock(
 import {
   applyFailedPlayerPayment,
   applyFailedPlayerPaymentWithDunning,
+  applyReversedPlayerAchPayment,
   applySuccessfulPlayerPayment,
   getFailedInvoiceStatus,
 } from "@/lib/payments/processPlayerPaymentWebhook";
@@ -1202,9 +1204,14 @@ describe("failed recurring ACH webhook dunning", () => {
             "billing_tx_ach_failed_1",
           provider:
             PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
-          transactionStatus: {
-            not: "FAILED",
-          },
+transactionStatus: {
+  in: [
+    "PENDING",
+    "APPROVED",
+    "SETTLING",
+    "UNKNOWN",
+  ],
+},
         }),
       })
     );
@@ -1324,6 +1331,40 @@ describe("failed recurring ACH webhook dunning", () => {
       txMock.billingTransaction.updateMany
     ).toHaveBeenCalledTimes(1);
 
+        expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          "billing_tx_ach_failed_replay",
+
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        transactionStatus: {
+          in: [
+            "PENDING",
+            "APPROVED",
+            "SETTLING",
+            "UNKNOWN",
+          ],
+        },
+      },
+
+      data: {
+        transactionStatus:
+          "FAILED",
+
+        responseMessage:
+          "FAILED",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+      },
+    });
+
     expect(
       txMock.playerInvoice.findFirst
     ).not.toHaveBeenCalled();
@@ -1340,6 +1381,654 @@ describe("failed recurring ACH webhook dunning", () => {
       alreadyProcessed:
         true,
       dunningApplied:
+        false,
+    });
+  });
+});
+
+describe("ACH post-settlement reversal state", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+
+    prismaMock.$transaction.mockImplementation(
+      async (
+        callback: (
+          tx: typeof txMock
+        ) => unknown
+      ) => {
+        return callback(txMock);
+      }
+    );
+
+    txMock.playerInvoice.update
+      .mockResolvedValue({});
+
+    txMock.playerInvoice.updateMany
+      .mockResolvedValue({
+        count: 1,
+      });
+
+    txMock.playerProfile.update
+      .mockResolvedValue({});
+
+    createBillingAuditLogMock
+      .mockResolvedValue(undefined);
+  });
+
+  it("atomically reverses a SETTLED ACH transaction when it becomes RETURNED", async () => {
+    const invoice = {
+      id:
+        "invoice_ach_returned_atomic_1",
+
+      externalId:
+        null,
+
+      playerProfileId:
+        "profile_ach_returned_atomic_1",
+
+      status:
+        InvoiceStatus.PAID,
+
+      amountCents:
+        2495,
+
+      cardFeeCents:
+        0,
+
+      amountPaidCents:
+        2495,
+
+      paidAt:
+        new Date(
+          "2026-09-18T12:00:00Z"
+        ),
+
+      paymentProcessingAt:
+        null,
+
+      processorTransactionId:
+        "provider_tx_ach_returned_atomic_1",
+
+      processorResponseCode:
+        "SETTLED",
+
+      playerProfile: {
+        id:
+          "profile_ach_returned_atomic_1",
+      },
+    };
+
+    txMock.billingTransaction.updateMany
+      .mockResolvedValue({
+        count: 1,
+      });
+
+    txMock.playerInvoice.findFirst
+      .mockResolvedValue(
+        invoice
+      );
+
+    const result =
+      await applyReversedPlayerAchPayment({
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        billingTransactionId:
+          "billing_tx_ach_returned_atomic_1",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+
+        normalized: {
+          rawEvent:
+            "ach-transaction",
+
+          status:
+            "RETURNED",
+
+          transactionId:
+            "provider_tx_ach_returned_atomic_1",
+
+          reference:
+            invoice.id,
+
+          amount:
+            2495,
+
+          paymentType:
+            "ACH",
+
+          payload: {
+            transaction_id:
+              "provider_tx_ach_returned_atomic_1",
+
+            previous_status:
+              "SETTLED",
+
+            new_status:
+              "RETURNED",
+
+            amount:
+              24.95,
+          },
+        },
+      });
+
+    expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          "billing_tx_ach_returned_atomic_1",
+
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        transactionStatus:
+          "SETTLED",
+      },
+
+      data: {
+        transactionStatus:
+          "RETURNED",
+
+        responseMessage:
+          "RETURNED",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+      },
+    });
+
+    expect(
+      txMock.playerInvoice.update
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          invoice.id,
+      },
+
+      data: {
+        status:
+          InvoiceStatus.PAST_DUE,
+
+        amountPaidCents:
+          0,
+
+        paidAt:
+          null,
+
+        paymentProcessingAt:
+          null,
+
+        processorTransactionId:
+          "provider_tx_ach_returned_atomic_1",
+
+        processorResponseCode:
+          "RETURNED",
+      },
+    });
+
+    expect(
+      txMock.playerInvoice.updateMany
+    ).toHaveBeenCalledWith({
+      where: {
+        playerProfileId:
+          invoice.playerProfileId,
+
+        status:
+          InvoiceStatus.UPCOMING,
+      },
+
+      data: {
+        status:
+          InvoiceStatus.VOID,
+      },
+    });
+
+    expect(
+      txMock.playerProfile.update
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          invoice.playerProfileId,
+      },
+
+      data: {
+        hasActivePlayerBilling:
+          false,
+
+        playerBillingStatus:
+          PLAYER_BILLING_STATUS.PAST_DUE,
+      },
+    });
+
+    expect(result).toEqual({
+      alreadyProcessed:
+        false,
+
+      reversalApplied:
+        true,
+
+      playerProfileId:
+        invoice.playerProfileId,
+
+      invoiceStatus:
+        InvoiceStatus.PAST_DUE,
+
+      transactionStatus:
+        "RETURNED",
+    });
+  });
+
+  it("does not reverse billing again when a RETURNED or CHARGEBACK webhook cannot transition from SETTLED", async () => {
+    txMock.billingTransaction.updateMany
+      .mockResolvedValue({
+        count: 0,
+      });
+
+    const result =
+      await applyReversedPlayerAchPayment({
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        billingTransactionId:
+          "billing_tx_ach_reversal_replay",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+
+        normalized: {
+          rawEvent:
+            "ach-transaction",
+
+          status:
+            "CHARGEBACK",
+
+          transactionId:
+            "provider_tx_ach_reversal_replay",
+
+          reference:
+            "invoice_ach_reversal_replay",
+
+          amount:
+            2495,
+
+          paymentType:
+            "ACH",
+
+          payload: {
+            transaction_id:
+              "provider_tx_ach_reversal_replay",
+
+            previous_status:
+              "SETTLED",
+
+            new_status:
+              "CHARGEBACK",
+
+            amount:
+              24.95,
+          },
+        },
+      });
+
+    expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          "billing_tx_ach_reversal_replay",
+
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        transactionStatus:
+          "SETTLED",
+      },
+
+      data: {
+        transactionStatus:
+          "CHARGEBACK",
+
+        responseMessage:
+          "CHARGEBACK",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+      },
+    });
+
+    expect(
+      txMock.playerInvoice.findFirst
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerInvoice.update
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerInvoice.updateMany
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerProfile.update
+    ).not.toHaveBeenCalled();
+
+    expect(
+      createBillingAuditLogMock
+    ).not.toHaveBeenCalled();
+
+    expect(result).toEqual({
+      alreadyProcessed:
+        true,
+
+      reversalApplied:
+        false,
+    });
+  });
+});
+
+describe("ACH settlement state transition", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+
+    prismaMock.$transaction.mockImplementation(
+      async (
+        callback: (
+          tx: typeof txMock
+        ) => unknown
+      ) => {
+        return callback(txMock);
+      }
+    );
+
+    txMock.playerInvoice.update
+      .mockResolvedValue({});
+
+    txMock.playerProfile.update
+      .mockResolvedValue({});
+
+    txMock.player.updateMany
+      .mockResolvedValue({
+        count: 1,
+      });
+
+    txMock.playerBillingProfile.upsert
+      .mockResolvedValue({});
+
+    txMock.playerInvoice.create
+      .mockResolvedValue({});
+
+    createBillingAuditLogMock
+      .mockResolvedValue(undefined);
+  });
+
+  it("atomically settles a pre-terminal ACH transaction and applies the payment", async () => {
+    const invoice = {
+      id:
+        "invoice_ach_settled_atomic_1",
+
+      externalId:
+        null,
+
+      playerProfileId:
+        "profile_ach_settled_atomic_1",
+
+      status:
+        InvoiceStatus.PAST_DUE,
+
+      cadence:
+        "monthly",
+
+      amountCents:
+        2495,
+
+      cardFeeCents:
+        0,
+
+      amountPaidCents:
+        0,
+
+      hostedUrl:
+        null,
+
+      processorReceiptUrl:
+        null,
+
+      processorTransactionId:
+        "provider_tx_ach_settled_atomic_1",
+
+      processorResponseCode:
+        "PENDING",
+
+      playerProfile: {
+        id:
+          "profile_ach_settled_atomic_1",
+
+        userId:
+          null,
+
+        playerPlanTier:
+          "WALK_ON",
+
+        user:
+          null,
+      },
+    };
+
+    txMock.billingTransaction.updateMany
+      .mockResolvedValue({
+        count: 1,
+      });
+
+    txMock.playerInvoice.findFirst
+      .mockResolvedValueOnce(
+        invoice
+      )
+      .mockResolvedValueOnce(
+        null
+      );
+
+    const result =
+      await applySuccessfulPlayerPayment({
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        billingTransactionId:
+          "billing_tx_ach_settled_atomic_1",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+
+        normalized: {
+          rawEvent:
+            "ach-transaction",
+
+          status:
+            "SETTLED",
+
+          transactionId:
+            "provider_tx_ach_settled_atomic_1",
+
+          reference:
+            invoice.id,
+
+          amount:
+            2495,
+
+          surcharge:
+            0,
+
+          paymentType:
+            "ACH",
+
+          payload: {
+            transaction_id:
+              "provider_tx_ach_settled_atomic_1",
+
+            previous_status:
+              "PENDING",
+
+            new_status:
+              "SETTLED",
+
+            amount:
+              24.95,
+          },
+        },
+      });
+
+    expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          "billing_tx_ach_settled_atomic_1",
+
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        transactionStatus: {
+          in: [
+            "PENDING",
+            "APPROVED",
+            "SETTLING",
+            "UNKNOWN",
+          ],
+        },
+      },
+
+      data: {
+        transactionStatus:
+          "SETTLED",
+
+        responseMessage:
+          "SETTLED",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+      },
+    });
+
+    expect(
+      txMock.playerInvoice.update
+    ).toHaveBeenCalled();
+
+    expect(
+      txMock.playerProfile.update
+    ).toHaveBeenCalled();
+
+    expect(result).toEqual({
+      alreadyProcessed:
+        false,
+
+      settlementApplied:
+        true,
+
+      playerProfileId:
+        invoice.playerProfileId,
+    });
+  });
+
+  it("does not apply payment state when SETTLED cannot transition from a pre-terminal ACH state", async () => {
+    txMock.billingTransaction.updateMany
+      .mockResolvedValue({
+        count: 0,
+      });
+
+    const result =
+      await applySuccessfulPlayerPayment({
+        provider:
+          PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        billingTransactionId:
+          "billing_tx_ach_settled_stale",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+
+        normalized: {
+          rawEvent:
+            "ach-transaction",
+
+          status:
+            "SETTLED",
+
+          transactionId:
+            "provider_tx_ach_settled_stale",
+
+          reference:
+            "invoice_ach_settled_stale",
+
+          amount:
+            2495,
+
+          surcharge:
+            0,
+
+          paymentType:
+            "ACH",
+
+          payload: {
+            transaction_id:
+              "provider_tx_ach_settled_stale",
+
+            previous_status:
+              "RETURNED",
+
+            new_status:
+              "SETTLED",
+
+            amount:
+              24.95,
+          },
+        },
+      });
+
+    expect(
+      txMock.playerInvoice.findFirst
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerInvoice.update
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerProfile.update
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerBillingProfile.upsert
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerInvoice.create
+    ).not.toHaveBeenCalled();
+
+    expect(
+      createBillingAuditLogMock
+    ).not.toHaveBeenCalled();
+
+    expect(result).toEqual({
+      alreadyProcessed:
+        true,
+
+      settlementApplied:
         false,
     });
   });

@@ -20,6 +20,7 @@ import {
 import {
   applyFailedPlayerPayment,
   applyFailedPlayerPaymentWithDunning,
+  applyReversedPlayerAchPayment,
   applySuccessfulPlayerPayment,
 } from "@/lib/payments/processPlayerPaymentWebhook";
 
@@ -314,6 +315,90 @@ export async function POST(
       });
     }
 
+        /*
+     * RETURNED and CHARGEBACK are
+     * post-settlement ACH reversals.
+     *
+     * The processor atomically transitions
+     * the BillingTransaction from SETTLED
+     * and reverses ScoutLine's paid state.
+     * Replayed, concurrent, or stale
+     * reversal webhooks therefore cannot
+     * apply the financial reversal twice.
+     *
+     * This must run before the generic
+     * provider status update below.
+     */
+    if (
+      normalized.status ===
+        "RETURNED" ||
+      normalized.status ===
+        "CHARGEBACK"
+    ) {
+      const result =
+        await applyReversedPlayerAchPayment({
+          provider:
+            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+          normalized,
+
+          billingTransactionId:
+            existingTransaction.id,
+
+          rawPayload:
+            payload,
+        });
+
+      return NextResponse.json({
+        ok: true,
+        matched: true,
+        action:
+          normalized.status,
+        result,
+      });
+    }
+
+        /*
+     * SETTLED is the authoritative successful
+     * ACH payment state.
+     *
+     * The processor atomically transitions the
+     * BillingTransaction from an allowed
+     * pre-terminal state and applies ScoutLine's
+     * paid billing state in the same database
+     * transaction.
+     *
+     * Replayed or stale SETTLED webhooks cannot
+     * reactivate a transaction that has already
+     * FAILED, VOIDED, RETURNED, or CHARGEBACK.
+     */
+    if (
+      normalized.status ===
+      "SETTLED"
+    ) {
+      const result =
+        await applySuccessfulPlayerPayment({
+          provider:
+            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+          normalized,
+
+          billingTransactionId:
+            existingTransaction.id,
+
+          rawPayload:
+            payload,
+        });
+
+      return NextResponse.json({
+        ok: true,
+        matched: true,
+        action:
+          "SETTLED",
+        result,
+      });
+    }
+
     /*
      * Always record the latest provider
      * status and webhook payload first.
@@ -334,27 +419,6 @@ export async function POST(
           payload as any,
       },
     });
-
-    if (
-      normalized.status ===
-      "SETTLED"
-    ) {
-      const result =
-        await applySuccessfulPlayerPayment({
-          provider:
-            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
-
-          normalized,
-        });
-
-      return NextResponse.json({
-        ok: true,
-        matched: true,
-        action:
-          "SETTLED",
-        result,
-      });
-    }
 
     if (
       isFailureStatus(
