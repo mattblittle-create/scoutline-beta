@@ -1,6 +1,9 @@
+// app/auth/set-password/page.tsx
+
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function isStrongEnough(pw: string) {
@@ -11,7 +14,7 @@ type SetPasswordResponse =
   | { ok: true; data?: { redirectTo?: string; accountType?: string; email?: string } }
   | { ok: false; error?: string };
 
-export default function SetPasswordPage() {
+function SetPasswordPageInner() {
   const router = useRouter();
   const sp = useSearchParams();
 
@@ -125,6 +128,14 @@ export default function SetPasswordPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+export default function SetPasswordPage() {
+  return (
+    <Suspense fallback={null}>
+      <SetPasswordPageInner />
+    </Suspense>
   );
 }
 

@@ -41,6 +41,7 @@ type SearchRow = {
   gradYear: number | null;
   primaryPos: string | null;
   secondaryPos: string | null;
+  pitcherHand: string | null;
   bats: string | null;
   throws: string | null;
 
@@ -102,13 +103,16 @@ type SortKey =
   | "rating"
   | "gradYear"
   | "pos"
+  | "pitcherHand"
   | "state"
   | "city"
   | "hsName"
+  | "travelTeam"
   | "exitVelo"
   | "sixtyYdDash"
   | "homeToFirst"
   | "throwVelo"
+  | "fastballVelo"
   | "popTime"
   | "committed"
   | "updatedAt";
@@ -163,11 +167,15 @@ const [targets, setTargets] = useState<RecruitingTarget[]>([]);
   const [htfMin, setHtfMin] = useState("");
   const [throwMin, setThrowMin] = useState("");
   const [popMin, setPopMin] = useState("");
+  const [fbMin, setFbMin] = useState("");
+  const [chMin, setChMin] = useState("");
+  const [bbMin, setBbMin] = useState("");
 
   // Search results
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
   const [results, setResults] = useState<SearchRow[]>([]);
+  const [lastViewedPlayerProfileId, setLastViewedPlayerProfileId] = useState<string>("");
 
   // ---------------- Rating (display-only stars) ----------------
   function StarIcon(props: { filled: boolean }) {
@@ -224,6 +232,13 @@ const [targets, setTargets] = useState<RecruitingTarget[]>([]);
   const [addingToListId, setAddingToListId] = useState<string | null>(null);
   const [removingFromListId, setRemovingFromListId] = useState<string | null>(null);
   const [memberActionError, setMemberActionError] = useState<string | null>(null);
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("scoutline:lastViewedRecruit");
+      if (saved) setLastViewedPlayerProfileId(saved);
+    } catch {}
+  }, []);
 
   // Load lists on mount
   useEffect(() => {
@@ -403,7 +418,19 @@ function onHeaderDoubleClick(nextKey: SortKey) {
   }
 
   function metricVal(r: SearchRow, key: string): string {
-    const v = r.metricsLatest?.[key];
+    const metrics = r.metricsLatest || {};
+
+    const v =
+      key === "throwVelo"
+        ? metrics.catcherThrowVelo ??
+          metrics.infieldThrowVelo ??
+          metrics.outfieldThrowVelo ??
+          metrics.rawThrowVelo ??
+          null
+        : key === "fastballVelo"
+        ? metrics.avgFbVelo ?? null
+        : metrics[key];
+
     if (v == null || Number.isNaN(Number(v))) return "—";
     if (key === "sixtyYdDash" || key === "homeToFirst" || key === "popTime") return Number(v).toFixed(2);
     return String(Math.round(Number(v)));
@@ -519,12 +546,19 @@ const sortedMembers = useMemo(() => {
           return cmpNumNullLast(a.gradYear ?? null, b.gradYear ?? null) * dir;
         case "pos":
           return cmpStr(aPos, bPos) * dir;
+        case "pitcherHand":
+          return String(a.pitcherHand || "").localeCompare(String(b.pitcherHand || ""));
         case "state":
           return cmpStr(aState, bState) * dir;
         case "city":
           return cmpStr(aCity, bCity) * dir;
         case "hsName":
           return cmpStr(aHs, bHs) * dir;
+        case "travelTeam":
+          return cmpStr(
+            String(a.travelTeam || "").toLowerCase(),
+            String(b.travelTeam || "").toLowerCase()
+          ) * dir;
         case "exitVelo":
           return cmpNumNullLast(aExit, bExit) * dir;
         case "sixtyYdDash":
@@ -571,6 +605,10 @@ const sortedMembers = useMemo(() => {
   setThrowMin("");
   setPopMin("");
 
+  setFbMin("");
+  setChMin("");
+  setBbMin("");
+
   setErr(null);
 }
 
@@ -598,11 +636,15 @@ if (gpaMin.trim()) params.set("gpaMin", gpaMin.trim());
 
 // metrics (MIN only)
 if (exitMin.trim()) params.set("m_exitVeloMin", exitMin.trim());
-if (sixtyMin.trim()) params.set("m_sixtyYdDashMin", sixtyMin.trim());
-if (htfMin.trim()) params.set("m_homeToFirstMin", htfMin.trim());
+if (sixtyMin.trim()) params.set("m_sixtyYdDashMax", sixtyMin.trim());
+if (htfMin.trim()) params.set("m_homeToFirstMax", htfMin.trim());
 if (throwMin.trim()) params.set(`m_${throwMetricKey}Min`, throwMin.trim());
-if (popMin.trim()) params.set("m_popTimeMin", popMin.trim());
+if (popMin.trim()) params.set("m_popTimeMax", popMin.trim());
+if (fbMin.trim()) params.set("m_avgFbVeloMin", fbMin.trim());
+if (chMin.trim()) params.set("m_avgChVeloMin", chMin.trim());
+if (bbMin.trim()) params.set("m_avgBbVeloMin", bbMin.trim());
 
+// If no criteria at all, fetch ALL active profiles (server caps safely)
 // If no criteria at all, fetch ALL active profiles (server caps safely)
 const hasAnyCriteria =
   !!q.trim() ||
@@ -621,29 +663,35 @@ const hasAnyCriteria =
   !!sixtyMin.trim() ||
   !!htfMin.trim() ||
   !!throwMin.trim() ||
-  !!popMin.trim();
+  !!popMin.trim() ||
+  !!fbMin.trim() ||
+  !!chMin.trim() ||
+  !!bbMin.trim();
 
 params.set("take", hasAnyCriteria ? "25" : String(TAKE_IF_NO_FILTERS));
 
-      const res = await fetch(`/api/coach/player/search?${params.toString()}`, { cache: "no-store" });
-      const json = await res.json();
+const res = await fetch(`/api/coach/player/search?${params.toString()}`, {
+  cache: "no-store",
+});
 
-      if (!res.ok || !json?.ok) {
-        setErr(json?.error || `Search failed (${res.status})`);
-        setResults([]);
-        return;
-      }
+const json = await res.json();
 
-      const nextResults = Array.isArray(json.results) ? json.results : [];
-      setResults(nextResults);
+if (!res.ok || !json?.ok) {
+  setErr(json?.error || `Search failed (${res.status})`);
+  setResults([]);
+  return;
+}
 
-    } catch (e: any) {
-      setErr(e?.message || "Search failed.");
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  }
+const nextResults = Array.isArray(json.results) ? json.results : [];
+setResults(nextResults);
+
+} catch (e: any) {
+  setErr(e?.message || "Search failed.");
+  setResults([]);
+} finally {
+  setLoading(false);
+}
+}
 
   async function refreshListsKeepSelection() {
     const res = await fetch("/api/coach/recruiting-lists", { method: "GET", cache: "no-store" });
@@ -921,17 +969,6 @@ return (
     ))}
   </datalist>
 </Field>
-
-<div style={{ display: "flex", justifyContent: "flex-end", marginTop: 6 }}>
-  <button
-    type="button"
-    onClick={clearAllFilters}
-    style={presetClearBtn}
-  >
-    Clear All
-  </button>
-</div>
-
             </div>
 
             {/* Row 2 (requested fields) */}
@@ -962,12 +999,12 @@ return (
                 <input value={city} onChange={(e) => setCity(e.target.value)} style={inputWideSm} placeholder="City" />
               </Field>
 
-              <Field label="High School" onClear={() => setHsName("")}>
-                <input value={hsName} onChange={(e) => setHsName(e.target.value)} style={inputWideSm} placeholder="High School Name" />
+              <Field label="GPA (min)" onClear={() => setGpaMin("")}>
+                <input value={gpaMin} onChange={(e) => setGpaMin(e.target.value)} style={inputXs} placeholder="3.0" />
               </Field>
 
-              <Field label="GPA (minimum)" onClear={() => setGpaMin("")}>
-                <input value={gpaMin} onChange={(e) => setGpaMin(e.target.value)} style={inputXs} placeholder="3.0" />
+              <Field label="High School" onClear={() => setHsName("")}>
+                <input value={hsName} onChange={(e) => setHsName(e.target.value)} style={inputWideSm} placeholder="High School Name" />
               </Field>
 
               <Field label="Travel Team" onClear={() => setTravelTeam("")}>
@@ -1018,15 +1055,15 @@ return (
 
 {/* Metrics row 1 */}
 <div style={{ ...formRow, marginTop: 10 }}>
-  <Field label="Exit Velo (minimum)" onClear={() => setExitMin("")}>
+  <Field label="Exit Velo (min)" onClear={() => setExitMin("")}>
     <input value={exitMin} onChange={(e) => setExitMin(e.target.value)} style={inputXs} placeholder="90" />
   </Field>
 
-  <Field label="60 Yrd (minimum)" onClear={() => setSixtyMin("")}>
+  <Field label="60 Yrd (max)" onClear={() => setSixtyMin("")}>
     <input value={sixtyMin} onChange={(e) => setSixtyMin(e.target.value)} style={inputXs} placeholder="6.8" />
   </Field>
 
-  <Field label="H→1st (minimum)" onClear={() => setHtfMin("")}>
+  <Field label="H to 1st (max)" onClear={() => setHtfMin("")}>
     <input value={htfMin} onChange={(e) => setHtfMin(e.target.value)} style={inputXs} placeholder="3.9" />
   </Field>
 </div>
@@ -1042,19 +1079,64 @@ return (
     </select>
   </Field>
 
-  <Field label="Throw Velo (minimum)" onClear={() => setThrowMin("")}>
+  <Field label="Throw Velo (min)" onClear={() => setThrowMin("")}>
     <input value={throwMin} onChange={(e) => setThrowMin(e.target.value)} style={inputXs} placeholder="75" />
   </Field>
   
-  <Field label="C Pop (minimum)" onClear={() => setPopMin("")}>
+  <Field label="C Pop (max)" onClear={() => setPopMin("")}>
     <input value={popMin} onChange={(e) => setPopMin(e.target.value)} style={inputXs} placeholder="1.9" />
   </Field>
 
-  {/* Push button to far right on the SAME row */}
+  <Field label="FB Velo (min)" onClear={() => setFbMin("")}>
+  <input
+    value={fbMin}
+    onChange={(e) => setFbMin(e.target.value)}
+    style={inputXs}
+    placeholder="85"
+  />
+</Field>
+
+<Field label="CH Velo (min)" onClear={() => setChMin("")}>
+  <input
+    value={chMin}
+    onChange={(e) => setChMin(e.target.value)}
+    style={inputXs}
+    placeholder="75"
+  />
+</Field>
+
+<Field label="BB Velo (min)" onClear={() => setBbMin("")}>
+  <input
+    value={bbMin}
+    onChange={(e) => setBbMin(e.target.value)}
+    style={inputXs}
+    placeholder="70"
+  />
+</Field>
+</div>
+
+<div
+  style={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 12,
+    marginTop: 6,
+    flexWrap: "wrap",
+  }}
+>
+  <button
+    type="button"
+    onClick={clearAllFilters}
+    style={presetClearBtn}
+  >
+    Clear All
+  </button>
+
   <button
     type="button"
     onClick={runSearch}
-    style={{ ...btnGold, opacity: loading ? 0.7 : 1, marginLeft: "auto" }}
+    style={{ ...btnGold, opacity: loading ? 0.7 : 1 }}
   >
     {loading ? "Searching…" : "Search"}
   </button>
@@ -1285,14 +1367,17 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("rating")}>Rating</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("gradYear")}>Grad Yr</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("pos")}>Pos</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("pitcherHand")}>Pitcher</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("state")}>State</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("city")}>City</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("hsName")}>High School</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("travelTeam")}>Travel Team</th>
 
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("exitVelo")}>Exit Velo</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("sixtyYdDash")}>60 Yrd</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("homeToFirst")}>H→1st</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("throwVelo")}>Throw Velo</th>
+          <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("fastballVelo")}>FB Velo</th>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("popTime")}>C Pop</th>
 
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("committed")}>Committed</th>
@@ -1304,7 +1389,7 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
       <tbody>
 {sortedResults.length === 0 ? (
   <tr>
-    <td style={tdMuted} colSpan={15}>
+    <td style={tdMuted} colSpan={18}>
       {loading
         ? "Searching…"
         : !hasAnySearchCriteria()
@@ -1314,25 +1399,61 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
   </tr>
 ) : (
           sortedResults.map((r) => {
-            const name = r.name || (r.email ? r.email.split("@")[0] : "Player");
+            const name = r.name || "Player";
             const alreadyInList = selectedMemberIds.has(r.playerProfileId);
 
             return (
-<tr key={r.playerProfileId}>
-  <td style={td}>
-    {r.slug ? (
-      <a
-        href={`/player/${encodeURIComponent(r.slug)}?source=recruiting-board`}
-        style={linkSky}
-      >
-        {name}
-      </a>
-    ) : (
-      <span style={mutedSmall}>No public profile</span>
-    )}
+              <tr
+                key={r.playerProfileId}
+                style={{
+                  background:
+                    r.playerProfileId === lastViewedPlayerProfileId
+                      ? "rgba(14,165,233,0.08)"
+                      : undefined,
+                }}
+              >
+                <td style={td}>
+                  {r.slug ? (
+                    <a
+                      href={`/player/${encodeURIComponent(r.slug)}?source=recruiting-board`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={linkSky}
+                      onClick={() => {
+                        try {
+                          window.localStorage.setItem("scoutline:lastViewedRecruit", r.playerProfileId);
+                        } catch {}
 
-    <div style={mutedSmall}>{r.email || r.profileEmail}</div>
-  </td>
+                        setLastViewedPlayerProfileId(r.playerProfileId);
+                      }}
+                    >
+                      {name}
+
+                      {r.playerProfileId === lastViewedPlayerProfileId ? (
+                        <div
+                          style={{
+                            marginTop: 4,
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: "2px 8px",
+                            borderRadius: 999,
+                            background: "#e0f2fe",
+                            border: "1px solid #7dd3fc",
+                            color: "#075985",
+                            fontSize: 10,
+                            fontWeight: 900,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.04em",
+                          }}
+                        >
+                          Recently Viewed
+                        </div>
+                      ) : null}
+                    </a>
+                  ) : (
+                    <span style={mutedSmall}>No public profile</span>
+                  )}
+                </td>
 
                 <td style={td}>
                   <RatingStars rating={Number(r.rating ?? 0)} />
@@ -1344,14 +1465,18 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
                   {r.primaryPos ? `${r.primaryPos}${r.secondaryPos ? ` / ${r.secondaryPos}` : ""}` : "—"}
                 </td>
 
+                <td style={td}>{r.pitcherHand || "—"}</td>
+
                 <td style={td}>{r.state || "—"}</td>
                 <td style={td}>{r.hometown || "—"}</td>
                 <td style={td}>{r.hsName || "—"}</td>
+                <td style={td}>{r.travelTeam || "—"}</td>
 
                 <td style={td}>{metricVal(r, "exitVelo")}</td>
                 <td style={td}>{metricVal(r, "sixtyYdDash")}</td>
                 <td style={td}>{metricVal(r, "homeToFirst")}</td>
-                <td style={td}>{metricVal(r, throwMetricKey)}</td>
+                <td style={td}>{metricVal(r, "throwVelo")}</td>
+                <td style={td}>{metricVal(r, "fastballVelo")}</td>
                 <td style={td}>{metricVal(r, "popTime")}</td>
 
                 <td style={td}>

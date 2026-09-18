@@ -3,6 +3,7 @@
 "use client";
 
 import * as React from "react";
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 function norm(v: any) {
@@ -43,7 +44,7 @@ function normalizeLogoUrl(raw: string) {
   if (/^https?:\/\//i.test(s)) return s;
   if (s.startsWith("//")) return `https:${s}`;
   if (/^[a-z0-9.-]+\.[a-z]{2,}([/].*)?$/i.test(s)) return `https://${s}`;
-  return s; // leave as-is; server will validate/normalize and may null it
+  return s;
 }
 
 function fileToDataUrl(file: File): Promise<string> {
@@ -55,13 +56,12 @@ function fileToDataUrl(file: File): Promise<string> {
   });
 }
 
-export default function TeamsOnboardingPage() {
+function TeamsOnboardingPageInner() {
   const router = useRouter();
   const search = useSearchParams();
 
   const emailFromQuery = norm(search.get("email") || "");
 
-  // form fields
   const [adminFirstName, setAdminFirstName] = React.useState("");
   const [adminLastName, setAdminLastName] = React.useState("");
   const [adminEmail, setAdminEmail] = React.useState(emailFromQuery);
@@ -73,33 +73,34 @@ export default function TeamsOnboardingPage() {
   const [teamName, setTeamName] = React.useState("");
   const [city, setCity] = React.useState("");
 
-  // state selector (typeahead + dropdown)
   const [stateQuery, setStateQuery] = React.useState("");
   const [stateValue, setStateValue] = React.useState<StateAbbr | "">("");
   const [showStateSuggs, setShowStateSuggs] = React.useState(false);
 
   const [website, setWebsite] = React.useState("");
 
-  // ✅ Logo inputs (either file upload or URL)
-  const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>(""); // what we send if file chosen
-  const [logoUrlInput, setLogoUrlInput] = React.useState<string>(""); // optional URL paste
-  const [logoPreviewUrl, setLogoPreviewUrl] = React.useState<string | null>(null);
+const [logoFileDataUrl, setLogoFileDataUrl] = React.useState<string>("");
+const [logoUrlInput, setLogoUrlInput] = React.useState<string>("");
+const logoFileInputRef = React.useRef<HTMLInputElement | null>(null);
+
+const logoPreviewSrc = React.useMemo(() => {
+  if (logoFileDataUrl) return logoFileDataUrl;
+
+  const normalized = normalizeLogoUrl(logoUrlInput);
+  return normalized || "";
+}, [logoFileDataUrl, logoUrlInput]);
 
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
-  // Success / set-password UX (mirrors coach)
   const [okMsg, setOkMsg] = React.useState<string | null>(null);
   const [needsSetPassword, setNeedsSetPassword] = React.useState(false);
-  const [setPasswordUrl, setSetPasswordUrl] = React.useState<string | null>(null);
-  const [toast, setToast] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     if (emailFromQuery) setAdminEmail(emailFromQuery);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [emailFromQuery]);
 
-  // derived validation
   const firstOk = Boolean(adminFirstName.trim());
   const lastOk = Boolean(adminLastName.trim());
 
@@ -116,7 +117,6 @@ export default function TeamsOnboardingPage() {
 
   const canSubmit = firstOk && lastOk && emailOk && phoneOk && teamOk && cityOk && stateOk;
 
-  // state suggestions
   const stateSuggestions = React.useMemo(() => {
     const q = stateQuery.trim().toUpperCase();
     if (!q) return US_STATES.slice(0, 12);
@@ -127,18 +127,6 @@ export default function TeamsOnboardingPage() {
     setStateValue(abbr);
     setStateQuery(abbr);
     setShowStateSuggs(false);
-  }
-
-  async function copyLink() {
-    if (!setPasswordUrl) return;
-    try {
-      await navigator.clipboard.writeText(setPasswordUrl);
-      setToast("Link copied!");
-      window.setTimeout(() => setToast(null), 1500);
-    } catch {
-      setToast("Could not copy link.");
-      window.setTimeout(() => setToast(null), 1500);
-    }
   }
 
   async function postOnboarding(payload: any) {
@@ -153,7 +141,6 @@ export default function TeamsOnboardingPage() {
   }
 
   function effectiveLogoUrl() {
-    // file wins (data url) if set; otherwise use typed URL
     if (logoFileDataUrl) return logoFileDataUrl;
     const u = normalizeLogoUrl(logoUrlInput);
     return u || "";
@@ -164,8 +151,6 @@ export default function TeamsOnboardingPage() {
     setError(null);
     setOkMsg(null);
     setNeedsSetPassword(false);
-    setSetPasswordUrl(null);
-    setToast(null);
 
     const fn = adminFirstName.trim();
     const ln = adminLastName.trim();
@@ -202,8 +187,6 @@ export default function TeamsOnboardingPage() {
         city: c,
         state: st,
         website: web || null,
-
-        // ✅ NEW
         logoUrl: effectiveLogoUrl() || null,
       };
 
@@ -214,27 +197,11 @@ export default function TeamsOnboardingPage() {
       }
 
       const needs = Boolean(json?.data?.needsSetPassword);
-      const linkFromApi = String(json?.data?.setPasswordLink || "").trim();
-      const tokenFromApi = String(json?.data?.setPasswordToken || "").trim();
 
       if (needs) {
         setNeedsSetPassword(true);
-
-        let url: string | null = null;
-        if (linkFromApi) {
-          url = linkFromApi
-            .replace("/auth/set-passwrod", "/auth/set-password")
-            .replace("toekn=", "token=");
-        } else if (tokenFromApi) {
-          url = `${window.location.origin}/auth/set-password?token=${encodeURIComponent(tokenFromApi)}`;
-        } else {
-          url = null;
-        }
-
-        setSetPasswordUrl(url);
-
         setOkMsg(
-          "You’re almost done — set your password using the link we sent to your email. Once set, come back and log in."
+          `You’re almost done — set your password using the link we sent to ${em}. Once set, come back and log in.`
         );
         return;
       }
@@ -260,40 +227,6 @@ export default function TeamsOnboardingPage() {
 
         {error ? <div style={errorBox}>{error}</div> : null}
         {okMsg ? <div style={okBox}>{okMsg}</div> : null}
-
-        {needsSetPassword ? (
-          <div style={setPwBox}>
-            <div style={{ fontWeight: 900, marginBottom: 6 }}>Set your password</div>
-            <div style={hint}>
-              We sent a password setup link to <b>{adminEmail.trim().toLowerCase()}</b>.
-              {setPasswordUrl ? " In dev, use the buttons below:" : ""}
-            </div>
-
-            {setPasswordUrl ? (
-              <>
-                <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 10 }}>
-                  <button type="button" onClick={copyLink} style={btnGhost}>
-                    Copy Link
-                  </button>
-
-                  <a href={setPasswordUrl} style={btnGhostSolid}>
-                    Open Link
-                  </a>
-
-                  <button type="button" style={btnGold} onClick={() => router.push("/login?role=team")}>
-                    Go to Login
-                  </button>
-                </div>
-
-                {toast ? <div style={{ marginTop: 8, ...hint, color: "#047857", fontWeight: 900 }}>{toast}</div> : null}
-              </>
-            ) : (
-              <div style={{ marginTop: 10, ...hint }}>
-                If you don’t see the email, check spam/junk. In dev, the set-password token/link may not be available yet.
-              </div>
-            )}
-          </div>
-        ) : null}
 
         <form onSubmit={onSubmit} style={{ marginTop: 14, display: "grid", gap: 12 }}>
           <div style={twoCol}>
@@ -429,33 +362,30 @@ export default function TeamsOnboardingPage() {
             <div style={hint}>Optional now; you can add/edit later in your team profile.</div>
           </Field>
 
-          {/* ✅ Logo: file upload OR URL paste */}
           <div style={{ display: "grid", gap: 10 }}>
             <Field label="Logo Upload (optional)">
               <input
+                ref={logoFileInputRef}
                 style={input}
                 type="file"
-                accept="image/*"
-                onChange={async (e) => {
-                  const file = e.target.files?.[0];
-                  if (!file) {
-                    setLogoPreviewUrl(null);
-                    setLogoFileDataUrl("");
-                    return;
-                  }
+                accept=".png,.jpg,.jpeg,.svg,.webp"
+onChange={async (e) => {
+  const file = e.target.files?.[0];
 
-                  try {
-                    const dataUrl = await fileToDataUrl(file);
-                    setLogoFileDataUrl(dataUrl);
-                    setLogoUrlInput(""); // file wins; clear url field
-                    const blobUrl = URL.createObjectURL(file);
-                    setLogoPreviewUrl(blobUrl);
-                  } catch (err: any) {
-                    setError(err?.message || "Failed to read logo file.");
-                    setLogoPreviewUrl(null);
-                    setLogoFileDataUrl("");
-                  }
-                }}
+  if (!file) {
+    setLogoFileDataUrl("");
+    return;
+  }
+
+  try {
+    const dataUrl = await fileToDataUrl(file);
+    setLogoFileDataUrl(dataUrl);
+    setLogoUrlInput("");
+  } catch (err: any) {
+    setError(err?.message || "Failed to read logo file.");
+    setLogoFileDataUrl("");
+  }
+}}
               />
               <div style={hint}>Upload a PNG/JPG/SVG. This will carry into your Team Profile + header.</div>
             </Field>
@@ -464,16 +394,14 @@ export default function TeamsOnboardingPage() {
               <input
                 style={input}
                 value={logoUrlInput}
-                onChange={(e) => {
-                  const v = e.target.value;
-                  setLogoUrlInput(v);
-                  if (v.trim()) {
-                    setLogoFileDataUrl(""); // URL wins if typed
-                    setLogoPreviewUrl(normalizeLogoUrl(v.trim()));
-                  } else {
-                    setLogoPreviewUrl(null);
-                  }
-                }}
+onChange={(e) => {
+  const v = e.target.value;
+  setLogoUrlInput(v);
+
+  if (v.trim()) {
+    setLogoFileDataUrl("");
+  }
+}}
                 placeholder="https://example.com/logo.png"
                 inputMode="url"
                 autoComplete="off"
@@ -481,37 +409,74 @@ export default function TeamsOnboardingPage() {
               <div style={hint}>If you paste a URL, we’ll store it as your team logo.</div>
             </Field>
 
-            {logoPreviewUrl ? (
-              <div style={{ marginTop: 2, display: "flex", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
-                <div style={{ fontWeight: 900, color: "#64748b", fontSize: 12 }}>Preview:</div>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={logoPreviewUrl}
-                  alt="Team logo preview"
-                  style={{
-                    height: 44,
-                    width: 44,
-                    objectFit: "contain",
-                    borderRadius: 10,
-                    border: "1px solid #e5e7eb",
-                    background: "#fff",
-                    padding: 6,
-                  }}
-                />
-                <button
-                  type="button"
-                  style={btnGhost}
-                  onClick={() => {
-                    setLogoPreviewUrl(null);
-                    setLogoFileDataUrl("");
-                    setLogoUrlInput("");
-                  }}
-                  title="Clear logo"
-                >
-                  Remove
-                </button>
-              </div>
-            ) : null}
+{logoPreviewSrc ? (
+  <div
+    style={{
+      marginTop: 2,
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      flexWrap: "wrap",
+    }}
+  >
+    <div style={{ fontWeight: 900, color: "#64748b", fontSize: 12 }}>
+      Preview:
+    </div>
+
+    <div style={{ position: "relative", display: "inline-flex" }}>
+      <button
+        type="button"
+        aria-label="Remove logo"
+        onClick={() => {
+          setLogoFileDataUrl("");
+          setLogoUrlInput("");
+
+          if (logoFileInputRef.current) {
+            logoFileInputRef.current.value = "";
+          }
+        }}
+        title="Clear logo"
+        style={{
+          position: "absolute",
+          top: -8,
+          right: -8,
+          width: 26,
+          height: 26,
+          borderRadius: "999px",
+          border: "none",
+          background: "#dc2626",
+          color: "#fff",
+          fontSize: 18,
+          fontWeight: 900,
+          lineHeight: 1,
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          boxShadow: "0 4px 10px rgba(15, 23, 42, 0.22)",
+          zIndex: 2,
+        }}
+      >
+        ×
+      </button>
+
+        <img
+          src={logoPreviewSrc}
+          alt="Team logo preview"
+          referrerPolicy="no-referrer"
+        style={{
+          height: 88,
+          width: 88,
+          objectFit: "contain",
+          borderRadius: 14,
+          border: "1px solid #e5e7eb",
+          background: "#fff",
+          padding: 8,
+        }}
+      />
+    </div>
+  </div>
+) : null}
           </div>
 
           <div style={{ display: "flex", gap: 10, justifyContent: "flex-end", flexWrap: "wrap" }}>
@@ -531,6 +496,14 @@ export default function TeamsOnboardingPage() {
         </form>
       </div>
     </main>
+  );
+}
+
+export default function TeamsOnboardingPage() {
+  return (
+    <Suspense fallback={null}>
+      <TeamsOnboardingPageInner />
+    </Suspense>
   );
 }
 
@@ -608,30 +581,6 @@ const btnGold: React.CSSProperties = {
   fontWeight: 900,
 };
 
-const btnGhost: React.CSSProperties = {
-  display: "inline-block",
-  padding: "10px 14px",
-  borderRadius: 10,
-  border: "1px solid #e5e7eb",
-  background: "#fff",
-  color: "#0f172a",
-  fontWeight: 900,
-  cursor: "pointer",
-  textDecoration: "none",
-};
-
-const btnGhostSolid: React.CSSProperties = {
-  display: "inline-block",
-  padding: "10px 14px",
-  borderRadius: 10,
-  border: "1px solid #e5e7eb",
-  background: "#f8fafc",
-  color: "#0f172a",
-  fontWeight: 900,
-  cursor: "pointer",
-  textDecoration: "none",
-};
-
 const errorBox: React.CSSProperties = {
   marginTop: 12,
   padding: "10px 12px",
@@ -650,14 +599,6 @@ const okBox: React.CSSProperties = {
   color: "#14532d",
   borderRadius: 12,
   fontWeight: 900,
-};
-
-const setPwBox: React.CSSProperties = {
-  marginTop: 12,
-  padding: "12px 12px",
-  border: "1px solid #e5e7eb",
-  background: "#f8fafc",
-  borderRadius: 12,
 };
 
 const suggBox: React.CSSProperties = {

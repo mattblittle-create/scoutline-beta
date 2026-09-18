@@ -128,8 +128,8 @@ export default function RecruitingJourneyHero() {
               color: "rgba(255,255,255,0.95)",
             }}
           >
-            ScoutLine brings your entire recruiting journey into one place—contacts, timelines,
-            tasks, and progress—so you spend less time guessing and more time advancing.
+            ScoutLine brings your entire recruiting journey into one place—build your profile, search for colleges, connect with programs, know your timelines,
+            and track your tasks, and follow your progress—so you spend less time guessing and more time advancing.
           </p>
         </div>
 

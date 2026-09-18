@@ -90,31 +90,61 @@ export default async function TeamBillingPage() {
     : null;
 
   // If no team selected or canceled, still show dev loader, but block the billing UI.
-  const isCanceledNow = Boolean(dbTeam?.billingStatus === "Canceled");
+const billingStatus =
+  typeof (dbTeam as any)?.billingStatus === "string"
+    ? (dbTeam as any).billingStatus
+    : "";
 
-  const seats = dbTeam
-    ? await prisma.teamMembership.count({
-        where: { teamId: dbTeam.id, role: "PLAYER", isActive: true },
-      })
-    : 0;
+const billingMode =
+  typeof (dbTeam as any)?.billingMode === "string"
+    ? (dbTeam as any).billingMode
+    : "";
 
-  const planTier = String(dbTeam?.planTier || "TEAM");
-  const cadence = "monthly"; // Teams monthly only
-  const unitPriceCents = getTeamUnitPriceCents(cadence);
-  const baseTotalCents = seats * unitPriceCents;
+const teamName =
+  typeof (dbTeam as any)?.name === "string"
+    ? (dbTeam as any).name
+    : "";
 
-  const activeApp = dbTeam
-    ? await prisma.discountApplication.findFirst({
-        where: {
-          targetType: "TEAM",
-          targetId: dbTeam.id,
-          status: "ACTIVE",
-          OR: [{ endsAt: null }, { endsAt: { gt: new Date() } }],
-        },
-        orderBy: { appliedAt: "desc" },
-        include: { discountCode: true },
-      })
-    : null;
+const sponsorName =
+  typeof (dbTeam as any)?.sponsorName === "string"
+    ? (dbTeam as any).sponsorName
+    : "";
+
+const planTier =
+  typeof (dbTeam as any)?.planTier === "string"
+    ? (dbTeam as any).planTier
+    : "Teams";
+
+const isCanceledNow = billingStatus === "Canceled";
+
+const teamIdStr =
+  typeof (dbTeam as any)?.id === "string"
+    ? (dbTeam as any).id
+    : "";
+
+const seats = teamIdStr
+  ? await prisma.teamMembership.count({
+      where: { teamId: teamIdStr, role: "PLAYER", isActive: true },
+    })
+  : 0;
+
+const cadence = "monthly";
+const unitPriceCents = getTeamUnitPriceCents(cadence);
+const baseTotalCents = seats * unitPriceCents;
+
+const activeApp = teamIdStr
+  ? await prisma.discountApplication.findFirst({
+      where: {
+        targetType: "TEAM",
+        targetId: teamIdStr,
+        status: "ACTIVE",
+        OR: [{ endsAt: null }, { endsAt: { gt: new Date() } }],
+      },
+      include: {
+        discountCode: true,
+      },
+    })
+  : null;
 
   const discountType = activeApp?.discountCode?.type ?? null;
   const discountValue = activeApp?.discountCode?.value ?? null;
@@ -128,19 +158,19 @@ export default async function TeamBillingPage() {
 
   const discountCents = Math.max(0, baseTotalCents - totalCents);
 
-  const billingProfile = dbTeam
-    ? await prisma.teamBillingProfile.findUnique({
-        where: { teamId: dbTeam.id },
-        select: { paymentType: true, brand: true, last4: true },
-      })
-    : null;
+const billingProfile = teamIdStr
+  ? await prisma.teamBillingProfile.findUnique({
+      where: { teamId: teamIdStr },
+      select: { paymentType: true, brand: true, last4: true },
+    })
+  : null;
 
-  const invoices = dbTeam
-    ? await prisma.teamInvoice.findMany({
-        where: { teamId: dbTeam.id },
-        orderBy: { periodStart: "desc" },
-        take: 12,
-        select: {
+const invoices = teamIdStr
+  ? await prisma.teamInvoice.findMany({
+      where: { teamId: teamIdStr },
+      orderBy: { periodStart: "desc" },
+      take: 12,
+      select: {
           id: true,
           status: true,
           periodStart: true,
@@ -166,10 +196,10 @@ export default async function TeamBillingPage() {
 
       <div style={{ marginTop: 6, color: "#64748b", fontWeight: 700 }}>
         {dbTeam ? (
-          <>
-            {dbTeam.name} • Status: {dbTeam.billingStatus} • Mode: {dbTeam.billingMode}
-            {dbTeam.billingMode === "SPONSORED" && dbTeam.sponsorName ? ` • Sponsor: ${dbTeam.sponsorName}` : ""}
-          </>
+<>
+  {teamName} • Status: {billingStatus} • Mode: {billingMode}
+  {billingMode === "SPONSORED" && sponsorName ? ` • Sponsor: ${sponsorName}` : ""}
+</>
         ) : (
           "No team selected yet. Use the Dev Team Loader above."
         )}
@@ -260,13 +290,18 @@ export default async function TeamBillingPage() {
               </div>
 
               <div style={{ marginTop: 14 }}>
-                <BillingAdminTools teamId={dbTeam.id} planTier={planTier} billingCadence="Monthly" billingStatus={dbTeam.billingStatus} />
+                <BillingAdminTools
+                  teamId={teamIdStr}
+                  planTier={planTier}
+                  billingCadence="monthly"
+                  billingStatus={billingStatus}
+                />
               </div>
 
               <div style={{ marginTop: 14 }}>
                 <BillingDiscountCodeRedeem
                   targetType="TEAM"
-                  targetId={dbTeam.id}
+                  targetId={teamIdStr}
                   planTier={planTier}
                   cadence="monthly"
                   current={
@@ -287,7 +322,7 @@ export default async function TeamBillingPage() {
               </div>
 
               <div style={{ marginTop: 14 }}>
-                <BillingPaymentMethod teamId={dbTeam.id} summary={billingProfile} />
+                <BillingPaymentMethod teamId={teamIdStr} summary={billingProfile} />
               </div>
             </>
           )}

@@ -25,6 +25,7 @@ export type MetricsPayload = {
 
   benchPress: MetricEntry[];
   squat: MetricEntry[];
+  deadLift: MetricEntry[];
   popTime: MetricEntry[];
   avgFbVelo: MetricEntry[];
   avgChVelo: MetricEntry[];
@@ -52,6 +53,41 @@ type TabMetricsProps = {
   showOutfieldVelo: boolean;    // LF / CF / RF
   showRawThrowVelo: boolean;    // Utility only
 
+  metricPrivate: {
+    homeToFirst: boolean;
+    sixtyYdDash: boolean;
+    exitVelo: boolean;
+    rawThrowVelo: boolean;
+    infieldThrowVelo: boolean;
+    outfieldThrowVelo: boolean;
+    catcherThrowVelo: boolean;
+    avgFbVelo: boolean;
+    avgChVelo: boolean;
+    avgBbVelo: boolean;
+    popTime: boolean;
+    benchPress: boolean;
+    squat: boolean;
+    deadLift: boolean;
+  };
+  setMetricPrivate: React.Dispatch<
+    React.SetStateAction<{
+      homeToFirst: boolean;
+      sixtyYdDash: boolean;
+      exitVelo: boolean;
+      rawThrowVelo: boolean;
+      infieldThrowVelo: boolean;
+      outfieldThrowVelo: boolean;
+      catcherThrowVelo: boolean;
+      avgFbVelo: boolean;
+      avgChVelo: boolean;
+      avgBbVelo: boolean;
+      popTime: boolean;
+      benchPress: boolean;
+      squat: boolean;
+      deadLift: boolean;
+    }>
+  >;
+
   homeToFirstEntries: MetricEntry[];
   setHomeToFirstEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
   sixtyYdDashEntries: MetricEntry[];
@@ -64,23 +100,31 @@ type TabMetricsProps = {
 
   infieldThrowVeloEntries: MetricEntry[];
   setInfieldThrowVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   outfieldThrowVeloEntries: MetricEntry[];
   setOutfieldThrowVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
   benchPressEntries: MetricEntry[];
   setBenchPressEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   squatEntries: MetricEntry[];
   setSquatEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
+  deadLiftEntries: MetricEntry[];
+  setDeadLiftEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   popTimeEntries: MetricEntry[];
   setPopTimeEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   catcherThrowVeloEntries: MetricEntry[];
   setCatcherThrowVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
   avgFbVeloEntries: MetricEntry[];
   setAvgFbVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   avgChVeloEntries: MetricEntry[];
   setAvgChVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
+
   avgBbVeloEntries: MetricEntry[];
   setAvgBbVeloEntries: React.Dispatch<React.SetStateAction<MetricEntry[]>>;
 
@@ -125,10 +169,11 @@ function MetricSection(props: {
     styles: { labelStyle, labelText, inputStyle },
   } = props;
 
-  const [val, setVal] = useState<string>("");
-  const [source, setSource] = useState<string>("");
-  const [monthYear, setMonthYear] = useState<string>("");
-  const [localErr, setLocalErr] = useState<string | null>(null);
+const [val, setVal] = useState<string>("");
+const [source, setSource] = useState<string>("");
+const [monthYear, setMonthYear] = useState<string>("");
+const [localErr, setLocalErr] = useState<string | null>(null);
+const [expanded, setExpanded] = useState(false);
 
   const unitSuffix = unitHint === "seconds" ? "sec" : (unitHint || "");
 
@@ -195,11 +240,53 @@ function MetricSection(props: {
     setEntries(prev => prev.filter((_, idx) => idx !== originalIndex));
   }
 
-  return (
-    <section style={{ padding: "12px 0" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
-        <h3 style={{ ...labelText, margin: 0 }}>{title}</h3>
-      </div>
+return (
+    <section
+      style={{
+        border: "1px solid #e5e7eb",
+        borderRadius: 12,
+        background: "#ffffff",
+        overflow: "hidden",
+      }}
+    >
+      <button
+        type="button"
+        onClick={() => setExpanded((prev) => !prev)}
+        style={{
+          width: "100%",
+          border: "none",
+          background: "#f8fafc",
+          padding: "14px 16px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          cursor: "pointer",
+        }}
+      >
+        <div
+          style={{
+            fontWeight: 900,
+            color: "#0f172a",
+            fontSize: 15,
+            textAlign: "left",
+          }}
+        >
+          {title}
+        </div>
+
+        <div
+          style={{
+            fontSize: 18,
+            fontWeight: 900,
+            color: "#64748b",
+          }}
+        >
+          {expanded ? "−" : "+"}
+        </div>
+      </button>
+
+      {expanded ? (
+        <div style={{ padding: 12 }}>
 
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(180px,1fr))", gap: 10, alignItems: "end" }}>
         <label style={labelStyle}>
@@ -324,6 +411,8 @@ function MetricSection(props: {
           </div>
         </div>
       )}
+        </div>
+      ) : null}
     </section>
   );
 }
@@ -338,26 +427,43 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
     showOutfieldVelo,
     showRawThrowVelo,
 
-    homeToFirstEntries, setHomeToFirstEntries,
-    sixtyYdDashEntries, setSixtyYdDashEntries,
-    exitVeloEntries, setExitVeloEntries,
+    metricPrivate,
+    setMetricPrivate,
 
-    rawThrowVeloEntries, setRawThrowVeloEntries,
-    infieldThrowVeloEntries, setInfieldThrowVeloEntries,
-    outfieldThrowVeloEntries, setOutfieldThrowVeloEntries,
+    homeToFirstEntries,
+    setHomeToFirstEntries,
+    sixtyYdDashEntries,
+    setSixtyYdDashEntries,
+    exitVeloEntries,
+    setExitVeloEntries,
 
-    benchPressEntries, setBenchPressEntries,
-    squatEntries, setSquatEntries,
-    popTimeEntries, setPopTimeEntries,
-    catcherThrowVeloEntries, setCatcherThrowVeloEntries,
-    avgFbVeloEntries, setAvgFbVeloEntries,
-    avgChVeloEntries, setAvgChVeloEntries,
-    avgBbVeloEntries, setAvgBbVeloEntries,
+    rawThrowVeloEntries,
+    setRawThrowVeloEntries,
+    infieldThrowVeloEntries,
+    setInfieldThrowVeloEntries,
+    outfieldThrowVeloEntries,
+    setOutfieldThrowVeloEntries,
+
+    benchPressEntries,
+    setBenchPressEntries,
+    squatEntries,
+    setSquatEntries,
+    deadLiftEntries,
+    setDeadLiftEntries,
+    popTimeEntries,
+    setPopTimeEntries,
+    catcherThrowVeloEntries,
+    setCatcherThrowVeloEntries,
+    avgFbVeloEntries,
+    setAvgFbVeloEntries,
+    avgChVeloEntries,
+    setAvgChVeloEntries,
+    avgBbVeloEntries,
+    setAvgBbVeloEntries,
 
     styles: { labelStyle, labelText, inputStyle, hrStyle, errText, qMark },
   } = props;
 
-  // ---- expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
     ref,
     () => ({
@@ -375,6 +481,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
 
         benchPress: benchPressEntries,
         squat: squatEntries,
+        deadLift: deadLiftEntries,
         popTime: popTimeEntries,
         avgFbVelo: avgFbVeloEntries,
         avgChVelo: avgChVeloEntries,
@@ -392,6 +499,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
       catcherThrowVeloEntries,
       benchPressEntries,
       squatEntries,
+      deadLiftEntries,
       popTimeEntries,
       avgFbVeloEntries,
       avgChVeloEntries,
@@ -443,7 +551,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
         idPrefix="m-h2f"
         styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
       />
-      <hr style={hrStyle} />
+      <div style={{ height: 10 }} />
 
       <MetricSection
         title="60 Yard Dash"
@@ -454,7 +562,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
         idPrefix="m-60"
         styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
       />
-      <hr style={hrStyle} />
+      <div style={{ height: 10 }} />
 
       {/* Hitting & Arm Strength */}
       <MetricSection
@@ -466,7 +574,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
         idPrefix="m-exit"
         styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
       />
-      <hr style={hrStyle} />
+      <div style={{ height: 10 }} />
 
       {showRawThrowVelo && (
         <>
@@ -479,7 +587,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
             idPrefix="m-rawthrow"
             styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
           />
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
         </>
       )}
 
@@ -494,7 +602,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
             idPrefix="m-infieldthrow"
             styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
           />
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
         </>
       )}
 
@@ -509,7 +617,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
             idPrefix="m-outfieldthrow"
             styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
           />
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
         </>
       )}
 
@@ -523,7 +631,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
         idPrefix="m-bench"
         styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
       />
-      <hr style={hrStyle} />
+      <div style={{ height: 10 }} />
 
       <MetricSection
         title="Squat"
@@ -534,11 +642,22 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
         idPrefix="m-squat"
         styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
       />
+      <div style={{ height: 10 }} />
+
+      <MetricSection
+        title="Dead Lift"
+        unitHint="lbs"
+        placeholderValue="405"
+        entries={deadLiftEntries}
+        setEntries={setDeadLiftEntries}
+        idPrefix="m-deadlift"
+        styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
+      />
 
       {/* Catcher-only metrics */}
       {showCatcherMetrics && (
         <>
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
           <MetricSection
             title="Pop Time"
             unitHint="seconds"
@@ -548,7 +667,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
             idPrefix="m-pop"
             styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
           />
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
           <MetricSection
             title="Catcher Throwing Velocity"
             unitHint="mph"
@@ -564,7 +683,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
       {/* Pitcher metrics */}
       {showPitcherMetrics && (
         <>
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
           <MetricSection
             title="Average Fastball Velocity"
             unitHint="mph"
@@ -574,7 +693,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
             idPrefix="m-fbavg"
             styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
           />
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
           <MetricSection
             title="Average Changeup Velocity"
             unitHint="mph"
@@ -584,7 +703,7 @@ const TabMetrics = React.forwardRef<MetricsHandle, TabMetricsProps>(function Tab
             idPrefix="m-chavg"
             styles={{ labelStyle, labelText, inputStyle, hrStyle, errText, qMark }}
           />
-          <hr style={hrStyle} />
+          <div style={{ height: 10 }} />
           <MetricSection
             title="Average Breaking Ball Velocity"
             unitHint="mph"

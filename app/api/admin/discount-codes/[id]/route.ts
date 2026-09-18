@@ -49,7 +49,7 @@ function safeId(v: any) {
  * Body: { op: "toggle-active" }
  */
 export async function POST(req: Request, { params }: { params: { id: string } }) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
   const id = safeId(params?.id);
   if (!id) return NextResponse.json({ ok: false, error: "Missing id." }, { status: 400 });
 
@@ -90,7 +90,7 @@ export async function POST(req: Request, { params }: { params: { id: string } })
  * Body: editable fields (type/value/appliesTo/cadence/durationType/durationMonths/expiresAt/maxRedemptions/oncePerTarget/plansAllowed)
  */
 export async function PATCH(req: Request, { params }: { params: { id: string } }) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
   const id = safeId(params?.id);
   if (!id) return NextResponse.json({ ok: false, error: "Missing id." }, { status: 400 });
 

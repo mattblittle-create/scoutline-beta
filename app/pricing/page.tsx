@@ -5,7 +5,7 @@
 import React, { useMemo, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 
-type Billing = "monthly" | "annual";
+type Billing = "monthly";
 type PlanKey = "redshirt" | "walkon" | "allamerican" | "team";
 
 type Plan = {
@@ -14,8 +14,6 @@ type Plan = {
   tagline: string;
   ctaHref: string;
   priceMonthly: string;
-  priceAnnual?: string;
-  priceAnnualNote?: string;
   highlight?: boolean;
   noteBelowPrice?: string;
 };
@@ -43,8 +41,6 @@ const PLANS: Plan[] = [
     tagline: "Ready to compete",
     ctaHref: "/onboarding/walk-on",
     priceMonthly: "$24.95 / month",
-    priceAnnual: "$265 / year",
-    priceAnnualNote: "12% off",
   },
   {
     key: "allamerican",
@@ -52,8 +48,6 @@ const PLANS: Plan[] = [
     tagline: "Time to get seen",
     ctaHref: "/onboarding/all-american",
     priceMonthly: "$49.95 / month",
-    priceAnnual: "$510 / year",
-    priceAnnualNote: "15% off",
     highlight: true,
   },
   {
@@ -160,46 +154,46 @@ function cellContent(val: FeatureCell | undefined) {
   return <span style={{ fontWeight: 700 }}>{val}</span>;
 }
 
-// ✅ helper: build onboarding link that carries billing toggle forward
-function planToOnboardingHref(planKey: PlanKey, billing: Billing): string {
+function planToOnboardingHref(planKey: PlanKey): string {
   const canonicalPlan =
-    planKey === "walkon" ? "walk-on" :
-    planKey === "allamerican" ? "all-american" :
-    planKey === "team" ? "team" :
-    "redshirt";
+    planKey === "walkon"
+      ? "walk-on"
+      : planKey === "allamerican"
+      ? "all-american"
+      : planKey === "team"
+      ? "team"
+      : "redshirt";
 
-// Teams now uses a dedicated onboarding route (no more /get-started)
-if (canonicalPlan === "team") {
-  return `/onboarding/teams`;
-}
+  if (canonicalPlan === "team") {
+    return `/onboarding/teams`;
+  }
 
-  // Player plans: annual only applies to walk-on + all-american
-  const supportsAnnual = canonicalPlan === "walk-on" || canonicalPlan === "all-american";
-  const billingToPass: Billing = billing === "annual" && supportsAnnual ? "annual" : "monthly";
-
-  // Go straight to the player onboarding step (no more /get-started intermediary)
-  return `/onboarding/${encodeURIComponent(canonicalPlan)}?billing=${encodeURIComponent(billingToPass)}`;
+  return `/onboarding/${encodeURIComponent(canonicalPlan)}?billing=monthly`;
 }
 
 export default function PricingPage() {
-  const [billing, setBilling] = useState<Billing>("monthly");
+  const billing: Billing = "monthly";
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
 
-  // sticky shadow when scrolled
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [stuck, setStuck] = useState(false);
+
   useEffect(() => {
     const onScroll = () => {
       if (!headerRef.current) return;
       const top = headerRef.current.getBoundingClientRect().top;
       setStuck(top <= 0);
     };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const planOrder: PlanKey[] = ["redshirt", "walkon", "allamerican", "team"];
-  const planMap = useMemo(() => Object.fromEntries(PLANS.map((p) => [p.key, p])), []);
+  const planMap = useMemo(
+    () => Object.fromEntries(PLANS.map((p) => [p.key, p])) as Record<PlanKey, Plan>,
+    []
+  );
 
   const toggleSection = (title: string) => {
     setOpenSections((prev) => ({ ...prev, [title]: !prev[title] }));
@@ -207,117 +201,160 @@ export default function PricingPage() {
 
   return (
     <main style={{ color: "#0f172a" }}>
-      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "5px 3px" }}>
-        {/* Title above toggle (font-size doubled) */}
-        <h2 style={{ textAlign: "center", marginBottom: 6, fontSize: "3rem", fontWeight: 800 }}>
-          Compare Plan Features and Pricing
+      <section style={{ maxWidth: 1200, margin: "0 auto", padding: "8px 8px 24px" }}>
+        <h2
+          style={{
+            textAlign: "center",
+            margin: "0 0 6px",
+            fontSize: "3rem",
+            fontWeight: 800,
+            letterSpacing: "-0.03em",
+          }}
+        >
+          Compare ScoutLine Plan Features and Pricing
         </h2>
 
-        {/* Toggle */}
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "1.1rem",
+            fontWeight: 700,
+            color: "#334155",
+            marginBottom: 4,
+          }}
+        >
+          Built to help players get seen, teams stay organized, and coaches recruit faster.
+        </div>
+
+        <div
+          style={{
+            textAlign: "center",
+            fontSize: "0.95rem",
+            color: "#64748b",
+            marginBottom: 16,
+          }}
+        >
+          Choose the right plan for your recruiting journey.
+        </div>
+
+        {/* Coach CTA */}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
-            gap: 12,
-            alignItems: "center",
-            marginBottom: 14,
+            gap: 18,
+            alignItems: "flex-start",
+            marginBottom: 18,
             flexWrap: "wrap",
           }}
         >
-          <div
-            role="group"
-            aria-label="Billing period"
-            style={{
-              display: "inline-flex",
-              border: "1px solid #e5e7eb",
-              borderRadius: 999,
-              overflow: "hidden",
-              background: "#fff",
-            }}
-          >
-            <button
-              aria-pressed={billing === "monthly"}
-              onClick={() => setBilling("monthly")}
-              className="sl-pill"
+          <div style={{ display: "grid", gap: 6, justifyItems: "center" }}>
+            <Link
+              href="/onboarding/coach"
               style={{
-                padding: "8px 14px",
-                border: "none",
-                cursor: "pointer",
-                background: billing === "monthly" ? "#0f172a" : "transparent",
-                color: billing === "monthly" ? "#fff" : "#0f172a",
-                fontWeight: 700,
+                whiteSpace: "nowrap",
+                background: "#0ea5e9",
+                color: "#ffffff",
+                border: "1px solid #0ea5e9",
+                padding: "10px 18px",
+                borderRadius: 999,
+                fontWeight: 800,
+                textDecoration: "none",
+                boxShadow: "0 4px 10px rgba(14,165,233,0.25)",
+                transition: "transform .15s ease, box-shadow .15s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-1px)";
+                e.currentTarget.style.boxShadow =
+                  "0 6px 14px rgba(14,165,233,0.35)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "none";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 10px rgba(14,165,233,0.25)";
               }}
             >
-              Monthly
-            </button>
-            <button
-              aria-pressed={billing === "annual"}
-              onClick={() => setBilling("annual")}
-              className="sl-pill"
+              College Coaches and Recruiters — Create Your Free Account
+            </Link>
+
+            <div
               style={{
-                padding: "8px 14px",
-                border: "none",
-                cursor: "pointer",
-                background: billing === "annual" ? "#0f172a" : "transparent",
-                color: billing === "annual" ? "#fff" : "#0f172a",
+                fontSize: "0.82rem",
                 fontWeight: 700,
+                color: "#0284c7",
+                textAlign: "center",
+                lineHeight: 1.25,
               }}
             >
-              Annually
-            </button>
+              College coaches and recruiters always use ScoutLine free.
+            </div>
           </div>
-
-          {/* Coaches link stays up top */}
-          <Link href="/onboarding/coach" className="sl-link-btn" style={{ whiteSpace: "nowrap" }}>
-            College Coaches and Recruiters →
-          </Link>
-
         </div>
 
-        {/* Sticky plan cards aligned with feature columns */}
+        {/* Sticky plan cards */}
         <div
           ref={headerRef}
           style={{
             position: "sticky",
             top: 0,
             zIndex: 30,
-            background: "#fff",
+            background: "rgba(255,255,255,0.96)",
+            backdropFilter: "blur(8px)",
             borderBottom: "1px solid #e5e7eb",
-            boxShadow: stuck ? "0 4px 16px rgba(15,23,42,0.08)" : "none",
-            padding: "10px 6px",
+            boxShadow: stuck ? "0 8px 20px rgba(15,23,42,0.08)" : "none",
+            padding: "12px 6px",
           }}
         >
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
-              gap: 10,
+              gridTemplateColumns:
+                "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+              gap: 12,
               alignItems: "stretch",
             }}
           >
-            {/* Left spacer column to align with feature labels */}
             <div />
+
             {planOrder.map((key) => {
               const plan = planMap[key];
-              const priceText =
-                billing === "monthly" || !plan.priceAnnual ? plan.priceMonthly : plan.priceAnnual;
+              const priceText = plan.priceMonthly;
 
               return (
                 <div
                   key={plan.key}
                   className={`plan-card ${plan.highlight ? "highlight" : ""}`}
                   style={{
-                    border: plan.highlight ? "2px solid #caa042" : "1px solid #e5e7eb",
-                    borderRadius: 12,
-                    padding: 16,
-                    background: plan.highlight ? "linear-gradient(0deg, #fff7e6, #fff)" : "#fff",
+                    border: plan.highlight
+                      ? "2px solid #caa042"
+                      : "1px solid #e5e7eb",
+                    borderRadius: 16,
+                    padding: 18,
+                    background: plan.highlight
+                      ? "linear-gradient(180deg, #fffaf0 0%, #ffffff 100%)"
+                      : "linear-gradient(180deg, #ffffff 0%, #fcfcfd 100%)",
                     position: "relative",
-                    boxShadow: "0 4px 12px rgba(15,23,42,0.06)",
+                    boxShadow: plan.highlight
+                      ? "0 12px 30px rgba(202,160,66,0.18)"
+                      : "0 8px 20px rgba(15,23,42,0.06)",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    minHeight: 200,
+                    minHeight: 220,
                     textAlign: "center",
+                    transition: "transform .18s ease, box-shadow .18s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                    e.currentTarget.style.boxShadow = plan.highlight
+                      ? "0 16px 34px rgba(202,160,66,0.22)"
+                      : "0 12px 26px rgba(15,23,42,0.10)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "none";
+                    e.currentTarget.style.boxShadow = plan.highlight
+                      ? "0 12px 30px rgba(202,160,66,0.18)"
+                      : "0 8px 20px rgba(15,23,42,0.06)";
                   }}
                 >
                   {plan.highlight && (
@@ -330,45 +367,66 @@ export default function PricingPage() {
                         transform: "translateX(-50%)",
                         background: "#caa042",
                         color: "#0f172a",
-                        padding: "2px 10px",
+                        padding: "4px 12px",
                         borderRadius: 999,
                         fontSize: "0.75rem",
-                        fontWeight: 800,
+                        fontWeight: 900,
+                        letterSpacing: "0.01em",
+                        boxShadow: "0 6px 14px rgba(202,160,66,0.28)",
                       }}
                     >
                       Most Popular
                     </div>
                   )}
 
-                  {/* Top: name + tagline */}
                   <div>
-                    <h3 style={{ margin: 0, fontSize: "1.25rem", fontWeight: 800 }}>{plan.name}</h3>
-                    <p style={{ margin: "6px 0 0", color: "#64748b", fontStyle: "italic" }}>{plan.tagline}</p>
+                    <h3
+                      style={{
+                        margin: 0,
+                        fontSize: "1.25rem",
+                        fontWeight: 900,
+                        letterSpacing: "-0.01em",
+                      }}
+                    >
+                      {plan.name}
+                    </h3>
+
+                    <p
+                      style={{
+                        margin: "6px 0 0",
+                        color: "#64748b",
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {plan.tagline}
+                    </p>
                   </div>
 
-                  {/* Middle: flexible spacer */}
                   <div style={{ flex: 1 }} />
 
-                  {/* Bottom: price + CTA */}
                   <div>
-                    <div className="price" style={{ fontSize: "1.1rem", fontWeight: 800, margin: "10px 0 12px" }}>
+                    <div
+                      className="price"
+                      style={{
+                        fontSize: "1.12rem",
+                        fontWeight: 900,
+                        margin: "10px 0 12px",
+                        lineHeight: 1.25,
+                      }}
+                    >
                       {priceText}
-                      {billing === "annual" && plan.priceAnnualNote && (
-                        <span
-                          className="annual-note"
-                          style={{ display: "block", fontSize: "0.8rem", color: "#6b7280", marginTop: 2 }}
-                        >
-                          {plan.priceAnnualNote}
-                        </span>
-                      )}
                     </div>
-<Link
-  href={planToOnboardingHref(plan.key, billing)}
-  className="sl-link-btn gold"
-  style={{ display: "inline-block" }}
->
-  Get Started
-</Link>
+
+                    <Link
+                    href={planToOnboardingHref(plan.key)}
+                      className="sl-link-btn gold"
+                      style={{
+                        display: "inline-block",
+                        minWidth: 132,
+                      }}
+                    >
+                      Get Started
+                    </Link>
                   </div>
                 </div>
               );
@@ -376,7 +434,7 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* Feature sections as dropdowns with left arrows + lift/underline on headers */}
+        {/* Feature sections */}
         <div style={{ marginTop: 18 }}>
           {SECTIONS.map((section) => (
             <div key={section.title} style={{ marginBottom: 24 }}>
@@ -397,11 +455,13 @@ export default function PricingPage() {
                   background: "transparent",
                   cursor: "pointer",
                   borderBottom: "2px solid transparent",
-                  transition: "transform .2s ease, box-shadow .2s ease, border-color .2s ease",
+                  transition:
+                    "transform .2s ease, box-shadow .2s ease, border-color .2s ease",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-2px)";
-                  e.currentTarget.style.boxShadow = "0 6px 16px rgba(15,23,42,0.12)";
+                  e.currentTarget.style.boxShadow =
+                    "0 6px 16px rgba(15,23,42,0.12)";
                   e.currentTarget.style.borderBottom = "2px solid #caa042";
                 }}
                 onMouseLeave={(e) => {
@@ -414,7 +474,9 @@ export default function PricingPage() {
                   aria-hidden
                   style={{
                     display: "inline-block",
-                    transform: openSections[section.title] ? "rotate(90deg)" : "rotate(0deg)",
+                    transform: openSections[section.title]
+                      ? "rotate(90deg)"
+                      : "rotate(0deg)",
                     transition: "transform .2s ease",
                     fontSize: 16,
                     color: "#0f172a",
@@ -430,22 +492,23 @@ export default function PricingPage() {
                   style={{
                     overflowX: "auto",
                     border: "1px solid #e5e7eb",
-                    borderRadius: 12,
+                    borderRadius: 14,
                     marginTop: 10,
+                    boxShadow: "0 6px 16px rgba(15,23,42,0.04)",
                   }}
                 >
-                  {/* Grid layout so columns align with plan cards (left label + 4 plans) */}
                   {section.rows.map((row, idx) => (
                     <div
                       key={row.key}
                       style={{
                         display: "grid",
-                        gridTemplateColumns: "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
+                        gridTemplateColumns:
+                          "minmax(220px, 1fr) repeat(4, minmax(180px, 1fr))",
                         gap: 10,
                         alignItems: "center",
                         padding: "12px 8px",
                         borderTop: idx === 0 ? "none" : "1px solid #f1f5f9",
-                        background: "#fff",
+                        background: idx % 2 === 0 ? "#fff" : "#fcfcfd",
                       }}
                     >
                       <div
@@ -453,7 +516,7 @@ export default function PricingPage() {
                           position: "sticky",
                           left: 0,
                           zIndex: 2,
-                          background: "#fff",
+                          background: idx % 2 === 0 ? "#fff" : "#fcfcfd",
                           paddingRight: 8,
                           fontWeight: 700,
                         }}
@@ -461,8 +524,12 @@ export default function PricingPage() {
                       >
                         {row.label}
                       </div>
+
                       {planOrder.map((key) => (
-                        <div key={key} style={{ display: "flex", justifyContent: "center" }}>
+                        <div
+                          key={key}
+                          style={{ display: "flex", justifyContent: "center" }}
+                        >
                           {cellContent(row.availability[key])}
                         </div>
                       ))}
@@ -485,23 +552,33 @@ export default function PricingPage() {
           text-decoration: none;
           border: 1px solid #e5e7eb;
           font-weight: 800;
-          transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, text-decoration-color .2s ease, border-color .2s ease;
+          transition:
+            transform .2s ease,
+            box-shadow .2s ease,
+            background-color .2s ease,
+            text-decoration-color .2s ease,
+            border-color .2s ease;
         }
+
         .sl-link-btn:hover {
           transform: translateY(-2px);
           box-shadow: 0 6px 16px rgba(0,0,0,0.18);
-          background: #f3f4f6;
+          background: #e5e7eb;
           text-decoration: underline;
           text-underline-offset: 3px;
         }
+
         .sl-link-btn.gold {
           background: #caa042;
           color: #0f172a;
           border-color: #caa042;
+          box-shadow: 0 4px 10px rgba(202,160,66,0.22);
         }
+
         .sl-link-btn.gold:hover {
           background: #d7b25e;
           border-color: #d7b25e;
+          box-shadow: 0 8px 18px rgba(202,160,66,0.30);
         }
       `}</style>
     </main>

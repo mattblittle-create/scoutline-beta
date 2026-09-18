@@ -119,7 +119,7 @@ export default async function TeamBillingInvoicesPage({
   }
 
   const planTier = "Teams" as const;
-  const cadence = "Monthly" as const;
+  const cadence = "monthly" as const;
   const basePriceCents = PLAN_PRICES_CENTS[planTier][cadence];
 
   const seatsUsed = await prisma.teamMembership.count({

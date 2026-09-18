@@ -1,3 +1,5 @@
+// app/coach/invite/accept/page.tsx
+
 "use client";
 
 import React, { useEffect, useState } from "react";

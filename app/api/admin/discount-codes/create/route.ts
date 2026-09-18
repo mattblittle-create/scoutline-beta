@@ -16,7 +16,7 @@ function normCode(s: any) {
 }
 
 export async function POST(req: Request) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
 
   try {
     const body = await req.json().catch(() => ({}));
@@ -49,10 +49,14 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Invalid durationType" }, { status: 400 });
     }
 
-    const durationMonths =
-      durationType === "MONTHS" ? Number(body.durationMonths) : null;
+    // ✅ Keep as number for TS (NaN means "not provided/invalid")
+    const durationMonthsNum: number =
+      durationType === "MONTHS" ? Number(body.durationMonths) : Number.NaN;
 
-    if (durationType === "MONTHS" && (!Number.isFinite(durationMonths) || durationMonths < 1 || durationMonths > 120)) {
+    if (
+      durationType === "MONTHS" &&
+      (!Number.isFinite(durationMonthsNum) || durationMonthsNum < 1 || durationMonthsNum > 120)
+    ) {
       return NextResponse.json({ ok: false, error: "durationMonths must be 1–120" }, { status: 400 });
     }
 
@@ -61,9 +65,8 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: "Invalid expiresAt" }, { status: 400 });
     }
 
-    const maxRedemptions = body.maxRedemptions === null || body.maxRedemptions === undefined
-      ? null
-      : Number(body.maxRedemptions);
+    const maxRedemptions =
+      body.maxRedemptions === null || body.maxRedemptions === undefined ? null : Number(body.maxRedemptions);
 
     if (maxRedemptions !== null && (!Number.isFinite(maxRedemptions) || maxRedemptions < 1)) {
       return NextResponse.json({ ok: false, error: "maxRedemptions must be 1+ or null" }, { status: 400 });
@@ -77,7 +80,7 @@ export async function POST(req: Request) {
       plansAllowedJson: typeof body.plansAllowedJson === "string" ? body.plansAllowedJson : "[]",
       cadence: body.cadence ?? null,
       durationType,
-      durationMonths: durationType === "MONTHS" ? Math.floor(durationMonths as any) : null,
+      durationMonths: durationType === "MONTHS" ? Math.floor(durationMonthsNum) : null,
       expiresAt,
       maxRedemptions: maxRedemptions === null ? null : Math.floor(maxRedemptions),
       isActive: !!body.isActive,

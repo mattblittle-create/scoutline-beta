@@ -179,7 +179,7 @@ export default function ClientAccountPage() {
       setUploading(false);
     }
   }
-
+ 
   async function onSavePhoto() {
     setPhotoMsg(null);
     if (!email) {
