@@ -87,6 +87,7 @@ import {
   applyReversedPlayerAchPayment,
   applySuccessfulPlayerPayment,
   getFailedInvoiceStatus,
+  applyVoidedPlayerAchPayment
 } from "@/lib/payments/processPlayerPaymentWebhook";
 
 describe(
@@ -2033,3 +2034,290 @@ describe("ACH settlement state transition", () => {
     });
   });
 });
+
+describe(
+  "ACH void state transition",
+  () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+
+      prismaMock.$transaction.mockImplementation(
+        async (
+          callback: (
+            tx: typeof txMock
+          ) => Promise<unknown>
+        ) => callback(txMock)
+      );
+
+      txMock.playerInvoice.update.mockResolvedValue(
+        {}
+      );
+
+      createBillingAuditLogMock.mockResolvedValue(
+        undefined
+      );
+    });
+
+    it(
+      "atomically voids a pre-terminal ACH transaction and its invoice",
+      async () => {
+        txMock.billingTransaction.updateMany.mockResolvedValue(
+          {
+            count: 1,
+          }
+        );
+
+        txMock.playerInvoice.findFirst.mockResolvedValue(
+          {
+            id: "invoice_1",
+            playerProfileId:
+              "player_profile_1",
+            status: "UPCOMING",
+            processorTransactionId:
+              null,
+            playerProfile: {
+              id: "player_profile_1",
+            },
+          }
+        );
+
+        const normalized = {
+          event:
+            "ACH.STATUS.VOIDED",
+          rawEvent:
+            "ach.status.voided",
+          status:
+            "VOIDED",
+          approved:
+            false,
+          reference:
+            "invoice_1",
+          transactionId:
+            "ach_txn_1",
+          providerPaymentRef:
+            "",
+          receiptUrl:
+            null,
+          amount:
+            2495,
+          surcharge:
+            0,
+          paymentType:
+            "ACH",
+          brand:
+            null,
+          last4:
+            null,
+          payload: {},
+        };
+
+        const rawPayload = {
+          PayLoadType:
+            "ach.status.voided",
+        };
+
+        const result =
+          await applyVoidedPlayerAchPayment({
+            provider:
+              PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+            normalized,
+
+            billingTransactionId:
+              "billing_txn_1",
+
+            rawPayload,
+          });
+
+        expect(
+          txMock.billingTransaction.updateMany
+        ).toHaveBeenCalledWith({
+          where: {
+            id:
+              "billing_txn_1",
+
+            provider:
+              PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+            transactionStatus: {
+              in: [
+                "SUBMITTING",
+                "PENDING",
+                "APPROVED",
+                "SETTLING",
+                "UNKNOWN",
+              ],
+            },
+          },
+
+          data: {
+            transactionStatus:
+              "VOIDED",
+
+            responseMessage:
+              "VOIDED",
+
+            rawPayload,
+          },
+        });
+
+        expect(
+          txMock.playerInvoice.findFirst
+        ).toHaveBeenCalledWith({
+          where: {
+            OR: [
+              {
+                externalId:
+                  "invoice_1",
+              },
+              {
+                id:
+                  "invoice_1",
+              },
+            ],
+          },
+
+          include: {
+            playerProfile:
+              true,
+          },
+        });
+
+        expect(
+          txMock.playerInvoice.update
+        ).toHaveBeenCalledWith({
+          where: {
+            id:
+              "invoice_1",
+          },
+
+          data: {
+            status:
+              "VOID",
+
+            amountPaidCents:
+              0,
+
+            paidAt:
+              null,
+
+            paymentProcessingAt:
+              null,
+
+            processorTransactionId:
+              "ach_txn_1",
+
+            processorResponseCode:
+              "VOIDED",
+          },
+        });
+
+        expect(
+          txMock.playerProfile.update
+        ).not.toHaveBeenCalled();
+
+        expect(
+          createBillingAuditLogMock
+        ).not.toHaveBeenCalled();
+
+        expect(result).toEqual({
+          alreadyProcessed:
+            false,
+
+          voidApplied:
+            true,
+
+          playerProfileId:
+            "player_profile_1",
+
+          invoiceStatus:
+            "VOID",
+
+          transactionStatus:
+            "VOIDED",
+        });
+      }
+    );
+
+    it(
+      "does not void billing again when VOIDED cannot transition from a pre-terminal ACH state",
+      async () => {
+        txMock.billingTransaction.updateMany.mockResolvedValue(
+          {
+            count: 0,
+          }
+        );
+
+        const normalized = {
+          event:
+            "ACH.STATUS.VOIDED",
+          rawEvent:
+            "ach.status.voided",
+          status:
+            "VOIDED",
+          approved:
+            false,
+          reference:
+            "invoice_1",
+          transactionId:
+            "ach_txn_1",
+          providerPaymentRef:
+            "",
+          receiptUrl:
+            null,
+          amount:
+            2495,
+          surcharge:
+            0,
+          paymentType:
+            "ACH",
+          brand:
+            null,
+          last4:
+            null,
+          payload: {},
+        };
+
+        const result =
+          await applyVoidedPlayerAchPayment({
+            provider:
+              PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+            normalized,
+
+            billingTransactionId:
+              "billing_txn_1",
+
+            rawPayload: {
+              PayLoadType:
+                "ach.status.voided",
+            },
+          });
+
+        expect(
+          txMock.playerInvoice.findFirst
+        ).not.toHaveBeenCalled();
+
+        expect(
+          txMock.playerInvoice.update
+        ).not.toHaveBeenCalled();
+
+        expect(
+          txMock.playerProfile.update
+        ).not.toHaveBeenCalled();
+
+        expect(
+          createBillingAuditLogMock
+        ).not.toHaveBeenCalled();
+
+        expect(result).toEqual({
+          alreadyProcessed:
+            true,
+
+          voidApplied:
+            false,
+        });
+      }
+    );
+  }
+);

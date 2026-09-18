@@ -22,7 +22,12 @@ import {
   applyFailedPlayerPaymentWithDunning,
   applyReversedPlayerAchPayment,
   applySuccessfulPlayerPayment,
+  applyVoidedPlayerAchPayment,
 } from "@/lib/payments/processPlayerPaymentWebhook";
+
+import {
+  canUpdateClearentAchTransactionStatus,
+} from "@/lib/payments/providers/clearentAchTransactionState";
 
 export const runtime =
   "nodejs";
@@ -33,14 +38,8 @@ export const dynamic =
 function isFailureStatus(
   status: string
 ) {
-  return (
-    status === "RETURNED" ||
-    status === "CHARGEBACK" ||
-    status.startsWith(
-      "REJECTED_"
-    ) ||
-    status === "FAILED" ||
-    status === "VOIDED"
+  return status.startsWith(
+    "REJECTED_"
   );
 }
 
@@ -359,6 +358,45 @@ export async function POST(
     }
 
         /*
+     * VOIDED represents an ACH payment canceled
+     * before settlement.
+     *
+     * The processor atomically transitions the
+     * BillingTransaction from an allowed
+     * pre-terminal state and voids only the
+     * associated invoice.
+     *
+     * Replayed or stale VOIDED webhooks cannot
+     * overwrite another terminal ACH state.
+     */
+    if (
+      normalized.status ===
+      "VOIDED"
+    ) {
+      const result =
+        await applyVoidedPlayerAchPayment({
+          provider:
+            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+          normalized,
+
+          billingTransactionId:
+            existingTransaction.id,
+
+          rawPayload:
+            payload,
+        });
+
+      return NextResponse.json({
+        ok: true,
+        matched: true,
+        action:
+          "VOIDED",
+        result,
+      });
+    }
+
+        /*
      * SETTLED is the authoritative successful
      * ACH payment state.
      *
@@ -403,22 +441,39 @@ export async function POST(
      * Always record the latest provider
      * status and webhook payload first.
      */
-    await prisma.billingTransaction.update({
-      where: {
-        id:
-          existingTransaction.id,
-      },
-      data: {
-        transactionStatus:
-          normalized.status,
+/*
+ * Remaining webhook statuses use the generic
+ * provider-state recorder.
+ *
+ * Never allow an out-of-order intermediate
+ * webhook to overwrite a terminal ACH state.
+ * Terminal financial transitions are handled
+ * by their dedicated processors above.
+ */
+const canUpdateStatus =
+  canUpdateClearentAchTransactionStatus(
+    existingTransaction.transactionStatus,
+    normalized.status
+  );
 
-        responseMessage:
-          normalized.status,
+if (canUpdateStatus) {
+  await prisma.billingTransaction.update({
+    where: {
+      id: existingTransaction.id,
+    },
 
-        rawPayload:
-          payload as any,
-      },
-    });
+    data: {
+      transactionStatus:
+        normalized.status,
+
+      responseMessage:
+        normalized.status,
+
+      rawPayload:
+        payload as any,
+    },
+  });
+}
 
     if (
       isFailureStatus(

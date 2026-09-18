@@ -1081,3 +1081,149 @@ export async function applyReversedPlayerAchPayment({
     }
   );
 }
+
+type ApplyVoidedPlayerAchPaymentInput = {
+  provider: PaymentProviderCode;
+  normalized: NormalizedPaymentWebhook;
+  billingTransactionId: string;
+  rawPayload: unknown;
+};
+
+export async function applyVoidedPlayerAchPayment({
+  provider,
+  normalized,
+  billingTransactionId,
+  rawPayload,
+}: ApplyVoidedPlayerAchPaymentInput) {
+  return prisma.$transaction(
+    async (tx) => {
+      /*
+       * A VOID is valid only before settlement.
+       *
+       * Atomically claim the provider transition
+       * so a stale or replayed VOID cannot
+       * overwrite SETTLED, FAILED, RETURNED,
+       * CHARGEBACK, or an already-VOIDED
+       * transaction.
+       */
+      const transition =
+        await tx.billingTransaction.updateMany({
+          where: {
+            id: billingTransactionId,
+
+            provider,
+
+            transactionStatus: {
+              in: [
+                "SUBMITTING",
+                "PENDING",
+                "APPROVED",
+                "SETTLING",
+                "UNKNOWN",
+              ],
+            },
+          },
+
+          data: {
+            transactionStatus:
+              "VOIDED",
+
+            responseMessage:
+              "VOIDED",
+
+            rawPayload:
+              rawPayload as any,
+          },
+        });
+
+      if (
+        transition.count !== 1
+      ) {
+        return {
+          alreadyProcessed:
+            true,
+
+          voidApplied:
+            false,
+        };
+      }
+
+      const invoice =
+        await tx.playerInvoice.findFirst({
+          where: {
+            OR: [
+              {
+                externalId:
+                  normalized.reference,
+              },
+              {
+                id:
+                  normalized.reference,
+              },
+            ],
+          },
+
+          include: {
+            playerProfile:
+              true,
+          },
+        });
+
+      if (!invoice) {
+        throw new Error(
+          `No PlayerInvoice found for reference ${normalized.reference}`
+        );
+      }
+
+      /*
+       * A voided ACH transaction never settled,
+       * so the associated invoice is VOID rather
+       * than PAID or PAST_DUE.
+       */
+      await tx.playerInvoice.update({
+        where: {
+          id:
+            invoice.id,
+        },
+
+        data: {
+          status:
+            InvoiceStatus.VOID,
+
+          amountPaidCents:
+            0,
+
+          paidAt:
+            null,
+
+          paymentProcessingAt:
+            null,
+
+          processorTransactionId:
+            normalized.transactionId ||
+            invoice.processorTransactionId,
+
+          processorResponseCode:
+            "VOIDED",
+        },
+      });
+
+      return {
+        alreadyProcessed:
+          false,
+
+        voidApplied:
+          true,
+
+        playerProfileId:
+          invoice.playerProfileId,
+
+        invoiceStatus:
+          InvoiceStatus.VOID,
+
+        transactionStatus:
+          "VOIDED",
+      };
+    }
+  );
+}
