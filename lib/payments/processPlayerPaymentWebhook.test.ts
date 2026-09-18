@@ -830,3 +830,278 @@ describe(
     );
   }
 );
+
+describe(
+  "successful payment dunning cleanup",
+  () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+
+      prismaMock.$transaction.mockImplementation(
+        async (
+          callback: (
+            tx: typeof txMock
+          ) => unknown
+        ) => {
+          return callback(txMock);
+        }
+      );
+
+      txMock.playerInvoice.update
+        .mockResolvedValue({});
+
+      txMock.playerInvoice.findFirst
+        .mockResolvedValueOnce({
+          id:
+            "invoice_recurring_ach_past_due_1",
+
+          playerProfileId:
+            "profile_recurring_ach_past_due_1",
+
+          externalId: null,
+
+          status:
+            InvoiceStatus.PAST_DUE,
+
+          cadence:
+            "monthly",
+
+          amountCents:
+            2495,
+
+          cardFeeCents:
+            0,
+
+          amountPaidCents:
+            0,
+
+          failedAttemptCount:
+            2,
+
+          lastFailedAt:
+            new Date(
+              "2026-09-15T12:00:00Z"
+            ),
+
+          nextRetryAt:
+            new Date(
+              "2026-09-20T12:00:00Z"
+            ),
+
+          failureReason:
+            "Previous ACH payment failed.",
+
+          paymentProcessingAt:
+            new Date(
+              "2026-09-18T12:00:00Z"
+            ),
+
+          hostedUrl:
+            null,
+
+          processorReceiptUrl:
+            null,
+
+          processorTransactionId:
+            null,
+
+          processorResponseCode:
+            null,
+
+          playerProfile: {
+            id:
+              "profile_recurring_ach_past_due_1",
+
+            userId:
+              null,
+
+            playerPlanTier:
+              "WALK_ON",
+
+            user:
+              null,
+          },
+        });
+
+      /*
+       * applySuccessfulPlayerPayment checks for an
+       * existing future invoice after marking the
+       * settled invoice paid. Return one so this
+       * regression test stays focused on clearing
+       * stale dunning state.
+       */
+      txMock.playerInvoice.findFirst
+        .mockResolvedValueOnce({
+          id:
+            "invoice_existing_upcoming_1",
+        });
+
+      txMock.playerProfile.update
+        .mockResolvedValue({});
+
+      txMock.player.updateMany
+        .mockResolvedValue({
+          count: 0,
+        });
+
+      txMock.playerBillingProfile.upsert
+        .mockResolvedValue({});
+
+      createBillingAuditLogMock
+        .mockResolvedValue(undefined);
+    });
+
+    it(
+      "clears stale dunning and processing state when a past-due recurring ACH invoice settles",
+      async () => {
+        const invoiceId =
+          "invoice_recurring_ach_past_due_1";
+
+        const result =
+          await applySuccessfulPlayerPayment({
+            provider:
+              PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+            normalized: {
+              event:
+                "ACH_STATUS_SETTLED",
+
+              rawEvent:
+                "ach.status.settled",
+
+              status:
+                "SETTLED",
+
+              approved:
+                true,
+
+              reference:
+                invoiceId,
+
+              transactionId:
+                "xplor_tx_recurring_settled_1",
+
+              providerPaymentRef:
+                "",
+
+              receiptUrl:
+                null,
+
+              amount:
+                2495,
+
+              surcharge:
+                0,
+
+              paymentType:
+                "ACH",
+
+              brand:
+                null,
+
+              last4:
+                "7890",
+
+              payload: {
+                test:
+                  "past-due-recurring-settled",
+              },
+            },
+          });
+
+        expect(
+          txMock.playerInvoice.update
+        ).toHaveBeenCalledWith({
+          where: {
+            id:
+              invoiceId,
+          },
+
+          data: {
+            status:
+              InvoiceStatus.PAID,
+
+            amountPaidCents:
+              2495,
+
+            cardFeeCents:
+              0,
+
+            paidAt:
+              expect.any(Date),
+
+            failedAttemptCount:
+              0,
+
+            lastFailedAt:
+              null,
+
+            nextRetryAt:
+              null,
+
+            failureReason:
+              null,
+
+            paymentProcessingAt:
+              null,
+
+            hostedUrl:
+              null,
+
+            processorReceiptUrl:
+              null,
+
+            processorTransactionId:
+              "xplor_tx_recurring_settled_1",
+
+            processorResponseCode:
+              "SETTLED",
+          },
+        });
+
+        expect(
+          txMock.playerProfile.update
+        ).toHaveBeenCalledWith({
+          where: {
+            id:
+              "profile_recurring_ach_past_due_1",
+          },
+
+          data: {
+            hasActivePlayerBilling:
+              true,
+
+            billingConflictFlag:
+              false,
+
+            playerBillingStatus:
+              PLAYER_BILLING_STATUS.ACTIVE,
+
+            playerBillingCadence:
+              "monthly",
+
+            playerPlanTier:
+              "WALK_ON",
+
+            playerCancelRequestedAt:
+              null,
+
+            playerCancelEffectiveAt:
+              null,
+
+            profileState:
+              "PLAYER_OWNED_ACTIVE",
+          },
+        });
+
+        expect(result).toEqual({
+          alreadyProcessed:
+            false,
+
+          playerProfileId:
+            "profile_recurring_ach_past_due_1",
+        });
+      }
+    );
+  }
+);

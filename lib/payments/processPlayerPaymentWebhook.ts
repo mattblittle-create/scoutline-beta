@@ -150,33 +150,42 @@ const cardFeeCents =
 const totalPaidCents =
   paidSubtotalCents + cardFeeCents;
 
-    await tx.playerInvoice.update({
-      where: {
-        id: invoice.id,
-      },
-      data: {
-        status: InvoiceStatus.PAID,
-        amountPaidCents: totalPaidCents,
-        cardFeeCents,
-        paidAt,
+await tx.playerInvoice.update({
+  where: {
+    id: invoice.id,
+  },
+  data: {
+    status: InvoiceStatus.PAID,
+    amountPaidCents: totalPaidCents,
+    cardFeeCents,
+    paidAt,
 
-        hostedUrl:
-          normalized.receiptUrl ||
-          invoice.hostedUrl,
+    // A successful settlement is authoritative.
+    // Clear any stale dunning or processing state that may
+    // remain from an earlier failed recurring payment attempt.
+    failedAttemptCount: 0,
+    lastFailedAt: null,
+    nextRetryAt: null,
+    failureReason: null,
+    paymentProcessingAt: null,
 
-        processorReceiptUrl:
-          normalized.receiptUrl ||
-          invoice.processorReceiptUrl,
+    hostedUrl:
+      normalized.receiptUrl ||
+      invoice.hostedUrl,
 
-        processorTransactionId:
-          normalized.transactionId ||
-          invoice.processorTransactionId,
+    processorReceiptUrl:
+      normalized.receiptUrl ||
+      invoice.processorReceiptUrl,
 
-        processorResponseCode:
-          normalized.status ||
-          invoice.processorResponseCode,
-      },
-    });
+    processorTransactionId:
+      normalized.transactionId ||
+      invoice.processorTransactionId,
+
+    processorResponseCode:
+      normalized.status ||
+      invoice.processorResponseCode,
+  },
+});
 
     await tx.playerProfile.update({
       where: {
