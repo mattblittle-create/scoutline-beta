@@ -27,15 +27,19 @@ const {
   prismaMock,
   createBillingAuditLogMock,
 } = vi.hoisted(() => {
-  const txMock = {
-    playerInvoice: {
-      findFirst: vi.fn(),
-      update: vi.fn(),
-      updateMany: vi.fn(),
-    },
+const txMock = {
+  billingTransaction: {
+    updateMany: vi.fn(),
+  },
 
-    playerProfile: {
-      update: vi.fn(),
+  playerInvoice: {
+    findFirst: vi.fn(),
+    update: vi.fn(),
+    updateMany: vi.fn(),
+  },
+
+  playerProfile: {
+    update: vi.fn(),
     },
 
     player: {
@@ -78,6 +82,7 @@ vi.mock(
 
 import {
   applyFailedPlayerPayment,
+  applyFailedPlayerPaymentWithDunning,
   applySuccessfulPlayerPayment,
   getFailedInvoiceStatus,
 } from "@/lib/payments/processPlayerPaymentWebhook";
@@ -1105,3 +1110,237 @@ describe(
     );
   }
 );
+
+describe("failed recurring ACH webhook dunning", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  it("applies dunning once when an ACH transaction first transitions to FAILED", async () => {
+    const invoice = {
+      id: "invoice_ach_failed_1",
+      externalId: null,
+      playerProfileId: "player_ach_failed_1",
+      status: "UPCOMING",
+      amountCents: 2495,
+      amountPaidCents: 0,
+      cardFeeCents: 0,
+      failedAttemptCount: 0,
+      lastFailedAt: null,
+      nextRetryAt: null,
+      failureReason: null,
+      paidAt: null,
+      paymentProcessingAt: null,
+      processorTransactionId: null,
+      processorResponseCode: null,
+      playerProfile: {
+        id: "player_ach_failed_1",
+      },
+    };
+
+    txMock.billingTransaction.updateMany.mockResolvedValue({
+      count: 1,
+    });
+
+    txMock.playerInvoice.findFirst.mockResolvedValue(
+      invoice
+    );
+
+    txMock.playerInvoice.update.mockResolvedValue({
+      ...invoice,
+      status: "PAST_DUE",
+      failedAttemptCount: 1,
+    });
+
+    txMock.playerProfile.update.mockResolvedValue({
+      id: invoice.playerProfileId,
+    });
+
+    const result =
+      await applyFailedPlayerPaymentWithDunning({
+        provider: PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        billingTransactionId:
+          "billing_tx_ach_failed_1",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+
+        normalized: {
+          rawEvent: "ach-transaction",
+          status: "FAILED",
+          transactionId:
+            "provider_tx_ach_failed_1",
+          reference:
+            invoice.id,
+          amount: 24.95,
+          paymentType: "ACH",
+          payload: {
+            transaction_id:
+              "provider_tx_ach_failed_1",
+            previous_status:
+              "PENDING",
+            new_status:
+              "FAILED",
+            amount: 24.95,
+          },
+        },
+      });
+
+    expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledTimes(1);
+
+    expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledWith(
+      expect.objectContaining({
+        where: expect.objectContaining({
+          id:
+            "billing_tx_ach_failed_1",
+          provider:
+            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+          transactionStatus: {
+            not: "FAILED",
+          },
+        }),
+      })
+    );
+
+    expect(
+      txMock.playerInvoice.update
+    ).toHaveBeenCalledTimes(1);
+
+    const invoiceUpdate =
+      txMock.playerInvoice.update.mock.calls[0][0];
+
+    expect(
+      invoiceUpdate.data.status
+    ).toBe("PAST_DUE");
+
+    expect(
+      invoiceUpdate.data.failedAttemptCount
+    ).toBe(1);
+
+    expect(
+      invoiceUpdate.data.lastFailedAt
+    ).toBeInstanceOf(Date);
+
+    expect(
+      invoiceUpdate.data.nextRetryAt
+    ).toBeInstanceOf(Date);
+
+    expect(
+      invoiceUpdate.data.nextRetryAt.getTime() -
+        invoiceUpdate.data.lastFailedAt.getTime()
+    ).toBe(
+      3 * 24 * 60 * 60 * 1000
+    );
+
+    expect(
+      invoiceUpdate.data.failureReason
+    ).toBe("FAILED");
+
+    expect(
+      invoiceUpdate.data.paymentProcessingAt
+    ).toBeNull();
+
+    expect(
+      txMock.playerProfile.update
+    ).toHaveBeenCalledWith({
+      where: {
+        id:
+          invoice.playerProfileId,
+      },
+
+      data: {
+        hasActivePlayerBilling:
+          true,
+
+        playerBillingStatus:
+          PLAYER_BILLING_STATUS.PAST_DUE,
+      },
+    });
+
+    expect(result).toEqual(
+      expect.objectContaining({
+        alreadyProcessed:
+          false,
+        dunningApplied:
+          true,
+        playerProfileId:
+          invoice.playerProfileId,
+        invoiceStatus:
+          "PAST_DUE",
+        failedAttemptCount:
+          1,
+        suspended:
+          false,
+      })
+    );
+  });
+
+  it("does not apply dunning again when a FAILED ACH webhook is replayed", async () => {
+    txMock.billingTransaction.updateMany.mockResolvedValue({
+      count: 0,
+    });
+
+    const result =
+      await applyFailedPlayerPaymentWithDunning({
+        provider: PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+        billingTransactionId:
+          "billing_tx_ach_failed_replay",
+
+        rawPayload: {
+          PayLoadType:
+            "ach-transaction",
+        },
+
+        normalized: {
+          rawEvent: "ach-transaction",
+          status: "FAILED",
+          transactionId:
+            "provider_tx_ach_failed_replay",
+          reference:
+            "invoice_ach_failed_replay",
+          amount: 24.95,
+          paymentType: "ACH",
+          payload: {
+            transaction_id:
+              "provider_tx_ach_failed_replay",
+            previous_status:
+              "PENDING",
+            new_status:
+              "FAILED",
+            amount: 24.95,
+          },
+        },
+      });
+
+    expect(
+      txMock.billingTransaction.updateMany
+    ).toHaveBeenCalledTimes(1);
+
+    expect(
+      txMock.playerInvoice.findFirst
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerInvoice.update
+    ).not.toHaveBeenCalled();
+
+    expect(
+      txMock.playerProfile.update
+    ).not.toHaveBeenCalled();
+
+    expect(result).toEqual({
+      alreadyProcessed:
+        true,
+      dunningApplied:
+        false,
+    });
+  });
+});

@@ -507,3 +507,264 @@ export async function applyFailedPlayerPayment({
     };
   });
 }
+
+type ApplyFailedPlayerPaymentWithDunningInput = {
+  provider: PaymentProviderCode;
+  normalized: NormalizedPaymentWebhook;
+  billingTransactionId: string;
+  rawPayload: unknown;
+};
+
+function addDunningDays(
+  date: Date,
+  days: number
+) {
+  return new Date(
+    date.getTime() +
+      days * 24 * 60 * 60 * 1000
+  );
+}
+
+export async function applyFailedPlayerPaymentWithDunning({
+  provider,
+  normalized,
+  billingTransactionId,
+  rawPayload,
+}: ApplyFailedPlayerPaymentWithDunningInput) {
+  return prisma.$transaction(
+    async (tx) => {
+      /*
+       * Atomically claim the transition into FAILED.
+       *
+       * Only a transaction that has not already been
+       * recorded as FAILED may perform the dunning
+       * side effects below. This makes replayed or
+       * concurrent FAILED webhooks idempotent.
+       */
+      const transition =
+        await tx.billingTransaction.updateMany({
+          where: {
+            id:
+              billingTransactionId,
+
+            provider,
+
+            transactionStatus: {
+              not:
+                "FAILED",
+            },
+          },
+
+          data: {
+            transactionStatus:
+              "FAILED",
+
+            responseMessage:
+              normalized.status,
+
+rawPayload:
+  rawPayload as any,
+          },
+        });
+
+      if (
+        transition.count !== 1
+      ) {
+        return {
+          alreadyProcessed:
+            true,
+
+          dunningApplied:
+            false,
+        };
+      }
+
+      const invoice =
+        await tx.playerInvoice.findFirst({
+          where: {
+            OR: [
+              {
+                externalId:
+                  normalized.reference,
+              },
+              {
+                id:
+                  normalized.reference,
+              },
+            ],
+          },
+
+          include: {
+            playerProfile:
+              true,
+          },
+        });
+
+      if (!invoice) {
+        throw new Error(
+          `No PlayerInvoice found for reference ${normalized.reference}`
+        );
+      }
+
+      const now =
+        new Date();
+
+      const nextFailedAttemptCount =
+        invoice.failedAttemptCount +
+        1;
+
+      const nextRetryAt =
+        nextFailedAttemptCount === 1
+          ? addDunningDays(
+              now,
+              3
+            )
+          : nextFailedAttemptCount === 2
+            ? addDunningDays(
+                now,
+                5
+              )
+            : addDunningDays(
+                now,
+                7
+              );
+
+      const shouldSuspend =
+        nextFailedAttemptCount >=
+        3;
+
+      await tx.playerInvoice.update({
+        where: {
+          id:
+            invoice.id,
+        },
+
+        data: {
+          status:
+            InvoiceStatus.PAST_DUE,
+
+          amountPaidCents:
+            0,
+
+          paidAt:
+            null,
+
+          failedAttemptCount:
+            nextFailedAttemptCount,
+
+          lastFailedAt:
+            now,
+
+          nextRetryAt,
+
+          failureReason:
+            normalized.status ||
+            "ACH payment failed.",
+
+          paymentProcessingAt:
+            null,
+
+          processorTransactionId:
+            normalized.transactionId ||
+            invoice.processorTransactionId,
+
+          processorResponseCode:
+            normalized.status ||
+            invoice.processorResponseCode,
+        },
+      });
+
+      await tx.playerProfile.update({
+        where: {
+          id:
+            invoice.playerProfileId,
+        },
+
+        data: {
+          hasActivePlayerBilling:
+            !shouldSuspend,
+
+          playerBillingStatus:
+            shouldSuspend
+              ? PLAYER_BILLING_STATUS.SUSPENDED
+              : PLAYER_BILLING_STATUS.PAST_DUE,
+        },
+      });
+
+      await createBillingAuditLog({
+        actorType:
+          "SYSTEM",
+
+        targetType:
+          "PLAYER_PROFILE",
+
+        targetId:
+          invoice.playerProfileId,
+
+        eventType:
+          normalized.rawEvent
+            .toUpperCase()
+            .includes(
+              "RECURRING"
+            )
+            ? "RECURRING_PAYMENT_FAILED"
+            : "PAYMENT_FAILED",
+
+        message:
+          `Payment failed for invoice ${normalized.reference}.`,
+
+        metadata: {
+          provider,
+
+          invoiceId:
+            invoice.id,
+
+          externalId:
+            normalized.reference,
+
+          amount:
+            normalized.amount,
+
+          paymentType:
+            normalized.paymentType,
+
+          transactionId:
+            normalized.transactionId,
+
+          responseStatus:
+            normalized.status,
+
+          failedAttemptCount:
+            nextFailedAttemptCount,
+
+          nextRetryAt,
+
+          suspended:
+            shouldSuspend,
+        },
+      });
+
+      return {
+        alreadyProcessed:
+          false,
+
+        dunningApplied:
+          true,
+
+        playerProfileId:
+          invoice.playerProfileId,
+
+        invoiceStatus:
+          InvoiceStatus.PAST_DUE,
+
+        failedAttemptCount:
+          nextFailedAttemptCount,
+
+        nextRetryAt,
+
+        suspended:
+          shouldSuspend,
+      };
+    }
+  );
+}

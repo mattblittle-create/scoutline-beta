@@ -19,6 +19,7 @@ import {
 
 import {
   applyFailedPlayerPayment,
+  applyFailedPlayerPaymentWithDunning,
   applySuccessfulPlayerPayment,
 } from "@/lib/payments/processPlayerPaymentWebhook";
 
@@ -271,6 +272,46 @@ export async function POST(
           status: 500,
         }
       );
+    }
+
+    /*
+     * FAILED is a definitive unsuccessful ACH
+     * payment attempt and enters ScoutLine's
+     * normal dunning/retry lifecycle.
+     *
+     * The processor atomically transitions the
+     * BillingTransaction into FAILED so replayed
+     * or concurrent FAILED webhooks cannot
+     * increment dunning more than once.
+     *
+     * This must run before the generic provider
+     * status update below.
+     */
+    if (
+      normalized.status ===
+      "FAILED"
+    ) {
+      const result =
+        await applyFailedPlayerPaymentWithDunning({
+          provider:
+            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+          normalized,
+
+          billingTransactionId:
+            existingTransaction.id,
+
+          rawPayload:
+            payload,
+        });
+
+      return NextResponse.json({
+        ok: true,
+        matched: true,
+        action:
+          "FAILED",
+        result,
+      });
     }
 
     /*
