@@ -37,6 +37,14 @@ const {
     playerProfile: {
       update: vi.fn(),
     },
+
+    player: {
+      updateMany: vi.fn(),
+    },
+
+    playerBillingProfile: {
+      upsert: vi.fn(),
+    },
   };
 
   const prismaMock = {
@@ -70,6 +78,7 @@ vi.mock(
 
 import {
   applyFailedPlayerPayment,
+  applySuccessfulPlayerPayment,
   getFailedInvoiceStatus,
 } from "@/lib/payments/processPlayerPaymentWebhook";
 
@@ -555,6 +564,267 @@ describe(
 
           invoiceStatus:
             InvoiceStatus.PAST_DUE,
+        });
+      }
+    );
+  }
+);
+
+describe(
+  "PlayerInvoice reference lookup",
+  () => {
+    beforeEach(() => {
+      vi.clearAllMocks();
+
+      prismaMock.$transaction.mockImplementation(
+        async (
+          callback: (
+            tx: typeof txMock
+          ) => unknown
+        ) => {
+          return callback(txMock);
+        }
+      );
+
+      txMock.playerInvoice.update
+        .mockResolvedValue({});
+
+      txMock.playerInvoice.updateMany
+        .mockResolvedValue({
+          count: 1,
+        });
+
+      txMock.playerProfile.update
+        .mockResolvedValue({});
+
+      txMock.player.updateMany
+        .mockResolvedValue({
+          count: 1,
+        });
+
+      txMock.playerBillingProfile.upsert
+        .mockResolvedValue({});
+
+      createBillingAuditLogMock
+        .mockResolvedValue(undefined);
+    });
+
+    it(
+      "finds a recurring ACH invoice by database id when externalId is null for SETTLED processing",
+      async () => {
+        const invoiceId =
+          "invoice_recurring_ach_1";
+
+        txMock.playerInvoice.findFirst
+          .mockResolvedValueOnce({
+            id: invoiceId,
+
+            playerProfileId:
+              "profile_recurring_ach_1",
+
+            externalId: null,
+
+            status:
+              InvoiceStatus.PAID,
+
+            cadence: "monthly",
+
+            amountCents: 2495,
+            cardFeeCents: 0,
+
+            playerProfile: {
+              id:
+                "profile_recurring_ach_1",
+
+              userId: null,
+
+              playerPlanTier:
+                "WALK_ON",
+
+              user: null,
+            },
+          });
+
+        const result =
+          await applySuccessfulPlayerPayment({
+            provider:
+              PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+            normalized: {
+              event:
+                "ACH_STATUS_SETTLED",
+
+              rawEvent:
+                "ach.status.settled",
+
+              status:
+                "SETTLED",
+
+              approved: true,
+
+              reference:
+                invoiceId,
+
+              transactionId:
+                "xplor_tx_recurring_1",
+
+              providerPaymentRef:
+                "",
+
+              receiptUrl: null,
+
+              amount: 2495,
+
+              surcharge: 0,
+
+              paymentType: "ACH",
+
+              brand: null,
+
+              last4: "7890",
+
+              payload: {
+                test:
+                  "recurring-settled",
+              },
+            },
+          });
+
+        expect(
+          txMock.playerInvoice.findFirst
+        ).toHaveBeenCalledWith({
+          where: {
+            OR: [
+              {
+                externalId:
+                  invoiceId,
+              },
+              {
+                id:
+                  invoiceId,
+              },
+            ],
+          },
+
+          include: {
+            playerProfile: {
+              include: {
+                user: true,
+              },
+            },
+          },
+        });
+
+        expect(result).toEqual({
+          alreadyProcessed: true,
+
+          playerProfileId:
+            "profile_recurring_ach_1",
+        });
+      }
+    );
+
+    it(
+      "finds a recurring ACH invoice by database id when externalId is null for failed processing",
+      async () => {
+        const invoiceId =
+          "invoice_recurring_ach_2";
+
+        txMock.playerInvoice.findFirst
+          .mockResolvedValue({
+            id: invoiceId,
+
+            playerProfileId:
+              "profile_recurring_ach_2",
+
+            externalId: null,
+
+            status:
+              InvoiceStatus.PAID,
+
+            amountCents: 2495,
+            cardFeeCents: 0,
+            amountPaidCents: 2495,
+
+            paidAt:
+              new Date(
+                "2026-09-18T12:00:00Z"
+              ),
+
+            processorTransactionId:
+              "xplor_tx_recurring_2",
+
+            processorResponseCode:
+              "SETTLED",
+
+            playerProfile: {
+              id:
+                "profile_recurring_ach_2",
+            },
+          });
+
+        await applyFailedPlayerPayment({
+          provider:
+            PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+
+          normalized: {
+            event:
+              "ACH_STATUS_RETURNED",
+
+            rawEvent:
+              "ach.status.returned",
+
+            status:
+              "RETURNED",
+
+            approved: false,
+
+            reference:
+              invoiceId,
+
+            transactionId:
+              "xplor_tx_recurring_2",
+
+            providerPaymentRef: "",
+
+            receiptUrl: null,
+
+            amount: 2495,
+
+            surcharge: 0,
+
+            paymentType: "ACH",
+
+            brand: null,
+
+            last4: "7890",
+
+            payload: {
+              test:
+                "recurring-returned",
+            },
+          },
+        });
+
+        expect(
+          txMock.playerInvoice.findFirst
+        ).toHaveBeenCalledWith({
+          where: {
+            OR: [
+              {
+                externalId:
+                  invoiceId,
+              },
+              {
+                id:
+                  invoiceId,
+              },
+            ],
+          },
+
+          include: {
+            playerProfile: true,
+          },
         });
       }
     );

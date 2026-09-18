@@ -82,7 +82,14 @@ export async function applySuccessfulPlayerPayment({
   return prisma.$transaction(async (tx) => {
     const invoice = await tx.playerInvoice.findFirst({
       where: {
-        externalId: normalized.reference,
+        OR: [
+          {
+            externalId: normalized.reference,
+          },
+          {
+            id: normalized.reference,
+          },
+        ],
       },
       include: {
         playerProfile: {
@@ -335,8 +342,16 @@ export async function applyFailedPlayerPayment({
     const invoice =
       await tx.playerInvoice.findFirst({
         where: {
-          externalId:
-            normalized.reference,
+          OR: [
+            {
+              externalId:
+                normalized.reference,
+            },
+            {
+              id:
+                normalized.reference,
+            },
+          ],
         },
         include: {
           playerProfile: true,

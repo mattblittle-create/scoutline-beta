@@ -372,6 +372,9 @@ async chargeStoredMethod(
     "software-type":
       environment.softwareType,
 
+    "software-type-version":
+      environment.softwareTypeVersion,
+
     "token-id":
       token,
   };
