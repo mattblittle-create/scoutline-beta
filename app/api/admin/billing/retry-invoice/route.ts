@@ -6,6 +6,9 @@ import { chargeStoredPaymentMethod } from "@/lib/billing/chargeStoredPaymentMeth
 import { markPlayerInvoicePaymentFailed } from "@/lib/billing/playerDunning";
 import { markPlayerRecurringPaymentSucceeded } from "@/lib/billing/playerRecurringSuccess";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
+import { processPlayerRecurringAchPayment } from "@/lib/billing/processPlayerRecurringAchPayment";
+import { getPlayerRecurringPaymentDecision } from "@/lib/billing/playerRecurringPaymentDecision";
+import { PAYMENT_PROVIDER_CODE } from "@/lib/billing/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -83,22 +86,73 @@ export async function POST(req: NextRequest) {
       },
     });
 
-const result: any = await chargeStoredPaymentMethod({
-  token,
-  provider: billing?.provider,
-  paymentType: billing?.paymentType,
-  invoiceNumber: invoice.externalId || invoice.id,
-  amountCents: invoice.amountCents,
-  cardFeeCents: invoice.cardFeeCents,
-  description: `ScoutLine ${String(
-    invoice.playerProfile.playerPlanTier
-  )} ${String(
-    invoice.playerProfile.playerBillingCadence || "monthly"
-  )} manual invoice retry`,
-  customerName: invoice.playerProfile.email,
-  email: invoice.playerProfile.email,
-});
+    const provider =
+      String(billing?.provider || "")
+        .trim()
+        .toUpperCase();
 
+    const isAch =
+      provider ===
+      PAYMENT_PROVIDER_CODE.CLEARENT_ACH;
+
+    /*
+     * Manual retries use the same provider-specific
+     * safety model as automatic recurring billing.
+     *
+     * ACH must go through the recurring ACH processor
+     * so the invoice claim, SUBMITTING reservation,
+     * duplicate protection, and UNKNOWN handling are
+     * all preserved.
+     */
+    const result =
+      isAch
+        ? await processPlayerRecurringAchPayment({
+            invoiceId: invoice.id,
+            token,
+            customerName:
+              invoice.playerProfile.email,
+            email:
+              invoice.playerProfile.email,
+          })
+        : await chargeStoredPaymentMethod({
+            token,
+            provider:
+              billing?.provider,
+            paymentType:
+              billing?.paymentType,
+            invoiceNumber:
+              invoice.externalId ||
+              invoice.id,
+            amountCents:
+              invoice.amountCents,
+            cardFeeCents:
+              invoice.cardFeeCents,
+            description:
+              `ScoutLine ${String(
+                invoice.playerProfile.playerPlanTier
+              )} ${String(
+                invoice.playerProfile.playerBillingCadence ||
+                  "monthly"
+              )} manual invoice retry`,
+            customerName:
+              invoice.playerProfile.email,
+            email:
+              invoice.playerProfile.email,
+          });
+
+    const decision =
+      getPlayerRecurringPaymentDecision({
+        isAch,
+        result,
+      });
+
+    /*
+     * A skipped result is not a failed payment.
+     *
+     * For ACH this includes duplicate protection,
+     * an invoice already being processed, or loss
+     * of the processing claim.
+     */
     if (result.skipped) {
       await createBillingAuditLog({
         actorType: "ADMIN",
@@ -122,11 +176,22 @@ const result: any = await chargeStoredPaymentMethod({
       });
     }
 
-    if (!result.ok) {
-      const dunningResult = await markPlayerInvoicePaymentFailed({
-        invoiceId: invoice.id,
-        reason: result.reason || "Manual invoice retry failed.",
-      });
+    /*
+     * Only a definitive failure enters dunning.
+     *
+     * In particular, ACH UNKNOWN must NOT increment
+     * failedAttemptCount because Xplor may already
+     * have received the debit.
+     */
+    if (decision.shouldDun) {
+      const dunningResult =
+        await markPlayerInvoicePaymentFailed({
+          invoiceId: invoice.id,
+          reason:
+            result.reason ||
+            result.responseMessage ||
+            "Manual invoice retry failed.",
+        });
 
       await createBillingAuditLog({
         actorType: "ADMIN",
@@ -144,7 +209,10 @@ const result: any = await chargeStoredPaymentMethod({
       return NextResponse.json(
         {
           ok: false,
-          error: result.reason || "Manual invoice retry failed.",
+          error:
+            result.reason ||
+            result.responseMessage ||
+            "Manual invoice retry failed.",
           result,
           dunningResult,
         },
@@ -152,32 +220,103 @@ const result: any = await chargeStoredPaymentMethod({
       );
     }
 
-    const successResult = await markPlayerRecurringPaymentSucceeded({
-      invoiceId: invoice.id,
-      amountPaidCents: result.amountPaidCents || invoice.amountCents + invoice.cardFeeCents,
-      cardFeeCents: result.cardFeeCents || invoice.cardFeeCents,
-      processorTransactionId: result.transactionId || null,
-      processorResponseCode: result.responseCode || null,
-      processorReceiptUrl: result.receiptUrl || null,
-    });
+    /*
+     * A completed card payment, or an ACH payment
+     * explicitly returned as SETTLED/completed, may
+     * complete the invoice immediately.
+     */
+    if (decision.shouldMarkPaid) {
+      const successResult =
+        await markPlayerRecurringPaymentSucceeded({
+          invoiceId: invoice.id,
+          amountPaidCents:
+            result.amountPaidCents ??
+            (
+              invoice.amountCents +
+              (
+                isAch
+                  ? 0
+                  : invoice.cardFeeCents
+              )
+            ),
+          cardFeeCents:
+            isAch
+              ? 0
+              : (
+                  result.cardFeeCents ??
+                  invoice.cardFeeCents
+                ),
+          processorTransactionId:
+            result.transactionId ||
+            null,
+          processorResponseCode:
+            result.responseCode ||
+            null,
+          processorReceiptUrl:
+            result.receiptUrl ||
+            null,
+        });
 
+      await createBillingAuditLog({
+        actorType: "ADMIN",
+        targetType: "PLAYER_INVOICE",
+        targetId: invoice.id,
+        eventType: "RETRY_INVOICE_SUCCEEDED",
+        message: `Manual retry succeeded for invoice ${invoice.externalId || invoice.id}.`,
+        metadata: {
+          invoiceId: invoice.id,
+          result,
+          successResult,
+        },
+      });
+
+      return NextResponse.json({
+        ok: true,
+        result,
+        successResult,
+      });
+    }
+
+    /*
+     * No immediate invoice-state change is correct
+     * for an ACH debit that is still in flight or
+     * whose submission outcome is ambiguous.
+     *
+     * PENDING / APPROVED / SETTLING:
+     *   wait for Xplor settlement webhook
+     *
+     * UNKNOWN:
+     *   preserve duplicate protection and require
+     *   reconciliation rather than automatic retry
+     */
     await createBillingAuditLog({
       actorType: "ADMIN",
       targetType: "PLAYER_INVOICE",
       targetId: invoice.id,
-      eventType: "RETRY_INVOICE_SUCCEEDED",
-      message: `Manual retry succeeded for invoice ${invoice.externalId || invoice.id}.`,
+      eventType:
+        isAch
+          ? "RETRY_INVOICE_ACH_PENDING"
+          : "RETRY_INVOICE_NO_STATE_CHANGE",
+      message:
+        isAch
+          ? `Manual ACH retry submitted for invoice ${invoice.externalId || invoice.id}; awaiting final payment status.`
+          : `Manual retry produced no final payment-state change for invoice ${invoice.externalId || invoice.id}.`,
       metadata: {
         invoiceId: invoice.id,
         result,
-        successResult,
       },
     });
 
     return NextResponse.json({
-      ok: true,
+      ok: result.ok,
+      pending: isAch,
       result,
-      successResult,
+      message:
+        isAch
+          ? result.status === "UNKNOWN"
+            ? "ACH submission outcome is unknown. No automatic retry or dunning action was taken."
+            : "ACH debit submitted. ScoutLine is awaiting final settlement."
+          : "The payment attempt produced no final payment-state change.",
     });
   } catch (error) {
     console.error("ADMIN_RETRY_INVOICE_ERROR", error);

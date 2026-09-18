@@ -550,16 +550,23 @@ model PlayerInvoice {
   failedAttemptCount     Int                  @default(0)
   lastFailedAt           DateTime?
   nextRetryAt            DateTime?
-  failureReason          String?
-  paidAt                 DateTime?
+    failureReason          String?
+paidAt                 DateTime?
+
+  // Atomic recurring-payment claim.
+  // Prevents overlapping workers from submitting the same invoice twice.
+  // Cleared after the provider attempt is safely recorded or fails.
+  paymentProcessingAt    DateTime?
+
   createdAt              DateTime             @default(now())
-  commissionEvents       CommissionEvent[]
-  billingTransactions    BillingTransaction[]
-  playerProfile          PlayerProfile        @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
+    commissionEvents       CommissionEvent[]
+    billingTransactions    BillingTransaction[]
+    playerProfile          PlayerProfile        @relation(fields: [playerProfileId], references: [id], onDelete: Cascade)
 
   @@index([playerProfileId, invoiceDate])
   @@index([playerProfileId, status])
   @@index([playerProfileId, periodStart])
+  @@index([paymentProcessingAt])
 }
 
 model BillingTransaction {

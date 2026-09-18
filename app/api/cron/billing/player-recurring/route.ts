@@ -5,6 +5,13 @@ import { prisma } from "@/lib/prisma";
 import { chargeStoredPaymentMethod } from "@/lib/billing/chargeStoredPaymentMethod";
 import { markPlayerInvoicePaymentFailed } from "@/lib/billing/playerDunning";
 import { maybeAutoSuspendPlayerForDunning } from "@/lib/billing/playerAutoSuspension";
+import { markPlayerRecurringPaymentSucceeded } from "@/lib/billing/playerRecurringSuccess";
+import { processPlayerRecurringAchPayment } from "@/lib/billing/processPlayerRecurringAchPayment";
+import { getPlayerRecurringPaymentDecision } from "@/lib/billing/playerRecurringPaymentDecision";
+
+import {
+  PAYMENT_PROVIDER_CODE,
+} from "@/lib/billing/constants";
 
 export const dynamic = "force-dynamic";
 
@@ -62,7 +69,12 @@ where: {
           { playerCancelEffectiveAt: { gt: now } },
         ],
         playerBillingProfile: {
-          provider: "VALOR",
+          provider: {
+  in: [
+    PAYMENT_PROVIDER_CODE.VALOR,
+    PAYMENT_PROVIDER_CODE.CLEARENT_ACH,
+  ],
+},
           providerPaymentRef: {
             not: null,
           },
@@ -120,61 +132,210 @@ const chargeResults = [];
 
 if (!dryRun) {
   for (const invoice of invoices) {
-    const billing = invoice.playerProfile.playerBillingProfile;
-    const token = billing?.providerPaymentRef || "";
+    const billing =
+      invoice.playerProfile.playerBillingProfile;
 
-const result = await chargeStoredPaymentMethod({
-  token,
-  provider: billing?.provider,
-  paymentType: billing?.paymentType,
-  invoiceNumber: invoice.externalId || invoice.id,
-  amountCents: invoice.amountCents,
-  cardFeeCents: invoice.cardFeeCents,
-  description: `ScoutLine ${String(
-    invoice.playerProfile.playerPlanTier
-  )} ${String(
-    invoice.playerProfile.playerBillingCadence || "monthly"
-  )} recurring billing`,
-  customerName: invoice.playerProfile.email,
-  email: invoice.playerProfile.email,
-});
+    const token =
+      billing?.providerPaymentRef || "";
 
-let dunningResult = null;
+    const provider =
+      String(
+        billing?.provider || ""
+      )
+        .trim()
+        .toUpperCase();
 
-let autoSuspensionResult = null;
+    const isAch =
+      provider ===
+      PAYMENT_PROVIDER_CODE.CLEARENT_ACH;
 
-if (!result.ok && !result.skipped) {
-  dunningResult = await markPlayerInvoicePaymentFailed({
-    invoiceId: invoice.id,
-    reason:
-      "Recurring payment attempt failed or was declined by the payment processor.",
+    /*
+     * ACH and card recurring payments have
+     * intentionally different completion
+     * semantics.
+     *
+     * Valor APPROVED is a completed card
+     * payment.
+     *
+     * Xplor ACH normally begins as PENDING
+     * and is not paid until settlement.
+     */
+    const result =
+      isAch
+        ? await processPlayerRecurringAchPayment({
+            invoiceId:
+              invoice.id,
+
+            token,
+
+            customerName:
+              invoice.playerProfile.email,
+
+            email:
+              invoice.playerProfile.email,
+          })
+        : await chargeStoredPaymentMethod({
+            token,
+
+            provider:
+              billing?.provider,
+
+            paymentType:
+              billing?.paymentType,
+
+            invoiceNumber:
+              invoice.externalId ||
+              invoice.id,
+
+            amountCents:
+              invoice.amountCents,
+
+            cardFeeCents:
+              invoice.cardFeeCents,
+
+            description:
+              `ScoutLine ${String(
+                invoice.playerProfile.playerPlanTier
+              )} ${String(
+                invoice.playerProfile.playerBillingCadence ||
+                  "monthly"
+              )} recurring billing`,
+
+            customerName:
+              invoice.playerProfile.email,
+
+            email:
+              invoice.playerProfile.email,
+          });
+
+    let successResult = null;
+
+    let dunningResult = null;
+
+    let autoSuspensionResult = null;
+
+    const decision =
+  getPlayerRecurringPaymentDecision({
+    isAch,
+    result,
   });
 
-  autoSuspensionResult = await maybeAutoSuspendPlayerForDunning({
-    invoiceId: invoice.id,
-  });
-}
+    /*
+     * Only a completed payment can mark an
+     * invoice PAID here.
+     *
+     * Valor returns paymentCompleted=true
+     * for an approved card sale.
+     *
+     * ACH PENDING / APPROVED / SETTLING must
+     * remain unpaid while settlement is pending.
+     */
+if (decision.shouldMarkPaid) {
+      successResult =
+        await markPlayerRecurringPaymentSucceeded({
+          invoiceId:
+            invoice.id,
 
-chargeResults.push({
-  invoiceId: invoice.id,
-  invoiceNumber: invoice.externalId,
-  result,
-  dunningResult,
-  autoSuspensionResult,
-});
+          amountPaidCents:
+            result.amountPaidCents ??
+            (
+              invoice.amountCents +
+              (
+                isAch
+                  ? 0
+                  : invoice.cardFeeCents
+              )
+            ),
+
+          cardFeeCents:
+            isAch
+              ? 0
+              : (
+                  result.cardFeeCents ??
+                  invoice.cardFeeCents
+                ),
+
+          processorTransactionId:
+            result.transactionId ||
+            null,
+
+          processorResponseCode:
+            result.responseCode ||
+            null,
+
+          processorReceiptUrl:
+            result.receiptUrl ||
+            null,
+        });
+    }
+
+    /*
+     * A failed ACH submission may enter dunning
+     * only when Xplor has given us a definitive
+     * FAILED result.
+     *
+     * UNKNOWN is deliberately excluded because
+     * Xplor may already have received the debit.
+     *
+     * Duplicate-protected / SUBMITTING /
+     * PENDING / APPROVED / SETTLING results
+     * also must not increment failed attempts.
+     */
+if (decision.shouldDun) {
+      dunningResult =
+        await markPlayerInvoicePaymentFailed({
+          invoiceId:
+            invoice.id,
+
+          reason:
+            isAch
+              ? (
+                  result.reason ||
+                  result.responseMessage ||
+                  "Recurring ACH debit was definitively rejected by the payment processor."
+                )
+              : "Recurring payment attempt failed or was declined by the payment processor.",
+        });
+
+      autoSuspensionResult =
+        await maybeAutoSuspendPlayerForDunning({
+          invoiceId:
+            invoice.id,
+        });
+    }
+
+    chargeResults.push({
+      invoiceId:
+        invoice.id,
+
+      invoiceNumber:
+        invoice.externalId,
+
+      provider:
+        billing?.provider,
+
+      result,
+      successResult,
+      dunningResult,
+      autoSuspensionResult,
+    });
   }
 }
 
 return NextResponse.json({
   ok: true,
   dryRun,
-  checkedAt: now.toISOString(),
-  dueThrough: todayEnd.toISOString(),
-  count: candidates.length,
+  checkedAt:
+    now.toISOString(),
+  dueThrough:
+    todayEnd.toISOString(),
+  count:
+    candidates.length,
   candidates,
   chargeResults,
+
   message: dryRun
     ? "Dry run only. No charges were attempted."
-    : "The stored-payment adapter was called. Card charges remain controlled by VALOR_RECURRING_CHARGES_ENABLED, and ACH charges remain disabled until the Clearent integration is configured.",
+    : "Recurring billing processing completed for eligible stored card and ACH payment methods.",
 });
 }

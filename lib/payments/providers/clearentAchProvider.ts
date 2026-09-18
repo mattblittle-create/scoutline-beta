@@ -398,24 +398,42 @@ async chargeStoredMethod(
         cache: "no-store",
       }
     );
-  } catch (error) {
-    console.error(
-      "CLEARENT_ACH_RECURRING_NETWORK_ERROR",
-      error
-    );
+} catch (error) {
+  console.error(
+    "CLEARENT_ACH_RECURRING_NETWORK_ERROR",
+    error
+  );
 
-    return {
-      ok: false,
-      skipped: false,
-      reason:
-        "Could not connect to Xplor ACH.",
-      invoiceNumber:
-        input.invoiceNumber,
-      status: "FAILED",
-      paymentCompleted: false,
-      cardFeeCents: 0,
-    };
-  }
+  /*
+   * A network failure does NOT prove that
+   * Xplor failed to receive the debit.
+   *
+   * The request may have reached Xplor and
+   * only the response was lost. Treating this
+   * as FAILED could allow an automatic retry
+   * and create a duplicate bank draft.
+   *
+   * UNKNOWN therefore means:
+   * do not automatically retry this invoice
+   * until the submission has been reconciled.
+   */
+  return {
+    ok: false,
+    skipped: false,
+
+    reason:
+      "Xplor ACH submission outcome is unknown due to a network error.",
+
+    invoiceNumber:
+      input.invoiceNumber,
+
+    status: "UNKNOWN",
+
+    paymentCompleted: false,
+
+    cardFeeCents: 0,
+  };
+}
 
   const payload =
     await parseResponseBody(response);
@@ -482,29 +500,39 @@ async chargeStoredMethod(
     };
   }
 
-  if (!transactionId) {
-    return {
-      ok: false,
-      skipped: false,
+if (!transactionId) {
+  /*
+   * Xplor returned a successful HTTP response,
+   * but ScoutLine did not receive a provider
+   * transaction ID.
+   *
+   * We cannot safely assume that no debit was
+   * created. Treat the submission as UNKNOWN
+   * so this invoice cannot be automatically
+   * submitted again until reconciled.
+   */
+  return {
+    ok: false,
+    skipped: false,
 
-      reason:
-        "Xplor did not return an ACH transaction ID.",
+    reason:
+      "Xplor ACH submission may have been accepted, but no transaction ID was returned.",
 
-      invoiceNumber:
-        input.invoiceNumber,
+    invoiceNumber:
+      input.invoiceNumber,
 
-      status,
+    status: "UNKNOWN",
 
-      paymentCompleted: false,
+    paymentCompleted: false,
 
-      cardFeeCents: 0,
+    cardFeeCents: 0,
 
-      responseCode,
-      responseMessage,
+    responseCode,
+    responseMessage,
 
-      raw: payload,
-    };
-  }
+    raw: payload,
+  };
+}
 
   /*
    * ACH submission is asynchronous.
