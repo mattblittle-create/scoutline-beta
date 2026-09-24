@@ -70,6 +70,208 @@ async function parseResponseBody(
   }
 }
 
+export type ClearentAchTransactionStatusResult = {
+  found: boolean;
+  transactionId: string | null;
+  providerTransactionId: string | null;
+  type: string | null;
+  amount: string | null;
+  status: string | null;
+  accountType: string | null;
+  invoice: string | null;
+  statusChangeDate: string | null;
+  traceNumber: string | null;
+  settledDate: string | null;
+  returnedDate: string | null;
+  returnedCode: string | null;
+  returnedMessage: string | null;
+};
+
+export async function getClearentAchTransaction(
+  transactionId: string
+): Promise<ClearentAchTransactionStatusResult> {
+  const environment =
+    getClearentAchEnvironment();
+
+  const id =
+    String(transactionId || "").trim();
+
+  if (!environment.apiKey) {
+    throw new Error(
+      "Missing Xplor ACH API key."
+    );
+  }
+
+  if (!id) {
+    throw new Error(
+      "Missing Xplor ACH transaction ID."
+    );
+  }
+
+  const url =
+    new URL(
+      `${environment.baseUrl}/rest/v2/ach/transactions`
+    );
+
+  url.searchParams.set("id", id);
+
+  const response =
+    await fetch(url.toString(), {
+      method: "GET",
+
+      headers: {
+        Accept: "application/json",
+        "api-key":
+          environment.apiKey,
+      },
+
+      cache: "no-store",
+    });
+
+  const payload =
+    await parseResponseBody(response);
+
+  if (!response.ok) {
+    throw new Error(
+      extractClearentResponseMessage(
+        payload
+      ) ||
+        `Xplor ACH status lookup failed with HTTP ${response.status}.`
+    );
+  }
+
+  const root =
+    payload &&
+    typeof payload === "object"
+      ? (payload as Record<string, any>)
+      : {};
+
+  const payloadObject =
+    root.payload &&
+    typeof root.payload === "object"
+      ? (root.payload as Record<string, any>)
+      : {};
+
+  const transactionsObject =
+    payloadObject["ach-transactions"] &&
+    typeof payloadObject["ach-transactions"] ===
+      "object"
+      ? (payloadObject[
+          "ach-transactions"
+        ] as Record<string, any>)
+      : {};
+
+  const transactions =
+    Array.isArray(
+      transactionsObject[
+        "ach-transaction"
+      ]
+    )
+      ? transactionsObject[
+          "ach-transaction"
+        ]
+      : [];
+
+  const transaction =
+    transactions.find(
+      (item: any) =>
+        String(item?.id || "").trim() === id
+    ) || null;
+
+  if (!transaction) {
+    return {
+      found: false,
+      transactionId: null,
+      providerTransactionId: null,
+      type: null,
+      amount: null,
+      status: null,
+      accountType: null,
+      invoice: null,
+      statusChangeDate: null,
+      traceNumber: null,
+      settledDate: null,
+      returnedDate: null,
+      returnedCode: null,
+      returnedMessage: null,
+    };
+  }
+
+  const cleanValue = (
+    value: unknown
+  ): string | null => {
+    const normalized =
+      String(value ?? "").trim();
+
+    return normalized || null;
+  };
+
+  return {
+    found: true,
+
+    transactionId:
+      cleanValue(transaction.id),
+
+    providerTransactionId:
+      cleanValue(
+        transaction[
+          "provider-transaction-id"
+        ]
+      ),
+
+    type:
+      cleanValue(transaction.type),
+
+    amount:
+      cleanValue(transaction.amount),
+
+    status:
+      cleanValue(
+        transaction.status
+      )?.toUpperCase() || null,
+
+    accountType:
+      cleanValue(
+        transaction["account-type"]
+      )?.toUpperCase() || null,
+
+    invoice:
+      cleanValue(transaction.invoice),
+
+    statusChangeDate:
+      cleanValue(
+        transaction[
+          "status-change-date"
+        ]
+      ),
+
+    traceNumber:
+      cleanValue(
+        transaction["trace-number"]
+      ),
+
+    settledDate:
+      cleanValue(
+        transaction["settled-date"]
+      ),
+
+    returnedDate:
+      cleanValue(
+        transaction["returned-date"]
+      ),
+
+    returnedCode:
+      cleanValue(
+        transaction["returned-code"]
+      ),
+
+    returnedMessage:
+      cleanValue(
+        transaction["returned-message"]
+      ),
+  };
+}
+
 export const clearentAchProvider:
   PaymentProvider = {
   code:
@@ -160,6 +362,8 @@ export const clearentAchProvider:
         input.createToken === false
           ? "false"
           : "true",
+
+      "validate-account": "true",
 
       "token-description":
         "ScoutLine recurring ACH",

@@ -158,6 +158,102 @@ describe(
       );
     });
 
+        it("calculates the Xplor ACH certification Walk-On payment at exactly $9", () => {
+      const result =
+        calculateActivationSummary({
+          plan:
+            PLAYER_PLAN_CODE.WALK_ON,
+          cadence:
+            PLAYER_BILLING_CADENCE.MONTHLY,
+          paymentMethod:
+            PaymentMethod.ACH,
+          discountCode:
+            "XPLORACHCERT",
+        });
+
+      expect(result).toEqual({
+        plan:
+          PLAYER_PLAN_CODE.WALK_ON,
+        cadence:
+          PLAYER_BILLING_CADENCE.MONTHLY,
+        paymentMethod:
+          PaymentMethod.ACH,
+        basePrice: 2495,
+        discountAmount: 1595,
+        discountedPrice: 900,
+        surchargeAmount: 0,
+        finalPrice: 900,
+      });
+    });
+    
+        it("does not apply the Xplor ACH certification discount to card payments", () => {
+      const result =
+        calculateActivationSummary({
+          plan:
+            PLAYER_PLAN_CODE.WALK_ON,
+          cadence:
+            PLAYER_BILLING_CADENCE.MONTHLY,
+          paymentMethod:
+            PaymentMethod.CARD,
+          discountCode:
+            "XPLORACHCERT",
+        });
+
+      expect(result.basePrice).toBe(
+        2495
+      );
+
+      expect(
+        result.discountAmount
+      ).toBe(0);
+
+      expect(
+        result.discountedPrice
+      ).toBe(2495);
+
+      expect(
+        result.surchargeAmount
+      ).toBe(75);
+
+      expect(result.finalPrice).toBe(
+        2570
+      );
+    });
+
+    it("does not apply the Xplor ACH certification discount to All-American", () => {
+      const result =
+        calculateActivationSummary({
+          plan:
+            PLAYER_PLAN_CODE.ALL_AMERICAN,
+          cadence:
+            PLAYER_BILLING_CADENCE.MONTHLY,
+          paymentMethod:
+            PaymentMethod.ACH,
+          discountCode:
+            "XPLORACHCERT",
+        });
+
+      expect(result.basePrice).toBe(
+        4995
+      );
+
+      expect(
+        result.discountAmount
+      ).toBe(0);
+
+      expect(
+        result.discountedPrice
+      ).toBe(4995);
+
+      expect(
+        result.surchargeAmount
+      ).toBe(0);
+
+      expect(result.finalPrice).toBe(
+        4995
+      );
+    });
+    
     it("defaults unknown payment methods to card", () => {
       const result =
         calculateActivationSummary({

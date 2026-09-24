@@ -128,6 +128,16 @@ export function calculateActivationSummary(
     );
   }
 
+    if (
+    discountCode.toUpperCase() ===
+      "XPLORACHCERT" &&
+    plan === PLAYER_PLAN_CODE.WALK_ON &&
+    paymentMethod === PaymentMethod.ACH
+  ) {
+    discountAmount =
+      basePrice - 900;
+  }
+  
   const discountedPrice = Math.max(
     0,
     basePrice - discountAmount
