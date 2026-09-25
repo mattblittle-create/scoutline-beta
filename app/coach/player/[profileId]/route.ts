@@ -1,5 +1,6 @@
-// app/api/coach/player/[profileId]/route.ts
+// app/coach/player/[profileId]/route.ts
 
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import {
@@ -7,6 +8,7 @@ import {
   ProfileState,
   OwnershipMode,
   TeamRole,
+  type User,
 } from "@prisma/client";
 import { deriveActorContext } from "@/lib/actorContext";
 import { getProfilePermissions } from "@/lib/profileState";
@@ -48,6 +50,8 @@ type CoachPlayerResponse =
       error: string;
     };
 
+export const dynamic = "force-dynamic";
+
 export async function GET(
   req: Request,
   { params }: { params: { profileId: string } }
@@ -55,7 +59,7 @@ export async function GET(
   const { profileId } = params;
 
   // 🔐 1) Auth – swap mock for real later
-  const coachUser = await getCurrentUserMock();
+  const coachUser = await getCurrentUser();
   if (!coachUser) {
     return NextResponse.json<CoachPlayerResponse>(
       { ok: false, error: "Unauthorized" },
@@ -106,6 +110,7 @@ export async function GET(
     : [];
 
   // 5) Derive actor context + permissions
+  // ✅ FIX: coachUser is typed as Prisma User (full shape), so deriveActorContext typing is satisfied
   const actor = deriveActorContext({
     user: coachUser,
     profile,
@@ -190,20 +195,4 @@ export async function GET(
   };
 
   return NextResponse.json(response);
-}
-
-/**
- * TEMP MOCK for getCurrentUser so this file is paste-able.
- *
- * Replace this with your real auth integration.
- */
-async function getCurrentUserMock() {
-  // TODO: replace with real implementation (e.g. getServerSession)
-  return null as unknown as {
-    id: string;
-    email: string | null;
-    name: string | null;
-    role: string | null;
-    collegeId: string | null;
-  } | null;
 }

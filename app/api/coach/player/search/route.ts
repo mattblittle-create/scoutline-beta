@@ -37,6 +37,13 @@ function toNum(v: any): number | null {
   const n = Number(s);
   return Number.isFinite(n) ? n : null;
 }
+function firstString(...values: any[]): string | null {
+  for (const v of values) {
+    const s = String(v ?? "").trim();
+    if (s) return s;
+  }
+  return null;
+}
 function toBool(v: any): boolean | null {
   const s = String(v ?? "").trim().toLowerCase();
   if (!s) return null;
@@ -269,7 +276,8 @@ export async function GET(req: Request) {
   if (state) playerWhere.state = state;
   if (hometown) playerWhere.hometown = { contains: hometown, mode: "insensitive" };
   if (hsName) playerWhere.hsName = { contains: hsName, mode: "insensitive" };
-  if (travelTeam) playerWhere.travelTeam = { contains: travelTeam, mode: "insensitive" };
+  // Travel team can live in Player.travelTeam OR PlayerProfile.data depending on profile version.
+  // We filter it after fetching so both legacy/current profile shapes work.
 
   // ✅ GPA MIN: gpa >= gpaMin
   if (gpaMin != null) {
@@ -400,9 +408,39 @@ export async function GET(req: Request) {
         latest[k] = getLatestMetricValue(metricsObj, k, now);
       }
 
-      return { p, latest };
+      const profileData: any = (p as any).data || {};
+      const normalized: any = profileData?.normalized || {};
+      const core: any = normalized?.core || {};
+      const athletics: any = normalized?.athletics || {};
+      const player: any = normalized?.player || {};
+
+      const resolvedTravelTeam = firstString(
+        p.user?.Player?.travelTeam,
+        profileData?.travelTeam,
+        profileData?.travelTeamName,
+        profileData?.teamName,
+        normalized?.travelTeam,
+        normalized?.travelTeamName,
+        normalized?.teamName,
+        core?.travelTeam,
+        core?.travelTeamName,
+        core?.teamName,
+        athletics?.travelTeam,
+        athletics?.travelTeamName,
+        athletics?.teamName,
+        player?.travelTeam,
+        player?.travelTeamName,
+        player?.teamName
+      );
+
+      return { p, latest, resolvedTravelTeam };
     })
-    .filter(({ latest }) => {
+    .filter(({ latest, resolvedTravelTeam }) => {
+      if (travelTeam) {
+        const haystack = String(resolvedTravelTeam || "").toLowerCase();
+        if (!haystack.includes(travelTeam.toLowerCase())) return false;
+      }
+
       if (!hasMetricFilters) return true;
 
       // ✅ MIN filters behave like GPA min: keep rows where actual >= min
@@ -461,42 +499,101 @@ export async function GET(req: Request) {
     }
   }
 
-  const results = filtered.map(({ p, latest }) => ({
+const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
+  const dataObj: any = (p as any).data || {};
+  const normalized: any = dataObj?.normalized || dataObj || {};
+  const core: any = normalized?.core || {};
+  const athletics: any = normalized?.athletics || {};
+  const player: any = normalized?.player || {};
+
+  const firstName = firstString(
+    normalized.firstName,
+    core.firstName,
+    player.firstName
+  );
+
+  const lastName = firstString(
+   normalized.lastName,
+   core.lastName,
+    player.lastName
+  );
+
+  const displayName =
+    [firstName, lastName].filter(Boolean).join(" ").trim() ||
+    p.user?.name ||
+    p.email?.split("@")[0] ||
+    "Player";
+
+  return {
     playerProfileId: p.id,
     lists: listsByProfileId.get(p.id) ?? [],
 
-    // ✅ NEW: coach/program-scoped rating (0..5). Default 0 when not rated.
     rating: ratingsByProfileId.get(p.id) ?? 0,
 
     profileEmail: p.email,
     profileState: String((p as any).profileState),
 
     userId: p.user?.id ?? null,
-    name: p.user?.name ?? null,
+    name: displayName,
     email: p.user?.email ?? p.email,
     slug: p.user?.slug ?? null,
     photoUrl: p.user?.photoUrl ?? null,
 
-    gradYear: p.user?.Player?.gradYear ?? null,
-    primaryPos: p.user?.Player?.primaryPos ?? null,
-    secondaryPos: p.user?.Player?.secondaryPos ?? null,
-    bats: p.user?.Player?.bats ?? null,
-    throws: p.user?.Player?.throws ?? null,
+    gradYear:
+      toNum(normalized.gradYear) ??
+      toNum(athletics.gradYear) ??
+      toNum(player.gradYear) ??
+      p.user?.Player?.gradYear ??
+      null,
 
-    isCommitted: p.user?.Player?.isCommitted ?? false,
-    committedProgram: p.user?.Player?.committedProgram ?? null,
+    primaryPos:
+      firstString(normalized.primaryPos, athletics.primaryPos, player.primaryPos, p.user?.Player?.primaryPos),
 
-    state: p.user?.Player?.state ?? null,
-    hometown: p.user?.Player?.hometown ?? null,
-    hsName: p.user?.Player?.hsName ?? null,
-    travelTeam: p.user?.Player?.travelTeam ?? null,
+    secondaryPos:
+      firstString(normalized.secondaryPos, athletics.secondaryPos, player.secondaryPos, p.user?.Player?.secondaryPos),
 
-    gpa: p.user?.Player?.gpa ?? null,
+    pitcherHand:
+      firstString(normalized.pitcherHand, athletics.pitcherHand, player.pitcherHand, p.user?.Player?.pitcherHand),
+
+    bats:
+      firstString(normalized.bats, athletics.bats, player.bats, p.user?.Player?.bats),
+
+    throws:
+      firstString(normalized.throws, athletics.throws, player.throws, p.user?.Player?.throws),
+
+    isCommitted:
+      normalized.isCommitted ??
+      athletics.isCommitted ??
+      player.isCommitted ??
+      p.user?.Player?.isCommitted ??
+      false,
+
+    committedProgram:
+      firstString(normalized.committedProgram, athletics.committedProgram, player.committedProgram, p.user?.Player?.committedProgram),
+
+    state:
+      firstString(normalized.state, core.state, player.state, p.user?.Player?.state),
+
+    hometown:
+      firstString(normalized.hometown, core.hometown, player.hometown, p.user?.Player?.hometown),
+
+    hsName:
+      firstString(normalized.hsName, athletics.hsName, player.hsName, p.user?.Player?.hsName),
+
+    travelTeam: resolvedTravelTeam,
+
+    gpa:
+      toNum(normalized.gpa) ??
+      toNum(core.gpa) ??
+      toNum(player.gpa) ??
+      p.user?.Player?.gpa ??
+      null,
 
     metricsLatest: latest,
 
     updatedAt: p.updatedAt.toISOString(),
-  }));
+  };
+});
 
-  return NextResponse.json({ ok: true, results });
+return NextResponse.json({ ok: true, results });
 }

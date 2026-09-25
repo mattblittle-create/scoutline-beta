@@ -97,3 +97,27 @@ export function basePriceCents(planTier: PlanTierLabel, cadence: Cadence): numbe
   const byTier = BASE_PLAN_PRICES_CENTS[planTier];
   return byTier ? Number(byTier[cadence] ?? 0) : 0;
 }
+
+// Back-compat exports for older billing modules
+export function normalizePlanTierDb(raw: any): PlanTierDb | "" {
+  const label = normalizePlanTier(raw);
+  if (!label) return "";
+  return label === "Teams" ? "TEAM" : (label.toUpperCase().replace("-", "_") as PlanTierDb);
+}
+
+export function planTierLabelFromDb(tier: PlanTierDb): PlanTierLabel {
+  switch (tier) {
+    case "REDSHIRT":
+      return "Redshirt";
+    case "WALK_ON":
+      return "Walk-On";
+    case "ALL_AMERICAN":
+      return "All-American";
+    case "TEAM":
+      return "Teams";
+  }
+}
+
+export function getBasePriceCents(planTierDb: PlanTierDb, cadence: Cadence): number {
+  return basePriceCents(planTierLabelFromDb(planTierDb), cadence);
+}

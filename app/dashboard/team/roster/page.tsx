@@ -68,6 +68,7 @@ type RosterRow = {
   primaryPos?: string | null;
   secondaryPos?: string | null;
   pitcher?: boolean | null;
+  hand?: string | null; // "RHP" | "LHP"
   throws?: string | null; // "R" | "L"
   bats?: string | null; // "R" | "L" | "S"
 
@@ -86,6 +87,7 @@ type Filters = {
   secondaryPositions: string[];
 
   pitcher: "" | "yes" | "no";
+  pitcherHand: "ANY" | "RHP" | "LHP";
 
   // dropdown hands
   throws: "ANY" | "R" | "L";
@@ -141,7 +143,31 @@ function matchesFilters(r: RosterRow, f: Filters) {
 
   if (f.pitcher) {
     const want = f.pitcher === "yes";
-    if (!!r.pitcher !== want) return false;
+
+    const hand = normalizePos((r as any).hand);
+    const isPitcherByHand =
+      hand === "RHP" || hand === "LHP" || hand === "R" || hand === "L";
+
+    const isPitcherByPosition =
+      normalizePos(r.primaryPos) === "P" ||
+      normalizePos(r.secondaryPos) === "P";
+
+    const isPitcher = !!r.pitcher || isPitcherByHand || isPitcherByPosition;
+
+    if (isPitcher !== want) return false;
+  }
+
+  if (f.pitcherHand !== "ANY") {
+    const hand = normalizePos((r as any).hand);
+
+    const normalizedHand =
+      hand === "L" || hand === "LHP"
+        ? "LHP"
+        : hand === "R" || hand === "RHP"
+        ? "RHP"
+        : "";
+
+    if (normalizedHand !== f.pitcherHand) return false;
   }
 
   if (f.bats !== "ANY") {
@@ -155,40 +181,6 @@ function matchesFilters(r: RosterRow, f: Filters) {
   return true;
 }
 
-// TEMP seed data so the UI works before APIs are wired.
-const DEMO_ROWS: RosterRow[] = [
-  {
-    playerProfileId: "demo_pp_1",
-    publicSlug: "braden-little",
-    firstName: "Braden",
-    lastName: "Little",
-    gradYear: 2028,
-    gpa: "4.1",
-    committed: false,
-    primaryPos: "3B",
-    secondaryPos: "RF",
-    pitcher: true,
-    throws: "R",
-    bats: "R",
-    isActive: true,
-  },
-  {
-    playerProfileId: "demo_pp_2",
-    publicSlug: "jaxson-little",
-    firstName: "Jaxson",
-    lastName: "Little",
-    gradYear: 2030,
-    gpa: "3.8",
-    committed: false,
-    primaryPos: "SS",
-    secondaryPos: "2B",
-    pitcher: false,
-    throws: "R",
-    bats: "R",
-    isActive: false,
-  },
-];
-
 export default function TeamRosterPage() {
   const search = useSearchParams();
   const fallbackEmail = normText(search.get("email") || search.get("username")).toLowerCase();
@@ -197,6 +189,7 @@ export default function TeamRosterPage() {
   const [error, setError] = React.useState<string | null>(null);
 
   const [rows, setRows] = React.useState<RosterRow[]>([]);
+  const [analytics, setAnalytics] = React.useState<any>(null);
   const [filters, setFilters] = React.useState<Filters>({
     q: "",
     gradYear: "",
@@ -205,11 +198,18 @@ export default function TeamRosterPage() {
     primaryPositions: [],
     secondaryPositions: [],
     pitcher: "",
+    pitcherHand: "ANY",
     bats: "ANY",
     throws: "ANY",
   });
 
   const [selected, setSelected] = React.useState<Record<string, boolean>>({});
+
+  const [teaserModalOpen, setTeaserModalOpen] = React.useState(false);
+  const [teaserCoachEmail, setTeaserCoachEmail] = React.useState("");
+  const [teaserCoachName, setTeaserCoachName] = React.useState("");
+  const [teaserNote, setTeaserNote] = React.useState("");
+  const [teaserSuccess, setTeaserSuccess] = React.useState<string | null>(null);
 
   const filtered = React.useMemo(() => rows.filter((r) => matchesFilters(r, filters)), [rows, filters]);
   const selectedIds = React.useMemo(() => Object.keys(selected).filter((k) => selected[k]), [selected]);
@@ -221,42 +221,43 @@ export default function TeamRosterPage() {
 
   const selectedActiveRows = React.useMemo(() => selectedRows.filter((r) => r.isActive && !!r.publicSlug), [selectedRows]);
 
-  async function load() {
-    setLoading(true);
-    setError(null);
+async function load() {
+  setLoading(true);
+  setError(null);
+
+  try {
+    const url = fallbackEmail
+      ? `/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`
+      : "/api/team/roster";
+
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
+
+    const text = await res.text();
+    let json: any = null;
 
     try {
-      // Prefer real API if email is present in dev-mode URL
-      if (fallbackEmail) {
-        const res = await fetch(`/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`, {
-          cache: "no-store",
-        });
-
-        const text = await res.text();
-        let json: any = null;
-        try {
-          json = JSON.parse(text);
-        } catch {
-          throw new Error("Roster API returned non-JSON response.");
-        }
-
-        if (!res.ok || !json?.ok) {
-          throw new Error(json?.error || "Failed to load roster.");
-        }
-
-        const apiRows = (json?.data?.roster || []) as RosterRow[];
-        setRows(Array.isArray(apiRows) ? apiRows : []);
-      } else {
-        // No email -> use demo rows
-        setRows(DEMO_ROWS);
-      }
-    } catch (e: any) {
-      setRows([]);
-      setError(e?.message || "Failed to load roster.");
-    } finally {
-      setLoading(false);
+      json = JSON.parse(text);
+    } catch {
+      throw new Error("Roster API returned non-JSON response.");
     }
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to load roster.");
+    }
+
+const apiRows = (json?.data?.roster || []) as RosterRow[];
+
+setRows(Array.isArray(apiRows) ? apiRows : []);
+setAnalytics(json?.data?.analytics || null);
+  } catch (e: any) {
+    setRows([]);
+    setError(e?.message || "Failed to load roster.");
+  } finally {
+    setLoading(false);
   }
+}
 
   React.useEffect(() => {
     load();
@@ -277,28 +278,68 @@ export default function TeamRosterPage() {
     setSelected({});
   }
 
-  async function persistRosterActive(membershipId: string, isActive: boolean) {
-    // Only persists when we have a dev email (API requires it right now)
-    if (!fallbackEmail) return;
-
-    const res = await fetch(`/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ membershipId, isActive }),
+  function resetFilters() {
+    setFilters({
+      q: "",
+      gradYear: "",
+      gpaMin: "",
+      committed: "",
+      primaryPositions: [],
+      secondaryPositions: [],
+      pitcher: "",
+      pitcherHand: "ANY",
+      bats: "ANY",
+      throws: "ANY",
     });
-
-    const text = await res.text();
-    let json: any = null;
-    try {
-      json = JSON.parse(text);
-    } catch {
-      throw new Error("Roster update returned non-JSON response.");
-    }
-
-    if (!res.ok || !json?.ok) {
-      throw new Error(json?.error || "Failed to update roster status.");
-    }
   }
+
+  function applyGradYearQuickFilter(year: string) {
+  setFilters((prev) => ({
+    ...prev,
+    gradYear: year,
+  }));
+}
+
+function applyPrimaryPositionQuickFilter(position: string) {
+  setFilters((prev) => ({
+    ...prev,
+    primaryPositions: [position],
+  }));
+}
+
+function applyPitcherHandQuickFilter(hand: string) {
+  setFilters((prev) => ({
+    ...prev,
+    pitcher: "yes",
+    pitcherHand: hand === "LHP" ? "LHP" : "RHP",
+    throws: hand === "LHP" ? "L" : "R",
+  }));
+}
+
+async function persistRosterActive(membershipId: string, isActive: boolean) {
+  const url = fallbackEmail
+    ? `/api/team/roster?email=${encodeURIComponent(fallbackEmail)}`
+    : "/api/team/roster";
+
+  const res = await fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ membershipId, isActive }),
+  });
+
+  const text = await res.text();
+  let json: any = null;
+
+  try {
+    json = JSON.parse(text);
+  } catch {
+    throw new Error("Roster update returned non-JSON response.");
+  }
+
+  if (!res.ok || !json?.ok) {
+    throw new Error(json?.error || "Failed to update roster status.");
+  }
+}
 
   async function toggleRosterActive(playerProfileId: string) {
     const current = rows.find((r) => r.playerProfileId === playerProfileId);
@@ -320,32 +361,193 @@ export default function TeamRosterPage() {
     }
   }
 
-  function openTeaserTabs(rowsToOpen: RosterRow[]) {
-    const activeWithSlug = rowsToOpen.filter((r) => r.isActive && !!r.publicSlug);
-    if (!activeWithSlug.length) {
-      setError("Select at least one ACTIVE player with a public profile slug to send a teaser card.");
-      return;
-    }
+function openTeaserTabs(rowsToOpen: RosterRow[]) {
+  const activeWithSlug = rowsToOpen.filter((r) => r.isActive && !!r.publicSlug);
 
-    // Open teaser card in new tabs
-    for (const r of activeWithSlug) {
-      const url = `/player/${encodeURIComponent(r.publicSlug as string)}/card?from=teaser`;
-      window.open(url, "_blank", "noopener,noreferrer");
-    }
+  if (!activeWithSlug.length) {
+    setError(
+      "Select at least one ACTIVE player with a public profile slug to send a teaser card."
+    );
+    return;
   }
 
-  return (
+  for (const r of activeWithSlug) {
+    const url = `/player/${encodeURIComponent(
+      r.publicSlug as string
+    )}/card?from=teaser`;
+
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
+async function sendTeaserCards() {
+  setError(null);
+
+  const playerProfileIds = selectedActiveRows
+    .map((r) => r.playerProfileId)
+    .filter(Boolean);
+
+  try {
+    const res = await fetch("/api/team/teaser-cards/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        coachEmail: teaserCoachEmail,
+        coachName: teaserCoachName,
+        note: teaserNote,
+        playerProfileIds,
+      }),
+    });
+
+    const json = await res.json().catch(() => ({}));
+
+    if (!res.ok || !json?.ok) {
+      throw new Error(json?.error || "Failed to send teaser cards.");
+    }
+
+    setTeaserModalOpen(false);
+    setTeaserCoachEmail("");
+    setTeaserCoachName("");
+    setTeaserNote("");
+
+setTeaserSuccess(
+  `Teaser cards sent to ${teaserCoachEmail.trim()}.`
+);
+  } catch (e: any) {
+    setError(e?.message || "Failed to send teaser cards.");
+  }
+}
+
+return (
     <main style={{ display: "grid", gap: 12 }}>
+      {analytics ? (
+  <section
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Active Players</div>
+      <div style={analyticsValue}>
+        {analytics.activePlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+  <div style={analyticsLabel}>Inactive Players</div>
+  <div style={analyticsValue}>
+    {analytics.inactivePlayers ?? 0}
+  </div>
+</div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Committed</div>
+      <div style={analyticsValue}>
+        {analytics.committedPlayers ?? 0}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Average GPA</div>
+      <div style={analyticsValue}>
+        {analytics.avgGpa ?? "—"}
+      </div>
+    </div>
+  </section>
+) : null}
+
+{analytics ? (
+  <section
+    style={{
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
+      gap: 12,
+    }}
+  >
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Grad Year Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.gradYears || {}).map(([label, count]) => (
+          <button
+            key={label}
+            type="button"
+            style={breakdownButtonRow}
+            onClick={() => applyGradYearQuickFilter(label)}
+            title={`Filter roster to grad year ${label}`}
+          >
+            <span>{label}</span>
+            <strong>{String(count)}</strong>
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Primary Position Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.primaryPositions || {}).map(
+          ([label, count]) => (
+            <button
+              key={label}
+              type="button"
+              style={breakdownButtonRow}
+              onClick={() => applyPrimaryPositionQuickFilter(label)}
+              title={`Filter roster to primary position ${label}`}
+            >
+              <span>{label}</span>
+              <strong>{String(count)}</strong>
+            </button>
+          )
+        )}
+      </div>
+    </div>
+
+    <div style={analyticsCard}>
+      <div style={analyticsLabel}>Pitcher Breakdown</div>
+      <div style={breakdownList}>
+        {Object.entries(analytics.pitcherHands || {}).map(([label, count]) => (
+          <button
+            key={label}
+            type="button"
+            style={breakdownButtonRow}
+            onClick={() => applyPitcherHandQuickFilter(label)}
+            title={`Filter roster to ${label}`}
+          >
+            <span>{label}</span>
+            <strong>{String(count)}</strong>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+) : null}
+
       {/* Top controls */}
       <section style={topBar}>
-        <div style={{ display: "grid", gap: 6, minWidth: 260 }}>
+        <div style={{ display: "grid", gap: 6 }}>
           <div style={searchTitle}>Search</div>
-          <input
-            style={input}
-            value={filters.q}
-            onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
-            placeholder="Search by player name"
-          />
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr auto",
+              gap: 10,
+              alignItems: "end",
+            }}
+          >
+            <input
+              style={input}
+              value={filters.q}
+              onChange={(e) => setFilters((f) => ({ ...f, q: e.target.value }))}
+              placeholder="Search by player name"
+            />
+
+            <button type="button" style={btnGhost} onClick={resetFilters}>
+              Reset Filters
+            </button>
+          </div>
           {fallbackEmail ? (
             <div style={miniHint}>Dev mode: email detected in URL: {fallbackEmail}</div>
           ) : (
@@ -388,22 +590,16 @@ export default function TeamRosterPage() {
           </Filter>
         </div>
 
-        {/* Row 2: Pitcher, Bats, Throws */}
-        <div style={filtersRow3}>
-          <Filter label="Pitcher">
+        {/* Row 2: Bats, Throws, Pitcher, Pitcher Handedness */}
+        <div style={filtersRow4}>
+          <Filter label="Bats">
             <select
               style={input}
-              value={filters.pitcher}
-              onChange={(e) => setFilters((f) => ({ ...f, pitcher: e.target.value as any }))}
+              value={filters.bats}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, bats: e.target.value as any }))
+              }
             >
-              <option value="">Any</option>
-              <option value="yes">Yes</option>
-              <option value="no">No</option>
-            </select>
-          </Filter>
-
-          <Filter label="Bats">
-            <select style={input} value={filters.bats} onChange={(e) => setFilters((f) => ({ ...f, bats: e.target.value as any }))}>
               <option value="ANY">Any</option>
               <option value="R">R</option>
               <option value="L">L</option>
@@ -415,11 +611,41 @@ export default function TeamRosterPage() {
             <select
               style={input}
               value={filters.throws}
-              onChange={(e) => setFilters((f) => ({ ...f, throws: e.target.value as any }))}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, throws: e.target.value as any }))
+              }
             >
               <option value="ANY">Any</option>
               <option value="R">R</option>
               <option value="L">L</option>
+            </select>
+          </Filter>
+
+          <Filter label="Pitcher">
+            <select
+              style={input}
+              value={filters.pitcher}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, pitcher: e.target.value as any }))
+              }
+            >
+              <option value="">Any</option>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+          </Filter>
+
+          <Filter label="Pitcher Handedness">
+            <select
+              style={input}
+              value={filters.pitcherHand}
+              onChange={(e) =>
+                setFilters((f) => ({ ...f, pitcherHand: e.target.value as any }))
+              }
+            >
+              <option value="ANY">Any</option>
+              <option value="RHP">RHP</option>
+              <option value="LHP">LHP</option>
             </select>
           </Filter>
         </div>
@@ -527,19 +753,48 @@ export default function TeamRosterPage() {
             type="button"
             style={{
               ...btnGoldSmall,
-              cursor: selectedActiveRows.length ? "pointer" : "not-allowed",
-              opacity: selectedActiveRows.length ? 1 : 0.65,
+cursor: loading ? "not-allowed" : "pointer",
+opacity: loading ? 0.65 : 1,
             }}
-            disabled={loading || selectedActiveRows.length === 0}
+            disabled={loading}
             title={
               selectedActiveRows.length
                 ? `Open teaser cards for ${selectedActiveRows.length} active player(s)`
                 : "Select at least one ACTIVE player to send teaser cards."
             }
-            onClick={() => openTeaserTabs(selectedRows)}
+onClick={() => {
+  const activeWithSlug = selectedActiveRows.filter((r) => !!r.publicSlug);
+
+  if (!activeWithSlug.length) {
+    setError(
+      "Select at least one ACTIVE player with a public profile slug to send a teaser card."
+    );
+    return;
+  }
+
+  setTeaserSuccess(null);
+  setError(null);
+  setTeaserModalOpen(true);
+}}
           >
             Send Teaser Cards
           </button>
+          
+          {teaserSuccess ? (
+  <div
+    style={{
+      border: "1px solid #bbf7d0",
+      borderRadius: 12,
+      background: "#f0fdf4",
+      color: "#166534",
+      padding: "8px 12px",
+      fontWeight: 900,
+      fontSize: 12,
+    }}
+  >
+    {teaserSuccess}
+  </div>
+) : null}
         </div>
 
         <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
@@ -547,11 +802,9 @@ export default function TeamRosterPage() {
             Refresh
           </button>
 
-          {!fallbackEmail ? (
-            <span style={miniHint}>Showing demo roster (add ?email=you@domain.com to load real roster)</span>
-          ) : (
-            <span style={miniHint}>Loaded from roster API</span>
-          )}
+<span style={miniHint}>
+  Loaded from roster API
+</span>
         </div>
       </section>
 
@@ -620,23 +873,50 @@ export default function TeamRosterPage() {
 
                           <div style={{ display: "grid", gap: 2, minWidth: 0 }}>
                             <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-                              <div style={{ fontWeight: 900 }}>
-                                {fullName(r)} {r.committed ? <span style={committedPill}>COMMITTED</span> : null}
-                              </div>
+<div style={{ fontWeight: 900 }}>
+  {r.publicSlug ? (
+    <a
+      href={`/player/${encodeURIComponent(r.publicSlug)}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      style={{
+        position: "relative",
+        zIndex: 20,
+        color: "#0f172a",
+        textDecoration: "underline",
+        textUnderlineOffset: 3,
+        cursor: "pointer",
+        pointerEvents: "auto",
+      }}
+      title="View public player profile"
+    >
+      {fullName(r) || "Player"}
+    </a>
+  ) : (
+    <span>{fullName(r) || "Player"}</span>
+  )}{" "}
+  {r.committed ? <span style={committedPill}>COMMITTED</span> : null}
+</div>
 
-                              <button
-                                type="button"
-                                onClick={() => toggleRosterActive(r.playerProfileId)}
-                                style={r.isActive ? activePillSmall : inactivePillSmall}
-                                title={fallbackEmail ? "Toggle roster status" : "Demo mode (no API) — toggles UI only"}
-                              >
-                                {r.isActive ? "Active" : "Inactive"}
-                              </button>
+<button
+  type="button"
+  onClick={() => toggleRosterActive(r.playerProfileId)}
+  style={r.isActive ? activePillSmall : inactivePillSmall}
+  title={
+    fallbackEmail
+      ? "Toggle roster status"
+      : "Active players appear on the team roster and count toward team billing. Inactive players are removed from the active roster and lose team-managed profile access until reactivated."
+  }
+>
+  {r.isActive ? "Active" : "Inactive"}
+</button>
                             </div>
 
                             <div style={mutedLine}>
                               Grad {r.gradYear ?? "—"} • GPA {r.gpa ?? "—"} • {r.primaryPos ?? "—"}
-                              {r.secondaryPos ? ` / ${r.secondaryPos}` : ""} • Throws {r.throws ?? "—"} • Bats{" "}
+                              {r.secondaryPos ? ` / ${r.secondaryPos}` : ""}
+                              {r.hand ? ` / ${r.hand}` : ""} • Throws {r.throws ?? "—"} • Bats{" "}
                               {r.bats ?? "—"}
                             </div>
                           </div>
@@ -645,58 +925,139 @@ export default function TeamRosterPage() {
                         <div style={rightActions}>
                           {isSelected ? (
                             <>
-                              {/* ✅ Edit Profile (disabled when inactive) */}
-                              {canActions ? (
-                                <Link
-                                  href={`/dashboard/team/roster/player/${encodeURIComponent(r.playerProfileId)}`}
-                                  style={btnGhostSmall}
-                                >
-                                  Edit Player Profile
-                                </Link>
-                              ) : (
-                                <span style={btnGhostSmallDisabled} title="Player must be Active to edit profile.">
-                                  Edit Player Profile
-                                </span>
-                              )}
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(3, minmax(145px, 1fr))",
+    gap: 8,
+    alignItems: "stretch",
+    width: "100%",
+    maxWidth: 650,
+  }}
+>
+  {/* Top row: Edit, Recruiting, Teaser */}
+  {canActions ? (
+    <Link
+      href={`/dashboard/team/roster/player/${encodeURIComponent(
+        r.playerProfileId
+      )}/edit`}
+      style={btnGhostSmall}
+    >
+      Edit Player Profile
+    </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to edit profile."
+    >
+      Edit Player Profile
+    </span>
+  )}
 
-                              {/* ✅ View Profile (disabled when inactive) */}
-                              {r.publicSlug ? (
-                                canActions ? (
-                                  <Link href={`/player/${encodeURIComponent(r.publicSlug)}`} style={btnGhostSmall}>
-                                    View Player Profile
-                                  </Link>
-                                ) : (
-                                  <span style={btnGhostSmallDisabled} title="Player must be Active to view profile from roster.">
-                                    View Player Profile
-                                  </span>
-                                )
-                              ) : null}
+  {canActions ? (
+    <Link
+href={`/dashboard/player/recruiting-tool?playerProfileId=${encodeURIComponent(
+  r.playerProfileId
+)}&from=team-roster&returnTo=${encodeURIComponent("/dashboard/team/roster")}`}
+      style={btnGhostSmall}
+    >
+      Recruiting Tool
+    </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to use recruiting tools."
+    >
+      Recruiting Tool
+    </span>
+  )}
 
-                              {/* ✅ Send Teaser Card (disabled when inactive OR missing slug) */}
-                              {r.publicSlug ? (
-                                <a
-                                  href={canTeaser ? `/player/${encodeURIComponent(r.publicSlug)}/card?from=teaser` : undefined}
-                                  target={canTeaser ? "_blank" : undefined}
-                                  rel={canTeaser ? "noopener noreferrer" : undefined}
-                                  style={{
-                                    ...btnGoldSmall,
-                                    cursor: canTeaser ? "pointer" : "not-allowed",
-                                    opacity: canTeaser ? 1 : 0.6,
-                                    pointerEvents: canTeaser ? "auto" : "none",
-                                  }}
-                                  title={
-                                    canTeaser
-                                      ? "Open teaser card to send to coaches"
-                                      : "Player must be Active to send teaser card."
-                                  }
-                                >
-                                  Send Teaser Card
-                                </a>
-                              ) : (
-                                <button type="button" style={btnGoldSmall} disabled title="Missing public slug for this player.">
-                                  Send Teaser Card
-                                </button>
-                              )}
+{canActions ? (
+  <button
+    type="button"
+    style={btnGoldSmall}
+onClick={() => {
+  if (!r.publicSlug) {
+    setError("This player needs a public profile slug before sending a teaser card.");
+    return;
+  }
+
+  setSelected({ [r.playerProfileId]: true });
+  setTeaserSuccess(null);
+  setError(null);
+  setTeaserModalOpen(true);
+}}
+  >
+    Send Teaser Card
+  </button>
+) : (
+  <span
+    style={btnGoldSmallDisabled}
+    title={
+      !r.publicSlug
+        ? "Player needs a public profile before sending a teaser card."
+        : "Player must be Active to send teaser card."
+    }
+  >
+    Send Teaser Card
+  </span>
+)}
+
+  {/* Bottom row: College Search, Suggested, Target */}
+  {canActions ? (
+    <Link
+href={`/dashboard/player/college-search?playerProfileId=${encodeURIComponent(
+  r.playerProfileId
+)}&from=team-roster&returnTo=${encodeURIComponent("/dashboard/team/roster")}`}
+      style={btnGhostSmall}
+    >
+      College Search
+    </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to use college search."
+    >
+      College Search
+    </span>
+  )}
+
+  {canActions ? (
+    <Link
+      href={`/dashboard/player/suggested-programs?playerProfileId=${encodeURIComponent(
+        r.playerProfileId
+      )}&from=team-roster`}
+      style={btnGhostSmall}
+    >
+      Suggested Programs
+    </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to view suggested programs."
+    >
+      Suggested Programs
+    </span>
+  )}
+
+  {canActions ? (
+    <Link
+      href={`/dashboard/player/target-programs?playerProfileId=${encodeURIComponent(
+        r.playerProfileId
+      )}&from=team-roster`}
+      style={btnGhostSmall}
+    >
+      Target Programs
+    </Link>
+  ) : (
+    <span
+      style={btnGhostSmallDisabled}
+      title="Player must be Active to view target programs."
+    >
+      Target Programs
+    </span>
+  )}
+</div>
                             </>
                           ) : null}
                         </div>
@@ -709,6 +1070,201 @@ export default function TeamRosterPage() {
           </>
         )}
       </section>
+      {teaserModalOpen ? (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(15,23,42,0.45)",
+      zIndex: 50,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 16,
+    }}
+  >
+    <section
+      style={{
+        width: "100%",
+        maxWidth: 720,
+        borderRadius: 18,
+        background: "#fff",
+        border: "1px solid #e5e7eb",
+        boxShadow: "0 20px 60px rgba(15,23,42,0.25)",
+        padding: 18,
+        display: "grid",
+        gap: 14,
+      }}
+    >
+      <div>
+        <h2
+          style={{
+            margin: 0,
+            fontSize: "1.25rem",
+            fontWeight: 950,
+            color: "#0f172a",
+          }}
+        >
+          Send Teaser Cards
+        </h2>
+
+        <p
+          style={{
+            margin: "6px 0 0",
+            color: "#64748b",
+            fontWeight: 700,
+            lineHeight: 1.45,
+          }}
+        >
+          Selected active players with public teaser cards:{" "}
+          <strong>{selectedActiveRows.length}</strong>
+        </p>
+      </div>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 10,
+  }}
+>
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: 900, fontSize: 12, color: "#0f172a" }}>
+      Coach Email
+    </span>
+    <input
+      style={input}
+      value={teaserCoachEmail}
+      onChange={(e) => setTeaserCoachEmail(e.target.value)}
+      placeholder="coach@college.edu"
+      type="email"
+    />
+  </label>
+
+  <label style={{ display: "grid", gap: 6 }}>
+    <span style={{ fontWeight: 900, fontSize: 12, color: "#0f172a" }}>
+      Coach Name Optional
+    </span>
+    <input
+      style={input}
+      value={teaserCoachName}
+      onChange={(e) => setTeaserCoachName(e.target.value)}
+      placeholder="Coach Smith"
+    />
+  </label>
+</div>
+
+<label style={{ display: "grid", gap: 6 }}>
+  <span style={{ fontWeight: 900, fontSize: 12, color: "#0f172a" }}>
+    Personal Note Required
+  </span>
+  <textarea
+    style={{
+      ...input,
+      minHeight: 110,
+      resize: "vertical",
+      lineHeight: 1.45,
+    }}
+    value={teaserNote}
+    onChange={(e) => setTeaserNote(e.target.value)}
+    placeholder="Coach, I wanted to send you a few players from our roster who may fit what you're looking for..."
+  />
+</label>
+
+      <div
+        style={{
+          border: "1px solid #e5e7eb",
+          borderRadius: 14,
+          background: "#f8fafc",
+          padding: 12,
+          display: "grid",
+          gap: 8,
+        }}
+      >
+        {selectedActiveRows.length ? (
+          selectedActiveRows.map((r) => (
+            <div
+              key={r.playerProfileId}
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                gap: 10,
+                alignItems: "center",
+                color: "#0f172a",
+                fontWeight: 850,
+              }}
+            >
+              <span>{fullName(r) || r.playerProfileId}</span>
+
+              {r.publicSlug ? (
+                <Link
+                  href={`/player/${encodeURIComponent(r.publicSlug as string)}/card?from=teaser`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#8a6a21",
+                    fontWeight: 900,
+                    textDecoration: "none",
+                  }}
+                >
+                  Preview
+                </Link>
+              ) : null}
+            </div>
+          ))
+        ) : (
+          <div style={{ color: "#7f1d1d", fontWeight: 900 }}>
+            Select at least one active player with a public profile.
+          </div>
+        )}
+      </div>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: 10,
+          flexWrap: "wrap",
+        }}
+      >
+        <button
+          type="button"
+          style={btnGhost}
+          onClick={() => setTeaserModalOpen(false)}
+        >
+          Close
+        </button>
+
+        <button
+          type="button"
+          style={{
+            ...btnGoldSmall,
+            padding: "10px 14px",
+opacity:
+  selectedActiveRows.length &&
+  teaserCoachEmail.trim() &&
+  teaserNote.trim().length >= 20
+    ? 1
+    : 0.6,
+cursor:
+  selectedActiveRows.length &&
+  teaserCoachEmail.trim() &&
+  teaserNote.trim().length >= 20
+    ? "pointer"
+    : "not-allowed",
+          }}
+          disabled={
+  !selectedActiveRows.length ||
+  !teaserCoachEmail.trim() ||
+  teaserNote.trim().length < 20
+}
+          onClick={sendTeaserCards}
+        >
+          Send Teaser Cards
+        </button>
+      </div>
+    </section>
+  </div>
+) : null}
     </main>
   );
 }
@@ -743,6 +1299,13 @@ const searchTitle: React.CSSProperties = {
 const filtersRow3: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
+  gap: 10,
+  alignItems: "end",
+};
+
+const filtersRow4: React.CSSProperties = {
+  display: "grid",
+  gridTemplateColumns: "repeat(4, minmax(0, 1fr))",
   gap: 10,
   alignItems: "end",
 };
@@ -903,6 +1466,57 @@ const miniHint: React.CSSProperties = {
   lineHeight: 1.35,
 };
 
+const analyticsCard: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 14,
+  background: "#fff",
+  padding: 14,
+  boxShadow: "0 4px 12px rgba(15,23,42,0.05)",
+  display: "grid",
+  gap: 6,
+};
+
+const analyticsLabel: React.CSSProperties = {
+  fontSize: 12,
+  fontWeight: 900,
+  color: "#64748b",
+  textTransform: "uppercase",
+  letterSpacing: ".04em",
+};
+
+const analyticsValue: React.CSSProperties = {
+  fontSize: 28,
+  fontWeight: 900,
+  color: "#0f172a",
+  lineHeight: 1,
+};
+
+const breakdownList: React.CSSProperties = {
+  display: "grid",
+  gap: 8,
+  marginTop: 4,
+};
+
+const breakdownRow: React.CSSProperties = {
+  display: "flex",
+  justifyContent: "space-between",
+  gap: 12,
+  alignItems: "center",
+  padding: "8px 10px",
+  borderRadius: 10,
+  background: "#f8fafc",
+  color: "#0f172a",
+  fontWeight: 800,
+};
+
+const breakdownButtonRow: React.CSSProperties = {
+  ...breakdownRow,
+  width: "100%",
+  border: "0",
+  cursor: "pointer",
+  textAlign: "left",
+};
+
 const errorBox: React.CSSProperties = {
   padding: "10px 12px",
   border: "1px solid #fecaca",
@@ -913,15 +1527,30 @@ const errorBox: React.CSSProperties = {
 };
 
 const btnGoldSmall: React.CSSProperties = {
+  display: "inline-flex",
+  alignItems: "center",
+  justifyContent: "center",
+  minHeight: 34,
   padding: "8px 10px",
   borderRadius: 10,
   border: "1px solid #caa042",
   background: "#caa042",
   color: "#0f172a",
-  fontWeight: 900,
   fontSize: 12,
-  whiteSpace: "nowrap",
+  fontWeight: 900,
   textDecoration: "none",
+  whiteSpace: "nowrap",
+  cursor: "pointer",
+};
+
+const btnGoldSmallDisabled: React.CSSProperties = {
+  ...btnGoldSmall,
+  background: "#f8fafc",
+  border: "1px solid #e5e7eb",
+  color: "#94a3b8",
+  cursor: "not-allowed",
+  opacity: 0.7,
+  userSelect: "none",
 };
 
 const btnGhost: React.CSSProperties = {

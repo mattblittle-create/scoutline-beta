@@ -3,15 +3,16 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { PLAN_PRICES_CENTS, normalizeCadence, normalizePlanTier } from "@/lib/billing/plans";
 
+export const dynamic = "force-dynamic";
+
 // GET /api/billing/team/snapshot?teamId=abc123&planTier=Teams&cadence=Monthly&orgName=Foo&seatsUsed=42
-// (Step 2: minimal — Step 3 will use real team/org lookup + stripe customer)
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
 
     const teamId = String(searchParams.get("teamId") || "").trim();
     const planTierRaw = String(searchParams.get("planTier") || "Teams").trim();
-    const cadenceRaw = String(searchParams.get("cadence") || "Monthly").trim();
+    const cadenceRaw = String(searchParams.get("cadence") || "monthly").trim(); // ✅ lowercase default
     const orgName = String(searchParams.get("orgName") || "Organization").trim();
     const seatsUsed = Number(searchParams.get("seatsUsed") || "0");
 
@@ -19,8 +20,15 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: "Missing teamId." }, { status: 400 });
     }
 
-    const planTier = normalizePlanTier(planTierRaw) ?? "Teams";
-    const cadence = normalizeCadence(cadenceRaw) ?? "Monthly";
+    // ---- Normalize plan tier (fallback to Teams) ----
+    const planTierNorm = normalizePlanTier(planTierRaw);
+    const planTier = planTierNorm ? planTierNorm : "Teams";
+
+    // ---- Normalize cadence to the actual keys used in PLAN_PRICES_CENTS ----
+    // Your normalizeCadence likely returns "monthly"/"annual" (lowercase).
+    // If it ever returns "" or null, fall back to "monthly".
+    const cadenceNorm = normalizeCadence(cadenceRaw);
+    const cadence = cadenceNorm ? cadenceNorm : "monthly";
 
     const basePriceCents = PLAN_PRICES_CENTS[planTier][cadence];
 
@@ -56,7 +64,12 @@ export async function GET(req: Request) {
 
       discount = {
         code: dc.code,
-        label: dc.type === "PERCENT" ? `${dc.value}% off` : dc.type === "FREE_TRIAL" ? "Free trial" : "Discount",
+        label:
+          dc.type === "PERCENT"
+            ? `${dc.value}% off`
+            : dc.type === "FREE_TRIAL"
+            ? "Free trial"
+            : "Discount",
         amountOffCents,
         activeUntilLabel: active.endsAt ? active.endsAt.toLocaleDateString("en-US") : undefined,
       };
@@ -67,7 +80,7 @@ export async function GET(req: Request) {
       snapshot: {
         orgName,
         planName: planTier,
-        cadence,
+        cadence, // will be "monthly"/"annual"
         seatLabel: "Players",
         seatsUsed: Number.isFinite(seatsUsed) ? seatsUsed : 0,
         basePriceCents,

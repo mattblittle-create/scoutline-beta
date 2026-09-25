@@ -1,7 +1,7 @@
 // app/components/metrics/MetricChart.tsx
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   LineChart,
   Line,
@@ -108,6 +108,11 @@ export default function MetricChart({
   metricKey,
   dob,
 }: Props) {
+    const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   // Build chart rows: value + baseline aligned by month
   const data = useMemo(() => {
     const withDate = entries
@@ -195,9 +200,16 @@ export default function MetricChart({
         )}
       </div>
 
-      {/* Chart */}
-      <div style={{ width: "100%", height: 260 }}>
-        <ResponsiveContainer>
+{/* Chart */}
+{mounted ? (
+<div
+  style={{
+    width: "100%",
+    minWidth: 280,
+    height: 260,
+  }}
+>
+  <ResponsiveContainer width="100%" height="100%" minWidth={280}>
           <LineChart
             data={data}
             margin={{ top: 10, right: 16, bottom: 28, left: 0 }} // extra bottom for 2-line ticks
@@ -210,15 +222,15 @@ export default function MetricChart({
               height={40} // room for two-line ticks
             />
             <YAxis domain={yDomain as any} tick={{ fontSize: 12 }} width={46} />
-            <Tooltip
-              formatter={(value: any, name: string) => {
-                if (typeof value === "number") {
-                  return [`${fmt(value)} ${unit}`, name];
-                }
-                return [value, name];
-              }}
-              labelFormatter={(label) => `${label}`}
-            />
+<Tooltip
+  formatter={(value: any, name: string | number | undefined) => {
+    const safeName = name == null ? "" : String(name);
+    const safeValue =
+      typeof value === "number" ? `${fmt(value)} ${unit}` : String(value ?? "");
+    return [safeValue, safeName];
+  }}
+  labelFormatter={(label) => `${label}`}
+/>
 
             {/* Horizontal average of player's values */}
             {avg != null && (
@@ -254,6 +266,17 @@ export default function MetricChart({
           </LineChart>
         </ResponsiveContainer>
       </div>
+) : (
+  <div
+    style={{
+      width: "100%",
+      height: 260,
+      borderRadius: 10,
+      background: "#f8fafc",
+      border: "1px solid #e5e7eb",
+    }}
+  />
+)}
 
       {/* Inline legend aligned with the x-axis */}
       <div

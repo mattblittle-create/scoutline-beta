@@ -1,6 +1,7 @@
 // app/api/team/roster/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
 function jsonError(message: string, status = 400) {
   return NextResponse.json({ ok: false, error: message }, { status });
@@ -20,7 +21,9 @@ function isEmail(v: string): boolean {
 
 function pickEmailFromRequest(req: Request): string {
   const url = new URL(req.url);
-  return normalizeEmail(url.searchParams.get("email") || url.searchParams.get("username"));
+  return normalizeEmail(
+    url.searchParams.get("email") || url.searchParams.get("username")
+  );
 }
 
 function asBool(v: string | null): boolean | null {
@@ -54,10 +57,6 @@ function safeGet(obj: any, path: string[]): any {
   return cur;
 }
 
-/**
- * We keep this tolerant because PlayerProfile.data evolves.
- * Try multiple likely paths for each field.
- */
 function extractRosterFields(profileData: any) {
   const firstName =
     normText(safeGet(profileData, ["firstName"])) ||
@@ -96,7 +95,9 @@ function extractRosterFields(profileData: any) {
     safeGet(profileData, ["player", "isCommitted"]);
 
   const isCommitted =
-    typeof isCommittedRaw === "boolean" ? isCommittedRaw : asBool(String(isCommittedRaw ?? ""));
+    typeof isCommittedRaw === "boolean"
+      ? isCommittedRaw
+      : asBool(String(isCommittedRaw ?? ""));
 
   const primaryPos =
     normText(safeGet(profileData, ["primaryPos"])) ||
@@ -127,260 +128,334 @@ function extractRosterFields(profileData: any) {
     "";
 
   const isPitcher =
-    !!primaryPos && primaryPos.toUpperCase() === "P"
-      ? true
-      : !!secondaryPos && secondaryPos.toUpperCase() === "P"
-      ? true
-      : false;
+    (!!primaryPos && primaryPos.toUpperCase() === "P") ||
+    (!!secondaryPos && secondaryPos.toUpperCase() === "P");
+
+  const publicSlug =
+  normText(safeGet(profileData, ["publicSlug"])) ||
+  normText(safeGet(profileData, ["slug"])) ||
+  normText(safeGet(profileData, ["core", "publicSlug"])) ||
+  normText(safeGet(profileData, ["player", "publicSlug"])) ||
+  "";
 
   const fullName = [firstName, lastName].filter(Boolean).join(" ").trim();
 
-  return {
-    firstName,
-    lastName,
-    fullName,
-    photoUrl,
-    gradYear,
-    gpa,
-    isCommitted,
-    primaryPos,
-    secondaryPos,
-    pitcherHand,
-    bats,
-    throws,
-    isPitcher,
-  };
+return {
+  firstName,
+  lastName,
+  fullName,
+  publicSlug,
+  photoUrl,
+  gradYear,
+  gpa,
+  isCommitted,
+  primaryPos,
+  secondaryPos,
+  pitcherHand,
+  bats,
+  throws,
+  isPitcher,
+};
 }
 
-async function getAdminTeamByEmail(adminEmail: string) {
-  const user = await prisma.user.findUnique({
-    where: { email: adminEmail },
-    select: { id: true, email: true },
-  });
-  if (!user) return null;
+async function getAdminTeamFromRequest(req: Request) {
+  const currentUser = await getCurrentUser().catch(() => null);
+
+  let userId = currentUser?.id || null;
+  let email = normalizeEmail(currentUser?.email);
+
+  // Keep dev/manual fallback support.
+  if (!userId) {
+    const fallbackEmail = pickEmailFromRequest(req);
+    if (!fallbackEmail) return null;
+    if (!isEmail(fallbackEmail)) throw new Error("Invalid email.");
+
+    const fallbackUser = await prisma.user.findUnique({
+      where: { email: fallbackEmail },
+      select: { id: true, email: true },
+    });
+
+    if (!fallbackUser?.id) return null;
+
+    userId = fallbackUser.id;
+    email = normalizeEmail(fallbackUser.email);
+  }
 
   const adminMembership = await prisma.teamMembership.findFirst({
-    where: { userId: user.id, role: "TEAM_ADMIN" },
+    where: {
+      userId,
+      role: "TEAM_ADMIN" as any,
+      isActive: true,
+    },
     include: { team: true },
   });
 
   if (!adminMembership?.team) return null;
-  return { user, team: adminMembership.team };
+
+  return {
+    user: { id: userId, email },
+    team: adminMembership.team,
+  };
 }
 
-/**
- * GET /api/team/roster?email=...&q=...&gradYear=...&gpaMin=...&gpaMax=...&committed=true|false
- *     &primaryPos=...&secondaryPos=...&pitcher=true|false&hand=RHP|LHP&bats=R|L|S&throws=R|L
- *     &active=true|false
- */
 export async function GET(req: Request) {
-  const url = new URL(req.url);
+  try {
+    const url = new URL(req.url);
 
-  const email = pickEmailFromRequest(req);
-  if (!email) return jsonError("Missing email (dev mode).", 400);
-  if (!isEmail(email)) return jsonError("Invalid email.", 400);
+    const found = await getAdminTeamFromRequest(req);
+    if (!found) {
+      return jsonError("No active team admin membership found for this user.", 404);
+    }
 
-  const found = await getAdminTeamByEmail(email);
-  if (!found) return jsonError("No TEAM_ADMIN membership found for this user.", 404);
+    const teamId = found.team.id;
 
-  const teamId = found.team.id;
+    const q = normText(url.searchParams.get("q")).toLowerCase();
+    const gradYear = asInt(url.searchParams.get("gradYear"));
+    const gpaMin = asFloat(url.searchParams.get("gpaMin"));
+    const gpaMax = asFloat(url.searchParams.get("gpaMax"));
+    const committed = asBool(url.searchParams.get("committed"));
+    const primaryPos = normText(url.searchParams.get("primaryPos")).toUpperCase();
+    const secondaryPos = normText(url.searchParams.get("secondaryPos")).toUpperCase();
+    const pitcher = asBool(url.searchParams.get("pitcher"));
+    const hand = normText(url.searchParams.get("hand")).toUpperCase();
+    const bats = normText(url.searchParams.get("bats")).toUpperCase();
+    const throws = normText(url.searchParams.get("throws")).toUpperCase();
+    const active = asBool(url.searchParams.get("active"));
 
-  // filters
-  const q = normText(url.searchParams.get("q")).toLowerCase();
-  const gradYear = asInt(url.searchParams.get("gradYear"));
-  const gpaMin = asFloat(url.searchParams.get("gpaMin"));
-  const gpaMax = asFloat(url.searchParams.get("gpaMax"));
-  const committed = asBool(url.searchParams.get("committed"));
-  const primaryPos = normText(url.searchParams.get("primaryPos")).toUpperCase();
-  const secondaryPos = normText(url.searchParams.get("secondaryPos")).toUpperCase();
-  const pitcher = asBool(url.searchParams.get("pitcher"));
-  const hand = normText(url.searchParams.get("hand")).toUpperCase(); // RHP/LHP
-  const bats = normText(url.searchParams.get("bats")).toUpperCase(); // R/L/S
-  const throws = normText(url.searchParams.get("throws")).toUpperCase(); // R/L
-  const active = asBool(url.searchParams.get("active"));
-
-  // Pull roster rows for team (role PLAYER) that point at PlayerProfile
-  const rows = await prisma.teamMembership.findMany({
-    where: {
-      teamId,
-      role: "PLAYER",
-      playerProfileId: { not: null },
-      ...(active === null ? {} : { isActive: active }),
-    },
-    orderBy: [{ createdAt: "desc" }],
-    include: {
-      playerProfile: {
-        select: {
-          id: true,
-          email: true,
-          userId: true,
-          data: true,
-          createdAt: true,
-          updatedAt: true,
-        },
+    const rows = await prisma.teamMembership.findMany({
+      where: {
+        teamId,
+        role: "PLAYER" as any,
+        playerProfileId: { not: null },
+        ...(active === null ? { isActive: true } : { isActive: active }),
       },
-      user: { select: { id: true, email: true } },
-    },
-  });
-
-  // shape + filter in-memory
-  const roster = rows
-    .map((m) => {
-      const pp = m.playerProfile;
-      const data = (pp?.data ?? {}) as any;
-      const f = extractRosterFields(data);
-
-      return {
-        membershipId: m.id,
-        teamId: m.teamId,
-        role: m.role,
-        season: m.season ?? null,
-        isActive: m.isActive,
-        startDate: m.startDate,
-        endDate: m.endDate,
-        createdAt: m.createdAt,
-
-        playerProfileId: pp?.id ?? null,
-        playerEmail: pp?.email ?? null,
-        userId: pp?.userId ?? null,
-
-        // roster display fields
-        firstName: f.firstName,
-        lastName: f.lastName,
-        fullName: f.fullName,
-        photoUrl: f.photoUrl,
-        gradYear: f.gradYear,
-        gpa: f.gpa,
-        committed: f.isCommitted,
-        primaryPos: f.primaryPos,
-        secondaryPos: f.secondaryPos,
-        pitcher: f.isPitcher,
-        hand: f.pitcherHand,
-        bats: f.bats,
-        throws: f.throws,
-      };
-    })
-    .filter((r) => {
-      if (q) {
-        const hay = `${r.firstName} ${r.lastName} ${r.fullName} ${r.playerEmail ?? ""}`.toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      if (gradYear != null && r.gradYear !== gradYear) return false;
-
-      if (gpaMin != null) {
-        if (r.gpa == null || r.gpa < gpaMin) return false;
-      }
-      if (gpaMax != null) {
-        if (r.gpa == null || r.gpa > gpaMax) return false;
-      }
-
-      if (committed != null) {
-        // if null in data, treat as false for filtering purposes
-        const c = !!r.committed;
-        if (c !== committed) return false;
-      }
-
-      if (primaryPos) {
-        if ((r.primaryPos || "").toUpperCase() !== primaryPos) return false;
-      }
-      if (secondaryPos) {
-        if ((r.secondaryPos || "").toUpperCase() !== secondaryPos) return false;
-      }
-
-      if (pitcher != null) {
-        if (!!r.pitcher !== pitcher) return false;
-      }
-
-      if (hand) {
-        if ((r.hand || "").toUpperCase() !== hand) return false;
-      }
-      if (bats) {
-        if ((r.bats || "").toUpperCase() !== bats) return false;
-      }
-      if (throws) {
-        if ((r.throws || "").toUpperCase() !== throws) return false;
-      }
-
-      return true;
-    })
-    // stable sort for UI
-    .sort((a, b) => {
-      const la = (a.lastName || "").toLowerCase();
-      const lb = (b.lastName || "").toLowerCase();
-      if (la < lb) return -1;
-      if (la > lb) return 1;
-      const fa = (a.firstName || "").toLowerCase();
-      const fb = (b.firstName || "").toLowerCase();
-      return fa.localeCompare(fb);
+      orderBy: [{ createdAt: "desc" }],
+      include: {
+        playerProfile: {
+          select: {
+            id: true,
+            email: true,
+            userId: true,
+            data: true,
+            createdAt: true,
+            updatedAt: true,
+          },
+        },
+        user: { select: { id: true, email: true, photoUrl: true, slug: true } },
+      },
     });
 
-  return NextResponse.json({
-    ok: true,
-    data: {
-      team: { id: teamId, name: found.team.name, slug: found.team.slug, teamType: found.team.teamType },
-      count: roster.length,
-      roster,
-      filtersEcho: {
-        q: q || null,
-        gradYear,
-        gpaMin,
-        gpaMax,
-        committed,
-        primaryPos: primaryPos || null,
-        secondaryPos: secondaryPos || null,
-        pitcher,
-        hand: hand || null,
-        bats: bats || null,
-        throws: throws || null,
-        active,
-      },
+    const roster = rows
+      .map((m) => {
+        const pp = m.playerProfile;
+        const data = (pp?.data ?? {}) as any;
+        const f = extractRosterFields(data);
+
+        return {
+          membershipId: m.id,
+          teamId: m.teamId,
+          role: m.role,
+          season: m.season ?? null,
+          isActive: m.isActive,
+          startDate: m.startDate,
+          endDate: m.endDate,
+          createdAt: m.createdAt,
+
+          playerProfileId: pp?.id ?? null,
+          playerEmail: pp?.email ?? m.user?.email ?? null,
+          userId: pp?.userId ?? m.user?.id ?? null,
+
+          publicSlug: f.publicSlug || m.user?.slug || null,
+
+          firstName: f.firstName,
+          lastName: f.lastName,
+          fullName: f.fullName || pp?.email || m.user?.email || "Player",
+          photoUrl: f.photoUrl || m.user?.photoUrl || null,
+          gradYear: f.gradYear,
+          gpa: f.gpa,
+          committed: f.isCommitted,
+          primaryPos: f.primaryPos,
+          secondaryPos: f.secondaryPos,
+          pitcher: f.isPitcher,
+          hand: f.pitcherHand,
+          bats: f.bats,
+          throws: f.throws,
+        };
+      })
+      .filter((r) => {
+        if (q) {
+          const hay =
+            `${r.firstName} ${r.lastName} ${r.fullName} ${r.playerEmail ?? ""}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+
+        if (gradYear != null && r.gradYear !== gradYear) return false;
+        if (gpaMin != null && (r.gpa == null || r.gpa < gpaMin)) return false;
+        if (gpaMax != null && (r.gpa == null || r.gpa > gpaMax)) return false;
+
+        if (committed != null && !!r.committed !== committed) return false;
+
+        if (primaryPos && (r.primaryPos || "").toUpperCase() !== primaryPos) {
+          return false;
+        }
+
+        if (
+          secondaryPos &&
+          (r.secondaryPos || "").toUpperCase() !== secondaryPos
+        ) {
+          return false;
+        }
+
+        if (pitcher != null && !!r.pitcher !== pitcher) return false;
+        if (hand && (r.hand || "").toUpperCase() !== hand) return false;
+        if (bats && (r.bats || "").toUpperCase() !== bats) return false;
+        if (throws && (r.throws || "").toUpperCase() !== throws) return false;
+
+        return true;
+      })
+      .sort((a, b) => {
+        const la = (a.lastName || "").toLowerCase();
+        const lb = (b.lastName || "").toLowerCase();
+        if (la < lb) return -1;
+        if (la > lb) return 1;
+
+        const fa = (a.firstName || "").toLowerCase();
+        const fb = (b.firstName || "").toLowerCase();
+        return fa.localeCompare(fb);
+      });
+
+const analytics = {
+  totalPlayers: rows.length,
+  activePlayers: rows.filter((m) => m.isActive).length,
+  inactivePlayers: rows.filter((m) => !m.isActive).length,
+  committedPlayers: roster.filter((r) => !!r.committed).length,
+  pitchers: roster.filter((r) => !!r.pitcher).length,
+  avgGpa:
+    roster.filter((r) => r.gpa != null).length > 0
+      ? Number(
+          (
+            roster
+              .filter((r) => r.gpa != null)
+              .reduce((sum, r) => sum + Number(r.gpa || 0), 0) /
+            roster.filter((r) => r.gpa != null).length
+          ).toFixed(2)
+        )
+      : null,
+  gradYears: roster.reduce<Record<string, number>>((acc, r) => {
+    if (!r.gradYear) return acc;
+
+    const key = String(r.gradYear);
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {}),
+  primaryPositions: roster.reduce<Record<string, number>>((acc, r) => {
+    const key = String(r.primaryPos || "").trim();
+
+    if (!key) return acc;
+
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {}),
+  pitcherHands: roster.reduce<Record<string, number>>((acc, r) => {
+    const rawHand = String(r.hand || "").trim().toUpperCase();
+
+    if (!rawHand) return acc;
+
+    const key =
+      rawHand === "LHP" || rawHand === "L"
+        ? "LHP"
+        : rawHand === "RHP" || rawHand === "R"
+        ? "RHP"
+        : "";
+
+    if (!key) return acc;
+
+    acc[key] = (acc[key] || 0) + 1;
+    return acc;
+  }, {}),
+};
+
+return NextResponse.json({
+  ok: true,
+  data: {
+    team: {
+      id: teamId,
+      name: found.team.name,
+      slug: found.team.slug,
+      teamType: found.team.teamType,
     },
-  });
+    count: roster.length,
+    analytics,
+    roster,
+        filtersEcho: {
+          q: q || null,
+          gradYear,
+          gpaMin,
+          gpaMax,
+          committed,
+          primaryPos: primaryPos || null,
+          secondaryPos: secondaryPos || null,
+          pitcher,
+          hand: hand || null,
+          bats: bats || null,
+          throws: throws || null,
+          active,
+        },
+      },
+    });
+  } catch (err: any) {
+    console.error("[team roster] GET error", err);
+    return jsonError(err?.message || "Failed to load roster.", 500);
+  }
 }
 
-/**
- * POST /api/team/roster
- * Body: { membershipId: string, isActive: boolean }
- * Dev fallback uses ?email= to identify TEAM_ADMIN -> team
- */
 export async function POST(req: Request) {
-  const email = pickEmailFromRequest(req);
-  if (!email) return jsonError("Missing email (dev mode).", 400);
-  if (!isEmail(email)) return jsonError("Invalid email.", 400);
-
-  const found = await getAdminTeamByEmail(email);
-  if (!found) return jsonError("No TEAM_ADMIN membership found for this user.", 404);
-
-  let body: any;
   try {
-    body = await req.json();
-  } catch {
-    return jsonError("Invalid JSON body.", 400);
+    const found = await getAdminTeamFromRequest(req);
+    if (!found) {
+      return jsonError("No active team admin membership found for this user.", 404);
+    }
+
+    let body: any;
+    try {
+      body = await req.json();
+    } catch {
+      return jsonError("Invalid JSON body.", 400);
+    }
+
+    const membershipId = normText(body?.membershipId);
+    const isActive = body?.isActive;
+
+    if (!membershipId) return jsonError("membershipId is required.", 400);
+    if (typeof isActive !== "boolean") {
+      return jsonError("isActive must be boolean.", 400);
+    }
+
+    const existing = await prisma.teamMembership.findFirst({
+      where: {
+        id: membershipId,
+        teamId: found.team.id,
+        role: "PLAYER" as any,
+      },
+      select: { id: true, isActive: true },
+    });
+
+    if (!existing) return jsonError("Roster row not found for this team.", 404);
+
+    const updated = await prisma.teamMembership.update({
+      where: { id: membershipId },
+      data: { isActive },
+    });
+
+    return NextResponse.json({
+      ok: true,
+      data: {
+        membershipId: updated.id,
+        isActive: updated.isActive,
+      },
+    });
+  } catch (err: any) {
+    console.error("[team roster] POST error", err);
+    return jsonError(err?.message || "Failed to update roster.", 500);
   }
-
-  const membershipId = normText(body?.membershipId);
-  const isActive = body?.isActive;
-
-  if (!membershipId) return jsonError("membershipId is required.", 400);
-  if (typeof isActive !== "boolean") return jsonError("isActive must be boolean.", 400);
-
-  // enforce: membership must belong to this TEAM
-  const existing = await prisma.teamMembership.findFirst({
-    where: { id: membershipId, teamId: found.team.id, role: "PLAYER" },
-    select: { id: true, isActive: true },
-  });
-  if (!existing) return jsonError("Roster row not found for this team.", 404);
-
-  const updated = await prisma.teamMembership.update({
-    where: { id: membershipId },
-    data: { isActive },
-  });
-
-  return NextResponse.json({
-    ok: true,
-    data: {
-      membershipId: updated.id,
-      isActive: updated.isActive,
-    },
-  });
 }

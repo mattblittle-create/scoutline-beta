@@ -1,9 +1,16 @@
+// app/api/onboarding/player/password/route.ts
+
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+import { prisma } from "@/lib/prisma";
+
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type Body = {
-  plan?: string | null;          // "redshirt" | "walk-on" | "all-american"
-  username?: string | null;      // legacy: player email prefilled into "username"
-  email?: string | null;         // preferred
+  plan?: string | null;
+  username?: string | null; // legacy fallback
+  email?: string | null;    // preferred
   password?: string | null;
 };
 
@@ -11,12 +18,12 @@ function jsonError(message: string, status = 400) {
   return NextResponse.json({ ok: false, error: message }, { status });
 }
 
-function normalizeEmail(v: any): string {
-  return String(v || "").trim().toLowerCase();
+function normalizeEmail(v: unknown): string {
+  return String(v ?? "").trim().toLowerCase();
 }
 
-function normalizeText(v: any): string {
-  return String(v || "").trim();
+function normalizeText(v: unknown): string {
+  return String(v ?? "").trim();
 }
 
 function isEmail(v: string): boolean {
@@ -24,26 +31,24 @@ function isEmail(v: string): boolean {
 }
 
 function validatePassword(pw: string): string | null {
-  if (!pw || typeof pw !== "string") return "Password is required.";
+  if (!pw) return "Password is required.";
   if (pw.length < 10) return "Password must be at least 10 characters.";
   if (!/[A-Z]/.test(pw)) return "Password must include at least one capital letter.";
   if (!/[0-9]/.test(pw)) return "Password must include at least one number.";
-  // symbol = anything not letter/number/space (tolerant)
   if (!/[^A-Za-z0-9\s]/.test(pw)) return "Password must include at least one symbol.";
   return null;
 }
 
 export async function POST(req: Request) {
   try {
-    const body: Body = await req.json().catch(() => ({} as any));
+    const body = (await req.json().catch(() => ({}))) as Body;
 
-    const plan = normalizeText(body?.plan);
-    const email = normalizeEmail(body?.email ?? body?.username);
-    const password = normalizeText(body?.password);
+    const plan = normalizeText(body.plan).toLowerCase();
+    const email = normalizeEmail(body.email ?? body.username);
+    const password = normalizeText(body.password);
 
-    // Plan guard (player only)
     const allowedPlans = new Set(["redshirt", "walk-on", "all-american"]);
-    if (!allowedPlans.has(plan)) {
+    if (plan && !allowedPlans.has(plan)) {
       return jsonError("Invalid player plan.");
     }
 
@@ -53,38 +58,68 @@ export async function POST(req: Request) {
     const pwErr = validatePassword(password);
     if (pwErr) return jsonError(pwErr);
 
-    // DO NOT log passwords
-    console.log("[onboarding] player password accepted", {
-      plan,
-      email,
-      passwordLen: password.length,
+    const passwordHash = await bcrypt.hash(password, 10);
+
+    // Ensure the user exists, then persist passwordHash.
+    const user = await prisma.user.upsert({
+      where: { email },
+      create: {
+        email,
+        name: email,
+        role: "PLAYER" as any,
+        passwordHash,
+      },
+      update: {
+        role: "PLAYER" as any,
+        passwordHash,
+      },
+      select: {
+        id: true,
+        email: true,
+      },
     });
 
-    // Optional: mark onboarding draft as passwordSet=true (never store the password)
+    // Keep draft in sync if present.
     try {
-      const mod = await import("@/lib/prisma").catch(() => null);
-      const prisma: any = (mod as any)?.prisma ?? (mod as any)?.default ?? null;
-
-      if (prisma?.onboardingDraft?.upsert) {
-        await prisma.onboardingDraft.upsert({
+      const db: any = prisma as any;
+      if (db?.onboardingDraft?.upsert) {
+        await db.onboardingDraft.upsert({
           where: { email },
           create: {
             email,
             kind: "PLAYER",
-            plan,
-            payload: { email, plan, passwordSet: true },
+            plan: plan || null,
+            payload: {
+              email,
+              plan: plan || null,
+              passwordSet: true,
+            },
           },
           update: {
-            plan,
-            payload: { email, plan, passwordSet: true },
+            plan: plan || null,
+            payload: {
+              email,
+              plan: plan || null,
+              passwordSet: true,
+            },
           },
         });
       }
-    } catch {
-      // swallow — onboarding should still work while schema is evolving
+    } catch (draftErr) {
+      console.warn("[onboarding] player password draft upsert skipped", draftErr);
     }
 
-    return NextResponse.json({ ok: true });
+    console.log("[onboarding] player password saved", {
+      plan: plan || null,
+      email,
+      userId: user.id,
+      passwordLen: password.length,
+    });
+
+    return NextResponse.json({
+      ok: true,
+      userId: user.id,
+    });
   } catch (err: any) {
     console.error("[onboarding] player password error", err);
     return NextResponse.json(

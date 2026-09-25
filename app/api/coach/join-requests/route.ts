@@ -17,6 +17,71 @@ function normalizeRole(v: any): StaffRole {
   return "ASSISTANT";
 }
 
+async function notifyProgramAdminsOfJoinRequest(params: {
+  collegeId: string;
+  requestedByUserId: string;
+  requestedRole: StaffRole;
+}) {
+  const requester = await prisma.user.findUnique({
+    where: { id: params.requestedByUserId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  const college = await prisma.college.findUnique({
+    where: { id: params.collegeId },
+    select: {
+      id: true,
+      name: true,
+    },
+  });
+
+  const requesterName =
+    requester?.name || requester?.email || "A coach";
+
+  const admins = await prisma.user.findMany({
+    where: {
+      collegeId: params.collegeId,
+      id: { not: params.requestedByUserId },
+      coachProfile: {
+        isProgramAdmin: true,
+      },
+    },
+    select: {
+      id: true,
+      notificationPreference: {
+        select: {
+          instantStaffActivity: true,
+        },
+      },
+    },
+  });
+
+  const adminIds = admins
+    .filter((admin) => admin.notificationPreference?.instantStaffActivity !== false)
+    .map((admin) => admin.id);
+
+  if (!adminIds.length) return;
+
+  await prisma.notification.createMany({
+    data: adminIds.map((userId) => ({
+      userId,
+      type: "COACH_JOIN_REQUEST_SUBMITTED",
+      message: `${requesterName} requested to join ${college?.name || "your program"} as ${params.requestedRole}.`,
+      data: {
+        collegeId: params.collegeId,
+        collegeName: college?.name || null,
+        requestedByUserId: params.requestedByUserId,
+        requestedRole: params.requestedRole,
+        event: "COACH_JOIN_REQUEST_SUBMITTED",
+      },
+    })),
+  });
+}
+
 export async function POST(req: Request) {
   const user = await getCurrentUser();
   if (!user?.id) return NextResponse.json<Err>({ ok: false, error: "Unauthorized" }, { status: 401 });
@@ -69,6 +134,12 @@ export async function POST(req: Request) {
       status: "PENDING" as any,
     },
   });
+
+  await notifyProgramAdminsOfJoinRequest({
+  collegeId,
+  requestedByUserId: user.id,
+  requestedRole,
+});
 
   return NextResponse.json({
     ok: true,
