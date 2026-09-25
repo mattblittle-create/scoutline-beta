@@ -12,7 +12,7 @@ async function main() {
   );
 
   const transactionId =
-    "cc58f8a7-f694-4a0c-a444-26d1c5f3ffe0";
+    "afde4ff5-3d8f-4cd5-868a-db2a142184a9";
 
   const result =
     await getClearentAchTransaction(

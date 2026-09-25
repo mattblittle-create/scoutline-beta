@@ -173,6 +173,7 @@ const SEARCH_RECOVERY_BLOCKED_HOSTS = [
   "sidearmsports.com",
   "prestosports.com",
   "stretchinternet.com",
+  "amyosport.com",
 
   "history.com",
   "worldatlas.com",
@@ -495,40 +496,42 @@ const CONTACT_TERMS = [
   "baseball staff",
 ];
 
-const OFFICIAL_BASEBALL_URL_OVERRIDES: Record<
-  string,
-  string
-> = {
-  "California State University, Bakersfield":
-    "https://gorunners.com/sports/baseball",
+const OFFICIAL_BASEBALL_URL_OVERRIDES: Record<string, string> = {
+  // Existing verified overrides
+  "California State University, Bakersfield": "https://gorunners.com/sports/baseball",
+  "Coppin State University": "https://coppinstatesports.com/sports/baseball",
+  "Oral Roberts University": "https://oruathletics.com/sports/baseball",
+  "South Dakota State University": "https://gojacks.com/sports/baseball",
+  "University of Delaware": "https://bluehens.com/sports/baseball",
+  "University of New Haven": "https://newhavenchargers.com/sports/baseball",
+  "Bentley": "https://bentleyfalcons.com/sports/baseball",
+  "Bentley University": "https://bentleyfalcons.com/sports/baseball",
 
-  "Coppin State University":
-    "https://coppinstatesports.com/sports/baseball",
-
-  "Oral Roberts University":
-    "https://oruathletics.com/sports/baseball",
-
-  "South Dakota State University":
-    "https://gojacks.com/sports/baseball",
-
-  "University of Delaware":
-    "https://bluehens.com/sports/baseball",
-
-  "University of New Haven":
-    "https://newhavenchargers.com/sports/baseball",
-
-  /*
-   * Verified D2 fallback.
-   * Generic discovery/search remains primary for programs
-   * without an entry here. Bentley repeatedly failed to
-   * surface its official athletics host through the search
-   * providers even though the official program page is known.
-   */
-  "Bentley":
-    "https://bentleyfalcons.com/sports/baseball",
-
-  "Bentley University":
-    "https://bentleyfalcons.com/sports/baseball",
+  // NCAA D2 verified recovery overrides
+  "Biola": "https://athletics.biola.edu/sports/baseball",
+  "Charleston (WV)": "https://ucgoldeneagles.com/sports/baseball",
+  "Fort Hays State": "https://fhsuathletics.com/sports/baseball",
+  "Georgia College": "https://gcsubobcats.com/sports/baseball",
+  "Georgian Court": "https://gculions.com/sports/baseball",
+  "Glenville State": "https://gstatepioneers.com/sports/baseball",
+  "IUP": "https://iupathletics.com/sports/baseball",
+  "Indianapolis": "https://athletics.uindy.edu/sports/baseball",
+  "Lincoln (PA)": "https://lulions.com/sports/baseball",
+  "Lock Haven": "https://www.golhu.com/sports/baseball",
+  "Mansfield": "https://gomounties.com/sports/baseball",
+  "Maryville (MO)": "https://maryvillesaints.com/sports/baseball",
+  "Miles": "https://milesgoldenbears.com/sports/baseball",
+  "Mississippi College": "https://www.gochoctaws.com/sports/baseball",
+  "Missouri S&T": "https://minerathletics.com/sports/baseball",
+  "New Mexico Highlands": "https://nmhuathletics.com/sports/baseball",
+  "Slippery Rock": "https://rockathletics.com/sports/baseball",
+  "Southwest Minnesota State": "https://smsumustangs.com/sports/baseball",
+  "UIS": "https://uisprairiestars.com/sports/baseball",
+  "USC Aiken": "https://pacersports.com/sports/baseball",
+  "UT Dallas": "https://utdcomets.com/sports/baseball",
+  "Wayne State (MI)": "https://wsuathletics.com/sports/baseball",
+  "Wayne State (NE)": "https://wscwildcats.com/sports/baseball",
+  "Young Harris": "https://yhcathletics.com/sports/baseball",
 };
 
 const PROGRAM_FIELD_OVERRIDES: Record<
@@ -3292,6 +3295,7 @@ function validateSchoolIdentity(
   const normalizedName = normalizeIdentityPhrase(
     nameWithoutParenthetical,
   );
+
   const tokens = identityTokens(nameWithoutParenthetical);
   const distinctiveTokens = tokens.filter((token) => token.length >= 3);
 
@@ -3334,6 +3338,20 @@ function validateSchoolIdentity(
     }
     return titleHeading.includes(term) || body.includes(term);
   });
+
+  /*
+   * A state name is not independent geographic evidence when
+   * it is already part of the school identity itself. Without
+   * this guard, Georgia College can validate against Georgia
+   * and Missouri S&T can validate against Missouri simply
+   * because the state word appears in both school names.
+   */
+  const stateAddsIndependentEvidence =
+    stateMatch &&
+    !stateTerms.some((term) =>
+      term.length > 2 &&
+      normalizeIdentityPhrase(nameWithoutParenthetical).includes(term),
+    );
 
   const baseballSignal =
     pathname.includes("baseball") ||
@@ -3423,15 +3441,26 @@ function validateSchoolIdentity(
     (nicknameMatch && titleTokenRatio >= 0.5);
 
   const geographicEvidence =
-    stateMatch ||
+    stateAddsIndependentEvidence ||
     parentheticalGeoMatch ||
     cityMatch;
 
-  const trustedOverrideIdentityEvidence =
-    isTrustedOfficialOverride &&
-    exactNameInTitle &&
-    nicknameMatch &&
-    canonicalBaseballPath;
+  /*
+   * For a short/ambiguous school identity, an exact full
+   * institutional name or the program nickname is strong
+   * independent evidence even when the athletics page does
+   * not print a city/state. Parenthetical schools remain
+   * governed by the stricter qualifier rule below.
+   */
+  const ambiguousIdentityConfirmation =
+    geographicEvidence ||
+    exactNameInTitle ||
+    nicknameMatch;
+
+const trustedOverrideIdentityEvidence =
+  isTrustedOfficialOverride &&
+  exactNameInTitle &&
+  canonicalBaseballPath;
 
   if (trustedOverrideIdentityEvidence) {
     reasons.push(
@@ -3439,19 +3468,20 @@ function validateSchoolIdentity(
     );
   }
 
-  const validated =
-    baseballSignal &&
-    score >= 150 &&
-    strongNameEvidence &&
-    (
-      !requiresParentheticalConfirmation ||
-      parentheticalGeoMatch
-    ) &&
-    (
-      !ambiguousShortIdentity ||
-      geographicEvidence ||
-      trustedOverrideIdentityEvidence
-    );
+const validated =
+  baseballSignal &&
+  score >= 150 &&
+  strongNameEvidence &&
+  (
+    !requiresParentheticalConfirmation ||
+    parentheticalGeoMatch ||
+    trustedOverrideIdentityEvidence
+  ) &&
+  (
+    !ambiguousShortIdentity ||
+    ambiguousIdentityConfirmation ||
+    trustedOverrideIdentityEvidence
+  );
 
   if (!validated) {
     if (!baseballSignal) {
@@ -3462,22 +3492,23 @@ function validateSchoolIdentity(
       reasons.push("REJECT: weak school-name evidence");
     }
 
-    if (
-      requiresParentheticalConfirmation &&
-      !parentheticalGeoMatch
-    ) {
-      reasons.push(
-        "REJECT: parenthetical school qualifier was not confirmed",
-      );
-    } else if (
-      ambiguousShortIdentity &&
-      !geographicEvidence &&
-      !trustedOverrideIdentityEvidence
-    ) {
-      reasons.push(
-        "REJECT: ambiguous school identity lacks geographic confirmation",
-      );
-    }
+if (
+  requiresParentheticalConfirmation &&
+  !parentheticalGeoMatch &&
+  !trustedOverrideIdentityEvidence
+) {
+  reasons.push(
+    "REJECT: parenthetical school qualifier was not confirmed",
+  );
+} else if (
+  ambiguousShortIdentity &&
+  !ambiguousIdentityConfirmation &&
+  !trustedOverrideIdentityEvidence
+) {
+  reasons.push(
+    "REJECT: ambiguous school identity lacks independent confirmation",
+  );
+}
 
     if (score < 150) {
       reasons.push(`REJECT: identity score ${score} < 150`);
@@ -4695,7 +4726,7 @@ if (!baseball.baseballUrl) {
       .split("/")
       .filter(Boolean);
 
-  const obviousArticlePath =
+  const obviousNonLandingPath =
     [
       /\/news\//i,
       /\/article\//i,
@@ -4704,6 +4735,16 @@ if (!baseball.baseballUrl) {
       /\/stories\//i,
       /\/press-release\//i,
       /\/press-releases\//i,
+
+      // Deep program pages are useful discovery clues, but
+      // baseballWebsiteUrl should represent the program hub.
+      // promoteCanonicalBaseballRoot() already had a chance
+      // to recover the root before we reach this gate.
+      /\/roster(?:\/|$)/i,
+      /\/schedule(?:\/|$)/i,
+      /\/coaches?(?:\/|$)/i,
+      /\/staff(?:\/|$)/i,
+      /\/archives?(?:\/|$)/i,
     ].some(
       (pattern) =>
         pattern.test(
@@ -4719,7 +4760,7 @@ if (!baseball.baseballUrl) {
         "baseball"
     );
 
-  if (obviousArticlePath) {
+  if (obviousNonLandingPath) {
     baseRow.sourceUrl =
       baseball.baseballUrl;
 
@@ -4730,7 +4771,7 @@ if (!baseball.baseballUrl) {
       "NEEDS_REVIEW";
 
     baseRow.discoveryNotes =
-      `Rejected baseball candidate because the URL appears to be an article/news page rather than the official baseball program landing page. Candidate: ${baseball.baseballUrl}`;
+      `Rejected baseball candidate because the URL appears to be a deep/content page rather than the official baseball program landing page. Candidate: ${baseball.baseballUrl}`;
 
     return baseRow;
   }
