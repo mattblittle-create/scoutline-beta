@@ -508,7 +508,9 @@ const OFFICIAL_BASEBALL_URL_OVERRIDES: Record<string, string> = {
   "Bentley University": "https://bentleyfalcons.com/sports/baseball",
 
   // NCAA D2 verified recovery overrides
+  "Augusta": "https://augustajags.com/sports/baseball",
   "Biola": "https://athletics.biola.edu/sports/baseball",
+  "California (PA)": "https://calvulcans.com/sports/baseball",
   "Charleston (WV)": "https://ucgoldeneagles.com/sports/baseball",
   "Fort Hays State": "https://fhsuathletics.com/sports/baseball",
   "Georgia College": "https://gcsubobcats.com/sports/baseball",
@@ -526,12 +528,23 @@ const OFFICIAL_BASEBALL_URL_OVERRIDES: Record<string, string> = {
   "New Mexico Highlands": "https://nmhuathletics.com/sports/baseball",
   "Slippery Rock": "https://rockathletics.com/sports/baseball",
   "Southwest Minnesota State": "https://smsumustangs.com/sports/baseball",
+  "Tampa": "https://www.tampaspartans.com/sports/bsb/index",
+  "Tuskegee": "https://goldentigersports.com/sports/baseball",
   "UIS": "https://uisprairiestars.com/sports/baseball",
   "USC Aiken": "https://pacersports.com/sports/baseball",
+  "USC Beaufort": "https://uscbathletics.com/sports/baseball",
   "UT Dallas": "https://utdcomets.com/sports/baseball",
+  "UT Permian Basin": "https://utpbfalcons.com/sports/baseball",
   "Wayne State (MI)": "https://wsuathletics.com/sports/baseball",
   "Wayne State (NE)": "https://wscwildcats.com/sports/baseball",
   "Young Harris": "https://yhcathletics.com/sports/baseball",
+  "Hillsdale": "https://hillsdalechargers.com/sports/baseball",
+  "Morehouse": "https://morehouseathletics.com/sports/baseball",
+  "Kutztown": "https://kubears.com/sports/baseball",
+  "Lincoln (MO)": "https://lubluetigers.com/sports/baseball",
+  "Menlo": "https://menloathletics.com/sports/baseball",
+  "Palm Beach Atlantic": "https://pbasailfish.com/sports/baseball",
+  "Seton Hill": "https://athletics.setonhill.edu/sports/baseball",
 };
 
 const PROGRAM_FIELD_OVERRIDES: Record<
@@ -1635,6 +1648,188 @@ async function fetchHtml(
   }
 }
 
+function getSidearmSplashSkipUrl(
+  finalUrl: string,
+  html: string,
+): string | null {
+  try {
+    const url = new URL(finalUrl);
+
+    if (
+      !/\/splash\.aspx$/i.test(url.pathname) ||
+      url.searchParams.get("path")?.toLowerCase() !== "baseball"
+    ) {
+      return null;
+    }
+
+    const $ = cheerio.load(html);
+
+    const skipHref =
+      $("a[href]").toArray()
+        .map((element) =>
+          $(element).attr("href")?.trim() ?? "",
+        )
+        .find((href) => {
+          try {
+            const candidate =
+              new URL(href, finalUrl);
+
+            return (
+              candidate.origin === url.origin &&
+              /\/splash\.aspx$/i.test(
+                candidate.pathname,
+              ) &&
+              candidate.searchParams.get("skip")
+                ?.toLowerCase() === "true" &&
+              candidate.searchParams.get("path")
+                ?.toLowerCase() === "baseball"
+            );
+          } catch {
+            return false;
+          }
+        });
+
+    if (!skipHref) {
+      return null;
+    }
+
+    return new URL(
+      skipHref,
+      finalUrl,
+    ).toString();
+  } catch {
+    return null;
+  }
+}
+
+async function bypassSidearmBaseballSplash(
+  fetched: {
+    finalUrl: string;
+    html: string;
+  },
+): Promise<{
+  finalUrl: string;
+  html: string;
+} | null> {
+  const skipUrl =
+    getSidearmSplashSkipUrl(
+      fetched.finalUrl,
+      fetched.html,
+    );
+
+  if (!skipUrl) {
+    return fetched;
+  }
+
+  let splashUrl: URL;
+
+  try {
+    splashUrl =
+      new URL(fetched.finalUrl);
+  } catch {
+    return null;
+  }
+
+  const splashId =
+    splashUrl.searchParams.get("id");
+
+  if (
+    !splashId ||
+    !/^splash_[a-z0-9_-]+$/i.test(
+      splashId,
+    )
+  ) {
+    return null;
+  }
+
+  const controller =
+    new AbortController();
+
+  const timeout =
+    setTimeout(
+      () => controller.abort(),
+      20_000,
+    );
+
+  try {
+    /*
+     * SIDEARM's splash page sets a cookie whose
+     * name/value matches the splash id. Node fetch
+     * does not maintain a cookie jar between
+     * requests, so explicitly carry that narrowly
+     * scoped cookie into the skip request.
+     *
+     * Example:
+     *   splash_68=splash_68
+     */
+    const response =
+      await fetch(skipUrl, {
+        redirect: "follow",
+        signal: controller.signal,
+        headers: {
+          "User-Agent":
+            "Mozilla/5.0 (compatible; ScoutLineDataEnrichment/1.0; +https://www.myscoutline.com)",
+          Accept:
+            "text/html,application/xhtml+xml",
+          Cookie:
+            `${splashId}=${splashId}`,
+          Referer:
+            fetched.finalUrl,
+        },
+      });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    const contentType =
+      response.headers.get(
+        "content-type",
+      ) ?? "";
+
+    if (
+      !contentType
+        .toLowerCase()
+        .includes("text/html")
+    ) {
+      return null;
+    }
+
+    const html =
+      await response.text();
+
+    /*
+     * A successful bypass must leave the splash
+     * endpoint. Never accept the interstitial
+     * itself as the baseball program page.
+     */
+    try {
+      const finalUrl =
+        new URL(response.url);
+
+      if (
+        /\/splash\.aspx$/i.test(
+          finalUrl.pathname,
+        )
+      ) {
+        return null;
+      }
+    } catch {
+      return null;
+    }
+
+    return {
+      finalUrl:
+        response.url,
+      html,
+    };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 function sleep(
   milliseconds: number,
 ): Promise<void> {
@@ -2578,25 +2773,27 @@ async function promoteCanonicalBaseballRoot(
       .replace(/\/+$/, "")
       .toLowerCase();
 
-  if (
-    [
-      "/sports/baseball",
-      "/sport/baseball",
-      "/baseball",
-      "/sports/bsb",
-      "/bsb",
-    ].includes(pathname)
-  ) {
-    return null;
-  }
+if (
+  [
+    "/sports/baseball",
+    "/sport/baseball",
+    "/baseball",
+    "/sports/bsb",
+    "/sports/bsb/index",
+    "/bsb",
+  ].includes(pathname)
+) {
+  return null;
+}
 
-  const candidates = uniqueStrings([
-    `${parsed.origin}/sports/baseball`,
-    `${parsed.origin}/sport/baseball`,
-    `${parsed.origin}/baseball`,
-    `${parsed.origin}/sports/bsb`,
-    `${parsed.origin}/bsb`,
-  ]);
+const candidates = uniqueStrings([
+  `${parsed.origin}/sports/baseball`,
+  `${parsed.origin}/sport/baseball`,
+  `${parsed.origin}/baseball`,
+  `${parsed.origin}/sports/bsb`,
+  `${parsed.origin}/sports/bsb/index`,
+  `${parsed.origin}/bsb`,
+]);
 
   for (const candidateUrl of candidates) {
     const fetched =
@@ -3428,17 +3625,40 @@ function validateSchoolIdentity(
     reasons.push("parenthetical/geographic qualifier match");
   }
 
-  const requiresParentheticalConfirmation =
-    parentheticalTerms.length > 0;
+const requiresParentheticalConfirmation =
+  parentheticalTerms.length > 0;
 
-  const ambiguousShortIdentity =
-    distinctiveTokens.length <= 1 ||
-    requiresParentheticalConfirmation;
+/*
+ * A one-token school identity can be ambiguous when that
+ * token is also the school's city. In that case, seeing the
+ * same word in an athletics page title/body does not provide
+ * independent institutional identity evidence.
+ *
+ * Example:
+ *   Bridgeport / Bridgeport, CT
+ *
+ * A different Bridgeport athletics program must not validate
+ * merely because "Bridgeport" appears on its baseball page.
+ */
 
-  const strongNameEvidence =
-    exactNameInTitle ||
-    titleTokenRatio >= 0.75 ||
-    (nicknameMatch && titleTokenRatio >= 0.5);
+const schoolNameIsCity =
+  distinctiveTokens.length === 1 &&
+  normalizedCity.length > 0 &&
+  normalizeIdentityPhrase(nameWithoutParenthetical) === normalizedCity;
+
+const ambiguousShortIdentity =
+  distinctiveTokens.length <= 1 ||
+  requiresParentheticalConfirmation;
+
+const strongNameEvidence =
+  (
+    !schoolNameIsCity &&
+    (
+      exactNameInTitle ||
+      titleTokenRatio >= 0.75
+    )
+  ) ||
+  nicknameMatch;
 
   const geographicEvidence =
     stateAddsIndependentEvidence ||
@@ -3452,15 +3672,21 @@ function validateSchoolIdentity(
    * not print a city/state. Parenthetical schools remain
    * governed by the stricter qualifier rule below.
    */
-  const ambiguousIdentityConfirmation =
-    geographicEvidence ||
-    exactNameInTitle ||
-    nicknameMatch;
+const ambiguousIdentityConfirmation =
+  nicknameMatch ||
+  parentheticalGeoMatch ||
+  (
+    !schoolNameIsCity &&
+    (
+      geographicEvidence ||
+      exactNameInTitle
+    )
+  );
 
 const trustedOverrideIdentityEvidence =
   isTrustedOfficialOverride &&
-  exactNameInTitle &&
-  canonicalBaseballPath;
+  canonicalBaseballPath &&
+  baseballSignal;
 
   if (trustedOverrideIdentityEvidence) {
     reasons.push(
@@ -3470,8 +3696,8 @@ const trustedOverrideIdentityEvidence =
 
 const validated =
   baseballSignal &&
-  score >= 150 &&
-  strongNameEvidence &&
+  (score >= 150 || trustedOverrideIdentityEvidence) &&
+  (strongNameEvidence || trustedOverrideIdentityEvidence) &&
   (
     !requiresParentheticalConfirmation ||
     parentheticalGeoMatch ||
@@ -3488,9 +3714,9 @@ const validated =
       reasons.push("REJECT: missing baseball signal");
     }
 
-    if (!strongNameEvidence) {
-      reasons.push("REJECT: weak school-name evidence");
-    }
+if (!strongNameEvidence && !trustedOverrideIdentityEvidence) {
+  reasons.push("REJECT: weak school-name evidence");
+}
 
 if (
   requiresParentheticalConfirmation &&
@@ -3510,9 +3736,9 @@ if (
   );
 }
 
-    if (score < 150) {
-      reasons.push(`REJECT: identity score ${score} < 150`);
-    }
+if (score < 150 && !trustedOverrideIdentityEvidence) {
+  reasons.push(`REJECT: identity score ${score} < 150`);
+}
   }
 
   return {
@@ -4542,14 +4768,23 @@ if (!fetchedExisting) {
       const candidateUrl of
         overrideCandidates
     ) {
-      fetchedOverride =
-        await fetchHtml(
-          candidateUrl,
-        );
+const fetchedCandidate =
+  await fetchHtml(
+    candidateUrl,
+  );
 
-      if (fetchedOverride) {
-        break;
-      }
+if (!fetchedCandidate) {
+  continue;
+}
+
+fetchedOverride =
+  await bypassSidearmBaseballSplash(
+    fetchedCandidate,
+  );
+
+if (fetchedOverride) {
+  break;
+}
     }
 
     if (!fetchedOverride) {
@@ -4740,11 +4975,18 @@ if (!baseball.baseballUrl) {
       // baseballWebsiteUrl should represent the program hub.
       // promoteCanonicalBaseballRoot() already had a chance
       // to recover the root before we reach this gate.
-      /\/roster(?:\/|$)/i,
-      /\/schedule(?:\/|$)/i,
-      /\/coaches?(?:\/|$)/i,
-      /\/staff(?:\/|$)/i,
-      /\/archives?(?:\/|$)/i,
+/\/roster(?:\/|$)/i,
+/\/schedule(?:\/|$)/i,
+/\/coaches?(?:\/|$)/i,
+/\/staff(?:\/|$)/i,
+/\/archives?(?:\/|$)/i,
+
+// Stats/results pages can contain strong school + baseball
+// identity signals but are not program landing pages.
+/\/stats(?:\/|$)/i,
+/\/boxscore(?:\/|$)/i,
+/\/box-score(?:\/|$)/i,
+/\/boxscores?(?:\/|$)/i,
     ].some(
       (pattern) =>
         pattern.test(
@@ -4803,13 +5045,60 @@ if (!baseball.baseballUrl) {
     return baseRow;
   }
 
-  if (
-    !looksLikeOfficialAthleticsHost(
-      baseball.baseballUrl,
-      websiteUrl,
-      baseball.baseballHtml,
-    )
-  ) {
+const isVerifiedOfficialBaseballOverride =
+  Boolean(officialBaseballOverride) &&
+  (() => {
+    try {
+      const candidateUrl =
+        new URL(
+          baseball.baseballUrl,
+        );
+
+      const overrideUrl =
+        new URL(
+          officialBaseballOverride!,
+        );
+
+      const normalizePath = (
+        pathname: string,
+      ) =>
+        pathname
+          .replace(/\/+$/, "")
+          .toLowerCase();
+
+      return (
+        candidateUrl.hostname
+          .replace(/^www\./i, "")
+          .toLowerCase() ===
+          overrideUrl.hostname
+            .replace(/^www\./i, "")
+            .toLowerCase() &&
+        normalizePath(
+          candidateUrl.pathname,
+        ) ===
+          normalizePath(
+            overrideUrl.pathname,
+          ) &&
+        hasCanonicalAthleticsBaseballPath(
+          baseball.baseballUrl,
+        ) &&
+        !isKnownUntrustedProgramUrl(
+          baseball.baseballUrl,
+        )
+      );
+    } catch {
+      return false;
+    }
+  })();
+  
+if (
+  !isVerifiedOfficialBaseballOverride &&
+  !looksLikeOfficialAthleticsHost(
+    baseball.baseballUrl,
+    websiteUrl,
+    baseball.baseballHtml,
+  )
+) {
     baseRow.sourceUrl =
       baseball.baseballUrl;
 
@@ -5259,15 +5548,83 @@ async function main(): Promise<void> {
       `[${label}] ${input.name}`,
     );
 
-    const enriched =
+    let enriched =
       await enrichRow(input);
+
+    /*
+     * One clean retry for transient discovery/fetch failures.
+     *
+     * IMPORTANT:
+     * - This does not relax validation.
+     * - This does not trust the first attempt's candidate.
+     * - enrichRow() starts fresh and the retry must pass the
+     *   exact same discovery, identity, canonical-page, and
+     *   official-source gates as the first attempt.
+     *
+     * We retry only unsuccessful outcomes. FOUND and PARTIAL
+     * results are accepted immediately.
+     */
+    if (
+      enriched.discoveryStatus === "NEEDS_REVIEW" ||
+      enriched.discoveryStatus === "FAILED"
+    ) {
+      console.log(
+        `  ${enriched.discoveryStatus}: ${enriched.baseballWebsiteUrl || "no baseball URL"}`,
+      );
+
+      if (
+        verbose &&
+        enriched.discoveryNotes
+      ) {
+        console.log(
+          `  ${enriched.discoveryNotes}`,
+        );
+      }
+
+      console.log(
+        "  RETRY: waiting 2 seconds before one fresh enrichment attempt...",
+      );
+
+      await new Promise<void>(
+        (resolve) =>
+          setTimeout(
+            resolve,
+            2000,
+          ),
+      );
+
+      const retry =
+        await enrichRow(input);
+
+      if (
+        retry.discoveryStatus === "FOUND" ||
+        retry.discoveryStatus === "PARTIAL"
+      ) {
+        console.log(
+          `  RETRY RECOVERED: ${retry.discoveryStatus}: ${retry.baseballWebsiteUrl || "no baseball URL"}`,
+        );
+
+        enriched = retry;
+      } else {
+        console.log(
+          `  RETRY DID NOT RECOVER: ${retry.discoveryStatus}: ${retry.baseballWebsiteUrl || "no baseball URL"}`,
+        );
+
+        /*
+         * Keep the retry result because it represents the
+         * freshest complete attempt and has passed through
+         * the same safety/validation logic.
+         */
+        enriched = retry;
+      }
+    }
 
     outputRows.push(
       enriched,
     );
 
     console.log(
-      `  ${enriched.discoveryStatus}: ${enriched.baseballWebsiteUrl || "no baseball URL"}`,
+      `  FINAL: ${enriched.discoveryStatus}: ${enriched.baseballWebsiteUrl || "no baseball URL"}`,
     );
 
     if (
