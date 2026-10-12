@@ -489,6 +489,49 @@ const QUESTIONNAIRE_LINK_PROFILE: LinkSelectionProfile = {
   sameHostBonus: 10,
 };
 
+function isRelevantContactUrl(rawUrl: string): boolean {
+  const normalized = normalizeUrl(rawUrl);
+  if (!normalized) return false;
+
+  try {
+    const url = new URL(normalized);
+    const host = url.hostname.toLowerCase();
+    const path = decodeURIComponent(url.pathname).toLowerCase();
+    const query = url.search.toLowerCase();
+
+    if (
+      /armssoftware|jumpforward|frontrush|formstack|questionnaires/.test(host)
+    ) {
+      return false;
+    }
+
+    if (
+      /questionnaire|recruiting-index|prospective-student-athlete|recruiting-form|recruiting-questionnaire|athletic-questionnaire/.test(path + query)
+    ) {
+      return false;
+    }
+
+    if (
+      /\/for-recruits(?:\.aspx)?\/?$|\/get-recruited(?:\.aspx)?\/?$/.test(path)
+    ) {
+      return false;
+    }
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isRelevantContactEmail(email: string): boolean {
+  if (!email) return false;
+
+  const localPart = email.split("@")[0]?.toLowerCase() ?? "";
+
+  return !/ticket|admission|registrar|financialaid|financial-aid|bookstore|webmaster|noreply|no-reply/.test(
+    localPart,
+  );
+}
 const CONTACT_TERMS = [
   "contact",
   "staff directory",
@@ -518,6 +561,7 @@ const OFFICIAL_BASEBALL_URL_OVERRIDES: Record<string, string> = {
   "Glenville State": "https://gstatepioneers.com/sports/baseball",
   "IUP": "https://iupathletics.com/sports/baseball",
   "Indianapolis": "https://athletics.uindy.edu/sports/baseball",
+  "Lewis": "https://lewisflyers.com/sports/baseball",
   "Lincoln (PA)": "https://lulions.com/sports/baseball",
   "Lock Haven": "https://www.golhu.com/sports/baseball",
   "Mansfield": "https://gomounties.com/sports/baseball",
@@ -1472,6 +1516,100 @@ function extractEmail(
       isUsableContactEmail,
     ) ?? ""
   );
+}
+
+
+function isSafeBaseballSecondaryUrl(
+  rawUrl: string,
+  field: "questionnaire" | "contact" | "x" | "instagram" | "youtube",
+): boolean {
+  const normalized = normalizeUrl(rawUrl);
+  if (!normalized) return false;
+
+  let url: URL;
+  try {
+    url = new URL(normalized);
+  } catch {
+    return false;
+  }
+
+  if (!["http:", "https:"].includes(url.protocol)) return false;
+
+  const host = url.hostname.toLowerCase().replace(/^www\./, "");
+  const pathname = decodeURIComponent(url.pathname).toLowerCase();
+  const segments = pathname.split("/").filter(Boolean);
+  const combined = `${pathname} ${url.search}`.toLowerCase();
+
+  const otherSports = [
+    "football", "basketball", "softball", "soccer",
+    "volleyball", "lacrosse", "wrestling", "tennis",
+    "golf", "swimming", "hockey", "cross-country",
+    "cross_country", "crosscountry", "track-and-field",
+    "track_field", "trackfield", "field-hockey",
+    "field_hockey",
+    "xctf",
+    "wsoc",
+    "msoc",
+    "wbb",
+    "mbb",
+  ];
+
+  if (otherSports.some((sport) => combined.includes(sport))) {
+    return false;
+  }
+
+if (field === "questionnaire" || field === "contact") {
+  const sportIndex = segments.findIndex(
+    (segment) => segment === "sports" || segment === "sport",
+  );
+
+  if (sportIndex >= 0 && segments[sportIndex + 1]) {
+    const sport = segments[sportIndex + 1];
+
+    const isDatedPage = /^\d{4}$/.test(sport);
+
+    if (
+      !isDatedPage &&
+      !["baseball", "bsb"].includes(sport)
+    ) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+  const allowedHosts: Record<"x" | "instagram" | "youtube", string[]> = {
+    x: ["x.com", "twitter.com"],
+    instagram: ["instagram.com"],
+    youtube: ["youtube.com"],
+  };
+
+  if (!allowedHosts[field].includes(host)) return false;
+
+  if (field === "youtube") {
+    return (
+      segments.length >= 2 &&
+      ["channel", "user", "c"].includes(segments[0])
+    ) || (
+      segments.length === 1 &&
+      segments[0].startsWith("@") &&
+      segments[0].length > 1
+    );
+  }
+
+  if (segments.length !== 1) return false;
+
+  const handle = segments[0].replace(/^@/, "");
+
+  const reserved = new Set([
+    "home", "share", "intent", "search", "explore",
+    "login", "signup", "i", "messages", "settings",
+    "notifications", "hashtag", "p", "reel", "reels",
+    "stories", "tv",
+  ]);
+
+  return handle.length > 0 && !reserved.has(handle);
 }
 
 function extractSocialUrl(
@@ -3367,7 +3505,7 @@ const IDENTITY_STOP_WORDS = new Set([
 
 function identityTokens(value: string): string[] {
   return normalizeText(value)
-    .replace(/[–—-]/g, " ")
+    .replace(/[ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â-]/g, " ")
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
     .filter(Boolean)
@@ -3376,7 +3514,7 @@ function identityTokens(value: string): string[] {
 
 function normalizeIdentityPhrase(value: string): string {
   return normalizeText(value)
-    .replace(/[–—-]/g, " ")
+    .replace(/[ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â-]/g, " ")
     .replace(/[^a-z0-9\s]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
@@ -5184,18 +5322,26 @@ baseRow.questionnaireUrl =
   );
 
   baseRow.generalContactUrl =
-    baseRow.generalContactUrl ||
-    chooseBestLink(
-      links,
-      CONTACT_TERMS,
-      preferredHost,
-    );
+    [
+      baseRow.generalContactUrl,
+      ...rankLinks(
+        links,
+        CONTACT_TERMS,
+        preferredHost,
+      ).map((link) => link.url),
+    ].find(
+      (url) =>
+        isRelevantContactUrl(url) &&
+        isSafeBaseballSecondaryUrl(url, "contact"),
+    ) ?? "";
 
   baseRow.generalContactEmail =
-    baseRow.generalContactEmail ||
-    extractEmail(
-      baseball.baseballHtml,
-    );
+    [
+      baseRow.generalContactEmail,
+      extractEmail(baseball.baseballHtml),
+    ].find(
+      (email) => isRelevantContactEmail(email),
+    ) ?? "";
 
   baseRow.logoUrl =
     baseRow.logoUrl ||
@@ -5239,6 +5385,52 @@ if (fieldOverride) {
     baseRow,
     fieldOverride,
   );
+}
+
+
+const secondaryUrlFields = [
+  ["questionnaireUrl", "questionnaire"],
+  ["generalContactUrl", "contact"],
+  ["programXUrl", "x"],
+  ["programInstagramUrl", "instagram"],
+  ["programYoutubeUrl", "youtube"],
+] as const;
+
+for (const [key, field] of secondaryUrlFields) {
+  let value = baseRow[key];
+
+  if (!value) continue;
+
+  if (field === "contact") {
+    try {
+      const url = new URL(value);
+
+      if (
+        /\/staff-directory\/?$/.test(url.pathname) &&
+        url.searchParams.has("path")
+      ) {
+        url.searchParams.delete("path");
+        const cleaned = url.toString();
+
+        console.log(
+          `  SECONDARY URL CLEANED [${key}]: ${value} -> ${cleaned}`,
+        );
+
+        value = cleaned;
+        baseRow[key] = cleaned;
+      }
+    } catch {
+      // Invalid URLs are rejected below.
+    }
+  }
+
+  if (!isSafeBaseballSecondaryUrl(value, field)) {
+    console.log(
+      `  SECONDARY URL REJECTED [${key}]: ${value}`,
+    );
+
+    baseRow[key] = "";
+  }
 }
 
 baseRow.discoveryStatus =
