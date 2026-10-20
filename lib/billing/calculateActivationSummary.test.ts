@@ -306,3 +306,26 @@ describe(
     });
   }
 );
+
+describe("account-restricted production test discount", () => {
+  const input = { plan: PLAYER_PLAN_CODE.WALK_ON, cadence: PLAYER_BILLING_CADENCE.MONTHLY,
+    discountCode: "  scoutline1test  ", accountEmail: "braden.little2@gmail.com" };
+  it.each([[PaymentMethod.ACH, 0, 100], [PaymentMethod.CARD, 3, 103]])(
+    "prices authorized monthly %s at $1 plus normal fees", (paymentMethod, fee, total) => {
+      expect(calculateActivationSummary({ ...input, paymentMethod })).toMatchObject({
+        discountedPrice: 100, discountAmount: 2395, surchargeAmount: fee, finalPrice: total,
+      });
+    });
+  it.each([undefined, "other@example.com"])("keeps regular prices for unauthorized account %s", accountEmail => {
+    expect(calculateActivationSummary({ ...input, accountEmail, paymentMethod: PaymentMethod.ACH }))
+      .toMatchObject({ discountedPrice: 2495, discountAmount: 0, finalPrice: 2495 });
+  });
+  it("does not discount All-American", () => {
+    expect(calculateActivationSummary({ ...input, plan: PLAYER_PLAN_CODE.ALL_AMERICAN,
+      paymentMethod: PaymentMethod.ACH })).toMatchObject({ discountedPrice: 4995, discountAmount: 0 });
+  });
+  it("rejects annual test pricing", () => {
+    expect(() => calculateActivationSummary({ ...input, cadence: PLAYER_BILLING_CADENCE.ANNUAL }))
+      .toThrow(ActivationSummaryError);
+  });
+});

@@ -100,6 +100,9 @@ function jsonError(
   );
 }
 
+import { calculateActivationSummary } from "@/lib/billing/calculateActivationSummary";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+
 export async function POST(
   req: NextRequest
 ) {
@@ -210,12 +213,26 @@ export async function POST(
      * on the server. Never trust an amount
      * received from the browser.
      */
+    const isTestDiscount = String(discountCode ?? "").trim().toUpperCase() === "SCOUTLINE1TEST";
+    const testUser = isTestDiscount ? await getCurrentUser() : null;
+    if (isTestDiscount && (
+      !testUser || testUser.id !== profile.user?.id ||
+      testUser.email.trim().toLowerCase() !== "braden.little2@gmail.com"
+    )) {
+      return NextResponse.json({ error: "Test discount is unavailable for this account." }, { status: 403 });
+    }
+    const testSummary = isTestDiscount ? calculateActivationSummary({
+      plan: normalizedPlan, cadence, discountCode,
+      paymentMethod: PaymentMethod.ACH,
+      accountEmail: testUser?.email,
+    }) : null;
+
     const baseUrl = (
       process.env.NEXT_PUBLIC_APP_URL ||
       "https://www.myscoutline.com"
     ).replace(/\/$/, "");
 
-    const summaryResponse =
+    const summaryResponse = testSummary ? Response.json(testSummary) :
       await fetch(
         `${baseUrl}/api/player/billing/activation-summary`,
         {

@@ -31,6 +31,8 @@ export type ActivationSummaryInput = {
   cadence: unknown;
   paymentMethod?: unknown;
   discountCode?: unknown;
+  // Supply only from the server-resolved account, never request JSON.
+  accountEmail?: string | null;
 };
 
 export type ActivationSummaryResult = {
@@ -138,6 +140,15 @@ export function calculateActivationSummary(
       basePrice - 900;
   }
   
+  if (
+    discountCode.toUpperCase() === "SCOUTLINE1TEST" &&
+    plan === PLAYER_PLAN_CODE.WALK_ON &&
+    cadence === PLAYER_BILLING_CADENCE.MONTHLY &&
+    input.accountEmail?.trim().toLowerCase() === "braden.little2@gmail.com"
+  ) {
+    discountAmount = basePrice - 100;
+  }
+
   const discountedPrice = Math.max(
     0,
     basePrice - discountAmount
