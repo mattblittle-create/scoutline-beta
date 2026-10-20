@@ -29,6 +29,8 @@ import {
   canUpdateClearentAchTransactionStatus,
 } from "@/lib/payments/providers/clearentAchTransactionState";
 
+import { getClearentAchTransaction } from "@/lib/payments/providers/clearentAchProvider";
+
 export const runtime =
   "nodejs";
 
@@ -274,6 +276,55 @@ export async function POST(
       );
     }
 
+    // Webhook delivery is unsigned. Authenticate the claimed state through
+    // Xplor's server-side API before any database write or billing processor.
+    let verified;
+    try {
+      verified = await getClearentAchTransaction(normalized.transactionId);
+    } catch {
+      console.warn("CLEARENT_ACH_WEBHOOK_VERIFICATION_UNAVAILABLE");
+      return NextResponse.json(
+        { ok: false, error: "ACH verification unavailable." },
+        { status: 503 }
+      );
+    }
+
+    // Parse decimal dollars strictly: malformed/missing amounts must not become
+    // zero or be rounded into a matching amount.
+    const amountText = verified.amount ?? "";
+    const verifiedAmount = /^\d+(?:\.\d{1,2})?$/.test(amountText)
+      ? Math.round(Number(amountText) * 100)
+      : NaN;
+    const verifiedStatus = normalizeClearentAchWebhook({
+      Payload: { new_status: verified.status },
+    }).status;
+    if (
+      !verified.found ||
+      verified.transactionId !== existingTransaction.providerTransactionId ||
+      verified.type?.toUpperCase() !== "DEBIT" ||
+      verified.invoice !== normalized.reference.slice(0, 100) ||
+      !Number.isSafeInteger(verifiedAmount) ||
+      verifiedAmount <= 0 ||
+      verifiedAmount !== existingTransaction.amountCents ||
+      (normalized.amount !== null && normalized.amount !== verifiedAmount) ||
+      !verifiedStatus ||
+      verifiedStatus !== normalized.status
+    ) {
+      // Retryable also covers delivery racing Xplor's status API. Old events
+      // cannot apply a state that the authenticated API no longer reports.
+      return NextResponse.json(
+        { ok: false, error: "ACH event could not be verified." },
+        { status: 503 }
+      );
+    }
+
+    normalized.amount = verifiedAmount;
+    normalized.payload = {
+      raw: payload,
+      responseCode: verified.returnedCode,
+      responseMessage: verified.returnedMessage,
+    };
+
     /*
      * FAILED is a definitive unsuccessful ACH
      * payment attempt and enters ScoutLine's
@@ -476,7 +527,7 @@ if (canUpdateStatus) {
 }
 
     if (
-      isFailureStatus(
+      !['SETTLED', 'FAILED', 'VOIDED', 'RETURNED', 'CHARGEBACK'].includes(existingTransaction.transactionStatus.toUpperCase()) && isFailureStatus(
         normalized.status
       )
     ) {
