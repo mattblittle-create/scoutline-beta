@@ -6,6 +6,7 @@ import React, { Suspense, useEffect, useMemo, useState } from "react";
 import Script from "next/script";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PaymentMethod } from "@/lib/payments/types";
+import { getClearentAchPaymentToken } from "@/lib/payments/providers/clearentAchToken";
 import { formatUsd } from "@/lib/billing/money";
 
 type ClearentPaymentTokenResponse = {
@@ -387,7 +388,7 @@ const handleAchCheckout = async () => {
      * plus safe account metadata.
      */
     const tokenResult =
-      await window.ClearentSDK.getPaymentToken();
+      await getClearentAchPaymentToken(window.ClearentSDK);
 
     const achJwt =
       tokenResult?.payload?.["ach-jwt"];
