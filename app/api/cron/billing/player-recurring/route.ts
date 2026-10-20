@@ -233,6 +233,8 @@ if (!dryRun) {
 if (decision.shouldMarkPaid) {
       successResult =
         await markPlayerRecurringPaymentSucceeded({
+          paymentStatus: result.status,
+          paymentCompleted: result.paymentCompleted,
           invoiceId:
             invoice.id,
 

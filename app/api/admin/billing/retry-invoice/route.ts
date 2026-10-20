@@ -228,6 +228,8 @@ export async function POST(req: NextRequest) {
     if (decision.shouldMarkPaid) {
       const successResult =
         await markPlayerRecurringPaymentSucceeded({
+          paymentStatus: result.status,
+          paymentCompleted: result.paymentCompleted,
           invoiceId: invoice.id,
           amountPaidCents:
             result.amountPaidCents ??

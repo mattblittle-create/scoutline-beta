@@ -3,6 +3,8 @@
 import { InvoiceStatus, Plan } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
+import { normalizeValorWebhook } from "@/lib/payments/providers/valorWebhook";
+import { valorFailureMessage } from "@/lib/payments/providers/valorPaymentOutcome";
 import { normalizeCents } from "@/lib/billing/money";
 import {
   PAYMENT_PROVIDER_CODE,
@@ -93,6 +95,9 @@ export async function applySuccessfulPlayerPayment({
   billingTransactionId,
   rawPayload,
 }: ProcessPlayerPaymentWebhookInput) {
+  if (provider === "VALOR" && (!normalized.approved || !normalizeValorWebhook(normalized.payload).approved)) {
+    throw new Error("Refusing to apply an unapproved Valor payment.");
+  }
   return prisma.$transaction(async (tx) => {
         /*
      * When processing an ACH SETTLED webhook,
@@ -176,6 +181,17 @@ export async function applySuccessfulPlayerPayment({
       throw new Error(
         `No PlayerInvoice found for reference ${normalized.reference}`
       );
+    }
+
+    if (provider === "VALOR") {
+      if (!normalized.transactionId || !Number.isSafeInteger(normalized.amount) || normalized.amount !== invoice.amountCents ||
+          (normalized.surcharge != null && normalized.surcharge !== invoice.cardFeeCents)) {
+        throw new Error("Valor approval identity or amount does not match the invoice.");
+      }
+      if (["REVERSED", "VOIDED", "FAILED", "DECLINED"].includes(invoice.processorResponseCode || "") &&
+          (!invoice.processorTransactionId || invoice.processorTransactionId === normalized.transactionId)) {
+        return { alreadyProcessed: true, settlementApplied: false };
+      }
     }
 
     if (invoice.status === InvoiceStatus.PAID) {
@@ -416,7 +432,7 @@ return {
   playerProfileId:
     invoice.playerProfileId,
 };
-  });
+  }, provider === "VALOR" ? { isolationLevel: "Serializable" } : undefined);
 }
 
 export async function applyFailedPlayerPayment({
@@ -448,6 +464,16 @@ export async function applyFailedPlayerPayment({
         found: false,
       };
     }
+
+    if (provider === "VALOR" && invoice.status === InvoiceStatus.PAID &&
+        invoice.processorTransactionId && invoice.processorTransactionId !== normalized.transactionId) {
+      return { found: true, stale: true };
+    }
+    const newerPaid = provider === "VALOR" ? await tx.playerInvoice.findFirst({
+      where: { playerProfileId: invoice.playerProfileId, status: InvoiceStatus.PAID,
+        id: { not: invoice.id }, createdAt: { gt: invoice.createdAt } },
+      select: { id: true },
+    }) : null;
 
     const invoiceStatus =
       getFailedInvoiceStatus(
@@ -484,6 +510,17 @@ export async function applyFailedPlayerPayment({
           invoice.processorResponseCode,
       },
     });
+
+    if (provider === "VALOR") {
+      await tx.playerInvoice.update({ where: { id: invoice.id }, data: {
+        failureReason: valorFailureMessage(normalized.status), nextRetryAt: null, paymentProcessingAt: null,
+      } });
+      if (newerPaid) return { found: true, stale: true };
+      await tx.playerBillingProfile.updateMany({
+        where: { playerProfileId: invoice.playerProfileId, provider: "VALOR" },
+        data: { providerPaymentRef: null },
+      });
+    }
 
     /*
      * A SETTLED payment creates the next
@@ -581,7 +618,7 @@ export async function applyFailedPlayerPayment({
 
       invoiceStatus,
     };
-  });
+  }, provider === "VALOR" ? { isolationLevel: "Serializable" } : undefined);
 }
 
 type ApplyFailedPlayerPaymentWithDunningInput = {

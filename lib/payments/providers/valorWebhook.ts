@@ -1,6 +1,7 @@
 // lib/payments/providers/valorWebhook.ts
 
 import crypto from "crypto";
+import { getValorPaymentOutcome } from "@/lib/payments/providers/valorPaymentOutcome";
 import type { NormalizedPaymentWebhook } from "@/lib/payments/types";
 
 type VerifyValorSignatureInput = {
@@ -93,19 +94,7 @@ export function normalizeValorWebhook(
 
   const data = value?.data ?? value?.payload ?? value;
 
-  const status = toUpperString(
-    data?.status,
-    data?.STATUS,
-    data?.transaction_status,
-    data?.txn_status,
-    data?.result,
-    data?.response,
-    data?.response_code === "00" ? "APPROVED" : "",
-    data?.reference_descriptive_data?.processor_response_code === "00"
-      ? "APPROVED"
-      : "",
-    value?.status
-  );
+  const { status, approved } = getValorPaymentOutcome(payload);
 
   const reference = firstString(
     data?.invoice_no,
@@ -196,26 +185,6 @@ const surcharge =
       data?.acctlast4,
       maskedCard ? maskedCard.slice(-4) : ""
     ) || null;
-
-  const responseCode = firstString(
-    data?.response_code,
-    data?.reference_descriptive_data?.processor_response_code,
-    data?.processor_response_code,
-    data?.error_code,
-    data?.error_no
-  );
-
-  const approved =
-    [
-      "APPROVED",
-      "SUCCESS",
-      "SUCCEEDED",
-      "PAID",
-      "AUTHCAPTURE",
-      "CAPTURED",
-      "SETTLED",
-      "COMPLETED",
-    ].includes(status) || ["00", "S00"].includes(responseCode);
 
   return {
     event,

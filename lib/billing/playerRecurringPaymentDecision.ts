@@ -59,13 +59,13 @@ export function getPlayerRecurringPaymentDecision(
 
   const shouldMarkPaid =
     result.ok === true &&
-    result.paymentCompleted === true;
+    result.paymentCompleted === true &&
+    result.status === (isAch ? "SETTLED" : "APPROVED");
 
   const shouldDun =
     result.ok === false &&
     result.skipped === false &&
     (
-      !isAch ||
       result.status === "FAILED"
     );
 

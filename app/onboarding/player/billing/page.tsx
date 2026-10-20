@@ -84,7 +84,7 @@ function PlayerBillingPageInner() {
   const [cadence, setCadence] = useState<"monthly" | "annual">("monthly");
   const [paymentMethod, setPaymentMethod] =
     useState<PaymentMethod>(PaymentMethod.CARD);
-  const [discountCode, setDiscountCode] = useState("");
+  const [discountCode, setDiscountCode] = useState(searchParams.get("discountCode") || "");
   const [summary, setSummary] = useState<Summary | null>(null);
 
   const [loading, setLoading] = useState(false);
@@ -96,9 +96,33 @@ function PlayerBillingPageInner() {
   const [xplorFormReady, setXplorFormReady] = useState(false);
   const [achSubmitting, setAchSubmitting] = useState(false);
 
-  const paymentState = searchParams.get("payment") || "";
-  const paymentMessage = searchParams.get("message") || "";
   const paymentRef = searchParams.get("ref") || "";
+  const [livePayment, setLivePayment] = useState<{ state: string; message: string; canRetry: boolean } | null>(null);
+  const paymentState = paymentRef ? (livePayment?.state || "pending") : (searchParams.get("payment") || "");
+  const paymentMessage = paymentRef ? (livePayment?.message || "Verifying your payment result…") : (searchParams.get("message") || "");
+  useEffect(() => {
+    if (!paymentRef) return;
+    let stopped = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    let checks = 0;
+    setLivePayment(null);
+    const check = async () => {
+      try {
+        const response = await fetch(`/api/payments/valor/status?reference=${encodeURIComponent(paymentRef)}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("Payment verification unavailable");
+        const result = await response.json();
+        if (stopped) return;
+        setLivePayment(result);
+        // Keep observing briefly after approval to catch an immediate processor reversal.
+        if (result.state === "failed") return;
+      } catch {
+        if (!stopped) setLivePayment({ state: "pending", canRetry: false, message: "We could not confirm your payment. Do not retry yet; contact support if this continues." });
+      }
+      if (!stopped && ++checks < 40) timer = setTimeout(check, 3000);
+    };
+    check();
+    return () => { stopped = true; if (timer) clearTimeout(timer); };
+  }, [paymentRef]);
 
   useEffect(() => {
   if (PAYMENTS_DISABLED) {
@@ -498,6 +522,7 @@ try {
           discountCode,
           paymentMethod,
           playerProfileId,
+          retryReference: paymentRef || undefined,
         }),
       });
 
@@ -524,11 +549,11 @@ try {
 
 return (
   <>
-    <Script
+    {paymentMethod === PaymentMethod.ACH && (<Script
       id="xplor-ach-sdk"
       src={`${XPLOR_GATEWAY_URL}/js-sdk/js/clearent-host.js`}
       strategy="afterInteractive"
-      onLoad={() => {
+      onReady={() => {
         setXplorScriptReady(true);
       }}
       onError={() => {
@@ -537,7 +562,7 @@ return (
           "The secure Xplor ACH form could not be loaded."
         );
       }}
-    />
+    />)}
 
     <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "Arial" }}>
       <h1>Complete Your Subscription</h1>
@@ -774,6 +799,7 @@ return (
     fontSize: 16,
     cursor:
       !summary ||
+      (Boolean(paymentRef) && paymentState !== "failed") ||
       checkoutLoading ||
       achSubmitting ||
       !playerProfileId ||
@@ -800,7 +826,7 @@ return (
       : "Submit ACH Payment"
     : checkoutLoading
       ? "Redirecting..."
-      : "Proceed to Card Payment"}
+      : (paymentState === "failed" ? "Retry Card Payment" : "Proceed to Card Payment")}
 </button>
     </div>
   </>

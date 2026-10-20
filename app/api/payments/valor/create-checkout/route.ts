@@ -77,6 +77,7 @@ export async function POST(req: NextRequest) {
       discountCode,
       playerProfileId,
       paymentMethod,
+      retryReference,
     } = await req.json();
 
 const cadence = normalizeCadence(rawCadence);
@@ -102,6 +103,15 @@ const normalizedPaymentMethod = normalizePaymentMethod(paymentMethod);
         { error: "Player profile not found." },
         { status: 404 }
       );
+    }
+
+    if (retryReference && normalizedPaymentMethod === PaymentMethod.CARD) {
+      const previous = await prisma.playerInvoice.findFirst({
+        where: { externalId: String(retryReference), playerProfileId: profile.id },
+      });
+      if (!previous || !["PAST_DUE", "VOID"].includes(previous.status) || previous.amountPaidCents !== 0) {
+        return NextResponse.json({ error: "Payment is approved or still being verified. Do not retry yet." }, { status: 409 });
+      }
     }
 
     const isTestDiscount = String(discountCode ?? "").trim().toUpperCase() === "SCOUTLINE1TEST";
@@ -172,6 +182,7 @@ const periodEnd = addMonths(now, 1);
       `&plan=${encodeURIComponent(plan)}` +
       `&cadence=${encodeURIComponent(cadence)}`;
 
+const discountReturnParam = discountCode ? `&discountCode=${encodeURIComponent(String(discountCode))}` : "";
 const checkoutResult = await createPaymentCheckout({
   paymentMethod: normalizedPaymentMethod,
 
@@ -186,9 +197,9 @@ surchargeCents: summary.surchargeAmount,
   customerName: profile.user?.name || "ScoutLine Player",
   customerEmail: profile.email,
 
-  redirectUrl,
-  successUrl,
-  failureUrl,
+  redirectUrl: redirectUrl + discountReturnParam,
+  successUrl: successUrl + discountReturnParam,
+  failureUrl: failureUrl + discountReturnParam,
 });
 
 if (!checkoutResult.ok || !checkoutResult.checkoutUrl) {

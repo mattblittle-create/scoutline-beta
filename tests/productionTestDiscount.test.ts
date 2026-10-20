@@ -1,11 +1,11 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { NextRequest } from "next/server";
-const mocks = vi.hoisted(() => ({ user: vi.fn(), profile: vi.fn(), debit: vi.fn(), checkout: vi.fn() }));
+const mocks = vi.hoisted(() => ({ user: vi.fn(), profile: vi.fn(), invoice: vi.fn(), debit: vi.fn(), checkout: vi.fn() }));
 vi.mock("@/lib/auth/getCurrentUser", () => ({ getCurrentUser: mocks.user }));
 vi.mock("@/lib/prisma", () => ({ prisma: { playerProfile: { findUnique: mocks.profile } } }));
 vi.mock("@prisma/client", async importOriginal => {
   const actual = await importOriginal<typeof import("@prisma/client")>();
-  return { ...actual, PrismaClient: class { playerProfile = { findUnique: mocks.profile }; } };
+  return { ...actual, PrismaClient: class { playerProfile = { findUnique: mocks.profile }; playerInvoice = { findFirst: mocks.invoice }; } };
 });
 vi.mock("@/lib/payments/createCheckout", () => ({ createPaymentCheckout: mocks.checkout }));
 vi.mock("@/lib/payments/providerRegistry", () => ({ getPaymentProviderForMethod: () => ({ createInitialAchDebit: mocks.debit }) }));
@@ -39,4 +39,12 @@ describe("production test discount account enforcement", () => {
     expect(mocks.debit).not.toHaveBeenCalled();
     expect(mocks.checkout).not.toHaveBeenCalled();
   });
+});
+
+describe("card checkout manual retry guard",()=>{
+ it.each(["OPEN","PAID","UPCOMING"])("cannot retry a %s invoice",async status=>{
+  mocks.invoice.mockResolvedValue({status,amountPaidCents:status==="PAID"?103:0});
+  expect((await card(request({retryReference:"previous"}))).status).toBe(409);
+  expect(mocks.checkout).not.toHaveBeenCalled();
+ });
 });

@@ -62,6 +62,8 @@ describe(
               invoiceNumber:
                 "invoice_card_2",
 
+              status: "FAILED",
+
               paymentCompleted:
                 false,
 
@@ -346,3 +348,13 @@ describe(
     );
   }
 );
+describe("reject conflicting completed flags",()=>{
+ it.each(["UNKNOWN","PENDING","FAILED","VOIDED"] as const)("does not mark card %s paid even if caller says completed",status=>{
+  expect(getPlayerRecurringPaymentDecision({isAch:false,result:{ok:true,skipped:false,paymentCompleted:true,status,invoiceNumber:"test"}}).shouldMarkPaid).toBe(false);
+ });
+});
+
+it("never schedules another card attempt after an ambiguous response",()=>{
+ expect(getPlayerRecurringPaymentDecision({isAch:false,result:{ok:false,skipped:false,status:"UNKNOWN",paymentCompleted:false,invoiceNumber:"test"}}))
+  .toEqual({shouldMarkPaid:false,shouldDun:false});
+});

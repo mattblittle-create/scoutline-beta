@@ -72,11 +72,24 @@ export async function createValorCheckout(
       params.set("email", input.customerEmail);
     }
 
-    const checkoutUrl = appendQueryString(
+    const creationUrl = appendQueryString(
       getValorHostedPaymentBaseUrl(),
       params
     );
 
+    // Create the hosted link server-side. Credentials must never appear in the
+    // customer's navigation URL. S00 here confirms link creation, not payment.
+    const response = await fetch(creationUrl, { method: "GET", cache: "no-store",
+      redirect: "error", signal: AbortSignal.timeout(15000), headers: { Accept: "application/json" } });
+    const payload = await response.json().catch(() => null);
+    if (!response.ok || payload?.error_no !== "S00" || typeof payload?.url !== "string") {
+      throw new Error("Valor could not create the secure payment form. No payment was submitted.");
+    }
+    const hosted = new URL(payload.url);
+    if (hosted.protocol !== "https:" || !["securelink-prod.valorpaytech.com", "securelink-staging.valorpaytech.com"].includes(hosted.hostname)) {
+      throw new Error("Valor returned an unexpected payment form address.");
+    }
+    const checkoutUrl = hosted.toString();
     return {
       ok: true,
       provider: "VALOR",

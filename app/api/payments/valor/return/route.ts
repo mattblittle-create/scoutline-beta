@@ -5,10 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 export const dynamic = "force-dynamic";
 import { PrismaClient, InvoiceStatus } from "@prisma/client";
 
-import {
-  PLAYER_BILLING_STATUS,
-} from "@/lib/billing/constants";
-
 const prisma = new PrismaClient();
 
 function getAppBaseUrl() {
@@ -115,7 +111,10 @@ if (playerProfileId) redirect.searchParams.set("playerProfileId", playerProfileI
     }
 
     // If webhook already marked this invoice paid, trust DB first.
-    if (invoice.status === InvoiceStatus.PAID) {
+    const discountCode = searchParams.get("discountCode");
+    if (discountCode) redirect.searchParams.set("discountCode", discountCode);
+
+    if (invoice.status === InvoiceStatus.PAID && !["REVERSED", "VOIDED", "FAILED", "DECLINED"].includes(invoice.processorResponseCode || "")) {
       redirect.searchParams.set("payment", "success");
       redirect.searchParams.set(
         "message",
@@ -126,16 +125,9 @@ if (playerProfileId) redirect.searchParams.set("playerProfileId", playerProfileI
     }
 
     // Explicit failure signal from Valor redirect
-    if (isFailureParam(failure) || isFailureParam(status)) {
-      await prisma.playerProfile.update({
-        where: { id: invoice.playerProfileId },
-        data: {
-          hasActivePlayerBilling: false,
-          playerBillingStatus:
-            PLAYER_BILLING_STATUS.PAST_DUE,
-        },
-      });
-
+    if (isTruthyParam(failure) || isFailureParam(failure) || isFailureParam(status) ||
+        ["PAST_DUE", "VOID"].includes(invoice.status) ||
+        ["REVERSED", "VOIDED", "FAILED", "DECLINED"].includes(invoice.processorResponseCode || "")) {
       redirect.searchParams.set("payment", "failed");
       redirect.searchParams.set(
         "message",

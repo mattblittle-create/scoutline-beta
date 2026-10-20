@@ -18,6 +18,8 @@ import {
   applySuccessfulPlayerPayment,
 } from "@/lib/payments/processPlayerPaymentWebhook";
 
+import { getValorPaymentOutcome } from "@/lib/payments/providers/valorPaymentOutcome";
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -133,32 +135,10 @@ export async function POST(
           hasTimestamp:
             Boolean(timestamp),
 
-          allowUnsigned:
-            process.env
-              .VALOR_WEBHOOK_ALLOW_UNSIGNED ===
-            "true",
         }
       );
 
-      if (
-        process.env
-          .VALOR_WEBHOOK_ALLOW_UNSIGNED ===
-        "true"
-      ) {
-        console.warn(
-          "VALOR_WEBHOOK_UNSIGNED_ALLOWED_TEMPORARILY"
-        );
-      } else {
-        return NextResponse.json(
-          {
-            error:
-              "Missing Valor authentication headers.",
-          },
-          {
-            status: 401,
-          }
-        );
-      }
+      return NextResponse.json({ error: "Missing Valor authentication headers." }, { status: 401 });
     }
 
     if (signature && timestamp) {
@@ -234,6 +214,16 @@ export async function POST(
           status: 400,
         }
       );
+    }
+
+    const outcome = getValorPaymentOutcome(payload);
+    if (!normalized.transactionId) {
+      return NextResponse.json({ error: "Missing transaction identity." }, { status: 400 });
+    }
+    if (!outcome.approved && !outcome.definitiveFailure) {
+      // Unknown, authorization-only and unrelated events must never activate or
+      // fail a subscription. A customer must not retry an ambiguous charge.
+      return NextResponse.json({ ok: true, received: true, action: "IGNORED", status: outcome.status });
     }
 
     if (normalized.approved) {

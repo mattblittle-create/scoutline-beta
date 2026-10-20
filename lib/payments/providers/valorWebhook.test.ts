@@ -210,7 +210,7 @@ describe("Valor webhook helpers", () => {
       expect(normalized).toMatchObject({
         event: "",
         rawEvent: "",
-        status: "",
+        status: "UNKNOWN",
         approved: false,
         reference: "",
         transactionId: "",

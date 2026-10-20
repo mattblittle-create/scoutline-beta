@@ -1,5 +1,6 @@
 // lib/billing/valorRecurringCharge.ts
 
+import { getValorPaymentOutcome } from "@/lib/payments/providers/valorPaymentOutcome";
 import type { StoredPaymentChargeResult } from "@/lib/payments/types";
 
 import {
@@ -94,14 +95,17 @@ const cardFeeCents =
 
   const json: any = await res.json().catch(() => null);
 
-  const approved =
-    res.ok &&
-    (json?.error_no === "S00" ||
-      json?.error_code === "00" ||
-      String(json?.msg || "").toUpperCase() === "APPROVED");
+  const outcome = getValorPaymentOutcome({
+    ...json,
+    status: json?.status ?? json?.msg,
+    response_code: json?.response_code ?? json?.error_code,
+  });
+  const approved = res.ok && outcome.approved && Boolean(json?.txnid);
 
   if (!approved) {
     return {
+      status: res.ok && outcome.definitiveFailure ? "FAILED" : "UNKNOWN",
+      paymentCompleted: false,
       ok: false,
       skipped: false,
       reason:

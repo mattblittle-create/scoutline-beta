@@ -21,12 +21,18 @@ function inferCadence(value: string | null | undefined) {
 
 export async function markPlayerRecurringPaymentSucceeded(args: {
   invoiceId: string;
+  paymentStatus?: string;
+  paymentCompleted?: boolean;
   amountPaidCents: number;
   cardFeeCents?: number;
   processorTransactionId?: string | null;
   processorResponseCode?: string | null;
   processorReceiptUrl?: string | null;
 }) {
+  if (args.paymentCompleted !== true || !["APPROVED", "SETTLED"].includes(args.paymentStatus || "") ||
+      !args.processorTransactionId || !Number.isSafeInteger(args.amountPaidCents) || args.amountPaidCents <= 0) {
+    throw new Error("Refusing to mark an unconfirmed recurring payment paid.");
+  }
   const paidAt = new Date();
 
   return prisma.$transaction(async (tx) => {
@@ -41,6 +47,10 @@ export async function markPlayerRecurringPaymentSucceeded(args: {
       return { ok: false, error: "Invoice not found." };
     }
 
+    if (["REVERSED", "VOIDED", "FAILED", "DECLINED"].includes(invoice.processorResponseCode || "") &&
+        invoice.processorTransactionId === args.processorTransactionId) {
+      throw new Error("Refusing to reactivate a failed or reversed recurring transaction.");
+    }
     if (invoice.status === InvoiceStatus.PAID) {
       return {
         ok: true,
@@ -104,7 +114,7 @@ export async function markPlayerRecurringPaymentSucceeded(args: {
           invoiceDate: paidAt,
           dueDate: nextPeriodEnd,
           amountCents: invoice.amountCents,
-          cardFeeCents: 0,
+          cardFeeCents: Math.max(0, Math.round(args.cardFeeCents ?? invoice.cardFeeCents)),
           amountPaidCents: 0,
         },
       });
@@ -116,5 +126,5 @@ export async function markPlayerRecurringPaymentSucceeded(args: {
       invoiceId: invoice.id,
       playerProfileId: invoice.playerProfileId,
     };
-  });
+  }, args.paymentStatus === "APPROVED" ? { isolationLevel: "Serializable" } : undefined);
 }
