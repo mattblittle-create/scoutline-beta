@@ -34,6 +34,64 @@ async function makeSetPasswordJwt(email: string) {
   return jwt;
 }
 
+async function notifyProgramAdminsOfStaffInviteAccepted(params: {
+  collegeId: string;
+  acceptedUserId: string;
+  acceptedEmail: string;
+  staffTitle: string;
+}) {
+  const acceptedUser = await prisma.user.findUnique({
+    where: { id: params.acceptedUserId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+
+  const displayName =
+    acceptedUser?.name || acceptedUser?.email || params.acceptedEmail || "A staff member";
+
+  const admins = await prisma.user.findMany({
+    where: {
+      collegeId: params.collegeId,
+      id: { not: params.acceptedUserId },
+      coachProfile: {
+        isProgramAdmin: true,
+      },
+    },
+    select: {
+      id: true,
+      notificationPreference: {
+        select: {
+          instantStaffActivity: true,
+        },
+      },
+    },
+  });
+
+  const adminIds = admins
+    .filter((admin) => admin.notificationPreference?.instantStaffActivity !== false)
+    .map((admin) => admin.id);
+
+  if (!adminIds.length) return;
+
+  await prisma.notification.createMany({
+    data: adminIds.map((userId) => ({
+      userId,
+      type: "COACH_STAFF_INVITE_ACCEPTED",
+      message: `${displayName} accepted their ScoutLine staff invite as ${params.staffTitle}.`,
+      data: {
+        collegeId: params.collegeId,
+        acceptedUserId: params.acceptedUserId,
+        acceptedEmail: params.acceptedEmail,
+        staffTitle: params.staffTitle,
+        event: "COACH_STAFF_INVITE_ACCEPTED",
+      },
+    })),
+  });
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -118,15 +176,22 @@ export async function GET(req: Request) {
       } as any,
     });
 
-    // Mark invite accepted
-    await prisma.coachInvite.update({
-      where: { id: invite.id },
-      data: {
-        status: "ACCEPTED" as any,
-        acceptedUserId: user.id,
-        acceptedAt: new Date(),
-      },
-    });
+// Mark invite accepted
+await prisma.coachInvite.update({
+  where: { id: invite.id },
+  data: {
+    status: "ACCEPTED" as any,
+    acceptedUserId: user.id,
+    acceptedAt: new Date(),
+  },
+});
+
+await notifyProgramAdminsOfStaffInviteAccepted({
+  collegeId: invite.collegeId,
+  acceptedUserId: user.id,
+  acceptedEmail: user.email,
+  staffTitle,
+});
 
     // If user has no password yet, create a SET_PASSWORD JWT + DB token row
     let setPasswordToken: string | null = null;

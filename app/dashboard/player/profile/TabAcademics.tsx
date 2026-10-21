@@ -8,6 +8,7 @@ export type AcademicsPayload = {
   hsName: string;
   hsCity: string;
   hsState: string;
+  hsGeneralWebsiteUrl?: string;
   gpa: string;
   gpaScale: "5.0" | "4.0" | "100" | "";
   sat: string;
@@ -30,11 +31,14 @@ export type AcademicsHandle = {
 
 /** ---------- Props ---------- */
 type Props = {
+  readOnlyTeamAdmin?: boolean;
+
   // values
   gradYear: string;
   hsName: string;
   hsCity: string;
   hsState: string;
+  hsGeneralWebsiteUrl: string;
   gpa: string;
   gpaScale: "5.0" | "4.0" | "100" | "";
   sat: string;
@@ -52,22 +56,24 @@ type Props = {
   areasOfStudyInput?: string;
 
   /** ---------- NEW: persisted doc URLs (wired to public profile) ---------- */
-  // Single slot: "Upload Report Card / Transcripts"
-  reportCardUrl: string; // we use this single slot to store either a transcript or a report card
-  setReportCardUrl: (v: string) => void;
-
-  // Optional second single slot (kept for back-compat; not used by the single-uploader UI in this drop)
-  transcriptUrl?: string;
-  setTranscriptUrl?: (v: string) => void;
+  reportCardUrl: string;
+  setReportCardUrl: React.Dispatch<React.SetStateAction<string>>;
+  transcriptUrl: string;
+  setTranscriptUrl: React.Dispatch<React.SetStateAction<string>>;
+  additionalDocs: Array<{ url: string; label?: string | null }>;
+  setAdditionalDocs: React.Dispatch<React.SetStateAction<Array<{ url: string; label?: string | null }>>>;
 
   // errors
   fieldErr: Record<string, string>;
+  bioReadOnly?: boolean;
+  intendedMajorsReadOnly?: boolean;
 
   // handlers (legacy)
   setGradYear: (v: string) => void;
   setHsName: (v: string) => void;
   setHsCity: (v: string) => void;
   setHsState: (v: string) => void;
+  setHsGeneralWebsiteUrl: (v: string) => void;
   setGpa: (v: string) => void;
   setGpaScale: (v: "5.0" | "4.0" | "100" | "") => void;
   setSat: (v: string) => void;
@@ -81,7 +87,7 @@ type Props = {
   setAreasOfStudyInput?: (v: string) => void; // optional (component falls back to local state)
 
   // refs
-  gradYearRef: React.RefObject<HTMLInputElement>;
+  gradYearRef: React.RefObject<HTMLInputElement | null>;
 
   // constants/styles from parent (single source of truth)
   US_STATE_ABBRS: readonly string[];
@@ -112,6 +118,45 @@ type Props = {
   uploadEndpoint?: string;
 };
 
+const ACADEMIC_AREA_OPTIONS = [
+  "Accounting",
+  "Architecture",
+  "Athletic Training",
+  "Biology",
+  "Business",
+  "Chemistry",
+  "Communications",
+  "Computer Science",
+  "Criminal Justice",
+  "Data Science",
+  "Economics",
+  "Education",
+  "Engineering",
+  "Entrepreneurship",
+  "Exercise Science",
+  "Finance",
+  "Health Sciences",
+  "History",
+  "Kinesiology",
+  "Management",
+  "Marketing",
+  "Mathematics",
+  "Nursing",
+  "Nutrition",
+  "Physical Therapy",
+  "Political Science",
+  "Pre-Law",
+  "Pre-Med",
+  "Psychology",
+  "Public Health",
+  "Social Work",
+  "Sociology",
+  "Sports Management",
+  "Sports Medicine",
+  "Statistics",
+  "Supply Chain & Logistics",
+].sort((a, b) => a.localeCompare(b));
+
 /** ---------- Component ---------- */
 const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcademics(
   props,
@@ -123,6 +168,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     hsName,
     hsCity,
     hsState,
+    hsGeneralWebsiteUrl,
     gpa,
     gpaScale,
     sat,
@@ -138,15 +184,20 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     setReportCardUrl,
     transcriptUrl,
     setTranscriptUrl,
+    additionalDocs,
+    setAdditionalDocs,
 
     // errors
     fieldErr,
+    bioReadOnly = false,
+    intendedMajorsReadOnly = false,
 
     // handlers
     setGradYear,
     setHsName,
     setHsCity,
     setHsState,
+    setHsGeneralWebsiteUrl,
     setGpa,
     setGpaScale,
     setSat,
@@ -175,11 +226,14 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
     // upload helpers
     userSlug,
-    // uploadEndpoint, // intentionally ignored to avoid mismatched paths
-  } = props;
+    uploadEndpoint,
+        readOnlyTeamAdmin = false,
+      } = props;
 
-  // Hard-coded endpoint so we *always* hit the local uploader we know exists.
-  const effectiveEndpoint = "/api/uploads/local";
+  const academicsLocked = readOnlyTeamAdmin;
+
+  // Use the endpoint passed by the parent; fall back to the cloud/non-local route
+  const effectiveEndpoint = uploadEndpoint || "/api/upload/academic";
 
   // Local label for the single slot so we can show the chosen file name immediately
   const [singleDocLabel, setSingleDocLabel] = React.useState<string>("");
@@ -209,24 +263,38 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     }
   }
 
-  /** ---------------- Intended Major(s) control ---------------- */
-  const [areasText, setAreasText] = React.useState<string>(areasOfStudyInput ?? "");
-  React.useEffect(() => {
-    if (typeof areasOfStudyInput === "string" && areasOfStudyInput !== areasText) {
-      setAreasText(areasOfStudyInput);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [areasOfStudyInput]);
+  function parseInitialAreas(raw?: string): string[] {
+  if (!raw) return [];
 
-  const writeAreas = React.useCallback(
-    (v: string) => {
-      if (setAreasOfStudyInput) setAreasOfStudyInput(v);
-      setAreasText(v);
-    },
-    [setAreasOfStudyInput]
-  );
+  return raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .map((s) => s.replace(/\s+/g, " "))
+    .slice(0, 12);
+}
 
-  const areasInput = areasText;
+/** ---------------- Intended Major(s) control ---------------- */
+const [selectedAreas, setSelectedAreas] = React.useState<string[]>(() =>
+  parseInitialAreas(areasOfStudyInput)
+);
+
+const [areasSearch, setAreasSearch] = React.useState("");
+const [areasDropdownOpen, setAreasDropdownOpen] = React.useState(false);
+
+React.useEffect(() => {
+  if (typeof areasOfStudyInput === "string") {
+    setSelectedAreas(parseInitialAreas(areasOfStudyInput));
+  }
+}, [areasOfStudyInput]);
+
+function syncAreas(next: string[]) {
+  const cleaned = Array.from(new Set(next.map((v) => v.trim()).filter(Boolean))).slice(0, 12);
+  setSelectedAreas(cleaned);
+  if (setAreasOfStudyInput) setAreasOfStudyInput(cleaned.join(", "));
+}
+
+const areasInput = selectedAreas.join(", ");
 
   // Capitalize first letter of each word (keep internal whitespace collapsed)
   const titleCase = (s: string) =>
@@ -243,10 +311,20 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean)
-      .map((s) => s.replace(/\s+/g, " ")) // collapse inner whitespace
-      .map(titleCase) // Title Case for chips & payload
-      .slice(0, 12); // soft cap
+      .map((s) => s.replace(/\s+/g, " "))
+      .map(titleCase)
+      .slice(0, 12);
   }, []);
+
+const academicAreaMatches = React.useMemo(
+  () =>
+    ACADEMIC_AREA_OPTIONS.filter(
+      (area) =>
+        area.toLowerCase().startsWith(areasSearch.trim().toLowerCase()) &&
+        !selectedAreas.includes(area)
+    ).sort((a, b) => a.localeCompare(b)),
+  [areasSearch, selectedAreas]
+);
 
   // Expose atomic payload to parent Save Profile button
   React.useImperativeHandle(
@@ -257,6 +335,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         hsName,
         hsCity,
         hsState,
+        hsGeneralWebsiteUrl,
         gpa,
         gpaScale,
         sat,
@@ -267,7 +346,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         // bio & majors
         academicBio,
         academicBioPrivate,
-        areasOfStudy: parseAreas(areasInput),
+        areasOfStudy: selectedAreas,
       }),
     }),
     [
@@ -283,20 +362,19 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       transcriptUrl,
       academicBio,
       academicBioPrivate,
-      areasInput,
-      parseAreas,
+      selectedAreas,
     ]
   );
 
   // Derived preview chips for intended majors
-  const studyChips = React.useMemo(() => parseAreas(areasInput), [areasInput, parseAreas]);
+  const studyChips = selectedAreas;
 
   // Remove one chip: rebuild the CSV minus that index
-  const removeChip = (idx: number) => {
-    const arr = parseAreas(areasInput);
-    arr.splice(idx, 1);
-    writeAreas(arr.join(", "));
-  };
+ const removeChip = (idx: number) => {
+  const next = [...selectedAreas];
+  next.splice(idx, 1);
+  syncAreas(next);
+};
 
   /** ---------------- Upload helpers ---------------- */
   function inferUploadSlug(): string | null {
@@ -313,15 +391,15 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
     return null;
   }
 
-  // Always POST to /api/uploads/local, with folder="academic"
+  // Upload to the endpoint provided by the parent (production-safe)
   async function uploadFile(file: File): Promise<string> {
     const slug = inferUploadSlug() || "player";
     const fd = new FormData();
     fd.append("file", file);
-    fd.append("folder", "academic"); // <- tells the route to use /public/uploads/academic
-    fd.append("userSlug", slug);     // optional metadata; route currently ignores it
+    fd.append("folder", "academic");
+    fd.append("userSlug", slug);
 
-    const res = await fetch("/api/uploads/local", {
+    const res = await fetch(effectiveEndpoint, {
       method: "POST",
       body: fd,
     });
@@ -333,7 +411,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
     if (!res.ok || !json?.ok || !json?.url) {
       console.error("Academic upload failed:", {
-        endpoint: "/api/uploads/local",
+        endpoint: effectiveEndpoint,
         status: res.status,
         json,
       });
@@ -376,6 +454,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>Grad Year</span>
           <input
             ref={gradYearRef}
+            disabled={academicsLocked}
             inputMode="numeric"
             pattern="\d*"
             value={gradYear === "0" ? "" : gradYear}
@@ -394,6 +473,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>High School Name</span>
           <input
             value={hsName}
+            disabled={academicsLocked}
             onChange={(e) => setHsName(e.target.value)}
             placeholder="Jefferson High School"
             style={inputStyle}
@@ -404,6 +484,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>City</span>
           <input
             value={hsCity}
+            disabled={academicsLocked}
             onChange={(e) => setHsCity(e.target.value)}
             placeholder="Nashville"
             style={inputStyle}
@@ -415,6 +496,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             list="state-abbrs"
             value={hsState}
+            disabled={academicsLocked}
             onChange={(e) => setHsState(e.target.value.toUpperCase().slice(0, 2))}
             placeholder="State"
             style={inputStyle}
@@ -440,6 +522,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             inputMode="decimal"
             value={gpa}
+            disabled={academicsLocked}
             onChange={(e) => setGpa(e.target.value)}
             placeholder="4.0"
             style={inputStyle}
@@ -450,6 +533,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <span style={labelText}>Out of…</span>
           <select
             value={gpaScale}
+            disabled={academicsLocked}
             onChange={(e) => setGpaScale(e.target.value as any)}
             style={inputStyle}
           >
@@ -465,6 +549,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             inputMode="numeric"
             value={sat}
+            disabled={academicsLocked}
             onChange={(e) => setSat(e.target.value)}
             placeholder="1300"
             style={inputStyle}
@@ -476,6 +561,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           <input
             inputMode="numeric"
             value={act}
+            disabled={academicsLocked}
             onChange={(e) => setAct(e.target.value)}
             placeholder="28"
             style={inputStyle}
@@ -509,6 +595,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
           >
             <input
               type="file"
+              disabled={academicsLocked}
               accept={docAccept}
               onChange={(e) => {
                 const files = e.currentTarget.files;
@@ -562,35 +649,38 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                     "Open file"}
                 </a>
 
-                <button
-                  type="button"
-                  // cancel label behavior specifically on the button too
-                  onMouseDown={stopLabelActivation}
-                  onClick={(e) => {
-                    stopLabelActivation(e);
-                    setReportCardUrl("");
-                    setSingleDocLabel("");
-                    setTranscriptUrl?.("");
-                  }}
-                  aria-label="Remove file"
-                  title="Remove file"
-                  style={{
-                    position: "absolute",
-                    top: 4,
-                    right: 4,
-                    width: 20,
-                    height: 20,
-                    borderRadius: 999,
-                    border: "1px solid #0ea5e9",
-                    background: "#ffffff",
-                    color: "#b91c1c",
-                    fontWeight: 800,
-                    lineHeight: "16px",
-                    cursor: "pointer",
-                  }}
-                >
-                  ×
-                </button>
+<button
+  type="button"
+  onMouseDown={stopLabelActivation}
+  onClick={(e) => {
+    stopLabelActivation(e);
+    if (academicsLocked) return;
+
+    setReportCardUrl("");
+    setSingleDocLabel("");
+    setTranscriptUrl?.("");
+  }}
+  aria-label="Remove file"
+  title={academicsLocked ? "Team Admin cannot remove academic files." : "Remove file"}
+  disabled={academicsLocked}
+  style={{
+    position: "absolute",
+    top: 4,
+    right: 4,
+    width: 20,
+    height: 20,
+    borderRadius: 999,
+    border: "1px solid #0ea5e9",
+    background: "#ffffff",
+    color: "#b91c1c",
+    fontWeight: 800,
+    lineHeight: "16px",
+    cursor: academicsLocked ? "not-allowed" : "pointer",
+    opacity: academicsLocked ? 0.6 : 1,
+  }}
+>
+  ×
+</button>
               </div>
             ) : (
               <div
@@ -615,6 +705,28 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
             }}
           >
             PDF, Word, or Excel • Only one file allowed here.
+          </span>
+        </label>
+
+        <label style={labelStyle}>
+          <span style={labelText}>High School Website</span>
+          <input
+            type="url"
+            value={hsGeneralWebsiteUrl}
+            disabled={academicsLocked}
+            onChange={(e) => setHsGeneralWebsiteUrl(e.target.value)}
+            placeholder="https://www.yourschool.edu"
+            style={inputStyle}
+          />
+          <span
+            style={{
+              color: "#64748b",
+              fontSize: 12,
+              marginTop: 4,
+              display: "block",
+            }}
+          >
+            General school website. This will be a clickable link on the public player profile.
           </span>
         </label>
       </div>
@@ -672,6 +784,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
                   type="button"
                   aria-label={`Remove ${f.name}`}
                   onClick={() => removeAcademicDoc(i)}
+                  disabled={academicsLocked}
                   style={{
                     border: "none",
                     background: "transparent",
@@ -692,6 +805,23 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
 
       {/* Divider */}
       <hr style={hrStyle} />
+
+{bioReadOnly && (
+  <div
+    style={{
+      marginBottom: 12,
+      padding: "10px 12px",
+      borderRadius: 10,
+      background: "#f8fafc",
+      border: "1px solid #e2e8f0",
+      color: "#FF0000",
+      fontSize: 13,
+      fontWeight: 600,
+    }}
+  >
+    Academic Bio is a player-controlled field and cannot be edited from the parent account.
+  </div>
+)}
 
       {/* Academic Bio */}
       <section>
@@ -717,6 +847,7 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
         </p>
         <div>
           <textarea
+          disabled={academicsLocked || bioReadOnly}
             value={academicBio}
             onChange={(e) => {
               const v = e.target.value;
@@ -740,107 +871,228 @@ const TabAcademics = React.forwardRef<AcademicsHandle, Props>(function TabAcadem
       </section>
 
       {/* Intended Major(s) */}
-      <section style={{ marginTop: 12 }}>
-        <h3 style={{ ...labelText, margin: 0 }}>Intended Major(s)</h3>
-        <p
+<section style={{ marginTop: 12 }}>
+  {intendedMajorsReadOnly ? (
+    <div
+      style={{
+        marginBottom: 8,
+        padding: "10px 12px",
+        borderRadius: 10,
+        background: "#f8fafc",
+        border: "1px solid #e2e8f0",
+        color: "#FF0000",
+        fontSize: 13,
+        fontWeight: 600,
+      }}
+    >
+      Intended Majors is a player-controlled field and cannot be edited from the parent account.
+    </div>
+  ) : null}
+
+  <h3 style={{ ...labelText, margin: 0 }}>Intended Major(s)</h3>
+
+  <p
+    style={{
+      color: "#475569",
+      marginTop: 4,
+      marginBottom: 6,
+    }}
+  >
+    Select possible academic areas or majors you’re interested in. It’s okay if you do not know yet.
+    You can update this anytime.
+  </p>
+
+<div style={{ position: "relative" }}>
+  <div style={{ display: "flex", gap: 6 }}>
+    <input
+      value={areasSearch}
+      disabled={academicsLocked || intendedMajorsReadOnly}
+      onFocus={() => {
+        if (!academicsLocked && !intendedMajorsReadOnly) {
+          setAreasDropdownOpen(true);
+        }
+      }}
+      onChange={(e) => {
+        if (intendedMajorsReadOnly) return;
+        setAreasSearch(e.target.value);
+        setAreasDropdownOpen(true);
+      }}
+      placeholder="Type to search majors or academic areas..."
+      style={{
+        ...inputStyle,
+        width: "100%",
+        background: intendedMajorsReadOnly ? "#f8fafc" : inputStyle.background,
+        color: intendedMajorsReadOnly ? "#64748b" : inputStyle.color,
+        cursor: intendedMajorsReadOnly ? "not-allowed" : "text",
+      }}
+    />
+
+    <button
+      type="button"
+      disabled={academicsLocked || intendedMajorsReadOnly}
+      onClick={() => {
+        if (academicsLocked || intendedMajorsReadOnly) return;
+        setAreasDropdownOpen((prev) => !prev);
+      }}
+      style={{
+        border: "1px solid #cbd5e1",
+        borderRadius: 10,
+        background: "#ffffff",
+        color: "#0f172a",
+        fontWeight: 900,
+        padding: "0 12px",
+        cursor: academicsLocked || intendedMajorsReadOnly ? "not-allowed" : "pointer",
+      }}
+      aria-label="Open intended major options"
+      title="Open major options"
+    >
+      ▾
+    </button>
+  </div>
+
+  {!academicsLocked &&
+  !intendedMajorsReadOnly &&
+  areasDropdownOpen &&
+  academicAreaMatches.length ? (
+    <div
+      style={{
+        position: "absolute",
+        zIndex: 20,
+        top: "calc(100% + 4px)",
+        left: 0,
+        right: 0,
+        background: "#ffffff",
+        border: "1px solid #cbd5e1",
+        borderRadius: 12,
+        boxShadow: "0 12px 30px rgba(15,23,42,0.14)",
+        maxHeight: 240,
+        overflowY: "auto",
+        padding: 6,
+      }}
+    >
+      {academicAreaMatches.map((area) => (
+        <button
+          key={area}
+          type="button"
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={() => {
+            const next = Array.from(new Set([...selectedAreas, area])).slice(0, 12);
+            syncAreas(next);
+            setAreasSearch("");
+            setAreasDropdownOpen(true);
+          }}
           style={{
-            color: "#475569",
-            marginTop: 4,
-            marginBottom: 6,
+            width: "100%",
+            textAlign: "left",
+            border: "none",
+            background: "transparent",
+            padding: "9px 10px",
+            borderRadius: 9,
+            cursor: "pointer",
+            fontWeight: 800,
+            color: "#0f172a",
           }}
         >
-          List possible areas of study you’re interested in. Separate with commas (ex.{" "}
-          <em>Business, Biology, Sports Medicine, etc.</em>). It's ok if you do not
-          know yet. Just leave this area blank. Max {MAX_STUDY_CHARS} characters.
-        </p>
-        <input
-          value={areasInput}
-          onChange={(e) => {
-            const v = e.target.value;
-            const clipped =
-              v.length <= MAX_STUDY_CHARS ? v : v.slice(0, MAX_STUDY_CHARS);
-            writeAreas(clipped);
-          }}
-          placeholder="Business, Biology, Sports Medicine, etc."
-          style={{ ...inputStyle, width: "100%" }}
-          maxLength={MAX_STUDY_CHARS}
-        />
-        <div
-          style={{
-            marginTop: 6,
-            display: "flex",
-            flexWrap: "wrap",
-            gap: 6,
-          }}
-        >
-          {studyChips.length > 0 ? (
-            studyChips.map((chip, idx) => (
-              <span
-                key={`${chip}-${idx}`}
+          {area}
+        </button>
+      ))}
+    </div>
+  ) : null}
+</div>
+
+  <div
+    style={{
+      marginTop: 8,
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+    }}
+  >
+    {studyChips.length > 0 ? (
+      studyChips
+        .slice()
+        .sort((a, b) => a.localeCompare(b))
+        .map((chip, idx) => (
+          <span
+            key={`${chip}-${idx}`}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              fontSize: 12,
+              fontWeight: 700,
+              color: "#475569",
+              background: "#f1f5f9",
+              border: "1px solid #e2e8f0",
+              borderRadius: 999,
+              padding: "3px 10px",
+            }}
+            title={chip}
+          >
+            {chip}
+
+            {!intendedMajorsReadOnly ? (
+              <button
+                type="button"
+                onClick={() => {
+                  if (academicsLocked || intendedMajorsReadOnly) return;
+                  removeChip(idx);
+                }}
+                disabled={academicsLocked || intendedMajorsReadOnly}
+                title={
+                  academicsLocked || intendedMajorsReadOnly
+                    ? "Team Admin cannot remove intended majors."
+                    : `Remove ${chip}`
+                }
+                aria-label={`Remove ${chip}`}
                 style={{
+                  marginLeft: 4,
+                  width: 18,
+                  height: 18,
+                  lineHeight: "16px",
+                  borderRadius: 9,
+                  border: "1px solid #cbd5e1",
+                  background: "#ffffff",
+                  color: "#64748b",
+                  fontWeight: 800,
+                  cursor:
+                    academicsLocked || intendedMajorsReadOnly ? "not-allowed" : "pointer",
+                  opacity: academicsLocked || intendedMajorsReadOnly ? 0.6 : 1,
                   display: "inline-flex",
                   alignItems: "center",
-                  gap: 8,
-                  fontSize: 12,
-                  fontWeight: 700,
-                  color: "#475569",
-                  background: "#f1f5f9",
-                  border: "1px solid #e2e8f0",
-                  borderRadius: 999,
-                  padding: "3px 10px",
+                  justifyContent: "center",
+                  padding: 0,
                 }}
-                title={chip}
               >
-                {chip}
-                <button
-                  type="button"
-                  onClick={() => removeChip(idx)}
-                  title={`Remove ${chip}`}
-                  aria-label={`Remove ${chip}`}
-                  style={{
-                    marginLeft: 4,
-                    width: 18,
-                    height: 18,
-                    lineHeight: "16px",
-                    borderRadius: 9,
-                    border: "1px solid #cbd5e1",
-                    background: "#ffffff",
-                    color: "#64748b",
-                    fontWeight: 800,
-                    cursor: "pointer",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    padding: 0,
-                  }}
-                >
-                  ×
-                </button>
-              </span>
-            ))
-          ) : (
-            <span
-              style={{
-                fontSize: 12,
-                color: "#94a3b8",
-                fontStyle: "italic",
-              }}
-            >
-              No majors added yet.
-            </span>
-          )}
-        </div>
-        <div
-          style={{
-            marginTop: 4,
-            textAlign: "right",
-            fontSize: 12,
-            color: "#64748b",
-          }}
-        >
-          {areasInput.length}/{MAX_STUDY_CHARS}
-        </div>
-      </section>
+                ×
+              </button>
+            ) : null}
+          </span>
+        ))
+    ) : (
+      <span
+        style={{
+          fontSize: 12,
+          color: "#94a3b8",
+          fontStyle: "italic",
+        }}
+      >
+        No majors added yet.
+      </span>
+    )}
+  </div>
+
+  <div
+    style={{
+      marginTop: 4,
+      textAlign: "right",
+      fontSize: 12,
+      color: "#64748b",
+    }}
+  >
+    {selectedAreas.length}/12 selected
+  </div>
+</section>
     </>
   );
 });

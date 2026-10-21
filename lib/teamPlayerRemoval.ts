@@ -1,6 +1,7 @@
 // lib/teamPlayerRemoval.ts
 
 import {
+  Prisma,
   PrismaClient,
   PlayerProfile,
   User,
@@ -14,6 +15,7 @@ const prisma = new PrismaClient();
 
 export class TeamRemovalError extends Error {
   status: number;
+
   constructor(message: string, status = 400) {
     super(message);
     this.status = status;
@@ -140,7 +142,7 @@ export async function removePlayerFromTeamProfile(
     data: {
       teamId,
       playerProfileId: profile.id,
-      snapshot: profile.data,
+      snapshot: profile.data ?? Prisma.JsonNull,
     },
   });
 
@@ -154,7 +156,7 @@ export async function removePlayerFromTeamProfile(
   });
 
   // 6) Notifications (if handlers provided)
-  const playerUser = updated.user ?? profile.user; // use latest, fallback to pre-update
+  const playerUser = updated.user ?? profile.user;
   const playerEmail = playerUser?.email ?? null;
   const playerName = playerUser?.name ?? null;
 

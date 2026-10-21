@@ -96,8 +96,6 @@ export default async function AdminUserDetailPage({ params }: { params: { id: st
           createdAt: true,
           updatedAt: true,
         },
-        orderBy: { createdAt: "desc" },
-        take: 10,
       },
 
       teamMemberships: {
@@ -117,7 +115,7 @@ export default async function AdminUserDetailPage({ params }: { params: { id: st
 
   if (!user) notFound();
 
-  const adminRoles = user.adminProfile?.roles?.map((r) => r.role) ?? [];
+  const adminRoles = user.adminProfile?.roles?.map((r: { role: string }) => r.role) ?? [];
   const canImpersonate = (ctx.roles ?? []).includes("SCOUTLINE_ADMIN") || (ctx.roles ?? []).includes("SUPPORT_AGENT");
 
   return (
@@ -210,9 +208,9 @@ export default async function AdminUserDetailPage({ params }: { params: { id: st
       </section>
 
       <section style={card}>
-        <div style={sectionTitle}>Player Profiles ({user.PlayerProfile.length})</div>
-        {user.PlayerProfile.length === 0 ? (
-          <div style={{ opacity: 0.75 }}>No PlayerProfile rows.</div>
+        <div style={sectionTitle}>Player Profile</div>
+        {!user.PlayerProfile ? (
+          <div style={{ opacity: 0.75 }}>No PlayerProfile row.</div>
         ) : (
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
@@ -225,25 +223,23 @@ export default async function AdminUserDetailPage({ params }: { params: { id: st
               </tr>
             </thead>
             <tbody>
-              {user.PlayerProfile.map((p) => (
-                <tr key={p.id}>
-                  <td style={td}>{p.email}</td>
-                  <td style={td}>
-                    <code>{p.id}</code>
-                  </td>
-                  <td style={td}>{p.profileState}</td>
-                  <td style={td}>{p.ownershipMode}</td>
-                  <td style={td}>{p.playerPlanTier}</td>
-                  <td style={td}>
-                    {p.playerBillingStatus} · {p.playerBillingCadence}
-                  </td>
-                  <td style={td}>
-                    <Link href={`/admin/players/${p.id}`} style={a}>
-                      View
-                    </Link>
-                  </td>
-                </tr>
-              ))}
+              <tr>
+                <td style={td}>{user.PlayerProfile.email}</td>
+                <td style={td}>
+                  <code>{user.PlayerProfile.id}</code>
+                </td>
+                <td style={td}>{user.PlayerProfile.profileState}</td>
+                <td style={td}>{user.PlayerProfile.ownershipMode}</td>
+                <td style={td}>{user.PlayerProfile.playerPlanTier}</td>
+                <td style={td}>
+                  {user.PlayerProfile.playerBillingStatus} · {user.PlayerProfile.playerBillingCadence}
+                </td>
+                <td style={td}>
+                  <Link href={`/admin/players/${user.PlayerProfile.id}`} style={a}>
+                    View
+                  </Link>
+                </td>
+              </tr>
             </tbody>
           </table>
         )}

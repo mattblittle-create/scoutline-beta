@@ -1,3 +1,5 @@
+// app/api/admin/feature-flags/create/route.ts
+
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin } from "@/lib/admin/requireAdmin";
@@ -11,8 +13,12 @@ function isValidKey(key: string) {
 }
 
 export async function POST(req: Request) {
-  const { admin, roles } = await requireAdmin({ redirectTo: "/staff" });
-  if (!roles.includes("SCOUTLINE_ADMIN")) {
+const { admin } = await requireAdmin("/staff");
+const roles = Array.isArray(admin.roles)
+  ? admin.roles.map((r: { role: string }) => r.role)
+  : [];
+
+if (!roles.includes("SCOUTLINE_ADMIN")) {
     return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
   }
 

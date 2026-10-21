@@ -6,7 +6,12 @@ import * as React from "react";
 export type CoachEntry = {
   firstName?: string | null;
   lastName?: string | null;
-  teamOrOrg?: string | null;   // Team / Organization
+
+  teamOrOrg?: string | null;   // preferred display field
+  organization?: string | null; // fallback from saved profile payload
+  team?: string | null;         // legacy fallback
+  org?: string | null;          // legacy fallback
+
   focus?: string | null;       // Coaching Focus
   email?: string | null;       // mailto link
   phone?: string | null;       // tel link (free-form; we normalize for href)
@@ -27,8 +32,16 @@ type Props = {
 
 /** Utilities */
 function fullName(first?: string | null, last?: string | null): string {
-  const f = (first ?? "").trim();
+  let f = (first ?? "").trim();
   const l = (last ?? "").trim();
+
+  if (f && l) {
+    const suffix = new RegExp(`\\s+${l.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}$`, "i");
+    if (suffix.test(f)) {
+      f = f.replace(suffix, "").trim() || f;
+    }
+  }
+
   return (f || l) ? [f, l].filter(Boolean).join(" ") : "—";
 }
 
@@ -44,16 +57,26 @@ export default function PublicCoaches({
   cardStyle,
   h2Style,
 }: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const coaches = Array.isArray(data?.coaches) ? data!.coaches!.filter(Boolean) : [];
 
-  const safeCard: React.CSSProperties = {
-    marginTop: 16,
-    background: "#fff",
-    border: "1px solid #e5e7eb",
-    borderRadius: 12,
-    padding: 16,
-    ...(cardStyle || {}),
-  };
+const safeCard: React.CSSProperties = {
+  marginTop: 16,
+  background: "#fff",
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  padding: isMobile ? 12 : 16,
+  overflow: "hidden",
+  ...(cardStyle || {}),
+};
 
   const safeH2: React.CSSProperties = {
     margin: 0,
@@ -62,25 +85,37 @@ export default function PublicCoaches({
     ...(h2Style || {}),
   };
 
-  const grid: React.CSSProperties = {
-    marginTop: 10,
-    display: "grid",
-    gridTemplateColumns: "repeat(3, minmax(0, 1fr))", // exactly 3 per row
-    gap: 12,
-  };
+const grid: React.CSSProperties = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))",
+  gap: isMobile ? 10 : 12,
+  minWidth: 0,
+  maxWidth: "100%",
+};
 
-  const coachCard: React.CSSProperties = {
-    border: "1px solid #e5e7eb",
-    borderRadius: 10,
-    background: "#ffffff",
-    padding: 12,
-    display: "grid",
-    gap: 6,
-    color: "#0f172a",
-  };
+const coachCard: React.CSSProperties = {
+  border: "1px solid #e5e7eb",
+  borderRadius: 10,
+  background: "#ffffff",
+  padding: isMobile ? 10 : 12,
+  display: "grid",
+  gap: isMobile ? 5 : 6,
+  color: "#0f172a",
+  minWidth: 0,
+  maxWidth: "100%",
+  overflow: "hidden",
+};
 
   const rowLabel: React.CSSProperties = { fontSize: 12, fontWeight: 800, color: "#334155" };
-  const rowValue: React.CSSProperties = { fontSize: 14, fontWeight: 700, color: "#0ea5e9", wordBreak: "break-word" };
+  const rowValue: React.CSSProperties = {
+  fontSize: isMobile ? 13 : 14,
+  fontWeight: 700,
+  color: "#0ea5e9",
+  wordBreak: "break-word",
+  overflowWrap: "anywhere",
+  minWidth: 0,
+};
 
   const Line = ({
     label,
@@ -135,7 +170,12 @@ export default function PublicCoaches({
         <div style={grid}>
           {coaches.map((c, i) => {
             const name = fullName(c?.firstName, c?.lastName);
-            const team = (c?.teamOrOrg ?? "").trim();
+            const team =
+              (c?.teamOrOrg ??
+              c?.organization ??
+              c?.team ??
+              c?.org ??
+   "").trim();
             const focus = (c?.focus ?? "").trim();
             const email = (c?.email ?? "").trim() || null;
             const phone = (c?.phone ?? "").trim() || null;

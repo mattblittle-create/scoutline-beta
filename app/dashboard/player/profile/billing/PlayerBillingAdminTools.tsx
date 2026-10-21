@@ -1,3 +1,5 @@
+// app/dashboard/player/profile/billing/PlayerBillingAdminTools.tsx
+
 "use client";
 
 import React, { useMemo, useState } from "react";
@@ -15,18 +17,19 @@ type Props = {
 
 const PLAN_OPTIONS = [
   { value: "REDSHIRT", label: "Redshirt — FREE" },
-  { value: "WALK_ON", label: "Walk-On — $24.95/mo ($265/yr)" },
-  { value: "ALL_AMERICAN", label: "All-American — $49.95/mo ($510/yr)" },
+  { value: "WALK_ON", label: "Walk-On — $24.95/mo" },
+  { value: "ALL_AMERICAN", label: "All-American — $49.95/mo" },
 ] as const;
 
 const CADENCE_OPTIONS = [
   { value: "monthly", label: "Monthly" },
-  { value: "annual", label: "Annually" },
+  // Annual disabled per underwriting. Keep code nearby for future reactivation.
+  // { value: "annual", label: "Annually" },
 ] as const;
 
 export default function PlayerBillingAdminTools(props: Props) {
   const [plan, setPlan] = useState(props.currentPlan);
-  const [cadence, setCadence] = useState<"monthly" | "annual">(props.currentCadence);
+  const [cadence] = useState<"monthly" | "annual">("monthly");
 
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
@@ -47,7 +50,7 @@ export default function PlayerBillingAdminTools(props: Props) {
         body: JSON.stringify({
           playerProfileId: props.playerProfileId,
           planTier: plan,
-          billingCadence: cadence,
+          billingCadence: "monthly",
         }),
       });
 
@@ -136,8 +139,8 @@ export default function PlayerBillingAdminTools(props: Props) {
         <div style={{ padding: 12, border: "1px solid #e5e7eb", borderRadius: 12 }}>
           <div style={{ color: "#64748b", fontSize: 12, fontWeight: 800 }}>Billing Cadence</div>
           <select
-            value={cadence}
-            onChange={(e) => setCadence(e.target.value as any)}
+            value="monthly"
+            disabled
             style={{
               marginTop: 6,
               width: "100%",

@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/billing/player-recurring?dryRun=true",
+      "schedule": "0 9 * * *"
+    }
+  ]
+}

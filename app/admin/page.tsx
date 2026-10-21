@@ -49,19 +49,19 @@ export default async function AdminHomePage() {
           background: "#fff",
         }}
       >
-        <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-          {/* Order requested:
-              Search, Invoices, Subscriptions, Discount Codes, Payouts, Audit Log, Feature Flags, Health
-          */}
-          <Btn href="/admin/search" label="Search" />
-          <Btn href="/admin/billing/invoices" label="Invoices" />
-          <Btn href="/admin/billing/subscriptions" label="Subscriptions" />
-          <Btn href="/admin/billing/discounts" label="Discount Codes" />
-          <Btn href="/admin/billing/payouts" label="Payouts" />
-          <Btn href="/admin/audit-log" label="Audit Log" />
-          <Btn href="/admin/feature-flags" label="Feature Flags" />
-          <Btn href="/admin/billing/health" label="Health" />
-        </div>
+<div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+  <Btn href="/admin/search" label="Search" />
+  <Btn href="/admin/billing/overview" label="Billing Overview" />
+  <Btn href="/admin/billing/dunning" label="Dunning / Recovery" />
+  <Btn href="/admin/billing/audit" label="Billing Audit" />
+  <Btn href="/admin/billing/invoices" label="Invoices" />
+  <Btn href="/admin/billing/subscriptions" label="Subscriptions" />
+  <Btn href="/admin/billing/discounts" label="Discount Codes" />
+  <Btn href="/admin/billing/payouts" label="Payouts" />
+  <Btn href="/admin/audit-log" label="Audit Log" />
+  <Btn href="/admin/feature-flags" label="Feature Flags" />
+  <Btn href="/admin/billing/health" label="Health" />
+</div>
       </section>
     </main>
   );

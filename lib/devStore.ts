@@ -204,10 +204,10 @@ export async function saveUser(input: StoredUser): Promise<UserRecord> {
     const record: UserRecord = {
       id,
       slug,
-      email: nextEmail,
       // copy all fields
       ...input,
       // enforce normalized fields
+      email: nextEmail,
       firstName: input.firstName ?? null,
       lastName: input.lastName ?? null,
       photoUrl: input.photoUrl ?? null,

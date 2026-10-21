@@ -1,4 +1,4 @@
-// /lib/types/player.ts
+// app/lib/types/player.ts
 
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
 
@@ -28,6 +28,11 @@ export type VideoSocialPayload = {
     xHandle?: string;
     instagramHandle?: string;
     youtubeChannelUrl?: string;
+    gameChangerUrl?: string;
+    maxPrepsUrl?: string;
+    rapsodoUrl?: string;
+    trackmanUrl?: string;
+    pocketRadarUrl?: string;
   };
   primary: { kind: "local" | "external"; id: string } | null;
 };
@@ -73,18 +78,15 @@ export type AtomicProfile = {
   // academics
   gradYear?: number | null;
   hsName?: string | null;
-  hometown?: string | null;
-  state?: string | null;
+  hsCity?: string | null;
+  hsState?: string | null;
+  hsGeneralWebsiteUrl?: string | null;
   gpa?: number | null;
   gpaScale?: string | null;
   sat?: number | null;
   act?: number | null;
   academicBio?: string | null;
   academicBioPrivate?: boolean;
-
-  transcriptUrls?: string[];                                
-  reportCardUrls?: string[];                                
-  otherAcademicDocs?: { url: string; label?: string | null }[];
 
   // Intended majors
   areasOfStudyInput?: string | null;
@@ -129,6 +131,7 @@ export type AtomicProfile = {
     city?: string | null;
     state?: string | null;
     scheduleUrl?: string | null;
+    websiteUrl?: string | null;
   }>;
 
   // legacy (first other team)
@@ -211,6 +214,7 @@ export type PublicPayload = {
       sat: number | null;
       act: number | null;
       highSchool: string | null;
+      highSchoolWebsite?: string | null;
       city: string | null;
       state: string | null;
       areasOfStudy: string[];
@@ -268,8 +272,12 @@ export type PlayerProfilePayload = {
   // academics
   gradYear?: number | null;
   hsName?: string | null;
+  hsCity?: string | null;   // ✅ add this
+  hsState?: string | null;
+  hsGeneralWebsiteUrl?: string | null;
   hometown?: string | null; // city
   state?: string | null;
+  zip?: string | null;
 
   gpa?: number | null;
   gpaScale?: string | null; // "5.0" | "4.0" | "100"
@@ -307,6 +315,9 @@ export type PlayerProfilePayload = {
   // eligibility
   eligibilityRegistered?: boolean;
 
+  ncaaId?: string | null;
+  naiaEcid?: string | null;
+
   // commitment
   isCommitted?: boolean;
   committedProgram?: string | null;
@@ -315,12 +326,14 @@ export type PlayerProfilePayload = {
   // schedules
   hsScheduleUrl?: string | null;
   hsSchedulePrivate?: boolean;
+  hsWebsiteUrl?: string | null;
 
   travelTeamName?: string | null;
   travelTeamCity?: string | null;
   travelTeamState?: string | null;
   travelTeamScheduleUrl?: string | null;
   travelTeamSchedulePrivate?: boolean;
+  travelTeamWebsiteUrl?: string | null;
 
   // teams
   otherTeams?: Array<{
@@ -328,6 +341,7 @@ export type PlayerProfilePayload = {
     city?: string | null;
     state?: string | null;
     scheduleUrl?: string | null;
+    websiteUrl?: string | null;
   }>;
   // legacy single other team (kept for back-compat with API)
   otherTeamName?: string | null;
