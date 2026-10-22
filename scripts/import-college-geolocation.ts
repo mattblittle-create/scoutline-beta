@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/import-college-geolocation.ts
 
 import { PrismaClient } from "@prisma/client";
@@ -65,7 +66,7 @@ async function main() {
     throw new Error(`Missing file: ${filePath}`);
   }
 
-  const rows = parseCsv(fs.readFileSync(filePath, "utf8"));
+  const rows = parseCsv(fs.readFileSync(filePath, "utf8")).map(row => resolveEmbryRiddleRow(row));
 
   let updated = 0;
   let skipped = 0;
@@ -80,6 +81,8 @@ async function main() {
       continue;
     }
 
+    const campusTarget = await prisma.college.findUnique({ where: { id }, include: { baseballProgram: true } });
+    if (campusTarget) assertEmbryTarget(row, campusTarget);
     await prisma.college.update({
       where: { id },
       data: {

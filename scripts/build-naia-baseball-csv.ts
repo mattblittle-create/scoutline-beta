@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/build-naia-baseball-csv.ts
 
 import fs from "fs";
@@ -420,7 +421,7 @@ const teams = await extractTeamsFromConferencePage(
 
     return {
       name,
-      slug: slugify(name),
+      slug: resolveEmbryRiddleRow({ name, slug: slugify(name), state, division: "NAIA", baseballWebsiteUrl: team.baseballWebsiteUrl }).slug,
       city: "",
       state,
       region: "",

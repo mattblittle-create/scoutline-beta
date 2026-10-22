@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/import-college-web-presence.ts
 
 import fs from "node:fs";
@@ -246,7 +247,7 @@ function readCsv(
       "utf8",
     );
 
-  return parse(
+  return (parse(
     raw,
     {
       columns: true,
@@ -255,7 +256,7 @@ function readCsv(
       relax_quotes: true,
       trim: true,
     },
-  ) as CsvRow[];
+  ) as CsvRow[]).map(row => resolveEmbryRiddleRow(row));
 }
 
 function clean(
@@ -647,6 +648,8 @@ async function createImportPlan(
 
       continue;
     }
+
+    assertEmbryTarget(row, college);
 
     const program =
       college.baseballProgram;

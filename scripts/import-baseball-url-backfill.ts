@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/import-baseball-url-backfill.ts
 
 import fs from "fs";
@@ -45,7 +46,7 @@ async function main() {
     throw new Error(`File not found: ${FILE_PATH}`);
   }
 
-  const rows = parseCsv(fs.readFileSync(FILE_PATH, "utf8"));
+  const rows = parseCsv(fs.readFileSync(FILE_PATH, "utf8")).map(row => resolveEmbryRiddleRow(row));
 
   console.log(`ScoutLine baseball URL backfill`);
   console.log(DRY_RUN ? "Mode: DRY RUN" : "Mode: WRITE");
@@ -71,6 +72,7 @@ async function main() {
       include: { baseballProgram: true },
     });
 
+    if (college) assertEmbryTarget(row, college);
     if (!college?.baseballProgram) {
       console.log(`  ⚠️ no baseball program found`);
       skipped++;

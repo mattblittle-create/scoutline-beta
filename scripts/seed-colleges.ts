@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/seed-colleges.ts
 
 import { PrismaClient } from "@prisma/client";
@@ -1124,7 +1125,10 @@ const colleges: SeedCollege[] = [
 ];
 
 async function main() {
-  for (const item of colleges) {
+  for (const sourceItem of colleges) {
+    const item = resolveEmbryRiddleRow({ ...sourceItem, division: sourceItem.baseball?.division, baseballWebsiteUrl: sourceItem.baseball?.baseballWebsiteUrl });
+    const existingCampus = await prisma.college.findUnique({ where: { slug: item.slug }, include: { baseballProgram: true } });
+    if (existingCampus) assertEmbryTarget(item, existingCampus);
     const college = await prisma.college.upsert({
       where: { slug: item.slug },
       update: {

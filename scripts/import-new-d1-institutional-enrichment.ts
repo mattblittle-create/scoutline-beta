@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/import-new-d1-institutional-enrichment.ts
 
 import "dotenv/config";
@@ -144,7 +145,7 @@ function parseCsv(
     );
   }
 
-  return rows
+  return (rows
     .slice(1)
     .map((values, rowIndex) => {
       if (values.length > headers.length) {
@@ -172,7 +173,7 @@ function parseCsv(
       }
 
       return row;
-    });
+    })).map(row => resolveEmbryRiddleRow(row, { division: "NCAA_D1" }));
 }
 
 const EXPECTED_ROW_COUNT = 36;

@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/import-college-enrichment.ts
 
 import fs from "fs";
@@ -167,7 +168,7 @@ function readCsv(
         "",
       );
 
-  return parseCsv(raw);
+  return parseCsv(raw).map(row => resolveEmbryRiddleRow(row));
 }
 
 function parseCsv(input: string): CsvRow[] {
@@ -436,6 +437,8 @@ async function requireCollegeBySlug(slug: string) {
       },
     },
   });
+
+  if (college) assertEmbryTarget({ slug, city: college.city, state: college.state, division: college.baseballProgram?.division }, college);
 
   if (!college) {
     throw new Error(
@@ -742,15 +745,13 @@ async function importProgramSocials(
       `Processing slug: "${slug}"`,
     );
 
-    const college =
-      await prisma.college.findUnique({
-        where: {
-          slug,
-        },
-        select: {
-          id: true,
-        },
-      });
+    const college = await prisma.college.findUnique({
+      where: { slug },
+      include: { baseballProgram: true },
+    });
+
+    // Preserve the existing missing-school skip below; validate campus only when found.
+    if (college) assertEmbryTarget(row, college);
 
     if (!college) {
       missingCollegeCount += 1;

@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/enrich-college-data.ts
 
 import dotenv from "dotenv";
@@ -542,7 +543,8 @@ function tokenOverlapScore(a: string, b: string): number {
 }
 
 function generateSearchCandidates(row: Row): string[] {
-  const name = clean(row.name);
+  row = resolveEmbryRiddleRow(row);
+  const name = row.slug === "embry-riddle-daytona-beach" ? "Embry-Riddle Aeronautical University-Daytona Beach" : row.slug === "embry-riddle" ? "Embry-Riddle Aeronautical University-Prescott" : clean(row.name);
   const alias = SCORECARD_NAME_ALIASES[name];
 
   const candidates = [
@@ -639,6 +641,7 @@ allResults.push(...exactResults);
   );
 
   const ranked = uniqueResults
+    .filter((school: any) => scorecardCampus(row, school))
     .map((school: any) => ({ school, score: scoreMatch(row, school) }))
     .sort((a: any, b: any) => b.score - a.score);
 
@@ -677,7 +680,9 @@ async function main() {
   let skipped = 0;
   let failed = 0;
 
-  for (const row of rows) {
+  for (const sourceRow of rows) {
+    const row = resolveEmbryRiddleRow(sourceRow);
+    Object.assign(sourceRow, row);
     try {
       const match = await fetchScorecardMatch(row);
 

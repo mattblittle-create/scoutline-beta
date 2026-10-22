@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/import-college-baseball-programs.ts
 
 import "dotenv/config";
@@ -243,7 +244,7 @@ async function main() {
   }
 
   const content = fs.readFileSync(csvPath, "utf8");
-  const rows = parseCsv(content);
+  const rows = parseCsv(content).map(row => resolveEmbryRiddleRow(row, { division: defaultDivision }));
 
   console.log(`Using CSV: ${csvPath}`);
   console.log(`Default division: ${defaultDivision ?? "none - using CSV row values"}`);
@@ -265,6 +266,8 @@ async function main() {
 
     const resolvedDivision = row.division || defaultDivision;
 
+    const existingCampus = await prisma.college.findUnique({ where: { slug }, include: { baseballProgram: true } });
+    if (existingCampus) assertEmbryTarget(row, existingCampus);
     const college = await prisma.college.upsert({
       where: { slug },
       update: {

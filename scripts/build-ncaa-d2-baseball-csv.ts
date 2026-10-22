@@ -1,3 +1,4 @@
+const { resolveEmbryRiddleRow, assertEmbryTarget, scorecardCampus } = require("./lib/embry-riddle-campus.cjs");
 // scripts/build-ncaa-d2-baseball-csv.ts
 
 import fs from "fs";
@@ -117,7 +118,7 @@ function extractRows(html: string) {
 
     rows.push({
       name: team,
-      slug: slugify(team),
+      slug: resolveEmbryRiddleRow({ name: team, slug: slugify(team), city, state, division: "NCAA_D2" }).slug,
       city,
       state,
       region: "",
