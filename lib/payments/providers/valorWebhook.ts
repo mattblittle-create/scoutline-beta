@@ -161,10 +161,10 @@ const surcharge =
 
   const paymentType =
     firstString(
+      data?.card_metadata?.card_type,
+      data?.card_type,
       data?.payment_type,
       data?.paymentType,
-      data?.card_type,
-      data?.card_metadata?.card_type,
       data?.tender_type
     ) || null;
 

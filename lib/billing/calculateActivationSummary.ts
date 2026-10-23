@@ -81,6 +81,7 @@ function isCadence(
 function normalizePaymentMethod(
   value: unknown
 ): PaymentMethod {
+  if (value === PaymentMethod.DEBIT) return PaymentMethod.DEBIT;
   return value === PaymentMethod.ACH
     ? PaymentMethod.ACH
     : PaymentMethod.CARD;

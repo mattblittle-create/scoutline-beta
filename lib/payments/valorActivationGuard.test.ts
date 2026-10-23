@@ -16,3 +16,31 @@ describe("Valor invoice activation invariants",()=>{
  it("rolls back paid state and removes future renewals on a matching reversal",async()=>{m.find.mockResolvedValueOnce({...base,status:"PAID",processorTransactionId:"txn-1"}).mockResolvedValueOnce(null);await applyFailedPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,is_reversed:1}})});expect(m.update).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({amountPaidCents:0,paidAt:null,status:"PAST_DUE"})}));expect(m.updateMany).toHaveBeenCalledWith(expect.objectContaining({data:{status:"VOID"}}));expect(m.billing).toHaveBeenCalledWith(expect.objectContaining({data:{providerPaymentRef:null}}));noActivation();});
  it("ignores failure for another transaction on a paid invoice",async()=>{m.find.mockResolvedValue({...base,status:"PAID",processorTransactionId:"newer-txn"});await applyFailedPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,is_reversed:1}})});expect(m.update).not.toHaveBeenCalled();expect(m.updateMany).not.toHaveBeenCalled();noActivation();});
 });
+
+describe("provider-confirmed debit pricing", () => {
+ it("accepts an approved fee-free debit against a credit estimate and carries zero to renewal", async () => {
+  m.find.mockResolvedValueOnce(base).mockResolvedValueOnce(null);
+  await applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,card_metadata:{card_type:"DEBIT"},custom_fee_amount:0}})});
+  expect(m.update).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({status:"PAID",amountPaidCents:100,cardFeeCents:0})}));
+  expect(m.create).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({cardFeeCents:0,amountCents:100})}));
+  expect(m.billing).toHaveBeenCalledWith(expect.objectContaining({update:expect.objectContaining({paymentType:"DEBIT"})}));
+ });
+ it("uses zero for a confirmed debit even when the provider omits its zero fee", async () => {
+  m.find.mockResolvedValueOnce(base).mockResolvedValueOnce(null);
+  await applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,card_type:"DEBIT",custom_fee_amount:undefined}})});
+  expect(m.update).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({amountPaidCents:100,cardFeeCents:0})}));
+ });
+ it("rejects a nonzero debit surcharge", async () => {
+  await expect(applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,card_type:"DEBIT"}})})).rejects.toThrow("amount");
+  expect(m.update).not.toHaveBeenCalled();noActivation();
+ });
+ it("uses verified credit fee when a customer selected a debit estimate", async () => {
+  m.find.mockResolvedValueOnce({...base,cardFeeCents:0}).mockResolvedValueOnce(null);
+  await applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,card_type:"CREDIT"}})});
+  expect(m.update).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({amountPaidCents:103,cardFeeCents:3})}));
+ });
+ it("does not waive a credit fee solely because the invoice estimated zero", async () => {
+  m.find.mockResolvedValue({...base,cardFeeCents:0});
+  await expect(applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,card_type:"CREDIT",custom_fee_amount:0}})})).rejects.toThrow("amount");noActivation();
+ });
+});

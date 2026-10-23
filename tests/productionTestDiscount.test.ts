@@ -33,7 +33,7 @@ describe("production test discount account enforcement", () => {
     mocks.user.mockResolvedValue({ id: "owner", email: "braden.little2@gmail.com" });
     expect(await (await summary(request())).json()).toMatchObject({ discountedPrice: 100, finalPrice: 103 });
   });
-  it.each([ach, card])("blocks checkout without an authorized profile owner", async handler => {
+  it.each([card])("blocks checkout without an authorized profile owner", async handler => {
     mocks.user.mockResolvedValue({ id: "other", email: "braden.little2@gmail.com" });
     expect((await handler(request())).status).toBe(403);
     expect(mocks.debit).not.toHaveBeenCalled();
@@ -48,3 +48,5 @@ describe("card checkout manual retry guard",()=>{
   expect(mocks.checkout).not.toHaveBeenCalled();
  });
 });
+
+it("retires ACH submissions without calling a payment provider",async()=>{expect((await ach()).status).toBe(410);expect(mocks.debit).not.toHaveBeenCalled();});

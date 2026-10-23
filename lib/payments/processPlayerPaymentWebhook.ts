@@ -5,6 +5,7 @@ import { prisma } from "@/lib/prisma";
 import { createBillingAuditLog } from "@/lib/billing/billingAudit";
 import { normalizeValorWebhook } from "@/lib/payments/providers/valorWebhook";
 import { valorFailureMessage } from "@/lib/payments/providers/valorPaymentOutcome";
+import { CARD_PROCESSING_RATE } from "@/lib/billing/constants";
 import { normalizeCents } from "@/lib/billing/money";
 import {
   PAYMENT_PROVIDER_CODE,
@@ -183,9 +184,14 @@ export async function applySuccessfulPlayerPayment({
       );
     }
 
+    let confirmedCardFeeCents = invoice.cardFeeCents;
     if (provider === "VALOR") {
+      const funding = normalized.paymentType?.trim().toUpperCase();
+      // Only a trusted provider approval determines the actual card funding type.
+      confirmedCardFeeCents = funding === "DEBIT" ? 0 : funding === "CREDIT"
+        ? normalizeCents(invoice.amountCents * CARD_PROCESSING_RATE) : invoice.cardFeeCents;
       if (!normalized.transactionId || !Number.isSafeInteger(normalized.amount) || normalized.amount !== invoice.amountCents ||
-          (normalized.surcharge != null && normalized.surcharge !== invoice.cardFeeCents)) {
+          (normalized.surcharge != null && normalized.surcharge !== confirmedCardFeeCents)) {
         throw new Error("Valor approval identity or amount does not match the invoice.");
       }
       if (["REVERSED", "VOIDED", "FAILED", "DECLINED"].includes(invoice.processorResponseCode || "") &&
@@ -233,7 +239,7 @@ const paidSubtotalCents =
 const cardFeeCents =
   normalized.surcharge != null && normalized.surcharge >= 0
     ? normalizeCents(normalized.surcharge)
-    : invoice.cardFeeCents;
+    : confirmedCardFeeCents;
 
 const totalPaidCents =
   paidSubtotalCents + cardFeeCents;
@@ -416,7 +422,7 @@ if (!existingUpcoming) {
 
       // Continue the same fee treatment for the next billing cycle.
       // ACH invoices will carry zero here.
-      cardFeeCents: invoice.cardFeeCents,
+      cardFeeCents,
 
       amountPaidCents: 0,
     },
@@ -508,6 +514,7 @@ export async function applyFailedPlayerPayment({
         processorResponseCode:
           normalized.status ||
           invoice.processorResponseCode,
+        ...(provider === "VALOR" && normalized.paymentType?.trim().toUpperCase() === "DEBIT" ? { cardFeeCents: 0 } : {}),
       },
     });
 

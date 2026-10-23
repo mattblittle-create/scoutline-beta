@@ -397,7 +397,7 @@ return (
   <div style={{ fontSize: 18, fontWeight: 950 }}>{formatUSD(totalCents)}</div>
 
   <div style={{ marginTop: 8, color: "#64748b", fontSize: 12, fontWeight: 700, lineHeight: 1.45 }}>
-    Debit and credit card transactions are subject to a 3% processing fee in accordance with applicable card network regulations and ScoutLine Terms &amp; Conditions. Bank account (ACH / eCheck) payments are available as a fee-free alternative.
+    Credit card payments include a 3% processing fee. Debit card payments have no processing fee.
   </div>
 </div>
                 </div>

@@ -329,3 +329,8 @@ describe("account-restricted production test discount", () => {
       .toThrow(ActivationSummaryError);
   });
 });
+
+it("quotes debit cards without the credit surcharge", () => {
+ expect(calculateActivationSummary({plan:"WALK_ON",cadence:"monthly",paymentMethod:PaymentMethod.DEBIT,discountCode:"SCOUTLINE1TEST",accountEmail:"braden.little2@gmail.com"}))
+  .toMatchObject({paymentMethod:PaymentMethod.DEBIT,discountedPrice:100,surchargeAmount:0,finalPrice:100});
+});

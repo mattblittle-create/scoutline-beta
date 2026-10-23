@@ -35,6 +35,7 @@ function normalizePlan(value: string): Plan {
 function normalizePaymentMethod(
   value: unknown
 ): PaymentMethodKind {
+  if (value === PaymentMethod.DEBIT) return PaymentMethod.DEBIT;
   if (value === PaymentMethod.CARD) {
     return PaymentMethod.CARD;
   }
@@ -82,6 +83,9 @@ export async function POST(req: NextRequest) {
 
 const cadence = normalizeCadence(rawCadence);
 const normalizedPlan = normalizePlan(plan);
+if (paymentMethod === PaymentMethod.ACH) {
+  return NextResponse.json({ error: "Bank-account payments are no longer available. Use a debit or credit card." }, { status: 410 });
+}
 const normalizedPaymentMethod = normalizePaymentMethod(paymentMethod);
 
     if (!playerProfileId || typeof playerProfileId !== "string") {
@@ -105,7 +109,7 @@ const normalizedPaymentMethod = normalizePaymentMethod(paymentMethod);
       );
     }
 
-    if (retryReference && normalizedPaymentMethod === PaymentMethod.CARD) {
+    if (retryReference) {
       const previous = await prisma.playerInvoice.findFirst({
         where: { externalId: String(retryReference), playerProfileId: profile.id },
       });

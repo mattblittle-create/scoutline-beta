@@ -3,57 +3,9 @@
 "use client";
 
 import React, { Suspense, useEffect, useMemo, useState } from "react";
-import Script from "next/script";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PaymentMethod } from "@/lib/payments/types";
-import { getClearentAchPaymentToken } from "@/lib/payments/providers/clearentAchToken";
 import { formatUsd } from "@/lib/billing/money";
-
-type ClearentPaymentTokenResponse = {
-  code?: string;
-  status?: string;
-  message?: string;
-  error?: string;
-  payload?: {
-    "ach-jwt"?: {
-      jwt?: string;
-      "account-type"?: string;
-      "individual-name"?: string;
-      "routing-number-last-four"?: string;
-      "account-number-last-four"?: string;
-    };
-    "mobile-jwt"?: {
-      jwt?: string;
-      "last-four"?: string;
-    };
-    payloadType?: string;
-  };
-};
-
-type ClearentSdk = {
-  init: (options: {
-    baseUrl?: string;
-    pk: string;
-    paymentFormId?: string;
-    enableCard?: boolean;
-    enableAch?: boolean;
-    showValidationMessages?: boolean;
-    clearFormOnSuccess?: boolean;
-    accountNumberMasked?: boolean;
-    routingNumberMasked?: boolean;
-    styles?: string;
-  }) => void;
-
-  getPaymentToken: () => Promise<ClearentPaymentTokenResponse>;
-
-  reset?: () => void;
-};
-
-declare global {
-  interface Window {
-    ClearentSDK?: ClearentSdk;
-  }
-}
 
 type Summary = {
   plan: string;
@@ -66,13 +18,6 @@ type Summary = {
   finalPrice: number;
   error?: string;
 };
-
-const XPLOR_GATEWAY_URL =
-  process.env.NEXT_PUBLIC_XPLOR_GATEWAY_URL ||
-  "https://gateway-sb.clearent.net";
-
-const XPLOR_PUBLIC_KEY =
-  process.env.NEXT_PUBLIC_XPLOR_PUBLIC_KEY || "";
 
 const PAYMENTS_DISABLED =
   process.env.NEXT_PUBLIC_SC_PAYMENTS_DISABLED === "true";
@@ -92,10 +37,6 @@ function PlayerBillingPageInner() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [playerProfileId, setPlayerProfileId] = useState("");
   const [pageError, setPageError] = useState("");
-
-  const [xplorScriptReady, setXplorScriptReady] = useState(false);
-  const [xplorFormReady, setXplorFormReady] = useState(false);
-  const [achSubmitting, setAchSubmitting] = useState(false);
 
   const paymentRef = searchParams.get("ref") || "";
   const [livePayment, setLivePayment] = useState<{ state: string; message: string; canRetry: boolean } | null>(null);
@@ -119,7 +60,7 @@ function PlayerBillingPageInner() {
       } catch {
         if (!stopped) setLivePayment({ state: "pending", canRetry: false, message: "We could not confirm your payment. Do not retry yet; contact support if this continues." });
       }
-      if (!stopped && ++checks < 40) timer = setTimeout(check, 3000);
+      if (!stopped && ++checks < 200) timer = setTimeout(check, 3000);
     };
     check();
     return () => { stopped = true; if (timer) clearTimeout(timer); };
@@ -267,236 +208,7 @@ if (PAYMENTS_DISABLED) {
     };
   }, [searchParams]);
 
-  useEffect(() => {
-  if (
-    paymentMethod !== PaymentMethod.ACH ||
-    !xplorScriptReady
-  ) {
-    return;
-  }
-
-  if (!XPLOR_PUBLIC_KEY) {
-    setXplorFormReady(false);
-    setPageError(
-      "Xplor ACH is missing its browser public key."
-    );
-    return;
-  }
-
-  if (!window.ClearentSDK) {
-    setXplorFormReady(false);
-    setPageError(
-      "The Xplor ACH payment form could not be loaded."
-    );
-    return;
-  }
-
-  try {
-    setPageError("");
-
-window.ClearentSDK.init({
-  pk: XPLOR_PUBLIC_KEY,
-  paymentFormId: "payment-form",
-  enableCard: false,
-  enableAch: true,
-  showValidationMessages: true,
-  clearFormOnSuccess: false,
-  accountNumberMasked: true,
-  routingNumberMasked: true,
-  styles: `
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      color: #0f172a;
-    }
-
-        .form-control {
-          width: 100%;
-          box-sizing: border-box;
-          min-height: 42px;
-          border: 1px solid #d1d5db;
-          border-radius: 8px;
-          padding: 9px 10px;
-          font-size: 15px;
-        }
-
-        .form-control:focus {
-          border-color: #64748b;
-          outline: none;
-        }
-      `,
-    });
-
-    setXplorFormReady(true);
-  } catch (error) {
-    console.error(
-      "XPLOR_ACH_FORM_INIT_ERROR",
-      error
-    );
-
-    setXplorFormReady(false);
-    setPageError(
-      "The Xplor ACH payment form could not be initialized."
-    );
-  }
-
-return () => {
-  setXplorFormReady(false);
-};
-}, [paymentMethod, xplorScriptReady]);
-
-const handleAchCheckout = async () => {
-  try {
-    if (!summary) {
-      setPageError(
-        "Please wait for pricing to finish loading."
-      );
-      return;
-    }
-
-    if (!playerProfileId) {
-      setPageError(
-        "Missing player profile ID for ACH checkout."
-      );
-      return;
-    }
-
-    if (!XPLOR_PUBLIC_KEY) {
-      setPageError(
-        "Xplor ACH is missing its browser public key."
-      );
-      return;
-    }
-
-    if (
-      !xplorFormReady ||
-      !window.ClearentSDK
-    ) {
-      setPageError(
-        "The ACH payment form is still loading."
-      );
-      return;
-    }
-
-    setAchSubmitting(true);
-    setPageError("");
-
-    /*
-     * Bank account and routing details remain
-     * inside Xplor's hosted form. ScoutLine
-     * receives only the short-lived ACH JWT
-     * plus safe account metadata.
-     */
-    const tokenResult =
-      await getClearentAchPaymentToken(window.ClearentSDK);
-
-    const achJwt =
-      tokenResult?.payload?.["ach-jwt"];
-
-    const mobileJwt =
-      achJwt?.jwt ||
-      tokenResult?.payload?.["mobile-jwt"]?.jwt ||
-      "";
-
-    const tokenAccountHolderName =
-      String(
-        achJwt?.["individual-name"] || ""
-      ).trim();
-
-    const tokenAccountType =
-      String(
-        achJwt?.["account-type"] || ""
-      ).trim();
-
-    if (!mobileJwt) {
-      throw new Error(
-        tokenResult?.message ||
-          tokenResult?.error ||
-          "Xplor did not return an ACH payment token."
-      );
-    }
-
-    if (!tokenAccountHolderName) {
-      throw new Error(
-        "Xplor did not return the ACH account holder name."
-      );
-    }
-
-    if (!tokenAccountType) {
-      throw new Error(
-        "Xplor did not return the ACH account type."
-      );
-    }
-
-    const res = await fetch(
-      "/api/payments/clearent/ach/debit",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          playerProfileId,
-          plan,
-          cadence,
-          discountCode,
-          mobileJwt,
-          accountHolderName:
-            tokenAccountHolderName,
-          accountType:
-            tokenAccountType,
-        }),
-      }
-    );
-
-    const data = await res
-      .json()
-      .catch(() => null);
-
-    if (!res.ok || !data?.ok) {
-      throw new Error(
-        data?.error ||
-          "The ACH payment could not be submitted."
-      );
-    }
-
-    const query = new URLSearchParams({
-      payment:
-        String(data.status || "")
-          .toLowerCase() || "pending",
-
-      message:
-        data.message ||
-        "ACH payment submitted.",
-
-      ref:
-        data.reference || "",
-    });
-
-    router.push(
-      `/onboarding/player/billing?${query.toString()}`
-    );
-  } catch (error) {
-    console.error(
-      "PLAYER_ACH_CHECKOUT_ERROR",
-      error
-    );
-
-    setPageError(
-      error instanceof Error
-        ? error.message
-        : "The ACH payment could not be submitted."
-    );
-  } finally {
-    setAchSubmitting(false);
-  }
-};
-
   const handleCheckout = async () => {
-if (paymentMethod === PaymentMethod.ACH) {
-  await handleAchCheckout();
-  return;
-}
 
 try {
   if (!summary) {
@@ -550,21 +262,6 @@ try {
 
 return (
   <>
-    {paymentMethod === PaymentMethod.ACH && (<Script
-      id="xplor-ach-sdk"
-      src={`${XPLOR_GATEWAY_URL}/js-sdk/js/clearent-host.js`}
-      strategy="afterInteractive"
-      onReady={() => {
-        setXplorScriptReady(true);
-      }}
-      onError={() => {
-        setXplorScriptReady(false);
-        setPageError(
-          "The secure Xplor ACH form could not be loaded."
-        );
-      }}
-    />)}
-
     <div style={{ maxWidth: 600, margin: "40px auto", fontFamily: "Arial" }}>
       <h1>Complete Your Subscription</h1>
 
@@ -667,7 +364,7 @@ return (
               checked={paymentMethod === PaymentMethod.CARD}
               onChange={() => setPaymentMethod(PaymentMethod.CARD)}
             />
-            <span>Card — 3% processing fee applies</span>
+            <span>Credit card — 3% processing fee</span>
           </label>
 
           <label
@@ -683,65 +380,18 @@ return (
             <input
               type="radio"
               name="paymentMethod"
-              value="ach"
-              checked={paymentMethod === PaymentMethod.ACH}
-              onChange={() => setPaymentMethod(PaymentMethod.ACH)}
+              value="debit"
+              checked={paymentMethod === PaymentMethod.DEBIT}
+              onChange={() => setPaymentMethod(PaymentMethod.DEBIT)}
             />
-            <span>ACH — no processing fee</span>
+            <span>Debit card — no processing fee</span>
           </label>
         </div>
 
         <div style={{ marginTop: 8, fontSize: 12, color: "#64748b", lineHeight: 1.4 }}>
-          Card payments include a 3% processing fee. ACH payments do not include a processing fee.
+          Credit cards include a 3% processing fee. Debit cards have no processing fee. Your card type and final total are confirmed securely by Valor before payment.
         </div>
       </div>
-
-{paymentMethod === PaymentMethod.ACH ? (
-  <div
-    style={{
-      marginTop: 18,
-      padding: 16,
-      border: "1px solid #d1d5db",
-      borderRadius: 10,
-      background: "#ffffff",
-    }}
-  >
-    <h2
-      style={{
-        margin: "0 0 12px",
-        fontSize: 18,
-      }}
-    >
-      Bank Account
-    </h2>
-
-    {!xplorScriptReady ? (
-      <div
-        style={{
-          padding: "12px 0",
-          color: "#64748b",
-        }}
-      >
-        Loading secure bank account form...
-      </div>
-    ) : null}
-
-    <div id="payment-form" />
-
-    <div
-      style={{
-        marginTop: 12,
-        fontSize: 12,
-        lineHeight: 1.5,
-        color: "#64748b",
-      }}
-    >
-      Bank account and routing information are
-      entered securely through Xplor Pay and are
-      not stored by ScoutLine.
-    </div>
-  </div>
-) : null}
 
       <div style={{ marginTop: 10 }}>
         <label>Discount Code</label>
@@ -774,8 +424,8 @@ return (
             <p>Subtotal: {formatUsd(summary.discountedPrice)}</p>
             <p>
               {summary.paymentMethod === PaymentMethod.CARD
-                ? "Processing Fee (Card): "
-                : "Processing Fee (ACH): "}
+                ? "Processing Fee (Credit): "
+                : "Processing Fee (Debit): "}
               {formatUsd(summary.surchargeAmount)}
             </p>
             <h3>Total Due: {formatUsd(summary.finalPrice)}</h3>
@@ -785,49 +435,10 @@ return (
 
 <button
   onClick={handleCheckout}
-  disabled={
-    !summary ||
-    checkoutLoading ||
-    achSubmitting ||
-    !playerProfileId ||
-(paymentMethod === PaymentMethod.ACH &&
-  (!xplorScriptReady ||
-    !xplorFormReady))
-  }
-  style={{
-    marginTop: 20,
-    padding: "10px 20px",
-    fontSize: 16,
-    cursor:
-      !summary ||
-      (Boolean(paymentRef) && paymentState !== "failed") ||
-      checkoutLoading ||
-      achSubmitting ||
-      !playerProfileId ||
-(paymentMethod === PaymentMethod.ACH &&
-  (!xplorScriptReady ||
-    !xplorFormReady))
-        ? "not-allowed"
-        : "pointer",
-    opacity:
-      !summary ||
-      checkoutLoading ||
-      achSubmitting ||
-      !playerProfileId ||
-(paymentMethod === PaymentMethod.ACH &&
-  (!xplorScriptReady ||
-    !xplorFormReady))
-        ? 0.6
-        : 1,
-  }}
+  disabled={!summary || loading || checkoutLoading || !playerProfileId || (Boolean(paymentRef) && paymentState !== "failed")}
+  style={{ marginTop: 20, padding: "10px 20px", fontSize: 16 }}
 >
-  {paymentMethod === PaymentMethod.ACH
-    ? achSubmitting
-      ? "Submitting ACH Payment..."
-      : "Submit ACH Payment"
-    : checkoutLoading
-      ? "Redirecting..."
-      : (paymentState === "failed" ? "Retry Card Payment" : "Proceed to Card Payment")}
+  {checkoutLoading ? "Redirecting..." : paymentState === "failed" ? "Retry Card Payment" : "Proceed to Card Payment"}
 </button>
     </div>
   </>

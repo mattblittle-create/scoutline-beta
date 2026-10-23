@@ -226,24 +226,24 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
                 }
                 onChange={() => setPaymentMethod(PaymentMethod.CARD)}
               />
-              <span>Credit / Debit</span>
+              <span>Credit card — 3% processing fee</span>
             </label>
             <label className="pill">
               <input
                 type="radio"
                 checked={
-                  paymentMethod === PaymentMethod.ACH
+                  paymentMethod === PaymentMethod.DEBIT
                 }
-                onChange={() => setPaymentMethod(PaymentMethod.ACH)}
+                onChange={() => setPaymentMethod(PaymentMethod.DEBIT)}
               />
-              <span>eCheck / ACH</span>
+              <span>Debit card — no processing fee</span>
             </label>
           </div>
 
           {showFeeNote && (
             <div className="note">
-              Credit/Debit payments will include an additional <strong>3%</strong> processing fee.
-              eCheck/ACH has <strong>no added fee</strong>.
+              Credit card payments include a <strong>3%</strong> processing fee.
+              Debit cards have <strong>no processing fee</strong>.
             </div>
           )}
         </section>

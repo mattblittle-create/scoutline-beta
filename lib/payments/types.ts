@@ -10,6 +10,7 @@ export type {
 
 export enum PaymentMethod {
   CARD = "card",
+  DEBIT = "debit",
   ACH = "ach",
 }
 
