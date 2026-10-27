@@ -389,7 +389,7 @@ return (
         </div>
 
         <div style={{ marginTop: 8, fontSize: 12, color: "#64748b", lineHeight: 1.4 }}>
-          Credit cards include a 3% processing fee. Debit cards have no processing fee. Your card type and final total are confirmed securely by Valor before payment.
+          Credit cards include a 3% processing fee. Debit cards have no processing fee.
         </div>
       </div>
 
@@ -432,6 +432,22 @@ return (
           </>
         )}
       </div>
+
+<div
+  role="note"
+  style={{ marginTop: 20, padding: "14px 16px", border: "1px solid #93c5fd", borderRadius: 10, background: "#eff6ff", color: "#1e3a8a", fontSize: 14, lineHeight: 1.6 }}
+>
+  <strong>Before you continue to secure checkout</strong>
+  <p style={{ margin: "6px 0 0" }}>
+    Valor’s checkout initially shows a total that includes the 3% credit card fee.
+    Entering your full debit card number in the <strong>Card Number</strong> field
+    removes that fee and updates the total. Credit cards keep the 3% fee.
+  </p>
+  <p style={{ margin: "6px 0 0" }}>
+    <strong>Paying with debit?</strong> Confirm the fee is removed and the total
+    matches your fee-free ScoutLine total before submitting payment.
+  </p>
+</div>
 
 <button
   onClick={handleCheckout}
