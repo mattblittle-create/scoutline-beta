@@ -514,6 +514,10 @@ if (phone.length > 0 && phone.length !== 10) {
         .catch(() => ({}));
 
       if (!res.ok || !json?.ok) {
+        if (json?.signInRequired) {
+          router.push("/login?role=coach&next=" + encodeURIComponent("/onboarding/coach"));
+          return;
+        }
         throw new Error(
           json?.error || `Failed (${res.status})`
         );

@@ -1,3 +1,4 @@
+import { getRealUser } from "@/lib/auth/getCurrentUser";
 // app/api/onboarding/coach/route.ts
 
 import { NextResponse } from "next/server";
@@ -168,6 +169,21 @@ export async function POST(req: Request) {
         passwordHash: true,
       },
     });
+
+    // Self-service signup stays open. An existing account can only be changed
+    // by its signed-in owner, including when its password setup is still pending.
+    if (existing) {
+      const owner = await getRealUser();
+      if (owner?.id !== existing.id) {
+        return NextResponse.json({
+          ok: false,
+          signInRequired: Boolean(existing.passwordHash),
+          error: existing.passwordHash
+            ? "An account already exists for this email. Sign in before updating its coach signup."
+            : "An account already exists for this email. Complete the password setup from your email, or request a new setup link before continuing.",
+        }, { status: 409 });
+      }
+    }
 
     let slugToSet: string | undefined;
 
@@ -431,10 +447,18 @@ const isVerifiedHeadCoach =
   isHeadCoachTitle(staffTitle) ||
   isHeadCoachTitle(verifiedStaffTitle);
 
+const isRecruitingCoordinator =
+  [staffTitle, verifiedStaffTitle].some(
+    (title) => normalizeText(title).toLowerCase() === "recruiting coordinator"
+  );
+
     stage = "upsert-user-and-coach-profile";
 
 const result = await prisma.$transaction(
   async (tx) => {
+    // Serialize signups for a program so simultaneous first signups cannot
+    // both receive the first-coach admin grant. Head coaches and Recruiting Coordinators still qualify.
+    await tx.$queryRaw`SELECT 1 AS locked FROM pg_advisory_xact_lock(hashtext('coach-onboarding'), hashtext(${college.id}))`;
     const existingProgramAdminCount =
       await tx.coachProfile.count({
         where: {
@@ -447,6 +471,7 @@ const result = await prisma.$transaction(
 
     const shouldBeProgramAdmin =
       isVerifiedHeadCoach ||
+      isRecruitingCoordinator ||
       existingProgramAdminCount === 0;
 
     const user = await tx.user.upsert({
@@ -512,7 +537,7 @@ const coachProfile =
       staffTitle: verifiedStaffTitle,
 
       // Never remove existing admin access during onboarding.
-      // Head coaches and the first coach at a program receive it.
+      // Head coaches, Recruiting Coordinators, and the first coach receive it.
       ...(shouldBeProgramAdmin
         ? {
             isProgramAdmin: true,
