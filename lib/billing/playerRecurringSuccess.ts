@@ -1,13 +1,10 @@
+import { nextMonthlyBillingDate } from "@/lib/billing/monthlyBillingDate";
 // lib/billing/playerRecurringSuccess.ts
 
 import { InvoiceStatus } from "@prisma/client";
 import { prisma } from "@/lib/prisma";
 
-function addMonths(date: Date, months: number) {
-  const next = new Date(date);
-  next.setMonth(next.getMonth() + months);
-  return next;
-}
+
 
 function addYears(date: Date, years: number) {
   const next = new Date(date);
@@ -62,7 +59,7 @@ export async function markPlayerRecurringPaymentSucceeded(args: {
 
     const cadence = inferCadence(invoice.cadence);
     const nextPeriodEnd =
-      cadence === "annual" ? addYears(paidAt, 1) : addMonths(paidAt, 1);
+      cadence === "annual" ? addYears(paidAt, 1) : nextMonthlyBillingDate(invoice.dueDate ?? paidAt);
 
     await tx.playerInvoice.update({
       where: { id: invoice.id },

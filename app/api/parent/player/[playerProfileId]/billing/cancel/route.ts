@@ -1,3 +1,4 @@
+import { nextMonthlyBillingDate } from "@/lib/billing/monthlyBillingDate";
 // app/api/parent/player/[playerProfileId]/billing/cancel/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -20,8 +21,7 @@ function computeEffectiveDate(cadence?: string | null) {
     return result;
   }
 
-  result.setMonth(result.getMonth() + 1);
-  return result;
+  return nextMonthlyBillingDate(now);
 }
 
 export async function POST(_req: Request, ctx: Ctx) {

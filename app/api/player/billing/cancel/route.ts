@@ -1,13 +1,10 @@
+import { nextMonthlyBillingDate } from "@/lib/billing/monthlyBillingDate";
 // app/api/player/billing/cancel/route.ts
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-function addMonths(date: Date, months: number) {
-  const next = new Date(date);
-  next.setMonth(next.getMonth() + months);
-  return next;
-}
+
 
 function addYears(date: Date, years: number) {
   const next = new Date(date);
@@ -32,7 +29,7 @@ async function resolveCancellationEffectiveAt(playerProfileId: string, cadence: 
     return latestPaidInvoice.periodEnd;
   }
 
-  return cadence === "annual" ? addYears(now, 1) : addMonths(now, 1);
+  return cadence === "annual" ? addYears(now, 1) : nextMonthlyBillingDate(now);
 }
 
 export async function POST(req: Request) {

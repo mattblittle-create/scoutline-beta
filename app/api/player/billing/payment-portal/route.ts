@@ -1,3 +1,4 @@
+import { nextMonthlyBillingDate } from "@/lib/billing/monthlyBillingDate";
 // app/api/player/billing/payment-portal/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -34,11 +35,7 @@ function getReturnPath(returnTo: ReturnTo) {
     : "/onboarding/player/billing";
 }
 
-function addMonths(date: Date, months: number) {
-  const next = new Date(date);
-  next.setMonth(next.getMonth() + months);
-  return next;
-}
+
 
 function addYears(date: Date, years: number) {
   const next = new Date(date);
@@ -185,7 +182,7 @@ async function createPlayerPaymentPortal(args: {
     });
   } else {
     const periodEnd =
-      billing.cadence === "annual" ? addYears(now, 1) : addMonths(now, 1);
+      billing.cadence === "annual" ? addYears(now, 1) : nextMonthlyBillingDate(now);
 
     await prisma.playerInvoice.create({
       data: {

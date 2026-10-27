@@ -437,18 +437,23 @@ return (
   role="note"
   style={{ marginTop: 20, padding: "14px 16px", border: "1px solid #93c5fd", borderRadius: 10, background: "#eff6ff", color: "#1e3a8a", fontSize: 14, lineHeight: 1.6 }}
 >
-  <strong>Before you continue to secure checkout</strong>
+  <strong style={{ color: "#b91c1c" }}>BEFORE CONTINUING TO SECURE CHECKOUT</strong>
   <p style={{ margin: "6px 0 0" }}>
     The checkout page will initially show a total that includes the 3% credit card fee.
     Entering a full debit card number for payment in the <strong>Card Number</strong> field
     removes that fee and updates the total payment amount. Entering a full credit card
-    number for payment will keep the 3% fee in the total payment amount. Both payment
-    card methods will automatically establish your monthly recurring subscription, to
-    be billed on the same day each month as your initial payment (today).
+    number for payment will keep the 3% fee in the total payment amount. {cadence === "monthly" ? (
+      <>Both payment card methods will automatically establish your monthly recurring
+      subscription, to be billed on the same day each month as your initial payment.
+      Initial payments made on the 29th, 30th, or 31st will recur on the 28th of each
+      month, including leap years.</>
+    ) : (
+      <>Both payment card methods will automatically establish your annual recurring subscription.</>
+    )}
   </p>
   <p style={{ margin: "6px 0 0" }}>
-    <strong>Paying with a debit card?</strong> Confirm the fee is removed and the total
-    matches your Total Due on this page before submitting payment. If you have any
+    <strong style={{ color: "#1e3a8a" }}>Paying with a debit card?</strong> Confirm the fee is removed and the total on the payment page
+    matches Total Due on this page before submitting payment. If you have any
     questions or issues, reach out to support@myscoutline.com. Thank you.
   </p>
 </div>

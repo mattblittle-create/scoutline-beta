@@ -1,3 +1,4 @@
+import { nextMonthlyBillingDate } from "@/lib/billing/monthlyBillingDate";
 // app/api/payments/valor/create-checkout/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -61,11 +62,7 @@ function normalizeCadence(
   throw new Error("Invalid cadence");
 }
 
-function addMonths(date: Date, months: number) {
-  const next = new Date(date);
-  next.setMonth(next.getMonth() + months);
-  return next;
-}
+
 
 import { calculateActivationSummary } from "@/lib/billing/calculateActivationSummary";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
@@ -166,7 +163,7 @@ if (summary.finalPrice <= 0) {
 const reference = `sc_${Date.now()}`;
 
 const now = new Date();
-const periodEnd = addMonths(now, 1);
+const periodEnd = nextMonthlyBillingDate(now);
 
     const successUrl =
       `${baseUrl}/api/payments/valor/return?success=1` +

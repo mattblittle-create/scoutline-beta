@@ -1,3 +1,4 @@
+import { nextMonthlyBillingDate } from "@/lib/billing/monthlyBillingDate";
 // lib/payments/processPlayerPaymentWebhook.ts
 
 import { InvoiceStatus, Plan } from "@prisma/client";
@@ -44,11 +45,7 @@ function inferCadenceFromInvoice(
   : PLAYER_BILLING_CADENCE.MONTHLY;
 }
 
-function addMonths(date: Date, months: number) {
-  const next = new Date(date);
-  next.setMonth(next.getMonth() + months);
-  return next;
-}
+
 
 function addYears(date: Date, years: number) {
   const next = new Date(date);
@@ -220,7 +217,7 @@ export async function applySuccessfulPlayerPayment({
       cadence ===
         PLAYER_BILLING_CADENCE.ANNUAL
         ? addYears(paidAt, 1)
-        : addMonths(paidAt, 1);
+        : nextMonthlyBillingDate((invoice.status === InvoiceStatus.UPCOMING || !invoice.externalId) ? invoice.dueDate ?? paidAt : paidAt);
 
 // Normalized webhook amounts must always be expressed in cents.
 // Valor card transaction webhooks already send amount and fee fields

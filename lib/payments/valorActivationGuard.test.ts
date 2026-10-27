@@ -44,3 +44,12 @@ describe("provider-confirmed debit pricing", () => {
   await expect(applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook({...raw,data:{...raw.data,card_type:"CREDIT",custom_fee_amount:0}})})).rejects.toThrow("amount");noActivation();
  });
 });
+
+ it("schedules an initial approved January 31 payment for February 28", async () => {
+  vi.useFakeTimers();vi.setSystemTime(new Date("2027-01-31T15:00:00Z"));
+  try {
+   m.find.mockResolvedValueOnce(base).mockResolvedValueOnce(null);
+   await applySuccessfulPlayerPayment({provider:"VALOR",normalized:normalizeValorWebhook(raw)});
+   expect(m.create).toHaveBeenCalledWith(expect.objectContaining({data:expect.objectContaining({dueDate:new Date("2027-02-28T15:00:00Z")})}));
+  } finally {vi.useRealTimers();}
+ });
