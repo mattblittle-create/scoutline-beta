@@ -13,3 +13,16 @@ describe("customer payment truth and retry permission",()=>{
  it("does not permit retry while outcome is ambiguous",async()=>{m.find.mockResolvedValue({status:"OPEN",amountPaidCents:0});expect(await(await GET(request())).json()).toMatchObject({state:"pending",canRetry:false});});
  it("confirms recorded approved payment without permitting another payment",async()=>{m.find.mockResolvedValue({status:"PAID",amountPaidCents:103,processorResponseCode:"APPROVED"});expect(await(await GET(request())).json()).toMatchObject({state:"success",canRetry:false});});
 });
+
+it.each([{fee:0,paid:100},{fee:3,paid:103}])("returns invoice-specific confirmed amounts for fee $fee",async({fee,paid})=>{
+ m.find.mockResolvedValue({status:"PAID",amountCents:100,cardFeeCents:fee,amountPaidCents:paid,processorResponseCode:"APPROVED"});
+ expect(await(await GET(request())).json()).toMatchObject({state:"success",payment:{subtotalCents:100,feeCents:fee,totalCents:paid,paidCents:paid}});
+});
+it("does not expose an estimate as a confirmed pending payment",async()=>{
+ m.find.mockResolvedValue({status:"OPEN",amountCents:100,cardFeeCents:0,amountPaidCents:0});
+ expect(await(await GET(request())).json()).toMatchObject({state:"pending",payment:null});
+});
+it("returns zero currently paid after a debit void",async()=>{
+ m.find.mockResolvedValue({status:"VOID",amountCents:100,cardFeeCents:0,amountPaidCents:0,processorResponseCode:"VOIDED"});
+ expect(await(await GET(request())).json()).toMatchObject({state:"failed",canRetry:true,payment:{feeCents:0,paidCents:0}});
+});

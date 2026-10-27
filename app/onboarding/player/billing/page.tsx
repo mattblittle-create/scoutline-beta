@@ -39,7 +39,7 @@ function PlayerBillingPageInner() {
   const [pageError, setPageError] = useState("");
 
   const paymentRef = searchParams.get("ref") || "";
-  const [livePayment, setLivePayment] = useState<{ state: string; message: string; canRetry: boolean } | null>(null);
+  const [livePayment, setLivePayment] = useState<{ state: string; message: string; canRetry: boolean; payment?: { subtotalCents: number; feeCents: number; totalCents: number; paidCents: number } | null } | null>(null);
   const paymentState = paymentRef ? (livePayment?.state || "pending") : (searchParams.get("payment") || "");
   const paymentMessage = paymentRef ? (livePayment?.message || "Verifying your payment result�") : (searchParams.get("message") || "");
   useEffect(() => {
@@ -287,6 +287,18 @@ return (
         </div>
       )}
 
+      {paymentRef && paymentState === "success" && livePayment?.payment && (
+        <section aria-label="Confirmed payment summary" style={{ padding: 16, border: "1px solid #b7ebc6", borderRadius: 8 }}>
+          <h2 style={{ marginTop: 0 }}>Payment summary</h2>
+          <p>Subtotal: {formatUsd(livePayment.payment.subtotalCents)}</p>
+          <p>Processing fee: {formatUsd(livePayment.payment.feeCents)}</p>
+          <h3>Total paid: {formatUsd(livePayment.payment.paidCents)}</h3>
+        </section>
+      )}
+      {paymentRef && paymentState === "failed" && livePayment?.payment && (
+        <p>Amount currently paid: {formatUsd(livePayment.payment.paidCents)}. The form below creates a new payment attempt.</p>
+      )}
+      {(!paymentRef || paymentState === "failed") && <>
       {pageError ? (
         <div
           style={{
@@ -463,6 +475,7 @@ return (
 >
   {checkoutLoading ? "Redirecting..." : paymentState === "failed" ? "Retry Card Payment" : "Proceed to Card Payment"}
 </button>
+      </>}
     </div>
   </>
   );

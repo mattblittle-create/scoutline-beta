@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   if (!reference) return NextResponse.json({ error: "Missing payment reference." }, { status: 400 });
   const invoice = await prisma.playerInvoice.findFirst({
     where: { externalId: reference, playerProfile: { userId: user.id } },
-    select: { status: true, amountPaidCents: true, processorResponseCode: true, failureReason: true },
+    select: { status: true, amountCents: true, cardFeeCents: true, amountPaidCents: true, processorResponseCode: true, failureReason: true },
   });
   if (!invoice) return NextResponse.json({ error: "Payment not found." }, { status: 404 });
   const code = invoice.processorResponseCode || "";
@@ -22,5 +22,11 @@ export async function GET(req: NextRequest) {
       ? "Payment approved. Your subscription is active."
       : "Your payment is not yet confirmed. Do not retry while verification is pending.",
     canRetry: failed,
+    payment: success || failed ? {
+      subtotalCents: invoice.amountCents,
+      feeCents: invoice.cardFeeCents,
+      totalCents: invoice.amountCents + invoice.cardFeeCents,
+      paidCents: invoice.amountPaidCents,
+    } : null,
   }, { headers: { "Cache-Control": "no-store" } });
 }
