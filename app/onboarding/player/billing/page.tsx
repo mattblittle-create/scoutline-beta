@@ -41,7 +41,7 @@ function PlayerBillingPageInner() {
   const paymentRef = searchParams.get("ref") || "";
   const [livePayment, setLivePayment] = useState<{ state: string; message: string; canRetry: boolean } | null>(null);
   const paymentState = paymentRef ? (livePayment?.state || "pending") : (searchParams.get("payment") || "");
-  const paymentMessage = paymentRef ? (livePayment?.message || "Verifying your payment result…") : (searchParams.get("message") || "");
+  const paymentMessage = paymentRef ? (livePayment?.message || "Verifying your payment resultï¿½") : (searchParams.get("message") || "");
   useEffect(() => {
     if (!paymentRef) return;
     let stopped = false;
@@ -441,12 +441,10 @@ return (
   <p style={{ margin: "6px 0 0" }}>
     The checkout page will initially show a total that includes the 3% credit card fee.
     Entering a full debit card number for payment in the <strong>Card Number</strong> field
-    removes that fee and updates the total payment amount. Entering a full credit card
-    number for payment will keep the 3% fee in the total payment amount. {cadence === "monthly" ? (
-      <>Both payment card methods will automatically establish your monthly recurring
-      subscription, to be billed on the same day each month as your initial payment.
+    removes that fee and updates the total payment amount. {cadence === "monthly" ? (
+      <>Once payment is completed, subscription will automatically establish with monthly renewal payments to be billed on the same day each month as your initial payment.
       Initial payments made on the 29th, 30th, or 31st will recur on the 28th of each
-      month, including leap years.</>
+      month.</>
     ) : (
       <>Both payment card methods will automatically establish your annual recurring subscription.</>
     )}
