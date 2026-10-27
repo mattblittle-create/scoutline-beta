@@ -439,13 +439,17 @@ return (
 >
   <strong>Before you continue to secure checkout</strong>
   <p style={{ margin: "6px 0 0" }}>
-    Valor’s checkout initially shows a total that includes the 3% credit card fee.
-    Entering your full debit card number in the <strong>Card Number</strong> field
-    removes that fee and updates the total. Credit cards keep the 3% fee.
+    The checkout page will initially show a total that includes the 3% credit card fee.
+    Entering a full debit card number for payment in the <strong>Card Number</strong> field
+    removes that fee and updates the total payment amount. Entering a full credit card
+    number for payment will keep the 3% fee in the total payment amount. Both payment
+    card methods will automatically establish your monthly recurring subscription, to
+    be billed on the same day each month as your initial payment (today).
   </p>
   <p style={{ margin: "6px 0 0" }}>
-    <strong>Paying with debit?</strong> Confirm the fee is removed and the total
-    matches your fee-free ScoutLine total before submitting payment.
+    <strong>Paying with a debit card?</strong> Confirm the fee is removed and the total
+    matches your Total Due on this page before submitting payment. If you have any
+    questions or issues, reach out to support@myscoutline.com. Thank you.
   </p>
 </div>
 
