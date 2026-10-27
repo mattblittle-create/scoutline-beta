@@ -1,3 +1,4 @@
+import { createPlayerRecruitingAlert, playerFirstName, listAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/recruiting-lists/[listId]/members/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -76,7 +77,6 @@ async function notifyStaffOfRecruitingListActivity(params: {
   });
 
   const staffIds = staff
-    .filter((member) => member.notificationPreference?.instantStaffActivity !== false)
     .map((member) => member.id);
 
   if (!staffIds.length) return;
@@ -138,6 +138,16 @@ const actorUserId = user.id;
         label: label || null,
       },
     });
+
+    const profile = await prisma.playerProfile.findUnique({ where: { id: playerProfileId }, include: { user: true } });
+    if (profile?.userId && profile.userId !== user.id) {
+      const college = await prisma.college.findUnique({ where: { id: gate.collegeId }, select: { name: true } });
+      if (college) await createPlayerRecruitingAlert({
+        userId: profile.userId, playerProfileId, collegeId: gate.collegeId,
+        type: "PLAYER_ADDED_TO_RECRUITING_LIST", event: "LIST_ADD",
+        message: listAlertMessage(playerFirstName(profile.user, profile.data), user.name, user.coachProfile?.staffTitle || "Coach", college.name),
+      });
+    }
 
     await notifyStaffOfRecruitingListActivity({
   collegeId: gate.collegeId,

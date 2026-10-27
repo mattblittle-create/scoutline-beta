@@ -66,6 +66,7 @@ async function requireActingUser() {
     },
   });
 
+  if (!actingUser || actingUser.role !== "COACH") return null;
   return actingUser;
 }
 
@@ -152,7 +153,6 @@ async function notifyStaffOfSharedCoachNote(params: {
   });
 
   const staffIds = staff
-    .filter((member) => member.notificationPreference?.instantStaffActivity !== false)
     .map((member) => member.id);
 
   if (!staffIds.length) return;

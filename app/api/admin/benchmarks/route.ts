@@ -1,3 +1,4 @@
+import { getRealUser } from "@/lib/auth/getCurrentUser";
 // app/api/admin/benchmarks/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -24,7 +25,7 @@ function isValidScope(value: unknown): value is (typeof VALID_SCOPES)[number] {
 }
 
 async function requireAdminUser() {
-  const userId = cookies().get("scoutline_uid")?.value || "";
+  const userId = (await getRealUser())?.id || "";
 
   if (!userId) return null;
 

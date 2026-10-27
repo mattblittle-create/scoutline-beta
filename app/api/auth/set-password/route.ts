@@ -1,3 +1,4 @@
+import { signSessionToken } from "@/lib/auth/session";
 // app/api/auth/set-password/route.ts
 
 import { NextResponse } from "next/server";
@@ -73,6 +74,7 @@ export async function POST(req: Request) {
       select: {
         id: true,
         email: true,
+        passwordHash: true,
       },
     });
 
@@ -94,7 +96,7 @@ const redirectTo =
       redirectTo,
     });
 
-    res.cookies.set("scoutline_uid", user.id, {
+    res.cookies.set("scoutline_uid", await signSessionToken(user), {
       httpOnly: true,
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",

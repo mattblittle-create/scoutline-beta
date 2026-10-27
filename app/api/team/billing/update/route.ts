@@ -12,7 +12,7 @@ async function canManageTeam(teamId: string) {
   // 1) DEV cookie override
   const cookieStore = cookies();
   const devTeamId = String(cookieStore.get("scoutline_dev_teamId")?.value || "").trim();
-  if (devTeamId && devTeamId === teamId) return true;
+  if (process.env.NODE_ENV !== "production" && process.env.DEV_AUTH_ENABLED === "true" && devTeamId && devTeamId === teamId) return true;
 
   // 2) Real auth: TEAM_ADMIN membership for team
   const viewer = await getCurrentUser().catch(() => null);

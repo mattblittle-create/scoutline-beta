@@ -82,7 +82,6 @@ async function notifyStaffOfPlayerRatingActivity(params: {
   });
 
   const staffIds = staff
-    .filter((member) => member.notificationPreference?.instantStaffActivity !== false)
     .map((member) => member.id);
 
   if (!staffIds.length) return;

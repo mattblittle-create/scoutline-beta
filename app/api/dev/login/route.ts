@@ -1,3 +1,4 @@
+import { signSessionToken } from "@/lib/auth/session";
 // app/api/dev/login/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -28,7 +29,7 @@ export async function POST(req: NextRequest) {
 
   const user = await prisma.user.findUnique({
     where: { email },
-    select: { id: true, email: true },
+    select: { id: true, email: true, passwordHash: true },
   });
 
   if (!user?.id) {
@@ -43,7 +44,7 @@ export async function POST(req: NextRequest) {
     user: { id: user.id, email: user.email },
   });
 
-  res.cookies.set(UID_COOKIE, user.id, {
+  res.cookies.set(UID_COOKIE, await signSessionToken(user), {
     httpOnly: true,
     sameSite: "lax",
     secure: false,

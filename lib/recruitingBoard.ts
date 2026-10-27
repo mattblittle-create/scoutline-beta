@@ -1,3 +1,4 @@
+import { createPlayerRecruitingAlert, listAlertMessage, playerFirstName } from "@/lib/playerRecruitingAlerts";
 // lib/recruitingBoard.ts
 
 import {
@@ -143,18 +144,10 @@ const playerEmail = playerUser?.email ?? null;
 const playerName = playerUser?.name ?? null;
 
 if (playerUser?.id) {
-  await db.notification.create({
-    data: {
-      userId: playerUser.id,
-      type: "PLAYER_ADDED_TO_RECRUITING_BOARD",
-      message: `A coach from ${college.name} added you to their recruiting board.`,
-      data: {
-        recruitingBoardEntryId: entry.id,
-        playerProfileId: profile.id,
-        collegeId: college.id,
-        collegeName: college.name,
-      },
-    },
+  const coach = await db.user.findUnique({ where: { id: actingUser.id }, select: { name: true, coachProfile: { select: { staffTitle: true } } } });
+  await createPlayerRecruitingAlert({
+    userId: playerUser.id, type: "PLAYER_ADDED_TO_RECRUITING_BOARD", playerProfileId: profile.id, collegeId: college.id, event: "BOARD_ADD",
+    message: listAlertMessage(playerFirstName(playerUser, profile.data), coach?.name || actingUser.name, coach?.coachProfile?.staffTitle || "Coach", college.name),
   });
 
   entry = await db.recruitingBoardEntry.update({
@@ -164,13 +157,7 @@ if (playerUser?.id) {
 }
 
 // 5) Optionally send external/player email if the coach toggled notification on.
-if (notifyPlayer && notifyPlayerFn && playerEmail) {
-    await notifyPlayerFn({
-      playerEmail,
-      playerName,
-      collegeName: college.name,
-    });
-  }
+// Recruiting email delivery is queued with the bell alert above.
 
   return entry;
 }

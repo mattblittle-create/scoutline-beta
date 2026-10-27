@@ -1,3 +1,5 @@
+import { notifyCollegeCoachesOfProgramSave } from "@/lib/coachProgramSaveAlerts";
+import { getRealUser } from "@/lib/auth/getCurrentUser";
 // app/api/player/target-programs/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -119,7 +121,7 @@ if (requestedPlayerProfileId) {
   };
 }
 
-const userId = cookies().get("scoutline_uid")?.value || "";
+const userId = (await getRealUser())?.id || "";
 
   if (!userId) return null;
 
@@ -278,69 +280,6 @@ export async function GET(req: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-async function notifyCollegeCoachesOfProgramSave(params: {
-  collegeId: string;
-  playerProfileId: string;
-}) {
-  const college = await prisma.college.findUnique({
-    where: { id: params.collegeId },
-    select: {
-      id: true,
-      name: true,
-      coaches: {
-        select: {
-          id: true,
-          notificationPreference: {
-            select: {
-              instantProgramSaves: true,
-            },
-          },
-        },
-      },
-    },
-  });
-
-  if (!college?.coaches?.length) return;
-
-  const playerProfile = await prisma.playerProfile.findUnique({
-    where: { id: params.playerProfileId },
-    select: {
-      id: true,
-      data: true,
-      email: true,
-    },
-  });
-
-  const data = (playerProfile?.data || {}) as any;
-  const normalized = data?.normalized || data;
-
-  const playerName =
-    [normalized?.firstName, normalized?.lastName].filter(Boolean).join(" ") ||
-    normalized?.name ||
-    playerProfile?.email ||
-    "A player";
-
-  const coachIds = college.coaches
-    .filter((coach) => coach.notificationPreference?.instantProgramSaves !== false)
-    .map((coach) => coach.id);
-
-  if (!coachIds.length) return;
-
-  await prisma.notification.createMany({
-    data: coachIds.map((userId) => ({
-      userId,
-      type: "COACH_PROGRAM_SAVED",
-      message: `${playerName} saved ${college.name} to their Target Programs.`,
-      data: {
-        collegeId: college.id,
-        collegeName: college.name,
-        playerProfileId: params.playerProfileId,
-        event: "PLAYER_SAVED_PROGRAM",
-      },
-    })),
-  });
 }
 
 /**

@@ -1,8 +1,9 @@
+import { SESSION_COOKIE, verifySessionToken, credentialVersion } from "@/lib/auth/session";
 // lib/auth/getCurrentUser.ts
 import { cookies, headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
-const UID_COOKIE = "scoutline_uid";
+const UID_COOKIE = SESSION_COOKIE;
 const IMP_COOKIE = "scoutline_act_as_uid";
 
 function normalizeEmail(v: string) {
@@ -25,10 +26,13 @@ export async function getRealUser() {
   // 1) Normal cookie auth (prod + dev)
   const uid = cookies().get(UID_COOKIE)?.value?.trim();
   if (uid) {
-    return prisma.user.findUnique({
-      where: { id: uid },
+    const session = await verifySessionToken(uid);
+    if (!session) return null;
+    const user = await prisma.user.findUnique({
+      where: { id: session.userId },
       include: { coachProfile: true, college: true },
     });
+    return user && session.version === credentialVersion(user.passwordHash) ? user : null;
   }
 
   // 2) Strict DEV-ONLY fallback

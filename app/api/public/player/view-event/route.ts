@@ -1,3 +1,4 @@
+import { notifyPlayerProfileView } from "@/lib/playerRecruitingAlerts";
 // app/api/public/player/view-event/route.ts
 
 import crypto from "crypto";
@@ -215,29 +216,9 @@ const viewerUser = currentUser?.id
       },
     });
 
-    if (viewerType === "COLLEGE_COACH" && playerUserId) {
-      const collegeName =
-        viewerUser?.college?.name ||
-        viewerUser?.program ||
-        "a college program";
-
-      await prisma.notification.create({
-        data: {
-          userId: playerUserId,
-          type: "PLAYER_PROFILE_VIEWED_BY_COACH",
-          message: `A coach from ${collegeName} viewed your profile.`,
-          data: {
-            profileViewEventId: event.id,
-            collegeId: collegeId || null,
-            collegeName,
-          },
-        },
-      });
-
-      await prisma.profileViewEvent.update({
-        where: { id: event.id },
-        data: { notifiedPlayer: true },
-      });
+    if (currentUser && viewerType === "COLLEGE_COACH" && playerUserId) {
+      const notified = await notifyPlayerProfileView(playerProfile.id, currentUser);
+      if (notified) await prisma.profileViewEvent.update({ where: { id: event.id }, data: { notifiedPlayer: true } });
     }
 
     console.log("PROFILE_VIEW_EVENT_DEBUG", {

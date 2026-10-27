@@ -114,7 +114,7 @@ export default function CoachDashboardHome() {
         />
       </section>
 
-      <NotificationPreferencesPanel />
+      <NotificationPreferencesPanel showCoachOptions />
     </main>
   );
 }

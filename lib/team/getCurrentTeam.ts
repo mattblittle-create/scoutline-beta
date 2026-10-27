@@ -70,6 +70,7 @@ export async function getCurrentTeam(args?: { teamSlug?: string | null }) {
   // ----------------------------------------
   // 3) DEV cookie override
   // ----------------------------------------
+  if (process.env.NODE_ENV === "production" || process.env.DEV_AUTH_ENABLED !== "true") return null;
   const cookieStore = cookies();
   const devTeamId = String(cookieStore.get("scoutline_dev_teamId")?.value || "").trim();
 

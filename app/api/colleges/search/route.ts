@@ -1,3 +1,4 @@
+import { getRealUser } from "@/lib/auth/getCurrentUser";
 // app/api/colleges/search/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -750,7 +751,7 @@ function extractAcademicAreasFromProfileData(data: any): string[] {
 }
 
 async function getCurrentPlayerProfile() {
-  const userId = cookies().get("scoutline_uid")?.value || "";
+  const userId = (await getRealUser())?.id || "";
 
   if (!userId) return null;
 

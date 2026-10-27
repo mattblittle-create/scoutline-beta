@@ -36,8 +36,8 @@ export async function GET() {
     const playerProfile = await prisma.playerProfile.findFirst({
       where: {
         OR: [
-          user.id ? { userId: user.id } : {},
-          user.email ? { email: user.email } : {},
+          ...(user.id ? [{ userId: user.id }] : []),
+          ...(user.email ? [{ email: user.email }] : []),
         ],
       },
       select: {
@@ -124,7 +124,6 @@ export async function GET() {
           createdAt: true,
           list: {
             select: {
-              name: true,
               college: {
                 select: {
                   id: true,
@@ -197,7 +196,7 @@ export async function GET() {
         programName: entry.list?.college?.name || "A college program",
         division: entry.list?.college?.division || null,
         createdAt: entry.createdAt.toISOString(),
-        label: `Added you to ${entry.list?.name || "a recruiting list"}`,
+        label: "Added you to a recruiting target list",
       })),
     ]
       .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())

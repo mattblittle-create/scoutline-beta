@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma";
 
 export type NotificationPreferenceInput = {
+  emailNotificationsEnabled?: boolean;
   instantChatMessages?: boolean;
   digestChatMessages?: boolean;
   instantProgramSaves?: boolean;
@@ -13,17 +14,7 @@ export type NotificationPreferenceInput = {
 };
 
 export async function getOrCreateNotificationPreference(userId: string) {
-  let prefs = await prisma.notificationPreference.findUnique({
-    where: { userId },
-  });
-
-  if (!prefs) {
-    prefs = await prisma.notificationPreference.create({
-      data: { userId },
-    });
-  }
-
-  return prefs;
+  return prisma.notificationPreference.upsert({ where: { userId }, create: { userId }, update: {} });
 }
 
 export async function updateNotificationPreference(
@@ -35,6 +26,7 @@ export async function updateNotificationPreference(
   return prisma.notificationPreference.update({
     where: { userId },
     data: {
+      ...(typeof input.emailNotificationsEnabled === "boolean" && { emailNotificationsEnabled: input.emailNotificationsEnabled }),
       ...(typeof input.instantChatMessages === "boolean" && {
         instantChatMessages: input.instantChatMessages,
       }),

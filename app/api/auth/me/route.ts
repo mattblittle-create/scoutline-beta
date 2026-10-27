@@ -1,3 +1,4 @@
+import { getRealUser } from "@/lib/auth/getCurrentUser";
 // app/api/auth/me/route.ts
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
@@ -11,7 +12,7 @@ export async function GET() {
   // This endpoint is used by the header to decide Log In vs Log Out.
   // It should reflect REAL auth state only (scoutline_uid),
   // and NOT dev impersonation cookies/headers.
-  const uid = cookies().get("scoutline_uid")?.value?.trim();
+  const uid = (await getRealUser())?.id;
   if (!uid) return NextResponse.json({ ok: true, user: null });
 
   const user = await prisma.user.findUnique({

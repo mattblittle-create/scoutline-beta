@@ -1,3 +1,4 @@
+import { createPlayerRecruitingAlert, playerFirstName, searchAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/player/search/route.ts
 
 import { NextResponse } from "next/server";
@@ -595,5 +596,20 @@ const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
   };
 });
 
+// Only deliberate name searches or graduation-year AND position searches trigger alerts.
+// Only actual returned profiles are notified; browsing and unrelated cohorts are silent.
+if (accountType === "COLLEGE_COACH" && coachCollegeId && (q.length >= 2 || (gradYear != null && !!pos))) {
+  const notifiedUsers = new Set<string>();
+  for (const { p } of filtered) {
+    if (!p.user?.id || p.user.id === coachUser.id || notifiedUsers.has(p.user.id)) continue;
+    notifiedUsers.add(p.user.id);
+    const cohort = gradYear != null && !!pos;
+    await createPlayerRecruitingAlert({
+      userId: p.user.id, playerProfileId: p.id, type: "PLAYER_RECRUITING_SEARCH_MATCH",
+      event: cohort ? "MATCHING_SEARCH" : "SEARCH_RESULT",
+      message: searchAlertMessage(playerFirstName(p.user, p.data), cohort),
+    });
+  }
+}
 return NextResponse.json({ ok: true, results });
 }

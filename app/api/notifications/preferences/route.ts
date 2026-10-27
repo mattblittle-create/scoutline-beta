@@ -31,6 +31,7 @@ export async function PATCH(req: NextRequest) {
   const body = await req.json();
 
   const preferences = await updateNotificationPreference(user.id, {
+    emailNotificationsEnabled: body?.emailNotificationsEnabled,
     instantChatMessages: body?.instantChatMessages,
     digestChatMessages: body?.digestChatMessages,
     instantProgramSaves: body?.instantProgramSaves,

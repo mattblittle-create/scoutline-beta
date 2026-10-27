@@ -858,6 +858,7 @@ model Notification {
   type      NotificationType
   message   String
   data      Json?
+  emailDelivery NotificationEmailDelivery?
   readAt    DateTime?
   createdAt DateTime         @default(now())
   user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -869,6 +870,8 @@ model Notification {
 model NotificationPreference {
   id     String @id @default(cuid())
   userId String @unique
+
+  emailNotificationsEnabled Boolean @default(true)
 
   instantChatMessages Boolean @default(true)
   digestChatMessages  Boolean @default(false)
@@ -1146,6 +1149,8 @@ enum ProfileActorRole {
 }
 
 enum NotificationType {
+  PLAYER_ADDED_TO_RECRUITING_LIST
+  PLAYER_RECRUITING_SEARCH_MATCH
   PROFILE_VIEWS_WEEKLY_DIGEST
   PLAYER_PROFILE_VIEWED_BY_COACH
   PLAYER_ADDED_TO_RECRUITING_BOARD
@@ -2194,4 +2199,18 @@ model ProgramVerificationSubmission {
   @@index([baseballProgramId])
   @@index([submittedByUserId])
   @@index([status])
+}
+
+model NotificationEmailDelivery {
+  id String @id @default(cuid())
+  notificationId String @unique
+  notification Notification @relation(fields: [notificationId], references: [id], onDelete: Cascade)
+  status String @default("PENDING")
+  attempts Int @default(0)
+  nextAttemptAt DateTime @default(now())
+  sentAt DateTime?
+  lastError String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@index([status, nextAttemptAt])
 }

@@ -1,3 +1,4 @@
+import { signSessionToken } from "@/lib/auth/session";
 // app/api/auth/login/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -56,7 +57,7 @@ export async function POST(req: Request) {
       redirectTo,
     });
 
-    res.cookies.set("scoutline_uid", user.id, {
+    res.cookies.set("scoutline_uid", await signSessionToken(user), {
       httpOnly: true,
       sameSite: "lax",
       secure: process.env.NODE_ENV === "production",

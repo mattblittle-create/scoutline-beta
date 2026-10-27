@@ -33,6 +33,11 @@ export function sanitizeParentNotification(
   };
 
   switch (type) {
+    case "PLAYER_PROFILE_VIEWED_BY_COACH":
+    case "PLAYER_ADDED_TO_RECRUITING_LIST":
+    case "PLAYER_RECRUITING_SEARCH_MATCH":
+    case "PLAYER_ADDED_TO_RECRUITING_BOARD":
+      return { ...base, category: "Recruiting", title: "Player Recruiting Update", summary: String(notification?.message || "A new recruiting update is available."), severity: "success" };
     case "COACH_MESSAGE":
     case "NEW_MESSAGE":
     case "MESSAGE_RECEIVED":
@@ -62,7 +67,6 @@ export function sanitizeParentNotification(
     case "PROFILE_SAVE":
     case "COACH_SAVE":
     case "PLAYER_SAVED":
-    case "PLAYER_ADDED_TO_RECRUITING_BOARD":
       return {
         ...base,
         category: "Recruiting",

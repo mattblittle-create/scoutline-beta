@@ -1,3 +1,4 @@
+import { notifyPlayerProfileView } from "@/lib/playerRecruitingAlerts";
 // lib/profileViews.ts
 
 import {
@@ -235,5 +236,11 @@ export async function recordProfileView(
     },
   });
 
+  if (viewerUser && viewerType === ProfileViewerType.COLLEGE_COACH) {
+    const coach = await prisma.user.findUnique({ where: { id: viewerUser.id }, include: { coachProfile: true, college: true } });
+    if (coach && await notifyPlayerProfileView(profile.id, coach)) {
+      await prisma.profileViewEvent.update({ where: { id: created.id }, data: { notifiedPlayer: true } });
+    }
+  }
   return created;
 }

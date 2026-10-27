@@ -1,5 +1,6 @@
 // app/account/ClientAccountPage.tsx
 "use client";
+import NotificationPreferencesPanel from "@/app/components/notifications/NotificationPreferencesPanel";
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
@@ -456,6 +457,7 @@ export default function ClientAccountPage() {
           Tip: After saving, refresh your public page to see the new photo.
         </p>
       </section>
+      <NotificationPreferencesPanel />
     </main>
   );
 }

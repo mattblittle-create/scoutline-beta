@@ -5,6 +5,7 @@
 import React, { useEffect, useState } from "react";
 
 type Preferences = {
+  emailNotificationsEnabled: boolean;
   instantChatMessages: boolean;
   digestChatMessages: boolean;
   instantProgramSaves: boolean;
@@ -15,6 +16,7 @@ type Preferences = {
 };
 
 const DEFAULT_PREFS: Preferences = {
+  emailNotificationsEnabled: true,
   instantChatMessages: true,
   digestChatMessages: false,
   instantProgramSaves: true,
@@ -24,7 +26,7 @@ const DEFAULT_PREFS: Preferences = {
   verificationReminders: true,
 };
 
-export default function NotificationPreferencesPanel() {
+export default function NotificationPreferencesPanel({ showCoachOptions = false }: { showCoachOptions?: boolean }) {
   const [prefs, setPrefs] = useState<Preferences>(DEFAULT_PREFS);
   const [loading, setLoading] = useState(true);
   const [savingKey, setSavingKey] = useState<keyof Preferences | null>(null);
@@ -103,6 +105,7 @@ export default function NotificationPreferencesPanel() {
     title: string;
     description: string;
   }> = [
+    { key: "emailNotificationsEnabled", title: "Email notifications", description: "Receive recruiting alerts by email. Account bell alerts always stay on." },
     {
       key: "instantChatMessages",
       title: "Instant chat messages",
@@ -141,7 +144,7 @@ export default function NotificationPreferencesPanel() {
   ];
 
   return (
-    <section
+    <section id="notification-preferences"
       style={{
         border: "1px solid #e5e7eb",
         borderRadius: 18,
@@ -168,8 +171,7 @@ export default function NotificationPreferencesPanel() {
             color: "#64748b",
           }}
         >
-          Choose which ScoutLine updates should be immediate and which can wait
-          for a digest.
+          Email is enabled by default. You can turn it off here and still receive every account bell alert.
         </p>
       </div>
 
@@ -179,8 +181,8 @@ export default function NotificationPreferencesPanel() {
         </div>
       ) : (
         <div style={{ display: "grid", gap: 12 }}>
-          {rows.map((row) => {
-            const disabled = savingKey === row.key;
+          {rows.filter(row => showCoachOptions || row.key === "emailNotificationsEnabled").map((row) => {
+            const disabled = savingKey !== null || (row.key !== "emailNotificationsEnabled" && !prefs.emailNotificationsEnabled);
 
             return (
               <div

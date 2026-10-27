@@ -1,3 +1,4 @@
+import { getRealUser } from "@/lib/auth/getCurrentUser";
 // app/api/player/truth-fit/route.ts
 
 import { NextRequest, NextResponse } from "next/server";
@@ -159,7 +160,7 @@ async function getCurrentPlayerProfile(
   }
 
   // NORMAL PLAYER CONTEXT
-  const userId = cookies().get("scoutline_uid")?.value || "";
+  const userId = (await getRealUser())?.id || "";
 
   if (!userId) return null;
 

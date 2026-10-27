@@ -200,28 +200,8 @@ const recipientParticipants = participant.conversation.participants.filter(
 
 const recipientUserIds = recipientParticipants.map((p) => p.userId);
 
-const recipientPrefs = recipientUserIds.length
-  ? await tx.notificationPreference.findMany({
-      where: {
-        userId: {
-          in: recipientUserIds,
-        },
-      },
-      select: {
-        userId: true,
-        instantChatMessages: true,
-      },
-    })
-  : [];
-
-const prefsByUserId = new Map(
-  recipientPrefs.map((pref) => [pref.userId, pref])
-);
-
-const notifiableRecipientUserIds = recipientUserIds.filter((userId) => {
-  const pref = prefsByUserId.get(userId);
-  return pref?.instantChatMessages !== false;
-});
+// Email preferences do not disable account bell alerts.
+const notifiableRecipientUserIds = recipientUserIds;
 
 const senderLabel =
   msg.senderUser.name?.trim() ||

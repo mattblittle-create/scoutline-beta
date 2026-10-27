@@ -61,7 +61,6 @@ async function notifyProgramAdminsOfJoinRequest(params: {
   });
 
   const adminIds = admins
-    .filter((admin) => admin.notificationPreference?.instantStaffActivity !== false)
     .map((admin) => admin.id);
 
   if (!adminIds.length) return;

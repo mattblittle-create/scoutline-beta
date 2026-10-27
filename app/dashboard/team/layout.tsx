@@ -4,6 +4,9 @@ import type { ReactNode, CSSProperties } from "react";
 import { getCurrentTeam } from "@/lib/team/getCurrentTeam";
 import TeamHeader from "./TeamHeader";
 
+// Team data and identity must be resolved for each signed-in request.
+export const dynamic = "force-dynamic";
+
 export const metadata = {
   title: "Team Dashboard • ScoutLine",
   description: "Manage your team / organization profile, roster, invites, and billing.",
