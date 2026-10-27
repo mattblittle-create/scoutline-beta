@@ -1172,6 +1172,7 @@ describe("failed recurring ACH webhook dunning", () => {
         },
 
         normalized: {
+          ...{ event: "ach-transaction", approved: false, providerPaymentRef: "", receiptUrl: null, surcharge: null, brand: null, last4: null },
           rawEvent: "ach-transaction",
           status: "FAILED",
           transactionId:
@@ -1308,6 +1309,7 @@ transactionStatus: {
         },
 
         normalized: {
+          ...{ event: "ach-transaction", approved: false, providerPaymentRef: "", receiptUrl: null, surcharge: null, brand: null, last4: null },
           rawEvent: "ach-transaction",
           status: "FAILED",
           transactionId:
@@ -1483,6 +1485,7 @@ describe("ACH post-settlement reversal state", () => {
         },
 
         normalized: {
+          ...{ event: "ach-transaction", approved: false, providerPaymentRef: "", receiptUrl: null, surcharge: null, brand: null, last4: null },
           rawEvent:
             "ach-transaction",
 
@@ -1646,6 +1649,7 @@ describe("ACH post-settlement reversal state", () => {
         },
 
         normalized: {
+          ...{ event: "ach-transaction", approved: false, providerPaymentRef: "", receiptUrl: null, surcharge: null, brand: null, last4: null },
           rawEvent:
             "ach-transaction",
 
@@ -1853,6 +1857,7 @@ describe("ACH settlement state transition", () => {
         },
 
         normalized: {
+          ...{ event: "ach-transaction", approved: false, providerPaymentRef: "", receiptUrl: null, surcharge: null, brand: null, last4: null },
           rawEvent:
             "ach-transaction",
 
@@ -1964,6 +1969,7 @@ describe("ACH settlement state transition", () => {
         },
 
         normalized: {
+          ...{ event: "ach-transaction", approved: false, providerPaymentRef: "", receiptUrl: null, surcharge: null, brand: null, last4: null },
           rawEvent:
             "ach-transaction",
 

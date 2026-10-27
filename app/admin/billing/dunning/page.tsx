@@ -1,3 +1,4 @@
+import { adminDateTime } from "@/lib/billing/adminDisplay";
 // app/admin/billing/dunning/page.tsx
 
 import Link from "next/link";
@@ -18,7 +19,7 @@ function formatUSD(cents: number | null | undefined) {
 function fmtDate(d?: Date | string | null) {
   if (!d) return "—";
   const date = typeof d === "string" ? new Date(d) : d;
-  return date.toLocaleString("en-US");
+  return adminDateTime(date);
 }
 
 export default async function AdminBillingDunningPage() {

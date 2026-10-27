@@ -1,3 +1,4 @@
+import { adminDateTime } from "@/lib/billing/adminDisplay";
 // app/admin/billing/payoutsV1/page.tsx
 
 import Link from "next/link";
@@ -16,7 +17,7 @@ function usdFromCents(cents: number) {
 function fmtDateTime(d?: Date | null) {
   if (!d) return "—";
   try {
-    return d.toLocaleString();
+    return adminDateTime(d);
   } catch {
     return String(d);
   }

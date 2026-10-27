@@ -1,3 +1,4 @@
+import { adminDateTime } from "@/lib/billing/adminDisplay";
 // app/admin/billing/audit/page.tsx
 
 import Link from "next/link";
@@ -16,7 +17,7 @@ function safeString(value: unknown) {
 }
 
 function fmtDate(d: Date) {
-  return d.toLocaleString("en-US");
+  return adminDateTime(d);
 }
 
 export default async function AdminBillingAuditPage({

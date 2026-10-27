@@ -1,3 +1,4 @@
+import { adminDate, nextPlayerInvoice } from "@/lib/billing/adminDisplay";
 // app/admin/billing/subscriptions/page.tsx
 
 import Link from "next/link";
@@ -13,7 +14,7 @@ type Cadence = "monthly" | "annual" | string;
 function fmtDate(d?: Date | null) {
   if (!d) return "—";
   try {
-    return d.toLocaleDateString();
+    return adminDate(d);
   } catch {
     return String(d);
   }
@@ -180,10 +181,6 @@ export default async function AdminBillingSubscriptionsPage() {
     take: 250,
   });
 
-  function nextPlayerInvoice(inv: any[]) {
-    const upcoming = inv.find((x) => x.status === "UPCOMING" || x.status === "OPEN");
-    return upcoming ?? inv[0] ?? null;
-  }
   function nextTeamInvoice(inv: any[]) {
     const upcoming = inv.find((x) => x.status === "UPCOMING" || x.status === "OPEN");
     return upcoming ?? inv[0] ?? null;
@@ -197,7 +194,7 @@ export default async function AdminBillingSubscriptionsPage() {
     const cadence = String(p.playerBillingCadence || inv?.cadence || "monthly");
     const { mrrCents, arrCents } = computeMRRARR({ cadence, amountCents });
 
-    const nextDate = inv?.invoiceDate ?? inv?.dueDate ?? null;
+    const nextDate = inv?.dueDate ?? inv?.invoiceDate ?? null;
 
     subscriptionRows.push({
       type: "PLAYER",

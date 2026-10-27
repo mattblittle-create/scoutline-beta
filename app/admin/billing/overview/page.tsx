@@ -1,3 +1,4 @@
+import { adminDateTime } from "@/lib/billing/adminDisplay";
 // app/admin/billing/overview/page.tsx
 
 import Link from "next/link";
@@ -226,7 +227,7 @@ export default async function AdminBillingOverviewPage() {
               <tbody>
                 {recentAuditLogs.map((log) => (
                   <tr key={log.id}>
-                    <Td>{log.createdAt.toLocaleString("en-US")}</Td>
+                    <Td>{adminDateTime(log.createdAt)}</Td>
                     <Td>{log.eventType}</Td>
                     <Td>
                       {log.targetType}:{log.targetId}

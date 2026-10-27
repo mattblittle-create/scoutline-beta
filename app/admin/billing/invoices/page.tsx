@@ -1,3 +1,4 @@
+import { adminDate, safeHostedUrl } from "@/lib/billing/adminDisplay";
 // app/admin/billing/invoices/page.tsx
 
 import Link from "next/link";
@@ -12,7 +13,7 @@ export const revalidate = 0;
 function fmtDate(d?: Date | null) {
   if (!d) return "—";
   try {
-    return d.toLocaleDateString();
+    return adminDate(d);
   } catch {
     return String(d);
   }
@@ -116,6 +117,8 @@ type InvoiceRow = {
   invoiceId: string;
   status: string;
   amountCents: number;
+  feeCents: number;
+  totalCents: number;
   dateLabel: string;
   dateTs: number | null;
   hostedUrl: string | null;
@@ -128,7 +131,7 @@ function InvoiceTable({ rows, showDevActions }: { rows: InvoiceRow[]; showDevAct
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
-            {["Type", "Account", "Invoice ID", "Status", "Amount", "Date", "Actions"].map((h) => (
+            {["Type", "Account", "Invoice ID", "Status", "Base", "Fee", "Total", "Date (Eastern)", "Actions"].map((h) => (
               <th key={h} style={th}>
                 {h}
               </th>
@@ -155,6 +158,8 @@ function InvoiceTable({ rows, showDevActions }: { rows: InvoiceRow[]; showDevAct
                 <td style={td}>
                   <span style={{ fontWeight: 900 }}>{usdFromCents(r.amountCents || 0)}</span>
                 </td>
+                <td style={td}>{usdFromCents(r.feeCents)}</td>
+                <td style={td}>{usdFromCents(r.totalCents)}</td>
                 <td style={td}>{r.dateLabel}</td>
                 <td style={td}>
                   <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -227,6 +232,8 @@ export default async function AdminBillingInvoicesPage({ searchParams }: { searc
           status: true,
           invoiceDate: true,
           dueDate: true,
+          cardFeeCents: true,
+          amountPaidCents: true,
           amountCents: true,
           hostedUrl: true,
           createdAt: true,
@@ -266,7 +273,7 @@ export default async function AdminBillingInvoicesPage({ searchParams }: { searc
 
   for (const p of players) {
     for (const i of p.playerInvoices || []) {
-      const d = i.invoiceDate ?? i.dueDate ?? i.createdAt ?? null;
+      const d = i.status === "UPCOMING" ? i.dueDate : i.invoiceDate ?? i.dueDate ?? i.createdAt ?? null;
       all.push({
         type: "PLAYER",
         accountLabel: p.user?.name ? `${p.user.name} (${p.email})` : p.email,
@@ -274,9 +281,11 @@ export default async function AdminBillingInvoicesPage({ searchParams }: { searc
         invoiceId: i.id,
         status: String(i.status || "—"),
         amountCents: Number(i.amountCents || 0),
+        feeCents: Number(i.cardFeeCents || 0),
+        totalCents: i.status === "PAID" ? Number(i.amountPaidCents) : Number(i.amountCents || 0) + Number(i.cardFeeCents || 0),
         dateLabel: fmtDate(d),
         dateTs: asTs(d),
-        hostedUrl: i.hostedUrl ?? null,
+        hostedUrl: safeHostedUrl(i.hostedUrl),
         viewLink: `/admin/players/${encodeURIComponent(p.id)}`,
       });
     }
@@ -293,9 +302,11 @@ export default async function AdminBillingInvoicesPage({ searchParams }: { searc
         invoiceId: i.id,
         status: String(i.status || "—"),
         amountCents: Number(i.amountCents || 0),
+        feeCents: 0,
+        totalCents: Number(i.amountCents || 0),
         dateLabel: fmtDate(d),
         dateTs: asTs(d),
-        hostedUrl: i.hostedUrl ?? null,
+        hostedUrl: safeHostedUrl(i.hostedUrl),
         viewLink: `/admin/teams/${encodeURIComponent(t.id)}`,
       });
     }

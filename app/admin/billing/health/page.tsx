@@ -1,3 +1,4 @@
+import { adminDate, adminDateTime } from "@/lib/billing/adminDisplay";
 // app/admin/billing/health/page.tsx
 
 import type { ReactNode } from "react";
@@ -12,7 +13,7 @@ export const revalidate = 0;
 function fmtDate(d?: Date | null) {
   if (!d) return "—";
   try {
-    return d.toLocaleDateString();
+    return adminDate(d);
   } catch {
     return String(d);
   }
@@ -21,7 +22,7 @@ function fmtDate(d?: Date | null) {
 function fmtDateTime(d?: Date | null) {
   if (!d) return "—";
   try {
-    return d.toLocaleString();
+    return adminDateTime(d);
   } catch {
     return String(d);
   }

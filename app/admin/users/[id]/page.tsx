@@ -1,3 +1,4 @@
+import { adminDateTime } from "@/lib/billing/adminDisplay";
 // app/admin/users/[id]/page.tsx
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -9,7 +10,7 @@ export const revalidate = 0;
 
 function fmt(d: Date) {
   try {
-    return d.toLocaleString();
+    return adminDateTime(d);
   } catch {
     return String(d);
   }
