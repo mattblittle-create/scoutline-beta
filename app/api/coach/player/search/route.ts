@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 import { PROXIMITY_MILES, collegeLocation, playerLocation, straightLineMiles } from "@/lib/recruitingProximity";
 import { createPlayerRecruitingAlert, playerFirstName, searchAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/player/search/route.ts
@@ -270,6 +271,7 @@ export async function GET(req: Request) {
   const preTake = needsPaging ? Math.min(500, Math.max(100, take)) : take;
 
   const whereProfile: any = {
+    ...recruitingProfileVisibilityWhere(coachUser),
     profileState: { in: ["PLAYER_OWNED_ACTIVE", "TEAM_OWNED_ACTIVE", "TEAM_REMOVAL_PENDING_TRANSFER"] }
   };
 

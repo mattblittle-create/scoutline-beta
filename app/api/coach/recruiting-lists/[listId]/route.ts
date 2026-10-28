@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 // app/api/coach/recruiting-lists/[listId]/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -46,7 +47,7 @@ export async function GET(_req: Request, ctx: { params: { listId: string } }) {
     if (!gate.ok) return NextResponse.json<Err>({ ok: false, error: gate.error }, { status: gate.status });
 
 const members = await prisma.recruitingListMember.findMany({
-  where: { listId },
+  where: { listId, playerProfile: recruitingProfileVisibilityWhere(user!) },
   orderBy: { createdAt: "desc" },
   include: {
     playerProfile: {

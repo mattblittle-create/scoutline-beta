@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 // app/api/coach/recruiting-lists/route.ts
 
 import { NextResponse } from "next/server";
@@ -38,10 +39,10 @@ export async function GET(req: Request) {
     where: { collegeId: gate.collegeId },
     orderBy: { updatedAt: "desc" },
     include: {
-      _count: { select: { members: true } },
+      _count: { select: { members: { where: { playerProfile: recruitingProfileVisibilityWhere(user) } } } },
       members: playerProfileId
         ? {
-            where: { playerProfileId },
+            where: { playerProfileId, playerProfile: recruitingProfileVisibilityWhere(user) },
             select: {
               playerProfileId: true,
               createdAt: true,

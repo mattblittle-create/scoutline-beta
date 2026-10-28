@@ -1373,8 +1373,8 @@ const phoneAllowed = !!phoneHref && !phoneIsPrivate;
     </div>
   </div>             
 
-  <div style={{ marginTop: 12, ...tableWrap, maxHeight: 900, overflowY: "auto" }}>
-    <table style={table}>
+  <div role="region" aria-label="Search results table" tabIndex={0} style={{ marginTop: 12, ...tableWrap, maxHeight: "min(68vh, 900px)", overflow: "auto", position: "relative" }}>
+    <table style={{ ...table, borderCollapse: "separate", borderSpacing: 0 }}>
       <thead>
         <tr>
           <th style={thClick} onDoubleClick={() => onHeaderDoubleClick("name")}>Player</th>
@@ -1920,8 +1920,8 @@ const contactDisabled: CSSProperties = {
   fontSize: 12,
 };
 
-const thClick: CSSProperties = { ...th, cursor: "pointer" };
-const thRightClick: CSSProperties = { ...th, textAlign: "right" };
+const thClick: CSSProperties = { ...th, position: "sticky", top: 0, zIndex: 2, boxShadow: "0 1px 0 #e5e7eb", cursor: "pointer" };
+const thRightClick: CSSProperties = { ...thClick, textAlign: "right" };
 const thRight: CSSProperties = { ...th, textAlign: "right" };
 
 const td: CSSProperties = { padding: "10px 12px", borderTop: "1px solid #eef2f7", color: "#0f172a" };

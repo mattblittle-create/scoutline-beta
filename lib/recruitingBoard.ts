@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 import { createPlayerRecruitingAlert, listAlertMessage, playerFirstName } from "@/lib/playerRecruitingAlerts";
 // lib/recruitingBoard.ts
 
@@ -95,8 +96,8 @@ export async function addToRecruitingBoard(
   }
 
   // 2) Load the player profile
-  const profile = await db.playerProfile.findUnique({
-    where: { id: playerProfileId },
+  const profile = await db.playerProfile.findFirst({
+    where: { id: playerProfileId, AND: [recruitingProfileVisibilityWhere(actingUser)] },
     include: { user: true },
   });
 

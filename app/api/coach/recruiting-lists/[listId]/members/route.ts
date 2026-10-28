@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 import { createPlayerRecruitingAlert, playerFirstName, listAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/recruiting-lists/[listId]/members/route.ts
 import { NextResponse } from "next/server";
@@ -129,6 +130,11 @@ const actorUserId = user.id;
   if (!playerProfileId) {
     return NextResponse.json<Err>({ ok: false, error: "playerProfileId is required." }, { status: 400 });
   }
+
+  const eligibleProfile = await prisma.playerProfile.findFirst({
+    where: { id: playerProfileId, AND: [recruitingProfileVisibilityWhere(user)] }, select: { id: true },
+  });
+  if (!eligibleProfile) return NextResponse.json<Err>({ ok: false, error: "Player profile not found." }, { status: 404 });
 
   try {
     const created = await prisma.recruitingListMember.create({

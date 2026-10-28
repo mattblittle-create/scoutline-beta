@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 // app/coach/player/[profileId]/route.ts
 
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
@@ -68,8 +69,8 @@ export async function GET(
   }
 
   // 2) Load PlayerProfile with linked User + Player
-  const profile = await prisma.playerProfile.findUnique({
-    where: { id: profileId },
+  const profile = await prisma.playerProfile.findFirst({
+    where: { id: profileId, AND: [recruitingProfileVisibilityWhere(coachUser)] },
     include: {
       user: {
         include: {

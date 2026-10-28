@@ -1,3 +1,4 @@
+import { recruitingProfileVisibilityWhere } from "@/lib/recruitingProfileVisibility";
 // app/api/coach/dashboard/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -168,7 +169,7 @@ const teamPlayers = playerMemberships.map((m) => {
     let recruitingBoard: CoachDashboardResponse["data"]["recruitingBoard"] = [];
     if (canUseRecruitingBoard && coachUser.collegeId) {
       const entries = await prisma.recruitingBoardEntry.findMany({
-        where: { collegeId: coachUser.collegeId },
+        where: { collegeId: coachUser.collegeId, playerProfile: recruitingProfileVisibilityWhere(coachUser) },
         include: {
           playerProfile: {
             include: {
