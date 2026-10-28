@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies, headers } from "next/headers";
 
 export async function GET() {
+  if (process.env.NODE_ENV === "production") return NextResponse.json({ error: "Not found" }, { status: 404 });
   const all = cookies().getAll().map(c => ({
     name: c.name,
     // don't leak values fully; show first 10 chars

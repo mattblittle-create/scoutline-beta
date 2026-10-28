@@ -1,3 +1,5 @@
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
+import { notifyPlayerProfileView } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/player/[profileId]/route.ts
 
 import { NextResponse } from "next/server";
@@ -10,6 +12,12 @@ type RouteContext = {
 };
 
 export async function GET(_req: Request, ctx: RouteContext) {
+  const coach = await getCurrentUser();
+  if (!coach) return NextResponse.json({ ok: false, error: "Unauthorized" }, { status: 401 });
+  const type = coach.coachProfile?.coachAccountType;
+  if (!(type === "COLLEGE_COACH" && coach.collegeId) && !(type === "RECRUITING_SERVICE" && coach.coachProfile?.coachBillingStatus === "ACTIVE")) {
+    return NextResponse.json({ ok: false, error: "Coach access required" }, { status: 403 });
+  }
   const { profileId } = ctx.params;
 
   if (!profileId) {
@@ -19,8 +27,6 @@ export async function GET(_req: Request, ctx: RouteContext) {
     );
   }
 
-  // TODO: plug in real auth; for now we only gate by existence of profileId
-  // e.g. const user = await getCurrentUser(req); if (!user) return 401;
 
   const profile = await prisma.playerProfile.findUnique({
     where: { id: profileId },
@@ -39,6 +45,8 @@ export async function GET(_req: Request, ctx: RouteContext) {
       { status: 404 }
     );
   }
+
+  await notifyPlayerProfileView(profile.id, coach);
 
   const u = profile.user;
   const player = u?.Player ?? null;

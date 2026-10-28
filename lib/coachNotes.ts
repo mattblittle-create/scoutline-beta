@@ -98,7 +98,7 @@ export async function addCoachNote(
     }
 
     finalTeamId = teamId;
-  } else if (actingUser.collegeId) {
+  } else if (actingUser.role === "COACH" && actingUser.collegeId) {
     // College note
     finalCollegeId = actingUser.collegeId;
   } else {
@@ -151,7 +151,7 @@ export async function listCoachNotesForProfile(
     .filter((m) => isActiveMembership(m))
     .map((m) => m.teamId);
 
-  const collegeId = actingUser.collegeId ?? null;
+  const collegeId = actingUser.role === "COACH" ? actingUser.collegeId ?? null : null;
 
   // If they have neither team nor college, they get nothing (but no error)
   if (staffTeamIds.length === 0 && !collegeId) {

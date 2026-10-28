@@ -1,3 +1,5 @@
+// app/components/NotificationBell.tsx
+
 "use client";
 
 import React, { useEffect, useState, useCallback, useRef } from "react";
@@ -269,6 +271,9 @@ export default function NotificationBell() {
 
                     <div className="flex-1">
                       <div className="text-slate-800">{n.message}</div>
+                      {typeof n.data?.actionPath === "string" && n.data.actionPath.startsWith("/") && !n.data.actionPath.startsWith("//") && (
+                        <a href={n.data.actionPath} className="mt-1 inline-block text-sky-700 underline" onClick={() => void markOneRead(n.id)}>{n.type === "COACH_PROGRAM_SAVED" ? "View player profile" : "Go to account"}</a>
+                      )}
                       <div className="mt-1 text-[10px] text-slate-400">
                         {formatRelativeTime(n.createdAt)}
                       </div>

@@ -1,3 +1,4 @@
+import { createPlayerRecruitingAlert, playerFirstName, listAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/recruiting-lists/[listId]/members/route.ts
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -22,12 +23,100 @@ function requireCollegeCoach(user: any) {
   return { ok: true as const, collegeId: user.collegeId as string };
 }
 
-export async function POST(req: Request, ctx: { params: { listId: string } }) {
-  const user = await getCurrentUser();
-  const gate = requireCollegeCoach(user);
-  if (!gate.ok) return NextResponse.json<Err>({ ok: false, error: gate.error }, { status: gate.status });
+async function notifyStaffOfRecruitingListActivity(params: {
+  collegeId: string;
+  actorUserId: string;
+  listId: string;
+  listName: string;
+  playerProfileId: string;
+}) {
+  const actor = await prisma.user.findUnique({
+    where: { id: params.actorUserId },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
 
-  const listId = ctx.params.listId;
+  const playerProfile = await prisma.playerProfile.findUnique({
+    where: { id: params.playerProfileId },
+    select: {
+      id: true,
+      email: true,
+      data: true,
+    },
+  });
+
+  const data = (playerProfile?.data || {}) as any;
+  const normalized = data?.normalized || data;
+
+  const actorName = actor?.name || actor?.email || "A staff member";
+  const playerName =
+    [normalized?.firstName, normalized?.lastName].filter(Boolean).join(" ") ||
+    normalized?.name ||
+    playerProfile?.email ||
+    "a player";
+
+  const staff = await prisma.user.findMany({
+    where: {
+      collegeId: params.collegeId,
+      id: { not: params.actorUserId },
+      coachProfile: {
+        isNot: null,
+      },
+    },
+    select: {
+      id: true,
+      notificationPreference: {
+        select: {
+          instantStaffActivity: true,
+        },
+      },
+    },
+  });
+
+  const staffIds = staff
+    .map((member) => member.id);
+
+  if (!staffIds.length) return;
+
+  await prisma.notification.createMany({
+    data: staffIds.map((userId) => ({
+      userId,
+      type: "COACH_PLAYER_LIST_ACTIVITY",
+      message: `${actorName} added ${playerName} to ${params.listName}.`,
+      data: {
+        collegeId: params.collegeId,
+        actorUserId: params.actorUserId,
+        listId: params.listId,
+        listName: params.listName,
+        playerProfileId: params.playerProfileId,
+        event: "PLAYER_ADDED_TO_RECRUITING_LIST",
+      },
+    })),
+  });
+}
+
+export async function POST(req: Request, ctx: { params: { listId: string } }) {
+const user = await getCurrentUser();
+if (!user?.id) {
+  return NextResponse.json<Err>(
+    { ok: false, error: "Unauthorized" },
+    { status: 401 }
+  );
+}
+
+const gate = requireCollegeCoach(user);
+if (!gate.ok) {
+  return NextResponse.json<Err>(
+    { ok: false, error: gate.error },
+    { status: gate.status }
+  );
+}
+
+const listId = ctx.params.listId;
+const actorUserId = user.id;
 
   const list = await prisma.recruitingList.findUnique({ where: { id: listId } });
   if (!list) return NextResponse.json<Err>({ ok: false, error: "List not found." }, { status: 404 });
@@ -49,6 +138,24 @@ export async function POST(req: Request, ctx: { params: { listId: string } }) {
         label: label || null,
       },
     });
+
+    const profile = await prisma.playerProfile.findUnique({ where: { id: playerProfileId }, include: { user: true } });
+    if (profile?.userId && profile.userId !== user.id) {
+      const college = await prisma.college.findUnique({ where: { id: gate.collegeId }, select: { name: true } });
+      if (college) await createPlayerRecruitingAlert({
+        userId: profile.userId, playerProfileId, collegeId: gate.collegeId,
+        type: "PLAYER_ADDED_TO_RECRUITING_LIST", event: "LIST_ADD",
+        message: listAlertMessage(playerFirstName(profile.user, profile.data), user.name, user.coachProfile?.staffTitle || "Coach", college.name),
+      });
+    }
+
+    await notifyStaffOfRecruitingListActivity({
+  collegeId: gate.collegeId,
+  actorUserId,
+  listId,
+  listName: list.name,
+  playerProfileId,
+});
 
     return NextResponse.json({
       ok: true,

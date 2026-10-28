@@ -11,7 +11,7 @@ function safeStr(v: any) {
 }
 
 export async function POST(req: Request) {
-  await requireAdmin({ redirectTo: "/staff" });
+  await requireAdmin("/staff");
 
   const body = await req.json().catch(() => ({}));
   const targetType = safeStr(body.targetType);

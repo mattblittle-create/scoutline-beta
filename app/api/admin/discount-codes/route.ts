@@ -50,7 +50,7 @@ function safePlanArray(plansAllowed: any): string[] {
 }
 
 export async function GET() {
-  await requireAdmin({ redirectTo: "/staff" });
+  await requireAdmin("/staff");
 
   const codes = await prisma.discountCode.findMany({
     orderBy: { createdAt: "desc" },
@@ -61,7 +61,7 @@ export async function GET() {
 }
 
 export async function POST(req: Request) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
 
   try {
     const body = await req.json().catch(() => ({} as any));

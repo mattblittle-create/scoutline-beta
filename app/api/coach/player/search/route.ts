@@ -1,3 +1,5 @@
+import { PROXIMITY_MILES, collegeLocation, playerLocation, straightLineMiles } from "@/lib/recruitingProximity";
+import { createPlayerRecruitingAlert, playerFirstName, searchAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/player/search/route.ts
 
 import { NextResponse } from "next/server";
@@ -36,6 +38,13 @@ function toNum(v: any): number | null {
   if (!s) return null; // ✅ empty string should not become 0
   const n = Number(s);
   return Number.isFinite(n) ? n : null;
+}
+function firstString(...values: any[]): string | null {
+  for (const v of values) {
+    const s = String(v ?? "").trim();
+    if (s) return s;
+  }
+  return null;
 }
 function toBool(v: any): boolean | null {
   const s = String(v ?? "").trim().toLowerCase();
@@ -220,6 +229,17 @@ export async function GET(req: Request) {
 
   const gpaMin = toNum(searchParams.get("gpaMin"));
 
+  const radiusRaw = toStr(searchParams.get("radiusMiles"));
+  const radiusMiles = radiusRaw && radiusRaw !== "any" ? Number(radiusRaw) : null;
+  let origin: ReturnType<typeof collegeLocation> = null;
+  if (radiusMiles !== null) {
+    if (!(PROXIMITY_MILES as readonly number[]).includes(radiusMiles)) return NextResponse.json<ErrorResponse>({ ok: false, error: "Choose a supported proximity distance." }, { status: 400 });
+    if (!coachCollegeId || accountType !== "COLLEGE_COACH") return NextResponse.json<ErrorResponse>({ ok: false, error: "Proximity to College requires a college coach account linked to a program." }, { status: 403 });
+    const college = await prisma.college.findUnique({ where: { id: coachCollegeId }, select: { zipCode: true, latitude: true, longitude: true, name: true, state: true, city: true, websiteUrl: true } });
+    origin = collegeLocation(college);
+    if (!origin) return NextResponse.json<ErrorResponse>({ ok: false, error: "Your college’s location is unavailable. Select Any to search without a distance limit." }, { status: 422 });
+  }
+
   // Metric filters
   const metricRanges = readMetricRanges(searchParams);
   const hasMetricFilters = Object.keys(metricRanges).length > 0;
@@ -240,13 +260,14 @@ export async function GET(req: Request) {
     !!hsName ||
     !!travelTeam ||
     gpaMin != null ||
-    hasMetricFilters;
+    hasMetricFilters || radiusMiles !== null;
 
   const defaultTake = hasAnyCriteria ? 25 : 5000;
   const take = Math.min(5000, Math.max(1, Number.isFinite(takeRaw) && takeRaw > 0 ? takeRaw : defaultTake));
 
   // If we have metric filters, fetch a bigger candidate set and filter in-memory
-  const preTake = hasMetricFilters ? Math.min(5000, Math.max(200, take * 10)) : take;
+  const needsPaging = hasMetricFilters || !!travelTeam || radiusMiles !== null;
+  const preTake = needsPaging ? Math.min(500, Math.max(100, take)) : take;
 
   const whereProfile: any = {
     profileState: { in: ["PLAYER_OWNED_ACTIVE", "TEAM_OWNED_ACTIVE", "TEAM_REMOVAL_PENDING_TRANSFER"] }
@@ -269,7 +290,8 @@ export async function GET(req: Request) {
   if (state) playerWhere.state = state;
   if (hometown) playerWhere.hometown = { contains: hometown, mode: "insensitive" };
   if (hsName) playerWhere.hsName = { contains: hsName, mode: "insensitive" };
-  if (travelTeam) playerWhere.travelTeam = { contains: travelTeam, mode: "insensitive" };
+  // Travel team can live in Player.travelTeam OR PlayerProfile.data depending on profile version.
+  // We filter it after fetching so both legacy/current profile shapes work.
 
   // ✅ GPA MIN: gpa >= gpaMin
   if (gpaMin != null) {
@@ -335,7 +357,7 @@ export async function GET(req: Request) {
     });
   }
 
-  const rows = await prisma.playerProfile.findMany({
+  const searchQuery = {
     where: {
       ...whereProfile,
       ...(q
@@ -355,8 +377,7 @@ export async function GET(req: Request) {
           }
         : {}),
     },
-    orderBy: { updatedAt: "desc" },
-    take: preTake,
+    orderBy: [{ updatedAt: "desc" as const }, { id: "desc" as const }],
     include: {
       user: {
         select: {
@@ -376,6 +397,7 @@ export async function GET(req: Request) {
               hsName: true,
               travelTeam: true,
               hometown: true,
+              hometownZip: true,
               state: true,
               gpa: true,
               isCommitted: true,
@@ -385,12 +407,14 @@ export async function GET(req: Request) {
         },
       },
     },
-  });
+  } satisfies Parameters<typeof prisma.playerProfile.findMany>[0];
+  let rows = await prisma.playerProfile.findMany({ ...searchQuery, take: preTake });
 
   // ✅ Needed for getLatestMetricValue()
   const now = new Date();
 
-  const filtered = rows
+  const rowsType = rows;
+  const filterRows = (rows: typeof rowsType) => rows
     .map((p) => {
       const dataObj: any = (p as any).data || {};
       const metricsObj: any = dataObj?.metrics || {};
@@ -400,9 +424,42 @@ export async function GET(req: Request) {
         latest[k] = getLatestMetricValue(metricsObj, k, now);
       }
 
-      return { p, latest };
+      const profileData: any = (p as any).data || {};
+      const normalized: any = profileData?.normalized || {};
+      const core: any = normalized?.core || {};
+      const athletics: any = normalized?.athletics || {};
+      const player: any = normalized?.player || {};
+
+      const resolvedTravelTeam = firstString(
+        p.user?.Player?.travelTeam,
+        profileData?.travelTeam,
+        profileData?.travelTeamName,
+        profileData?.teamName,
+        normalized?.travelTeam,
+        normalized?.travelTeamName,
+        normalized?.teamName,
+        core?.travelTeam,
+        core?.travelTeamName,
+        core?.teamName,
+        athletics?.travelTeam,
+        athletics?.travelTeamName,
+        athletics?.teamName,
+        player?.travelTeam,
+        player?.travelTeamName,
+        player?.teamName
+      );
+
+      const location = origin ? playerLocation(p) : null;
+      const distanceMiles = origin && location ? straightLineMiles(origin, location) : null;
+      return { p, latest, resolvedTravelTeam, distanceMiles };
     })
-    .filter(({ latest }) => {
+    .filter(({ latest, resolvedTravelTeam, distanceMiles }) => {
+      if (radiusMiles !== null && (distanceMiles === null || distanceMiles > radiusMiles)) return false;
+      if (travelTeam) {
+        const haystack = String(resolvedTravelTeam || "").toLowerCase();
+        if (!haystack.includes(travelTeam.toLowerCase())) return false;
+      }
+
       if (!hasMetricFilters) return true;
 
       // ✅ MIN filters behave like GPA min: keep rows where actual >= min
@@ -416,6 +473,13 @@ export async function GET(req: Request) {
       return true;
     })
     .slice(0, take);
+
+  let filtered = filterRows(rows);
+  while (needsPaging && rows.length === preTake && filtered.length < take) {
+    const cursor = rows[rows.length - 1].id;
+    rows = await prisma.playerProfile.findMany({ ...searchQuery, take: preTake, cursor: { id: cursor }, skip: 1 });
+    filtered.push(...filterRows(rows).slice(0, take - filtered.length));
+  }
 
   // ✅ Ratings: fetch coach’s ratings for these players (scoped to college + coach)
   const filteredProfileIds = filtered.map(({ p }) => p.id);
@@ -461,42 +525,117 @@ export async function GET(req: Request) {
     }
   }
 
-  const results = filtered.map(({ p, latest }) => ({
+const results = filtered.map(({ p, latest, resolvedTravelTeam, distanceMiles }) => {
+  const dataObj: any = (p as any).data || {};
+  const normalized: any = dataObj?.normalized || dataObj || {};
+  const core: any = normalized?.core || {};
+  const athletics: any = normalized?.athletics || {};
+  const player: any = normalized?.player || {};
+
+  const firstName = firstString(
+    normalized.firstName,
+    core.firstName,
+    player.firstName
+  );
+
+  const lastName = firstString(
+   normalized.lastName,
+   core.lastName,
+    player.lastName
+  );
+
+  const displayName =
+    [firstName, lastName].filter(Boolean).join(" ").trim() ||
+    p.user?.name ||
+    p.email?.split("@")[0] ||
+    "Player";
+
+  return {
     playerProfileId: p.id,
+    ...(radiusMiles !== null ? { distanceMiles: distanceMiles === null ? null : Math.round(distanceMiles) } : {}),
     lists: listsByProfileId.get(p.id) ?? [],
 
-    // ✅ NEW: coach/program-scoped rating (0..5). Default 0 when not rated.
     rating: ratingsByProfileId.get(p.id) ?? 0,
 
     profileEmail: p.email,
     profileState: String((p as any).profileState),
 
     userId: p.user?.id ?? null,
-    name: p.user?.name ?? null,
+    name: displayName,
     email: p.user?.email ?? p.email,
     slug: p.user?.slug ?? null,
     photoUrl: p.user?.photoUrl ?? null,
 
-    gradYear: p.user?.Player?.gradYear ?? null,
-    primaryPos: p.user?.Player?.primaryPos ?? null,
-    secondaryPos: p.user?.Player?.secondaryPos ?? null,
-    bats: p.user?.Player?.bats ?? null,
-    throws: p.user?.Player?.throws ?? null,
+    gradYear:
+      toNum(normalized.gradYear) ??
+      toNum(athletics.gradYear) ??
+      toNum(player.gradYear) ??
+      p.user?.Player?.gradYear ??
+      null,
 
-    isCommitted: p.user?.Player?.isCommitted ?? false,
-    committedProgram: p.user?.Player?.committedProgram ?? null,
+    primaryPos:
+      firstString(normalized.primaryPos, athletics.primaryPos, player.primaryPos, p.user?.Player?.primaryPos),
 
-    state: p.user?.Player?.state ?? null,
-    hometown: p.user?.Player?.hometown ?? null,
-    hsName: p.user?.Player?.hsName ?? null,
-    travelTeam: p.user?.Player?.travelTeam ?? null,
+    secondaryPos:
+      firstString(normalized.secondaryPos, athletics.secondaryPos, player.secondaryPos, p.user?.Player?.secondaryPos),
 
-    gpa: p.user?.Player?.gpa ?? null,
+    pitcherHand:
+      firstString(normalized.pitcherHand, athletics.pitcherHand, player.pitcherHand, p.user?.Player?.pitcherHand),
+
+    bats:
+      firstString(normalized.bats, athletics.bats, player.bats, p.user?.Player?.bats),
+
+    throws:
+      firstString(normalized.throws, athletics.throws, player.throws, p.user?.Player?.throws),
+
+    isCommitted:
+      normalized.isCommitted ??
+      athletics.isCommitted ??
+      player.isCommitted ??
+      p.user?.Player?.isCommitted ??
+      false,
+
+    committedProgram:
+      firstString(normalized.committedProgram, athletics.committedProgram, player.committedProgram, p.user?.Player?.committedProgram),
+
+    state:
+      firstString(normalized.state, core.state, player.state, p.user?.Player?.state),
+
+    hometown:
+      firstString(normalized.hometown, core.hometown, player.hometown, p.user?.Player?.hometown),
+
+    hsName:
+      firstString(normalized.hsName, athletics.hsName, player.hsName, p.user?.Player?.hsName),
+
+    travelTeam: resolvedTravelTeam,
+
+    gpa:
+      toNum(normalized.gpa) ??
+      toNum(core.gpa) ??
+      toNum(player.gpa) ??
+      p.user?.Player?.gpa ??
+      null,
 
     metricsLatest: latest,
 
     updatedAt: p.updatedAt.toISOString(),
-  }));
+  };
+});
 
-  return NextResponse.json({ ok: true, results });
+// Only deliberate name searches or graduation-year AND position searches trigger alerts.
+// Only actual returned profiles are notified; browsing and unrelated cohorts are silent.
+if (accountType === "COLLEGE_COACH" && coachCollegeId && (q.length >= 2 || (gradYear != null && !!pos))) {
+  const notifiedUsers = new Set<string>();
+  for (const { p } of filtered) {
+    if (!p.user?.id || p.user.id === coachUser.id || notifiedUsers.has(p.user.id)) continue;
+    notifiedUsers.add(p.user.id);
+    const cohort = gradYear != null && !!pos;
+    await createPlayerRecruitingAlert({
+      userId: p.user.id, playerProfileId: p.id, type: "PLAYER_RECRUITING_SEARCH_MATCH",
+      event: cohort ? "MATCHING_SEARCH" : "SEARCH_RESULT",
+      message: searchAlertMessage(playerFirstName(p.user, p.data), cohort),
+    });
+  }
+}
+return NextResponse.json({ ok: true, results });
 }

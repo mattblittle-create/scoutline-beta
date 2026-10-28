@@ -1,13 +1,15 @@
+// app/onboarding/[plan]/payment/page.tsx
+
 "use client";
 
 import * as React from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import { PaymentMethod } from "@/lib/payments/types";
 
 type PageProps = { params: { plan: string } };
 
 type Billing = "monthly" | "annual";
-type PaymentMethod = "card" | "ach";
 
 function normalizePlanSlug(raw: string): string {
   const p = String(raw || "").trim().toLowerCase().replace(/\s+/g, "-");
@@ -72,7 +74,9 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
     billingParam === "annual" && planSupportsAnnual(plan) ? "annual" : "monthly";
 
   const [billingTerm, setBillingTerm] = React.useState<Billing>(initialBilling);
-  const [paymentMethod, setPaymentMethod] = React.useState<PaymentMethod>("card");
+  const [paymentMethod, setPaymentMethod] = React.useState<PaymentMethod>(
+  PaymentMethod.CARD
+)
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
@@ -150,7 +154,8 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
   }
 
   const disableAnnual = !planSupportsAnnual(plan);
-  const showFeeNote = paymentMethod === "card";
+  const showFeeNote =
+  paymentMethod === PaymentMethod.CARD;
 
   const planLabel = formatPlanLabel(plan);
   const planPrice = DISPLAY_PRICING[plan] || {};
@@ -216,25 +221,29 @@ export default function OnboardingPaymentPage({ params }: PageProps) {
             <label className="pill">
               <input
                 type="radio"
-                checked={paymentMethod === "card"}
-                onChange={() => setPaymentMethod("card")}
+                checked={
+                  paymentMethod === PaymentMethod.CARD
+                }
+                onChange={() => setPaymentMethod(PaymentMethod.CARD)}
               />
-              <span>Credit / Debit</span>
+              <span>Credit card — 3% processing fee</span>
             </label>
             <label className="pill">
               <input
                 type="radio"
-                checked={paymentMethod === "ach"}
-                onChange={() => setPaymentMethod("ach")}
+                checked={
+                  paymentMethod === PaymentMethod.DEBIT
+                }
+                onChange={() => setPaymentMethod(PaymentMethod.DEBIT)}
               />
-              <span>eCheck / ACH</span>
+              <span>Debit card — no processing fee</span>
             </label>
           </div>
 
           {showFeeNote && (
             <div className="note">
-              Credit/Debit payments will include an additional <strong>3%</strong> processing fee.
-              eCheck/ACH has <strong>no added fee</strong>.
+              Credit card payments include a <strong>3%</strong> processing fee.
+              Debit cards have <strong>no processing fee</strong>.
             </div>
           )}
         </section>

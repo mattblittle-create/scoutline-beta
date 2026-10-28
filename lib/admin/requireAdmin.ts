@@ -1,21 +1,21 @@
 // lib/admin/requireAdmin.ts
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { getRealUser } from "@/lib/auth/getCurrentUser";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
-export async function requireAdmin(args?: { redirectTo?: string }) {
-  const redirectTo = args?.redirectTo ?? "/staff";
-
-  // ✅ MUST use REAL user (never impersonated), otherwise admin pages break
-  const user = await getRealUser();
+export async function requireAdmin(redirectTo = "/login?next=%2Fadmin") {
+  const user = await getCurrentUser();
   if (!user?.id) redirect(redirectTo);
 
-  const admin = await prisma.adminUser.findUnique({
-    where: { userId: user.id },
+  const admin = await prisma.adminUser.findFirst({
+    where: {
+      userId: user.id,
+      isActive: true,
+    },
     include: { roles: true },
   });
 
-  if (!admin?.isActive) redirect(redirectTo);
+  if (!admin) redirect(redirectTo);
 
-  return { ok: true as const, user, admin, roles: admin.roles.map((r) => r.role) };
+  return { ok: true as const, user, admin };
 }

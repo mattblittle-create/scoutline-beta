@@ -98,8 +98,7 @@ export default async function TeamBillingMethodPage({
             <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-700">
               <div className="font-semibold text-slate-900">Processing fee notice</div>
               <div className="mt-1">
-                A <span className="font-semibold">3% charge</span> applies to all credit/debit card transactions. To
-                avoid this charge, use <span className="font-semibold">ACH / eCheck</span>.
+                Credit card payments include a 3% processing fee. Debit card payments have no processing fee.
               </div>
             </div>
 

@@ -71,8 +71,50 @@ async function ensureUserSlug(user: { id: string; slug: string | null; name: str
   return candidate;
 }
 
+async function safeList<T>(label: string, fn: () => Promise<T[]>): Promise<T[]> {
+  try {
+    return await fn();
+  } catch (e: any) {
+    console.warn(`[coach profile enrichment skipped] ${label}:`, e?.message || e);
+    return [];
+  }
+}
+
+async function safeOne<T>(label: string, fn: () => Promise<T | null>): Promise<T | null> {
+  try {
+    return await fn();
+  } catch (e: any) {
+    console.warn(`[coach profile enrichment skipped] ${label}:`, e?.message || e);
+    return null;
+  }
+}
+
+function getDelegate(name: string) {
+  return (prisma as any)?.[name] || null;
+}
+
+function toIso(value: any) {
+  if (!value) return null;
+  const d = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(d.getTime()) ? null : d.toISOString();
+}
+
 function digitsOnly(v: any) {
   return String(v ?? "").replace(/\D+/g, "");
+}
+
+function isHeadCoachTitle(value: unknown) {
+  const title = String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, " ");
+
+  return [
+    "head coach",
+    "co-head coach",
+    "acting head coach",
+    "interim head coach",
+  ].includes(title);
 }
 
 export async function GET() {
@@ -111,9 +153,29 @@ export async function GET() {
             programXUrl: true,
             programInstagramUrl: true,
 
-            // audit
-            programProfileUpdatedAt: true,
-            programProfileUpdatedByUser: { select: { id: true, name: true, email: true } },
+// audit
+verificationStatus: true,
+lastVerifiedAt: true,
+programProfileUpdatedAt: true,
+programProfileUpdatedByUser: { select: { id: true, name: true, email: true } },
+
+            baseballProgram: {
+  include: {
+    rosterNeeds: {
+      orderBy: [{ gradYear: "asc" }, { position: "asc" }],
+    },
+    metricAverages: {
+      orderBy: [{ position: "asc" }, { metricKey: "asc" }],
+    },
+    coaches: {
+      orderBy: [{ isHeadCoach: "desc" }, { title: "asc" }, { name: "asc" }],
+    },
+  },
+},
+nilProfile: true,
+academicAreas: {
+  orderBy: { name: "asc" },
+},
           },
         },
         coachProfile: {
@@ -145,6 +207,50 @@ export async function GET() {
     });
 
     const targets = normalizeRecruitingTargets(user.coachProfile?.recruitingTargets);
+
+        const collegeId = user.collegeId ?? null;
+
+    const allCoachContacts = collegeId
+      ? await safeList("coachContacts", async () =>
+          prisma.user.findMany({
+            where: {
+              collegeId,
+              coachProfile: { isNot: null },
+            },
+            select: {
+              id: true,
+              name: true,
+              email: true,
+              workPhone: true,
+              workPhoneExt: true,
+              phonePrivate: true,
+              photoUrl: true,
+              coachProfile: {
+                select: {
+                  staffTitle: true,
+                  contactEmail: true,
+                  coachBio: true,
+                  coachXUrl: true,
+                  coachInstagramUrl: true,
+                  isProgramAdmin: true,
+                },
+              },
+            },
+            orderBy: [{ name: "asc" }],
+          })
+        )
+      : [];
+
+    const recruitingCoordinator =
+      allCoachContacts.find((c: any) => c.coachProfile?.staffTitle === "Recruiting Coordinator") ||
+      allCoachContacts.find((c: any) => c.coachProfile?.staffTitle === "Recruiting Staff") ||
+      null;
+
+    const baseballProgram = user.college?.baseballProgram ?? null;
+    const academicAreas = user.college?.academicAreas ?? [];
+    const nilProfile = user.college?.nilProfile ?? null;
+    const rosterNeeds = baseballProgram?.rosterNeeds ?? [];
+    const metricBenchmarks = baseballProgram?.metricAverages ?? [];
 
     return NextResponse.json({
       ok: true,
@@ -194,6 +300,82 @@ export async function GET() {
                 email: user.college.programProfileUpdatedByUser.email,
               }
             : null,
+          verifiedStatus: baseballProgram?.verificationStatus ?? user.college?.verificationStatus ?? "UNVERIFIED",
+          lastVerifiedAt: baseballProgram?.lastVerifiedAt
+            ? baseballProgram.lastVerifiedAt.toISOString()
+            : user.college?.lastVerifiedAt
+            ? user.college.lastVerifiedAt.toISOString()
+            : null,
+          lastVerifiedBy: user.college?.programProfileUpdatedByUser
+            ? {
+                id: user.college.programProfileUpdatedByUser.id,
+                name: user.college.programProfileUpdatedByUser.name ?? null,
+                email: user.college.programProfileUpdatedByUser.email,
+              }
+            : null,
+
+          recruitingCoordinator: recruitingCoordinator
+            ? {
+                id: recruitingCoordinator.id,
+                name: recruitingCoordinator.name ?? null,
+                email: recruitingCoordinator.email,
+                contactEmail: recruitingCoordinator.coachProfile?.contactEmail ?? null,
+                title: recruitingCoordinator.coachProfile?.staffTitle ?? null,
+                photoUrl: recruitingCoordinator.photoUrl ?? null,
+                bio: recruitingCoordinator.coachProfile?.coachBio ?? null,
+                coachXUrl: recruitingCoordinator.coachProfile?.coachXUrl ?? null,
+                coachInstagramUrl: recruitingCoordinator.coachProfile?.coachInstagramUrl ?? null,
+              }
+            : null,
+
+          coachContacts: allCoachContacts.map((c: any) => ({
+            id: c.id,
+            name: c.name ?? null,
+            email: c.email,
+            contactEmail: c.coachProfile?.contactEmail ?? null,
+            title: c.coachProfile?.staffTitle ?? null,
+            photoUrl: c.photoUrl ?? null,
+            bio: c.coachProfile?.coachBio ?? null,
+            coachXUrl: c.coachProfile?.coachXUrl ?? null,
+            coachInstagramUrl: c.coachProfile?.coachInstagramUrl ?? null,
+            isProgramAdmin: !!c.coachProfile?.isProgramAdmin,
+          })),
+
+          academicAreas: academicAreas.map((a: any) => ({
+            id: String(a.id ?? a.name ?? a.major ?? a.area ?? crypto.randomUUID()),
+            name: a.name ?? a.major ?? a.area ?? a.title ?? null,
+            category: a.category ?? a.areaType ?? null,
+            verified: !!(a.verified ?? a.isVerified ?? true),
+          })),
+
+nilProfile: nilProfile
+  ? {
+      strengthTier: nilProfile.baseballNilStrength ?? nilProfile.overallNilStrength ?? null,
+      collectiveName: null,
+      estimatedValue: null,
+      baseballAllocationPercent: null,
+      updatedAt: toIso(nilProfile.updatedAt),
+    }
+  : null,
+
+          rosterNeeds: rosterNeeds.map((r: any) => ({
+            id: String(r.id ?? `${r.gradYear}-${r.position}`),
+            gradYear: r.gradYear ?? r.classYear ?? null,
+            position: r.position ?? r.positionCode ?? null,
+            priority: r.priority ?? r.needLevel ?? null,
+            notes: r.notes ?? null,
+          })),
+
+metricBenchmarks: metricBenchmarks.map((m: any) => ({
+  id: String(m.id ?? `${m.position}-${m.metricKey}`),
+  positionGroup: m.position ?? null,
+  metricKey: m.metricKey ?? null,
+  label: m.metricLabel ?? m.metricKey ?? null,
+  value: m.averageValue ?? null,
+  unit: m.unit ?? null,
+  sourceLevel: "PROGRAM",
+  confidence: m.lastVerifiedAt ? "HIGH" : "MEDIUM",
+})),
         },
       },
     });
@@ -215,10 +397,29 @@ export async function PUT(req: Request) {
     const program = body?.program || {};
 
     const name = String(coach?.name || "").trim();
-    const staffTitle = String(coach?.role || "").trim(); // this is the preset title string
+    const staffTitle = String(
+      coach?.role || ""
+    )
+      .trim()
+      .replace(/\s+/g, " ")
+      .slice(0, 120);
 
     const workPhoneRaw = String(coach?.workPhone ?? "").trim();
     const workPhone = digitsOnly(workPhoneRaw).slice(0, 10);
+
+    if (
+      workPhone.length > 0 &&
+      workPhone.length !== 10
+    ) {
+      return NextResponse.json<Err>(
+        {
+          ok: false,
+          error:
+            "Coach phone must be 10 digits when provided.",
+        },
+        { status: 400 }
+      );
+    }
 
     const workPhoneExtRaw = String(coach?.workPhoneExt ?? "").trim();
     const workPhoneExt = digitsOnly(workPhoneExtRaw).slice(0, 6);
@@ -243,41 +444,66 @@ export async function PUT(req: Request) {
 
     if (!name) return NextResponse.json<Err>({ ok: false, error: "Coach name is required." }, { status: 400 });
     if (!staffTitle) return NextResponse.json<Err>({ ok: false, error: "Coach role is required." }, { status: 400 });
-    if (!workPhone) return NextResponse.json<Err>({ ok: false, error: "Coach phone is required." }, { status: 400 });
 
-    await prisma.user.update({
-      where: { id: sessionUser.id },
-      data: {
-        name,
-        workPhone,
-        workPhoneExt: workPhoneExt || null,
-        phonePrivate,
-        photoUrl: photoUrl || null,
-      },
-    });
+await prisma.$transaction(async (tx) => {
+  await tx.user.update({
+    where: {
+      id: sessionUser.id,
+    },
+    data: {
+      name,
+      workPhone: workPhone || null,
+      workPhoneExt: workPhoneExt || null,
+      phonePrivate,
+      photoUrl: photoUrl || null,
+    },
+  });
 
-    await prisma.coachProfile.upsert({
-      where: { userId: sessionUser.id },
-      create: {
-        userId: sessionUser.id,
-        staffTitle,
-        recruitingTargets,
-        coachBio: coachBio || null,
+  await tx.coachProfile.upsert({
+    where: {
+      userId: sessionUser.id,
+    },
+    create: {
+      userId: sessionUser.id,
+      staffTitle,
+      recruitingTargets,
+      coachBio: coachBio || null,
+      contactEmail: contactEmail || null,
+      coachXUrl: coachXUrl || null,
+      coachInstagramUrl:
+        coachInstagramUrl || null,
+    },
+    update: {
+      staffTitle,
+      recruitingTargets,
+      coachBio: coachBio || null,
+      contactEmail: contactEmail || null,
+      coachXUrl: coachXUrl || null,
+      coachInstagramUrl:
+        coachInstagramUrl || null,
+    },
+  });
 
-        contactEmail: contactEmail || null,
-        coachXUrl: coachXUrl || null,
-        coachInstagramUrl: coachInstagramUrl || null,
-      },
-      update: {
-        staffTitle,
-        recruitingTargets,
-        coachBio: coachBio || null,
-
-        contactEmail: contactEmail || null,
-        coachXUrl: coachXUrl || null,
-        coachInstagramUrl: coachInstagramUrl || null,
-      },
-    });
+  await tx.collegeBaseballCoach.updateMany({
+    where: {
+      claimedByUserId: sessionUser.id,
+    },
+    data: {
+      name,
+      title: staffTitle,
+      email:
+        contactEmail ||
+        sessionUser.email,
+      phone: workPhone || null,
+      isHeadCoach:
+        isHeadCoachTitle(staffTitle),
+      manuallyVerifiedAt: new Date(),
+      dataSource: "COACH_VERIFIED",
+      reviewStatus: "MANUAL_VERIFIED",
+      isActive: true,
+    },
+  });
+});
 
     const fresh = await prisma.user.findUnique({
       where: { id: sessionUser.id },

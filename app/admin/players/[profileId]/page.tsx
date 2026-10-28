@@ -1,3 +1,4 @@
+import { adminDateTime, safeHostedUrl } from "@/lib/billing/adminDisplay";
 // app/admin/players/[profileId]/page.tsx
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -18,7 +19,7 @@ function safeEmail(v: any) {
 
 function fmt(d: Date) {
   try {
-    return d.toLocaleString();
+    return adminDateTime(d);
   } catch {
     return String(d);
   }
@@ -121,6 +122,7 @@ export default async function AdminPlayerProfileDetailPage({
           periodEnd: true,
           amountCents: true,
           amountPaidCents: true,
+          cardFeeCents: true,
           externalId: true,
           hostedUrl: true,
           paidAt: true,
@@ -248,7 +250,7 @@ export default async function AdminPlayerProfileDetailPage({
           <div style={grid2}>
             <Field label="Provider" value={profile.playerBillingProfile.provider} />
             <Field label="Customer ID" value={profile.playerBillingProfile.providerCustomerId ?? "—"} />
-            <Field label="Payment Ref" value={profile.playerBillingProfile.providerPaymentRef ?? "—"} />
+            <Field label="Payment Ref" value={profile.playerBillingProfile.providerPaymentRef ? "Stored securely" : "—"} />
             <Field label="Payment Type" value={profile.playerBillingProfile.paymentType ?? "—"} />
             <Field label="Brand" value={profile.playerBillingProfile.brand ?? "—"} />
             <Field label="Last4" value={profile.playerBillingProfile.last4 ?? "—"} />
@@ -267,7 +269,7 @@ export default async function AdminPlayerProfileDetailPage({
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                {["Status", "Cadence", "Invoice Date", "Due", "Period", "Amount", "Paid", "External", "Hosted"].map((h) => (
+                {["Status", "Cadence", "Invoice Date", "Due", "Period", "Base", "Fee", "Total", "Paid", "External", "Hosted"].map((h) => (
                   <th key={h} style={th}>{h}</th>
                 ))}
               </tr>
@@ -283,11 +285,13 @@ export default async function AdminPlayerProfileDetailPage({
                     {fmt(inv.periodStart)} → {fmt(inv.periodEnd)}
                   </td>
                   <td style={td}>${(inv.amountCents / 100).toFixed(2)}</td>
+                  <td style={td}>${(inv.cardFeeCents / 100).toFixed(2)}</td>
+                  <td style={td}>${((inv.amountCents + inv.cardFeeCents) / 100).toFixed(2)}</td>
                   <td style={td}>${(inv.amountPaidCents / 100).toFixed(2)}</td>
                   <td style={td}>{inv.externalId ?? "—"}</td>
                   <td style={td}>
-                    {inv.hostedUrl ? (
-                      <a href={inv.hostedUrl} target="_blank" rel="noreferrer" style={a}>
+                    {safeHostedUrl(inv.hostedUrl) ? (
+                      <a href={safeHostedUrl(inv.hostedUrl)!} target="_blank" rel="noreferrer" style={a}>
                         Open
                       </a>
                     ) : (

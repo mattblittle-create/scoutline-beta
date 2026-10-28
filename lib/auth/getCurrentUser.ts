@@ -1,12 +1,17 @@
+import { SESSION_COOKIE, verifySessionToken, credentialVersion } from "@/lib/auth/session";
 // lib/auth/getCurrentUser.ts
 import { cookies, headers } from "next/headers";
 import { prisma } from "@/lib/prisma";
 
-const UID_COOKIE = "scoutline_uid";
+const UID_COOKIE = SESSION_COOKIE;
 const IMP_COOKIE = "scoutline_act_as_uid";
 
 function normalizeEmail(v: string) {
   return String(v || "").trim().toLowerCase();
+}
+
+function isDevAuthEnabled() {
+  return (process.env.DEV_AUTH_ENABLED || "").trim().toLowerCase() === "true";
 }
 
 function canImpersonate(roleList: string[]) {
@@ -18,21 +23,22 @@ function canImpersonate(roleList: string[]) {
  * Use this for admin gates (requireAdmin), logging, etc.
  */
 export async function getRealUser() {
-  // ✅ 1) Normal cookie auth (prod + dev)
+  // 1) Normal cookie auth (prod + dev)
   const uid = cookies().get(UID_COOKIE)?.value?.trim();
   if (uid) {
-    return prisma.user.findUnique({
-      where: { id: uid },
+    const session = await verifySessionToken(uid);
+    if (!session) return null;
+    const user = await prisma.user.findUnique({
+      where: { id: session.userId },
       include: { coachProfile: true, college: true },
     });
+    return user && session.version === credentialVersion(user.passwordHash) ? user : null;
   }
 
-  // ✅ 2) DEV-ONLY fallbacks (NO PROD)
-  if (process.env.NODE_ENV !== "production") {
+  // 2) Strict DEV-ONLY fallback
+  // This is disabled unless DEV_AUTH_ENABLED=true
+  if (process.env.NODE_ENV !== "production" && isDevAuthEnabled()) {
     const h = headers();
-
-    const devAuthEnabled = normalizeEmail(process.env.DEV_AUTH_ENABLED || "") === "true";
-    if (!devAuthEnabled) return null;
 
     const devHeader = normalizeEmail(h.get("x-dev-email") || "");
     const devCookie = normalizeEmail(cookies().get("scoutline_dev_email")?.value || "");

@@ -1,4 +1,4 @@
-// app/dashboard/team/page.tsx
+// app/dashboard/team/(home)/page.tsx
 import Link from "next/link";
 import type { CSSProperties } from "react";
 
@@ -70,6 +70,27 @@ export default function TeamDashboardPage() {
             </>
           }
         />
+
+        <Card
+  title="Support"
+  subtitle="Need help or have a question?"
+  body={
+    <>
+      <p style={p}>
+        Contact ScoutLine support for account, billing, invite, roster, or profile help.
+      </p>
+
+      <div style={{ marginTop: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
+        <a
+          href="mailto:matt.b.little@gmail.com?subject=ScoutLine%20Team%20Dashboard%20Support"
+          style={btnGhost}
+        >
+          Email Support
+        </a>
+      </div>
+    </>
+  }
+/>
       </section>
     </main>
   );
@@ -144,6 +165,17 @@ const p: CSSProperties = {
 };
 
 const btnGold: CSSProperties = {
+  display: "inline-block",
+  padding: "10px 14px",
+  borderRadius: 10,
+  border: "1px solid #caa042",
+  background: "#caa042",
+  color: "#0f182a",
+  fontWeight: 900,
+  textDecoration: "none",
+};
+
+const btnGhost: CSSProperties = {
   display: "inline-block",
   padding: "10px 14px",
   borderRadius: 10,

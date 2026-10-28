@@ -1,6 +1,6 @@
 // lib/notifications.ts
 
-import { PrismaClient, NotificationType, Notification } from "@prisma/client";
+import { PrismaClient, NotificationType, Notification, Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -27,7 +27,7 @@ export async function createNotification(
       userId,
       type,
       message,
-      data: data ?? null,
+      data: data ?? Prisma.JsonNull,
     },
   });
 }

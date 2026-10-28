@@ -1,3 +1,4 @@
+import { createPlayerRecruitingAlert, listAlertMessage, playerFirstName } from "@/lib/playerRecruitingAlerts";
 // lib/recruitingBoard.ts
 
 import {
@@ -135,24 +136,28 @@ export async function addToRecruitingBoard(
     throw err;
   }
 
-  // 4) Optionally notify the player
-  const playerUser = profile.user;
-  const playerEmail = playerUser?.email ?? null;
-  const playerName = playerUser?.name ?? null;
+// 4) Create in-app player notification for recruiting board add.
+// This is an internal ScoutLine activity signal and does not depend on the coach
+// choosing optional email notification.
+const playerUser = profile.user;
+const playerEmail = playerUser?.email ?? null;
+const playerName = playerUser?.name ?? null;
 
-  if (notifyPlayer && notifyPlayerFn && playerEmail) {
-    await notifyPlayerFn({
-      playerEmail,
-      playerName,
-      collegeName: college.name,
-    });
+if (playerUser?.id) {
+  const coach = await db.user.findUnique({ where: { id: actingUser.id }, select: { name: true, coachProfile: { select: { staffTitle: true } } } });
+  await createPlayerRecruitingAlert({
+    userId: playerUser.id, type: "PLAYER_ADDED_TO_RECRUITING_BOARD", playerProfileId: profile.id, collegeId: college.id, event: "BOARD_ADD",
+    message: listAlertMessage(playerFirstName(playerUser, profile.data), coach?.name || actingUser.name, coach?.coachProfile?.staffTitle || "Coach", college.name),
+  });
 
-    // Mark entry as notified
-    entry = await db.recruitingBoardEntry.update({
-      where: { id: entry.id },
-      data: { notifiedPlayer: true },
-    });
-  }
+  entry = await db.recruitingBoardEntry.update({
+    where: { id: entry.id },
+    data: { notifiedPlayer: true },
+  });
+}
+
+// 5) Optionally send external/player email if the coach toggled notification on.
+// Recruiting email delivery is queued with the bell alert above.
 
   return entry;
 }
