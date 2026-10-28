@@ -3,6 +3,7 @@
 
 import * as React from "react";
 import ContactActionRow from "@/app/components/public/ContactActionRow";
+import { RECRUITING_VIDEO_CATEGORIES, type RecruitingVideoCategory, isRetiredVideoCategory } from "@/lib/videoGuidance";
 
 /** ---------------- shared types ---------------- */
 export type MediaLink = {
@@ -314,7 +315,9 @@ export default function PublicMedia(props: Props) {
     ("h2Style" in props && props.h2Style) || ("h2Style" in (props as any) && (props as any).h2Style);
   const pillStyle =
     ("pillStyle" in props && props.pillStyle) || ("pillStyle" in (props as any) && (props as any).pillStyle);
-  const primaryUrl = ("primaryUrl" in props && props.primaryUrl) || null;
+  const requestedPrimaryUrl = ("primaryUrl" in props && props.primaryUrl) || null;
+  const retiredPrimary = uploadedVideos.some(v => isRetiredVideoCategory(v.category) && sameUrl(v.url, requestedPrimaryUrl));
+  const primaryUrl = retiredPrimary ? null : requestedPrimaryUrl;
   const showPrimaryHero =
     ("showPrimaryHero" in props ? (props as any).showPrimaryHero : undefined) ?? true;
   const hidePrimaryInGrid =
@@ -713,8 +716,8 @@ const responsiveVideoShell: React.CSSProperties = {
 
   const isPrimary = (url: string | undefined | null) => sameUrl(url, primaryUrl);
 
-  const uploadsAll = dedupeByUrl(normArray<any>(uploadedVideos));
-  const [activeUploadedCategory, setActiveUploadedCategory] = React.useState<"Hitting" | "Fielding" | "Pitching" | "Baserunning">("Hitting");
+  const uploadsAll = dedupeByUrl(normArray<any>(uploadedVideos).filter(v => !isRetiredVideoCategory(v?.category)));
+  const [activeUploadedCategory, setActiveUploadedCategory] = React.useState<RecruitingVideoCategory>("Hitting");
   const linksAll = dedupeByUrl(normArray<MediaLink>(externalVideos));
 
   const uploadsBase =
@@ -759,7 +762,7 @@ const responsiveVideoShell: React.CSSProperties = {
             </div>
 
             <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 10 }}>
-              {(["Hitting", "Fielding", "Pitching", "Baserunning"] as const).map((cat) => {
+              {RECRUITING_VIDEO_CATEGORIES.map((cat) => {
                 const active = activeUploadedCategory === cat;
                 return (
                   <button

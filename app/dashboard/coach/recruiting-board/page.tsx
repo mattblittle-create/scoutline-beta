@@ -152,6 +152,7 @@ const [targets, setTargets] = useState<RecruitingTarget[]>([]);
   const [pitcherHand, setPitcherHand] = useState("");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
+  const [radiusMiles, setRadiusMiles] = useState("");
   const [hsName, setHsName] = useState("");
   const [travelTeam, setTravelTeam] = useState("");
   const [gpaMin, setGpaMin] = useState("");
@@ -451,6 +452,7 @@ function hasAnySearchCriteria() {
     !!pitcherHand.trim() ||
     !!state.trim() ||
     !!city.trim() ||
+    !!radiusMiles ||
     !!hsName.trim() ||
     !!travelTeam.trim() ||
     !!gpaMin.trim() ||
@@ -592,6 +594,7 @@ const sortedMembers = useMemo(() => {
 
   setState("");
   setCity("");
+  setRadiusMiles("");
   setHsName("");
   setTravelTeam("");
 
@@ -630,6 +633,7 @@ const TAKE_IF_NO_FILTERS = process.env.NODE_ENV === "production" ? 500 : 5000;
       if (pitcherHand.trim()) params.set("pitcherHand", pitcherHand.trim().toUpperCase());
       if (state.trim()) params.set("state", state.trim().toUpperCase());
       if (city.trim()) params.set("city", city.trim());
+      if (radiusMiles) params.set("radiusMiles", radiusMiles);
       if (hsName.trim()) params.set("hsName", hsName.trim());
       if (travelTeam.trim()) params.set("travelTeam", travelTeam.trim());
 if (gpaMin.trim()) params.set("gpaMin", gpaMin.trim());
@@ -656,6 +660,7 @@ const hasAnyCriteria =
   !!pitcherHand.trim() ||
   !!state.trim() ||
   !!city.trim() ||
+    !!radiusMiles ||
   !!hsName.trim() ||
   !!travelTeam.trim() ||
   !!gpaMin.trim() ||
@@ -999,6 +1004,15 @@ return (
                 <input value={city} onChange={(e) => setCity(e.target.value)} style={inputWideSm} placeholder="City" />
               </Field>
 
+              <Field label="Proximity to College" onClear={() => setRadiusMiles("")}>
+                <select aria-label="Proximity to College" value={radiusMiles} onChange={e => setRadiusMiles(e.target.value)} style={{ ...selectSm, width: 180 }}>
+                  <option value="">Any</option>
+                  {[25, 50, 100, 200, 500].map(miles => <option key={miles} value={miles}>Within {miles} miles</option>)}
+                </select>
+              </Field>
+            </div>
+            {radiusMiles ? <p style={{ margin: "8px 0 0", fontSize: 12, color: "#64748b" }}>Approximate straight-line distance from your college. Players without a usable ZIP code are excluded.</p> : null}
+            <div style={{ ...formRow, marginTop: 10 }}>
               <Field label="GPA (min)" onClear={() => setGpaMin("")}>
                 <input value={gpaMin} onChange={(e) => setGpaMin(e.target.value)} style={inputXs} placeholder="3.0" />
               </Field>

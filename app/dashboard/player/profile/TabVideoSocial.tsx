@@ -3,6 +3,8 @@
 
 import React, { useEffect, useMemo, useRef, useState, useImperativeHandle } from "react";
 import { upload } from "@vercel/blob/client";
+import VideoUploadGuidanceDialog from "@/app/components/VideoUploadGuidanceDialog";
+import { RECRUITING_VIDEO_CATEGORIES, isRetiredVideoCategory } from "@/lib/videoGuidance";
 
 /** ---------- NEW: payload & handle types for atomic save ---------- */
 export type PlanTier = "Redshirt" | "Walk-On" | "All-American" | "Teams";
@@ -59,12 +61,7 @@ type UploadStatus = "queued" | "uploading" | "done" | "error";
 
 type VideoCategory = "Hitting" | "Fielding" | "Pitching" | "Baserunning";
 
-const VIDEO_CATEGORIES: VideoCategory[] = [
-  "Hitting",
-  "Fielding",
-  "Pitching",
-  "Baserunning",
-];
+const VIDEO_CATEGORIES = RECRUITING_VIDEO_CATEGORIES;
 
 type LocalVideo = {
   id: string;
@@ -842,6 +839,7 @@ useEffect(() => {
     const [msg, setMsg] = useState<string | null>(null);
     const [err, setErr] = useState<string | null>(null);
     const fileInputRef = useRef<HTMLInputElement | null>(null);
+    const [videoGuidanceOpen, setVideoGuidanceOpen] = useState(false);
     const [activeUploadCategory, setActiveUploadCategory] = useState<VideoCategory>("Hitting");
 
 function reportUploadError(message: string | null) {
@@ -1410,6 +1408,7 @@ return {
     // ----- Render -----
     return (
       <section style={{ maxWidth: 900, margin: "0 auto", padding: "8px 0 32px" }}>
+        {videoGuidanceOpen ? <VideoUploadGuidanceDialog onClose={() => setVideoGuidanceOpen(false)} onContinue={() => { setVideoGuidanceOpen(false); fileInputRef.current?.click(); }} /> : null}
         {/* ---------- Info header (matches Metrics/Stats) ---------- */}
         <div
           style={{
@@ -1510,7 +1509,7 @@ return {
                 />
                 <button
                   type="button"
-                  onClick={() => fileInputRef.current?.click()}
+                  onClick={() => setVideoGuidanceOpen(true)}
                   disabled={!PLAN.canUploadLocal || (!(PLAN.maxLocal === "unlimited") && state.localVideos.length >= PLAN.maxLocal)}
                   aria-disabled={!PLAN.canUploadLocal || (!(PLAN.maxLocal === "unlimited") && state.localVideos.length >= PLAN.maxLocal)}
                   style={{
@@ -1571,7 +1570,7 @@ Upload Videos
                   }}
                 >
                   {state.localVideos
-                    .filter((v) => !v.category || v.category === activeUploadCategory)
+                    .filter((v) => !v.category || isRetiredVideoCategory(v.category) || v.category === activeUploadCategory)
                     .map((v, idx) => {
                     const atTop = idx === 0;
                     const atBottom = idx === state.localVideos.length - 1;
@@ -1758,7 +1757,7 @@ style={{
 
                                                 <div style={{ marginTop: 8 }}>
                           <div style={{ fontSize: 12, fontWeight: 700, color: "#475569", marginBottom: 6 }}>
-                            Section: {v.category ?? "Not assigned"}
+                            Section: {isRetiredVideoCategory(v.category) ? "Choose a section" : v.category ?? "Not assigned"}
                           </div>
                           <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
                             {VIDEO_CATEGORIES.map((cat) => (

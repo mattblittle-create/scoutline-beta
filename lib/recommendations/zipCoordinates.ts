@@ -1,18 +1,12 @@
-// lib/recommendations/zipCoordinates.ts
-
-export type ZipCoordinate = {
-  latitude: number;
-  longitude: number;
-};
-
-const ZIP_COORDINATES: Record<string, ZipCoordinate> = {
-  // Clover / Lake Wylie area test ZIPs
-  "29710": { latitude: 35.1112, longitude: -81.2265 },
-  "29745": { latitude: 34.9943, longitude: -81.2420 },
-  "28278": { latitude: 35.1068, longitude: -80.9967 },
-};
-
+import zipAreas from "@/data/geography/us-zcta-coordinates-2026.json";
+export type ZipCoordinate = { latitude: number; longitude: number };
+export function normalizeZip(zip: unknown): string | null {
+  if (typeof zip !== "string") return null;
+  const match = zip.trim().match(/^(\d{5})(?:-\d{4})?$/);
+  return match?.[1] || null;
+}
 export function getCoordinatesForZip(zip: string | null | undefined): ZipCoordinate | null {
-  const cleaned = String(zip || "").trim().slice(0, 5);
-  return ZIP_COORDINATES[cleaned] || null;
+  const key = normalizeZip(zip);
+  const point = key ? (zipAreas as Record<string, number[]>)[key] : undefined;
+  return point ? { latitude: point[0], longitude: point[1] } : null;
 }

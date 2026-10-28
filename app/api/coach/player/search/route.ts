@@ -1,3 +1,4 @@
+import { PROXIMITY_MILES, collegeLocation, playerLocation, straightLineMiles } from "@/lib/recruitingProximity";
 import { createPlayerRecruitingAlert, playerFirstName, searchAlertMessage } from "@/lib/playerRecruitingAlerts";
 // app/api/coach/player/search/route.ts
 
@@ -228,6 +229,17 @@ export async function GET(req: Request) {
 
   const gpaMin = toNum(searchParams.get("gpaMin"));
 
+  const radiusRaw = toStr(searchParams.get("radiusMiles"));
+  const radiusMiles = radiusRaw && radiusRaw !== "any" ? Number(radiusRaw) : null;
+  let origin: ReturnType<typeof collegeLocation> = null;
+  if (radiusMiles !== null) {
+    if (!(PROXIMITY_MILES as readonly number[]).includes(radiusMiles)) return NextResponse.json<ErrorResponse>({ ok: false, error: "Choose a supported proximity distance." }, { status: 400 });
+    if (!coachCollegeId || accountType !== "COLLEGE_COACH") return NextResponse.json<ErrorResponse>({ ok: false, error: "Proximity to College requires a college coach account linked to a program." }, { status: 403 });
+    const college = await prisma.college.findUnique({ where: { id: coachCollegeId }, select: { zipCode: true, latitude: true, longitude: true, name: true, state: true, city: true, websiteUrl: true } });
+    origin = collegeLocation(college);
+    if (!origin) return NextResponse.json<ErrorResponse>({ ok: false, error: "Your college’s location is unavailable. Select Any to search without a distance limit." }, { status: 422 });
+  }
+
   // Metric filters
   const metricRanges = readMetricRanges(searchParams);
   const hasMetricFilters = Object.keys(metricRanges).length > 0;
@@ -248,13 +260,14 @@ export async function GET(req: Request) {
     !!hsName ||
     !!travelTeam ||
     gpaMin != null ||
-    hasMetricFilters;
+    hasMetricFilters || radiusMiles !== null;
 
   const defaultTake = hasAnyCriteria ? 25 : 5000;
   const take = Math.min(5000, Math.max(1, Number.isFinite(takeRaw) && takeRaw > 0 ? takeRaw : defaultTake));
 
   // If we have metric filters, fetch a bigger candidate set and filter in-memory
-  const preTake = hasMetricFilters ? Math.min(5000, Math.max(200, take * 10)) : take;
+  const needsPaging = hasMetricFilters || !!travelTeam || radiusMiles !== null;
+  const preTake = needsPaging ? Math.min(500, Math.max(100, take)) : take;
 
   const whereProfile: any = {
     profileState: { in: ["PLAYER_OWNED_ACTIVE", "TEAM_OWNED_ACTIVE", "TEAM_REMOVAL_PENDING_TRANSFER"] }
@@ -344,7 +357,7 @@ export async function GET(req: Request) {
     });
   }
 
-  const rows = await prisma.playerProfile.findMany({
+  const searchQuery = {
     where: {
       ...whereProfile,
       ...(q
@@ -364,8 +377,7 @@ export async function GET(req: Request) {
           }
         : {}),
     },
-    orderBy: { updatedAt: "desc" },
-    take: preTake,
+    orderBy: [{ updatedAt: "desc" as const }, { id: "desc" as const }],
     include: {
       user: {
         select: {
@@ -385,6 +397,7 @@ export async function GET(req: Request) {
               hsName: true,
               travelTeam: true,
               hometown: true,
+              hometownZip: true,
               state: true,
               gpa: true,
               isCommitted: true,
@@ -394,12 +407,14 @@ export async function GET(req: Request) {
         },
       },
     },
-  });
+  } satisfies Parameters<typeof prisma.playerProfile.findMany>[0];
+  let rows = await prisma.playerProfile.findMany({ ...searchQuery, take: preTake });
 
   // ✅ Needed for getLatestMetricValue()
   const now = new Date();
 
-  const filtered = rows
+  const rowsType = rows;
+  const filterRows = (rows: typeof rowsType) => rows
     .map((p) => {
       const dataObj: any = (p as any).data || {};
       const metricsObj: any = dataObj?.metrics || {};
@@ -434,9 +449,12 @@ export async function GET(req: Request) {
         player?.teamName
       );
 
-      return { p, latest, resolvedTravelTeam };
+      const location = origin ? playerLocation(p) : null;
+      const distanceMiles = origin && location ? straightLineMiles(origin, location) : null;
+      return { p, latest, resolvedTravelTeam, distanceMiles };
     })
-    .filter(({ latest, resolvedTravelTeam }) => {
+    .filter(({ latest, resolvedTravelTeam, distanceMiles }) => {
+      if (radiusMiles !== null && (distanceMiles === null || distanceMiles > radiusMiles)) return false;
       if (travelTeam) {
         const haystack = String(resolvedTravelTeam || "").toLowerCase();
         if (!haystack.includes(travelTeam.toLowerCase())) return false;
@@ -455,6 +473,13 @@ export async function GET(req: Request) {
       return true;
     })
     .slice(0, take);
+
+  let filtered = filterRows(rows);
+  while (needsPaging && rows.length === preTake && filtered.length < take) {
+    const cursor = rows[rows.length - 1].id;
+    rows = await prisma.playerProfile.findMany({ ...searchQuery, take: preTake, cursor: { id: cursor }, skip: 1 });
+    filtered.push(...filterRows(rows).slice(0, take - filtered.length));
+  }
 
   // ✅ Ratings: fetch coach’s ratings for these players (scoped to college + coach)
   const filteredProfileIds = filtered.map(({ p }) => p.id);
@@ -500,7 +525,7 @@ export async function GET(req: Request) {
     }
   }
 
-const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
+const results = filtered.map(({ p, latest, resolvedTravelTeam, distanceMiles }) => {
   const dataObj: any = (p as any).data || {};
   const normalized: any = dataObj?.normalized || dataObj || {};
   const core: any = normalized?.core || {};
@@ -527,6 +552,7 @@ const results = filtered.map(({ p, latest, resolvedTravelTeam }) => {
 
   return {
     playerProfileId: p.id,
+    ...(radiusMiles !== null ? { distanceMiles: distanceMiles === null ? null : Math.round(distanceMiles) } : {}),
     lists: listsByProfileId.get(p.id) ?? [],
 
     rating: ratingsByProfileId.get(p.id) ?? 0,
