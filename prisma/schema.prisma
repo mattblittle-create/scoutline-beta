@@ -2068,7 +2068,9 @@ model CollegeBaseballRosterPlayer {
   confidence DataConfidence  @default(UNKNOWN)
   verifiedAt DateTime?
 
-  @@unique([programId, season, name])
+  // Profile URLs distinguish same-name players. Migration also protects names for rows without profiles.
+  @@unique([programId, season, rosterProfileUrl], map: "CollegeBaseballRosterPlayer_source_identity_key")
+  @@index([programId, season, name])
   @@index([programId, season])
   @@index([season])
   @@index([primaryPosition])
