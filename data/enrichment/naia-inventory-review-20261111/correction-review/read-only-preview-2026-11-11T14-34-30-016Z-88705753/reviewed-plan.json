@@ -1,0 +1,3152 @@
+{
+  "checkedAtUtc": "2026-11-11T14:34:30.016Z",
+  "mode": "READ_ONLY_NAIA_CORRECTION_PREVIEW_PASSED",
+  "databaseWrites": 0,
+  "transactionReadOnly": "on",
+  "candidateSHA256": "1471b38ec9dbd0d06ba352b3652b5aeb1a434989354a47e9b3386a128c2d065c",
+  "newCollegesProposed": 9,
+  "newProgramsProposed": 9,
+  "existingProgramsReclassifiedProposed": 5,
+  "existingProgramFieldChangesProposed": 20,
+  "existingCollegeFieldChangesProposed": 4,
+  "totalExistingFieldChangesProposed": 24,
+  "globalCollegesChecked": 1569,
+  "globalCoachesPreserved": 4563,
+  "globalPlayersPreserved": 19757,
+  "globalSnapshotsPreserved": 514,
+  "programDependencyModelsChecked": 7,
+  "schoolProfileModelsChecked": 8,
+  "middleGeorgiaDuplicateHeld": true,
+  "closedAndSuspendedRecordsHeld": true,
+  "nationalBaseballInventoryVerified": false,
+  "newManualVerificationMarkers": 0,
+  "youtubeUpdatesProposed": 0,
+  "recordDeletionsProposed": 0,
+  "recordMergesProposed": 0,
+  "importApproval": "NOT_GRANTED",
+  "candidate": {
+    "version": 1,
+    "scope": "NAIA_IDENTITY_AND_MEMBERSHIP_REVIEW_20261111",
+    "baseline": "../naia-baseline-20261111/live-audit-2026-11-11T14-01-28-197Z-5a38848d/fresh-read-only-snapshot.json",
+    "changes": [
+      {
+        "slug": "andrew-college",
+        "collegeId": "cmox1gf130009qtsg5t8u03t9",
+        "programId": "cmox1gf1s000bqtsgmodcc72o",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NJCAA_D1",
+        "after": "NAIA",
+        "source": "priority-evidence/andrew-transition.html"
+      },
+      {
+        "slug": "andrew-college",
+        "collegeId": "cmox1gf130009qtsg5t8u03t9",
+        "programId": "cmox1gf1s000bqtsgmodcc72o",
+        "model": "CollegeBaseballProgram",
+        "field": "conference",
+        "before": "Region 17",
+        "after": "Southern States Athletic Conference",
+        "source": "priority-evidence/andrew-transition.html"
+      },
+      {
+        "slug": "andrew-college",
+        "collegeId": "cmox1gf130009qtsg5t8u03t9",
+        "programId": "cmox1gf1s000bqtsgmodcc72o",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NJCAA Division I programs may offer athletic scholarships, subject to NJCAA and institutional limits.",
+        "after": null,
+        "source": "priority-evidence/andrew-transition.html"
+      },
+      {
+        "slug": "andrew-college",
+        "collegeId": "cmox1gf130009qtsg5t8u03t9",
+        "programId": "cmox1gf1s000bqtsgmodcc72o",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.njcaa.org/",
+        "after": null,
+        "source": "priority-evidence/andrew-transition.html"
+      },
+      {
+        "slug": "bismarck-state-college",
+        "collegeId": "cmox234xk000rqtfk5uh31vu3",
+        "programId": "cmox234y9000tqtfk4sl09tpz",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NJCAA_D2",
+        "after": "NAIA",
+        "source": "priority-evidence/bismarck-transition.html"
+      },
+      {
+        "slug": "bismarck-state-college",
+        "collegeId": "cmox234xk000rqtfk5uh31vu3",
+        "programId": "cmox234y9000tqtfk4sl09tpz",
+        "model": "CollegeBaseballProgram",
+        "field": "conference",
+        "before": "Region 13",
+        "after": "Frontier Conference",
+        "source": "priority-evidence/bismarck-transition.html"
+      },
+      {
+        "slug": "bismarck-state-college",
+        "collegeId": "cmox234xk000rqtfk5uh31vu3",
+        "programId": "cmox234y9000tqtfk4sl09tpz",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NJCAA Division II programs may offer athletic scholarships, subject to NJCAA and institutional limits.",
+        "after": null,
+        "source": "priority-evidence/bismarck-transition.html"
+      },
+      {
+        "slug": "bismarck-state-college",
+        "collegeId": "cmox234xk000rqtfk5uh31vu3",
+        "programId": "cmox234y9000tqtfk4sl09tpz",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.njcaa.org/",
+        "after": null,
+        "source": "priority-evidence/bismarck-transition.html"
+      },
+      {
+        "slug": "hesston-college",
+        "collegeId": "cmox2370n0053qtfkut9hq09h",
+        "programId": "cmox2371e0055qtfkvkx90l9g",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NJCAA_D2",
+        "after": "NAIA",
+        "source": "priority-evidence/hesston-transition.html"
+      },
+      {
+        "slug": "hesston-college",
+        "collegeId": "cmox2370n0053qtfkut9hq09h",
+        "programId": "cmox2371e0055qtfkvkx90l9g",
+        "model": "CollegeBaseballProgram",
+        "field": "conference",
+        "before": "Region 6",
+        "after": "Continental Athletic Conference",
+        "source": "priority-evidence/hesston-transition.html"
+      },
+      {
+        "slug": "hesston-college",
+        "collegeId": "cmox2370n0053qtfkut9hq09h",
+        "programId": "cmox2371e0055qtfkvkx90l9g",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NJCAA Division II programs may offer athletic scholarships, subject to NJCAA and institutional limits.",
+        "after": null,
+        "source": "priority-evidence/hesston-transition.html"
+      },
+      {
+        "slug": "hesston-college",
+        "collegeId": "cmox2370n0053qtfkut9hq09h",
+        "programId": "cmox2371e0055qtfkvkx90l9g",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.njcaa.org/",
+        "after": null,
+        "source": "priority-evidence/hesston-transition.html"
+      },
+      {
+        "slug": "east-georgia-college",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NJCAA_D1",
+        "after": "NAIA",
+        "source": "supplemental-sources/east-georgia-transition.html"
+      },
+      {
+        "slug": "east-georgia-college",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "model": "CollegeBaseballProgram",
+        "field": "conference",
+        "before": "Region 17",
+        "after": "Continental Athletic Conference",
+        "source": "supplemental-sources/east-georgia-transition.html"
+      },
+      {
+        "slug": "east-georgia-college",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NJCAA Division I programs may offer athletic scholarships, subject to NJCAA and institutional limits.",
+        "after": null,
+        "source": "supplemental-sources/east-georgia-transition.html"
+      },
+      {
+        "slug": "east-georgia-college",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.njcaa.org/",
+        "after": null,
+        "source": "supplemental-sources/east-georgia-transition.html"
+      },
+      {
+        "slug": "shawnee-state",
+        "collegeId": "cmox068zw00b9qtgcnky6lc4v",
+        "programId": "cmox0690k00bbqtgc8p54iimz",
+        "model": "CollegeBaseballProgram",
+        "field": "division",
+        "before": "NAIA",
+        "after": "NCAA_D2",
+        "source": "../naia-baseline-20261111/official-inventory-sources/exception-evidence/shawnee-ncaa-directory.html"
+      },
+      {
+        "slug": "shawnee-state",
+        "collegeId": "cmox068zw00b9qtgcnky6lc4v",
+        "programId": "cmox0690k00bbqtgc8p54iimz",
+        "model": "CollegeBaseballProgram",
+        "field": "conference",
+        "before": "River States Conference",
+        "after": "Mountain East Conference",
+        "source": "../naia-baseline-20261111/official-inventory-sources/exception-evidence/shawnee-ncaa-directory.html"
+      },
+      {
+        "slug": "shawnee-state",
+        "collegeId": "cmox068zw00b9qtgcnky6lc4v",
+        "programId": "cmox0690k00bbqtgc8p54iimz",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipNotes",
+        "before": "NAIA programs may offer athletic scholarships and other aid opportunities.",
+        "after": null,
+        "source": "../naia-baseline-20261111/official-inventory-sources/exception-evidence/shawnee-ncaa-directory.html"
+      },
+      {
+        "slug": "shawnee-state",
+        "collegeId": "cmox068zw00b9qtgcnky6lc4v",
+        "programId": "cmox0690k00bbqtgc8p54iimz",
+        "model": "CollegeBaseballProgram",
+        "field": "scholarshipInfoUrl",
+        "before": "https://www.naia.org/",
+        "after": null,
+        "source": "../naia-baseline-20261111/official-inventory-sources/exception-evidence/shawnee-ncaa-directory.html"
+      },
+      {
+        "slug": "east-georgia-college",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "model": "College",
+        "field": "name",
+        "before": "East Georgia College",
+        "after": "Georgia Southern University – East Georgia Campus",
+        "source": "supplemental-sources/east-georgia-transition.html"
+      },
+      {
+        "slug": "east-georgia-college",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "model": "College",
+        "field": "city",
+        "before": null,
+        "after": "Swainsboro",
+        "source": "supplemental-sources/east-georgia-transition.html"
+      },
+      {
+        "slug": "bethel",
+        "collegeId": "cmowzryzu000iqt4wi8kavbkx",
+        "programId": "cmowzrz0i000kqt4w867gua03",
+        "model": "College",
+        "field": "name",
+        "before": "Bethel",
+        "after": "Bethel University (Tennessee)",
+        "source": "../naia-baseline-20261111/official-school-baseball-review/10770-baseball.html"
+      },
+      {
+        "slug": "concordia",
+        "collegeId": "cmowzrzng001uqt4wid2g788z",
+        "programId": "cmowzrzo6001wqt4wyyjghwwi",
+        "model": "College",
+        "field": "name",
+        "before": "Concordia",
+        "after": "Concordia University (Nebraska)",
+        "source": "../naia-baseline-20261111/official-school-baseball-review/10726-baseball.html"
+      }
+    ],
+    "creates": [
+      {
+        "memberName": "Bethel University",
+        "memberState": "IN",
+        "college": {
+          "slug": "bethel-university-indiana",
+          "name": "Bethel University (Indiana)",
+          "state": "IN",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Crossroads League",
+          "baseballWebsiteUrl": "https://bupilots.com/sports/baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "../naia-baseline-20261111/official-school-baseball-review/10709-baseball.html"
+      },
+      {
+        "memberName": "Champion Christian College",
+        "memberState": "AR",
+        "college": {
+          "slug": "champion-christian-college",
+          "name": "Champion Christian College",
+          "state": "AR",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Continental Athletic Conference",
+          "baseballWebsiteUrl": "https://championtigers.com/sports/bsb/index",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "conference-school-sources/4-champion-christian-college-baseball.html"
+      },
+      {
+        "memberName": "Mid-America Christian University",
+        "memberState": "OK",
+        "college": {
+          "slug": "mid-america-christian-university",
+          "name": "Mid-America Christian University",
+          "state": "OK",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "baseballWebsiteUrl": "https://macuathletics.com/sports/baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "../naia-baseline-20261111/official-school-baseball-review/10796-baseball.html"
+      },
+      {
+        "memberName": "Oklahoma City University",
+        "memberState": "OK",
+        "college": {
+          "slug": "oklahoma-city-university",
+          "name": "Oklahoma City University",
+          "state": "OK",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "baseballWebsiteUrl": "https://www.ocusports.com/sports/baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "conference-school-sources/21-oklahoma-city-university-baseball.html"
+      },
+      {
+        "memberName": "Ozarks, College of the",
+        "memberState": "MO",
+        "college": {
+          "slug": "college-of-the-ozarks-missouri",
+          "name": "College of the Ozarks (Missouri)",
+          "state": "MO",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "baseballWebsiteUrl": "https://bobcats.cofo.edu/Teams/Baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "../naia-baseline-20261111/official-school-baseball-review/10794-baseball.html"
+      },
+      {
+        "memberName": "Southwestern Christian University",
+        "memberState": "OK",
+        "college": {
+          "slug": "southwestern-christian-university",
+          "name": "Southwestern Christian University",
+          "state": "OK",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "baseballWebsiteUrl": "https://www.scueagles.com/sports/bsb/index",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "conference-school-sources/28-southwestern-christian-university-baseball.html"
+      },
+      {
+        "memberName": "Texas Wesleyan University",
+        "memberState": "TX",
+        "college": {
+          "slug": "texas-wesleyan-university",
+          "name": "Texas Wesleyan University",
+          "state": "TX",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "baseballWebsiteUrl": "https://ramsports.net/sports/baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "../naia-baseline-20261111/official-school-baseball-review/9811-baseball.html"
+      },
+      {
+        "memberName": "United States Sports University",
+        "memberState": "AL",
+        "college": {
+          "slug": "united-states-sports-university",
+          "name": "United States Sports University",
+          "state": "AL",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Continental Athletic Conference",
+          "baseballWebsiteUrl": "https://ussueagles.com/sports/baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "conference-school-sources/31-united-states-sports-university-baseball.html"
+      },
+      {
+        "memberName": "Warner Pacific University",
+        "memberState": "OR",
+        "college": {
+          "slug": "warner-pacific-university",
+          "name": "Warner Pacific University",
+          "state": "OR",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Cascade Collegiate Conference",
+          "baseballWebsiteUrl": "https://wpuknights.com/sports/baseball",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "source": "../naia-baseline-20261111/official-school-baseball-review/9813-baseball.html"
+      }
+    ],
+    "holds": {
+      "middleGeorgiaDuplicate": {
+        "status": "HELD_NO_RECLASSIFICATION_OR_MERGE",
+        "preservedCanonicalSlug": "middle-georgia",
+        "staleDuplicateSlug": "middle-georgia-state",
+        "preservedCanonicalCoaches": 3,
+        "preservedCanonicalPlayers": 43,
+        "preservedCanonicalSnapshots": 1
+      },
+      "closuresAndSuspension": [
+        {
+          "collegeId": "cmowzs1cg0056qt4w6u7raqqy",
+          "programId": "cmowzs1d60058qt4wyyes0u49",
+          "slug": "oakland-city",
+          "name": "Oakland City",
+          "city": null,
+          "state": "IN",
+          "programDivision": "NAIA",
+          "disposition": "HELD_SUSPENDED_UNDERGRADUATE_OPERATIONS_2026_27",
+          "source": "official-inventory-sources/exception-evidence/oakland-city.html",
+          "evidenceScope": "Receiving public college reports the suspension; primary OCU statement not captured. Not a permanent-closure classification.",
+          "databaseChangeApproval": "NOT_GRANTED"
+        },
+        {
+          "collegeId": "cmowzs1mn005rqt4wreae274s",
+          "programId": "cmowzs1nc005tqt4woz6kqniw",
+          "slug": "providence-christian",
+          "name": "Providence Christian",
+          "city": null,
+          "state": "CA",
+          "programDivision": "NAIA",
+          "disposition": "REVIEW_CLOSED_IN_2026",
+          "source": "official-inventory-sources/exception-evidence/providence.html",
+          "evidenceScope": "California regulator reports June 30 closure and May 15, 2026 last instruction.",
+          "databaseChangeApproval": "NOT_GRANTED"
+        },
+        {
+          "collegeId": "cmowzs230006oqt4wqumb05n0",
+          "programId": "cmowzs23s006qqt4wutg7bj5o",
+          "slug": "st-andrews",
+          "name": "St. Andrews",
+          "city": null,
+          "state": "NC",
+          "programDivision": "NAIA",
+          "disposition": "HELD_CLOSURE_OFFICIAL_INDEXED_TEXT_ONLY",
+          "sourceUrl": "https://www.sa.edu/about/",
+          "evidenceScope": "Official page indexed text reports May 5, 2025 cessation. Direct request failed; no raw page capture. Keep evidence hold.",
+          "databaseChangeApproval": "NOT_GRANTED"
+        },
+        {
+          "collegeId": "cmowzs2dj0079qt4w9wire00s",
+          "programId": "cmowzs2ea007bqt4wggve5lyd",
+          "slug": "trinity-christian",
+          "name": "Trinity Christian",
+          "city": null,
+          "state": "IL",
+          "programDivision": "NAIA",
+          "disposition": "REVIEW_CLOSED_AFTER_2025_26",
+          "source": "official-inventory-sources/exception-evidence/trinity.html",
+          "evidenceScope": "Institution homepage announces cessation after the 2025–26 academic year.",
+          "databaseChangeApproval": "NOT_GRANTED"
+        },
+        {
+          "collegeId": "cmox0675s0076qtgcqe0r7lig",
+          "programId": "cmox0676f0078qtgcmmkwoe43",
+          "slug": "lourdes",
+          "name": "Lourdes",
+          "city": null,
+          "state": "OH",
+          "programDivision": "NAIA",
+          "disposition": "REVIEW_CLOSURE_2026",
+          "source": "official-inventory-sources/exception-evidence/lourdes.html",
+          "evidenceScope": "Institution closure page contains February 2026 announcement and subsequent wind-down updates.",
+          "databaseChangeApproval": "NOT_GRANTED"
+        },
+        {
+          "collegeId": "cmox0691700bcqtgctrse79j7",
+          "programId": "cmox0691w00beqtgc46g9qx8a",
+          "slug": "siena-heights",
+          "name": "Siena Heights",
+          "city": null,
+          "state": "MI",
+          "programDivision": "NAIA",
+          "disposition": "REVIEW_CLOSED_IN_2026",
+          "source": "official-inventory-sources/exception-evidence/siena.html",
+          "evidenceScope": "Current institution page explicitly states the university is now closed.",
+          "databaseChangeApproval": "NOT_GRANTED"
+        }
+      ],
+      "other61SourceHolds": [
+        {
+          "name": "Bethel College",
+          "state": "KS",
+          "conference": "KCAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9835,
+              "name": "Bethel College",
+              "urls": [
+                "https://bethelthreshers.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "KCAC",
+              "name": "Bethel College",
+              "url": "http://www.bethelthreshers.com",
+              "location": "North Newton, KS",
+              "sourceFile": "conference-sources/KCAC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9835-home.html",
+              "url": "https://bethelthreshers.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Football",
+                "Golf",
+                "Soccer",
+                "Tennis",
+                "Track and Field",
+                "Flag Football",
+                "Softball",
+                "Track & Field",
+                "Volleyball",
+                "Cheer",
+                "Dance",
+                "S.A.L.T. Directory",
+                "Athletic Department Events",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9835-home.html",
+              "status": 200,
+              "url": "https://bethelthreshers.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Brenau University",
+          "state": "GA",
+          "conference": "AAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10655,
+              "name": "Brenau University",
+              "urls": [
+                "https://www.brenautigers.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10655-home.html",
+              "url": "https://www.brenautigers.com/landing/index",
+              "publishedSportLabels": [
+                "Cross Country",
+                "Soccer",
+                "Volleyball",
+                "Basketball",
+                "JV Basketball",
+                "Competitive Cheer",
+                "Track & Field",
+                "Spirit Cheerleading",
+                "Swimming and Diving",
+                "Beach Volleyball",
+                "Golf",
+                "Softball",
+                "Tennis",
+                "Brenau (GA)",
+                "Women's Volleyball",
+                "Women's Soccer",
+                "Women's Golf",
+                "Women's Cross Country",
+                "Women's Tennis",
+                "Women's Swimming & Diving",
+                "Women's Basketball",
+                "Women's JV Basketball",
+                "Privacy Policy",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10655-home.html",
+              "status": 200,
+              "url": "https://www.brenautigers.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Carroll College",
+          "state": "MT",
+          "conference": "Frontier",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10716,
+              "name": "Carroll College",
+              "urls": [
+                "https://www.carroll.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "Frontier",
+              "name": "Carroll",
+              "url": "http://carrollathletics.com/",
+              "location": "Helena, Mont.",
+              "sourceFile": "conference-sources/Frontier-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10716-home.html",
+              "url": "https://carrollathletics.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Football",
+                "Golf",
+                "Soccer",
+                "Track and Field",
+                "Softball",
+                "Volleyball",
+                "Competitive Cheer",
+                "Competitive Dance",
+                "Staff Directory",
+                "Champions of Character",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10716-home.html",
+              "status": 200,
+              "url": "https://carrollathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Coastal Georgia, College of",
+          "state": "GA",
+          "conference": "TSC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10809,
+              "name": "College of Coastal Georgia",
+              "urls": [
+                "https://coastalgeorgiasports.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "TSC",
+              "name": "Coastal Georgia",
+              "url": "http://www.coastalgeorgiasports.com/",
+              "location": "Brunswick, Ga. ",
+              "sourceFile": "conference-sources/TSC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10809-home.html",
+              "url": "https://coastalgeorgiasports.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "#7 Golf",
+                "#15 Tennis",
+                "#14 Golf",
+                "#19 Softball",
+                "#22 Tennis",
+                "Staff Directory",
+                "All-Americans",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10809-home.html",
+              "status": 200,
+              "url": "https://coastalgeorgiasports.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Columbia College",
+          "state": "SC",
+          "conference": "AAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10641,
+              "name": "Columbia College",
+              "urls": [
+                "https://columbiacougars.com/"
+              ],
+              "rejectedCampusLink": "Columbia SC entry leads to Columbia MO"
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "REJECTED_MAP_CAMPUS",
+              "reason": "Columbia SC entry leads to Columbia MO"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Cottey College",
+          "state": "MO",
+          "conference": "Am. Midwest",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10649,
+              "name": "Cottey College",
+              "urls": [
+                "https://www.cotteycomets.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10649-home.html",
+              "url": "https://www.cotteycomets.com/landing/index",
+              "publishedSportLabels": [
+                "Sports",
+                "Archery",
+                "Basketball",
+                "Bowling",
+                "Cheer",
+                "Cross Country",
+                "Dance",
+                "esports",
+                "Flag Football",
+                "Golf",
+                "Softball",
+                "Indoor and Outdoor Track & Field",
+                "Volleyball",
+                "Watch Live",
+                "Cottey College",
+                "Privacy Policy",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10649-home.html",
+              "status": 200,
+              "url": "https://www.cotteycomets.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Dalton State",
+          "state": "GA",
+          "conference": "SSAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9779,
+              "name": "Dalton State College",
+              "urls": [
+                "https://dsroadrunners.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9779-home.html",
+              "url": "https://dsroadrunners.com/",
+              "publishedSportLabels": [
+                "Men's Golf",
+                "Men's Soccer",
+                "Men's Basketball",
+                "Women's Golf",
+                "Women's Cross Country",
+                "Women's Track & Field",
+                "Women's Soccer",
+                "Intramural/Club Sports",
+                "Roadrunner Internship Program",
+                "Residential Life",
+                "NAIA Financial Aid",
+                "Title IX",
+                "DONATE NOW",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9779-home.html",
+              "status": 200,
+              "url": "https://dsroadrunners.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Evergreen State College",
+          "state": "WA",
+          "conference": "Cascade",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10688,
+              "name": "The Evergreen State College",
+              "urls": [
+                "https://gogeoducks.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10688-home.html",
+              "url": "https://gogeoducks.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Soccer",
+                "Track & Field",
+                "Wrestling",
+                "Volleyball",
+                "Association of Student Athletes",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10688-home.html",
+              "status": 200,
+              "url": "https://gogeoducks.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Fisk University",
+          "state": "TN",
+          "conference": "HBCUAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10736,
+              "name": "Fisk University",
+              "urls": [
+                "https://www.fiskathletics.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10736-home.html",
+              "status": 202,
+              "url": "https://www.fiskathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Florida College",
+          "state": "FL",
+          "conference": "CAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9793,
+              "name": "Florida College",
+              "urls": [
+                "https://www.floridacollege.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CAC",
+              "name": "Florida College",
+              "url": "https://www.wearefc.com/",
+              "sourceFile": "conference-sources/CAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/7-florida-college-home.html",
+              "url": "https://www.wearefc.com/landing/index",
+              "publishedSportLabels": [
+                "Men's Basketball",
+                "Women's Volleyball",
+                "Men's JV Basketball",
+                "Basketball",
+                "Cross Country",
+                "Golf",
+                "Outdoor Track & Field",
+                "Soccer",
+                "Cheerleading",
+                "Volleyball",
+                "Florida College (FL)",
+                "Privacy Policy",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9793-home.html",
+              "status": 404,
+              "url": "https://floridacollege.edu/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/7-florida-college-home.html",
+              "status": 200,
+              "url": "https://www.wearefc.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Governors State University",
+          "state": "IL",
+          "conference": "CCAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10691,
+              "name": "Governors State University",
+              "urls": [
+                "https://gostatesmen.com/"
+              ],
+              "rejectedCampusLink": "Governors State entry leads to Delta State"
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCAC",
+              "name": "Governors State University",
+              "url": "http://gsujaguars.com/",
+              "sourceFile": "conference-sources/CCAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/8-governors-state-university-home.html",
+              "url": "https://gsujaguars.com/landing/index",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Golf",
+                "Soccer",
+                "Indoor Track",
+                "Outdoor Track",
+                "(RV) Volleyball",
+                "(16) Bowling",
+                "(RV) Cross Country",
+                "Softball",
+                "Volleyball",
+                "Esports",
+                "Photo Galleries",
+                "STAFF DIRECTORY",
+                "W. Basketball",
+                "M. Basketball",
+                "W. Volleyball",
+                "W. Cross Country",
+                "M. Cross Country",
+                "Composite Library",
+                "M. Soccer",
+                "W. Soccer",
+                "M. Golf",
+                "W. Golf",
+                "M. Outdoor Track and Field",
+                "W. Outdoor Track and Field",
+                "Privacy Policy",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "REJECTED_MAP_CAMPUS",
+              "reason": "Governors State entry leads to Delta State"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/8-governors-state-university-home.html",
+              "status": 200,
+              "url": "https://gsujaguars.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Haskell Indian Nations University",
+          "state": "KS",
+          "conference": "CAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9809,
+              "name": "Haskell Indian Nations University",
+              "urls": [
+                "https://www.haskell.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CAC",
+              "name": "Haskell Indian Nations University",
+              "url": "http://www.haskellathletics.com",
+              "sourceFile": "conference-sources/CAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/10-haskell-indian-nations-university-home.html",
+              "url": "https://haskellathletics.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Golf",
+                "Track & Field",
+                "Softball",
+                "Volleyball",
+                "Media Brand Resources",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/10-haskell-indian-nations-university-home.html",
+              "status": 200,
+              "url": "https://haskellathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Holy Cross College",
+          "state": "IN",
+          "conference": "CCAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10692,
+              "name": "Holy Cross College",
+              "urls": [
+                "https://holycross.edu/athletics/"
+              ],
+              "rejectedCampusLink": "Holy Cross IN entry leads to Holy Cross MA"
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCAC",
+              "name": "Holy Cross College",
+              "url": "http://www.hcsaints.com/",
+              "sourceFile": "conference-sources/CCAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/11-holy-cross-college-home.html",
+              "url": "https://www.hcsaints.com/landing/index",
+              "publishedSportLabels": [
+                "Soccer",
+                "Basketball",
+                "Golf",
+                "Tennis",
+                "Intramural Sports",
+                "Chicagoland Collegiate Athletic Conference",
+                "Holy Cross",
+                "Men's Golf",
+                "Women's Soccer",
+                "Men's Soccer",
+                "Women's Golf",
+                "Women's Basketball",
+                "Men's Basketball",
+                "Privacy Policy",
+                "Terms Of Use",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "REJECTED_MAP_CAMPUS",
+              "reason": "Holy Cross IN entry leads to Holy Cross MA"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/11-holy-cross-college-home.html",
+              "status": 200,
+              "url": "https://www.hcsaints.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Indiana University East",
+          "state": "IN",
+          "conference": "RSC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9805,
+              "name": "Indiana University East",
+              "urls": [
+                "https://east.iu.edu/athletics/index.html"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "RSC",
+              "name": "Indiana University East",
+              "url": "http://www.iueredwolves.com/",
+              "location": "Richmond, IN",
+              "sourceFile": "conference-sources/RSC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/13-indiana-university-east-home.html",
+              "url": "https://www.iueredwolves.com/landing/index",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Golf",
+                "Soccer",
+                "Tennis",
+                "Indoor Track & Field",
+                "Outdoor Track and Field",
+                "Volleyball",
+                "ESPORTS",
+                "Women's Volleyball",
+                "Women's Soccer",
+                "Women's Cross Country",
+                "Men's Cross Country",
+                "Men's Soccer",
+                "Women's Golf",
+                "Men's Golf",
+                "Women's Tennis",
+                "Men's Tennis",
+                "Men's Basketball",
+                "Women's Basketball",
+                "Women's Indoor Track and Field",
+                "Men's Indoor Track and Field",
+                "Men's Volleyball",
+                "Women's Outdoor Track and Field",
+                "Men's Outdoor Track and Field",
+                "Privacy Policy",
+                "Terms Of Use",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9805-home.html",
+              "status": 200,
+              "url": "https://east.iu.edu/athletics/index.html"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/13-indiana-university-east-home.html",
+              "status": 200,
+              "url": "https://www.iueredwolves.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Indiana University Northwest",
+          "state": "IN",
+          "conference": "CCAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10693,
+              "name": "Indiana University Northwest",
+              "urls": [
+                "https://iunredhawks.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCAC",
+              "name": "Indiana University Northwest",
+              "url": "https://iunredhawks.com/",
+              "sourceFile": "conference-sources/CCAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10693-home.html",
+              "url": "https://iunredhawks.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Soccer",
+                "Volleyball",
+                "Chicagoland Collegiate Athletic Conference",
+                "Heartland Sports Network",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10693-home.html",
+              "status": 200,
+              "url": "https://iunredhawks.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "John Brown University",
+          "state": "AR",
+          "conference": "Sooner",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9814,
+              "name": "John Brown University",
+              "urls": [
+                "https://jbuathletics.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "SAC",
+              "name": "John Brown (Ark.)",
+              "url": "http://www.jbuathletics.com",
+              "location": "Siloam Springs, Ark.",
+              "sourceFile": "conference-sources/SAC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9814-home.html",
+              "url": "https://jbuathletics.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Esports",
+                "#19 Soccer",
+                "Tennis",
+                "Track & Field",
+                "#21 Cross Country",
+                "#17 Soccer",
+                "Volleyball",
+                "Box Office",
+                "Cheerleading Squad",
+                "Athletic Training",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9814-home.html",
+              "status": 200,
+              "url": "https://jbuathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Langston University",
+          "state": "OK",
+          "conference": "Sooner",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10795,
+              "name": "Langston University",
+              "urls": [
+                "https://lions.langston.edu/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "SAC",
+              "name": "Langston (Okla.)",
+              "url": "http://www.langstonsports.com",
+              "location": "Langston, OK",
+              "sourceFile": "conference-sources/SAC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/15-langston-university-home.html",
+              "url": "https://langstonsports.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Football",
+                "Track & Field",
+                "Cheer",
+                "Softball",
+                "Volleyball",
+                "Staff Directory",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/15-langston-university-home.html",
+              "status": 200,
+              "url": "https://langstonsports.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Life Pacific University",
+          "state": "CA",
+          "conference": "GSAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10721,
+              "name": "Life Pacific University",
+              "urls": [
+                "https://www.lpuwarriors.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10721-home.html",
+              "status": 202,
+              "url": "https://www.lpuwarriors.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Life University",
+          "state": "GA",
+          "conference": "SSAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9795,
+              "name": "Life University",
+              "urls": [
+                "https://liferunningeagles.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9795-home.html",
+              "url": "https://liferunningeagles.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Lacrosse",
+                "Rugby",
+                "Soccer",
+                "Swimming",
+                "Track & Field",
+                "Volleyball",
+                "Wrestling",
+                "Club Rugby",
+                "Cheer",
+                "Flag Football",
+                "Forms",
+                "Story Archives",
+                "NAIA Champions of Character",
+                "Parking Information",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9795-home.html",
+              "status": 200,
+              "url": "https://liferunningeagles.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Montana State University-North",
+          "state": "MT",
+          "conference": "Frontier",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9807,
+              "name": "Montana State University-Northern",
+              "urls": [
+                "https://golightsgo.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9807-home.html",
+              "status": 200,
+              "url": "https://golightsgo.com/splash.aspx?id=splash_159"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Montana Tech University",
+          "state": "MT",
+          "conference": "Frontier",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10717,
+              "name": "Montana Technological University",
+              "urls": [
+                "https://godiggers.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "Frontier",
+              "name": "Montana Tech",
+              "url": "https://godiggers.com/",
+              "location": "Butte, Mont.",
+              "sourceFile": "conference-sources/Frontier-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10717-home.html",
+              "url": "https://godiggers.com/",
+              "publishedSportLabels": [
+                "(RV) Basketball",
+                "Cross Country",
+                "No. 5 Football",
+                "Golf",
+                "Track & Field",
+                "No. 16 Basketball",
+                "Volleyball",
+                "Facilities",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10717-home.html",
+              "status": 200,
+              "url": "https://godiggers.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Montana Western, University of",
+          "state": "MT",
+          "conference": "Frontier",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9836,
+              "name": "University of Montana Western",
+              "urls": [
+                "https://www.umwestern.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "Frontier",
+              "name": "Montana Western",
+              "url": "http://www.umwbulldogs.com/",
+              "location": "Dillon, Mont.",
+              "sourceFile": "conference-sources/Frontier-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/17-montana-western-university-of-home.html",
+              "url": "https://umwbulldogs.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Football",
+                "Track & Field",
+                "Rodeo",
+                "Volleyball",
+                "Sideline Cheer",
+                "Association of Student-Athletes (ASA)",
+                "Health and Wellness",
+                "Eligibility",
+                "Off the Leash",
+                "DAWGFEST",
+                "Fight Song",
+                "Bulldog Club",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9836-home.html",
+              "status": 200,
+              "url": "https://www.umwestern.edu/faculty-list/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/17-montana-western-university-of-home.html",
+              "status": 200,
+              "url": "https://umwbulldogs.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Mount Mary University",
+          "state": "WI",
+          "conference": "Chicagoland",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 12323,
+              "name": "Mount Mary University",
+              "urls": [
+                "https://mtmaryathletics.com/landing/index",
+                "https://link.edgepilot.com/s/06e2261d/Tgb3t5EWbUWoNMOZk5drhA?u=https://mtmary.edu/majors-programs/index.html"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCAC",
+              "name": "Mount Mary University",
+              "url": "https://mtmaryathletics.com/landing/index",
+              "sourceFile": "conference-sources/CCAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/12323-home.html",
+              "url": "https://mtmaryathletics.com/landing/index",
+              "publishedSportLabels": [
+                "Volleyball",
+                "Home",
+                "Coaches",
+                "Soccer",
+                "Cross Country",
+                "Basketball",
+                "Flag Football",
+                "Softball",
+                "Sports Information",
+                "Mount Mary",
+                "Women's Volleyball",
+                "Women's Soccer",
+                "Women's Cross Country",
+                "Women's Basketball",
+                "SB vs CCSJ 3-27",
+                "3-6 vs Nelson",
+                "Privacy Policy",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/12323-home.html",
+              "status": 200,
+              "url": "https://mtmaryathletics.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Nevada State University",
+          "state": "NV",
+          "conference": "CAC",
+          "stored": null,
+          "mapSources": [],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "CURRENT_SPORTS_OFFERING",
+              "sourcePath": "supplemental-sources/nevada-state.html",
+              "status": 200,
+              "url": "https://nevadastate.edu/athletics/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "North American University",
+          "state": "TX",
+          "conference": "Red River",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9822,
+              "name": "North American University",
+              "urls": [
+                "https://naueagles.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "RRAC",
+              "name": "NORTH AMERICAN UNIVERSITY",
+              "url": "https://stallions.na.edu/",
+              "sourceFile": "conference-sources/RRAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/19-north-american-university-home.html",
+              "url": "https://stallions.na.edu/",
+              "publishedSportLabels": [
+                "Basketball",
+                "JV Basketball",
+                "Soccer",
+                "Men's Cross Country",
+                "Track & Field",
+                "Women's Basketball",
+                "Women's JV Basketball",
+                "Cross-Country",
+                "BluEnergy",
+                "Staff Directory",
+                "Privacy Policy",
+                "Terms of Service",
+                "Accessibility Statement",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/19-north-american-university-home.html",
+              "status": 200,
+              "url": "https://stallions.na.edu/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "North Texas at Dallas, University of",
+          "state": "TX",
+          "conference": "Red River",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10799,
+              "name": "University of North Texas at Dallas",
+              "urls": [
+                "https://dallas.unt.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "RRAC",
+              "name": "NORTH TEXAS-DALLAS",
+              "url": "https://untdathletics.com/",
+              "sourceFile": "conference-sources/RRAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/20-north-texas-at-dallas-university-of-home.html",
+              "url": "https://untdathletics.com/landing/index",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Track & Field",
+                "Dance",
+                "Flag Football",
+                "M Basketball",
+                "W Basketball",
+                "W Cross Country",
+                "Senior Day vs. LCU",
+                "UNTD Men's Basketball at LCU",
+                "UNTD Women's Basketball at LCU",
+                "Privacy Policy",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10799-home.html",
+              "status": 404,
+              "url": "https://www.untdallas.edu/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/20-north-texas-at-dallas-university-of-home.html",
+              "status": 200,
+              "url": "https://untdathletics.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Northern New Mexico College",
+          "state": "NM",
+          "conference": "Cal Pac",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10706,
+              "name": "Northern New Mexico College",
+              "urls": [
+                "https://nnmceagles.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CalPac",
+              "name": "Northern New Mexico College",
+              "url": "https://nnmceagles.com/index.aspx",
+              "sourceFile": "conference-sources/CalPac-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10706-home.html",
+              "url": "https://nnmceagles.com/",
+              "publishedSportLabels": [
+                "Mens Basketball",
+                "Men's Cross Country",
+                "Track & Field",
+                "Womens Basketball",
+                "Women's Cross Country",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10706-home.html",
+              "status": 200,
+              "url": "https://nnmceagles.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Northwest University",
+          "state": "WA",
+          "conference": "Cascade",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10684,
+              "name": "Northwest University",
+              "urls": [
+                "https://nueagles.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCC",
+              "name": "Northwest",
+              "url": "http://nueagles.com/",
+              "location": "Kirkland, Wash.",
+              "sourceFile": "conference-sources/CCC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10684-home.html",
+              "url": "https://nueagles.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Soccer",
+                "Track & Field",
+                "Beach Volleyball",
+                "Volleyball",
+                "Live Stream",
+                "Eagle Store",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10684-home.html",
+              "status": 200,
+              "url": "https://nueagles.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Oklahoma Panhandle State Univ",
+          "state": "OK",
+          "conference": "Sooner",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9784,
+              "name": "Oklahoma Panhandle State University",
+              "urls": [
+                "https://opsuaggies.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "SAC",
+              "name": "Oklahoma Panhandle State",
+              "url": "https://opsuaggies.com",
+              "location": "Goodwell, OK",
+              "sourceFile": "conference-sources/SAC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9784-home.html",
+              "status": 202,
+              "url": "https://opsuaggies.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Pacific Union College",
+          "state": "CA",
+          "conference": "Cal Pac",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10678,
+              "name": "Pacific Union College",
+              "urls": [
+                "https://www.puc.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CalPac",
+              "name": "Pacific Union College",
+              "url": "http://www.pucpioneers.com/",
+              "sourceFile": "conference-sources/CalPac-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/22-pacific-union-college-home.html",
+              "url": "https://www.pucpioneers.com/landing/index",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Soccer",
+                "Volleyball",
+                "Fan Store",
+                "Sports Medicine",
+                "Pacific Union (CA)",
+                "Women's Volleyball",
+                "Photos",
+                "Men's Soccer",
+                "Women's Soccer",
+                "Men's Basketball",
+                "Women's Basketball",
+                "PUC vs LU View Photos",
+                "PUC vs LSU View Photos",
+                "PUC at Cal Maritime 2/27/26 View Photos",
+                "PUC at Cal Maritime 10/12/25 View Photos",
+                "PUC at Stanton 2/27/26 View Photos",
+                "Full Standings",
+                "Privacy Policy",
+                "Terms Of Use",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10678-home.html",
+              "status": 403,
+              "url": "https://www.puc.edu/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/22-pacific-union-college-home.html",
+              "status": 200,
+              "url": "https://www.pucpioneers.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Paul Quinn College",
+          "state": "TX",
+          "conference": "HBCUAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10782,
+              "name": "Paul Quinn College",
+              "urls": [
+                "https://paulquinnathletics.com/landing/index"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10782-home.html",
+              "status": 202,
+              "url": "https://paulquinnathletics.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Providence, University of",
+          "state": "MT",
+          "conference": "Frontier",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10719,
+              "name": "University of Providence",
+              "urls": [
+                "https://www.uprovidence.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "Frontier",
+              "name": "Providence",
+              "url": "http://www.upargos.com",
+              "location": "Great Falls, Mont.",
+              "sourceFile": "conference-sources/Frontier-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/23-providence-university-of-home.html",
+              "url": "https://upargos.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Golf",
+                "#5 Ice Hockey",
+                "Soccer",
+                "Track and Field",
+                "#5 Wrestling",
+                "Softball",
+                "Volleyball",
+                "#18 Wrestling",
+                "ArgoStore",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10719-home.html",
+              "status": 200,
+              "url": "https://www.uprovidence.edu/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/23-providence-university-of-home.html",
+              "status": 200,
+              "url": "https://upargos.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Rocky Mountain College",
+          "state": "MT",
+          "conference": "Frontier",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10718,
+              "name": "Rocky Mountain College",
+              "urls": [
+                "https://gobattlinbears.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "Frontier",
+              "name": "Rocky Mountain",
+              "url": "http://gobattlinbears.com/",
+              "location": "Billings, MT",
+              "sourceFile": "conference-sources/Frontier-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10718-home.html",
+              "url": "https://gobattlinbears.com/",
+              "publishedSportLabels": [
+                "#4 Basketball",
+                "(RV) Cross Country",
+                "Football",
+                "#18 Golf",
+                "Ski Racing",
+                "#8 Soccer",
+                "Track & Field",
+                "#12 Basketball",
+                "Cross Country",
+                "#22 Golf",
+                "#16 Soccer",
+                "Volleyball",
+                "Cheerleading",
+                "Preseason Requirements",
+                "NAIA Champions of Character",
+                "Tickets",
+                "Photo Galleries",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10718-home.html",
+              "status": 200,
+              "url": "https://gobattlinbears.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Saint Mary, College of",
+          "state": "NE",
+          "conference": "GPAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9810,
+              "name": "College of Saint Mary",
+              "urls": [
+                "https://www.csmflames.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9810-home.html",
+              "status": 202,
+              "url": "https://www.csmflames.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Saint Mary-of-the-Woods",
+          "state": "IN",
+          "conference": "RSC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9808,
+              "name": "Saint Mary-of-the-Woods College",
+              "urls": [
+                "https://www.smwc.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "RSC",
+              "name": "Saint Mary-of-the-Woods College",
+              "url": "https://smwcathletics.com/index.aspx",
+              "location": "Saint Mary of the Woods, IN",
+              "sourceFile": "conference-sources/RSC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/27-saint-mary-of-the-woods-home.html",
+              "url": "https://smwcathletics.com/index.aspx",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Equestrian",
+                "Football",
+                "Golf",
+                "Soccer",
+                "Track & Field",
+                "Volleyball",
+                "Softball",
+                "Flag Football (coming in 2027-28)",
+                "Intramurals",
+                "Affiliations",
+                "Coaches and Coffee",
+                "Onyx Mascot",
+                "Being a Student Athlete",
+                "Support Athletics",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9808-home.html",
+              "status": 200,
+              "url": "https://www.smwc.edu/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/27-saint-mary-of-the-woods-home.html",
+              "status": 200,
+              "url": "https://smwcathletics.com/index.aspx"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Savannah College of Art and Design",
+          "state": "GA",
+          "conference": "SUN",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10812,
+              "name": "SCAD Savannah",
+              "urls": [
+                "https://savannah.scadathletics.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10812-home.html",
+              "url": "https://scadathletics.com/",
+              "publishedSportLabels": [
+                "Cross Country",
+                "Golf",
+                "Track & Field",
+                "Tennis",
+                "Fencing",
+                "Taekwondo",
+                "League of Legends",
+                "League of Legends: X",
+                "Overwatch",
+                "Overwatch: X",
+                "Bowling",
+                "Lacrosse",
+                "Soccer",
+                "Swimming & Diving",
+                "Beach Volleyball",
+                "Flag Football",
+                "Cycling",
+                "Equestrian",
+                "Champions of Character",
+                "Current Athlete Resources",
+                "Athlete interest forms",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10812-home.html",
+              "status": 200,
+              "url": "https://scadathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Science and Arts of Ok, University of",
+          "state": "OK",
+          "conference": "Sooner",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10637,
+              "name": "University of Science and Arts of Oklahoma",
+              "urls": [
+                "https://www.usaoathletics.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "SAC",
+              "name": "Science & Arts (Okla.)",
+              "url": "http://www.usaoathletics.com/",
+              "location": "Chickasha, Okla.",
+              "sourceFile": "conference-sources/SAC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10637-home.html",
+              "status": 202,
+              "url": "https://www.usaoathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Soka University of America",
+          "state": "CA",
+          "conference": "GSAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10681,
+              "name": "Soka University of America",
+              "urls": [
+                "https://sokaathletics.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10681-home.html",
+              "url": "https://sokaathletics.com/",
+              "publishedSportLabels": [
+                "Cross Country (W)",
+                "Golf (W)",
+                "Soccer (W)",
+                "Swimming & Diving (W)",
+                "Track & Field (W)",
+                "Volleyball (W)",
+                "Cross Country (M)",
+                "Golf (M)",
+                "Soccer (M)",
+                "Swimming & Diving (M)",
+                "Track & Field (M)",
+                "Volleyball (M)",
+                "Athletic Facilities",
+                "Student-Athlete Advisory Committee",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10681-home.html",
+              "status": 200,
+              "url": "https://sokaathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Southern Oregon University",
+          "state": "OR",
+          "conference": "Cascade",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10686,
+              "name": "Southern Oregon University",
+              "urls": [
+                "https://souraiders.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCC",
+              "name": "Southern Oregon ",
+              "url": "http://www.souraiders.com",
+              "location": "Ashland, Ore.",
+              "sourceFile": "conference-sources/CCC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10686-home.html",
+              "url": "https://souraiders.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Football",
+                "Golf",
+                "Soccer",
+                "Track and Field",
+                "Wrestling",
+                "Beach Volleyball",
+                "Cheer & Dance",
+                "Softball",
+                "Volleyball",
+                "Store",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10686-home.html",
+              "status": 200,
+              "url": "https://souraiders.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Stanton University",
+          "state": "CA",
+          "conference": "Cal Pac",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 12325,
+              "name": "Stanton University",
+              "urls": [
+                "https://www.stantonelks.com/landing/index"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CalPac",
+              "name": "Stanton University",
+              "url": "https://www.stantonelks.com/landing/index",
+              "sourceFile": "conference-sources/CalPac-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/12325-home.html",
+              "url": "https://www.stantonelks.com/landing/index",
+              "publishedSportLabels": [
+                "Soccer",
+                "Basketball",
+                "Tennis",
+                "Cross Country",
+                "Streaming",
+                "Women's Tennis",
+                "Women's Soccer",
+                "Men's Soccer",
+                "Privacy Policy",
+                "Terms of Use",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/12325-home.html",
+              "status": 200,
+              "url": "https://www.stantonelks.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Stephens College",
+          "state": "MO",
+          "conference": "Am. Midwest",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10647,
+              "name": "Stephens College",
+              "urls": [
+                "https://stephensstars.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10647-home.html",
+              "url": "https://stephensstars.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Soccer",
+                "Softball",
+                "Volleyball",
+                "New Student-Athlete Checklist",
+                "Official Team Store",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10647-home.html",
+              "status": 200,
+              "url": "https://stephensstars.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Texas A&M University - San Antonio",
+          "state": "TX",
+          "conference": "Red River",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10783,
+              "name": "Texas A & M University San Antonio",
+              "urls": [
+                "https://gojacks.com/"
+              ],
+              "rejectedCampusLink": "Texas A&M San Antonio entry leads to South Dakota State"
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "RRAC",
+              "name": "TEXAS A&M-SAN ANTONIO",
+              "url": "https://tamusasports.com/landing/index",
+              "sourceFile": "conference-sources/RRAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/29-texas-a-m-university-san-antonio-home.html",
+              "url": "https://tamusasports.com/landing/index",
+              "publishedSportLabels": [
+                "Composite",
+                "Search",
+                "Basketball",
+                "Golf",
+                "Soccer",
+                "Cross Country",
+                "Track & Field",
+                "Softball",
+                "Staff Directory",
+                "Camps",
+                "Facilities",
+                "Sports Information",
+                "Sports Medicine",
+                "Sponsors and Corporate Partnerships",
+                "Jaguar Merchandise",
+                "Men's Soccer",
+                "Women's Soccer",
+                "Men's Golf",
+                "Men's Basketball",
+                "Women's Basketball",
+                "Load More",
+                "Privacy Policy",
+                "Terms of Use",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "REJECTED_MAP_CAMPUS",
+              "reason": "Texas A&M San Antonio entry leads to South Dakota State"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/29-texas-a-m-university-san-antonio-home.html",
+              "status": 200,
+              "url": "https://tamusasports.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Trinity Western University",
+          "state": "BC",
+          "conference": "Cascade",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 12324,
+              "name": "Trinity Western University",
+              "urls": [
+                "https://gospartans.ca/index.aspx"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCC",
+              "name": "Trinity Western",
+              "url": "https://gospartans.ca/",
+              "location": "Langley, B.C.",
+              "sourceFile": "conference-sources/CCC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/12324-home.html",
+              "url": "https://gospartans.ca/index.aspx",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross country",
+                "Disc Golf",
+                "Hockey",
+                "Rugby",
+                "Soccer",
+                "Track & field",
+                "Volleyball",
+                "Cross Country",
+                "Rugby Sevens",
+                "Track & Field",
+                "Job Opportunities",
+                "Partners",
+                "Sports Medicine",
+                "Camps",
+                "Academies",
+                "Media Notes",
+                "Pro Spartans",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/12324-home.html",
+              "status": 200,
+              "url": "https://gospartans.ca/index.aspx"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "University of the Virgin Islands",
+          "state": "VI",
+          "conference": "HBCUAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 9840,
+              "name": "University of the Virgin Islands",
+              "urls": [
+                "https://athletics.uvi.edu/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE",
+          "baseballProofs": [],
+          "sportMenuEvidence": [],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/9840-home.html",
+              "status": 200,
+              "url": "https://www.uvi.edu/student-life/athletics/index.html"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Victoria, University of",
+          "state": "BC",
+          "conference": "CAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10707,
+              "name": "University of Victoria",
+              "urls": [
+                "https://govikesgo.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CAC",
+              "name": "University of Victoria",
+              "url": "http://www.govikesgo.com/",
+              "sourceFile": "conference-sources/CAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10707-home.html",
+              "url": "https://govikesgo.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Golf",
+                "Rowing",
+                "Rugby",
+                "Soccer",
+                "Swimming",
+                "XC & Track",
+                "Field Hockey",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10707-home.html",
+              "status": 200,
+              "url": "https://govikesgo.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Walla Walla University",
+          "state": "WA",
+          "conference": "Cascade",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10690,
+              "name": "Walla Walla University",
+              "urls": [
+                "https://wwu.edu/athletics/"
+              ],
+              "rejectedCampusLink": "Walla Walla entry uses Western Washington University domain"
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CCC",
+              "name": "Walla Walla ",
+              "url": "http://uwolves.com/",
+              "location": "College Place, Washington",
+              "sourceFile": "conference-sources/CCC-home.html",
+              "kind": "PUBLISHED_MEMBER_JSON"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/33-walla-walla-university-home.html",
+              "url": "https://uwolves.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Golf",
+                "Soccer",
+                "Volleyball",
+                "Eugene Winter Golf Classic",
+                "Wolves Online Store",
+                "Archived Stories",
+                "Live Stream",
+                "Athletic Scholarships",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "REJECTED_MAP_CAMPUS",
+              "reason": "Walla Walla entry uses Western Washington University domain"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/33-walla-walla-university-home.html",
+              "status": 200,
+              "url": "https://uwolves.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Washington Adventist University",
+          "state": "MD",
+          "conference": "CAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 10708,
+              "name": "Washington Adventist University",
+              "urls": [
+                "https://www.wau.edu/athletics/"
+              ]
+            }
+          ],
+          "conferenceSources": [
+            {
+              "conference": "CAC",
+              "name": "Washington Adventist University",
+              "url": "https://www.wauathletics.com/landing/index",
+              "sourceFile": "conference-sources/CAC-home.html",
+              "kind": "PUBLISHED_LOGO_LINK"
+            }
+          ],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "conference-school-sources/34-washington-adventist-university-home.html",
+              "url": "https://www.wauathletics.com/landing/index",
+              "publishedSportLabels": [
+                "Basketball",
+                "Cross Country",
+                "Soccer",
+                "Flag Football",
+                "Softball",
+                "Volleyball",
+                "Acro-Airs",
+                "Live Video",
+                "Watch/Listen",
+                "Washington Adventist (MD)",
+                "M. Soccer",
+                "Photos",
+                "W. Volleyball",
+                "W. Soccer",
+                "W. Cross Country",
+                "M. Cross Country",
+                "M. Basketball",
+                "W. Basketball",
+                "Privacy Policy",
+                "Terms Of Use",
+                "Terms of Service"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/10708-home.html",
+              "status": 200,
+              "url": "https://www.wau.edu/athletics/"
+            },
+            {
+              "kind": "CONFERENCE_LINKED_HOME",
+              "sourcePath": "conference-school-sources/34-washington-adventist-university-home.html",
+              "status": 200,
+              "url": "https://www.wauathletics.com/landing/index"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        },
+        {
+          "name": "Wesleyan College",
+          "state": "GA",
+          "conference": "SSAC",
+          "stored": null,
+          "mapSources": [
+            {
+              "mapId": 14931,
+              "name": "Wesleyan College",
+              "urls": [
+                "https://wesleyanathletics.com/"
+              ]
+            }
+          ],
+          "conferenceSources": [],
+          "disposition": "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU",
+          "baseballProofs": [],
+          "sportMenuEvidence": [
+            {
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/14931-home.html",
+              "url": "https://wesleyanathletics.com/",
+              "publishedSportLabels": [
+                "Basketball",
+                "Soccer",
+                "Softball",
+                "Volleyball",
+                "Beach Volleyball",
+                "Competitive Cheer",
+                "Flag Football",
+                "Club Ice Hockey",
+                "Wrestling",
+                "Rugby Coming Soon!",
+                "Athletic Training",
+                "Contact Us",
+                "Terms of Service, opens in new window",
+                "Privacy Policy, opens in new window",
+                "Accessibility",
+                "Learn More About Ad Blockers"
+              ],
+              "baseballLinkPublished": false
+            }
+          ],
+          "sourceDispositions": [
+            {
+              "kind": "MAP_LINKED_HOME",
+              "sourcePath": "../naia-baseline-20261111/official-school-baseball-review/14931-home.html",
+              "status": 200,
+              "url": "https://wesleyanathletics.com/"
+            }
+          ],
+          "absenceOfPublishedLinkIsNotProofOfNoTeam": true
+        }
+      ],
+      "institutionSchoolType": [
+        {
+          "slug": "andrew-college",
+          "status": "PRESERVE_JUNIOR_COLLEGE_PENDING_SEPARATE_ACADEMIC_CLASSIFICATION_REVIEW"
+        },
+        {
+          "slug": "bismarck-state-college",
+          "status": "PRESERVE_JUNIOR_COLLEGE_PENDING_SEPARATE_ACADEMIC_CLASSIFICATION_REVIEW"
+        },
+        {
+          "slug": "hesston-college",
+          "status": "PRESERVE_JUNIOR_COLLEGE_PENDING_SEPARATE_ACADEMIC_CLASSIFICATION_REVIEW"
+        },
+        {
+          "slug": "east-georgia-college",
+          "status": "PRESERVE_JUNIOR_COLLEGE_PENDING_SEPARATE_ACADEMIC_CLASSIFICATION_REVIEW"
+        }
+      ],
+      "nationalInventoryVerified": false,
+      "otherSourceHoldsRemain": true
+    },
+    "recordDeletions": 0,
+    "recordMerges": 0,
+    "newCoaches": 0,
+    "newRosterPlayers": 0,
+    "newManualVerificationMarkers": 0,
+    "youtubeUpdates": 0,
+    "approval": "NOT_GRANTED"
+  }
+}

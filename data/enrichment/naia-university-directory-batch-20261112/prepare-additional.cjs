@@ -1,0 +1,2 @@
+'use strict';
+const fs=require('fs'),assert=require('assert/strict');let s=fs.readFileSync(__dirname+'/collect-directories.cjs','utf8');const start=s.indexOf('const seeds='),end=s.indexOf('\nconst host=',start);assert(start>=0&&end>start);s=s.slice(0,start)+"const seeds=[['midland','https://www.midlandu.edu/about/faculty-staff/']];"+s.slice(end);s=s.replaceAll("__dirname+'/captures.json'","__dirname+'/additional-captures.json'").replace("'sources/'+slug+'.html'","'sources/'+slug+'-additional.html'");fs.writeFileSync(__dirname+'/collect-additional.cjs',s,{flag:'wx'});

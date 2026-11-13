@@ -1,0 +1,115 @@
+{
+  "summary": {
+    "checkedAtUtc": "2026-11-11T19:03:46.473Z",
+    "mode": "READ_ONLY_NAIA_CAMP_PREVIEW_PASSED",
+    "databaseWrites": 0,
+    "transactionReadOnly": "on",
+    "candidateSHA256": "f29f3bb2a24c777d602e5e0ef4a7b23c8e4a22c56f463c9b02507f893a7de41d",
+    "reviewedPrograms": 7,
+    "fieldChangesProposed": 7,
+    "programCampUrlsProposed": 7,
+    "collegeMirrorChangesProposed": 0,
+    "stateSectionsCompared": 16,
+    "globalCoachesPreserved": 4931,
+    "globalPlayersPreserved": 22231,
+    "globalSnapshotsPreserved": 567,
+    "recordCreations": 0,
+    "recordDeletions": 0,
+    "recordMerges": 0,
+    "verificationPromotions": 0,
+    "youtubeUpdates": 0,
+    "nationalBaseballInventoryVerified": false,
+    "naiaEnrichmentComplete": false,
+    "importApproval": "NOT_GRANTED"
+  },
+  "candidate": {
+    "scope": "NAIA_BLANK_BASEBALL_CAMP_URLS_20261111",
+    "approval": "NOT_GRANTED",
+    "baseline": "questionnaire-closeout-audit-2026-11-11T18-23-32-721Z-d1386d07/fresh-read-only-snapshot.json",
+    "reviewedPrograms": 7,
+    "changes": [
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmowzrysg0003qt4wbdg2f2jr",
+        "programId": "cmowzryt60005qt4ww6zu8kez",
+        "slug": "aquinas",
+        "before": null,
+        "after": "https://www.aquinasbaseball.com/",
+        "sourcePath": "../naia-enrichment-review-20261111/secondary-sources/0001.html",
+        "sourceSHA256": "cedbabd077240ddfbb11d1c16257ec0d185b8d390bf89ec575c3a6fb6c42ec9f"
+      },
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmox1gf130009qtsg5t8u03t9",
+        "programId": "cmox1gf1s000bqtsgmodcc72o",
+        "slug": "andrew-college",
+        "before": null,
+        "after": "https://www.andrewcollegecamps.com/baseball.cfm",
+        "sourcePath": "recruiting-sources/follow-001.html",
+        "sourceSHA256": "b3513492904f4c278ecb53d55c17945144bc4725ee2306db624e24749f5fac7c"
+      },
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmox065bi0033qtgcf3sg14rd",
+        "programId": "cmox065c60035qtgcui12pyoj",
+        "slug": "cumberland",
+        "before": null,
+        "after": "https://www.cumberlandbaseballcamps.com/",
+        "sourcePath": "recruiting-sources/follow-005.html",
+        "sourceSHA256": "9c9cdc3f016a546cf2f36951190dce9574be1422ec27cb6a709c27a53a7ab38f"
+      },
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmowzs0mz003rqt4w9dtclhuh",
+        "programId": "cmowzs0nq003tqt4wtyvsyna9",
+        "slug": "johnson",
+        "before": null,
+        "after": "https://www.intix.com/event/royals-baseball-winter-skills-prospect-cam/information",
+        "sourcePath": "recruiting-sources/follow-012.html",
+        "sourceSHA256": "8ab047b0facfa54049cb7f9efef2d13d2981a8191839a51d16cef41890fb6426"
+      },
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmox067ch007lqtgceo3tu6aq",
+        "programId": "cmox067d5007nqtgckmvb2cid",
+        "slug": "marian",
+        "before": null,
+        "after": "https://www.marianbaseballcamps.com/",
+        "sourcePath": "recruiting-sources/follow-016.html",
+        "sourceSHA256": "1e1fe2b30fbbd5afeab33028dc558d79d173af2911553ffb9693142f1ace1c20"
+      },
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmox067y8008xqtgcqmlq9nbw",
+        "programId": "cmox067yw008zqtgcfz6hy3yh",
+        "slug": "mount-marty",
+        "before": null,
+        "after": "https://www.mmulancersbsb.com/camps.cfm",
+        "sourcePath": "recruiting-sources/follow-021.html",
+        "sourceSHA256": "a800ec3a3f4cedebfbadcbefbe48f2b225abc67b2af967e9fe3cd96f6c51ffd3"
+      },
+      {
+        "model": "CollegeBaseballProgram",
+        "field": "campsUrl",
+        "collegeId": "cmowzs1x2006cqt4wjutn86j4",
+        "programId": "cmowzs1xs006eqt4wh9yb3erb",
+        "slug": "southeastern",
+        "before": null,
+        "after": "https://www.ussportscamps.com/baseball/nike/nike-baseball-camp-southeastern-university",
+        "sourcePath": "recruiting-sources/follow-023.html",
+        "sourceSHA256": "538e06ce8c34bbcce42a77c606aac79295a9b01b6bab0f024684845d5a131f40"
+      }
+    ],
+    "recordCreations": 0,
+    "recordDeletions": 0,
+    "recordMerges": 0,
+    "verificationPromotions": 0,
+    "youtubeUpdates": 0
+  }
+}

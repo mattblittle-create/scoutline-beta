@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "dickinson-state",
+    "file": "../naia-bulk-recovery-20261112/sources/dickinson-state-entry-1.html",
+    "url": "https://dsubluehawks.com/sports/baseball/roster",
+    "sha256": "2dfd80a974af024a8af05b8c2e3b142320830ea23cb580b296211039ccc83a9e",
+    "count": 42,
+    "collegeId": "cmowzrzxr002fqt4wstnzqq2z",
+    "programId": "cmowzrzyp002hqt4w4892whe7",
+    "nativeCards": 42,
+    "tableCheckedRows": 42,
+    "tableValidation": "EXACT_JERSEY_POSITION_CLASS_MULTISET_NAME_COLUMN_OMITTED",
+    "title": "2027 Baseball Roster - Dickinson State University Sidearm Sports, opens a new window",
+    "limitations": [
+      "Original shared parser remains frozen; a new scoped native-card extractor handles these two layouts.",
+      "Only explicit card attributes are imported; absent height/weight remain null.",
+      "No B/T inference from generic P and no older-season rollover."
+    ]
+  },
+  {
+    "slug": "indiana-wesleyan",
+    "file": "../naia-athletics-recovery-20261112/sources/indiana-wesleyan-roster.html",
+    "url": "https://iwuwildcats.com/sports/baseball/roster",
+    "sha256": "e46d8050bccb1bd393bab0f6b8e59d25858aef501599e5020cf626a647fed15b",
+    "count": 40,
+    "collegeId": "cmox066lk005xqtgctz7oerky",
+    "programId": "cmox066m6005zqtgcfc8lnz5r",
+    "nativeCards": 40,
+    "tableCheckedRows": 40,
+    "tableValidation": "EXACT_PROFILE_IDENTITIES_POSITION_AND_CLASS",
+    "title": "2027 Baseball Roster - Indiana Wesleyan University Sidearm Sports, opens a new window",
+    "limitations": [
+      "Original shared parser remains frozen; a new scoped native-card extractor handles these two layouts.",
+      "Only explicit card attributes are imported; absent height/weight remain null.",
+      "No B/T inference from generic P and no older-season rollover."
+    ]
+  }
+]

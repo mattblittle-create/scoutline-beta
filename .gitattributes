@@ -1,0 +1,3 @@
+# Frozen enrichment manifests hash the exact file bytes. Preserve line endings.
+/data/enrichment/naia-*/** -text
+/data/enrichment/checkpoint-20261112/** -text

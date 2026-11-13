@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),assert=require('assert/strict');
+const receipt='approved-institution-staff-2026-11-12T16-24-08-877Z-05025ec4';
+let code=fs.readFileSync(path.resolve(__dirname,'../naia-navigation-recovery-20261112/audit-navigation-staff-closeout.cjs'),'utf8');
+for(const[a,b]of [['apply-approved-navigation-staff.cjs','apply-approved-institution-staff.cjs'],['preview-navigation-staff.cjs','preview-institution-staff.cjs'],['audit-navigation-staff-closeout.cjs','audit-institution-staff-closeout.cjs'],['approved-navigation-staff-2026-11-12T15-45-50-640Z-cf0b5eb9',receipt],['NAVIGATION_STAFF','INSTITUTION_STAFF'],['{coaches:10}','{coaches:6}'],['newCoaches:10','newCoaches:6'],['newCoachesVerified:10','newCoachesVerified:6'],['newHeadCoachFlags:3','newHeadCoachFlags:2'],['newHeadCoachFlagsVerified:3','newHeadCoachFlagsVerified:2'],['globalCoaches:5052','globalCoaches:5058'],['oldCoachesPreserved:5042','oldCoachesPreserved:5052'],['headIds.size,122','headIds.size,124'],['../naia-roster-holds-20261112/closeout-audit-2026-11-12T15-26-54-479Z-eb3538b4/remaining-holds.json','../naia-navigation-recovery-20261112/closeout-audit-2026-11-12T15-55-29-680Z-c996317c/remaining-holds.json'],['memberMatchedStaffHolds.length,65','memberMatchedStaffHolds.length,63']]){assert(code.includes(a),'Missing token: '+a);code=code.replaceAll(a,b);}
+fs.writeFileSync(path.join(__dirname,'audit-institution-staff-closeout.cjs'),code,{flag:'wx'});
+const files=['audit-institution-staff-closeout.cjs','apply-manifest.json',...['approved-plan.json','commit-receipt.json','created-records.json','fresh-read-only-snapshot.json','read-only-current-before-apply.json','verification-summary.json','write-attempt.json'].map(f=>receipt+'/'+f)];
+const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname,f))).digest('hex');
+fs.writeFileSync(path.join(__dirname,'closeout-manifest.json'),JSON.stringify({hashes:Object.fromEntries(files.map(f=>[f,sha(f)])),receipt},null,2)+'\n',{flag:'wx'});
+console.log(JSON.stringify({receipt,pinnedFiles:files.length,databaseAccess:false,databaseWrites:0}));

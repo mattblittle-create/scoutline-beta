@@ -1,0 +1,3 @@
+const fs=require('fs'),u=require('../naia-inventory-review-20261111/source-utils.cjs'),p=require('../naia-enrichment-review-20261111/source-parser.cjs');
+for(const f of fs.readdirSync(__dirname+'/sources').filter(f=>/defiance/.test(f))){const q=u.ch.load(fs.readFileSync(__dirname+'/sources/'+f,'utf8'));q('.department-baseball').each((_,e)=>console.log(f+' '+u.clean(q(e).text())));}
+for(const key of ['goshen-staff','goshen-roster']){const html=fs.readFileSync(__dirname+'/sources/'+key+'.html','utf8'),q=u.ch.load(html);console.log(key,q('h1').text());if(key==='goshen-staff')q('tr').filter((_,e)=>/baseball/i.test(q(e).text())||/Stoltzfus|Stricker|Amodei|Lehman|Brouillette/.test(q(e).text())).each((_,e)=>console.log(q(e).html()));else console.log(p.seasonGate(html));}

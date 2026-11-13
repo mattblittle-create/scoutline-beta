@@ -1,0 +1,65 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "results": [
+    {
+      "key": "lawrence-tech-entry",
+      "url": "https://ltuathletics.com/sports/baseball/coaches",
+      "finalUrl": "https://ltuathletics.com/sports/baseball/coaches",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T16:41:11.618Z",
+      "sourcePath": "sources/lawrence-tech-entry.html",
+      "sha256": "b05c47f14c20942aba82e54a77643f1e784fb546e81f4bd1070e1a0e7902eff8",
+      "publishedFrom": null
+    },
+    {
+      "key": "lawrence-tech-staff",
+      "url": "https://ltuathletics.com/staff-directory",
+      "finalUrl": "https://ltuathletics.com/staff-directory",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T16:41:11.844Z",
+      "sourcePath": "sources/lawrence-tech-staff.html",
+      "sha256": "a2292f2d87869f1fe5f00ffb27741f4f650f855347ea31de4b1aa30a7fdb570e",
+      "publishedFrom": {
+        "sourcePath": "sources/lawrence-tech-entry.html",
+        "url": "https://ltuathletics.com/sports/baseball/coaches"
+      }
+    },
+    {
+      "key": "lawrence-tech-roster",
+      "url": "https://ltuathletics.com/sports/baseball/roster",
+      "finalUrl": "https://ltuathletics.com/sports/baseball/roster",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T16:41:12.027Z",
+      "sourcePath": "sources/lawrence-tech-roster.html",
+      "sha256": "b28133a7ebddf3d09e35e049ad431c141f2a420bb8eb51094414c1d2e6a3ecd3",
+      "publishedFrom": {
+        "sourcePath": "sources/lawrence-tech-entry.html",
+        "url": "https://ltuathletics.com/sports/baseball/coaches"
+      }
+    },
+    {
+      "key": "indiana-wesleyan-entry",
+      "url": "https://iwuwildcats.com/staff-directory/mathew-bair/566",
+      "finalUrl": "https://iwuwildcats.com/staff-directory/mathew-bair/566",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T16:41:12.913Z",
+      "sourcePath": "sources/indiana-wesleyan-entry.html",
+      "sha256": "fe3eed945732e9d84a1b7c742f9cb5dba271cc57661cc237b5f0c1a6ea7b80dc",
+      "publishedFrom": null
+    },
+    {
+      "key": "indiana-wesleyan-roster",
+      "url": "https://iwuwildcats.com/sports/baseball/roster",
+      "finalUrl": "https://iwuwildcats.com/sports/baseball/roster",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T16:41:13.315Z",
+      "sourcePath": "sources/indiana-wesleyan-roster.html",
+      "sha256": "e46d8050bccb1bd393bab0f6b8e59d25858aef501599e5020cf626a647fed15b",
+      "publishedFrom": {
+        "sourcePath": "sources/indiana-wesleyan-entry.html",
+        "url": "https://iwuwildcats.com/staff-directory/mathew-bair/566"
+      }
+    }
+  ]
+}

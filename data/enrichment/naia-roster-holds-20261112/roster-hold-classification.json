@@ -1,0 +1,2355 @@
+{
+  "checkedAtUtc": "2026-11-12T15:01:30.514Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "baseline": "../naia-staff-followup-20261111/closeout-audit-2026-11-11T21-29-46-505Z-e6e14ec3",
+  "baselineSHA256": "55cb4ad7a46729b34ec9aaaffe394f2ccf79e27e3a90ad4ff6ce0043f9cc06f3",
+  "programsWith2027Roster": 55,
+  "programsWithRosterHolds": 132,
+  "counts": {
+    "CAPTURED_PAGE_SEASON_OR_ROSTER_SCOPE_UNRESOLVED": 1,
+    "CURRENT_PAGE_EMPTY_TEMPLATE_IN_SAVED_CAPTURE": 3,
+    "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE": 62,
+    "ONLY_OLDER_SEASON_CAPTURED": 62,
+    "PUBLISHED_ROSTER_DESTINATION_ACCESS_HOLD": 4
+  },
+  "results": [
+    {
+      "name": "Abraham Baldwin Agricultural College",
+      "state": "GA",
+      "slug": "abraham-baldwin",
+      "collegeId": "cmowzryn20000qt4wsg538yat",
+      "programId": "cmowzryq20002qt4wcia94cvc",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://athletics.abac.edu/sports/baseball/roster",
+          "finalUrl": "https://athletics.abac.edu/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0009.html",
+          "title": "2026 Baseball Roster - Abraham Baldwin Agricultural College",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "1d9447852f091dac72fff6560d286fd9c51d78b0b649954cffddd8f8ff80eb3f",
+          "tablePlayerRows": 44,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 40,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Arizona Christian",
+      "state": "AZ",
+      "slug": "arizona-christian",
+      "collegeId": "cmox063zr0006qtgch1gd613b",
+      "programId": "cmox0640i0008qtgc68cnq9cq",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://acufirestorm.com/sports/baseball/roster",
+          "finalUrl": "https://acufirestorm.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0004.html",
+          "title": "2026 Baseball Roster - Arizona Christian University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "484022bd45cd4dd5ed6d17719ff92a8358abcb0b37d92549e687f05b2fef1d6a",
+          "tablePlayerRows": 58,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 42,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Arkansas Baptist",
+      "state": "AR",
+      "slug": "arkansas-baptist",
+      "collegeId": "cmox0641a0009qtgc0iweu1f4",
+      "programId": "cmox06420000bqtgctoxverh6",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Ave Maria University",
+      "state": "FL",
+      "slug": "ave-maria",
+      "collegeId": "cmox0642r000cqtgch0h1atsx",
+      "programId": "cmox0643f000eqtgcwbotacoa",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://avemariagyrenes.com/sports/baseball/roster",
+          "finalUrl": "https://avemariagyrenes.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0014.html",
+          "title": "2026 Baseball Roster - Ave Maria University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "3fe265ff651f6f9b1fac2b968a31900753028d67a583d9fa6b59a4b5142976d2",
+          "tablePlayerRows": 39,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 37,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Avila University",
+      "state": "MO",
+      "slug": "avila",
+      "collegeId": "cmowzrytw0006qt4wacqwr2gf",
+      "programId": "cmowzryum0008qt4wsq56ec6e",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Baker University",
+      "state": "KS",
+      "slug": "baker",
+      "collegeId": "cmox0645g000iqtgc55oneldh",
+      "programId": "cmox06463000kqtgc9pjvqtua",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Bethany College",
+      "state": "KS",
+      "slug": "bethany",
+      "collegeId": "cmowzryyd000fqt4w75l1pt86",
+      "programId": "cmowzryz4000hqt4web49by6l",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Blue Mountain Christian",
+      "state": "MS",
+      "slug": "blue-mountain-christian",
+      "collegeId": "cmowzrz19000lqt4w1y1r6d6b",
+      "programId": "cmowzrz1y000nqt4wp94mr7u6",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://bmcusports.com/sports/baseball/roster",
+          "finalUrl": "https://bmcusports.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0031.html",
+          "title": "2026 Baseball Roster - Blue Mountain College Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "749b02c17a377244413713e7c84dd0d3166a4135229d2e5408772b4a435c87b1",
+          "tablePlayerRows": 41,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 34,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Bluefield University",
+      "state": "VA",
+      "slug": "bluefield",
+      "collegeId": "cmowzrz2p000oqt4wud5eghaw",
+      "programId": "cmowzrz3h000qqt4wz5pctlbg",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Brescia University",
+      "state": "KY",
+      "slug": "brescia",
+      "collegeId": "cmowzrz46000rqt4wrxx7o7a9",
+      "programId": "cmowzrz4w000tqt4wl7du8f4f",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Brewton-Parker Christian University",
+      "state": "GA",
+      "slug": "brewton-parker",
+      "collegeId": "cmowzrz5k000uqt4wc3s1vgx6",
+      "programId": "cmowzrz6a000wqt4wu9lmyks0",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://bpcuathletics.com/sports/baseball/roster",
+          "finalUrl": "https://bpcuathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0035.html",
+          "title": "2026 Baseball Roster - Brewton-Parker Christian University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "c8c19ee4026afd63cb97d573bbb3f961f30e05ad41cf5fd15dccd663a9f2e398",
+          "tablePlayerRows": 63,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 58,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Briar Cliff University",
+      "state": "IA",
+      "slug": "briar-cliff",
+      "collegeId": "cmowzrz74000xqt4wdm59y6gz",
+      "programId": "cmowzrz7u000zqt4wwkmyegvb",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "British Columbia, University of",
+      "state": "BC",
+      "slug": "british-columbia",
+      "collegeId": "cmox064lo001iqtgcjv8mnkmc",
+      "programId": "cmox064me001kqtgc3pstmmce",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://gothunderbirds.ca/sports/baseball/roster",
+          "finalUrl": "https://gothunderbirds.ca/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0038.html",
+          "title": "2025-26 Baseball Roster - University of British Columbia Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "b2bcc11a9c0200d07a4a2f77fe2a5ad79f48ddf098252ec7ce1e481df5a61ff4",
+          "tablePlayerRows": 52,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 39,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Calumet College of St. Joseph",
+      "state": "IN",
+      "slug": "calumet",
+      "collegeId": "cmowzrzbf0016qt4wfhlncr35",
+      "programId": "cmowzrzc40018qt4wf9nf4knw",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.ccsjathletics.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://www.ccsjathletics.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0044.html",
+          "title": "2025-26 Crimson Wave Baseball Roster - Calumet College of St. Joseph Crimson Wave Athletics",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "8d5ef2134200c1e405dab3256b6f7c6393b5822ffa7d8e0ab210d24fd44a2f1f",
+          "tablePlayerRows": 33,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Campbellsville University",
+      "state": "KY",
+      "slug": "campbellsville",
+      "collegeId": "cmox064r0001uqtgcyhmfa4ad",
+      "programId": "cmox064rr001wqtgcnqonm93x",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://campbellsvilletigers.com/sports/baseball/roster",
+          "finalUrl": "https://campbellsvilletigers.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0047.html",
+          "title": "2026 Baseball Roster - Campbellsville University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "7596342e9e45632164523cff7d03d798daa8bb69328620cf2f44aad311109dea",
+          "tablePlayerRows": 48,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 41,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Carolina University",
+      "state": "NC",
+      "slug": "carolina",
+      "collegeId": "cmowzrzct0019qt4wgwahltd6",
+      "programId": "cmowzrzdk001bqt4w2ajpgsov",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://cubruins.com/sports/baseball/roster",
+          "finalUrl": "https://cubruins.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0048.html",
+          "title": "2026 Baseball Roster - Carolina University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "4939a51307161216c8245c9e65018b217bcf0fc431456b7a388c162890e1ee68",
+          "tablePlayerRows": 68,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 58,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Central Baptist College",
+      "state": "AR",
+      "slug": "central-baptist",
+      "collegeId": "cmowzrzeb001cqt4wjs0rswex",
+      "programId": "cmowzrzf0001eqt4w1r39sp1c",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.cbcmustangs.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://www.cbcmustangs.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0052.html",
+          "title": "2026 CBC Baseball Roster - Central Baptist College",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "b29b9e9ba413abe3ec256a64da0d46a6efcde55012c06f91ec8ddd1b631cc1aa",
+          "tablePlayerRows": 39,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Central Christian College",
+      "state": "KS",
+      "slug": "central-christian",
+      "collegeId": "cmowzrzfr001fqt4wjyk1e88l",
+      "programId": "cmowzrzgq001hqt4wdd8p7s5j",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://ccctigers.com/sports/baseball/roster",
+          "finalUrl": "https://ccctigers.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0057.html",
+          "title": "2026 Baseball Roster - Central Christian College of Kansas Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "e6ea09b9832a7f1d460eb11f1dc98e31ee866ecdc030f429236777e4021f0d71",
+          "tablePlayerRows": 72,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 66,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Central Methodist University",
+      "state": "MO",
+      "slug": "central-methodist",
+      "collegeId": "cmox064v10023qtgczbgq56zf",
+      "programId": "cmox064vn0025qtgco8005zej",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Champion Christian College",
+      "state": "AR",
+      "slug": "champion-christian-college",
+      "collegeId": "cmwc8b87g0002qt98tgfrtztz",
+      "programId": "cmwc8b87g0003qt983w58nbtg",
+      "classification": "PUBLISHED_ROSTER_DESTINATION_ACCESS_HOLD",
+      "sources": [
+        {
+          "url": "https://championtigers.com/sports/bsb/2026-27/roster",
+          "finalUrl": "https://championtigers.com/sports/bsb/2026-27/roster",
+          "status": 404,
+          "sourcePath": null
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Clarke University",
+      "state": "IA",
+      "slug": "clarke",
+      "collegeId": "cmowzrzj0001lqt4wws226tj0",
+      "programId": "cmowzrzjq001nqt4woiwflebl",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Cleary University",
+      "state": "MI",
+      "slug": "cleary",
+      "collegeId": "cmowzrzkk001oqt4wwekf7ggs",
+      "programId": "cmowzrzla001qqt4wuawbib3d",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Columbia International University",
+      "state": "SC",
+      "slug": "ciu",
+      "collegeId": "cmowzrzhj001iqt4wu3gf43ii",
+      "programId": "cmowzrzia001kqt4won2j9klb",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://ciurams.com/sports/baseball/roster",
+          "finalUrl": "https://ciurams.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0065.html",
+          "title": "2026 Baseball Roster - Columbia International University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "35275f9e2014171d81b69a7d604626e7bebb353bfdf7c5e9dc5856c197460527",
+          "tablePlayerRows": 52,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 46,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Concordia University",
+      "state": "NE",
+      "slug": "concordia",
+      "collegeId": "cmowzrzng001uqt4wid2g788z",
+      "programId": "cmowzrzo6001wqt4wyyjghwwi",
+      "classification": "CAPTURED_PAGE_SEASON_OR_ROSTER_SCOPE_UNRESOLVED",
+      "sources": [
+        {
+          "url": "https://www.cune.edu/athletics/teams/baseball/roster",
+          "finalUrl": "https://www.cune.edu/athletics/teams/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0066.html",
+          "title": "Bulldog Baseball Team Roster :: Concordia University, Nebraska",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "f050dfbb6f39f9e4c7396ccf972d02b0ca1e0f8e349f6d5b41627fa6ae078220",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": false
+        },
+        {
+          "url": "https://www.cune.edu/resources/docs/Athletics/baseball27/BAS2027_roster.pdf",
+          "finalUrl": "https://www.cune.edu/resources/docs/Athletics/baseball27/BAS2027_roster.pdf",
+          "status": 200,
+          "sourcePath": "../naia-core-recovery-20261111/sources/010.html",
+          "title": "",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "cf79da8dfe8eb92a5668ce350452db2ed7b06da23ae86cb9e74f1cef6cce02ca",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": false
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Corban University",
+      "state": "OR",
+      "slug": "corban",
+      "collegeId": "cmox06561002rqtgc733yszez",
+      "programId": "cmox0656r002tqtgcfs8vr0zp",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://corbanwarriors.com/sports/baseball/roster",
+          "finalUrl": "https://corbanwarriors.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0070.html",
+          "title": "2026 Baseball Roster - Corban University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "eaca7d02bc9c05d5b91f8e7df3efd203d0401d0b427dbb372b940db73fb46391",
+          "tablePlayerRows": 53,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 47,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Cornerstone University",
+      "state": "MI",
+      "slug": "cornerstone",
+      "collegeId": "cmox0657g002uqtgcg017dzgh",
+      "programId": "cmox06585002wqtgca5k7ptff",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://cugoldeneagles.com/sports/baseball/roster",
+          "finalUrl": "https://cugoldeneagles.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0073.html",
+          "title": "2026 Baseball Roster - Cornerstone University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "cec8bc00f62e3768291eff0231d7789b3d323fe05dd6fc97d559476eba343ae5",
+          "tablePlayerRows": 35,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 30,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Crowley's Ridge",
+      "state": "AR",
+      "slug": "crowley-s-ridge",
+      "collegeId": "cmowzrzqf0020qt4w2rmdzd30",
+      "programId": "cmowzrzr50022qt4wbwnjy4ux",
+      "classification": "CURRENT_PAGE_EMPTY_TEMPLATE_IN_SAVED_CAPTURE",
+      "sources": [
+        {
+          "url": "https://www.crcpioneers.com/sports/bsb/2026-27/roster",
+          "finalUrl": "https://www.crcpioneers.com/sports/bsb/2026-27/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0074.html",
+          "title": "2026-27 Crowley's Ridge Baseball Roster - Crowley's Ridge College",
+          "current2027SeasonGate": true,
+          "sourceSHA256": "76587ca30a1409e3b6ebc7b7328df216f47f2a161fcdd41bc042c5bd0e0b5795",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "parserHold": "Roster empty, partial or unresolved format"
+        },
+        {
+          "url": "https://facebook.com/sharer/sharer.php?u=https://www.crcpioneers.com/sports/bsb/2026-27/roster",
+          "finalUrl": "https://www.facebook.com/share_channel/?type=reshare&link=https%3A%2F%2Fwww.crcpioneers.com%2Fsports%2Fbsb%2F2026-27%2Froster&app_id=966242223397117&source_surface=external_reshare&display&hashtag",
+          "status": 200,
+          "sourcePath": "../naia-core-recovery-20261111/sources/012.html",
+          "title": "Facebook",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "e416eb5813b3767bf5fe2403b35b2857928e68d2e742d0de04934372c735356c",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": false
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Culver-Stockton College",
+      "state": "MO",
+      "slug": "culver-stockton",
+      "collegeId": "cmowzrzrv0023qt4wrvj7v2vn",
+      "programId": "cmowzrzsm0025qt4w6jcyplq9",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Defiance College",
+      "state": "OH",
+      "slug": "defiance-college",
+      "collegeId": "cmowzrzw9002cqt4wnsx4sgpq",
+      "programId": "cmowzrzx0002eqt4wnsddethr",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Dickinson State University",
+      "state": "ND",
+      "slug": "dickinson-state",
+      "collegeId": "cmowzrzxr002fqt4wstnzqq2z",
+      "programId": "cmowzrzyp002hqt4w4892whe7",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Dillard University",
+      "state": "LA",
+      "slug": "dillard",
+      "collegeId": "cmowzrzzj002iqt4wjp7qml4q",
+      "programId": "cmowzs00a002kqt4w2wta5bkm",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Doane University",
+      "state": "NE",
+      "slug": "doane",
+      "collegeId": "cmowzs014002lqt4wj1mlkru4",
+      "programId": "cmowzs01x002nqt4w8ohvbuqf",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Dordt University",
+      "state": "IA",
+      "slug": "dordt",
+      "collegeId": "cmowzs02p002oqt4w5u5siqo9",
+      "programId": "cmowzs03g002qqt4w6h2wkj42",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://godordt.com/sports/baseball/roster",
+          "finalUrl": "https://godordt.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0091.html",
+          "title": "2026 Baseball Roster - Dordt University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "3e67fcc3a1933a6f069029a8ce17d55c71a9b01ad9177802443af5a6dd2561a9",
+          "tablePlayerRows": 50,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 44,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Embry-Riddle Aeronautical University",
+      "state": "AZ",
+      "slug": "embry-riddle",
+      "collegeId": "cmovlhu2n0060qt200npnptgr",
+      "programId": "cmovlhu3d0062qt20b2a0gftv",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Evangel University",
+      "state": "MO",
+      "slug": "evangel",
+      "collegeId": "cmowzs065002uqt4wwjq3lvoj",
+      "programId": "cmowzs06v002wqt4wvnorm0uv",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://evangelathletics.com/sports/baseball/roster",
+          "finalUrl": "https://evangelathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0095.html",
+          "title": "2026 Baseball Roster - Evangel University of the Assemblies of God Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "ced6f53ae538058d27a10df686d9e8b3ee6eeea230f2ffdb7db7efc64c80287a",
+          "tablePlayerRows": 53,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 46,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Faulkner University",
+      "state": "AL",
+      "slug": "faulkner",
+      "collegeId": "cmowzs07m002xqt4wawsr2z9y",
+      "programId": "cmowzs08e002zqt4w4zob7nhd",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://faulknereagles.com/sports/baseball/roster",
+          "finalUrl": "https://faulknereagles.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0098.html",
+          "title": "2026 Baseball Roster - Faulkner University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "9910ba023355baae53bf916cde59df85438aae4fcd3235446b8ff357be6d1361",
+          "tablePlayerRows": 50,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 42,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Fisher College",
+      "state": "MA",
+      "slug": "fisher",
+      "collegeId": "cmowzs0970030qt4wk3t17vg1",
+      "programId": "cmowzs09x0032qt4wjpbbigv0",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Florida Memorial University",
+      "state": "FL",
+      "slug": "florida-memorial",
+      "collegeId": "cmox065u60049qtgczm8bph8k",
+      "programId": "cmox065us004bqtgcnhcywftb",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://athletics.fmu.edu/sports/baseball/roster",
+          "finalUrl": "https://athletics.fmu.edu/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0101.html",
+          "title": "2026 Baseball Roster - Florida Memorial University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "e8984a1c060f55c791ceaa8549a7caa2d516992a621ee0d3be1016f79242d0a7",
+          "tablePlayerRows": 39,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 34,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Florida National University",
+      "state": "FL",
+      "slug": "florida-national",
+      "collegeId": "cmox065vh004cqtgcp9njea3d",
+      "programId": "cmox065w7004eqtgcizjdya6r",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://fnusports.com/sports/baseball/roster",
+          "finalUrl": "https://fnusports.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0107.html",
+          "title": "2026 Baseball Roster - Florida National University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "d2e0178ff776c172fb82c4d85624fcfaad75a1ea70b00e21aa64156664ce07d4",
+          "tablePlayerRows": 88,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 82,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Freed-Hardeman University",
+      "state": "TN",
+      "slug": "freed-hardeman",
+      "collegeId": "cmox065wv004fqtgct0gzr6xf",
+      "programId": "cmox065xk004hqtgcbp2m78so",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://gofhulions.com/sports/baseball/roster",
+          "finalUrl": "https://gofhulions.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0109.html",
+          "title": "2026 Baseball Roster - Freed-Hardeman University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "a57f79ec972d951e7eada79960a91e7937450c7957bbbab6a4173f21ae39e7f6",
+          "tablePlayerRows": 49,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 40,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Friends University",
+      "state": "KS",
+      "slug": "friends",
+      "collegeId": "cmowzs0an0033qt4whk11ikps",
+      "programId": "cmowzs0be0035qt4w7156or7w",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://friendsathletics.com/sports/baseball/roster",
+          "finalUrl": "https://friendsathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0110.html",
+          "title": "2025-26 Baseball Roster - Friends University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "6a4ccfb8f690fb828dae8c0c661a93e7c5f744c84c8e01a01df659356b80d65b",
+          "tablePlayerRows": 65,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 58,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Georgetown College",
+      "state": "KY",
+      "slug": "georgetown",
+      "collegeId": "cmox065zl004lqtgckt3to19k",
+      "programId": "cmox06608004nqtgcd8exng2f",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Georgia Gwinnett College",
+      "state": "GA",
+      "slug": "georgia-gwinnett-college",
+      "collegeId": "cmorj0h8n003fqtio2cfy431r",
+      "programId": "cmorj0h9c003hqtioek48j4vv",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://ggcathletics.com/sports/baseball/roster",
+          "finalUrl": "https://ggcathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0111.html",
+          "title": "2026 Baseball Roster - Georgia Gwinnett College Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "664edd49045eac8c07a674ec25c1968ce91a2f1e42bd1203ffbf3104c20ec2d0",
+          "tablePlayerRows": 44,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 36,
+          "explicitOlderSeason": true
+        },
+        {
+          "url": "https://ggcathletics.com/sports/baseball/roster/jj-garcia/2027",
+          "finalUrl": "https://ggcathletics.com/sports/baseball/roster/jj-garcia/2027",
+          "status": 200,
+          "sourcePath": "../naia-core-recovery-20261111/sources/017.html",
+          "title": "JJ Garcia - Baseball - Georgia Gwinnett College Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "cca4d36283cd95d35027e8c6978c29ff737331213e05a52bee70b359af3524ae",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Georgia Southern East Georgia Campus",
+      "state": "GA",
+      "slug": "east-georgia-college",
+      "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+      "programId": "cmox1ggf20038qtsgueznsf5i",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Goshen College",
+      "state": "IN",
+      "slug": "goshen",
+      "collegeId": "cmowzs0c60036qt4w3zl8yw6w",
+      "programId": "cmowzs0cx0038qt4wqxutssz5",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Grand View University",
+      "state": "IA",
+      "slug": "grand-view",
+      "collegeId": "cmox0666f0050qtgcpy1opj6v",
+      "programId": "cmox066710052qtgcc420cjf3",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://gvvikings.com/sports/baseball/roster",
+          "finalUrl": "https://gvvikings.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0122.html",
+          "title": "2026 Baseball Roster - Grand View University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "d81e0f3b180b0e3c943efc6a6b599147778c5c7925c705a1b31345e8dcd447b3",
+          "tablePlayerRows": 75,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 63,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Hannibal-LaGrange University",
+      "state": "MO",
+      "slug": "hannibal-lagrange",
+      "collegeId": "cmowzs0f8003cqt4w2i4hkdh1",
+      "programId": "cmowzs0fz003eqt4wrfmpneki",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://hlgtrojans.com/sports/baseball/roster",
+          "finalUrl": "https://hlgtrojans.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0123.html",
+          "title": "2026 Baseball Roster - Hannibal-LaGrange University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "0275d0223ac062c4c73ab84d316304015ff880df374729ec27b81b60dd5a7cf3",
+          "tablePlayerRows": 42,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 36,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Harris-Stowe State University",
+      "state": "MO",
+      "slug": "harris-stowe",
+      "collegeId": "cmowzs0gt003fqt4wrycagik9",
+      "programId": "cmowzs0hi003hqt4w046jqkks",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://hornetsathletics.com/sports/baseball/roster",
+          "finalUrl": "https://hornetsathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0128.html",
+          "title": "2026 Baseball Roster - Harris-Stowe State University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "948fef4715bbfc36ff77edb2f7cc3de184ee7bfadecafbb81beddc60a7846ae2",
+          "tablePlayerRows": 37,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 34,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Hastings College",
+      "state": "NE",
+      "slug": "hastings",
+      "collegeId": "cmox066af0059qtgc98qcsc7y",
+      "programId": "cmox066b2005bqtgc12ijaaed",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Health Sciences & Pharmacy, University",
+      "state": "MO",
+      "slug": "uhsp",
+      "collegeId": "cmox06a1200diqtgc2xj3i2cg",
+      "programId": "cmox06a1v00dkqtgc0ies32dk",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://eutecticsports.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://eutecticsports.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0134.html",
+          "title": "2026 Baseball Roster - University of Health Sciences & Pharmacy in St. Louis",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "fdcdd5487ac5cc1801cce0fe8b8e324c152b004b8f5d4a1b4917cc1c3bb02282",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 42,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Hesston College",
+      "state": "KS",
+      "slug": "hesston-college",
+      "collegeId": "cmox2370n0053qtfkut9hq09h",
+      "programId": "cmox2371e0055qtfkvkx90l9g",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://hclarks.com/sports/baseball/roster",
+          "finalUrl": "https://hclarks.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0135.html",
+          "title": "2026 Baseball Roster - Hesston College",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "08040030dd9ef3e5b427a4cea6f0ff95c2030c9c8770f9dc4bafff4ed32f4809",
+          "tablePlayerRows": 56,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 50,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Huntington University",
+      "state": "IN",
+      "slug": "huntington",
+      "collegeId": "cmowzs0ic003iqt4w0udpeydi",
+      "programId": "cmowzs0j4003kqt4w4p7lup2g",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Huston-Tillotson University",
+      "state": "TX",
+      "slug": "huston-tillotson",
+      "collegeId": "cmox066g1005lqtgc9k82gfo7",
+      "programId": "cmox066gp005nqtgclnbwutsi",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://htramsathletics.com/sports/baseball/roster",
+          "finalUrl": "https://htramsathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0139.html",
+          "title": "2026 Baseball Roster - Huston-Tillotson University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "92fc8f424e70720907284e6f08c2fdef951e58ecdb0204478a00aaab0655b4e9",
+          "tablePlayerRows": 45,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 40,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Indiana University Columbus",
+      "state": "IN",
+      "slug": "iu-columbus",
+      "collegeId": "cmowzs0jv003lqt4wamuq6dql",
+      "programId": "cmowzs0km003nqt4wirgbvrua",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://iuccrimsonpride.com/sports/baseball/roster",
+          "finalUrl": "https://iuccrimsonpride.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0148.html",
+          "title": "2026 Baseball Roster Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "48dce76ae2897281c9819b63038a076288fa21a99990fe2309aafc86b9bef458",
+          "tablePlayerRows": 59,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 50,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Indiana University Southeast",
+      "state": "IN",
+      "slug": "indiana-southeast",
+      "collegeId": "cmox066is005rqtgc1k2001tz",
+      "programId": "cmox066jh005tqtgcghn0tck4",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://iusathletics.com/sports/baseball/roster",
+          "finalUrl": "https://iusathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0152.html",
+          "title": "2025-26 Baseball Roster - Indiana University Southeast Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "034f98b83750e6095d2797df3e67d75080bab309a1965d39e02873ae4fb6d034",
+          "tablePlayerRows": 46,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 40,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Indiana Wesleyan University",
+      "state": "IN",
+      "slug": "indiana-wesleyan",
+      "collegeId": "cmox066lk005xqtgctz7oerky",
+      "programId": "cmox066m6005zqtgcfc8lnz5r",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Jarvis Christian University",
+      "state": "TX",
+      "slug": "jarvis-christian",
+      "collegeId": "cmox066qy0069qtgco1avrdjp",
+      "programId": "cmox066rl006bqtgcp8ia4wyg",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Keiser University",
+      "state": "FL",
+      "slug": "keiser",
+      "collegeId": "cmowzs0py003xqt4w2b5x3mjw",
+      "programId": "cmowzs0qr003zqt4wnm194jr2",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://kuseahawks.com/sports/baseball/roster",
+          "finalUrl": "https://kuseahawks.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0168.html",
+          "title": "2026 (rv) Baseball Roster - Keiser University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "0a9ef2b0dc292ae9db2851eff46adfdc1667de3d5cfdafca2ad73491f3c85be9",
+          "tablePlayerRows": 45,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 38,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Kentucky Christian University",
+      "state": "KY",
+      "slug": "kentucky-christian",
+      "collegeId": "cmox066xq006oqtgc1hw3zms8",
+      "programId": "cmox066yg006qqtgct3zks1ra",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "La Sierra University",
+      "state": "CA",
+      "slug": "la-sierra",
+      "collegeId": "cmox066z4006rqtgchicxxtpc",
+      "programId": "cmox066zr006tqtgc98u3a9gk",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://lsugoldeneagles.com/sports/baseball/roster",
+          "finalUrl": "https://lsugoldeneagles.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0169.html",
+          "title": "2026 Baseball Roster - La Sierra University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "2813c50b4b5eb8a9c2254cb845e17eac01ea64ed547eca0c987f425514d696a5",
+          "tablePlayerRows": 48,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 46,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Lawrence Technological University",
+      "state": "MI",
+      "slug": "lawrence-tech",
+      "collegeId": "cmox0670h006uqtgc73tzy1mv",
+      "programId": "cmox06715006wqtgcslcpoi9h",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Lindsey Wilson University",
+      "state": "KY",
+      "slug": "lindsey-wilson",
+      "collegeId": "cmox067330070qtgc2vra1ndq",
+      "programId": "cmox0673q0072qtgcnwerjkl3",
+      "classification": "PUBLISHED_ROSTER_DESTINATION_ACCESS_HOLD",
+      "sources": [
+        {
+          "url": "https://lindseyathletics.com/sports/jv-baseball/roster/2026-27jv",
+          "finalUrl": "https://lindseyathletics.com/404-1.aspx?url=%2froster.aspx%3fpath%3djvbsb%26",
+          "status": 404,
+          "sourcePath": null
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Louisiana Christian University",
+      "state": "LA",
+      "slug": "louisiana-christian",
+      "collegeId": "cmox0674e0073qtgccuv9vkx5",
+      "programId": "cmox067530075qtgcrqktxkzj",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.lcwildcats.net/sports/baseball/roster",
+          "finalUrl": "https://www.lcwildcats.net/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0178.html",
+          "title": "2026 Baseball Roster - Louisiana Christian University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "38472510bd862b423a6fd55f0fe7bb05c5831543ae2d27c1050c7c9e0d4c8b7f",
+          "tablePlayerRows": 49,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 43,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Louisiana State University Alexandria",
+      "state": "LA",
+      "slug": "lsu-alexandria",
+      "collegeId": "cmowzs0uo0046qt4wfr3hrw5d",
+      "programId": "cmowzs0ve0048qt4wqhs864vb",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://lsuagenerals.com/sports/baseball/roster",
+          "finalUrl": "https://lsuagenerals.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0180.html",
+          "title": "2026 Baseball Roster - Louisiana State University at Alexandria Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "e4879ef1e0fa0481d393a2e5a8528b88107bac2077316fbc61aeac0fee840c3c",
+          "tablePlayerRows": 50,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 43,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Louisiana State University Shreveport",
+      "state": "LA",
+      "slug": "lsu-shreveport",
+      "collegeId": "cmowzs0w50049qt4wzavead73",
+      "programId": "cmowzs0wt004bqt4w74nprpxc",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Madonna University",
+      "state": "MI",
+      "slug": "madonna",
+      "collegeId": "cmowzs0xk004cqt4wnl1891ss",
+      "programId": "cmowzs0y9004eqt4w79qsitvo",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://mucrusaders.com/sports/baseball/roster",
+          "finalUrl": "https://mucrusaders.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0182.html",
+          "title": "2026 Baseball Roster - Madonna University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "27082b94279aa44f01a7b8eead3a635fc7ca04df7f8721c69b727c28c4f02730",
+          "tablePlayerRows": 70,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 61,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Marian University",
+      "state": "IN",
+      "slug": "marian",
+      "collegeId": "cmox067ch007lqtgceo3tu6aq",
+      "programId": "cmox067d5007nqtgckmvb2cid",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://muknights.com/sports/baseball/roster",
+          "finalUrl": "https://muknights.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0185.html",
+          "title": "2027 Baseball Roster - Marian University Ind. Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "d3d21095c7051ea2d9d5eb0a3054aaeeb51f040a7d3184f129828da96024f912",
+          "tablePlayerRows": 55,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 41,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Master's University, The",
+      "state": "CA",
+      "slug": "the-master-s",
+      "collegeId": "cmowzs2af0073qt4wn3t65h57",
+      "programId": "cmowzs2b80075qt4w42rn3r24",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Michigan-Dearborn, University",
+      "state": "MI",
+      "slug": "michigan-dearborn",
+      "collegeId": "cmox067gh007uqtgcqrq09vgr",
+      "programId": "cmox067h8007wqtgc5c5lbk1q",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Midland University",
+      "state": "NE",
+      "slug": "midland",
+      "collegeId": "cmox067kl0083qtgczg7bx4q5",
+      "programId": "cmox067l90085qtgcpz55jo7s",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Midway University",
+      "state": "KY",
+      "slug": "midway",
+      "collegeId": "cmox067ly0086qtgcybk0ndn8",
+      "programId": "cmox067ml0088qtgcdv6unyqj",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Milligan University",
+      "state": "TN",
+      "slug": "milligan",
+      "collegeId": "cmowzs10i004iqt4welwstpp9",
+      "programId": "cmowzs117004kqt4w9k7aw4j0",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://milliganbuffs.com/sports/baseball/roster",
+          "finalUrl": "https://milliganbuffs.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0199.html",
+          "title": "2026 Baseball Roster - Milligan University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "a158bd64a2c913e37427867b9485a7160de80b4365638c292c1769a38391893f",
+          "tablePlayerRows": 80,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 69,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Mission University",
+      "state": "MO",
+      "slug": "mission",
+      "collegeId": "cmowzs11x004lqt4wcw37qxqh",
+      "programId": "cmowzs12n004nqt4w44dc6uw4",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://gopatriotathletics.com/sports/baseball/roster",
+          "finalUrl": "https://gopatriotathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0201.html",
+          "title": "2026 Baseball Roster - Mission University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "cd4e7f1d3db2e2977261b5fc03f368cd0477db1fc534fa003db7435a9cad88bd",
+          "tablePlayerRows": 40,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 36,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Missouri Valley University",
+      "state": "MO",
+      "slug": "missouri-valley",
+      "collegeId": "cmox067rf008iqtgcqv98xxm2",
+      "programId": "cmox067s3008kqtgch1imoxph",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Mobile, University of",
+      "state": "AL",
+      "slug": "mobile",
+      "collegeId": "cmowzs13d004oqt4wgedrj6i3",
+      "programId": "cmowzs144004qqt4wstmf8bgo",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://umobilerams.com/sports/baseball/roster",
+          "finalUrl": "https://umobilerams.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0206.html",
+          "title": "2026 Baseball Roster - University of Mobile Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "ff24d6233c186caef4d9fee131015d8b7d090d6cc50be392a4321bd65e47b31d",
+          "tablePlayerRows": 43,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 39,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Montreat College",
+      "state": "NC",
+      "slug": "montreat",
+      "collegeId": "cmowzs14u004rqt4wk2sj18ho",
+      "programId": "cmowzs15k004tqt4wmvxkhql8",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://montreatcavaliers.com/sports/baseball/roster",
+          "finalUrl": "https://montreatcavaliers.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0209.html",
+          "title": "2026 Baseball Roster - Montreat College Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "5dfefc147d231168d80650e44c360a481654e9706d7aac2b79c687459638ceea",
+          "tablePlayerRows": 61,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 50,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Morningside University",
+      "state": "IA",
+      "slug": "morningside",
+      "collegeId": "cmowzs16a004uqt4wruulohb5",
+      "programId": "cmowzs170004wqt4wqy5178q8",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Morris College",
+      "state": "SC",
+      "slug": "morris",
+      "collegeId": "cmox067wv008uqtgc1vodg7t1",
+      "programId": "cmox067xj008wqtgc9eh7f0b2",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Mount Mercy University",
+      "state": "IA",
+      "slug": "mount-mercy",
+      "collegeId": "cmox067zj0090qtgc8tlprwtb",
+      "programId": "cmox068050092qtgc1z1squro",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Nelson University",
+      "state": "TX",
+      "slug": "nelson",
+      "collegeId": "cmowzs19b0050qt4wx2g99sqw",
+      "programId": "cmowzs1a50052qt4wwu6iplj9",
+      "classification": "CURRENT_PAGE_EMPTY_TEMPLATE_IN_SAVED_CAPTURE",
+      "sources": [
+        {
+          "url": "https://nelsonlions.com/sports/bsb/2026-27/roster",
+          "finalUrl": "https://nelsonlions.com/sports/bsb/2026-27/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0216.html",
+          "title": "2026-27 Baseball Roster - Nelson University (TX)",
+          "current2027SeasonGate": true,
+          "sourceSHA256": "255adb21906048d0cb2bdf691a0ef68f8c8186d2245b5871f1f843f68e1d5abf",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "parserHold": "Roster empty, partial or unresolved format"
+        },
+        {
+          "url": "https://nelsonlions.com/sports/bsb/2026-27/roster?view=list",
+          "finalUrl": "https://nelsonlions.com/sports/bsb/2026-27/roster?view=list",
+          "status": 200,
+          "sourcePath": "../naia-core-recovery-20261111/sources/027.html",
+          "title": "2026-27 Baseball Roster - Nelson University (TX)",
+          "current2027SeasonGate": true,
+          "sourceSHA256": "d8c2f49da2f1a3e44d7c88eaf782bc290d10db74633c83a0aeef2985c4f8db80",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "parserHold": "Roster empty, partial or unresolved format"
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "New College of Florida",
+      "state": "FL",
+      "slug": "new-college-of-florida",
+      "collegeId": "cmox068270096qtgcwygf9q49",
+      "programId": "cmox0682v0098qtgc8pecb1dt",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://gomightybanyans.com/sports/baseball/roster",
+          "finalUrl": "https://gomightybanyans.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0219.html",
+          "title": "2026 Baseball Roster - New College of Florida Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "27b91b9983b1afae0e20f7c426545c2de18bf0b3f271e86a48cf277b22a65638",
+          "tablePlayerRows": 57,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 50,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Northwestern Ohio, University of",
+      "state": "OH",
+      "slug": "northwestern-ohio",
+      "collegeId": "cmox0684y009cqtgca2arq0at",
+      "programId": "cmox0685n009eqtgcdvg27ftq",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Oakwood University",
+      "state": "AL",
+      "slug": "oakwood",
+      "collegeId": "cmowzs1dw0059qt4w4xp8tyqi",
+      "programId": "cmowzs1em005bqt4wy7jzp16v",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://athletics.oakwood.edu/sports/baseball/roster",
+          "finalUrl": "https://athletics.oakwood.edu/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0235.html",
+          "title": "2026 Baseball Roster - Oakwood University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "9f8dffe8d785bf7ec3140b2896af6ea815ddf73ead10148614e601c611b924df",
+          "tablePlayerRows": 25,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 23,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Oklahoma City University",
+      "state": "OK",
+      "slug": "oklahoma-city-university",
+      "collegeId": "cmwc8b8cs0006qt98re0777rt",
+      "programId": "cmwc8b8cs0007qt9892w3gea7",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.ocusports.com/sports/baseball/roster",
+          "finalUrl": "https://www.ocusports.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0232.html",
+          "title": "2026 Baseball Roster - Oklahoma City University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "a8bc21c448bd740372fcc112bd4da2cc1f05166c157125824bd5da4ce0663402",
+          "tablePlayerRows": 37,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 33,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Oklahoma Panhandle State Univ",
+      "state": "OK",
+      "slug": "oklahoma-panhandle-state-university",
+      "collegeId": "cmwc95gpt0000qti8cwb0p5c1",
+      "programId": "cmwc95gpw0001qti81plzhie8",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Oklahoma Wesleyan University",
+      "state": "OK",
+      "slug": "oklahoma-wesleyan",
+      "collegeId": "cmox06893009lqtgc3tmk8itu",
+      "programId": "cmox0689q009nqtgcz4ipk7b3",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://okwueagles.com/sports/baseball/roster",
+          "finalUrl": "https://okwueagles.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0236.html",
+          "title": "2026 Baseball Roster - OKWU Eagles | Oklahoma Wesleyan University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "d8690d472e93029e3e0e879d88543cfcde0d05448b290a97db60b7b808079347",
+          "tablePlayerRows": 59,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 48,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Olivet Nazarene University",
+      "state": "IL",
+      "slug": "olivet-nazarene",
+      "collegeId": "cmowzs1fe005cqt4w0s54p5m8",
+      "programId": "cmowzs1g5005eqt4wukamkj7q",
+      "classification": "PUBLISHED_ROSTER_DESTINATION_ACCESS_HOLD",
+      "sources": [
+        {
+          "url": "https://www.onutigers.com/sports/bsb/2026-27/roster",
+          "status": "HELD_PRIOR_ACCESS_RESPONSE",
+          "sourcePath": null
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Ottawa University Arizona",
+      "state": "AZ",
+      "slug": "ouaz",
+      "collegeId": "cmox068ed009xqtgcluu00ea6",
+      "programId": "cmox068f0009zqtgchb2ahuov",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://ouazspirit.com/sports/baseball/roster",
+          "finalUrl": "https://ouazspirit.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0241.html",
+          "title": "2026 Baseball Roster - OUAZ Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "ef21dbec5ca2c821b83acb10c8567297f4fcc16d45d41c27c847d7820d803473",
+          "tablePlayerRows": 62,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 46,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Our Lady of the Lake University",
+      "state": "TX",
+      "slug": "our-lady-of-the-lake",
+      "collegeId": "cmox068fn00a0qtgc5m18fxv4",
+      "programId": "cmox068gh00a2qtgcokpfieyr",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Park University",
+      "state": "MO",
+      "slug": "park",
+      "collegeId": "cmox068h500a3qtgcyxillt4u",
+      "programId": "cmox068ht00a5qtgcrguqmapu",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Park University Gilbert",
+      "state": "AZ",
+      "slug": "park-gilbert",
+      "collegeId": "cmowzs1ib005iqt4w3i7tnck9",
+      "programId": "cmowzs1j1005kqt4w6lezmfao",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Philander Smith College",
+      "state": "AR",
+      "slug": "philander-smith",
+      "collegeId": "cmowzs1jr005lqt4womndsl7h",
+      "programId": "cmowzs1kh005nqt4wlynyw4it",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Pikeville, University of",
+      "state": "KY",
+      "slug": "pikeville",
+      "collegeId": "cmowzs1l7005oqt4wcore2glb",
+      "programId": "cmowzs1lx005qqt4weh3t7mgs",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://upikebears.com/sports/baseball/roster",
+          "finalUrl": "https://upikebears.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0255.html",
+          "title": "2026 Baseball Roster - UPIKE Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "5c99a9cb823918c7b6c33bf3638ba92be29e25ae3886a6f7162caac7d0bd90ff",
+          "tablePlayerRows": 48,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 42,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Point University",
+      "state": "GA",
+      "slug": "point",
+      "collegeId": "cmox068ny00aiqtgc74yuw2t8",
+      "programId": "cmox068om00akqtgcrhsoe43o",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Reinhardt University",
+      "state": "GA",
+      "slug": "reinhardt-university",
+      "collegeId": "cmorj0h79003cqtioydx0o97u",
+      "programId": "cmorj0h7z003eqtiokq3f4k04",
+      "classification": "CURRENT_PAGE_EMPTY_TEMPLATE_IN_SAVED_CAPTURE",
+      "sources": [
+        {
+          "url": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster",
+          "finalUrl": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0256.html",
+          "title": "2026-27 Reinhardt Baseball Roster - Reinhardt University Athletics",
+          "current2027SeasonGate": true,
+          "sourceSHA256": "75b40e9baa55b857f13e46dcbf89107dd6aa4084fe1804f79867fc6015c7120c",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "parserHold": "Roster empty, partial or unresolved format"
+        },
+        {
+          "url": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster?view=list",
+          "finalUrl": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster?view=list",
+          "status": 200,
+          "sourcePath": "../naia-core-recovery-20261111/sources/030.html",
+          "title": "2026-27 Reinhardt Baseball Roster - Reinhardt University Athletics",
+          "current2027SeasonGate": true,
+          "sourceSHA256": "201d001373371aceb47aff6abf165432cfcaddb0b1bbb99baac0dd93ce68164c",
+          "tablePlayerRows": 0,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "parserHold": "Roster empty, partial or unresolved format"
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Rochester Christian University",
+      "state": "MI",
+      "slug": "rochester-christian",
+      "collegeId": "cmowzs1pl005xqt4w10de1dc1",
+      "programId": "cmowzs1qd005zqt4w3ztrgtxk",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://rcuwarriors.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://rcuwarriors.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0265.html",
+          "title": "2026 Baseball Roster - Rochester Christian University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "11d689abf9199a30ac3b30257c649532ad60c1ac0916860af5e183839a7d5f29",
+          "tablePlayerRows": 33,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Rust College",
+      "state": "MS",
+      "slug": "rust",
+      "collegeId": "cmowzs1r40060qt4waqra6rcg",
+      "programId": "cmowzs1ru0062qt4wsf57vlws",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Saint Francis, University",
+      "state": "IN",
+      "slug": "saint-francis",
+      "collegeId": "cmowzs1sl0063qt4w2c8vrz25",
+      "programId": "cmowzs1tf0065qt4wf2jc26kg",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Saint Thomas University",
+      "state": "FL",
+      "slug": "st-thomas",
+      "collegeId": "cmowzs25w006uqt4w8e2l0xp7",
+      "programId": "cmowzs26n006wqt4ww0ftc7cs",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Science and Arts of Ok, University of",
+      "state": "OK",
+      "slug": "university-of-science-and-arts-of-oklahoma",
+      "collegeId": "cmwc95gvq0002qti84six5uid",
+      "programId": "cmwc95gvq0003qti8ksxflxlb",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Simpson University",
+      "state": "CA",
+      "slug": "simpson",
+      "collegeId": "cmowzs1vl0069qt4wsqb6a8yr",
+      "programId": "cmowzs1wc006bqt4wog3ldsij",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Southeastern University",
+      "state": "FL",
+      "slug": "southeastern",
+      "collegeId": "cmowzs1x2006cqt4wjutn86j4",
+      "programId": "cmowzs1xs006eqt4wh9yb3erb",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://fire.seu.edu/sports/baseball/roster",
+          "finalUrl": "https://fire.seu.edu/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0273.html",
+          "title": "2026 Baseball Roster - Southeastern University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "a0f5b995d07e6a58b857daf9ae67b1e48d3a19b9f76f09a89846bcefdd889fbc",
+          "tablePlayerRows": 60,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 54,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Southern University at New Orleans",
+      "state": "LA",
+      "slug": "southern-university-at-new-orleans",
+      "collegeId": "cmowzs1yj006fqt4wp698q3i9",
+      "programId": "cmowzs1zb006hqt4w9cv36ie1",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Southwest, University of the",
+      "state": "NM",
+      "slug": "southwest",
+      "collegeId": "cmox0696p00boqtgcoxda72a3",
+      "programId": "cmox0697h00bqqtgc82xhph2g",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://uswathletics.com/sports/baseball/roster",
+          "finalUrl": "https://uswathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0277.html",
+          "title": "2026 Baseball Roster - University of the Southwest Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "512b627bf52a213e342945fb2b4715a6884be3ce45471e2f6b59cf253cf03522",
+          "tablePlayerRows": 65,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 59,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "St. Ambrose University",
+      "state": "IA",
+      "slug": "st-ambrose",
+      "collegeId": "cmowzs21j006lqt4wffal58bl",
+      "programId": "cmowzs229006nqt4w7on28728",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Sterling College",
+      "state": "KS",
+      "slug": "sterling",
+      "collegeId": "cmox069ho00ccqtgc42y9kmfr",
+      "programId": "cmox069ic00ceqtgcdf68glfw",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Stillman College",
+      "state": "AL",
+      "slug": "stillman",
+      "collegeId": "cmox069iz00cfqtgc6ijvh9gn",
+      "programId": "cmox069jn00chqtgcwwpupmtc",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://gostillman.com/sports/baseball/roster",
+          "finalUrl": "https://gostillman.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0287.html",
+          "title": "2026 Baseball Roster - Stillman College Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "3b447d8c60b1f81a9bcce5d2c0cb8177197dd4bba0054bf97009b9932285ddb4",
+          "tablePlayerRows": 37,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 33,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Tabor College",
+      "state": "KS",
+      "slug": "tabor",
+      "collegeId": "cmox069kd00ciqtgcfmpgoiet",
+      "programId": "cmox069l200ckqtgctpak8c8c",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://taborbluejays.com/sports/baseball/roster",
+          "finalUrl": "https://taborbluejays.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0290.html",
+          "title": "2026 Baseball Roster - Tabor College Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "11b156fafa98b072b8f5174ccc38f6392dedaf1c041f0f0c9b6fb898edec5e0c",
+          "tablePlayerRows": 76,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 67,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Talladega College",
+      "state": "AL",
+      "slug": "talladega",
+      "collegeId": "cmowzs27g006xqt4wpaqxe1jx",
+      "programId": "cmowzs287006zqt4w4eidxuh3",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Taylor University",
+      "state": "IN",
+      "slug": "taylor",
+      "collegeId": "cmowzs28y0070qt4wel8w9307",
+      "programId": "cmowzs29o0072qt4we5nkbniu",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Tennessee Wesleyan University",
+      "state": "TN",
+      "slug": "tennessee-wesleyan-university",
+      "collegeId": "cmorj0hbg003lqtio2flk2ko3",
+      "programId": "cmorj0hc5003nqtioipyn2utb",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.twbulldogs.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://www.twbulldogs.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0298.html",
+          "title": "2026 Baseball Roster - Tennessee Wesleyan University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "24b1ef00751e6cb06e1906908a58be40cbfb0a3107e51873e38caa9575ddf732",
+          "tablePlayerRows": 40,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Texas A&M University - Texarkana",
+      "state": "TX",
+      "slug": "texas-a-and-m-texarkana",
+      "collegeId": "cmox069rb00cxqtgc4ygzwzwx",
+      "programId": "cmox069s000czqtgclertoc9x",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Texas A&M University - Victoria",
+      "state": "TX",
+      "slug": "houston-victoria",
+      "collegeId": "cmox066d3005fqtgc1tg2a1cp",
+      "programId": "cmox066dr005hqtgc8h7zlx9d",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.tamuvathletics.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://www.tamuvathletics.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0301.html",
+          "title": "2026 A&M-Victoria Baseball Roster - Texas A&M University-Victoria",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "a83fec4c395216814aabe46ba4212d87f3c07281526ca2521859ec18d6d6abda",
+          "tablePlayerRows": 40,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Texas College",
+      "state": "TX",
+      "slug": "texas-college",
+      "collegeId": "cmox069sn00d0qtgcjtotjzzk",
+      "programId": "cmox069ta00d2qtgce5kg87su",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Texas Wesleyan University",
+      "state": "TX",
+      "slug": "texas-wesleyan-university",
+      "collegeId": "cmwc8b8ko000cqt98he35bp95",
+      "programId": "cmwc8b8ko000dqt98f4gucdfz",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://ramsports.net/sports/baseball/roster",
+          "finalUrl": "https://ramsports.net/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0306.html",
+          "title": "2026 Baseball Roster - Texas Wesleyan University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "070724c03dae9190709239e6f2d37efd8199530f0f6ab8997fa1385ce130403a",
+          "tablePlayerRows": 38,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 33,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Thomas University",
+      "state": "GA",
+      "slug": "thomas",
+      "collegeId": "cmox069va00d6qtgcn0ndzzas",
+      "programId": "cmox069w000d8qtgc3rhehrz6",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://tunighthawks.com/sports/baseball/roster",
+          "finalUrl": "https://tunighthawks.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0307.html",
+          "title": "2026 Baseball Roster - Thomas University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "f90788da5239f0231182c57d850f5de26268046d386d01945919af53ceffba3b",
+          "tablePlayerRows": 71,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 63,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Tougaloo College",
+      "state": "MS",
+      "slug": "tougaloo",
+      "collegeId": "cmowzs2c00076qt4wck5u0njl",
+      "programId": "cmowzs2cu0078qt4wfkoltfoo",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Truett McConnell University",
+      "state": "GA",
+      "slug": "truett-mcconnell",
+      "collegeId": "cmox069zr00dfqtgcntxrsrbb",
+      "programId": "cmox06a0f00dhqtgcqw2s1nih",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Union Commonwealth University",
+      "state": "KY",
+      "slug": "union-commonwealth",
+      "collegeId": "cmox06a2l00dlqtgcos7i4rt9",
+      "programId": "cmox06a3800dnqtgcivxehje8",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Viterbo University",
+      "state": "WI",
+      "slug": "viterbo",
+      "collegeId": "cmox06a5900drqtgcpbq8mglc",
+      "programId": "cmox06a5y00dtqtgcmh4agtar",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Voorhees University",
+      "state": "SC",
+      "slug": "voorhees-university",
+      "collegeId": "cmox06a6m00duqtgchsc3tg7p",
+      "programId": "cmox06a7b00dwqtgch8sp1gzy",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://voorheesathletics.com/sports/baseball/roster",
+          "finalUrl": "https://voorheesathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0315.html",
+          "title": "2025-26 Baseball Roster - Voorhees University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "ac21c2e2344a72c73762c822644548957a39e05bacdb54e38d8ab74796b4cc7d",
+          "tablePlayerRows": 33,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 30,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Waldorf University",
+      "state": "IA",
+      "slug": "waldorf",
+      "collegeId": "cmox06a7z00dxqtgcs2lyeo4e",
+      "programId": "cmox06a8n00dzqtgcigsavox2",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Warner Pacific University",
+      "state": "OR",
+      "slug": "warner-pacific-university",
+      "collegeId": "cmwc8b8ps000gqt98eib7xvln",
+      "programId": "cmwc8b8ps000hqt9873yjazf6",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://wpuknights.com/sports/baseball/roster",
+          "finalUrl": "https://wpuknights.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0322.html",
+          "title": "2026 Baseball Roster - Warner Pacific University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "311d2f885ffd81fba195730e498c38dbbc06a571bd7d112de801e9379a1ebb34",
+          "tablePlayerRows": 53,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 45,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Warner University",
+      "state": "FL",
+      "slug": "warner",
+      "collegeId": "cmowzs2f3007cqt4wlgcn8jot",
+      "programId": "cmowzs2fy007eqt4wporcz9db",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://warnerroyals.com/sports/baseball/roster",
+          "finalUrl": "https://warnerroyals.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0323.html",
+          "title": "2026 Baseball Roster - Warner University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "780d28604a2db5148f5f111c836f76cec95f1317324df045b8403f98077ec153",
+          "tablePlayerRows": 73,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 66,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Webber International University",
+      "state": "FL",
+      "slug": "webber-international",
+      "collegeId": "cmowzs2i6007iqt4w14hrvqae",
+      "programId": "cmowzs2iy007kqt4wynurq5n1",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://webberathletics.com/sports/baseball/roster",
+          "finalUrl": "https://webberathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0325.html",
+          "title": "2026 Baseball Roster - Webber International University Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "7d425380fa8b111d7d4db1eed97b9f4975b6c75beb1b6e06e06c18be5af56a77",
+          "tablePlayerRows": 41,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 32,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Westcliff University",
+      "state": "CA",
+      "slug": "westcliff",
+      "collegeId": "cmowzs2jp007lqt4wmxd5vtd8",
+      "programId": "cmowzs2kf007nqt4wyiw47c68",
+      "classification": "PUBLISHED_ROSTER_DESTINATION_ACCESS_HOLD",
+      "sources": [
+        {
+          "url": "https://www.westcliffathletics.com/sports/bsb/2026-27/roster",
+          "status": "HELD_PRIOR_ACCESS_RESPONSE",
+          "sourcePath": null
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Wilberforce University",
+      "state": "OH",
+      "slug": "wilberforce",
+      "collegeId": "cmowzs2l5007oqt4wmemu4ojg",
+      "programId": "cmowzs2lw007qqt4wl0ygs241",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Wiley College",
+      "state": "TX",
+      "slug": "wiley",
+      "collegeId": "cmowzs2ml007rqt4wz5m3qzym",
+      "programId": "cmowzs2nb007tqt4wgg7kxjii",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "William Carey University",
+      "state": "MS",
+      "slug": "william-carey",
+      "collegeId": "cmowzs2o1007uqt4wvnc6ovj3",
+      "programId": "cmowzs2ot007wqt4wcbfrmtnj",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://careyathletics.com/sports/baseball/roster",
+          "finalUrl": "https://careyathletics.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0331.html",
+          "title": "2026 Baseball Roster - William Carey University Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "2f3f873c9950231fdcb0191b0bd822db98a0e90688fc2cb084e1e8c2330e67dc",
+          "tablePlayerRows": 45,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 38,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "William Penn University",
+      "state": "IA",
+      "slug": "william-penn",
+      "collegeId": "cmowzs2pm007xqt4w66z0cj3f",
+      "programId": "cmowzs2qc007zqt4w6rioofpa",
+      "classification": "NO_REVIEWED_ROSTER_DESTINATION_CAPTURE",
+      "sources": [],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Williams Baptist University",
+      "state": "AR",
+      "slug": "williams-baptist",
+      "collegeId": "cmowzs2r40080qt4w48qaj7mu",
+      "programId": "cmowzs2ru0082qt4wastg3u95",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://www.wbueagles.com/sports/bsb/2025-26/roster",
+          "finalUrl": "https://www.wbueagles.com/sports/bsb/2025-26/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0345.html",
+          "title": "2026 Eagles Baseball Roster - Williams Baptist University",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "dcd376a5f8048f5f2e1da72e33129c2aca78724e2833764f188c64b70c3bcb80",
+          "tablePlayerRows": 49,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 0,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    },
+    {
+      "name": "Xavier University",
+      "state": "LA",
+      "slug": "xavier",
+      "collegeId": "cmowzs2u20086qt4w33qae7md",
+      "programId": "cmowzs2ut0088qt4wx9sruh8g",
+      "classification": "ONLY_OLDER_SEASON_CAPTURED",
+      "sources": [
+        {
+          "url": "https://xulagold.com/sports/baseball/roster",
+          "finalUrl": "https://xulagold.com/sports/baseball/roster",
+          "status": 200,
+          "sourcePath": "../naia-enrichment-review-20261111/sources/0339.html",
+          "title": "2026 Baseball Roster - Xavier University of Louisiana Athletics Sidearm Sports, opens a new window",
+          "current2027SeasonGate": false,
+          "sourceSHA256": "04859ebfa4ab5098ce548023c453f126343f6a440ecfa8f5034fbe26a4590c7a",
+          "tablePlayerRows": 48,
+          "currentBioLinks": 0,
+          "nativePlayerCards": 42,
+          "explicitOlderSeason": true
+        }
+      ],
+      "meaning": "Evidence classification only; no claim that a current roster is unpublished or absent."
+    }
+  ],
+  "nationalBaseballInventoryVerified": false,
+  "naiaEnrichmentComplete": false
+}

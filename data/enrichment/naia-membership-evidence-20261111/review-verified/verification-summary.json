@@ -1,0 +1,27 @@
+{
+  "checkedAtUtc": "2026-11-11T15:30:30.034Z",
+  "mode": "OFFLINE_MEMBERSHIP_EVIDENCE_REVIEW_PASSED",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "inputFilesVerified": 189,
+  "allSportMemberRows": 233,
+  "memberRowsMatchedToStoredNAIA": 187,
+  "current2027ConferenceBaseballTeams": 47,
+  "public2027ConferenceSchedulesCaptured": 47,
+  "membersWith2027StandingsOrScheduleEvidence": 101,
+  "storedMemberSourceHoldsBefore": 64,
+  "storedMemberSourceHoldsRemaining": 23,
+  "storedMemberSourceHoldsResolvedThisPass": 41,
+  "priorBaseballNavigationPageHoldsRemaining": 2,
+  "nationalBaseballInventoryVerified": false,
+  "naiaEnrichmentComplete": false,
+  "checks": [
+    "All input-manifest hashes verified",
+    "Captured source hashes matched capture receipts",
+    "Both approved import receipt chains and latest closeout snapshot verified",
+    "Unique name/state keys and 233-row coverage checked",
+    "Bethel Indiana, Concordia Nebraska, Columbia SC/MO campus separation checked",
+    "Tournament/TBD labels excluded from accepted opponent evidence",
+    "No database access, import, deletion or merge proposed"
+  ]
+}
