@@ -9,7 +9,7 @@ async function main() {
    * This seeds the PLAYER behind /player/braden-little (slug).
    * If you want a different player, change these 3 values.
    */
-  const email = "braden.little2@gmail.com";
+  const email = "blittbaseball@gmail.com";
   const name = "Braden Little";
   const slug = "braden-little";
 

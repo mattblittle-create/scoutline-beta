@@ -35,7 +35,6 @@ function normalizePlanTier(raw: any) {
   return v;
 }
 
-/** Accepts monthly/annual (any case) and normalizes to Monthly/Annual. */
 function normalizeCadence(raw: any) {
   const v = String(raw || "").trim();
   const u = v.toUpperCase();
@@ -51,7 +50,7 @@ function normalizeCadence(raw: any) {
 //   targetType: "TEAM" | "PLAYER",
 //   targetId: "abc123",
 //   planTier: "Teams" | "Walk-On" | "All-American" | "Redshirt"  (also accepts TEAM/WALK_ON/etc and normalizes)
-//   cadence: "Monthly" | "Annual" (also accepts monthly/annual/etc and normalizes)
+//   cadence: "Monthly"
 //   metadata?: {...},
 //   requesterEmail?: "..."   // optional (beta); not trusted for restricted codes
 // }
@@ -64,7 +63,7 @@ export async function POST(req: Request) {
     const targetId = String(body?.targetId || "").trim();
 
     const planTier = normalizePlanTier(body?.planTier);
-    const cadence = normalizeCadence(body?.cadence);
+    const cadence = "Monthly";
 
     if (!code || !targetId || !planTier || !cadence) {
       return jsonError(400, "Missing required fields.");

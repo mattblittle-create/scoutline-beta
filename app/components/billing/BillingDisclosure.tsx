@@ -32,9 +32,7 @@ export default function BillingDisclosure({
       administrative and record-keeping purposes.
       <br />
       <br />
-      Debit and credit card transactions are subject to a 3% processing fee in accordance
-      with applicable card network regulations and ScoutLine Terms &amp; Conditions. Bank
-      account (ACH / eCheck) payments are available as a fee-free alternative.
+      Credit card payments include a 3% processing fee. Debit card payments have no processing fee.
     </div>
   );
 }

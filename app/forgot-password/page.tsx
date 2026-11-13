@@ -1,69 +1,173 @@
+// app/forgot-password/page.tsx
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
-import React from "react";
 
 export default function ForgotPasswordPage() {
+  const [email, setEmail] = React.useState("");
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+  const [success, setSuccess] = React.useState<string | null>(null);
+
+  async function onSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (submitting) return;
+
+    setSubmitting(true);
+    setError(null);
+    setSuccess(null);
+
+    try {
+      const res = await fetch("/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const json = await res.json().catch(() => ({}));
+
+      if (!res.ok || !json?.ok) {
+        throw new Error(json?.error || "Failed to process request.");
+      }
+
+      setSuccess(
+        "If an account exists for that email, a password reset email has been sent."
+      );
+    } catch (err: any) {
+      setError(err?.message || "Something went wrong.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
+
   return (
-    <main style={{ maxWidth: 480, margin: "72px auto", padding: 24 }}>
-      <h1 style={{ margin: 0, fontSize: 28, fontWeight: 700 }}>Reset Password</h1>
-      <p style={{ color: "#64748b", marginTop: 8 }}>
-        Enter your username (email address) and we’ll send you a link to reset your password.
-      </p>
+    <main style={shell}>
+      <section style={card}>
+        <h1 style={title}>Forgot Password</h1>
+        <p style={muted}>
+          Enter your email and we’ll send you a secure password reset link.
+        </p>
 
-      <form
-        style={{ marginTop: 16, border: "1px solid #e5e7eb", borderRadius: 12, padding: 16, background: "#fff" }}
-        onSubmit={(e) => {
-          e.preventDefault();
-          // hook up to your reset handler here
-        }}
-      >
-        <label htmlFor="fp-username" style={{ display: "block", fontWeight: 600 }}>
-          Username
-        </label>
-        <input
-          id="fp-username"
-          name="username"
-          type="email"
-          placeholder="Email Address"
-          required
-          style={{
-            width: "100%",
-            marginTop: 6,
-            padding: "10px 12px",
-            border: "1px solid #e5e7eb",
-            borderRadius: 10,
-            outline: "none",
-          }}
-        />
+        <form onSubmit={onSubmit} style={{ display: "grid", gap: 14, marginTop: 18 }}>
+          <div style={field}>
+            <label style={label}>Email</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              style={input}
+              placeholder="Email address"
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          style={{
-            marginTop: 14,
-            width: "100%",
-            padding: "10px 14px",
-            borderRadius: 10,
-            background: "#ca9a3f",
-            color: "#0f172a",
-            fontWeight: 700,
-            border: "1px solid #b88934",
-            cursor: "pointer",
-          }}
-        >
-          Send Reset Link
-        </button>
+          {error ? <div style={errorBox}>{error}</div> : null}
+          {success ? <div style={successBox}>{success}</div> : null}
 
-        <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between" }}>
-          <Link href="/forgot-username" style={{ textDecoration: "underline" }}>
-            Forgot Username?
-          </Link>
-          <Link href="/login" style={{ textDecoration: "underline" }}>
-            Back to Log In
-          </Link>
-        </div>
-      </form>
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+            <button type="submit" disabled={submitting} style={goldBtn}>
+              {submitting ? "Sending…" : "Send Reset Email"}
+            </button>
+
+            <Link href="/login" style={ghostBtn}>
+              Back to Login
+            </Link>
+          </div>
+        </form>
+      </section>
     </main>
   );
 }
 
+const shell: React.CSSProperties = {
+  minHeight: "100vh",
+  display: "grid",
+  placeItems: "center",
+  padding: "24px 16px",
+  background: "linear-gradient(to bottom, #f8fafc 0%, #ffffff 100%)",
+};
+
+const card: React.CSSProperties = {
+  width: "100%",
+  maxWidth: 520,
+  border: "1px solid #e5e7eb",
+  borderRadius: 18,
+  background: "#fff",
+  padding: 24,
+  boxShadow: "0 12px 30px rgba(15,23,42,0.06)",
+};
+
+const title: React.CSSProperties = {
+  margin: 0,
+  fontSize: "1.75rem",
+  fontWeight: 900,
+  letterSpacing: "-0.02em",
+  color: "#0f172a",
+};
+
+const muted: React.CSSProperties = {
+  marginTop: 10,
+  color: "#475569",
+  lineHeight: 1.5,
+  fontWeight: 600,
+};
+
+const field: React.CSSProperties = {
+  display: "grid",
+  gap: 6,
+};
+
+const label: React.CSSProperties = {
+  fontWeight: 900,
+  color: "#0f172a",
+};
+
+const input: React.CSSProperties = {
+  width: "100%",
+  boxSizing: "border-box",
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  padding: "10px 12px",
+  background: "#fff",
+  outline: "none",
+};
+
+const errorBox: React.CSSProperties = {
+  padding: "10px 12px",
+  border: "1px solid #fecaca",
+  background: "#fff1f2",
+  color: "#7f1d1d",
+  borderRadius: 12,
+  fontWeight: 800,
+};
+
+const successBox: React.CSSProperties = {
+  padding: "10px 12px",
+  border: "1px solid #bbf7d0",
+  background: "#f0fdf4",
+  color: "#166534",
+  borderRadius: 12,
+  fontWeight: 800,
+};
+
+const goldBtn: React.CSSProperties = {
+  display: "inline-block",
+  padding: "11px 15px",
+  borderRadius: 12,
+  border: "1px solid #caa042",
+  background: "#caa042",
+  color: "#0f172a",
+  fontWeight: 900,
+};
+
+const ghostBtn: React.CSSProperties = {
+  display: "inline-block",
+  padding: "11px 15px",
+  borderRadius: 12,
+  border: "1px solid #e5e7eb",
+  background: "#fff",
+  color: "#0f172a",
+  fontWeight: 900,
+  textDecoration: "none",
+};

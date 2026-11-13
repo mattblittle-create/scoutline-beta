@@ -1,0 +1,81 @@
+{
+  "checkedAtUtc": "2026-11-12T15:31:35.037Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "results": [
+    {
+      "slug": "crowley-s-ridge",
+      "programId": "cmowzrzr50022qt4wbwnjy4ux",
+      "published": {
+        "url": "https://crowleysridge.prestosports.com/sports/bsb/2026-27/roster?dec=printer-decorator",
+        "label": "Print",
+        "context": "Print this page",
+        "kind": "CURRENT_SEASON_HTML",
+        "publishedFrom": "../naia-enrichment-review-20261111/sources/0074.html",
+        "publishedSourceUrl": "https://www.crcpioneers.com/sports/bsb/2026-27/roster",
+        "sourceSHA256": "76587ca30a1409e3b6ebc7b7328df216f47f2a161fcdd41bc042c5bd0e0b5795"
+      },
+      "capture": {
+        "url": "https://crowleysridge.prestosports.com/sports/bsb/2026-27/roster?dec=printer-decorator",
+        "finalUrl": "https://crowleysridge.prestosports.com/sports/bsb/2026-27/roster?dec=printer-decorator",
+        "status": 403,
+        "checkedAtUtc": "2026-11-12T15:31:32.393Z",
+        "sourcePath": "alternate-views/crowley-s-ridge.html",
+        "sha256": "3b349b8732829dcf218555c71ef61ae398eee5d81c8c35d71f56f657498650e3"
+      },
+      "disposition": "HELD_ACCESS"
+    },
+    {
+      "slug": "nelson",
+      "programId": "cmowzs1a50052qt4wwu6iplj9",
+      "published": {
+        "url": "https://nelsonlions.com/sports/bsb/2026-27/roster?view=headshot",
+        "label": "Headshot View",
+        "context": "",
+        "kind": "CURRENT_SEASON_HTML",
+        "publishedFrom": "../naia-core-recovery-20261111/sources/027.html",
+        "publishedSourceUrl": "https://nelsonlions.com/sports/bsb/2026-27/roster?view=list",
+        "sourceSHA256": "d8c2f49da2f1a3e44d7c88eaf782bc290d10db74633c83a0aeef2985c4f8db80"
+      },
+      "capture": {
+        "url": "https://nelsonlions.com/sports/bsb/2026-27/roster?view=headshot",
+        "finalUrl": "https://nelsonlions.com/sports/bsb/2026-27/roster?view=headshot",
+        "status": 200,
+        "checkedAtUtc": "2026-11-12T15:31:33.735Z",
+        "sourcePath": "alternate-views/nelson.html",
+        "sha256": "4197abeacc0ee131e7dec125ad5833dd7fedc535f45610decb224aefc464fad9"
+      },
+      "title": "2026-27 Baseball Roster - Nelson University (TX)",
+      "tableRows": 0,
+      "currentPlayerBioLinks": 0,
+      "disposition": "HELD_CURRENT_TEMPLATE_WITHOUT_SUPPORTED_PLAYER_ENTRIES",
+      "parserHold": "Roster empty, partial or unresolved format"
+    },
+    {
+      "slug": "reinhardt-university",
+      "programId": "cmorj0h7z003eqtiokq3f4k04",
+      "published": {
+        "url": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster?view=headshot",
+        "label": "Headshot View",
+        "context": "",
+        "kind": "CURRENT_SEASON_HTML",
+        "publishedFrom": "../naia-core-recovery-20261111/sources/030.html",
+        "publishedSourceUrl": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster?view=list",
+        "sourceSHA256": "201d001373371aceb47aff6abf165432cfcaddb0b1bbb99baac0dd93ce68164c"
+      },
+      "capture": {
+        "url": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster?view=headshot",
+        "finalUrl": "https://www.reinhardteagles.com/sports/bsb/2026-27/roster?view=headshot",
+        "status": 200,
+        "checkedAtUtc": "2026-11-12T15:31:35.015Z",
+        "sourcePath": "alternate-views/reinhardt-university.html",
+        "sha256": "b8f77adede6413550b96c5d1fd303e5715171622f497a9b8172b427301522366"
+      },
+      "title": "2026-27 Reinhardt Baseball Roster - Reinhardt University Athletics",
+      "tableRows": 0,
+      "currentPlayerBioLinks": 0,
+      "disposition": "HELD_CURRENT_TEMPLATE_WITHOUT_SUPPORTED_PLAYER_ENTRIES",
+      "parserHold": "Roster empty, partial or unresolved format"
+    }
+  ]
+}

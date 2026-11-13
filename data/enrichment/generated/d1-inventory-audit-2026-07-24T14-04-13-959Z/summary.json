@@ -1,0 +1,47 @@
+{
+  "generatedAt": "2026-07-24T14:04:14.931Z",
+  "expectedExternalD1Inventory": 308,
+  "totalCollegeRecords": 1566,
+  "totalBaseballProgramRecords": 1547,
+  "canonicalD1Programs": 208,
+  "legacyD1Colleges": 37,
+  "eitherFieldD1Colleges": 209,
+  "canonicalGapVersus308": 100,
+  "eitherFieldGapVersus308": 99,
+  "divisionDistribution": {
+    "baseballProgram": {
+      "NCAA_D3": 380,
+      "NCAA_D2": 266,
+      "NCAA_D1": 208,
+      "NAIA": 185,
+      "NJCAA_D2": 163,
+      "NJCAA_D1": 159,
+      "(NULL)": 101,
+      "NJCAA_D3": 85
+    },
+    "college": {
+      "(NULL)": 1529,
+      "NCAA_D1": 36,
+      "NCAA Division I": 1
+    }
+  },
+  "divisionMismatches": {
+    "legacyD1MissingProgram": 0,
+    "legacyD1ButProgramNotD1": 1,
+    "programD1ButLegacyNotD1": 172,
+    "legacyD1WithNullProgramDivision": 1
+  },
+  "duplicateCandidates": {
+    "normalizedNameRows": 100,
+    "normalizedNameGroups": 50,
+    "websiteHostnameRows": 0,
+    "websiteHostnameGroups": 0
+  },
+  "canonicalD1DataQuality": {
+    "coachedProgramsNotCanonicalD1": 100,
+    "missingBaseballWebsite": 1,
+    "zeroCoaches": 44,
+    "noMarkedHeadCoach": 45,
+    "multipleMarkedHeadCoaches": 2
+  }
+}

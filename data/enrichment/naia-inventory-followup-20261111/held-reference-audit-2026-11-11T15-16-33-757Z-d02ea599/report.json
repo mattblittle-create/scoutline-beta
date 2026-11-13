@@ -1,0 +1,1615 @@
+{
+  "mode": "READ_ONLY_HELD_REFERENCE_AUDIT_PASSED",
+  "databaseAccess": true,
+  "databaseWrites": 0,
+  "heldRecords": 7,
+  "canonicalRecordsPreserved": 1,
+  "referencePaths": 27,
+  "logicalReferencePaths": 2,
+  "deletionsProposed": 0,
+  "mergesProposed": 0,
+  "dispositionApproval": "NOT_GRANTED",
+  "transactionReadOnly": "on",
+  "checkedAtUtc": "2026-11-11T15:16:33.757Z",
+  "baselineCloseout": "closeout-audit-2026-11-11T15-11-06-341Z-2f16fdf1",
+  "baselineSectionsCompared": 16,
+  "campuses": [
+    {
+      "slug": "oakland-city",
+      "name": "Oakland City",
+      "state": "IN",
+      "collegeId": "cmowzs1cg0056qt4w6u7raqqy",
+      "programId": "cmowzs1d60058qt4wyyes0u49",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "providence-christian",
+      "name": "Providence Christian",
+      "state": "CA",
+      "collegeId": "cmowzs1mn005rqt4wreae274s",
+      "programId": "cmowzs1nc005tqt4woz6kqniw",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "st-andrews",
+      "name": "St. Andrews",
+      "state": "NC",
+      "collegeId": "cmowzs230006oqt4wqumb05n0",
+      "programId": "cmowzs23s006qqt4wutg7bj5o",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "trinity-christian",
+      "name": "Trinity Christian",
+      "state": "IL",
+      "collegeId": "cmowzs2dj0079qt4w9wire00s",
+      "programId": "cmowzs2ea007bqt4wggve5lyd",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "lourdes",
+      "name": "Lourdes",
+      "state": "OH",
+      "collegeId": "cmox0675s0076qtgcqe0r7lig",
+      "programId": "cmox0676f0078qtgcmmkwoe43",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "siena-heights",
+      "name": "Siena Heights",
+      "state": "MI",
+      "collegeId": "cmox0691700bcqtgctrse79j7",
+      "programId": "cmox0691w00beqtgc46g9qx8a",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "middle-georgia-state",
+      "name": "Middle Georgia State",
+      "state": "GA",
+      "collegeId": "cmox067j70080qtgcbr5o9igh",
+      "programId": "cmox067jw0082qtgcpsk5cjfd",
+      "role": "HELD_NO_DISPOSITION_APPROVED",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    },
+    {
+      "slug": "middle-georgia",
+      "name": "Middle Georgia",
+      "state": "Georgia",
+      "collegeId": "cmovlhwi200b0qt20um5ba9pk",
+      "programId": "cmovlhwir00b2qt20xw5xe5ep",
+      "role": "CANONICAL_PRESERVE",
+      "references": [
+        {
+          "model": "CoachInvite",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinLink",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachJoinRequest",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachNote",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CoachPlayerRating",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicArea",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAcademicProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeAdmissionsProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballCoach",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 3
+        },
+        {
+          "model": "CollegeBaseballMetricAverage",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballPortalActivity",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballProgram",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeBaseballProgramOutcome",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterNeed",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeBaseballRosterPlayer",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 43
+        },
+        {
+          "model": "CollegeBaseballRosterSnapshot",
+          "field": "programId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": true,
+          "count": 1
+        },
+        {
+          "model": "CollegeCampusProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeFinancialProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeNilProfile",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "CollegeSavedSchool",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProfileViewEvent",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "baseballProgramId",
+          "target": "CollegeBaseballProgram",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "ProgramVerificationSubmission",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": false,
+          "count": 0
+        },
+        {
+          "model": "RecruitingBoardEntry",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "RecruitingList",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        },
+        {
+          "model": "User",
+          "field": "collegeId",
+          "target": "College",
+          "declaredRelation": true,
+          "count": 0
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Counts cover Prisma-declared inbound school/program relations and reviewed scalar ID fields; JSON, text and external-system references are not inventoried.",
+    "Zero references do not authorize deletion, merge, reclassification or verification promotion.",
+    "Institution evidence holds and national baseball inventory reconciliation remain open."
+  ]
+}

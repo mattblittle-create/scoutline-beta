@@ -1,0 +1,32 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "researchPrograms": 20,
+  "candidateStaffPrograms": 9,
+  "candidateCoaches": 14,
+  "candidateHeadFlags": 8,
+  "candidateContactUrlFills": 8,
+  "supportedPrograms": ["east-georgia-college", "missouri-valley", "mount-mercy", "olivet-nazarene", "tougaloo", "university-of-science-and-arts-of-oklahoma", "wiley", "texas-a-and-m-texarkana", "viterbo"],
+  "heldPrograms": [
+    {"slug":"baker","outcome":"Readable institutional athletics page links to access-held athletics hostname; no explicit current staff record in capture."},
+    {"slug":"bethany","outcome":"Readable university directory initial page contains eight initial records; no baseball role captured. Do not substitute Bethany Lutheran Minnesota or Bethany West Virginia."},
+    {"slug":"morris","outcome":"Readable expanded directory contains no baseball role in saved capture; no head inferred from unrelated athletics or historical records."},
+    {"slug":"lsu-shreveport","outcome":"Readable institution directory embeds a separate search tool; no staff result captured. LSU Baton Rouge and LSU Eunice are different campuses."},
+    {"slug":"georgetown","outcome":"Institution hostname has a prior access hold; new collector skipped it. Georgetown University DC is a different institution."},
+    {"slug":"midland","outcome":"Newly discovered institutional faculty page is on a previously access-held hostname; collector skipped it. Search snippets are leads only."},
+    {"slug":"southern-university-at-new-orleans","outcome":"Prior public institution directory capture was HTTP403; no retry or workaround."},
+    {"slug":"doane","outcome":"Search surfaced web.doane.edu directory, but hostname has prior access hold; no fetch or candidate from snippets."},
+    {"slug":"hastings","outcome":"Search produced no reviewed current official staff evidence in this pass; historical head record remains held."},
+    {"slug":"simpson","outcome":"Search surfaced a July 15 2026 official resignation announcement for Dan Tating, conflicting with older staff pages. Keep older staff and head held; search lead not imported.","leadUrl":"https://simpsonredhawks.com/news/2026/7/15/general-the-tating-era-of-simpson-baseball-comes-to-an-end.aspx"},
+    {"slug":"waldorf","outcome":"Only older institutional catalog staff evidence surfaced in this pass; not current staff proof."}
+  ],
+  "limitations": [
+    "The 20-program research scope includes evidence triage and searches, not 20 freshly accessible university pages.",
+    "Only hash-verified primary source HTML supports candidate staff and field values; search snippets and third-party results are not candidate facts.",
+    "Tougaloo contributes one explicit assistant role; its head-coach hold remains.",
+    "East Georgia head role is normalized from a 2026 head-coaching announcement naming Jason Mock to lead the program; no contact-page fill proposed.",
+    "Current directory evidence does not guarantee future-season appointments or email delivery.",
+    "No roster or season rollover is proposed. All 124 roster holds remain.",
+    "Seven stored stale or duplicate records and national baseball inventory reconciliation remain held."
+  ]
+}

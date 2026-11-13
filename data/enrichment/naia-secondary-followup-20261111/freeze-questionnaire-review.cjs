@@ -1,0 +1,5 @@
+'use strict';
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),builder=require('./build-questionnaire-review.cjs');
+const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,f))).digest('hex');
+const b=builder.build(),files=[...b.files.map(f=>path.relative(__dirname,f).replace(/\\/g,'/')),'questionnaire-candidate.json','questionnaire-review-summary.json','build-questionnaire-review.cjs','preview-questionnaires.cjs','freeze-questionnaire-review.cjs','recruiting-destination-captures.json','recruiting-followlink-captures.json','../naia-inventory-review-20261111/source-utils.cjs','../../../prisma/schema.prisma'];
+fs.writeFileSync(path.join(__dirname,'questionnaire-manifest.json'),JSON.stringify({candidateSHA256:sha('questionnaire-candidate.json'),hashes:Object.fromEntries([...new Set(files)].map(f=>[f,sha(f)]))},null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({candidateSHA256:sha('questionnaire-candidate.json'),approval:'NOT_GRANTED',programs:14,fieldChanges:28,databaseAccess:false,databaseWrites:0}));

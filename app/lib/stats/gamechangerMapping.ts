@@ -1,4 +1,4 @@
-// lib/stats/gamechangerMapping.ts
+// app/lib/stats/gamechangerMapping.ts
 // Maps GameChanger export headers to ScoutLine Stats objects.
 // Works for the Excel export you shared (with duplicate header suffixes like `.1`, `.2`).
 
@@ -80,7 +80,7 @@ const toNum = (v: unknown): number | null => {
   const s = String(v).trim();
   if (!s) return null;
   // handle "12.3%", "45%" => 0.123, 0.45 only where caller wants that; otherwise parseFloat
-  const n = Number(s.replaceAll(",", ""));
+  const n = Number(s.replace(/,/g, ""));
   return Number.isFinite(n) ? n : null;
 };
 

@@ -15,6 +15,7 @@ export type AcademicsData = {
   act?: number | string | null;
 
   highSchool?: string | null;
+  highSchoolWebsite?: string | null;
   city?: string | null;
   state?: string | null;
 
@@ -71,6 +72,14 @@ export default function PublicAcademics({
   h2Style,
   pillStyle,
 }: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+React.useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth <= 640);
+  check();
+  window.addEventListener("resize", check);
+  return () => window.removeEventListener("resize", check);
+}, []);
   const {
     bio = null,
     gradYear = null,
@@ -79,6 +88,7 @@ export default function PublicAcademics({
     sat = null,
     act = null,
     highSchool = null,
+    highSchoolWebsite = null,
     city = null,
     state = null,
 
@@ -104,40 +114,65 @@ export default function PublicAcademics({
   } = academics || {};
 
   // ---------- styles ----------
-  const safeCard: React.CSSProperties = {
-    marginTop: 16,
-    background: "#fff",
-    border: "1px solid #e5e7eb",
-    borderRadius: 12,
-    padding: 16,
-    ...(cardStyle || {}),
-  };
+const safeCard: React.CSSProperties = {
+  marginTop: 16,
+  background: "#fff",
+  border: "1px solid #e5e7eb",
+  borderRadius: 12,
+  padding: isMobile ? 12 : 16,
+  overflow: "hidden",
+  ...(cardStyle || {}),
+};
   const safeH2: React.CSSProperties = {
     margin: 0,
     fontSize: 18,
     fontWeight: 900,
     ...(h2Style || {}),
   };
-  const pill: React.CSSProperties = {
-    fontSize: 13,
-    fontWeight: 700,
-    color: "#475569",
-    background: "#f1f5f9",
-    border: "1px solid #e2e8f0",
-    borderRadius: 999,
-    padding: "5px 10px",
-    whiteSpace: "nowrap",
-    ...(pillStyle || {}),
-  };
+const pill: React.CSSProperties = {
+  fontSize: isMobile ? 12 : 13,
+  fontWeight: 700,
+  color: "#475569",
+  background: "#f1f5f9",
+  border: "1px solid #e2e8f0",
+  borderRadius: 999,
+  padding: isMobile ? "4px 8px" : "5px 10px",
+  whiteSpace: "normal",
+  maxWidth: "100%",
+  overflowWrap: "anywhere",
+  wordBreak: "break-word",
+  ...(pillStyle || {}),
+};
+const majorGroupStyle: React.CSSProperties = {
+  display: "flex",
+  gap: 6,
+  flexWrap: "wrap",
+  minWidth: 0,
+  maxWidth: "100%",
+};
+
+const majorLabelStyle: React.CSSProperties = {
+  fontSize: isMobile ? 12 : 13,
+  fontWeight: 800,
+  color: "#334155",
+  marginRight: 2,
+};
+
+const majorPillStyle: React.CSSProperties = {
+  ...pill,
+  fontSize: isMobile ? 11 : 12,
+  padding: isMobile ? "3px 7px" : "4px 8px",
+};
   const muted: React.CSSProperties = {
     color: "#94a3b8",
     fontStyle: "italic",
   };
-  const link: React.CSSProperties = {
-    color: "#0369a1",
-    fontWeight: 700,
-    textDecoration: "none",
-  };
+const link: React.CSSProperties = {
+  color: "#0369a1",
+  fontWeight: 700,
+  textDecoration: "none",
+  transition: "all 0.15s ease",
+};
 
   // ---------- helpers ----------
   const valueOrDash = (v: any) =>
@@ -180,19 +215,32 @@ export default function PublicAcademics({
       <h2 style={safeH2}>{title}</h2>
 
       {/* School & location (row 1) */}
-      {(highSchool || city || state) && (
-        <div style={{ color: "#334155" }}>
-          <strong>High School:</strong>{" "}
-          {[
-            highSchool || undefined,
-            [city || undefined, state || undefined]
-              .filter(Boolean)
-              .join(", ") || undefined,
-          ]
-            .filter(Boolean)
-            .join(" • ")}
-        </div>
-      )}
+{highSchool && (
+  <div>
+    <strong>High School:</strong>{" "}
+    {highSchoolWebsite ? (
+      <a
+        href={highSchoolWebsite}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={link}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.textDecoration = "underline";
+          e.currentTarget.style.opacity = "0.85";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.textDecoration = "none";
+          e.currentTarget.style.opacity = "1";
+        }}
+      >
+        {highSchool}
+      </a>
+    ) : (
+      highSchool
+    )}
+    {(city || state) ? ` - ${[city, state].filter(Boolean).join(", ")}` : ""}
+  </div>
+)}
 
       {/* Pills row (row 2): Grad Year / GPA / SAT / ACT / Intended Major(s) */}
       <div
@@ -210,9 +258,18 @@ export default function PublicAcademics({
         </span>
         <span style={pill}>SAT: {valueOrDash(sat)}</span>
         <span style={pill}>ACT: {valueOrDash(act)}</span>
-        <span style={pill}>
-          Intended Major(s): {majorsJoined || "—"}
-        </span>
+<div style={majorGroupStyle}>
+  <span style={majorLabelStyle}>Intended Major(s):</span>
+  {majorsArray.length ? (
+    majorsArray.map((major) => (
+      <span key={major} style={majorPillStyle}>
+        {major}
+      </span>
+    ))
+  ) : (
+    <span style={majorPillStyle}>—</span>
+  )}
+</div>
       </div>
 
       {/* Academic Bio */}
@@ -249,11 +306,13 @@ export default function PublicAcademics({
           </div>
           {firstReportCard || firstTranscript ? (
             <div
-              style={{
-                display: "flex",
-                gap: 100,
-                flexWrap: "wrap",
-              }}
+style={{
+  display: "flex",
+  gap: isMobile ? 10 : 100,
+  flexWrap: "wrap",
+  minWidth: 0,
+  maxWidth: "100%",
+}}
             >
               {firstReportCard ? (
                 <>

@@ -1,0 +1,99 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "results": [
+    {
+      "slug": "georgetown",
+      "kind": "institution-directory",
+      "url": "https://www.georgetowncollege.edu/about-gc/leadership/faculty-staff/",
+      "publishedFrom": null,
+      "status": 403,
+      "finalUrl": "https://www.georgetowncollege.edu/about-gc/leadership/faculty-staff/",
+      "checkedAtUtc": "2026-11-12T18:48:17.980Z",
+      "sourcePath": "sources/georgetown-follow-0.html",
+      "sha256": "fab87023783408510c7883dcf3f3ace90f2eff431a81663eba088e5e5180d73e"
+    },
+    {
+      "slug": "morningside",
+      "kind": "institution-directory",
+      "url": "https://www.morningside.edu/about/directory?department=Athletics",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.morningside.edu/about/directory?department=Athletics",
+      "checkedAtUtc": "2026-11-12T18:48:18.887Z",
+      "sourcePath": "sources/morningside-follow-1.html",
+      "sha256": "73f71d215f065563db800fcb4881acae21b2f3ca9c0df103cca8d61c146c2e3b"
+    },
+    {
+      "slug": "william-penn",
+      "kind": "institution-profile",
+      "url": "https://www.wmpenn.edu/person/mike-laird/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.wmpenn.edu/person/mike-laird/",
+      "checkedAtUtc": "2026-11-12T18:48:19.078Z",
+      "sourcePath": "sources/william-penn-follow-2.html",
+      "sha256": "93ffa40eccb4082fd5860a46ef3fcea6c99c25d7d22052421f04caf493731908"
+    },
+    {
+      "slug": "sterling",
+      "kind": "athletics-root",
+      "url": "https://sterlingcollege.prestosports.com/composite?y=2024&m=03",
+      "publishedFrom": {
+        "sourcePath": "sources/sterling-entry-27.html",
+        "url": "https://www.sterling.edu/admissions/explore-athletics",
+        "sha256": "31d57865386c2a7a47d77719f99b9f2c60c291e085a061825d8b2e6db1ddd76c"
+      },
+      "status": 403,
+      "finalUrl": "https://sterlingcollege.prestosports.com/composite?y=2024&m=03",
+      "checkedAtUtc": "2026-11-12T18:48:19.322Z",
+      "sourcePath": "sources/sterling-follow-3.html",
+      "sha256": "47e5a8185fddbf7ea08e40b74d28408829c2a873bd05f9f3a0fb2654d314a649"
+    },
+    {
+      "slug": "taylor",
+      "kind": "athletics-root",
+      "url": "https://www.taylortrojans.com/",
+      "publishedFrom": {
+        "sourcePath": "sources/taylor-entry-18.html",
+        "url": "https://www.taylor.edu/life-at-taylor/student-activities/athletics/",
+        "sha256": "8fa27231826ae5b671f05ed4c9823a96389802d9d4656e432ff3b61f0e8117a7"
+      },
+      "status": 200,
+      "finalUrl": "https://www.taylortrojans.com/landing/index",
+      "checkedAtUtc": "2026-11-12T18:48:20.100Z",
+      "sourcePath": "sources/taylor-follow-4.html",
+      "sha256": "bab33c74070097ebc4261590fdead342609e00b51506e50eced3b62dba64bd1b"
+    },
+    {
+      "slug": "taylor",
+      "kind": "roster",
+      "url": "https://www.taylortrojans.com/sports/bsb/2026-27/roster",
+      "publishedFrom": {
+        "sourcePath": "sources/taylor-follow-4.html",
+        "url": "https://www.taylortrojans.com/landing/index",
+        "sha256": "bab33c74070097ebc4261590fdead342609e00b51506e50eced3b62dba64bd1b"
+      },
+      "status": 200,
+      "finalUrl": "https://www.taylortrojans.com/sports/bsb/2026-27/roster",
+      "checkedAtUtc": "2026-11-12T18:48:21.556Z",
+      "sourcePath": "sources/taylor-follow-5.html",
+      "sha256": "19999332da8a29008dd3c15b7a310d9ab1d02556b81355d52cc677ce2378e4c9"
+    },
+    {
+      "slug": "taylor",
+      "kind": "baseball-home",
+      "url": "https://www.taylortrojans.com/sports/bsb/index",
+      "publishedFrom": {
+        "sourcePath": "sources/taylor-follow-4.html",
+        "url": "https://www.taylortrojans.com/landing/index",
+        "sha256": "bab33c74070097ebc4261590fdead342609e00b51506e50eced3b62dba64bd1b"
+      },
+      "status": 200,
+      "finalUrl": "https://www.taylortrojans.com/sports/bsb/index",
+      "checkedAtUtc": "2026-11-12T18:48:22.821Z",
+      "sourcePath": "sources/taylor-follow-6.html",
+      "sha256": "6396c9c3aaa39a5a980c2fff03a8520c5b948c5e83791e4c3be155da320c556a"
+    }
+  ]
+}

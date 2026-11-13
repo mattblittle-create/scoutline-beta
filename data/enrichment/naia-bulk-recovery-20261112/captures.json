@@ -1,0 +1,425 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "seeds": [
+    [
+      "bluefield",
+      "https://burams.com/sports/baseball/roster"
+    ],
+    [
+      "briar-cliff",
+      "https://bcuchargers.com/sports/baseball/roster"
+    ],
+    [
+      "dickinson-state",
+      "https://dsubluehawks.com/sports/baseball/roster"
+    ],
+    [
+      "embry-riddle",
+      "https://eraueagles.com/sports/baseball/roster"
+    ],
+    [
+      "the-master-s",
+      "https://gomustangs.com/sports/baseball/roster"
+    ],
+    [
+      "park",
+      "https://parkathletics.com/staff-directory"
+    ],
+    [
+      "park-gilbert",
+      "https://gilbert.parkathletics.com/sports/baseball/roster"
+    ],
+    [
+      "simpson",
+      "https://simpsonu.edu/athletics/"
+    ],
+    [
+      "st-thomas",
+      "https://stubobcats.com/"
+    ],
+    [
+      "point",
+      "https://point.edu/directory-department/athletics/"
+    ],
+    [
+      "taylor",
+      "https://www.taylor.edu/life-at-taylor/student-activities/athletics/"
+    ],
+    [
+      "midland",
+      "https://midlandluthers.com/"
+    ],
+    [
+      "viterbo",
+      "https://viterbo.edu/athletics/"
+    ],
+    [
+      "waldorf",
+      "https://www.waldorf.edu/athletics/"
+    ],
+    [
+      "westcliff",
+      "https://westcliff.edu/athletics/"
+    ],
+    [
+      "wilberforce",
+      "https://www.wilberforce.edu/athletics/"
+    ],
+    [
+      "talladega",
+      "https://talladega.edu/athletics/"
+    ],
+    [
+      "huntington",
+      "https://www.huntington.edu/academics/academic-catalog/general-information/faculty-and-staff/administrative-officers-and-staff"
+    ],
+    [
+      "sterling",
+      "https://www.sterling.edu/admissions/explore-athletics"
+    ],
+    [
+      "william-penn",
+      "https://www.wmpenn.edu/"
+    ]
+  ],
+  "results": [
+    {
+      "slug": "embry-riddle",
+      "kind": "entry",
+      "url": "https://eraueagles.com/sports/baseball/roster",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://eraueagles.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:03.507Z",
+      "sourcePath": "sources/embry-riddle-entry-0.html",
+      "sha256": "9c52e5c6b45e857ffb348bda7fa6eb4b1d5ecad3ef0b9d79b4d932927f03d686"
+    },
+    {
+      "slug": "dickinson-state",
+      "kind": "entry",
+      "url": "https://dsubluehawks.com/sports/baseball/roster",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://dsubluehawks.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:03.858Z",
+      "sourcePath": "sources/dickinson-state-entry-1.html",
+      "sha256": "2dfd80a974af024a8af05b8c2e3b142320830ea23cb580b296211039ccc83a9e"
+    },
+    {
+      "slug": "bluefield",
+      "kind": "entry",
+      "url": "https://burams.com/sports/baseball/roster",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://burams.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:04.273Z",
+      "sourcePath": "sources/bluefield-entry-2.html",
+      "sha256": "d89d758ead98c06ff28963c26ba6c2863a35b8c73af500f0d748f6443b50bb97"
+    },
+    {
+      "slug": "briar-cliff",
+      "kind": "entry",
+      "url": "https://bcuchargers.com/sports/baseball/roster",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://bcuchargers.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:04.501Z",
+      "sourcePath": "sources/briar-cliff-entry-3.html",
+      "sha256": "54b36fdc18760f318f74f080a7fb4dfe2479c9149c36f1d339ac4687e9ef240d"
+    },
+    {
+      "slug": "embry-riddle",
+      "kind": "staff",
+      "url": "https://eraueagles.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/embry-riddle-entry-0.html",
+        "url": "https://eraueagles.com/sports/baseball/roster",
+        "sha256": "9c52e5c6b45e857ffb348bda7fa6eb4b1d5ecad3ef0b9d79b4d932927f03d686"
+      },
+      "status": 200,
+      "finalUrl": "https://eraueagles.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:04.735Z",
+      "sourcePath": "sources/embry-riddle-staff-4.html",
+      "sha256": "8e5c92bc376b1fb56e204136fa24cf9604a6907c2b34bb376beeccd58b4e28a2"
+    },
+    {
+      "slug": "dickinson-state",
+      "kind": "staff",
+      "url": "https://dsubluehawks.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/dickinson-state-entry-1.html",
+        "url": "https://dsubluehawks.com/sports/baseball/roster",
+        "sha256": "2dfd80a974af024a8af05b8c2e3b142320830ea23cb580b296211039ccc83a9e"
+      },
+      "status": 200,
+      "finalUrl": "https://dsubluehawks.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:04.741Z",
+      "sourcePath": "sources/dickinson-state-staff-5.html",
+      "sha256": "41ac3672485643704a0efe4d9b7c18a309cc9e84ed9dfabdea32add761797707"
+    },
+    {
+      "slug": "bluefield",
+      "kind": "staff",
+      "url": "https://burams.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/bluefield-entry-2.html",
+        "url": "https://burams.com/sports/baseball/roster",
+        "sha256": "d89d758ead98c06ff28963c26ba6c2863a35b8c73af500f0d748f6443b50bb97"
+      },
+      "status": 200,
+      "finalUrl": "https://burams.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:04.746Z",
+      "sourcePath": "sources/bluefield-staff-6.html",
+      "sha256": "0d5cd984048597c4ce02dc28850c64464519b8d3a8567336eb7ac3caa9fdd7c2"
+    },
+    {
+      "slug": "briar-cliff",
+      "kind": "staff",
+      "url": "https://bcuchargers.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/briar-cliff-entry-3.html",
+        "url": "https://bcuchargers.com/sports/baseball/roster",
+        "sha256": "54b36fdc18760f318f74f080a7fb4dfe2479c9149c36f1d339ac4687e9ef240d"
+      },
+      "status": 200,
+      "finalUrl": "https://bcuchargers.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:05.016Z",
+      "sourcePath": "sources/briar-cliff-staff-7.html",
+      "sha256": "7cb3bc8d7ab300a2c0d7557b2a2bc771e80e1b8ba71f2e2ae73c810871f1806f"
+    },
+    {
+      "slug": "embry-riddle",
+      "kind": "coaches",
+      "url": "https://eraueagles.com/sports/baseball/coaches",
+      "publishedFrom": {
+        "sourcePath": "sources/embry-riddle-entry-0.html",
+        "url": "https://eraueagles.com/sports/baseball/roster",
+        "sha256": "9c52e5c6b45e857ffb348bda7fa6eb4b1d5ecad3ef0b9d79b4d932927f03d686"
+      },
+      "status": 200,
+      "finalUrl": "https://eraueagles.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-12T18:47:05.741Z",
+      "sourcePath": "sources/embry-riddle-coaches-8.html",
+      "sha256": "a8b543a93d062a580959dffee5bb968ac2bd49078eda70405b77039f5d223edb"
+    },
+    {
+      "slug": "simpson",
+      "kind": "entry",
+      "url": "https://simpsonu.edu/athletics/",
+      "publishedFrom": null,
+      "status": 403,
+      "finalUrl": "https://simpsonu.edu/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:05.993Z",
+      "sourcePath": "sources/simpson-entry-9.html",
+      "sha256": "f261423d1da97890ff6bfccd31ff4ee0b74f69351cf75095fbe791cb16cbf5bd"
+    },
+    {
+      "slug": "park",
+      "kind": "entry",
+      "url": "https://parkathletics.com/staff-directory",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://parkathletics.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:06.270Z",
+      "sourcePath": "sources/park-entry-10.html",
+      "sha256": "71b83182ec11bf9115b173abde7e0c131f8c0595d6dd7ed8c5d9efeec52aaae5"
+    },
+    {
+      "slug": "the-master-s",
+      "kind": "entry",
+      "url": "https://gomustangs.com/sports/baseball/roster",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://gomustangs.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:06.385Z",
+      "sourcePath": "sources/the-master-s-entry-11.html",
+      "sha256": "db22d4e8d060b3d114f234b9e7b05d32233d351c31e966260394b92c45a947ce"
+    },
+    {
+      "slug": "park-gilbert",
+      "kind": "entry",
+      "url": "https://gilbert.parkathletics.com/sports/baseball/roster",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://gilbert.parkathletics.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:06.748Z",
+      "sourcePath": "sources/park-gilbert-entry-12.html",
+      "sha256": "262847f29f30bc791071c3afa71353a7cfb7675d9f8c01e6add7fc8a8d08eb7f"
+    },
+    {
+      "slug": "park",
+      "kind": "roster",
+      "url": "https://parkathletics.com/sports/baseball/roster",
+      "publishedFrom": {
+        "sourcePath": "sources/park-entry-10.html",
+        "url": "https://parkathletics.com/staff-directory",
+        "sha256": "71b83182ec11bf9115b173abde7e0c131f8c0595d6dd7ed8c5d9efeec52aaae5"
+      },
+      "status": 200,
+      "finalUrl": "https://parkathletics.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:47:07.226Z",
+      "sourcePath": "sources/park-roster-13.html",
+      "sha256": "570e77d667178ff06eaa42639107d87d6de8ba0286edf9adac9ec2267fb12441"
+    },
+    {
+      "slug": "the-master-s",
+      "kind": "staff",
+      "url": "https://gomustangs.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/the-master-s-entry-11.html",
+        "url": "https://gomustangs.com/sports/baseball/roster",
+        "sha256": "db22d4e8d060b3d114f234b9e7b05d32233d351c31e966260394b92c45a947ce"
+      },
+      "status": 200,
+      "finalUrl": "https://gomustangs.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:07.244Z",
+      "sourcePath": "sources/the-master-s-staff-14.html",
+      "sha256": "f50c46eb89989ccbdd3dfeb13bf717490126f700cbcfd3e0f10c3b760ce7cfee"
+    },
+    {
+      "slug": "park-gilbert",
+      "kind": "staff",
+      "url": "https://gilbert.parkathletics.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/park-gilbert-entry-12.html",
+        "url": "https://gilbert.parkathletics.com/sports/baseball/roster",
+        "sha256": "262847f29f30bc791071c3afa71353a7cfb7675d9f8c01e6add7fc8a8d08eb7f"
+      },
+      "status": 200,
+      "finalUrl": "https://gilbert.parkathletics.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:47:07.439Z",
+      "sourcePath": "sources/park-gilbert-staff-15.html",
+      "sha256": "000dc97bdb3ceb37438f534e54690b0d52374384587c362b93da29d9e0055590"
+    },
+    {
+      "slug": "midland",
+      "kind": "entry",
+      "url": "https://midlandluthers.com/",
+      "publishedFrom": null,
+      "status": "FAILED",
+      "errorType": "TypeError"
+    },
+    {
+      "slug": "point",
+      "kind": "entry",
+      "url": "https://point.edu/directory-department/athletics/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://point.edu/directory-department/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:07.759Z",
+      "sourcePath": "sources/point-entry-17.html",
+      "sha256": "afd2006fe7e851c27e768b65d971696d69fd7c97631a1ef978e2ce58aa1b74e2"
+    },
+    {
+      "slug": "taylor",
+      "kind": "entry",
+      "url": "https://www.taylor.edu/life-at-taylor/student-activities/athletics/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.taylor.edu/life-at-taylor/student-activities/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:09.830Z",
+      "sourcePath": "sources/taylor-entry-18.html",
+      "sha256": "8fa27231826ae5b671f05ed4c9823a96389802d9d4656e432ff3b61f0e8117a7"
+    },
+    {
+      "slug": "st-thomas",
+      "kind": "entry",
+      "url": "https://stubobcats.com/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://stubobcats.com/splash.aspx?id=splash_66",
+      "checkedAtUtc": "2026-11-12T18:47:13.019Z",
+      "sourcePath": "sources/st-thomas-entry-19.html",
+      "sha256": "8f8b770f9da980ed4bf4ec2e7fc3a128667c19aba38712f964d8e3d12b8f194d"
+    },
+    {
+      "slug": "waldorf",
+      "kind": "entry",
+      "url": "https://www.waldorf.edu/athletics/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://waldorf.edu/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:13.746Z",
+      "sourcePath": "sources/waldorf-entry-20.html",
+      "sha256": "bc87f8939f7c18a59048895e659efcd45763d38c4f8d58e0d7f389888ae3a795"
+    },
+    {
+      "slug": "viterbo",
+      "kind": "entry",
+      "url": "https://viterbo.edu/athletics/",
+      "publishedFrom": null,
+      "status": 404,
+      "finalUrl": "https://www.viterbo.edu/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:13.871Z",
+      "sourcePath": "sources/viterbo-entry-21.html",
+      "sha256": "d85d48b304eb999c62f75d6ea13f35aa86c235808f5b19cc8eee286786925e3e"
+    },
+    {
+      "slug": "westcliff",
+      "kind": "entry",
+      "url": "https://westcliff.edu/athletics/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.westcliff.edu/life-at-westcliff/westcliff-athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:14.882Z",
+      "sourcePath": "sources/westcliff-entry-22.html",
+      "sha256": "9ff10b55aef4fc2e8516b61b45a5a209f9d2f45fda0a13f64a87fa5c8d0ce006"
+    },
+    {
+      "slug": "wilberforce",
+      "kind": "entry",
+      "url": "https://www.wilberforce.edu/athletics/",
+      "publishedFrom": null,
+      "status": 404,
+      "finalUrl": "https://wilberforce.edu/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:15.060Z",
+      "sourcePath": "sources/wilberforce-entry-23.html",
+      "sha256": "ff421545692e49548dc5c4b79e77719a51498e44d11406b2db0d1a67c8a247c8"
+    },
+    {
+      "slug": "talladega",
+      "kind": "entry",
+      "url": "https://talladega.edu/athletics/",
+      "publishedFrom": null,
+      "status": 404,
+      "finalUrl": "https://talladega.edu/athletics/",
+      "checkedAtUtc": "2026-11-12T18:47:15.337Z",
+      "sourcePath": "sources/talladega-entry-24.html",
+      "sha256": "28eae2a721e6355acd6833aed8c86fa64d84d156e56cd164388ccafcd9243736"
+    },
+    {
+      "slug": "huntington",
+      "kind": "entry",
+      "url": "https://www.huntington.edu/academics/academic-catalog/general-information/faculty-and-staff/administrative-officers-and-staff",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.huntington.edu/academics/academic-catalog/general-information/faculty-and-staff/administrative-officers-and-staff",
+      "checkedAtUtc": "2026-11-12T18:47:15.859Z",
+      "sourcePath": "sources/huntington-entry-25.html",
+      "sha256": "cb15e3524bc509612c91d95d66c836e803a1e8f4f34d4cbf36bef516c2a90ea0"
+    },
+    {
+      "slug": "william-penn",
+      "kind": "entry",
+      "url": "https://www.wmpenn.edu/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.wmpenn.edu/",
+      "checkedAtUtc": "2026-11-12T18:47:19.068Z",
+      "sourcePath": "sources/william-penn-entry-26.html",
+      "sha256": "d0c28414285cb17daea91853f0a18b49350735b2fa55ab998e2542c6d32a0517"
+    },
+    {
+      "slug": "sterling",
+      "kind": "entry",
+      "url": "https://www.sterling.edu/admissions/explore-athletics",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.sterling.edu/admissions/explore-athletics",
+      "checkedAtUtc": "2026-11-12T18:47:20.350Z",
+      "sourcePath": "sources/sterling-entry-27.html",
+      "sha256": "31d57865386c2a7a47d77719f99b9f2c60c291e085a061825d8b2e6db1ddd76c"
+    }
+  ]
+}

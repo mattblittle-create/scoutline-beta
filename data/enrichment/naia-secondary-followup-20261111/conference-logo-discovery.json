@@ -1,0 +1,1314 @@
+{
+  "checkedAtUtc": "2026-11-11T16:35:44.384Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "baseline": "data/enrichment/naia-enrichment-review-20261111/closeout-audit-2026-11-11T16-31-39-476Z-42ca5e88/fresh-read-only-snapshot.json",
+  "baselineSHA256": "245634d552a4d1d9384e7f319f98ef0f867994181f2df9d991e189f1819a1644",
+  "results": [
+    {
+      "name": "Aquinas College",
+      "state": "MI",
+      "campus": {
+        "collegeId": "cmowzrysg0003qt4wbdg2f2jr",
+        "slug": "aquinas",
+        "programId": "cmowzryt60005qt4ww6zu8kez",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.whac.net/images/partners/aq.png",
+          "conference": "WHAC",
+          "publishedName": "Aquinas College",
+          "publishedAthleticsUrl": "https://aqsaints.com/",
+          "sourceFile": "conference-sources/WHAC-home.html",
+          "sourceSHA256": "b2f706aac36635f7ce773e87f9b51ba51ebeee98e2c21b82dbff4bc8d949cf31",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Ave Maria University",
+      "state": "FL",
+      "campus": {
+        "collegeId": "cmox0642r000cqtgch0h1atsx",
+        "slug": "ave-maria",
+        "programId": "cmox0643f000eqtgcwbotacoa",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://thesunconference.com/images/2026/9/14/AveMaria.png",
+          "conference": "TSC",
+          "publishedName": "Ave Maria",
+          "location": "Ave Maria, Fla.",
+          "publishedAthleticsUrl": "http://avemariagyrenes.com/",
+          "sourceFile": "conference-sources/TSC-home.html",
+          "sourceSHA256": "effcd9baaeef185168d621a90a2ae035bf25467e86b6a83019999f1f76af5fe5",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Avila University",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmowzrytw0006qt4wacqwr2gf",
+        "slug": "avila",
+        "programId": "cmowzryum0008qt4wsq56ec6e",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://kcacsports.com/images/2024/1/12/New_AU_Logo200x200_33.png",
+          "conference": "KCAC",
+          "publishedName": "Avila University",
+          "location": "Kansas City, MO",
+          "publishedAthleticsUrl": "http://www.avilaathletics.com/",
+          "sourceFile": "conference-sources/KCAC-home.html",
+          "sourceSHA256": "abfd7e4e2a05b90193554bb01fa12ed0d5c7c957061ae2511e390fa1627c5229",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Baker University",
+      "state": "KS",
+      "campus": {
+        "collegeId": "cmox0645g000iqtgc55oneldh",
+        "slug": "baker",
+        "programId": "cmox06463000kqtgc9pjvqtua",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/Baker_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Baker",
+          "publishedAthleticsUrl": "https://www.bakerwildcats.com/landing/index",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Bethany College",
+      "state": "KS",
+      "campus": {
+        "collegeId": "cmowzryyd000fqt4w75l1pt86",
+        "slug": "bethany",
+        "programId": "cmowzryz4000hqt4web49by6l",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://kcacsports.com/images/logos/Bethany_Swedes.png",
+          "conference": "KCAC",
+          "publishedName": "Bethany College",
+          "location": "Lindsborg, KS",
+          "publishedAthleticsUrl": "http://www.bethanyswedes.com/",
+          "sourceFile": "conference-sources/KCAC-home.html",
+          "sourceSHA256": "abfd7e4e2a05b90193554bb01fa12ed0d5c7c957061ae2511e390fa1627c5229",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Bismarck State University",
+      "state": "ND",
+      "campus": {
+        "collegeId": "cmox234xk000rqtfk5uh31vu3",
+        "slug": "bismarck-state-college",
+        "programId": "cmox234y9000tqtfk4sl09tpz",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://fcsports.org/images/logos/Mystic-Brandmark-RGB-FullColor_1200px%20(1).png",
+          "conference": "Frontier",
+          "publishedName": "Bismarck State",
+          "location": "Bismarck, N.D.",
+          "publishedAthleticsUrl": "https://bscmystics.com/",
+          "sourceFile": "conference-sources/Frontier-home.html",
+          "sourceSHA256": "8b26372e441f821029eb03c876440a37e518c5276ca04a3baf68044db076ec6d",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Bluefield University",
+      "state": "VA",
+      "campus": {
+        "collegeId": "cmowzrz2p000oqt4wud5eghaw",
+        "slug": "bluefield",
+        "programId": "cmowzrz3h000qqt4wz5pctlbg",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Brescia University",
+      "state": "KY",
+      "campus": {
+        "collegeId": "cmowzrz46000rqt4wrxx7o7a9",
+        "slug": "brescia",
+        "programId": "cmowzrz4w000tqt4wl7du8f4f",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://riverstatesconference.com/images/logos/BResliaUNiv.png",
+          "conference": "RSC",
+          "publishedName": "Brescia University",
+          "location": "Owensboro, KY",
+          "publishedAthleticsUrl": "http://www.bresciabearcats.com/",
+          "sourceFile": "conference-sources/RSC-home.html",
+          "sourceSHA256": "9853b8097356cf84e114c9e2857c36875ce350e3ca016e3d521a55518b9608a0",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Briar Cliff University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmowzrz74000xqt4wdm59y6gz",
+        "slug": "briar-cliff",
+        "programId": "cmowzrz7u000zqt4wwkmyegvb",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Carolina University",
+      "state": "NC",
+      "campus": {
+        "collegeId": "cmowzrzct0019qt4wgwahltd6",
+        "slug": "carolina",
+        "programId": "cmowzrzdk001bqt4w2ajpgsov",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://continentalathletics.com/images/members/Carolina_logo.png",
+          "conference": "CAC",
+          "publishedName": "Carolina University",
+          "publishedAthleticsUrl": "https://cubruins.com/",
+          "sourceFile": "conference-sources/CAC-home.html",
+          "sourceSHA256": "91f484847d5da20bca0792dbf6bb1708b18985f08c7c0adc0398a4bd583ebaed",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Central Methodist University",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmox064v10023qtgczbgq56zf",
+        "slug": "central-methodist",
+        "programId": "cmox064vn0025qtgco8005zej",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/CentralMethodist_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Central Methodist",
+          "publishedAthleticsUrl": "http://www.cmueagles.com/",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Clarke University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmowzrzj0001lqt4wws226tj0",
+        "slug": "clarke",
+        "programId": "cmowzrzjq001nqt4woiwflebl",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/Clarke_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Clarke",
+          "publishedAthleticsUrl": "https://www.clarkepride.com/landing/index",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Cleary University",
+      "state": "MI",
+      "campus": {
+        "collegeId": "cmowzrzkk001oqt4wwekf7ggs",
+        "slug": "cleary",
+        "programId": "cmowzrzla001qqt4wuawbib3d",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.whac.net/images/partners/cu.png",
+          "conference": "WHAC",
+          "publishedName": "Cleary University",
+          "publishedAthleticsUrl": "http://www.clearycougars.com",
+          "sourceFile": "conference-sources/WHAC-home.html",
+          "sourceSHA256": "b2f706aac36635f7ce773e87f9b51ba51ebeee98e2c21b82dbff4bc8d949cf31",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Concordia University",
+      "state": "NE",
+      "campus": {
+        "collegeId": "cmowzrzng001uqt4wid2g788z",
+        "slug": "concordia",
+        "programId": "cmowzrzo6001wqt4wyyjghwwi",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Culver-Stockton College",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmowzrzrv0023qt4wrvj7v2vn",
+        "slug": "culver-stockton",
+        "programId": "cmowzrzsm0025qt4w6jcyplq9",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/CulverStockton_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Culver Stockton",
+          "publishedAthleticsUrl": "https://www.cscwildcats.com/landing/index",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Defiance College",
+      "state": "OH",
+      "campus": {
+        "collegeId": "cmowzrzw9002cqt4wnsx4sgpq",
+        "slug": "defiance-college",
+        "programId": "cmowzrzx0002eqt4wnsddethr",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.whac.net/assets/Yellow_Jacket_-1-.png",
+          "conference": "WHAC",
+          "publishedName": "Defiance College",
+          "publishedAthleticsUrl": "https://defianceathletics.com/landing/index",
+          "sourceFile": "conference-sources/WHAC-home.html",
+          "sourceSHA256": "b2f706aac36635f7ce773e87f9b51ba51ebeee98e2c21b82dbff4bc8d949cf31",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Dickinson State University",
+      "state": "ND",
+      "campus": {
+        "collegeId": "cmowzrzxr002fqt4wstnzqq2z",
+        "slug": "dickinson-state",
+        "programId": "cmowzrzyp002hqt4w4892whe7",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://fcsports.org/images/logos/White%20Outline%20Hawk%20(1).png",
+          "conference": "Frontier",
+          "publishedName": "Dickinson State",
+          "location": "Dickinson, N.D.",
+          "publishedAthleticsUrl": "https://www.dsubluehawks.com",
+          "sourceFile": "conference-sources/Frontier-home.html",
+          "sourceSHA256": "8b26372e441f821029eb03c876440a37e518c5276ca04a3baf68044db076ec6d",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Dillard University",
+      "state": "LA",
+      "campus": {
+        "collegeId": "cmowzrzzj002iqt4wjp7qml4q",
+        "slug": "dillard",
+        "programId": "cmowzs00a002kqt4w2wta5bkm",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Doane University",
+      "state": "NE",
+      "campus": {
+        "collegeId": "cmowzs014002lqt4wj1mlkru4",
+        "slug": "doane",
+        "programId": "cmowzs01x002nqt4w8ohvbuqf",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Embry-Riddle Aeronautical University",
+      "state": "AZ",
+      "campus": {
+        "collegeId": "cmovlhu2n0060qt200npnptgr",
+        "slug": "embry-riddle",
+        "programId": "cmovlhu3d0062qt20b2a0gftv",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Fisher College",
+      "state": "MA",
+      "campus": {
+        "collegeId": "cmowzs0970030qt4wk3t17vg1",
+        "slug": "fisher",
+        "programId": "cmowzs09x0032qt4wjpbbigv0",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://continentalathletics.com/images/members/member_fisher.png",
+          "conference": "CAC",
+          "publishedName": "Fisher College",
+          "publishedAthleticsUrl": "http://www.fisherfalcons.com/",
+          "sourceFile": "conference-sources/CAC-home.html",
+          "sourceSHA256": "91f484847d5da20bca0792dbf6bb1708b18985f08c7c0adc0398a4bd583ebaed",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Georgetown College",
+      "state": "KY",
+      "campus": {
+        "collegeId": "cmox065zl004lqtgckt3to19k",
+        "slug": "georgetown",
+        "programId": "cmox06608004nqtgcd8exng2f",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://mid-southconference.org/images/logos/Tiger.png",
+          "conference": "MSC",
+          "publishedName": "Georgetown College (Ky.)",
+          "location": "Georgetown, KY",
+          "publishedAthleticsUrl": "http://www.georgetowncollegeathletics.com/",
+          "sourceFile": "conference-sources/MSC-home.html",
+          "sourceSHA256": "b893b946b463f99480d4cceba8de5ca25b878a546fb1fdbc5641c7fd1ddf1981",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Georgia Southern East Georgia Campus",
+      "state": "GA",
+      "campus": {
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "slug": "east-georgia-college",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Goshen College",
+      "state": "IN",
+      "campus": {
+        "collegeId": "cmowzs0c60036qt4w3zl8yw6w",
+        "slug": "goshen",
+        "programId": "cmowzs0cx0038qt4wqxutssz5",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Hannibal-LaGrange University",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmowzs0f8003cqt4w2i4hkdh1",
+        "slug": "hannibal-lagrange",
+        "programId": "cmowzs0fz003eqt4wrfmpneki",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Hastings College",
+      "state": "NE",
+      "campus": {
+        "collegeId": "cmox066af0059qtgc98qcsc7y",
+        "slug": "hastings",
+        "programId": "cmox066b2005bqtgc12ijaaed",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Hope International University",
+      "state": "CA",
+      "campus": {
+        "collegeId": "cmox066bq005cqtgcwroasbo1",
+        "slug": "hope-international",
+        "programId": "cmox066ce005eqtgc9gdmi5w3",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Huntington University",
+      "state": "IN",
+      "campus": {
+        "collegeId": "cmowzs0ic003iqt4w0udpeydi",
+        "slug": "huntington",
+        "programId": "cmowzs0j4003kqt4w4p7lup2g",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Indiana Wesleyan University",
+      "state": "IN",
+      "campus": {
+        "collegeId": "cmox066lk005xqtgctz7oerky",
+        "slug": "indiana-wesleyan",
+        "programId": "cmox066m6005zqtgcfc8lnz5r",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Jarvis Christian University",
+      "state": "TX",
+      "campus": {
+        "collegeId": "cmox066qy0069qtgco1avrdjp",
+        "slug": "jarvis-christian",
+        "programId": "cmox066rl006bqtgcp8ia4wyg",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Judson University",
+      "state": "IL",
+      "campus": {
+        "collegeId": "cmowzs0og003uqt4womnogrq7",
+        "slug": "judson",
+        "programId": "cmowzs0p6003wqt4wdp0ghdk1",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://cdn.prestosports.com/action/cdn/logos/id/ms3psttmeeonu25f.png",
+          "conference": "CCAC",
+          "publishedName": "Judson University",
+          "publishedAthleticsUrl": "http://www.judsoneagles.com/",
+          "sourceFile": "conference-sources/CCAC-home.html",
+          "sourceSHA256": "dae1df503cd217dddb9b5dd53c07b1813b122bd45426665bb9ac7899947f4a37",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Kentucky Christian University",
+      "state": "KY",
+      "campus": {
+        "collegeId": "cmox066xq006oqtgc1hw3zms8",
+        "slug": "kentucky-christian",
+        "programId": "cmox066yg006qqtgct3zks1ra",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://riverstatesconference.com/images/logos/Kentucky_christian.png",
+          "conference": "RSC",
+          "publishedName": "Kentucky Christian University",
+          "location": "Grayson, KY",
+          "publishedAthleticsUrl": "https://www.kcuknights.com/",
+          "sourceFile": "conference-sources/RSC-home.html",
+          "sourceSHA256": "9853b8097356cf84e114c9e2857c36875ce350e3ca016e3d521a55518b9608a0",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Lawrence Technological University",
+      "state": "MI",
+      "campus": {
+        "collegeId": "cmox0670h006uqtgc73tzy1mv",
+        "slug": "lawrence-tech",
+        "programId": "cmox06715006wqtgcslcpoi9h",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Louisiana State University Alexandria",
+      "state": "LA",
+      "campus": {
+        "collegeId": "cmowzs0uo0046qt4wfr3hrw5d",
+        "slug": "lsu-alexandria",
+        "programId": "cmowzs0ve0048qt4wqhs864vb",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Louisiana State University Shreveport",
+      "state": "LA",
+      "campus": {
+        "collegeId": "cmowzs0w50049qt4wzavead73",
+        "slug": "lsu-shreveport",
+        "programId": "cmowzs0wt004bqt4w74nprpxc",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Loyola University",
+      "state": "LA",
+      "campus": {
+        "collegeId": "cmowzs0t60043qt4w612g566d",
+        "slug": "loyola",
+        "programId": "cmowzs0tz0045qt4w2tbza8zh",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Master's University, The",
+      "state": "CA",
+      "campus": {
+        "collegeId": "cmowzs2af0073qt4wn3t65h57",
+        "slug": "the-master-s",
+        "programId": "cmowzs2b80075qt4w42rn3r24",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Michigan-Dearborn, University",
+      "state": "MI",
+      "campus": {
+        "collegeId": "cmox067gh007uqtgcqrq09vgr",
+        "slug": "michigan-dearborn",
+        "programId": "cmox067h8007wqtgc5c5lbk1q",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.whac.net/images/partners/umd.png",
+          "conference": "WHAC",
+          "publishedName": "University of Michigan Dearborn",
+          "publishedAthleticsUrl": "http://athletics.umdearborn.edu/",
+          "sourceFile": "conference-sources/WHAC-home.html",
+          "sourceSHA256": "b2f706aac36635f7ce773e87f9b51ba51ebeee98e2c21b82dbff4bc8d949cf31",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Midland University",
+      "state": "NE",
+      "campus": {
+        "collegeId": "cmox067kl0083qtgczg7bx4q5",
+        "slug": "midland",
+        "programId": "cmox067l90085qtgcpz55jo7s",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Midway University",
+      "state": "KY",
+      "campus": {
+        "collegeId": "cmox067ly0086qtgcybk0ndn8",
+        "slug": "midway",
+        "programId": "cmox067ml0088qtgcdv6unyqj",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://riverstatesconference.com/images/logos/Midway_Logo_SIDEARM.png",
+          "conference": "RSC",
+          "publishedName": "Midway University",
+          "location": "Midway, KY",
+          "publishedAthleticsUrl": "http://www.gomidwayeagles.com",
+          "sourceFile": "conference-sources/RSC-home.html",
+          "sourceSHA256": "9853b8097356cf84e114c9e2857c36875ce350e3ca016e3d521a55518b9608a0",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Missouri Valley University",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmox067rf008iqtgcqv98xxm2",
+        "slug": "missouri-valley",
+        "programId": "cmox067s3008kqtgch1imoxph",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/MissouriValley_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Missouri Valley",
+          "publishedAthleticsUrl": "https://www.valleywillroll.com/landing/index",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Morningside University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmowzs16a004uqt4wruulohb5",
+        "slug": "morningside",
+        "programId": "cmowzs170004wqt4wqy5178q8",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Morris College",
+      "state": "SC",
+      "campus": {
+        "collegeId": "cmox067wv008uqtgc1vodg7t1",
+        "slug": "morris",
+        "programId": "cmox067xj008wqtgc9eh7f0b2",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://continentalathletics.com/images/members/member_morris.png",
+          "conference": "CAC",
+          "publishedName": "Morris College",
+          "publishedAthleticsUrl": "https://www.mchornetsathletics.com/landing/index",
+          "sourceFile": "conference-sources/CAC-home.html",
+          "sourceSHA256": "91f484847d5da20bca0792dbf6bb1708b18985f08c7c0adc0398a4bd583ebaed",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Mount Mercy University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmox067zj0090qtgc8tlprwtb",
+        "slug": "mount-mercy",
+        "programId": "cmox068050092qtgc1z1squro",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/MountMercy_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Mount Mercy",
+          "publishedAthleticsUrl": "https://www.mountmercymustangs.com/landing/index",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Northwestern Ohio, University of",
+      "state": "OH",
+      "campus": {
+        "collegeId": "cmox0684y009cqtgca2arq0at",
+        "slug": "northwestern-ohio",
+        "programId": "cmox0685n009eqtgcdvg27ftq",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.whac.net/images/partners/N_Black.png",
+          "conference": "WHAC",
+          "publishedName": "University of Northwestern Ohio",
+          "publishedAthleticsUrl": "http://www.unohracers.com/",
+          "sourceFile": "conference-sources/WHAC-home.html",
+          "sourceSHA256": "b2f706aac36635f7ce773e87f9b51ba51ebeee98e2c21b82dbff4bc8d949cf31",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Oklahoma Panhandle State Univ",
+      "state": "OK",
+      "campus": {
+        "collegeId": "cmwc95gpt0000qti8cwb0p5c1",
+        "slug": "oklahoma-panhandle-state-university",
+        "programId": "cmwc95gpw0001qti81plzhie8",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://soonerathletic.org/images/logos/opsu_logo.png",
+          "conference": "SAC",
+          "publishedName": "Oklahoma Panhandle State",
+          "location": "Goodwell, OK",
+          "publishedAthleticsUrl": "https://opsuaggies.com",
+          "sourceFile": "conference-sources/SAC-home.html",
+          "sourceSHA256": "2e2a14be5a320007ac957f37cc3af069e2d9576cd61f33d85087f81ace52d0d4",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Olivet Nazarene University",
+      "state": "IL",
+      "campus": {
+        "collegeId": "cmowzs1fe005cqt4w0s54p5m8",
+        "slug": "olivet-nazarene",
+        "programId": "cmowzs1g5005eqt4wukamkj7q",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.ccacsports.com/assets/images/big-logo8.png",
+          "conference": "CCAC",
+          "publishedName": "Olivet Nazarene University",
+          "publishedAthleticsUrl": "http://www.onutigers.com/",
+          "sourceFile": "conference-sources/CCAC-home.html",
+          "sourceSHA256": "dae1df503cd217dddb9b5dd53c07b1813b122bd45426665bb9ac7899947f4a37",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Our Lady of the Lake University",
+      "state": "TX",
+      "campus": {
+        "collegeId": "cmox068fn00a0qtgc5m18fxv4",
+        "slug": "our-lady-of-the-lake",
+        "programId": "cmox068gh00a2qtgcokpfieyr",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.redriverconference.com/images/members/ck4x41lm93jj10a94manrk07h.png",
+          "conference": "RRAC",
+          "publishedName": "OUR LADY OF THE LAKE UNIVERSITY",
+          "publishedAthleticsUrl": "http://www.ollusaintsathletics.com/",
+          "sourceFile": "conference-sources/RRAC-home.html",
+          "sourceSHA256": "fc3bd981e6868860b2df6a88427ed6597c6320d40c0f3febd64a7a50a341eec8",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Ozarks, College of the",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmwc8b8fg0008qt98gf769dw9",
+        "slug": "college-of-the-ozarks-missouri",
+        "programId": "cmwc8b8fg0009qt98al7hnckg",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://soonerathletic.org/images/2024/7/8/ozarks.png",
+          "conference": "SAC",
+          "publishedName": "College of the Ozarks (Mo.)",
+          "location": "Point Lookout, Mo.",
+          "publishedAthleticsUrl": "https://bobcats.cofo.edu",
+          "sourceFile": "conference-sources/SAC-home.html",
+          "sourceSHA256": "2e2a14be5a320007ac957f37cc3af069e2d9576cd61f33d85087f81ace52d0d4",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Park University",
+      "state": "MO",
+      "campus": {
+        "collegeId": "cmox068h500a3qtgcyxillt4u",
+        "slug": "park",
+        "programId": "cmox068ht00a5qtgcrguqmapu",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/Park_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "Park",
+          "publishedAthleticsUrl": "https://parkathletics.com/",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Park University Gilbert",
+      "state": "AZ",
+      "campus": {
+        "collegeId": "cmowzs1ib005iqt4w3i7tnck9",
+        "slug": "park-gilbert",
+        "programId": "cmowzs1j1005kqt4w6lezmfao",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Philander Smith College",
+      "state": "AR",
+      "campus": {
+        "collegeId": "cmowzs1jr005lqt4womndsl7h",
+        "slug": "philander-smith",
+        "programId": "cmowzs1kh005nqt4wlynyw4it",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Point University",
+      "state": "GA",
+      "campus": {
+        "collegeId": "cmox068ny00aiqtgc74yuw2t8",
+        "slug": "point",
+        "programId": "cmox068om00akqtgcrhsoe43o",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Rust College",
+      "state": "MS",
+      "campus": {
+        "collegeId": "cmowzs1r40060qt4waqra6rcg",
+        "slug": "rust",
+        "programId": "cmowzs1ru0062qt4wsf57vlws",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Saint Francis, University",
+      "state": "IN",
+      "campus": {
+        "collegeId": "cmowzs1sl0063qt4w2c8vrz25",
+        "slug": "saint-francis",
+        "programId": "cmowzs1tf0065qt4wf2jc26kg",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Saint Thomas University",
+      "state": "FL",
+      "campus": {
+        "collegeId": "cmowzs25w006uqt4w8e2l0xp7",
+        "slug": "st-thomas",
+        "programId": "cmowzs26n006wqt4ww0ftc7cs",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://thesunconference.com/images/2021/8/14/STU.png",
+          "conference": "TSC",
+          "publishedName": "St. Thomas",
+          "location": "Miami Gardens, Fla.",
+          "publishedAthleticsUrl": "http://www.stubobcats.com",
+          "sourceFile": "conference-sources/TSC-home.html",
+          "sourceSHA256": "effcd9baaeef185168d621a90a2ae035bf25467e86b6a83019999f1f76af5fe5",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Science and Arts of Ok, University of",
+      "state": "OK",
+      "campus": {
+        "collegeId": "cmwc95gvq0002qti84six5uid",
+        "slug": "university-of-science-and-arts-of-oklahoma",
+        "programId": "cmwc95gvq0003qti8ksxflxlb",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://soonerathletic.org/images/2024/7/8/usao.png",
+          "conference": "SAC",
+          "publishedName": "Science & Arts (Okla.)",
+          "location": "Chickasha, Okla.",
+          "publishedAthleticsUrl": "http://www.usaoathletics.com/",
+          "sourceFile": "conference-sources/SAC-home.html",
+          "sourceSHA256": "2e2a14be5a320007ac957f37cc3af069e2d9576cd61f33d85087f81ace52d0d4",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Simpson University",
+      "state": "CA",
+      "campus": {
+        "collegeId": "cmowzs1vl0069qt4wsqb6a8yr",
+        "slug": "simpson",
+        "programId": "cmowzs1wc006bqt4wog3ldsij",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.calpacathletics.com/images/logos/Simpson_Crest.png",
+          "conference": "CalPac",
+          "publishedName": "Simpson University",
+          "publishedAthleticsUrl": "http://simpsonredhawks.com/",
+          "sourceFile": "conference-sources/CalPac-home.html",
+          "sourceSHA256": "6c80091f54fa0b1d10aab50271b9e23f1e913d387b58869547d15141265b7a75",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Southern University at New Orleans",
+      "state": "LA",
+      "campus": {
+        "collegeId": "cmowzs1yj006fqt4wp698q3i9",
+        "slug": "southern-university-at-new-orleans",
+        "programId": "cmowzs1zb006hqt4w9cv36ie1",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "St. Ambrose University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmowzs21j006lqt4wffal58bl",
+        "slug": "st-ambrose",
+        "programId": "cmowzs229006nqt4w7on28728",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Sterling College",
+      "state": "KS",
+      "campus": {
+        "collegeId": "cmox069ho00ccqtgc42y9kmfr",
+        "slug": "sterling",
+        "programId": "cmox069ic00ceqtgcdf68glfw",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://kcacsports.com/images/logos/sterling.png",
+          "conference": "KCAC",
+          "publishedName": "Sterling College",
+          "location": "Sterling, KS",
+          "publishedAthleticsUrl": "http://www.scwarriors.com/",
+          "sourceFile": "conference-sources/KCAC-home.html",
+          "sourceSHA256": "abfd7e4e2a05b90193554bb01fa12ed0d5c7c957061ae2511e390fa1627c5229",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Talladega College",
+      "state": "AL",
+      "campus": {
+        "collegeId": "cmowzs27g006xqt4wpaqxe1jx",
+        "slug": "talladega",
+        "programId": "cmowzs287006zqt4w4eidxuh3",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Taylor University",
+      "state": "IN",
+      "campus": {
+        "collegeId": "cmowzs28y0070qt4wel8w9307",
+        "slug": "taylor",
+        "programId": "cmowzs29o0072qt4we5nkbniu",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Texas A&M University - Texarkana",
+      "state": "TX",
+      "campus": {
+        "collegeId": "cmox069rb00cxqtgc4ygzwzwx",
+        "slug": "texas-a-and-m-texarkana",
+        "programId": "cmox069s000czqtgclertoc9x",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.redriverconference.com/images/members/Athletics_Icon_FullClr_DkBG_copy_2.png",
+          "conference": "RRAC",
+          "publishedName": "TEXAS A&M-TEXARKANA",
+          "publishedAthleticsUrl": "http://www.tamuteagles.com/",
+          "sourceFile": "conference-sources/RRAC-home.html",
+          "sourceSHA256": "fc3bd981e6868860b2df6a88427ed6597c6320d40c0f3febd64a7a50a341eec8",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Texas College",
+      "state": "TX",
+      "campus": {
+        "collegeId": "cmox069sn00d0qtgcjtotjzzk",
+        "slug": "texas-college",
+        "programId": "cmox069ta00d2qtgce5kg87su",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.redriverconference.com/images/members/Texas_College_Steers.png",
+          "conference": "RRAC",
+          "publishedName": "TEXAS COLLEGE",
+          "publishedAthleticsUrl": "http://www.tcsteersathletics.com/",
+          "sourceFile": "conference-sources/RRAC-home.html",
+          "sourceSHA256": "fc3bd981e6868860b2df6a88427ed6597c6320d40c0f3febd64a7a50a341eec8",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Tougaloo College",
+      "state": "MS",
+      "campus": {
+        "collegeId": "cmowzs2c00076qt4wck5u0njl",
+        "slug": "tougaloo",
+        "programId": "cmowzs2cu0078qt4wfkoltfoo",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Truett McConnell University",
+      "state": "GA",
+      "campus": {
+        "collegeId": "cmox069zr00dfqtgcntxrsrbb",
+        "slug": "truett-mcconnell",
+        "programId": "cmox06a0f00dhqtgcqw2s1nih",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Union Commonwealth University",
+      "state": "KY",
+      "campus": {
+        "collegeId": "cmox06a2l00dlqtgcos7i4rt9",
+        "slug": "union-commonwealth",
+        "programId": "cmox06a3800dnqtgcivxehje8",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Viterbo University",
+      "state": "WI",
+      "campus": {
+        "collegeId": "cmox06a5900drqtgcpbq8mglc",
+        "slug": "viterbo",
+        "programId": "cmox06a5y00dtqtgcmh4agtar",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.ccacsports.com/assets/images/Viterbo_Primary_Logo-0.3x.png",
+          "conference": "CCAC",
+          "publishedName": "Viterbo University",
+          "publishedAthleticsUrl": "https://viterbo.prestosports.com/landing/index",
+          "sourceFile": "conference-sources/CCAC-home.html",
+          "sourceSHA256": "dae1df503cd217dddb9b5dd53c07b1813b122bd45426665bb9ac7899947f4a37",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Waldorf University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmox06a7z00dxqtgcs2lyeo4e",
+        "slug": "waldorf",
+        "programId": "cmox06a8n00dzqtgcigsavox2",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Wayland Baptist University",
+      "state": "TX",
+      "campus": {
+        "collegeId": "cmowzs2gq007fqt4wgjsjkut7",
+        "slug": "wayland-baptist",
+        "programId": "cmowzs2hf007hqt4wiboc02ai",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://soonerathletic.org/images/2024/7/9/wbu.png",
+          "conference": "SAC",
+          "publishedName": "Wayland Baptist (Texas)",
+          "location": "Plainview, TX",
+          "publishedAthleticsUrl": "http://wbuathletics.com",
+          "sourceFile": "conference-sources/SAC-home.html",
+          "sourceSHA256": "2e2a14be5a320007ac957f37cc3af069e2d9576cd61f33d85087f81ace52d0d4",
+          "join": "EXACT_PRIOR_CONFERENCE_NAME_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Westcliff University",
+      "state": "CA",
+      "campus": {
+        "collegeId": "cmowzs2jp007lqt4wmxd5vtd8",
+        "slug": "westcliff",
+        "programId": "cmowzs2kf007nqt4wyiw47c68",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.calpacathletics.com/images/school_logos/westcliff.jpg",
+          "conference": "CalPac",
+          "publishedName": "Westcliff University",
+          "publishedAthleticsUrl": "http://www.westcliffathletics.com/",
+          "sourceFile": "conference-sources/CalPac-home.html",
+          "sourceSHA256": "6c80091f54fa0b1d10aab50271b9e23f1e913d387b58869547d15141265b7a75",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    },
+    {
+      "name": "Wilberforce University",
+      "state": "OH",
+      "campus": {
+        "collegeId": "cmowzs2l5007oqt4wmemu4ojg",
+        "slug": "wilberforce",
+        "programId": "cmowzs2lw007qqt4wl0ygs241",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "Wiley College",
+      "state": "TX",
+      "campus": {
+        "collegeId": "cmowzs2ml007rqt4wz5m3qzym",
+        "slug": "wiley",
+        "programId": "cmowzs2nb007tqt4wgg7kxjii",
+        "division": "NAIA"
+      },
+      "assets": [],
+      "disposition": "HELD_NO_EXACT_CONFERENCE_ASSET_JOIN"
+    },
+    {
+      "name": "William Penn University",
+      "state": "IA",
+      "campus": {
+        "collegeId": "cmowzs2pm007xqt4w66z0cj3f",
+        "slug": "william-penn",
+        "programId": "cmowzs2qc007zqt4w6rioofpa",
+        "division": "NAIA"
+      },
+      "assets": [
+        {
+          "url": "https://www.heartofamericaconference.com/images/setup/WilliamPenn_Logo.png",
+          "conference": "HAAC",
+          "publishedName": "William Penn",
+          "publishedAthleticsUrl": "https://www.statesmenathletics.com/landing/index",
+          "sourceFile": "conference-sources/HAAC-home.html",
+          "sourceSHA256": "d5cea6a3045b706658d8b136b87d90262dcc2ad528d0c3046d3c2d52c09cbae3",
+          "join": "EXACT_PRIOR_CONFERENCE_IMAGE_LABEL_AND_ATHLETICS_HOST"
+        }
+      ],
+      "disposition": "PUBLISHED_ASSET_AWAITING_CAPTURE_AND_VISUAL_REVIEW"
+    }
+  ]
+}

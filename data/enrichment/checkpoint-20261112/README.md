@@ -1,0 +1,15 @@
+# November 12, 2026 enrichment checkpoint
+
+This checkpoint preserves the NAIA enrichment scripts, frozen manifests, candidates, compact audit receipts/reports and session notes. Raw source captures and full database-state snapshots are held in the owner's separate backup archive; this Git checkpoint alone is not a complete historical audit runtime.
+
+The user created `scoutline-enrichment-20261112-162242.tar.gz` from the complete `data/enrichment` tree and ran `tar -tzf` successfully. Archive SHA-256: `a668a7cd155c403655b9ace608679616c0881f6742c5849d2c35cf4607f714aa`. See `backup-receipt.json` for the owner's archive location and verification limits. OneDrive cloud synchronization has not been independently verified.
+
+The archive SHA-256 was independently rechecked, and all1498archive-only paths in the staging plan were found in its file listing. This verifies archive identity and path coverage; a per-file extracted-content comparison was not performed.
+
+To restore historical audit dependencies into a fresh clone, obtain the archive from the owner, check its SHA-256, extract it into an empty temporary directory, and copy the archived source/snapshot dependencies to their original relative paths. Preserve newer committed checkpoint files when restoring. Do not blindly extract the archive over newer scripts/manifests. The frozen manifests and offline preflights verify expected inputs after restoration. Do not run historical `--apply` commands: approved imports are already complete. Live audit commands access the database and remain user-run operations.
+
+Latest final staff closeout: `../naia-final-staff-review-20261112/closeout-audit-2026-11-12T21-18-28-648Z-fbcb7e04/report.json`. All16state sections matched with zero drift. Final snapshot SHA-256: `aa4a59e033a1f4e61f57632f0f14842564bc719124519031b69328631d2fab03`. Counts:1580colleges,5167coaches,22702players,577snapshots,194storedNAIAprograms. The working member-matched set187 has161activeheads and63current2027rosters. Remaining26staffevidenceholds,124rosterholds, nationalbaseballinventory/statusreconciliation and secondary evidence gaps remain. Stored194 is not a verified national baseball total; NAIA is incomplete.
+
+`prepare-stage-plan.cjs` inventories untracked NAIA artifacts without Git mutations, flags common credential patterns without printing contents, and creates `stage-plan.json` plus `stage-paths.txt`. It selects scripts/documentation/JSON/CSV up to5MiB, excludes raw sources/binary evidence/full-state snapshots, and excludes temporary tooling. The excluded enrichment files remain locally in place and in the archive. Large candidates omitted by the size limit also require archive restoration. The stage plan records per-file hashes for selected artifacts and paths/reasons for archive-only files. This is a heuristic credential scan, not a guarantee that every sensitive value has been identified.
+
+No application code or schema changes are part of this checkpoint. Database imports already took effect independently of Git. No environment files, downloaded PDF packages or compiled tooling under `tmp/` should be staged.

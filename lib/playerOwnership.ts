@@ -8,6 +8,7 @@ import {
   TeamRole,
 } from "@prisma/client";
 import { applyProfileEvent } from "./profileState";
+import { Prisma } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -105,8 +106,7 @@ async function getTeamAdminEmails(
 
   const teamName = memberships[0].team.name;
   const emails = memberships
-    .map((m) => m.user.email)
-    .filter((e): e is string => !!e);
+    .flatMap((m) => (m.user?.email ? [m.user.email] : []));
 
   return { teamName, emails };
 }
@@ -125,7 +125,7 @@ async function snapshotForCurrentOwnerTeam(
     data: {
       teamId: profile.ownerTeamId,
       playerProfileId: profile.id,
-      snapshot: profile.data,
+      snapshot: profile.data ?? Prisma.JsonNull,
     },
   });
 }

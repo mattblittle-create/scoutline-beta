@@ -13,6 +13,7 @@ export type CorePayload = {
 
   hometownCity: string;
   hometownState: string;
+  hometownZip: string;
 
   heightFt: string;
   heightIn: string;
@@ -37,6 +38,7 @@ type FieldErr = {
 type Props = {
   /** Needed for upload route (server saves to User.photoUrl by slug or email-local) */
   userSlug: string;
+    readOnlyTeamAdmin?: boolean;
 
   // values
   firstName: string;
@@ -49,6 +51,7 @@ type Props = {
 
   hometownCity: string;
   hometownState: string;
+  hometownZip: string;
 
   /** Selected file (from file input) */
   photoFile: File | null;
@@ -59,6 +62,10 @@ type Props = {
   submitting: boolean;
   /** Optional scoped busy state for the upload button (if you track it separately) */
   uploadingPhoto?: boolean;
+  /** True while a large image is being compressed client-side */
+  optimizingPhoto?: boolean;
+  /** Friendly message after optimization completes */
+  photoInfoMsg?: string | null;
 
   /** Provided by the parent (compute with useEffect in page.tsx) */
   isMobile: boolean;
@@ -75,7 +82,7 @@ type Props = {
   gender: string;
 
   fieldErr: FieldErr;
-  GENDER_OPTIONS: string[];
+  GENDER_OPTIONS: readonly ("Male" | "Female")[];
   US_STATE_ABBRS: readonly string[];
 
   // handlers
@@ -89,6 +96,7 @@ type Props = {
 
   setHometownCity: (v: string) => void;
   setHometownState: (v: string) => void;
+  setHometownZip: (v: string) => void;
 
   onPickPhoto: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onUploadPhoto: (userSlug: string) => void | Promise<void>;
@@ -105,11 +113,11 @@ type Props = {
   setGender: (v: string) => void;
 
   // refs
-  phoneRef: React.RefObject<HTMLInputElement>;
-  heightInRef: React.RefObject<HTMLInputElement>;
-  ageRef: React.RefObject<HTMLInputElement>;
-  dobRef: React.RefObject<HTMLInputElement>;
-  genderRef: React.RefObject<HTMLSelectElement>;
+  phoneRef: React.RefObject<HTMLInputElement | null>;
+  heightInRef: React.RefObject<HTMLInputElement | null>;
+  ageRef: React.RefObject<HTMLInputElement | null>;
+  dobRef: React.RefObject<HTMLInputElement | null>;
+  genderRef: React.RefObject<HTMLSelectElement | null>;
 
   // styles (reuse the exact objects you already have in page.tsx)
   labelStyle: React.CSSProperties;
@@ -132,6 +140,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
       phonePrivate: props.phonePrivate,
       hometownCity: props.hometownCity,
       hometownState: props.hometownState,
+      hometownZip: props.hometownZip,
       heightFt: props.heightFt,
       heightIn: props.heightIn,
       weightLb: props.weightLb,
@@ -144,8 +153,9 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
   }));
 
   const {
-    // NEW
-    userSlug,
+      // NEW
+      userSlug,
+      readOnlyTeamAdmin = false,
 
     // values
     firstName,
@@ -156,10 +166,13 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
     phonePrivate,
     hometownCity,
     hometownState,
+    hometownZip,
     photoPreview,
     photoFile,
     submitting,
     uploadingPhoto,
+    optimizingPhoto,
+    photoInfoMsg,
     isMobile,
     heightFt,
     heightIn,
@@ -181,6 +194,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
     setPhonePrivate,
     setHometownCity,
     setHometownState,
+    setHometownZip,
     onRemovePhoto,
     onPickPhoto,
     onUploadPhoto,
@@ -209,6 +223,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
     qMark,
   } = props;
 
+  const coreLocked = readOnlyTeamAdmin;
   const uploadBusy = Boolean(uploadingPhoto || submitting);
   const uploadDisabled = !photoFile || uploadBusy;
   const removeDisabled = !photoPreview || uploadBusy;
@@ -229,6 +244,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <input
               type="email"
+              disabled={coreLocked}
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -240,6 +256,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
               <input
                 type="checkbox"
                 checked={!!emailPrivate}
+                disabled={coreLocked}
                 onChange={(e) => setEmailPrivate(e.target.checked)}
               />{" "}
               Private <span style={qMark}>?</span>
@@ -252,6 +269,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <input
               ref={phoneRef}
+              disabled={coreLocked}
               inputMode="tel"
               value={phone}
               onChange={(e) => onPhoneChange(e.target.value)}
@@ -264,6 +282,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
               <input
                 type="checkbox"
                 checked={!!phonePrivate}
+                disabled={coreLocked}
                 onChange={(e) => setPhonePrivate(e.target.checked)}
               />{" "}
               Private <span style={qMark}>?</span>
@@ -288,6 +307,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>First Name</span>
           <input
             value={firstName}
+            disabled={false}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First name"
             style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -299,6 +319,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>Last Name</span>
           <input
             value={lastName}
+            disabled={false}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last name"
             style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -313,7 +334,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
+          gridTemplateColumns: isMobile ? "1fr" : "2fr 0.75fr 1fr",
           gap: 12,
           alignItems: "end",
         }}
@@ -322,6 +343,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>Hometown City</span>
           <input
             value={hometownCity}
+            disabled={coreLocked}
             onChange={(e) => setHometownCity(e.target.value)}
             placeholder="Hometown City"
             style={{ ...inputStyle, flex: "1 1 auto" }}
@@ -333,6 +355,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>Hometown State</span>
           <select
             value={hometownState}
+            disabled={coreLocked}
             onChange={(e) => setHometownState(e.target.value)}
             style={inputStyle}
           >
@@ -344,6 +367,22 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
             ))}
           </select>
         </label>
+
+        <label style={labelStyle}>
+  <span style={labelText}>Hometown ZIP</span>
+  <input
+    value={hometownZip}
+    disabled={coreLocked}
+    onChange={(e) =>
+      setHometownZip(e.target.value.replace(/\D/g, "").slice(0, 5))
+    }
+    placeholder="Hometown ZIP"
+    maxLength={5}
+    inputMode="numeric"
+    autoComplete="postal-code"
+    style={inputStyle}
+  />
+</label>
       </div>
 
       <hr style={hrStyle} />
@@ -386,9 +425,9 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                 <button
                   type="button"
                   onClick={onRemovePhoto}
+                  disabled={coreLocked || removeDisabled}
                   title="Remove photo"
                   aria-label="Remove photo"
-                  disabled={removeDisabled}
                   style={{
                     position: "absolute",
                     top: 6,
@@ -401,8 +440,8 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                     lineHeight: 1,
                     fontWeight: 800,
                     color: "#b91c1c",
-                    cursor: removeDisabled ? "not-allowed" : "pointer",
-                    opacity: removeDisabled ? 0.6 : 1,
+                    cursor: coreLocked || removeDisabled ? "not-allowed" : "pointer",
+                    opacity: coreLocked || removeDisabled ? 0.6 : 1,
                   }}
                 >
                   ×
@@ -416,6 +455,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <div style={{ display: "flex", gap: 10, alignItems: "center", flexWrap: "wrap" }}>
             <input
               type="file"
+              disabled={coreLocked}
               // Mobile can open camera roll easily with image/*; desktop constrains to common web formats
               accept={isMobile ? "image/*" : "image/png,image/jpeg,image/webp"}
               onChange={onPickPhoto}
@@ -423,8 +463,8 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
             />
             <button
               type="button"
+              disabled={coreLocked || uploadDisabled}
               onClick={() => onUploadPhoto(userSlug)}
-              disabled={uploadDisabled}
               style={{
                 padding: "10px 14px",
                 borderRadius: 8,
@@ -432,7 +472,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                 background: "#e0f2fe",
                 color: "#083344",
                 fontWeight: 800,
-                cursor: uploadDisabled ? "not-allowed" : "pointer",
+                cursor: coreLocked || uploadDisabled ? "not-allowed" : "pointer",
               }}
             >
               {uploadBusy ? "Uploading…" : "Upload Photo"}
@@ -442,7 +482,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
             <button
               type="button"
               onClick={onRemovePhoto}
-              disabled={removeDisabled}
+              disabled={coreLocked || removeDisabled}
               style={{
                 padding: "10px 14px",
                 borderRadius: 8,
@@ -450,15 +490,29 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
                 background: "#ffffff",
                 color: "#b91c1c",
                 fontWeight: 800,
-                cursor: removeDisabled ? "not-allowed" : "pointer",
+                cursor: coreLocked || removeDisabled ? "not-allowed" : "pointer",
               }}
             >
               Remove Photo
             </button>
 
             <span style={{ color: "#64748b", fontSize: 12 }}>
-              JPG, PNG, or WEBP up to 35MB.
+              JPG, PNG, or WEBP up to 75MB.
             </span>
+          </div>
+
+          <div style={{ gridColumn: "2 / 3" }}>
+            {optimizingPhoto && (
+              <div style={{ color: "#0f766e", fontWeight: 600, marginTop: 8 }}>
+                Optimizing image…
+              </div>
+            )}
+
+            {photoInfoMsg && (
+              <div style={{ color: "#059669", fontWeight: 600, marginTop: 6 }}>
+                {photoInfoMsg}
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -528,6 +582,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <input
               ref={dobRef}
+              disabled={coreLocked}
               inputMode="numeric"
               value={dob}
               onChange={(e) => onDobChange(e.target.value)}
@@ -551,7 +606,11 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
               <input
                 type="checkbox"
                 checked={!!dobPrivate}
-                onChange={(e) => setDobPrivate(e.target.checked)}
+                disabled={coreLocked}
+                onChange={(e) => {
+                  if (coreLocked) return;
+                setDobPrivate(e.target.checked);
+                }}
               />{" "}
               Private <span style={qMark}>?</span>
             </label>
@@ -566,7 +625,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
             ref={ageRef}
             inputMode="numeric"
             value={age}
-            readOnly={isDobValid(dob)}
+            readOnly={coreLocked || isDobValid(dob)}
             onChange={(e) => setAge(e.target.value)}
             placeholder="15"
             style={inputStyle}
@@ -581,6 +640,7 @@ const TabCore = React.forwardRef<CoreHandle, Props>(function TabCore(props, ref)
           <span style={labelText}>Gender</span>
           <select
             ref={genderRef}
+            disabled={coreLocked}
             value={gender}
             onChange={(e) => setGender(e.target.value)}
             style={inputStyle}

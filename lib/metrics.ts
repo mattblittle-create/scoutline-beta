@@ -3,32 +3,32 @@
 // Subscription plan (reserved for future gating/automation features)
 export type Plan = "Walk-On" | "All-American" | "Team";
 
-// Every metric we'll track
+// Every metric we'll track (canonical internal ids)
 export type MetricId =
-  | "Home to 1B"        // time (sec)
-  | "60 Yd Dash"              // time (sec)
-  | "Exit Velo"           // mph
-  | "Raw Velo"       // mph
-  | "FB Velo"          // mph  (pitcher only)
-  | "Top FB Velo"          // mph  (pitcher only)
-  | "CH Velo"          // mph  (pitcher only)
-  | "BB Velo"          // mph  (pitcher only)
-  | "Pop Time";           // time (sec, catcher only)
+  | "homeToFirst"      // time (sec)
+  | "sixtyYdDash"      // time (sec)
+  | "exitVelo"         // mph
+  | "rawThrowVelo"     // mph
+  | "avgFbVelo"        // mph (pitcher only)
+  | "topFbVelo"        // mph (pitcher only)
+  | "avgChVelo"        // mph (pitcher only)
+  | "avgBbVelo"        // mph (pitcher only)
+  | "popTime";         // time (sec, catcher only)
 
 // Basic metadata for labeling and gating
 export const METRIC_META: Record<
   MetricId,
   { label: string; unit: "sec" | "mph"; isPitcherOnly?: boolean; isCatcherOnly?: boolean }
 > = {
-  Home to 1B:   { label: "Home to 1st", unit: "sec" },
-  60 Yd Dash:         { label: "60 Yard Dash", unit: "sec" },
-  Exit Velo:      { label: "Exit Velocity", unit: "mph" },
-  Raw Velo:  { label: "Raw Throwing Velocity", unit: "mph" },
-  FB Velo:     { label: "Average Fastball Velocity", unit: "mph", isPitcherOnly: true },
-  Top FB Velo:     { label: "Top Fastball Velocity", unit: "mph", isPitcherOnly: true },
-  CH Velo:     { label: "Average Changeup Velocity", unit: "mph", isPitcherOnly: true },
-  BB Velo:     { label: "Average Breaking Ball Velocity", unit: "mph", isPitcherOnly: true },
-  Pop Time:       { label: "Pop Time", unit: "sec", isCatcherOnly: true },
+  homeToFirst: { label: "Home to 1st", unit: "sec" },
+  sixtyYdDash: { label: "60 Yard Dash", unit: "sec" },
+  exitVelo: { label: "Exit Velocity", unit: "mph" },
+  rawThrowVelo: { label: "Raw Throwing Velocity", unit: "mph" },
+  avgFbVelo: { label: "Average Fastball Velocity", unit: "mph", isPitcherOnly: true },
+  topFbVelo: { label: "Top Fastball Velocity", unit: "mph", isPitcherOnly: true },
+  avgChVelo: { label: "Average Changeup Velocity", unit: "mph", isPitcherOnly: true },
+  avgBbVelo: { label: "Average Breaking Ball Velocity", unit: "mph", isPitcherOnly: true },
+  popTime: { label: "Pop Time", unit: "sec", isCatcherOnly: true },
 };
 
 export type MetricEntry = {
@@ -51,18 +51,18 @@ export type MetricsBag = Partial<Record<MetricId, MetricSeries>>;
 export function isValidMonthYear(s: string): boolean {
   if (!/^(\d{1,2})\/(\d{4})$/.test(s)) return false;
   const [mStr, yStr] = s.split("/");
-  const m = Number(mStr), y = Number(yStr);
+  const m = Number(mStr);
+  const y = Number(yStr);
   if (!Number.isInteger(m) || !Number.isInteger(y)) return false;
   if (m < 1 || m > 12) return false;
-  // keep year reasonable; tweak if you like
   return y >= 1900 && y <= 2100;
 }
 
 /** Convert "mm/yyyy" -> comparable key like 202501 for Jan 2025. */
 export function ymKey(s: string): number {
-  // NOTE: assumes caller validated with isValidMonthYear
   const [mStr, yStr] = s.split("/");
-  const m = Number(mStr), y = Number(yStr);
+  const m = Number(mStr);
+  const y = Number(yStr);
   return y * 100 + m;
 }
 
@@ -80,8 +80,8 @@ export function sortEntriesDesc(entries: MetricEntry[]): MetricEntry[] {
 export function sanitizeEntry(obj: any): MetricEntry | null {
   if (!obj) return null;
   const value = Number(obj.value);
-  const source = String((obj.source ?? "")).trim();
-  const date = String((obj.date ?? "")).trim();
+  const source = String(obj.source ?? "").trim();
+  const date = String(obj.date ?? "").trim();
   const automated = Boolean(obj.automated ?? false);
 
   if (!Number.isFinite(value)) return null;
@@ -99,7 +99,7 @@ export function sanitizeEntry(obj: any): MetricEntry | null {
 export function upsertEntry(series: MetricSeries | undefined, entry: MetricEntry): MetricSeries {
   const existing = series?.entries ?? [];
   const key = ymKey(entry.date);
-  const filtered = existing.filter(e => ymKey(e.date) !== key);
+  const filtered = existing.filter((e) => ymKey(e.date) !== key);
   return {
     private: series?.private ?? false,
     entries: sortEntriesAsc([...filtered, entry]),
@@ -119,7 +119,7 @@ export function coerceMetrics(input: any): MetricsBag {
     const rawEntries = Array.isArray(rawSeries.entries) ? rawSeries.entries : [];
     const cleanEntries = rawEntries
       .map(sanitizeEntry)
-      .filter((e): e is MetricEntry => !!e);
+      .filter((e: MetricEntry | null): e is MetricEntry => e !== null);
 
     out[id] = { private: priv, entries: sortEntriesAsc(cleanEntries) };
   });
@@ -129,15 +129,15 @@ export function coerceMetrics(input: any): MetricsBag {
 
 /** Convenience: is pitcher based on profile fields already in your app. */
 export function isPitcherFromProfile(p: any): boolean {
-  const pp = (p?.primaryPos ?? "").toUpperCase();
-  const sp = (p?.secondaryPos ?? "").toUpperCase();
+  const pp = String(p?.primaryPos ?? "").toUpperCase();
+  const sp = String(p?.secondaryPos ?? "").toUpperCase();
   const ip = String(p?.isPitcher ?? "").toLowerCase();
   return pp === "P" || sp === "P" || ip === "yes";
 }
 
 /** Convenience: is catcher based on profile fields already in your app. */
 export function isCatcherFromProfile(p: any): boolean {
-  const pp = (p?.primaryPos ?? "").toUpperCase();
-  const sp = (p?.secondaryPos ?? "").toUpperCase();
+  const pp = String(p?.primaryPos ?? "").toUpperCase();
+  const sp = String(p?.secondaryPos ?? "").toUpperCase();
   return pp === "C" || sp === "C";
 }

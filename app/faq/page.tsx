@@ -157,7 +157,7 @@ const sections: Section[] = [
         q: "How do I know metrics are accurate?",
         a: (
           <>
-            Verified stats are marked as such. Non-verified entries are clearly labeled so coaches know the source.
+            Metrics are labeled so coaches know the source.
             
           </>
         ),
@@ -334,12 +334,10 @@ const sections: Section[] = [
         ),
       },
       {
-        q: "Why am I charged 3% when paying with a credit or debit card?",
+        q: "Which payment methods have a processing fee?",
         a: (
           <>
-            The 3% charge is a regulated processing fee assessed by the card networks and our payment processor for card
-            transactions. ScoutLine does not retain this fee — it’s passed through to cover the cost of card acceptance.
-            You can avoid it by paying with ACH/bank transfer. 
+            Credit card payments include a 3% processing fee. Debit card payments have no processing fee.
           </>
         ),
       },

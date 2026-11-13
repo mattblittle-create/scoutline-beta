@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('fs'),path=require('path'),crypto=require('crypto');const root=__dirname,paths=[];
+function walk(dir){for(const e of fs.readdirSync(path.resolve(root,dir),{withFileTypes:true})){const file=dir+'/'+e.name;if(e.isDirectory())walk(file);else paths.push(file);}}
+// Pin the exact candidate proof and reviewed dispositions; diagnostic fetches are not import evidence.
+const candidate=JSON.parse(fs.readFileSync(path.join(root,'correction-review/candidate.json')));
+for(const file of [...candidate.changes.map(r=>r.source),...candidate.creates.map(r=>r.source)])paths.push(file);
+for(const file of ['priority-evidence/bethel-in-roster.html','priority-evidence/ussu-roster.html','priority-evidence/research.json','sponsorship-review/all-member-dispositions.json','sponsorship-review/other-61-member-dispositions.json','sponsorship-review/report.json','../naia-baseline-20261111/official-inventory-sources/member-institutions-2026-27.json','../naia-baseline-20261111/official-inventory-sources/membership-2026-27.pdf','../naia-baseline-20261111/official-inventory-sources/membership-2026-27-reading-order.txt'])paths.push(file);
+for(const file of ['source-utils.cjs','build-candidate.cjs','build-member-source-plan.cjs','build-sponsorship-review.cjs','member-source-plan.json','rejected-map-campus-links.json','conference-member-links.json','correction-review/candidate.json','correction-review/review-summary.json','correction-review/remaining-holds.json','correction-review/preview-corrections.cjs','../naia-baseline-20261111/live-audit-2026-11-11T14-01-28-197Z-5a38848d/fresh-read-only-snapshot.json'])paths.push(file);
+const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(path.resolve(root,file))).digest('hex');
+const manifest={createdAtUtc:new Date().toISOString(),candidateSHA256:sha('correction-review/candidate.json'),schemaSHA256:sha('../../../prisma/schema.prisma'),hashes:Object.fromEntries([...new Set(paths)].sort().map(file=>[file,sha(file)]))};
+fs.writeFileSync(path.join(root,'correction-review/manifest.json'),JSON.stringify(manifest,null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({frozenInputs:Object.keys(manifest.hashes).length,candidateSHA256:manifest.candidateSHA256}));

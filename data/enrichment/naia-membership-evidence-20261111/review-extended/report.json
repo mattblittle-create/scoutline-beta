@@ -1,0 +1,92 @@
+{
+  "checkedAtUtc": "2026-11-11T15:26:31.805Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "allSportMemberRows": 233,
+  "storedNAIAPrograms": 194,
+  "memberRowsMatchedToStoredNAIA": 187,
+  "current2027ConferenceBaseballTeams": 47,
+  "public2027ConferenceSchedulesCaptured": 47,
+  "membersWith2027StandingsOrScheduleEvidence": 100,
+  "previousSourceHoldsNowSupported": 42,
+  "remainingStoredMemberSourceHolds": 24,
+  "conferenceDifferences": [
+    {
+      "name": "Jarvis Christian University",
+      "state": "TX",
+      "conference": "HBCUAC",
+      "membershipListConference": "Red River",
+      "conferenceDiffersFromAllSportMembershipList": true,
+      "label": "Jarvis Christian",
+      "season": "2026-27 / spring 2027",
+      "sourceUrl": "https://hbcuac.org/sports/bsb/2026-27/standings?jsRendering=true",
+      "sourcePath": "sources/hbcuac-2027-standings.html",
+      "publishedScheduleUrl": "https://hbcuac.org/sports/bsb/2026-27/schedule?teamId=v6i9gyuc859gkao8",
+      "claim": "Listed in official conference baseball standings; roster and schedule contents not independently verified. Conference differences may reflect sport affiliation and require review before any field update."
+    }
+  ],
+  "otherFourReview": [
+    {
+      "name": "Fisk University",
+      "state": "TN",
+      "key": "fisk-conference",
+      "claim": "Conference school profile lists sports offered without baseball.",
+      "status": "NO_BASEBALL_LISTED_IN_PRIMARY_SPORT_LIST",
+      "sourceUrl": "https://media.hbcuac.org/schools/fisk/",
+      "sourcePath": "sources/fisk-conference.html"
+    },
+    {
+      "name": "Paul Quinn College",
+      "state": "TX",
+      "key": "paul-quinn-institution",
+      "claim": "Institution athletics page lists basketball, soccer, volleyball and track/cross country without baseball; coach biographies contain historical material.",
+      "status": "NO_BASEBALL_LISTED_IN_PRIMARY_SPORT_LIST",
+      "sourceUrl": "https://paulquinn.edu/athletics/",
+      "sourcePath": "sources/paul-quinn-institution.html"
+    },
+    {
+      "name": "Life Pacific University",
+      "state": "CA",
+      "key": "life-pacific-student-life",
+      "claim": "Current institution page describes six NAIA teams, including basketball, soccer and beach volleyball; historical 2025-26 conference awards list the six sports without baseball. Complete current-season sport list remains unconfirmed.",
+      "status": "LIMITED_SPORT_LIST_EVIDENCE_CURRENT_SEASON_HELD",
+      "sourceUrl": "https://lifepacific.edu/student-life/",
+      "sourcePath": "sources/life-pacific-student-life.html"
+    },
+    {
+      "name": "Montana State University-North",
+      "state": "MT",
+      "key": "msu-northern-facts",
+      "claim": "Direct institution facts-page capture failed. Search-index snippets and old handbooks are insufficient for a current-season conclusion; athletics homepage returns a splash loop.",
+      "status": "HELD_CURRENT_PRIMARY_SPORT_LIST_UNCAPTURED",
+      "sourceUrl": "https://welovenorthern.msun.edu/aboutmsun/factsfigures.aspx",
+      "sourcePath": null
+    }
+  ],
+  "dispositions": {
+    "HELD_SOURCE_OR_SPORT_MENU_INCOMPLETE": 24,
+    "SUPPORTED_CURRENT_MEMBER_WITH_OFFICIAL_BASEBALL_PAGE": 58,
+    "SUPPORTED_OPPONENT_ON_OFFICIAL_2027_BASEBALL_SCHEDULE": 53,
+    "SUPPORTED_2027_CONFERENCE_BASEBALL_LISTING": 47,
+    "NO_BASEBALL_LISTED_IN_CAPTURED_SPORT_MENU": 38,
+    "NO_BASEBALL_LISTED_IN_PRIOR_PRIMARY_SPORT_REVIEW": 4,
+    "BASEBALL_NAVIGATION_PUBLISHED_PAGE_VERIFICATION_HELD": 2,
+    "NO_BASEBALL_LISTED_IN_PRIMARY_SPORT_LIST": 2,
+    "SUPPORTED_CURRENT_MEMBER_WITH_INSTITUTION_BASEBALL_SPONSORSHIP_STATEMENT": 1,
+    "LIMITED_SPORT_LIST_EVIDENCE_CURRENT_SEASON_HELD": 1,
+    "HELD_CURRENT_PRIMARY_SPORT_LIST_UNCAPTURED": 1,
+    "SUPPORTED_2027_OPPONENT_CONFERENCE_SCHEDULE_HOMEPAGE_HELD": 2
+  },
+  "nationalBaseballInventoryVerified": false,
+  "naiaEnrichmentComplete": false,
+  "newImportsProposed": 0,
+  "recordDeletionsProposed": 0,
+  "recordMergesProposed": 0,
+  "limitations": [
+    "The official membership list covers all sports, not just baseball.",
+    "Current conference listings do not independently verify individual rosters, coaches or full schedules.",
+    "Prior official baseball-page evidence may be season-unspecified.",
+    "Seven stale/duplicate stored records remain separately held.",
+    "Life Pacific and Montana State–Northern retain current-season evidence holds."
+  ]
+}

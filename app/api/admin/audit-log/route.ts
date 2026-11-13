@@ -13,7 +13,7 @@ function clampTake(v: any) {
 }
 
 export async function GET(req: Request) {
-  await requireAdmin({ redirectTo: "/staff" });
+  await requireAdmin("/staff");
 
   const url = new URL(req.url);
   const action = String(url.searchParams.get("action") ?? "").trim();

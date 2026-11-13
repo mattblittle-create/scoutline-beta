@@ -1,0 +1,5 @@
+'use strict';
+const fs=require('fs'),path=require('path'),crypto=require('crypto'),b=require('./build-pdf-roster-review.cjs').build();
+const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(path.resolve(__dirname,f))).digest('hex');
+const files=[...b.files,'verify-latest-checkpoint.cjs','../naia-staff-followup-20261111/closeout-manifest.json','../naia-staff-followup-20261111/apply-manifest.json','../naia-staff-followup-20261111/staff-manifest.json','../naia-staff-followup-20261111/closeout-audit-2026-11-11T21-29-46-505Z-e6e14ec3/report.json','pdf-roster-candidate.json','build-pdf-roster-review.cjs','preview-pdf-roster.cjs','freeze-pdf-roster-review.cjs','../naia-enrichment-review-20261111/source-parser.cjs','../naia-inventory-review-20261111/source-utils.cjs','../../../prisma/schema.prisma'];
+fs.writeFileSync(path.join(__dirname,'pdf-roster-manifest.json'),JSON.stringify({candidateSHA256:sha('pdf-roster-candidate.json'),hashes:Object.fromEntries([...new Set(files)].map(f=>[f,sha(f)]))},null,2)+'\n',{flag:'wx'});console.log(JSON.stringify({candidateSHA256:sha('pdf-roster-candidate.json'),players:65,snapshots:1,approval:'NOT_GRANTED'}));

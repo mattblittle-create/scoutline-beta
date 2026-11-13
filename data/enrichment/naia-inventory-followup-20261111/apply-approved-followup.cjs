@@ -1,0 +1,81 @@
+'use strict';
+const fs=require('fs'),path=require('path'),assert=require('assert/strict'),crypto=require('crypto'),{createRequire}=require('module');
+const repo=path.resolve(__dirname,'../../..'),req=createRequire(path.join(repo,'package.json')),{Prisma}=req('@prisma/client');
+const preview=require('./preview-followup.cjs'),reader=require('../naia-inventory-review-20261111/correction-review/preview-corrections.cjs');
+const priorApply=require('../naia-inventory-review-20261111/correction-review/apply-approved-corrections.cjs');
+const REVIEW='read-only-preview-2026-11-11T15-00-02-647Z-83ff6cfb';
+const CANDIDATE_SHA='3c88cb19f58e41b00ed7ad653791a90777334e98284462b0b70d0db156d78ccb';
+const PLAN_SHA='fb140a9b9c2e4867e1a041a8ae2a538567055ddf2746bc76f5277fd1811cdec8';
+const read=f=>JSON.parse(fs.readFileSync(path.join(__dirname,f))),sha=f=>crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname,f))).digest('hex'),norm=x=>JSON.parse(JSON.stringify(x));
+const scalarFields=name=>Prisma.dmmf.datamodel.models.find(m=>m.name===name).fields.filter(f=>f.kind!=='object');
+let phase='arguments';
+function load(){
+  phase='approved follow-up package hashes';
+  const m=read('apply-package-manifest.json');
+  assert.deepStrictEqual(Object.keys(m.hashes).sort(),['apply-approved-followup.cjs','approval.json','manifest.json',REVIEW+'/reviewed-plan.json',REVIEW+'/verification-summary.json',REVIEW+'/fresh-read-only-snapshot.json'].sort());
+  for(const[file,hash]of Object.entries(m.hashes))assert.equal(sha(file),hash,'Apply package changed');
+  const approval=read('approval.json');assert.equal(approval.userApproval,'Approve the two-school import and four school-type corrections.');assert.equal(approval.approvedPreview,REVIEW);assert.equal(approval.candidateSHA256,CANDIDATE_SHA);assert.equal(approval.reviewedPlanSHA256,PLAN_SHA);assert.equal(sha(REVIEW+'/reviewed-plan.json'),PLAN_SHA);
+  const d=preview.load(),plan=read(REVIEW+'/reviewed-plan.json'),summary=read(REVIEW+'/verification-summary.json'),saved=read(REVIEW+'/fresh-read-only-snapshot.json');
+  assert.equal(d.manifest.candidateSHA256,CANDIDATE_SHA);assert.deepStrictEqual(plan.candidate,d.candidate);assert.equal(plan.candidateSHA256,CANDIDATE_SHA);assert.equal(summary.candidateSHA256,CANDIDATE_SHA);
+  for(const[key,value]of Object.entries({mode:'READ_ONLY_NAIA_FOLLOWUP_PREVIEW_PASSED',databaseWrites:0,transactionReadOnly:'on',newCollegesProposed:2,newProgramsProposed:2,newInstitutionWebsiteUrls:2,newBaseballHomepageUrls:0,existingCollegeSchoolTypeChanges:4,existingProgramFieldChanges:0,projectedGlobalColleges:1580,projectedStoredNAIAPrograms:194,globalCoachesPreserved:4563,globalPlayersPreserved:19757,globalSnapshotsPreserved:514,programDependencyModelsChecked:7,schoolProfileModelsChecked:8,previousNineSchoolImportPreserved:true,middleGeorgiaDuplicateHeld:true,closedAndSuspendedRecordsHeld:true,baseballHomepageAccessHoldsPreserved:2,recordDeletions:0,recordMerges:0,importApproval:'NOT_GRANTED'})){assert.equal(plan[key],value);assert.equal(summary[key],value);}
+  assert.equal(saved.databaseWrites,0);assert.equal(saved.transactionReadOnly,'on');preview.validateState(saved,d);
+  for(const name of ['College','CollegeBaseballProgram']){const model=Prisma.dmmf.datamodel.models.find(m=>m.name===name);assert(model&&(!model.dbName||model.dbName===name));const id=model.fields.find(f=>f.name==='id');assert(id&&(!id.dbName||id.dbName==='id'));}
+  for(const x of d.candidate.changes)updateArgs(x,d.baseline);
+  return{...d,approval};
+}
+function updateArgs(x,before){
+  assert.equal(x.model,'College');assert.equal(x.field,'schoolType');assert.equal(x.before,'JUNIOR_COLLEGE');assert.equal(x.after,'FOUR_YEAR');
+  const c=before.schools.find(c=>c.id===x.collegeId);assert(c&&c.slug===x.slug);assert.equal(c.baseballProgram.id,x.programId);assert.equal(c.schoolType,x.before);assert(!c.programProfileUpdatedByUserId);
+  return{where:{id:c.id,slug:c.slug,schoolType:x.before,verificationStatus:c.verificationStatus,programProfileUpdatedByUserId:null,baseballProgram:{is:{id:x.programId,division:'NAIA'}}},data:{schoolType:x.after}};
+}
+function lockStatements(d){const collegeIds=d.candidate.changes.map(x=>x.collegeId).sort(),programIds=d.candidate.changes.map(x=>x.programId).sort();assert.equal(new Set(collegeIds).size,4);assert.equal(new Set(programIds).size,4);return[Prisma.sql`SELECT "id" FROM "College" WHERE "id" IN (${Prisma.join(collegeIds)}) ORDER BY "id" FOR UPDATE`,Prisma.sql`SELECT "id" FROM "CollegeBaseballProgram" WHERE "id" IN (${Prisma.join(programIds)}) ORDER BY "id" FOR UPDATE`];}
+function validDate(v){return typeof v==='string'&&Number.isFinite(Date.parse(v));}
+function checkNew(row,model,approved,extra,window){
+  const fields=scalarFields(model);assert.deepStrictEqual(Object.keys(row).sort(),fields.map(f=>f.name).sort());assert(typeof row.id==='string'&&row.id.length>0);
+  for(const f of fields){const k=f.name;if(k==='id')continue;if(k==='createdAt'||k==='updatedAt'){assert(validDate(row[k]));assert(Date.parse(row[k])>=window.start-60000&&Date.parse(row[k])<=window.end+60000);}else if(Object.hasOwn(extra,k))assert.deepStrictEqual(row[k],extra[k]);else if(Object.hasOwn(approved,k))assert.deepStrictEqual(row[k],approved[k]);else if(f.hasDefaultValue&&(f.default===null||typeof f.default!=='object'))assert.deepStrictEqual(row[k],f.default);else{assert(!f.isRequired);assert.equal(row[k],null,'Unexpected new nonblank value');}}
+  assert(Date.parse(row.updatedAt)>=Date.parse(row.createdAt));
+}
+const ordered=a=>[...a].sort((a,b)=>a.id<b.id?-1:a.id>b.id?1:0);
+function verify(before,after,d,created,window){
+  assert.equal(created.length,2);assert.equal(new Set(created.map(c=>c.id)).size,2);assert.equal(new Set(created.map(c=>c.baseballProgram.id)).size,2);
+  const expected=norm(before),actual=norm(after),oldCollegeIds=new Set(before.schools.map(c=>c.id)),oldProgramIds=new Set(before.schools.flatMap(c=>c.baseballProgram?[c.baseballProgram.id]:[]));
+  for(const x of d.candidate.changes){const prior=expected.schools.find(c=>c.id===x.collegeId),current=actual.schools.find(c=>c.id===x.collegeId);assert(prior&&prior.slug===x.slug&&current);assert.equal(prior.schoolType,x.before);prior.schoolType=x.after;assert(validDate(current.updatedAt));assert(Date.parse(current.updatedAt)>=Date.parse(prior.updatedAt));assert(Date.parse(current.updatedAt)>=window.start-60000&&Date.parse(current.updatedAt)<=window.end+60000);current.updatedAt=prior.updatedAt;}
+  for(const proposed of d.candidate.creates){const c=created.find(c=>c.slug===proposed.college.slug);assert(c?.baseballProgram);assert(!oldCollegeIds.has(c.id));assert(!oldProgramIds.has(c.baseballProgram.id));const{baseballProgram,...college}=c;checkNew(college,'College',proposed.college,{},window);checkNew(baseballProgram,'CollegeBaseballProgram',proposed.program,{collegeId:c.id},window);assert.equal(baseballProgram.baseballWebsiteUrl,null);expected.schools.push(norm(c));}
+  for(const key of reader.stateKeys)assert.deepStrictEqual(ordered(actual[key]),ordered(expected[key]),'Unapproved state difference: '+key);
+  assert.equal(after.schools.length,1580);assert.equal(after.schools.filter(c=>c.baseballProgram?.division==='NAIA').length,194);assert.equal(after.coaches.length,4563);assert.equal(after.players.length,19757);assert.equal(after.snapshots.length,514);assert.equal(after.schools.filter(c=>c.baseballProgram?.division==='NCAA_D3').length,379);
+}
+async function readOnly(db){return db.$transaction(async tx=>{await tx.$executeRawUnsafe('SET TRANSACTION READ ONLY');assert.equal((await tx.$queryRawUnsafe('SHOW transaction_read_only'))[0].transaction_read_only,'on');return reader.state(tx);},{isolationLevel:'RepeatableRead',timeout:120000});}
+function preflight(d){
+  const now=Date.now(),window={start:now,end:now},date=new Date(now).toISOString(),created=d.candidate.creates.map((c,i)=>priorApply.fixtureNew(c,i,date)),after=norm(d.baseline);
+  for(const x of d.candidate.changes)Object.assign(after.schools.find(c=>c.id===x.collegeId),{schoolType:x.after,updatedAt:date});after.schools.push(...norm(created));verify(d.baseline,after,d,created,window);
+  const first=s=>s.schools.find(c=>c.slug===d.candidate.creates[0].college.slug),changed=s=>s.schools.find(c=>c.slug==='andrew-college');
+  const mutations=[s=>s.schools.pop(),s=>s.schools.push(norm(s.schools[0])),s=>first(s).state='TX',s=>first(s).websiteUrl='https://unapproved.example/',s=>first(s).baseballProgram.collegeId='wrong-parent',s=>first(s).baseballProgram.baseballWebsiteUrl='https://unapproved.example/baseball',s=>first(s).baseballProgram.verificationStatus='VERIFIED',s=>first(s).lastVerifiedAt=date,s=>first(s).baseballProgram.transferHeavy=true,s=>first(s).programProfileUpdatedByUserId='unapproved-owner',s=>changed(s).schoolType='JUNIOR_COLLEGE',s=>changed(s).verificationStatus='VERIFIED',s=>changed(s).baseballProgram.updatedAt=date,s=>changed(s).baseballProgram.conference='unapproved',s=>changed(s).updatedAt='1900-01-01T00:00:00.000Z',s=>s.schools.find(c=>c.slug==='bethel-university-indiana').state='TN',s=>s.schools.find(c=>c.slug==='middle-georgia-state').baseballProgram.division='NCAA_D2',s=>first(s).baseballProgram.programYoutubeUrl='https://youtube.com/unapproved',...reader.stateKeys.filter(k=>k!=='schools').map(k=>s=>s[k].push({id:'unapproved-row'}))];
+  for(const mutate of mutations){const bad=norm(after);mutate(bad);assert.throws(()=>verify(d.baseline,bad,d,created,window));}
+  const badCreated=norm(created);badCreated[0].baseballProgram.logoUrl='https://unapproved.example/logo.png';assert.throws(()=>verify(d.baseline,after,d,badCreated,window));
+  assert.throws(()=>updateArgs({...d.candidate.changes[0],field:'verificationStatus'},d.baseline));assert.throws(()=>updateArgs({...d.candidate.changes[0],programId:'wrong-campus'},d.baseline));
+  const locks=lockStatements(d);assert.deepStrictEqual(locks.map(s=>s.values.length),[4,4]);assert(locks.every(s=>!s.values.some(v=>s.text.includes(v))));
+  console.log(JSON.stringify({mode:'OFFLINE_APPROVED_NAIA_FOLLOWUP_PREFLIGHT_PASSED',databaseAccess:false,databaseWrites:0,candidateSHA256:CANDIDATE_SHA,reviewedPlanSHA256:PLAN_SHA,newColleges:2,newPrograms:2,collegeSchoolTypeChanges:4,existingProgramFieldChanges:0,newBaseballHomepageUrls:0,guardedCollegeUpdateCalls:4,lockedExistingColleges:4,lockedExistingPrograms:4,serializableTransaction:true,negativePreservationChecks:mutations.length+1,scopeAndSQLSafetyChecks:3,fullStateSectionsCompared:16,priorNineSchoolImportPreserved:true,globalCoachesPreserved:4563,globalPlayersPreserved:19757,globalSnapshotsPreserved:514,recordDeletions:0,recordMerges:0,newManualVerificationMarkers:0,youtubeChanges:0},null,2));
+}
+async function main(){
+  assert(process.argv.length===3&&['--preflight','--apply'].includes(process.argv[2]),'Use exactly --preflight or --apply');const d=load();if(process.argv[2]==='--preflight')return preflight(d);
+  phase='database setup';req('dotenv').config({path:path.join(repo,'.env.local'),quiet:true});req('dotenv').config({path:path.join(repo,'.env'),quiet:true});const{PrismaClient}=req('@prisma/client'),db=new PrismaClient({log:[]});
+  const out=path.join(__dirname,'approved-followup-'+new Date().toISOString().replace(/[:.]/g,'-')+'-'+crypto.randomUUID().slice(0,8));fs.mkdirSync(out);const save=(file,value)=>fs.writeFileSync(path.join(out,file),JSON.stringify(value,null,2)+'\n',{flag:'wx'});console.log('REPORT_DIRECTORY='+out);let attempted=false,committed=false;
+  try{
+    phase='fresh read-only baseline';const before=await readOnly(db);save('read-only-current-before-apply.json',{databaseWrites:0,transactionReadOnly:'on',...before});preview.validateState(before,d);load();
+    save('pre-apply-snapshot.json',{databaseWrites:0,transactionReadOnly:'on',...before});save('approved-plan.json',{approval:d.approval,candidate:d.candidate,candidateSHA256:CANDIDATE_SHA,reviewedPlanSHA256:PLAN_SHA});
+    phase='serializable guarded follow-up';save('write-attempt.json',{startedAtUtc:new Date().toISOString(),candidateSHA256:CANDIDATE_SHA,atomicTransactionRequested:true,action:'Inspect receipt and current state before any retry after interruption.'});attempted=true;
+    const transaction=await db.$transaction(async tx=>{
+      const start=Date.now(),locks=lockStatements(d);assert.equal((await tx.$queryRaw(locks[0])).length,4);assert.equal((await tx.$queryRaw(locks[1])).length,4);preview.validateState(await reader.state(tx),d);
+      const updated=[];for(const x of [...d.candidate.changes].sort((a,b)=>a.collegeId.localeCompare(b.collegeId))){const result=await tx.college.updateMany(updateArgs(x,before));assert.equal(result.count,1,'Exact school-type guard failed');updated.push({collegeId:x.collegeId,slug:x.slug,field:x.field,before:x.before,after:x.after,rowsUpdated:1});}
+      const created=[];for(const row of d.candidate.creates)created.push(norm(await tx.college.create({data:{...row.college,baseballProgram:{create:row.program}},include:{baseballProgram:true}})));
+      const window={start,end:Date.now()};verify(before,await reader.state(tx),d,created,window);load();return{updated,created,window};
+    },{isolationLevel:'Serializable',maxWait:15000,timeout:120000});
+    committed=true;phase='save commit receipt';save('commit-receipt.json',{committedAtUtc:new Date().toISOString(),candidateSHA256:CANDIDATE_SHA,reviewedPlanSHA256:PLAN_SHA,newColleges:2,newPrograms:2,collegeSchoolTypeChanges:4,existingProgramFieldChanges:0,updatedRows:transaction.updated,createdRecords:transaction.created,transactionWindow:transaction.window});
+    phase='fresh read-only post-commit verification';const after=await readOnly(db);verify(before,after,d,transaction.created,transaction.window);load();
+    save('fresh-read-only-snapshot.json',{databaseWrites:0,transactionReadOnly:'on',...after});save('applied-field-changes.json',d.candidate.changes);save('created-records.json',transaction.created);
+    const result={checkedAtUtc:new Date().toISOString(),mode:'FRESH_READ_ONLY_NAIA_FOLLOWUP_VERIFICATION_PASSED',candidateSHA256:CANDIDATE_SHA,reviewedPlanSHA256:PLAN_SHA,newColleges:2,newPrograms:2,newInstitutionWebsiteUrls:2,newBaseballHomepageUrls:0,collegeSchoolTypeChanges:4,existingProgramFieldChanges:0,remainingDifferences:0,globalColleges:1580,storedNAIAPrograms:194,storedCountIsNotVerifiedNationalBaseballTotal:true,previousNineSchoolImportPreserved:true,globalCoachesPreserved:4563,globalPlayersPreserved:19757,globalSnapshotsPreserved:514,programDependencyModelsPreserved:7,schoolProfileModelsPreserved:8,newRecordsUnverified:true,existingOwnershipAndVerificationMetadataPreserved:true,middleGeorgiaDuplicateHeld:true,closedAndSuspendedRecordsHeld:true,baseballHomepageAccessHoldsPreserved:2,newManualVerificationMarkers:0,recordDeletions:0,recordMerges:0,youtubeChanges:0,nationalBaseballInventoryVerified:false,naiaEnrichmentComplete:false};
+    save('verification-summary.json',result);console.log(JSON.stringify(result,null,2));console.log('REPORT_PATH='+path.join(out,'verification-summary.json'));
+  }catch(e){const diagnostic={status:committed?'COMMITTED_INSPECT_REPORTS':attempted?'APPLY_ATTEMPTED_INSPECT_REPORTS':'STOPPED_BEFORE_APPLY',phase,errorType:e.name,databaseWrites:committed?'COMMITTED_2_COLLEGES_2_PROGRAMS_4_SCHOOL_TYPE_FIELDS':attempted?'UNCONFIRMED_INSPECT_BEFORE_RETRY':0,reportDirectory:out,action:'Do not blindly rerun. Inspect saved receipts and current state; raw connection details are suppressed.'};try{save('failure-diagnostic.json',diagnostic);}catch{}console.error(JSON.stringify(diagnostic));process.exitCode=1;}
+  finally{try{await db.$disconnect();}catch(e){console.error(JSON.stringify({status:committed?'COMMITTED_DISCONNECT_WARNING_INSPECT_RECEIPTS':'DISCONNECT_WARNING_INSPECT_RECEIPTS',errorType:e.name,databaseWrites:committed?'COMMITTED_2_COLLEGES_2_PROGRAMS_4_SCHOOL_TYPE_FIELDS':attempted?'UNCONFIRMED_INSPECT_BEFORE_RETRY':0,reportDirectory:out,action:'Inspect saved receipts before any retry.'}));process.exitCode=1;}}
+}
+module.exports={load,verify,updateArgs,lockStatements,readOnly};if(require.main===module)main().catch(e=>{console.error(JSON.stringify({status:'APPROVED_NAIA_FOLLOWUP_PACKAGE_REJECTED_BEFORE_DATABASE_ACCESS',phase,errorType:e.name,databaseWrites:0}));process.exitCode=1;});

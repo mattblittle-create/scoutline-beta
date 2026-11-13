@@ -1,3 +1,5 @@
+// app/components/CollegeSearch.tsx
+
 "use client";
 
 import React, { useMemo, useRef, useState, useEffect } from "react";

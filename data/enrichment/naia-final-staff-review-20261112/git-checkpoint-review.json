@@ -1,0 +1,91 @@
+{
+  "checkedAtUtc": "2026-11-12T21:00:16.490Z",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "gitWrites": 0,
+  "branch": "main",
+  "head": "24374522f71afc9a613e5f7052c55d78baa8135e",
+  "locallyRecordedOriginMain": "24374522f71afc9a613e5f7052c55d78baa8135e",
+  "remoteFreshness": "NOT_FETCHED",
+  "trackedChanges": "",
+  "untrackedFiles": 2426,
+  "groups": {
+    "data/enrichment/": {
+      "files": 2191,
+      "bytes": 3090856483
+    },
+    "tmp/": {
+      "files": 235,
+      "bytes": 172843556
+    }
+  },
+  "filesAtLeast100MiB": [],
+  "largestFiles": [
+    {
+      "path": "tmp/pdfs/pymupdf.zip",
+      "bytes": 63020050
+    },
+    {
+      "path": "data/enrichment/naia-university-directory-batch-20261112/approved-directory-batch-2026-11-12T20-50-17-382Z-1b2f7db2/fresh-read-only-snapshot.json",
+      "bytes": 32042596
+    },
+    {
+      "path": "data/enrichment/naia-university-directory-batch-20261112/closeout-audit-2026-11-12T20-58-01-939Z-a17ce39c/fresh-read-only-snapshot.json",
+      "bytes": 32042596
+    },
+    {
+      "path": "data/enrichment/naia-consolidated-followup-20261112/approved-consolidated-followup-2026-11-12T20-15-59-382Z-03cba009/fresh-read-only-snapshot.json",
+      "bytes": 32028944
+    },
+    {
+      "path": "data/enrichment/naia-consolidated-followup-20261112/closeout-audit-2026-11-12T20-28-52-411Z-dec20807/fresh-read-only-snapshot.json",
+      "bytes": 32028944
+    },
+    {
+      "path": "data/enrichment/naia-university-directory-batch-20261112/approved-directory-batch-2026-11-12T20-50-17-382Z-1b2f7db2/read-only-current-before-apply.json",
+      "bytes": 32028944
+    },
+    {
+      "path": "data/enrichment/naia-university-directory-batch-20261112/read-only-preview-2026-11-12T20-42-50-756Z-d5df3ec2/fresh-read-only-snapshot.json",
+      "bytes": 32028944
+    },
+    {
+      "path": "data/enrichment/naia-bulk-recovery-20261112/approved-bulk-recovery-2026-11-12T19-26-41-538Z-212bd2fc/fresh-read-only-snapshot.json",
+      "bytes": 31964403
+    },
+    {
+      "path": "data/enrichment/naia-bulk-recovery-20261112/closeout-audit-2026-11-12T19-43-34-645Z-c8c1969e/fresh-read-only-snapshot.json",
+      "bytes": 31964403
+    },
+    {
+      "path": "data/enrichment/naia-consolidated-followup-20261112/approved-consolidated-followup-2026-11-12T20-15-59-382Z-03cba009/read-only-current-before-apply.json",
+      "bytes": 31964403
+    },
+    {
+      "path": "data/enrichment/naia-consolidated-followup-20261112/read-only-preview-2026-11-12T20-03-15-417Z-3cd23833/fresh-read-only-snapshot.json",
+      "bytes": 31964403
+    },
+    {
+      "path": "data/enrichment/naia-bulk-recovery-20261112/approved-bulk-recovery-2026-11-12T19-26-41-538Z-212bd2fc/read-only-current-before-apply.json",
+      "bytes": 31843194
+    },
+    {
+      "path": "data/enrichment/naia-bulk-recovery-20261112/read-only-preview-2026-11-12T19-22-33-291Z-0441d324/fresh-read-only-snapshot.json",
+      "bytes": 31843194
+    },
+    {
+      "path": "data/enrichment/naia-campus-directory-recovery-20261112/approved-campus-directory-recovery-2026-11-12T18-42-00-306Z-26f25966/fresh-read-only-snapshot.json",
+      "bytes": 31843194
+    },
+    {
+      "path": "data/enrichment/naia-campus-directory-recovery-20261112/closeout-audit-2026-11-12T18-44-55-300Z-f2dd38b7/fresh-read-only-snapshot.json",
+      "bytes": 31843194
+    }
+  ],
+  "recommendations": [
+    "Database imports are already applied; code push is not required to make those imports live.",
+    "Do not git add everything: tmp contains downloaded tooling, compiled binaries and rendered images.",
+    "Preserve frozen audit dependencies and receipts before moving or ignoring snapshot/source files.",
+    "A checkpoint commit should be deliberately scoped after reviewing artifact size and content; no commit, fetch, push or sync performed."
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "seeds": [
+    [
+      "baker",
+      "https://www.bakeru.edu/student-experience/campus-residential-life/athletics"
+    ],
+    [
+      "bethany",
+      "https://www.bethanylb.edu/directory"
+    ],
+    [
+      "morris",
+      "https://www.morris.edu/about-morris/faculty-and-staff-directory/?wpbdp_view=all_listings"
+    ],
+    [
+      "texas-a-and-m-texarkana",
+      "https://www.tamut.edu/directory/chase-brewster.html"
+    ],
+    [
+      "viterbo",
+      "https://www.viterbo.edu/about/directory/jon-grana"
+    ],
+    [
+      "georgetown",
+      "https://www.georgetowncollege.edu/about-gc/leadership/faculty-staff/"
+    ],
+    [
+      "lsu-shreveport",
+      "https://www.lsus.edu/faculty-and-staff/directory"
+    ]
+  ],
+  "blockedHosts": [
+    "athletics.umdearborn.edu",
+    "avilaathletics.com",
+    "bakerwildcats.com",
+    "bcrams.com",
+    "bethanyswedes.com",
+    "bresciabearcats.com",
+    "clarkepride.com",
+    "clearycougars.com",
+    "cmueagles.com",
+    "cscwildcats.com",
+    "csmflames.com",
+    "defianceathletics.com",
+    "dillardbleudevils.com",
+    "doane.edu",
+    "fisherfalcons.com",
+    "fiskathletics.com",
+    "georgetowncollege.edu",
+    "georgetowncollegeathletics.com",
+    "gohastings.com",
+    "goshen.edu",
+    "huathletics.com",
+    "hugedomains.com",
+    "kcuknights.com",
+    "lpuwarriors.com",
+    "lsusathletics.com",
+    "mchornetsathletics.com",
+    "midlandu.edu",
+    "mountmercymustangs.com",
+    "msidemustangs.com",
+    "ocustars.com",
+    "ollusaintsathletics.com",
+    "onutigers.com",
+    "opsuaggies.com",
+    "paulquinnathletics.com",
+    "philanderathletics.com",
+    "puc.edu",
+    "rustathletics.com",
+    "saubees.com",
+    "scad.edu",
+    "scwarriors.com",
+    "simpsonu.edu",
+    "skyhawkathletics.com",
+    "statesmenathletics.com",
+    "sterlingcollege.prestosports.com",
+    "students.brescia.edu",
+    "suno.edu",
+    "sunoathletics.com",
+    "tamuteagles.com",
+    "tcsteersathletics.com",
+    "tougaloobulldogs.com",
+    "uhvjaguars.com",
+    "unohracers.com",
+    "usaoathletics.com",
+    "valleywillroll.com",
+    "viterbo.prestosports.com",
+    "waldorfwarriors.com",
+    "web.doane.edu",
+    "westcliffathletics.com",
+    "wileyathletics.com"
+  ],
+  "results": [
+    {
+      "slug": "baker",
+      "url": "https://www.bakeru.edu/student-experience/campus-residential-life/athletics",
+      "status": 200,
+      "finalUrl": "https://www.bakeru.edu/student-experience/campus-residential-life/athletics",
+      "checkedAtUtc": "2026-11-12T20:31:17.552Z",
+      "sourcePath": "sources/baker.html",
+      "sha256": "304bd6107a7b6a5298471c1a4038f3dfb784cdee3b368af7a88f79431921526b"
+    },
+    {
+      "slug": "bethany",
+      "url": "https://www.bethanylb.edu/directory",
+      "status": 200,
+      "finalUrl": "https://www.bethanylb.edu/directory",
+      "checkedAtUtc": "2026-11-12T20:31:17.610Z",
+      "sourcePath": "sources/bethany.html",
+      "sha256": "353bc303d1cbd11a163df183120b2efadf6f8059cdfda2d5eefaff90195f3903"
+    },
+    {
+      "slug": "georgetown",
+      "url": "https://www.georgetowncollege.edu/about-gc/leadership/faculty-staff/",
+      "status": "HELD_PREVIOUS_HOST_ACCESS",
+      "redirectUrl": "https://www.georgetowncollege.edu/about-gc/leadership/faculty-staff/"
+    },
+    {
+      "slug": "lsu-shreveport",
+      "url": "https://www.lsus.edu/faculty-and-staff/directory",
+      "status": 200,
+      "finalUrl": "https://www.lsus.edu/faculty-and-staff/directory",
+      "checkedAtUtc": "2026-11-12T20:31:19.145Z",
+      "sourcePath": "sources/lsu-shreveport.html",
+      "sha256": "ae0028ded17e8e1fd802a63191eca273cfc18c1544ebf3380276e5c357a2231c"
+    },
+    {
+      "slug": "morris",
+      "url": "https://www.morris.edu/about-morris/faculty-and-staff-directory/?wpbdp_view=all_listings",
+      "status": 200,
+      "finalUrl": "https://www.morris.edu/about-morris/faculty-and-staff-directory/?wpbdp_view=all_listings",
+      "checkedAtUtc": "2026-11-12T20:31:17.715Z",
+      "sourcePath": "sources/morris.html",
+      "sha256": "ea59cefc748fbb177dd7bb6adf0db4a01339067013cf9b3e0cfb1f4ee3c0ff2d"
+    },
+    {
+      "slug": "texas-a-and-m-texarkana",
+      "url": "https://www.tamut.edu/directory/chase-brewster.html",
+      "status": 200,
+      "finalUrl": "https://www.tamut.edu/directory/chase-brewster.html",
+      "checkedAtUtc": "2026-11-12T20:31:18.086Z",
+      "sourcePath": "sources/texas-a-and-m-texarkana.html",
+      "sha256": "20f18b6bdc744dd91d937623c0caf4f650d8e5ecc278ed9fa9dbd8421a730a43"
+    },
+    {
+      "slug": "viterbo",
+      "url": "https://www.viterbo.edu/about/directory/jon-grana",
+      "status": 200,
+      "finalUrl": "https://www.viterbo.edu/about/directory/jon-grana",
+      "checkedAtUtc": "2026-11-12T20:31:18.715Z",
+      "sourcePath": "sources/viterbo.html",
+      "sha256": "60a5dad44c2bc351227c9f9d61d1167ff32db3bc4ca29c5518a6342bd0b1c2ba"
+    }
+  ]
+}

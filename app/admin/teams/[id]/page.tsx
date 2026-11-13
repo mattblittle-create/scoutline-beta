@@ -1,3 +1,4 @@
+import { adminDateTime, safeHostedUrl } from "@/lib/billing/adminDisplay";
 // app/admin/teams/[id]/page.tsx
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -13,7 +14,7 @@ function safeId(v: any) {
 
 function fmt(d: Date) {
   try {
-    return d.toLocaleString();
+    return adminDateTime(d);
   } catch {
     return String(d);
   }
@@ -221,8 +222,8 @@ export default async function AdminTeamDetailPage({ params }: { params: { id: st
                   <td style={td}>{inv.paidAt ? fmt(inv.paidAt) : "—"}</td>
                   <td style={td}>{inv.externalId ?? "—"}</td>
                   <td style={td}>
-                    {inv.hostedUrl ? (
-                      <a href={inv.hostedUrl} target="_blank" rel="noreferrer" style={a}>
+                    {safeHostedUrl(inv.hostedUrl) ? (
+                      <a href={safeHostedUrl(inv.hostedUrl)!} target="_blank" rel="noreferrer" style={a}>
                         Open
                       </a>
                     ) : (

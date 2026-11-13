@@ -1,0 +1,4 @@
+'use strict';
+const fs=require('fs'),path=require('path'),u=require('../naia-inventory-review-20261111/source-utils.cjs');
+const d='../naia-consolidated-followup-20261112/';
+for(const slug of ['mount-mercy','wiley','olivet-nazarene','missouri-valley']){const q=u.ch.load(fs.readFileSync(path.resolve(__dirname,d,'sources',slug+'.html'),'utf8'));console.log(slug);if(slug==='mount-mercy')q('[data-profile*="baseball"]').each((_,e)=>{const n=q(e);console.log(JSON.stringify({name:u.clean(n.find('h3').text()),parts:n.find('h4').html(),bio:n.find('h3 a').attr('href')}));});if(slug==='wiley')console.log(q('.details,.profile,.person,.content').filter((_,e)=>q(e).find('a[href^="tel:"]').length&&q(e).text().length<800).map((_,e)=>q.html(e)).get().join('\n'));if(slug==='olivet-nazarene')console.log(q('.hero__content').text());if(slug==='missouri-valley')console.log(q('.mvu-dcard').filter((_,e)=>/baseball/i.test(q(e).text())).text());}

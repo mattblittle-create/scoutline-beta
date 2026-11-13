@@ -1,6 +1,6 @@
 // scripts/generate-test-player-invoice.ts
 
-import { PrismaClient, DiscountTargetType } from "@prisma/client";
+import { Prisma, PrismaClient, DiscountTargetType } from "@prisma/client";
 import { validateAndComputeDiscount } from "../lib/billing/discounts";
 import { normalizePlanTier, normalizeCadence, basePriceCents } from "../lib/billing/plans";
 
@@ -16,6 +16,7 @@ function addMonths(d: Date, months: number) {
   x.setMonth(x.getMonth() + months);
   return x;
 }
+
 function addDays(d: Date, days: number) {
   return new Date(d.getTime() + days * 24 * 60 * 60 * 1000);
 }
@@ -30,16 +31,27 @@ async function main() {
   const qLower = norm(q);
   const isEmail = qLower.includes("@");
 
+  const userWhere: Prisma.UserWhereInput = {
+    OR: [
+      { id: q },
+      ...(isEmail ? [{ email: qLower }] : []),
+      ...(!isEmail
+        ? [
+            {
+              name: {
+                contains: q,
+                mode: Prisma.QueryMode.insensitive,
+              },
+            },
+          ]
+        : []),
+    ],
+  };
+
   // Optional: find user (helpful for name searches)
   const user =
     (await prisma.user.findFirst({
-      where: {
-        OR: [
-          { id: q },
-          ...(isEmail ? [{ email: qLower }] : []),
-          ...(!isEmail ? [{ name: { contains: q, mode: "insensitive" } }] : []),
-        ],
-      },
+      where: userWhere,
       select: { id: true, email: true, name: true },
     })) ?? null;
 
@@ -79,7 +91,7 @@ async function main() {
     return;
   }
 
-  // Get most recent ACTIVE discount code for this PLAYER target (single-active enforced by your apply route)
+  // Get most recent ACTIVE discount code for this PLAYER target
   const activeApp = await prisma.discountApplication.findFirst({
     where: {
       targetType: "PLAYER",
@@ -93,7 +105,7 @@ async function main() {
 
   const code = activeApp?.discountCode?.code ?? null;
 
-  // Base price from CURRENT profile context (source of truth for invoice math)
+  // Base price from CURRENT profile context
   const baseCents = basePriceCents(planTierLabel, cadence);
 
   let totalCents = baseCents;
@@ -106,8 +118,8 @@ async function main() {
       code,
       targetType: DiscountTargetType.PLAYER,
       targetId: pp.id,
-      planTierRaw: planTierLabel, // current context
-      cadenceRaw: cadence,        // current context
+      planTierRaw: planTierLabel,
+      cadenceRaw: cadence,
     });
 
     if (computed?.ok) {
@@ -115,7 +127,6 @@ async function main() {
       discountAmountCents = computed.discountAmountCents;
       discountCodeUsed = code;
     } else {
-      // discount exists but does not apply to current context (plan/cadence/etc)
       computeNote = computed?.reason ? String(computed.reason) : "Discount not valid for current context";
       totalCents = baseCents;
     }
@@ -125,13 +136,14 @@ async function main() {
 
   const now = new Date();
   const periodStart = now;
-  const periodEnd = cadence === "annual" ? addMonths(periodStart, 12) : addMonths(periodStart, 1);
+  const periodEnd =
+    cadence === "annual" ? addMonths(periodStart, 12) : addMonths(periodStart, 1);
 
   const invoice = await prisma.playerInvoice.create({
     data: {
       playerProfileId: pp.id,
       status: "OPEN",
-      cadence, // canonical: "monthly" | "annual"
+      cadence,
       periodStart,
       periodEnd,
       invoiceDate: now,

@@ -21,7 +21,7 @@ function parseJsonArray(s: string): string[] {
 }
 
 export async function POST(req: Request) {
-  const { admin } = await requireAdmin({ redirectTo: "/staff" });
+  const { admin } = await requireAdmin("/staff");
 
   const body = await req.json().catch(() => ({}));
   const code = safeStr(body.code).toUpperCase();

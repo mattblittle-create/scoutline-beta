@@ -1,0 +1,625 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "programsReviewed": 32,
+  "currentHeadsSupported": 6,
+  "programsStillHeld": 26,
+  "dispositions": [
+    {
+      "slug": "baker",
+      "name": "Baker University",
+      "state": "KS",
+      "collegeId": "cmox0645g000iqtgc55oneldh",
+      "programId": "cmox06463000kqtgc9pjvqtua",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/bakerks",
+          "status": 403,
+          "sourcePath": "sources/baker-existing-home.html"
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "bethany",
+      "name": "Bethany College",
+      "state": "KS",
+      "collegeId": "cmowzryyd000fqt4w75l1pt86",
+      "programId": "cmowzryz4000hqt4web49by6l",
+      "outcome": "SUPPORTED_CURRENT_HEAD_PROPOSED",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/bethanyks",
+          "status": 403,
+          "sourcePath": "sources/bethany-existing-home.html"
+        }
+      ],
+      "reason": "See exact reconstructed staff facts and source limitations."
+    },
+    {
+      "slug": "brescia",
+      "name": "Brescia University",
+      "state": "KY",
+      "collegeId": "cmowzrz46000rqt4wrxx7o7a9",
+      "programId": "cmowzrz4w000tqt4wl7du8f4f",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/bresciaky",
+          "status": 403,
+          "sourcePath": "sources/brescia-existing-home.html"
+        },
+        {
+          "kind": "profile",
+          "url": "https://www.brescia.edu/listing/casey-hamilton/",
+          "status": 403,
+          "sourcePath": "sources/brescia-profile.html"
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "central-methodist",
+      "name": "Central Methodist University",
+      "state": "MO",
+      "collegeId": "cmox064v10023qtgczbgq56zf",
+      "programId": "cmox064vn0025qtgco8005zej",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/centralmethodistmo",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "dillard",
+      "name": "Dillard University",
+      "state": "LA",
+      "collegeId": "cmowzrzzj002iqt4wjp7qml4q",
+      "programId": "cmowzs00a002kqt4w2wta5bkm",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/dillardla",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "doane",
+      "name": "Doane University",
+      "state": "NE",
+      "collegeId": "cmowzs014002lqt4wj1mlkru4",
+      "programId": "cmowzs01x002nqt4w8ohvbuqf",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/doanene",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "georgetown",
+      "name": "Georgetown College",
+      "state": "KY",
+      "collegeId": "cmox065zl004lqtgckt3to19k",
+      "programId": "cmox06608004nqtgcd8exng2f",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/georgetown",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "hastings",
+      "name": "Hastings College",
+      "state": "NE",
+      "collegeId": "cmox066af0059qtgc98qcsc7y",
+      "programId": "cmox066b2005bqtgc12ijaaed",
+      "outcome": "SUPPORTED_CURRENT_HEAD_PROPOSED",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/hastings",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        },
+        {
+          "kind": "interview",
+          "url": "https://hccollegian.net/broncos-baseball-reaches-halfway-point/",
+          "status": 200,
+          "sourcePath": "sources/hastings-interview.html"
+        }
+      ],
+      "reason": "See exact reconstructed staff facts and source limitations."
+    },
+    {
+      "slug": "uhsp",
+      "name": "Health Sciences & Pharmacy, University",
+      "state": "MO",
+      "collegeId": "cmox06a1200diqtgc2xj3i2cg",
+      "programId": "cmox06a1v00dkqtgc0ies32dk",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://eutecticsports.com/sports/bsb/index",
+          "status": 200,
+          "sourcePath": "sources/uhsp-existing-home.html"
+        }
+      ],
+      "reason": "Institution/sport status evidence remains unresolved; defer status reconciliation as requested."
+    },
+    {
+      "slug": "huntington",
+      "name": "Huntington University",
+      "state": "IN",
+      "collegeId": "cmowzs0ic003iqt4w0udpeydi",
+      "programId": "cmowzs0j4003kqt4w4p7lup2g",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/huntingtonin",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "kentucky-christian",
+      "name": "Kentucky Christian University",
+      "state": "KY",
+      "collegeId": "cmox066xq006oqtgc1hw3zms8",
+      "programId": "cmox066yg006qqtgct3zks1ra",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/kentuckychristian",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Historical Jason Stowers head evidence conflicts with later associate-role lead; current official staff source access-held."
+    },
+    {
+      "slug": "lsu-shreveport",
+      "name": "Louisiana State University Shreveport",
+      "state": "LA",
+      "collegeId": "cmowzs0w50049qt4wzavead73",
+      "programId": "cmowzs0wt004bqt4w74nprpxc",
+      "outcome": "SUPPORTED_CURRENT_HEAD_PROPOSED",
+      "sourceCaptures": [
+        {
+          "kind": "directory-tool",
+          "url": "https://pages.lsus.edu/campusdirectory/directory.php",
+          "status": 200,
+          "sourcePath": "sources/lsu-shreveport-directory-tool.html"
+        },
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/lsushreveport",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        },
+        {
+          "kind": "directory-result",
+          "url": "https://pages.lsus.edu/campusdirectory/directory.php?searchfield=Neffendorf&Submit=Submit",
+          "status": 200,
+          "sourcePath": "sources/lsu-shreveport-directory-result.html"
+        }
+      ],
+      "reason": "See exact reconstructed staff facts and source limitations."
+    },
+    {
+      "slug": "michigan-dearborn",
+      "name": "Michigan-Dearborn, University",
+      "state": "MI",
+      "collegeId": "cmox067gh007uqtgcqrq09vgr",
+      "programId": "cmox067h8007wqtgc5c5lbk1q",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/michigandearborn",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "midland",
+      "name": "Midland University",
+      "state": "NE",
+      "collegeId": "cmox067kl0083qtgczg7bx4q5",
+      "programId": "cmox067l90085qtgcpz55jo7s",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/midland",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "morris",
+      "name": "Morris College",
+      "state": "SC",
+      "collegeId": "cmox067wv008uqtgc1vodg7t1",
+      "programId": "cmox067xj008wqtgc9eh7f0b2",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "athletics-category",
+          "url": "https://www.morris.edu/about-morris/faculty-and-staff-directory/wpbdp_category/athletics-department/",
+          "status": 200,
+          "sourcePath": "sources/morris-athletics-category.html"
+        },
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/morris",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "northwestern-ohio",
+      "name": "Northwestern Ohio, University of",
+      "state": "OH",
+      "collegeId": "cmox0684y009cqtgca2arq0at",
+      "programId": "cmox0685n009eqtgcdvg27ftq",
+      "outcome": "SUPPORTED_CURRENT_HEAD_PROPOSED",
+      "sourceCaptures": [
+        {
+          "kind": "catalog",
+          "url": "https://www.unoh.edu/files/academics/unoh_catalog.pdf",
+          "status": 200,
+          "sourcePath": "sources/northwestern-ohio-catalog.pdf"
+        },
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/northwesternohio",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "See exact reconstructed staff facts and source limitations."
+    },
+    {
+      "slug": "oakwood",
+      "name": "Oakwood University",
+      "state": "AL",
+      "collegeId": "cmowzs1dw0059qt4w4xp8tyqi",
+      "programId": "cmowzs1em005bqt4wy7jzp16v",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://athletics.oakwood.edu/sports/baseball",
+          "status": 200,
+          "sourcePath": "sources/oakwood-existing-home.html"
+        }
+      ],
+      "reason": "Conflicting historical head records and later vacancy; no current head accepted."
+    },
+    {
+      "slug": "oklahoma-panhandle-state-university",
+      "name": "Oklahoma Panhandle State Univ",
+      "state": "OK",
+      "collegeId": "cmwc95gpt0000qti8cwb0p5c1",
+      "programId": "cmwc95gpw0001qti81plzhie8",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "our-lady-of-the-lake",
+      "name": "Our Lady of the Lake University",
+      "state": "TX",
+      "collegeId": "cmox068fn00a0qtgc5m18fxv4",
+      "programId": "cmox068gh00a2qtgcokpfieyr",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/ourladyofthelake",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Historical coach departure and later replacement leads require current primary role evidence."
+    },
+    {
+      "slug": "philander-smith",
+      "name": "Philander Smith College",
+      "state": "AR",
+      "collegeId": "cmowzs1jr005lqt4womndsl7h",
+      "programId": "cmowzs1kh005nqt4wlynyw4it",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/philandersmithar",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "rust",
+      "name": "Rust College",
+      "state": "MS",
+      "collegeId": "cmowzs1r40060qt4waqra6rcg",
+      "programId": "cmowzs1ru0062qt4wsf57vlws",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/rustms",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "saint-francis",
+      "name": "Saint Francis, University",
+      "state": "IN",
+      "collegeId": "cmowzs1sl0063qt4w2c8vrz25",
+      "programId": "cmowzs1tf0065qt4wf2jc26kg",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/saintfrancisin",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "simpson",
+      "name": "Simpson University",
+      "state": "CA",
+      "collegeId": "cmowzs1vl0069qt4wsqb6a8yr",
+      "programId": "cmowzs1wc006bqt4wog3ldsij",
+      "outcome": "SUPPORTED_CURRENT_HEAD_PROPOSED",
+      "sourceCaptures": [
+        {
+          "kind": "departure",
+          "url": "https://simpsonredhawks.com/news/2026/7/15/general-the-tating-era-of-simpson-baseball-comes-to-an-end.aspx",
+          "status": 200,
+          "sourcePath": "sources/simpson-departure.html"
+        },
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/simpsonca",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        },
+        {
+          "kind": "profile",
+          "url": "https://simpsonredhawks.com/sports/baseball/roster/coaches/wilson-kessel/573",
+          "status": 200,
+          "sourcePath": "sources/simpson-profile.html"
+        },
+        {
+          "kind": "staff",
+          "url": "https://simpsonredhawks.com/staff-directory",
+          "status": 200,
+          "sourcePath": "sources/simpson-staff.html"
+        }
+      ],
+      "reason": "See exact reconstructed staff facts and source limitations."
+    },
+    {
+      "slug": "southern-university-at-new-orleans",
+      "name": "Southern University at New Orleans",
+      "state": "LA",
+      "collegeId": "cmowzs1yj006fqt4wp698q3i9",
+      "programId": "cmowzs1zb006hqt4w9cv36ie1",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/southernuniversityatneworleansla",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "st-ambrose",
+      "name": "St. Ambrose University",
+      "state": "IA",
+      "collegeId": "cmowzs21j006lqt4wffal58bl",
+      "programId": "cmowzs229006nqt4w7on28728",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/stambroseia",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Head-role changes conflict across historical/secondary records; official staff source access-held."
+    },
+    {
+      "slug": "sterling",
+      "name": "Sterling College",
+      "state": "KS",
+      "collegeId": "cmox069ho00ccqtgc42y9kmfr",
+      "programId": "cmox069ic00ceqtgcdf68glfw",
+      "outcome": "SUPPORTED_CURRENT_HEAD_PROPOSED",
+      "sourceCaptures": [
+        {
+          "kind": "directory",
+          "url": "https://www.sterling.edu/about/directory",
+          "status": 200,
+          "sourcePath": "sources/sterling-directory.html"
+        },
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/sterling",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        },
+        {
+          "kind": "profile",
+          "url": "https://www.sterling.edu/profile/dylan-connolly",
+          "status": 200,
+          "sourcePath": "sources/sterling-profile.html"
+        }
+      ],
+      "reason": "See exact reconstructed staff facts and source limitations."
+    },
+    {
+      "slug": "texas-college",
+      "name": "Texas College",
+      "state": "TX",
+      "collegeId": "cmox069sn00d0qtgcjtotjzzk",
+      "programId": "cmox069ta00d2qtgce5kg87su",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/texascollege",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "tougaloo",
+      "name": "Tougaloo College",
+      "state": "MS",
+      "collegeId": "cmowzs2c00076qt4wck5u0njl",
+      "programId": "cmowzs2cu0078qt4wfkoltfoo",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/tougalooms",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "union-commonwealth",
+      "name": "Union Commonwealth University",
+      "state": "KY",
+      "collegeId": "cmox06a2l00dlqtgcos7i4rt9",
+      "programId": "cmox06a3800dnqtgcivxehje8",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/unioncommonwealth",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "waldorf",
+      "name": "Waldorf University",
+      "state": "IA",
+      "collegeId": "cmox06a7z00dxqtgcs2lyeo4e",
+      "programId": "cmox06a8n00dzqtgcigsavox2",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/waldorf",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "westcliff",
+      "name": "Westcliff University",
+      "state": "CA",
+      "collegeId": "cmowzs2jp007lqt4wmxd5vtd8",
+      "programId": "cmowzs2kf007nqt4wyiw47c68",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/westcliffca",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    },
+    {
+      "slug": "wilberforce",
+      "name": "Wilberforce University",
+      "state": "OH",
+      "collegeId": "cmowzs2l5007oqt4wmemu4ojg",
+      "programId": "cmowzs2lw007qqt4wl0ygs241",
+      "outcome": "HELD_NO_SUFFICIENT_CURRENT_PRIMARY_EVIDENCE",
+      "sourceCaptures": [
+        {
+          "kind": "existing-home",
+          "url": "https://naiastats.prestosports.com/sports/bsb/2024-25/teams/wilberforceoh",
+          "status": "HELD_PREVIOUS_HOST_ACCESS",
+          "sourcePath": null
+        }
+      ],
+      "reason": "Official sport source remains access-held or lacks an explicit current head role; old records and search snippets do not authorize a head flag."
+    }
+  ],
+  "excludedStaff": [
+    {
+      "slug": "simpson",
+      "name": "Jackson Bennett",
+      "title": "Player Development / Strength and Conditioning",
+      "reason": "NONVARSITY_SUPPORT_ROLE"
+    }
+  ],
+  "limitations": [
+    "All32 reviewed does not mean all32 resolved. No unsupported head filled to satisfy a count.",
+    "No roster/status/national-inventory changes proposed; tomorrow scope remains deferred.",
+    "Current staff source evidence is not manual verification or a future-tenure guarantee."
+  ]
+}

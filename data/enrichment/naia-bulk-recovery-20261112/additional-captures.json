@@ -1,0 +1,95 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "results": [
+    {
+      "slug": "midland",
+      "kind": "institution-directory",
+      "url": "https://www.midlandu.edu/about/faculty-staff/",
+      "publishedFrom": null,
+      "status": 403,
+      "finalUrl": "https://www.midlandu.edu/about/faculty-staff/",
+      "checkedAtUtc": "2026-11-12T18:49:16.014Z",
+      "sourcePath": "sources/midland-follow-0.html",
+      "sha256": "49149497040b96611d7a11651d4a5c77cb98e4ef45826a8460cdfd590b0d889b"
+    },
+    {
+      "slug": "st-thomas",
+      "kind": "athletics-root",
+      "url": "https://stubobcats.com/sports/baseball/coaches",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://stubobcats.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-12T18:49:16.871Z",
+      "sourcePath": "sources/st-thomas-follow-1.html",
+      "sha256": "68414faef465533a198ab4625e93ff741ee893bf9eca03935b53dbea0d586e58"
+    },
+    {
+      "slug": "talladega",
+      "kind": "athletics-root",
+      "url": "https://talladegatornadoes.com/sports/baseball/coaches",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://talladegatornadoes.com/sports/baseball/coaches",
+      "checkedAtUtc": "2026-11-12T18:49:17.050Z",
+      "sourcePath": "sources/talladega-follow-2.html",
+      "sha256": "06b7a2eb1e0b5823e9e1f0db26ba6301552129d4946e4610a61ff3f687cd147d"
+    },
+    {
+      "slug": "st-thomas",
+      "kind": "roster",
+      "url": "https://stubobcats.com/sports/baseball/roster",
+      "publishedFrom": {
+        "sourcePath": "sources/st-thomas-follow-1.html",
+        "url": "https://stubobcats.com/sports/baseball/coaches",
+        "sha256": "68414faef465533a198ab4625e93ff741ee893bf9eca03935b53dbea0d586e58"
+      },
+      "status": 200,
+      "finalUrl": "https://stubobcats.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:49:17.302Z",
+      "sourcePath": "sources/st-thomas-follow-3.html",
+      "sha256": "0af5221fdafc9fad11f67732cc458a50508201dadd63de424b39cc0be289db7c"
+    },
+    {
+      "slug": "talladega",
+      "kind": "staff",
+      "url": "https://talladegatornadoes.com/staff-directory",
+      "publishedFrom": {
+        "sourcePath": "sources/talladega-follow-2.html",
+        "url": "https://talladegatornadoes.com/sports/baseball/coaches",
+        "sha256": "06b7a2eb1e0b5823e9e1f0db26ba6301552129d4946e4610a61ff3f687cd147d"
+      },
+      "status": 200,
+      "finalUrl": "https://talladegatornadoes.com/staff-directory",
+      "checkedAtUtc": "2026-11-12T18:49:18.168Z",
+      "sourcePath": "sources/talladega-follow-4.html",
+      "sha256": "909216dc23291f948cc9833b563b72846ef32123e0e43d862a3007180e83d3b3"
+    },
+    {
+      "slug": "talladega",
+      "kind": "roster",
+      "url": "https://talladegatornadoes.com/sports/baseball/roster",
+      "publishedFrom": {
+        "sourcePath": "sources/talladega-follow-2.html",
+        "url": "https://talladegatornadoes.com/sports/baseball/coaches",
+        "sha256": "06b7a2eb1e0b5823e9e1f0db26ba6301552129d4946e4610a61ff3f687cd147d"
+      },
+      "status": 200,
+      "finalUrl": "https://talladegatornadoes.com/sports/baseball/roster",
+      "checkedAtUtc": "2026-11-12T18:49:18.577Z",
+      "sourcePath": "sources/talladega-follow-5.html",
+      "sha256": "778e7c6f41e0422f2220dfaf964738df851ac4e7c145b4ea03551322ee3722eb"
+    },
+    {
+      "slug": "jarvis-christian",
+      "kind": "institution-directory",
+      "url": "https://www.jarvis.edu/directory/",
+      "publishedFrom": null,
+      "status": 200,
+      "finalUrl": "https://www.jarvis.edu/directory/",
+      "checkedAtUtc": "2026-11-12T18:49:21.719Z",
+      "sourcePath": "sources/jarvis-christian-follow-6.html",
+      "sha256": "1c24a8171a869b37bf371d7870bd8edd9362ab95420d18db1949e28addc78b1c"
+    }
+  ]
+}

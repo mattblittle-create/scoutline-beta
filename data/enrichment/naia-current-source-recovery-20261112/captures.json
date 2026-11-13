@@ -1,0 +1,78 @@
+{
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "results": [
+    {
+      "key": "truett-mcconnell-entry",
+      "url": "https://tmbears.com/sports/baseball/roster",
+      "finalUrl": "https://tmbears.com/sports/baseball/roster",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T18:20:02.662Z",
+      "sourcePath": "sources/truett-mcconnell-entry.html",
+      "sha256": "1f525bc2843b1dd1fb96615303a193804f1a59fdfb2242428fa3c30f7522d00c",
+      "publishedFrom": null
+    },
+    {
+      "key": "truett-mcconnell-staff",
+      "url": "https://tmbears.com/staff-directory",
+      "finalUrl": "https://tmbears.com/staff-directory",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T18:20:03.465Z",
+      "sourcePath": "sources/truett-mcconnell-staff.html",
+      "sha256": "7e7d89c22b592871cc30d1d2c68ef0f139b7d61b8060e79ba809f8bdb241d938",
+      "publishedFrom": {
+        "sourcePath": "sources/truett-mcconnell-entry.html",
+        "url": "https://tmbears.com/sports/baseball/roster"
+      }
+    },
+    {
+      "key": "truett-mcconnell-roster",
+      "url": "https://tmbears.com/sports/baseball/roster",
+      "finalUrl": "https://tmbears.com/sports/baseball/roster",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T18:20:03.584Z",
+      "sourcePath": "sources/truett-mcconnell-roster.html",
+      "sha256": "1f525bc2843b1dd1fb96615303a193804f1a59fdfb2242428fa3c30f7522d00c",
+      "publishedFrom": {
+        "sourcePath": "sources/truett-mcconnell-entry.html",
+        "url": "https://tmbears.com/sports/baseball/roster"
+      }
+    },
+    {
+      "key": "midway-entry",
+      "url": "https://gomidwayeagles.com/staff-directory/luther-bramblett/3",
+      "finalUrl": "https://gomidwayeagles.com/staff-directory/luther-bramblett/3",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T18:20:04.988Z",
+      "sourcePath": "sources/midway-entry.html",
+      "sha256": "706445cd4c24e991d0fd1c86a8633f7e125dd2c45e3d936a9743b621045bc00d",
+      "publishedFrom": null
+    },
+    {
+      "key": "midway-staff",
+      "url": "https://gomidwayeagles.com/staff-directory",
+      "finalUrl": "https://gomidwayeagles.com/staff-directory",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T18:20:05.461Z",
+      "sourcePath": "sources/midway-staff.html",
+      "sha256": "389f75625f8aa42fd90472d2cfcc54fe47ddb98f303aa9692548192f5b067f1d",
+      "publishedFrom": {
+        "sourcePath": "sources/midway-entry.html",
+        "url": "https://gomidwayeagles.com/staff-directory/luther-bramblett/3"
+      }
+    },
+    {
+      "key": "midway-roster",
+      "url": "https://gomidwayeagles.com/sports/baseball/roster",
+      "finalUrl": "https://gomidwayeagles.com/sports/baseball/roster",
+      "status": 200,
+      "checkedAtUtc": "2026-11-12T18:20:05.672Z",
+      "sourcePath": "sources/midway-roster.html",
+      "sha256": "7f85863cbef3e9e55e3de02b18cd5c240e64af63fed92de3345ba6c2c4d98e58",
+      "publishedFrom": {
+        "sourcePath": "sources/midway-entry.html",
+        "url": "https://gomidwayeagles.com/staff-directory/luther-bramblett/3"
+      }
+    }
+  ]
+}

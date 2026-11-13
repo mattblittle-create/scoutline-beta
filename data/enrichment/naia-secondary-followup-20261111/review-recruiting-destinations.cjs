@@ -1,0 +1,13 @@
+'use strict';
+const fs=require('fs'),path=require('path'),u=require('../naia-inventory-review-20261111/source-utils.cjs');
+const captures={results:['recruiting-destination-captures.json','recruiting-followlink-captures.json'].flatMap(f=>JSON.parse(fs.readFileSync(path.join(__dirname,f))).results)},rows=[];
+for(const r of captures.results){if(r.capture.status!==200){rows.push({...r,verdict:'HELD_ACCESS_OR_UNAVAILABLE'});continue;}const q=u.ch.load(fs.readFileSync(path.resolve(__dirname,r.capture.sourcePath),'utf8'));q('script,style,header,footer,nav').remove();
+ const title=u.clean(q('title').text()),headings=q('h1,h2,h3').toArray().map(e=>u.clean(q(e).text())),text=u.clean(q('body').text()),heading=title+' '+headings.join(' ');
+ const forms=q('form').toArray().map(e=>{const f=q(e);return{action:f.attr('action'),id:f.attr('id'),fields:f.find('input:not([type="hidden"]):not([type="submit"]):not([type="button"]),select,textarea').toArray().filter(el=>! /search/i.test((q(el).attr('name')||'')+' '+(q(el).attr('id')||''))).length,labels:u.clean(f.find('label').text()).slice(0,1200),sports:f.find('select option').toArray().map(el=>u.clean(q(el).text())).filter(x=>/baseball/i.test(x)),text:u.clean(f.text()).slice(0,700)};});
+ const related=u.links(fs.readFileSync(path.resolve(__dirname,r.capture.sourcePath),'utf8'),r.capture.finalUrl).filter(a=>/baseball/i.test(a.label+' '+a.context)&&/question|recruit|form|camp|clinic/i.test(a.label+' '+a.url));
+ const dates=[...text.matchAll(/.{0,60}(?:\b\d{1,2}\/\d{1,2}\/20(?:26|27)\b|\b20(?:26|27)-\d\d-\d\d\b).{0,90}/g)].map(x=>x[0]);
+ let verdict='HELD_MANUAL_DESTINATION_REVIEW';if(/access denied|verify you are human|page not found|404 not found|checking your browser/i.test(heading+' '+text.slice(0,400)))verdict='HELD_ACCESS_OR_ERROR_PAGE';else if(r.kind.startsWith('questionnaire')&&forms.some(f=>f.fields>=5&&/first.?name|last.?name|email|e-mail/i.test(f.labels+' '+f.text)&&(/baseball/i.test(heading)||f.sports.length)))verdict='REVIEW_NATIVE_BASEBALL_OR_BASEBALL_OPTION_FORM';
+ rows.push({...r,title,headings,forms,related,dates,verdict,excerpt:r.kind==='camps'?text.slice(0,1800):undefined});
+}
+fs.writeFileSync(path.join(__dirname,'recruiting-destination-review.json'),JSON.stringify(rows,null,2)+'\n');
+console.log(JSON.stringify({native:rows.filter(r=>r.verdict==='REVIEW_NATIVE_BASEBALL_OR_BASEBALL_OPTION_FORM').map(r=>({slug:r.campus.slug,kind:r.kind,title:r.title,url:r.capture.finalUrl,forms:r.forms.map(f=>({fields:f.fields,sports:f.sports,labels:f.labels}))})),links:rows.filter(r=>r.related?.length&&r.verdict!=='REVIEW_NATIVE_BASEBALL_OR_BASEBALL_OPTION_FORM').map(r=>({slug:r.campus.slug,kind:r.kind,title:r.title,related:r.related.slice(0,4)}))},null,2));

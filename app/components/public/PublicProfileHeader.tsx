@@ -138,6 +138,14 @@ export default function PublicProfileHeader({
   h1Style,
   pillStyle,
 }: Props) {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+React.useEffect(() => {
+  const check = () => setIsMobile(window.innerWidth <= 640);
+  check();
+  window.addEventListener("resize", check);
+  return () => window.removeEventListener("resize", check);
+}, []);
   const firstName = profile.firstName || "";
   const lastName = profile.lastName || "";
   const primaryPhotoUrl = profile.primaryPhotoUrl || undefined;
@@ -225,16 +233,20 @@ export default function PublicProfileHeader({
   }
 
   // ---- UI tokens ---------------------------------------------------------
-  const safePill: React.CSSProperties = {
-    fontSize: 13,
-    fontWeight: 700,
-    color: "#475569",
-    background: "#f1f5f9",
-    border: "1px solid #e2e8f0",
-    borderRadius: 999,
-    padding: "3px 10px",
-    ...(pillStyle || {}),
-  };
+const safePill: React.CSSProperties = {
+  fontSize: isMobile ? 11 : 13,
+  fontWeight: 700,
+  color: "#475569",
+  background: "#f1f5f9",
+  border: "1px solid #e2e8f0",
+  borderRadius: 999,
+  padding: isMobile ? "3px 8px" : "3px 10px",
+  lineHeight: 1.25,
+  maxWidth: "100%",
+  whiteSpace: "normal",
+  overflowWrap: "anywhere",
+  ...(pillStyle || {}),
+};
   const safeCard: React.CSSProperties = {
     marginTop: 16,
     background: "#fff",
@@ -347,28 +359,29 @@ export default function PublicProfileHeader({
     return years;
   };
 
-  const baselineKeyFor = (key: string): string | null => {
-    const map: Record<string, string> = {
-      homeToFirst: "homeToFirst",
-      sixtyYdDash: "sixtyYdDash",
-      sixtyYd: "sixtyYdDash",
-      exitVelo: "exitVelo",
-      rawThrowVelo: "rawThrowVelo",
-      benchPress: "benchPress",
-      squat: "squat",
-      popTime: "popTime",
-      avgFbVelo: "avgFbVelo",
-      avgChVelo: "avgChVelo",
-      avgBbVelo: "avgBbVelo",
-      fbVelo: "avgFbVelo",
-      chVelo: "avgChVelo",
-      bbVelo: "avgBbVelo",
-      infieldVelo: "rawThrowVelo",
-      outfieldVelo: "rawThrowVelo",
-      catcherVelo: "rawThrowVelo",
-    };
-    return map[key] ?? null;
+const baselineKeyFor = (key: string): string | null => {
+  const map: Record<string, string> = {
+    homeToFirst: "homeToFirst",
+    sixtyYdDash: "sixtyYdDash",
+    sixtyYd: "sixtyYdDash",
+    exitVelo: "exitVelo",
+    rawThrowVelo: "rawThrowVelo",
+    benchPress: "benchPress",
+    squat: "squat",
+    deadLift: "deadLift",
+    popTime: "popTime",
+    avgFbVelo: "avgFbVelo",
+    avgChVelo: "avgChVelo",
+    avgBbVelo: "avgBbVelo",
+    fbVelo: "avgFbVelo",
+    chVelo: "avgChVelo",
+    bbVelo: "avgBbVelo",
+    infieldVelo: "rawThrowVelo",
+    outfieldVelo: "rawThrowVelo",
+    catcherVelo: "rawThrowVelo",
   };
+  return map[key] ?? null;
+};
 
   const unitForKey = (key: string): "sec" | "mph" | "lb" => {
     const secs = new Set(["homeToFirst", "sixtyYdDash", "sixtyYd", "popTime"]);
@@ -565,6 +578,7 @@ export default function PublicProfileHeader({
   const latestRawVelo = pickLatestByKey(m, "rawThrowVelo");
   const latestBench = pickLatestByKey(m, "benchPress");
   const latestSquat = pickLatestByKey(m, "squat");
+  const latestDeadLift = pickLatestByKey(m, "deadLift");
   const latestPopTime = pickLatestByKey(m, "popTime");
   const latestAvgFB = pickLatestByKey(m, "avgFbVelo");
   const latestAvgCH = pickLatestByKey(m, "avgChVelo");
@@ -632,48 +646,47 @@ export default function PublicProfileHeader({
     hasUtilityPosition && asNumber(latestRawVelo.value) != null;
 
   return (
-    <section
-      style={{
-        ...safeCard,
-        position: "relative",
-        display: "flex",
-        gap: 0,
-        alignItems: "center",
-        paddingLeft: 0,
-        paddingRight: 0,
-      }}
-    >
-      {demoMode ? (
-        <div style={{ position: "absolute", top: 12, right: 12 }}>
-          <span
-            style={{
-              ...safePill,
-              background: "#0ea5e9",
-              color: "#0f172a",
-              borderColor: "#0ea5e9",
-            }}
-          >
-            Demo: {demoMode}
-          </span>
-        </div>
-      ) : null}
+<section
+  style={{
+    ...safeCard,
+    position: "relative",
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row",
+    gap: isMobile ? 10 : 0,
+    alignItems: isMobile ? "stretch" : "center",
+    paddingLeft: isMobile ? 12 : 0,
+    paddingRight: isMobile ? 12 : 0,
+    overflow: "hidden",
+  }}
+>
 
-      <div style={{ marginLeft: -12 }}>
+      <div
+  style={{
+    marginLeft: isMobile ? 0 : -12,
+    display: "flex",
+    justifyContent: isMobile ? "center" : "flex-start",
+    flexShrink: 0,
+  }}
+>
         <PublicAvatar
           firstName={firstName}
           lastName={lastName}
           photoUrl={primaryPhotoUrl}
-          size={(() => {
-            let rows = 3;
-            rows += 1;
-            rows += 1;
-            if (hasCPosition || showPitchingMetrics) rows += 1;
-            return rows >= 6 ? 200 : rows >= 5 ? 150 : 180;
-          })()}
+size={
+  isMobile
+    ? 132
+    : (() => {
+        let rows = 3;
+        rows += 1;
+        rows += 1;
+        if (hasCPosition || showPitchingMetrics) rows += 1;
+        return rows >= 6 ? 200 : rows >= 5 ? 150 : 180;
+      })()
+}
         />
       </div>
 
-      <div style={{ minWidth: 0 }}>
+      <div style={{ minWidth: 0, width: "100%" }}>
         {/* Committed + ID pills */}
         <div
           style={{
@@ -855,26 +868,37 @@ export default function PublicProfileHeader({
           )}
         </div>
 
-        {/* Row 5 – strength */}
-        <div
-          style={{
-            marginTop: 6,
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            flexWrap: "wrap",
-          }}
-        >
-          <span
-            style={safePill}
-            title={buildTooltip("benchPress", latestBench)}
-          >
-            Bench: {fmtLb(latestBench.value)}
-          </span>
-          <span style={safePill} title={buildTooltip("squat", latestSquat)}>
-            Squat: {fmtLb(latestSquat.value)}
-          </span>
-        </div>
+{/* Row 5 – strength */}
+<div
+  style={{
+    marginTop: 6,
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    flexWrap: "wrap",
+  }}
+>
+  <span
+    style={safePill}
+    title={buildTooltip("benchPress", latestBench)}
+  >
+    Bench: {fmtLb(latestBench.value)}
+  </span>
+
+  <span
+    style={safePill}
+    title={buildTooltip("squat", latestSquat)}
+  >
+    Squat: {fmtLb(latestSquat.value)}
+  </span>
+
+  <span
+    style={safePill}
+    title={buildTooltip("deadLift", latestDeadLift)}
+  >
+    Dead Lift: {fmtLb(latestDeadLift.value)}
+  </span>
+</div>
 
         {/* Row 6 – catcher + pitching metrics */}
         {(showCatcherMetrics || showPitchingMetrics) && (

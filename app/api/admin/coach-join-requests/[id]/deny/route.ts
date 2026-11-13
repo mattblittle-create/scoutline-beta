@@ -16,30 +16,46 @@ function requireScoutLineAdmin(user: any) {
   return { ok: true as const };
 }
 
-export async function POST(req: Request, ctx: { params: { id: string } }) {
+export async function POST(_req: Request, ctx: { params: { id: string } }) {
   const user = await getCurrentUser();
   const gate = requireScoutLineAdmin(user);
   if (!gate.ok) return NextResponse.json<Err>({ ok: false, error: gate.error }, { status: gate.status });
 
-  const id = ctx.params.id;
-  const body = await req.json().catch(() => ({} as any));
-  const notes = String(body?.notes || "").trim();
+  // ✅ TS narrowing (same pattern as approve route)
+  const adminUser = user as NonNullable<typeof user>;
 
-  const reqRow = await prisma.coachJoinRequest.findUnique({ where: { id } });
+  const id = ctx.params.id;
+
+  const reqRow = await prisma.coachJoinRequest.findUnique({
+    where: { id },
+    include: {
+      requestedByUser: { select: { id: true, email: true } },
+      college: { select: { id: true, name: true } },
+    },
+  });
+
   if (!reqRow) return NextResponse.json<Err>({ ok: false, error: "Join request not found." }, { status: 404 });
   if (reqRow.status !== ("PENDING" as any)) {
     return NextResponse.json<Err>({ ok: false, error: `Request is ${reqRow.status}.` }, { status: 400 });
   }
 
-  await prisma.coachJoinRequest.update({
-    where: { id },
-    data: {
-      status: "DENIED" as any,
-      decidedAt: new Date(),
-      decidedByUserId: user.id,
-      notes: notes || reqRow.notes,
-    },
+  await prisma.$transaction(async (tx) => {
+    await tx.coachJoinRequest.update({
+      where: { id: reqRow.id },
+      data: {
+        status: "DENIED" as any,
+        decidedAt: new Date(),
+        decidedByUserId: adminUser.id,
+      },
+    });
   });
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({
+    ok: true,
+    data: {
+      id: reqRow.id,
+      status: "DENIED",
+      collegeId: reqRow.collegeId,
+    },
+  });
 }

@@ -21,6 +21,9 @@ export async function POST(_req: Request, ctx: { params: { id: string } }) {
   const gate = requireScoutLineAdmin(user);
   if (!gate.ok) return NextResponse.json<Err>({ ok: false, error: gate.error }, { status: gate.status });
 
+  // ✅ TS narrowing: requireScoutLineAdmin does runtime checks, but TS can't infer that "user" is non-null here.
+  const adminUser = user as NonNullable<typeof user>;
+
   const id = ctx.params.id;
 
   const reqRow = await prisma.coachJoinRequest.findUnique({
@@ -87,7 +90,7 @@ export async function POST(_req: Request, ctx: { params: { id: string } }) {
       data: {
         status: "APPROVED" as any,
         decidedAt: new Date(),
-        decidedByUserId: user.id,
+        decidedByUserId: adminUser.id,
       },
     });
   });

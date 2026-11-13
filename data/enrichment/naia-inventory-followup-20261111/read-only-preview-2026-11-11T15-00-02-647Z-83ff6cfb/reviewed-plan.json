@@ -1,0 +1,212 @@
+{
+  "checkedAtUtc": "2026-11-11T15:00:02.647Z",
+  "mode": "READ_ONLY_NAIA_FOLLOWUP_PREVIEW_PASSED",
+  "databaseWrites": 0,
+  "transactionReadOnly": "on",
+  "candidateSHA256": "3c88cb19f58e41b00ed7ad653791a90777334e98284462b0b70d0db156d78ccb",
+  "newCollegesProposed": 2,
+  "newProgramsProposed": 2,
+  "newInstitutionWebsiteUrls": 2,
+  "newBaseballHomepageUrls": 0,
+  "existingCollegeSchoolTypeChanges": 4,
+  "existingProgramFieldChanges": 0,
+  "projectedGlobalColleges": 1580,
+  "projectedStoredNAIAPrograms": 194,
+  "projectedCountIsNotVerifiedNationalBaseballTotal": true,
+  "globalCoachesPreserved": 4563,
+  "globalPlayersPreserved": 19757,
+  "globalSnapshotsPreserved": 514,
+  "programDependencyModelsChecked": 7,
+  "schoolProfileModelsChecked": 8,
+  "previousNineSchoolImportPreserved": true,
+  "middleGeorgiaDuplicateHeld": true,
+  "closedAndSuspendedRecordsHeld": true,
+  "baseballHomepageAccessHoldsPreserved": 2,
+  "newManualVerificationMarkers": 0,
+  "recordDeletions": 0,
+  "recordMerges": 0,
+  "youtubeUpdatesProposed": 0,
+  "nationalBaseballInventoryVerified": false,
+  "importApproval": "NOT_GRANTED",
+  "candidate": {
+    "version": 1,
+    "scope": "NAIA_MEMBERSHIP_AND_ACADEMIC_TYPE_FOLLOWUP_20261111",
+    "baseline": "../naia-inventory-review-20261111/correction-review/closeout-audit-2026-11-11T14-47-27-367Z-ca49d221/fresh-read-only-snapshot.json",
+    "changes": [
+      {
+        "model": "College",
+        "collegeId": "cmox1gf130009qtsg5t8u03t9",
+        "programId": "cmox1gf1s000bqtsgmodcc72o",
+        "slug": "andrew-college",
+        "field": "schoolType",
+        "before": "JUNIOR_COLLEGE",
+        "after": "FOUR_YEAR",
+        "source": "sources/andrew-accreditation.html"
+      },
+      {
+        "model": "College",
+        "collegeId": "cmox234xk000rqtfk5uh31vu3",
+        "programId": "cmox234y9000tqtfk4sl09tpz",
+        "slug": "bismarck-state-college",
+        "field": "schoolType",
+        "before": "JUNIOR_COLLEGE",
+        "after": "FOUR_YEAR",
+        "source": "sources/bismarck-degrees.html"
+      },
+      {
+        "model": "College",
+        "collegeId": "cmox2370n0053qtfkut9hq09h",
+        "programId": "cmox2371e0055qtfkvkx90l9g",
+        "slug": "hesston-college",
+        "field": "schoolType",
+        "before": "JUNIOR_COLLEGE",
+        "after": "FOUR_YEAR",
+        "source": "sources/hesston-engineering.html"
+      },
+      {
+        "model": "College",
+        "collegeId": "cmox1ggec0036qtsgc1zh6eat",
+        "programId": "cmox1ggf20038qtsgueznsf5i",
+        "slug": "east-georgia-college",
+        "field": "schoolType",
+        "before": "JUNIOR_COLLEGE",
+        "after": "FOUR_YEAR",
+        "source": "sources/east-georgia-consolidation.html"
+      }
+    ],
+    "creates": [
+      {
+        "memberName": "Oklahoma Panhandle State Univ",
+        "memberState": "OK",
+        "college": {
+          "name": "Oklahoma Panhandle State University",
+          "slug": "oklahoma-panhandle-state-university",
+          "state": "OK",
+          "websiteUrl": "https://opsu.edu/",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "sources": [
+          "sources/opsu-institution.html",
+          "sources/ocu-2027-schedule.html"
+        ]
+      },
+      {
+        "memberName": "Science and Arts of Ok, University of",
+        "memberState": "OK",
+        "college": {
+          "name": "University of Science and Arts of Oklahoma",
+          "slug": "university-of-science-and-arts-of-oklahoma",
+          "state": "OK",
+          "websiteUrl": "https://usao.edu/",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "program": {
+          "division": "NAIA",
+          "conference": "Sooner Athletic Conference",
+          "verificationStatus": "UNVERIFIED"
+        },
+        "sources": [
+          "institution-sources/usao-home.html",
+          "sources/ocu-2027-schedule.html"
+        ]
+      }
+    ],
+    "opponentEvidence": [
+      {
+        "name": "Oklahoma Panhandle State University",
+        "games": [
+          {
+            "text": "Apr 16 (Fri) 7 PM SAC * vs Oklahoma Panhandle State University Watch Live Stats History Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Watch Live Stats History",
+            "source": "sources/ocu-2027-schedule.html"
+          },
+          {
+            "text": "Apr 17 (Sat) 12:05 PM SAC * vs Oklahoma Panhandle State University Watch Live Stats History Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Watch Live Stats History",
+            "source": "sources/ocu-2027-schedule.html"
+          },
+          {
+            "text": "Apr 17 (Sat) 4 PM SAC * vs Oklahoma Panhandle State University Watch Live Stats History Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Watch Live Stats History",
+            "source": "sources/ocu-2027-schedule.html"
+          }
+        ]
+      },
+      {
+        "name": "University of Science and Arts (Okla.)",
+        "games": [
+          {
+            "text": "Mar 19 (Fri) 1 PM SAC * vs University of Science and Arts (Okla.) Watch Live Stats History Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Watch Live Stats History",
+            "source": "sources/ocu-2027-schedule.html"
+          },
+          {
+            "text": "Mar 20 (Sat) 12:05 PM SAC * vs University of Science and Arts (Okla.) Watch Live Stats History Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Watch Live Stats History",
+            "source": "sources/ocu-2027-schedule.html"
+          },
+          {
+            "text": "Mar 20 (Sat) 3 PM SAC * vs University of Science and Arts (Okla.) Watch Live Stats History Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Oklahoma City Denney Crabaugh Field at Jim Wade Stadium Watch Live Stats History",
+            "source": "sources/ocu-2027-schedule.html"
+          }
+        ]
+      }
+    ],
+    "remainingHolds": {
+      "coreBaseballHomepageHolds": [
+        {
+          "slug": "oklahoma-panhandle-state-university",
+          "status": "HELD_PRIOR_ATHLETICS_HTTP202_RESPONSE",
+          "baseballWebsiteUrlProposed": null,
+          "programExistenceEvidence": "Official 2026–27 member list and independently published 2027 varsity conference schedule; institution homepage captured separately."
+        },
+        {
+          "slug": "university-of-science-and-arts-of-oklahoma",
+          "status": "HELD_PRIOR_ATHLETICS_HTTP202_RESPONSE",
+          "baseballWebsiteUrlProposed": null,
+          "programExistenceEvidence": "Official 2026–27 member list and independently published 2027 varsity conference schedule; institution homepage captured separately."
+        }
+      ],
+      "other61MembershipHoldsStillOpen": [
+        "Fisk University",
+        "Life Pacific University",
+        "Montana State University-North",
+        "Paul Quinn College"
+      ],
+      "newlyResolvedAsNoBaseballInPublishedSportMenu": [
+        {
+          "name": "Columbia College",
+          "state": "SC",
+          "source": "institution-sources/columbia-sc-athletics.html"
+        },
+        {
+          "name": "College of Saint Mary",
+          "state": "NE",
+          "source": "institution-sources/saint-mary-athletics.html"
+        },
+        {
+          "name": "Nevada State University",
+          "state": "NV",
+          "source": "../naia-inventory-review-20261111/supplemental-sources/nevada-state.html"
+        },
+        {
+          "name": "University of the Virgin Islands",
+          "state": "VI",
+          "source": "institution-sources/uvi-athletics.html"
+        }
+      ],
+      "absenceOfPublishedSportIsNotAbsoluteProofOfNoTeam": true,
+      "middleGeorgiaDuplicateHeld": true,
+      "closedAndSuspendedRecordsHeld": true,
+      "otherStoredCohortSourceHoldsRemain": true,
+      "nationalBaseballInventoryVerified": false
+    },
+    "recordDeletions": 0,
+    "recordMerges": 0,
+    "newCoaches": 0,
+    "newPlayers": 0,
+    "newManualVerificationMarkers": 0,
+    "youtubeChanges": 0,
+    "approval": "NOT_GRANTED"
+  }
+}

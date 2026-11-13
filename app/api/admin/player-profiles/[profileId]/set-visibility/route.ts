@@ -12,9 +12,12 @@ const ALLOWED = ["PUBLIC", "PRIVATE", "TEAM_ONLY", "VERIFIED_ONLY"] as const;
 type Visibility = (typeof ALLOWED)[number];
 
 export async function POST(req: Request, ctx: { params: { profileId: string } }) {
-  const { admin, roles } = await requireAdmin({ redirectTo: "/staff" });
+const { admin } = await requireAdmin("/staff");
+const roles = Array.isArray(admin.roles)
+  ? admin.roles.map((r: { role: string }) => r.role)
+  : [];
 
-  const can = roles.includes("SCOUTLINE_ADMIN") || roles.includes("SUPPORT_AGENT");
+const can = roles.includes("SCOUTLINE_ADMIN") || roles.includes("SUPPORT_AGENT");
   if (!can) return NextResponse.json({ ok: false, error: "Forbidden" }, { status: 403 });
 
   const profileId = String(ctx?.params?.profileId || "").trim();
