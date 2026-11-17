@@ -1,0 +1,47 @@
+{
+  "checkedAtUtc": "2026-11-17T21:23:35.8814457Z",
+  "scope": "D3_CURRENT_EVIDENCE_PASS_WITH_DOCUMENTED_HOLDS",
+  "databaseAccess": false,
+  "databaseWrites": 0,
+  "lastDatabaseCloseout": "field-closeout-audit-2026-11-17T21-20-03-976Z-7aa24ccf",
+  "nationalInventoryVerified": true,
+  "programs": 379,
+  "headCoachCoverage": 379,
+  "current2027RosterPrograms": 89,
+  "players2027": 3622,
+  "remaining2027RosterHolds": 290,
+  "missingCoreLinkFields": 488,
+  "missingRecruitingFields": 1010,
+  "missingSocialFields": 228,
+  "assistantStaffHolds": [
+    {
+      "slug": "willamette-university",
+      "reason": "Current NCAA head appointment confirmed. Assistant appointments and contacts remain held; available athletics directory was dated 2026 and a fresh request returned access denied."
+    },
+    {
+      "slug": "wentworth-institute-of-technology",
+      "reason": "Only five baseball staff currently listed in the university directory proposed. Additional names found only in third-party or older athletics sources are excluded."
+    }
+  ],
+  "freshRosterReviewComplete": true,
+  "freshNavigationCollectionPrograms": 379,
+  "freshReadableNavigationPrograms": 353,
+  "approvedFreshRosterImportClosed": true,
+  "approvedFreshFieldImportClosed": true,
+  "knownPreparedImportsPending": 0,
+  "freshPublicProductionVerification": "PASSED",
+  "uiRenderingVerified": false,
+  "allFieldsComplete": false,
+  "d3EnrichmentComplete": false,
+  "nextDivision": "JUCO",
+  "limitations": [
+    "This closes reviewed supported imports; absent or unpublished data remains held.",
+    "The all-program navigation collection had a four-page limit and does not prove all possible source discovery is exhausted.",
+    "Assistant completeness is not established for held programs.",
+    "No blank email is inferred from a coach personal contact.",
+    "No automated rollover, verification promotion, merge or deletion.",
+    "Public API verification does not establish rendered browser UI behavior."
+  ],
+  "publicProductionReport": "d3-production-verification-2026-11-17T21-25-47-433Z-f655bb17/report.json",
+  "currentReviewPassClosedWithDocumentedHolds": true
+}

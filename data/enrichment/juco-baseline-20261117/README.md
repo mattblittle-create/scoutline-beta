@@ -1,0 +1,1 @@
+Read-only JUCO baseline. Run audit-juco-baseline.cjs --preflight, then noargs only if exit0. Runtime not run by assistant. No import mode. NJCAA historicalreferences159/164/85 (408total) are unverifiedleads; OTHER/JUNIOR_COLLEGE scope candidates held separately. All16globalstate sections preserved against finalD3closeout. See NEXT-SESSION-NOTES.md.
